@@ -17,7 +17,7 @@ PLAFOND_ARTICLES = 30
 
 # Nombre maximum d'appels à Claude = articles demandés x ce facteur.
 # Évite de dépenser trop quand beaucoup d'articles sont ignorés.
-FACTEUR_APPELS_MAX = 3
+FACTEUR_APPELS_MAX = 5
 
 # Âge maximum d'un article pour être pris en compte (en jours).
 AGE_MAX_JOURS = 30
@@ -122,6 +122,8 @@ def titres_proches(a: str, b: str) -> bool:
 class Supabase:
     def __init__(self, url: str, cle: str):
         self.base = url.rstrip("/") + "/rest/v1/advances"
+        self.base_vus = url.rstrip("/") + "/rest/v1/seen_urls"
+        self.memoire_ok = True
         self.headers = {"apikey": cle, "Content-Type": "application/json"}
         # Anciennes clés (JWT, commencent par eyJ) : il faut aussi ce champ.
         if cle.startswith("eyJ"):
@@ -133,6 +135,30 @@ class Supabase:
             "select": "source_url", "created_at": f"gte.{depuis}", "limit": "10000"})
         r.raise_for_status()
         return {normaliser_url(x["source_url"]) for x in r.json()}
+
+    def urls_deja_ecartees(self) -> set[str]:
+        """Liens déjà jugés « pas une avancée » / doublon / refusés : on ne
+        repaie pas Claude pour eux. Si la table n'existe pas, on continue."""
+        try:
+            r = requests.get(self.base_vus, headers=self.headers, timeout=30,
+                             params={"select": "url", "limit": "20000"})
+            r.raise_for_status()
+            return {x["url"] for x in r.json()}
+        except Exception as ex:
+            self.memoire_ok = False
+            log(f"⚠ Mémoire des articles écartés indisponible ({ex.__class__.__name__}) : "
+                f"as-tu créé la table seen_urls ?")
+            return set()
+
+    def marquer_ecarte(self, url: str, raison: str) -> None:
+        if not self.memoire_ok:
+            return
+        try:
+            h = dict(self.headers, Prefer="resolution=ignore-duplicates,return=minimal")
+            requests.post(self.base_vus, headers=h, timeout=30,
+                          json={"url": normaliser_url(url), "reason": raison})
+        except Exception:
+            pass
 
     def sujets_recents(self) -> list[str]:
         depuis = (MAINTENANT - timedelta(days=JOURS_ANTI_DOUBLONS)).isoformat()
@@ -289,11 +315,14 @@ def main() -> int:
 
     try:
         urls = db.urls_connues()
+        nb_base = len(urls)
+        urls |= db.urls_deja_ecartees()
         sujets = db.sujets_recents()
     except Exception as ex:
         log(f"❌ Impossible de lire Supabase : {ex}")
         return 1
-    log(f"Base : {len(urls)} liens déjà connus, {len(sujets)} sujets récents.\n")
+    log(f"Base : {nb_base} articles publiés, {len(urls) - nb_base} liens déjà écartés, "
+        f"{len(sujets)} sujets récents.\n")
 
     log("Lecture des sources :")
     candidats, pannes = lire_sources(urls)
@@ -314,6 +343,7 @@ def main() -> int:
                 raise ValueError(f"réponse illisible ({diag})")
 
             if fiche.get("action") != "add":
+                db.marquer_ecarte(art["url"], str(fiche.get("reason", "skip")))
                 if fiche.get("reason") == "duplicate":
                     doublons.append((art, fiche.get("duplicate_of", "")))
                     log(f"  ↺ doublon   : {art['title'][:80]}")

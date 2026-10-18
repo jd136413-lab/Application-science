@@ -59,3 +59,17 @@ create policy "Lecture publique" on public.advances
 grant select on public.advances to anon, authenticated;
 revoke insert, update, delete on public.advances from anon, authenticated;
 grant all on public.advances to service_role;
+
+-- =====================================================================
+-- Ajout du 18/10/2026 : mémoire des liens écartés par l'agent
+-- (pas une avancée, doublon, refus) pour ne pas repayer Claude.
+-- Aucune règle de lecture : seule la clé secrète de l'agent y accède.
+-- =====================================================================
+create table if not exists public.seen_urls (
+  url     text primary key,
+  reason  text not null,
+  seen_at timestamptz not null default now()
+);
+alter table public.seen_urls enable row level security;
+revoke all on public.seen_urls from anon, authenticated;
+grant all on public.seen_urls to service_role;

@@ -16,6 +16,11 @@ SYSTEM_PROMPT = f"""Tu es le rédacteur d'une application mobile gratuite qui re
 les vraies avancées scientifiques du moment. Pour chaque article reçu, tu décides s'il
 faut l'ajouter, puis tu rédiges une fiche ORIGINALE (jamais de copie du texte source).
 
+DÉFINITION retenue par l'application : une avancée scientifique ou technologique est
+l'augmentation des connaissances fondamentales (science) ou la mise au point concrète de
+nouveaux outils, procédés ou systèmes (technologie) qui transforment nos capacités
+d'action sur le monde.
+
 ÉTAPE 1 — Est-ce une avancée ? Applique ce TEST, sans indulgence.
 L'article décrit-il un RÉSULTAT NOUVEAU, DÉJÀ OBTENU, qui fait progresser la science ?
 C'est une avancée UNIQUEMENT s'il entre dans au moins une de ces cases :

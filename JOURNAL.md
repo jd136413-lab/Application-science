@@ -29,3 +29,6 @@ Une ligne par décision ou changement, la plus récente en bas.
 - 18/10 — 2e lancement (5 articles, Sonnet) : 5 ajoutés, 4 ignorés, 1 refus de Claude, 0,057 $ (environ 20 fois Haiku).
 - 18/10 — Décision : **Haiku reste le modèle par défaut**. Définition d'une avancée resserrée (`prompt.py`) : seulement découverte, première, amélioration mesurable ou résultat d'étude nouveau ; vidéos d'explication, projets futurs, synthèses, rétrospectives écartés ; en cas de doute, écarter.
 - 18/10 — Un refus de Claude (sujet jugé sensible) compte maintenant comme « ignoré » et non comme erreur.
+- 18/10 — 3e lancement (5 articles, Haiku, définition stricte) : 2 ajoutés, 13 ignorés, 0 erreur, 0,0056 $. **Tri validé par Maxime.**
+- 18/10 — Définition de Maxime ajoutée en tête des consignes : avancée = augmentation des connaissances fondamentales ou nouveaux outils, procédés ou systèmes qui transforment nos capacités d'action.
+- 18/10 — Nouvelle table privée `seen_urls` : l'agent mémorise les liens écartés pour ne plus repayer Claude. Marge d'appels portée à 5 par article demandé (tri strict = peu d'élus).
