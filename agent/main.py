@@ -255,6 +255,10 @@ def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, 
         output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}},
     )
     texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
+    if rep.stop_reason == "refusal":
+        # Claude a refusé de traiter le sujet : on l'écarte, ce n'est pas une panne.
+        return ({"action": "skip", "reason": "refused"},
+                rep.usage.input_tokens, rep.usage.output_tokens, "refus")
     fiche = extraire_json(texte)
     diag = f"arrêt={rep.stop_reason}, début=« {texte[:80]} »"
     return fiche, rep.usage.input_tokens, rep.usage.output_tokens, diag
@@ -314,6 +318,8 @@ def main() -> int:
                     doublons.append((art, fiche.get("duplicate_of", "")))
                     log(f"  ↺ doublon   : {art['title'][:80]}")
                 else:
+                    if fiche.get("reason") == "refused":
+                        art = dict(art, title=art["title"] + " [refusé par Claude]")
                     ignores.append(art)
                     log(f"  – ignoré    : {art['title'][:80]}")
                 continue
