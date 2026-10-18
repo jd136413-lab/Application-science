@@ -1,0 +1,45 @@
+# Lance l'agent de collecte À LA MAIN uniquement (aucun horaire automatique).
+# Onglet « Actions » → « Agent de collecte » → bouton « Run workflow ».
+name: Agent de collecte
+
+on:
+  workflow_dispatch:
+    inputs:
+      nombre_articles:
+        description: "Nombre d'articles à ajouter (plafond de sécurité : 30)"
+        type: number
+        default: 5
+        required: true
+      modele:
+        description: "Modèle Claude (haiku = très économique, sonnet = juge mieux l'importance)"
+        type: choice
+        options: [haiku, sonnet]
+        default: haiku
+
+# Une seule exécution à la fois : un double clic ne lance pas deux agents.
+concurrency:
+  group: agent
+  cancel-in-progress: false
+
+jobs:
+  collecte:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: agent/requirements.txt
+      - name: Installer les dépendances
+        run: pip install -r agent/requirements.txt
+      - name: Lancer l'agent
+        working-directory: agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          NOMBRE_ARTICLES: ${{ inputs.nombre_articles }}
+          MODELE: ${{ inputs.modele }}
+        run: python main.py
