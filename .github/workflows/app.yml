@@ -65,28 +65,30 @@ jobs:
           -keep class io.flutter.plugin.** { *; }
           -keep class dev.fluttercommunity.** { *; }
           -keep class com.llfbandit.** { *; }
-          -keep class kotlin.coroutines.** { *; }
+          -keep class kotlin.** { *; }
           -keep class kotlinx.coroutines.** { *; }
           -dontwarn io.flutter.embedding.**
           PRO
-          # Branche le fichier de règles dans la configuration de compilation
+          # Désactive le « nettoyage » R8 en version de test : il supprimait du code
+          # appelé par les bibliothèques (NoSuchMethodError, ClassNotFoundException).
           GRADLE=$(ls android/app/build.gradle.kts android/app/build.gradle 2>/dev/null | head -1)
           python3 - "$GRADLE" <<'PY'
           import sys
           p = sys.argv[1]
           s = open(p, encoding="utf-8").read()
-          if "proguard-rules.pro" not in s:
+          if "isMinifyEnabled = false" not in s and "minifyEnabled false" not in s:
               kts = p.endswith(".kts")
-              ligne = ('            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")'
-                       if kts else
-                       "            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'")
+              lignes = ('            isMinifyEnabled = false\n            isShrinkResources = false\n'
+                        '            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")\n'
+                        if kts else
+                        '            minifyEnabled false\n            shrinkResources false\n'
+                        "            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n")
               i = s.find("release {", s.find("buildTypes"))
-              if i != -1:
-                  j = s.find("\n", i)
-                  s = s[:j + 1] + ligne + "\n" + s[j + 1:]
-                  open(p, "w", encoding="utf-8").write(s)
+              j = s.find("\n", i)
+              s = s[:j + 1] + lignes + s[j + 1:]
+              open(p, "w", encoding="utf-8").write(s)
           PY
-          echo "::notice title=Regles R8::$(grep -c proguard-rules.pro $GRADLE) branchement(s) dans $GRADLE"
+          echo "::notice title=Nettoyage R8::$(grep -c -E 'isMinifyEnabled = false|minifyEnabled false' $GRADLE) désactivation(s) dans $GRADLE"
           sed -i 's#<title>novum</title>#<title>Novum</title>#' web/index.html || true
           # Diagnostic lisible dans le résumé de l'exécution
           echo "::notice title=Manifeste Android::$(grep -c 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml) permission(s) INTERNET, Impeller=$(grep -o 'EnableImpeller" android:value="[a-z]*' android/app/src/main/AndroidManifest.xml | tail -c 6)"
