@@ -55,3 +55,4 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - 18/10 — 6 nouvelles pistes de logo plus artistiques (G Constellation, H Galaxie, I Éclipse, J Comète, K Impression, L Croissant), polices à empattements.
 - 18/10 — Cartes photo validées. Maxime préfère la piste K (encres superposées) : 6 variantes ajoutées (K1 Trois encres, K2 Décalage, K3 Soleil et lune, K4 Planète, K5 Trame, K6 Pétales).
 - 18/10 — 6 logos « symboles de la science » en encres superposées (S1 Cercle chromatique, S2 Atome, S3 Double hélice, S4 Prisme de Newton, S5 Ondes, S6 Case du tableau périodique « No », nobélium n° 102).
+- 18/10 — **Logo retenu : S6** (case du tableau périodique « No », nobélium n° 102, encres rose et bleue décalées, police Fraunces). Installé en haut de l'écran du fil.
