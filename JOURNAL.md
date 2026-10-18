@@ -47,3 +47,7 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - 18/10 — Langues : piste retenue à valider = traduction **sur le téléphone** (Google ML Kit, gratuite, plus de 50 langues, Android et iOS ; pas sur la version web de test).
 - 18/10 — Maquette du fil mise à jour : titre centré « Avancées » + mot qui change (scientifiques / technologiques), sélecteur Sciences / Technologies, étoiles à la couleur de la famille.
 - 18/10 — Ruban de couleurs retiré. « Avancées scientifiques » remplacé par un nom d'app non traduit (proposition : Novum + point coloré), 10 noms à tester dans les Tweaks de l'écran du fil.
+- 18/10 — Nom retenu : **Novum**. 6 pistes de logo sur le canevas (A Le point, B Nova, C L'orbite, D La flèche, E La mosaïque, F Le prisme) — choix en attente.
+- 18/10 — Fil Tech validé : règles proposées + **8 familles** (Smartphones & objets, Informatique & puces, IA & logiciels, Transports, Espace & aéronautique, Énergie & maison, **Jeux vidéo & consoles**, Autre). Traduction sur le téléphone (ML Kit) validée.
+- 18/10 — Mentions de l'IA réduites au minimum : une ligne discrète sous « Lire l'article » (« Résumé automatique · l'article source fait foi ») et une phrase dans Réglages → Nos sources.
+- 18/10 — Images dans les maquettes : vignette dans chaque carte, grande image en haut du détail. 11 illustrations originales par famille + 1 exemple de photo de source libre, rangées dans `design/illustrations/`.
