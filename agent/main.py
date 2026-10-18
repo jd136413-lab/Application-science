@@ -50,7 +50,7 @@ import requests
 from anthropic import Anthropic
 
 from prompt import SYSTEM_PROMPT, THEMES, build_user_message
-from sources import SOURCES
+from sources import SOURCES, TITRES_EXCLUS
 
 MAINTENANT = datetime.now(timezone.utc)
 USER_AGENT = "Mozilla/5.0 (compatible; ApplicationScienceBot/1.0)"
@@ -182,6 +182,8 @@ def lire_sources(urls_connues: set[str]) -> tuple[list[dict], list[str]]:
                     continue
                 if normaliser_url(lien) in urls_connues:
                     continue
+                if any(x.lower() in titre.lower() for x in TITRES_EXCLUS):
+                    continue
                 d = date_article(e)
                 if d < limite_age:
                     continue
@@ -226,15 +228,36 @@ def extraire_json(texte: str) -> dict | None:
         return None
 
 
-def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, int, int]:
+# Format de réponse imposé à Claude : l'API garantit un JSON valide.
+SCHEMA_REPONSE = {
+    "type": "object",
+    "properties": {
+        "action": {"type": "string", "enum": ["add", "skip"]},
+        "reason": {"type": "string", "enum": ["none", "not_advance", "duplicate"]},
+        "duplicate_of": {"type": "string"},
+        "title": {"type": "string"},
+        "summary": {"type": "string"},
+        "theme": {"type": "string", "enum": THEMES},
+        "importance": {"type": "integer", "enum": [1, 2, 3, 4, 5]},
+    },
+    "required": ["action", "reason", "duplicate_of", "title", "summary",
+                 "theme", "importance"],
+    "additionalProperties": False,
+}
+
+
+def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, int, int, str]:
     rep = client.messages.create(
         model=modele_id,
-        max_tokens=700,
+        max_tokens=1500,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": build_user_message(article, sujets)}],
+        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}},
     )
     texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
-    return extraire_json(texte), rep.usage.input_tokens, rep.usage.output_tokens
+    fiche = extraire_json(texte)
+    diag = f"arrêt={rep.stop_reason}, début=« {texte[:80]} »"
+    return fiche, rep.usage.input_tokens, rep.usage.output_tokens, diag
 
 
 # ============================== MAIN =================================
@@ -280,11 +303,11 @@ def main() -> int:
             break
         appels += 1
         try:
-            fiche, ti, to = demander_a_claude(client, modele["id"], art, sujets)
+            fiche, ti, to, diag = demander_a_claude(client, modele["id"], art, sujets)
             tok_in += ti
             tok_out += to
             if fiche is None:
-                raise ValueError("réponse vide ou pas en JSON")
+                raise ValueError(f"réponse illisible ({diag})")
 
             if fiche.get("action") != "add":
                 if fiche.get("reason") == "duplicate":
@@ -321,7 +344,7 @@ def main() -> int:
             sujets.insert(0, f"{titre} — {' '.join(resume.split()[:14])}…")
             log(f"  ✔ ajouté [{importance}★ {theme}] : {titre}")
         except Exception as ex:
-            msg = (str(ex) or ex.__class__.__name__)[:150]
+            msg = (str(ex) or ex.__class__.__name__)[:200]
             erreurs.append((art, msg))
             log(f"  ✖ erreur    : {art['title'][:70]} → {msg}")
             time.sleep(1)

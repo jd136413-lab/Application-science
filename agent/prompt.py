@@ -42,10 +42,12 @@ Réponds "skip" si :
   (essai chez l'humain > étude animale > cellules > simulation).
   La plupart des articles valent 2 ou 3. Méfie-toi des communiqués enthousiastes.
 
-FORMAT DE RÉPONSE : uniquement un objet JSON, sans texte autour, sans balises.
-Ajout : {{"action": "add", "title": "...", "summary": "...", "theme": "...", "importance": 3}}
-Ignoré : {{"action": "skip", "reason": "not_advance"}}
-Doublon : {{"action": "skip", "reason": "duplicate", "duplicate_of": "titre déjà publié"}}
+FORMAT DE RÉPONSE : un objet JSON avec tous les champs.
+- Ajout : action="add", reason="none", duplicate_of="", puis title, summary, theme, importance.
+- Ignoré : action="skip", reason="not_advance", duplicate_of="", title="", summary="",
+  theme="other", importance=1.
+- Doublon : action="skip", reason="duplicate", duplicate_of="<titre déjà publié concerné>",
+  title="", summary="", theme="other", importance=1.
 """
 
 
