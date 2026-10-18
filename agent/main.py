@@ -250,7 +250,8 @@ def lire_sources(urls_connues: set[str], feed: str) -> tuple[list[dict], list[st
                                  "title": titre, "text": texte or titre,
                                  "published_at": d, "image_url": image,
                                  "image_credit": credit, "photo": src.get("photo"),
-                                 "credit_page": bool(src.get("credit_page"))})
+                                 "credit_page": bool(src.get("credit_page")),
+                                 "credit_mode": src.get("credit_mode", "")})
             articles.sort(key=lambda a: a["published_at"], reverse=True)
             log(f"  • {src['name']} : {len(flux.entries)} dans le flux, "
                 f"{len(articles)} nouveaux")
@@ -298,7 +299,22 @@ def completer_image(art: dict) -> None:
         art["image_credit"] = ""
         return
     credit = art["photo"]
-    if art.get("credit_page") and page:
+    if art.get("credit_mode") == "plos":
+        # Figures dessinées avec BioRender : licence contestée → pas d'image.
+        if not page or re.search(r"biorender", page, re.I):
+            log("    (image ignorée : page illisible ou figure BioRender)")
+            art["image_url"], art["image_credit"] = "", ""
+            return
+        def meta(nom):
+            m = re.search(r'<meta[^>]+name=["\']' + nom + r'["\'][^>]+content=["\']([^"\']+)', page)
+            return html.unescape(m.group(1)).strip() if m else ""
+        auteur = meta("citation_author")
+        nom_famille = auteur.split(",")[0].split()[-1] if auteur else ""
+        revue = meta("citation_journal_title") or art["source_name"]
+        annee = (meta("citation_date") or meta("citation_publication_date"))[:4]
+        credit = (f"Image : {nom_famille + ' et al., ' if nom_famille else ''}{revue}"
+                  f"{' (' + annee + ')' if annee else ''}, CC BY 4.0")
+    elif art.get("credit_page") and page:
         m = re.search(r"Credit:\s*(?:<[^>]+>\s*)*([^<]{2,150})", page)
         if m:
             credit = "Image : " + re.sub(r"\s+", " ", html.unescape(m.group(1))).strip()

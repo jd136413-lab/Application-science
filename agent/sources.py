@@ -31,7 +31,15 @@ SOURCES = [
     # ESO : licence CC BY 4.0, le crédit exact de chaque image est lu sur la page.
     {"feed": "science", "name": "ESO",             "url": "https://www.eso.org/public/news/feed/",
      "photo": "ESO", "credit_page": True, "age_max": 90},   # publie peu : 90 jours
+    # PLOS : revues en accès libre, tout sous CC BY 4.0 (figures comprises).
+    # L'image est l'« image vedette » de l'article ; le crédit (auteurs, revue,
+    # année) est lu sur la page. Image refusée si la page mentionne BioRender.
+    {"feed": "science", "name": "PLOS Biology",   "url": "https://journals.plos.org/plosbiology/feed/atom",
+     "photo": "PLOS", "credit_mode": "plos", "age_max": 45},
+    {"feed": "science", "name": "PLOS Medicine",  "url": "https://journals.plos.org/plosmedicine/feed/atom",
+     "photo": "PLOS", "credit_mode": "plos", "age_max": 45},
     # NOIRLab (CC BY 4.0) : site fermé aux robots, non utilisé.
+    # eLife (CC BY 4.0) : pages illisibles sans navigateur complet, non utilisé.
     # ESA : photos désactivées tant que leurs conditions n'ont pas été vérifiées.
     {"feed": "science", "name": "ESA",             "url": "https://www.esa.int/rssfeed/TopNews"},
     {"feed": "science", "name": "Nature",          "url": "https://www.nature.com/nature.rss"},
