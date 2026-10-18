@@ -82,3 +82,5 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - Workflow `Compiler l'app` : à chaque modification de `app/`, version web sur GitHub Pages et APK publié dans Releases (lien fixe). 1re compilation verte.
 - Version web : https://jd136413-lab.github.io/Application-science/
 - APK : https://github.com/jd136413-lab/Application-science/releases/download/apercu/novum.apk (72 Mo pour l'instant, sera allégé plus tard).
+- 19/10 — APK : écran noir au lancement sur le POCO de Maxime (la version web fonctionne). Correctifs : l'app affiche le logo immédiatement et se connecte à la base ensuite (délai max 15 s) ; toute erreur s'affiche en clair à l'écran ; moteur graphique Impeller désactivé sur Android (écrans noirs connus sur certains Xiaomi/POCO) ; diagnostic de compilation (permission INTERNET présente, Impeller désactivé, Flutter 3.47.7).
+- 19/10 — À savoir : chaque compilation signe l'APK avec une nouvelle clé de test → il faut **désinstaller l'ancienne version avant d'installer la nouvelle**. Une clé fixe sera mise en place en phase 8.
