@@ -19,8 +19,19 @@ SOURCES = [
     # ---------------------------- SCIENCES ----------------------------
     {"feed": "science", "name": "Phys.org",        "url": "https://phys.org/rss-feed/"},
     {"feed": "science", "name": "ScienceDaily",    "url": "https://www.sciencedaily.com/rss/all.xml"},
+    # --- Sources aux images LIBRES DE DROITS (vérifié le 18/10/2026) ---
+    # NASA : domaine public, mention « NASA ».
     {"feed": "science", "name": "NASA",            "url": "https://www.nasa.gov/news-release/feed/",
-     "photo": "Photo : NASA"},   # images NASA : libres, mention « NASA » obligatoire
+     "photo": "Photo : NASA"},
+    {"feed": "science", "name": "NASA Science",    "url": "https://science.nasa.gov/feed/",
+     "photo": "Photo : NASA"},
+    # JPL : libre avec la mention exacte « Courtesy NASA/JPL-Caltech ».
+    {"feed": "science", "name": "NASA JPL",        "url": "https://www.jpl.nasa.gov/feeds/news",
+     "photo": "Courtesy NASA/JPL-Caltech", "age_max": 90},
+    # ESO : licence CC BY 4.0, le crédit exact de chaque image est lu sur la page.
+    {"feed": "science", "name": "ESO",             "url": "https://www.eso.org/public/news/feed/",
+     "photo": "ESO", "credit_page": True, "age_max": 90},   # publie peu : 90 jours
+    # NOIRLab (CC BY 4.0) : site fermé aux robots, non utilisé.
     # ESA : photos désactivées tant que leurs conditions n'ont pas été vérifiées.
     {"feed": "science", "name": "ESA",             "url": "https://www.esa.int/rssfeed/TopNews"},
     {"feed": "science", "name": "Nature",          "url": "https://www.nature.com/nature.rss"},

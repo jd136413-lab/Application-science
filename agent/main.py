@@ -215,13 +215,14 @@ def image_libre(entree) -> str:
 def lire_sources(urls_connues: set[str], feed: str) -> tuple[list[dict], list[str]]:
     """Lit les sources d'un fil et renvoie les articles candidats,
     en alternant entre les sources pour varier chaque exécution."""
-    limite_age = MAINTENANT - timedelta(days=AGE_MAX_JOURS)
     par_source, pannes = [], []
 
     sources = [s for s in SOURCES if s.get("feed", "science") == feed]
     random.shuffle(sources)  # ordre différent à chaque exécution
 
     for src in sources:
+        # Âge maximum : réglage général, ou « age_max » pour une source qui publie peu
+        limite_age = MAINTENANT - timedelta(days=src.get("age_max", AGE_MAX_JOURS))
         try:
             r = requests.get(src["url"], timeout=30,
                              headers={"User-Agent": USER_AGENT})
@@ -248,7 +249,8 @@ def lire_sources(urls_connues: set[str], feed: str) -> tuple[list[dict], list[st
                 articles.append({"source_name": src["name"], "url": lien,
                                  "title": titre, "text": texte or titre,
                                  "published_at": d, "image_url": image,
-                                 "image_credit": credit})
+                                 "image_credit": credit, "photo": src.get("photo"),
+                                 "credit_page": bool(src.get("credit_page"))})
             articles.sort(key=lambda a: a["published_at"], reverse=True)
             log(f"  • {src['name']} : {len(flux.entries)} dans le flux, "
                 f"{len(articles)} nouveaux")
@@ -269,6 +271,48 @@ def lire_sources(urls_connues: set[str], feed: str) -> tuple[list[dict], list[st
                 vus.append(a["title"])
                 candidats.append(a)
     return candidats, pannes
+
+
+# Crédits d'agences photo : ces images ne sont jamais libres, même sur un site libre.
+AGENCES = re.compile(r"Getty|Shutterstock|iStock|AP Photo|Associated Press|Reuters|AFP|Alamy",
+                     re.I)
+
+
+def completer_image(art: dict) -> None:
+    """Pour un article retenu d'une source aux images libres : ouvre la page
+    de l'article pour trouver l'image principale (si le flux n'en donne pas),
+    lire le crédit exact (ESO), et renoncer à l'image si elle vient d'une agence."""
+    if not art.get("photo"):
+        return
+    try:
+        r = requests.get(art["url"], timeout=20, headers={"User-Agent": USER_AGENT})
+        page = r.text[:600000] if r.ok else ""
+    except Exception:
+        page = ""
+    if not art.get("image_url") and page:
+        m = (re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)', page)
+             or re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image', page))
+        if m and html.unescape(m.group(1)).startswith("https://"):
+            art["image_url"] = html.unescape(m.group(1))
+    if not art.get("image_url"):
+        art["image_credit"] = ""
+        return
+    credit = art["photo"]
+    if art.get("credit_page") and page:
+        m = re.search(r"Credit:\s*(?:<[^>]+>\s*)*([^<]{2,150})", page)
+        if m:
+            credit = "Image : " + re.sub(r"\s+", " ", html.unescape(m.group(1))).strip()
+        else:
+            credit = "Image : " + credit
+    # Contrôle agence photo autour de l'image dans la page, et dans le crédit
+    fichier = art["image_url"].split("/")[-1].split("?")[0]
+    i = page.find(fichier) if fichier else -1
+    voisinage = page[max(0, i - 400): i + 800] if i >= 0 else ""
+    if AGENCES.search(credit) or AGENCES.search(voisinage):
+        log(f"    (image ignorée : crédit d'agence photo)")
+        art["image_url"], art["image_credit"] = "", ""
+        return
+    art["image_credit"] = credit
 
 
 # ============================= CLAUDE ================================
@@ -466,6 +510,7 @@ def main() -> int:
                 log(f"  – ignoré ({decision}) : {art['title'][:70]}")
                 continue
 
+            completer_image(art)
             fils = ["science", "tech"] if decision == "both" else [decision]
             lignes = [preparer_ligne(f, rep.get(f) or {}, art) for f in fils]
             enregistrees = []
