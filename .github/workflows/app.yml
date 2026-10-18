@@ -1,0 +1,93 @@
+# Compile l'application Novum à chaque modification du dossier app/ :
+#  - version WEB publiée sur GitHub Pages (à ouvrir dans le navigateur)
+#  - fichier APK pour Android, publié dans « Releases » (lien fixe)
+# Lancement manuel possible : Actions → « Compiler l'app » → Run workflow.
+name: Compiler l'app
+
+on:
+  push:
+    branches: [main]
+    paths: ["app/**", ".github/workflows/app.yml"]
+  workflow_dispatch:
+
+# Une seule compilation à la fois ; une nouvelle annule l'ancienne.
+concurrency:
+  group: app
+  cancel-in-progress: true
+
+permissions:
+  contents: write   # publier l'APK dans Releases
+  pages: write      # publier la version web
+  id-token: write
+
+jobs:
+  compiler:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Compléter le projet (dossiers Android et Web)
+        run: |
+          flutter --version
+          flutter create --org fr.novum --project-name novum --platforms android,web .
+          rm -f test/widget_test.dart
+          # Nom affiché sous l'icône + accès à internet (obligatoire en version finale)
+          MANIF=android/app/src/main/AndroidManifest.xml
+          sed -i 's/android:label="novum"/android:label="Novum"/' $MANIF
+          grep -q "android.permission.INTERNET" $MANIF || \
+            sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/>\n    <application#' $MANIF
+          sed -i 's#<title>novum</title>#<title>Novum</title>#' web/index.html || true
+
+      - name: Installer les bibliothèques
+        run: flutter pub get
+
+      - name: Compiler la version web
+        run: >
+          flutter build web --release
+          --base-href "/${{ github.event.repository.name }}/"
+          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+          --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+
+      - name: Compiler l'APK Android
+        run: >
+          flutter build apk --release
+          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+          --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          && cp build/app/outputs/flutter-apk/app-release.apk build/novum.apk
+
+      - name: Publier l'APK (lien fixe dans Releases)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: apercu
+          name: "Novum — version de test"
+          body: "APK de test, recompilé automatiquement à chaque modification de l'app."
+          prerelease: true
+          files: app/build/novum.apk
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/build/web
+
+  publier-web:
+    needs: compiler
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - id: deploiement
+        uses: actions/deploy-pages@v4

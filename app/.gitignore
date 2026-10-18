@@ -1,0 +1,17 @@
+# Fichiers générés à la compilation (GitHub Actions)
+build/
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+# Dossiers de plateformes recréés automatiquement par « flutter create »
+android/
+ios/
+web/
+linux/
+macos/
+windows/
+test/
+*.iml
+.idea/
