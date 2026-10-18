@@ -8,8 +8,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'accueil.dart';
+import 'coquille.dart';
 import 'donnees.dart';
+import 'etat.dart';
+import 'premier_lancement.dart';
 import 'reglages.dart';
 import 'widgets.dart';
 
@@ -42,6 +44,7 @@ class _AppNovumState extends State<AppNovum> {
       throw 'Configuration manquante : les secrets SUPABASE_URL et SUPABASE_PUBLISHABLE_KEY '
           'ne sont pas arrivés jusqu’à la compilation.';
     }
+    await etat.charger(); // mémoire du téléphone : domaines, favoris, thème
     await initialiserSupabase().timeout(const Duration(seconds: 15));
   }
 
@@ -58,19 +61,22 @@ class _AppNovumState extends State<AppNovum> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Novum',
-      debugShowCheckedModeBanner: false,
-      theme: _theme(paletteClaire, Brightness.light),
-      darkTheme: _theme(paletteSombre, Brightness.dark),
-      themeMode: ThemeMode.system, // le choix manuel arrivera avec les Réglages
-      home: FutureBuilder<void>(
-        future: _demarrage,
-        builder: (context, snap) {
-          if (snap.connectionState != ConnectionState.done) return const _Demarrage();
-          if (snap.hasError) return _Probleme(message: snap.error.toString());
-          return const EcranAccueil();
-        },
+    return ListenableBuilder(
+      listenable: etat,
+      builder: (context, _) => MaterialApp(
+        title: 'Novum',
+        debugShowCheckedModeBanner: false,
+        theme: _theme(paletteClaire, Brightness.light),
+        darkTheme: _theme(paletteSombre, Brightness.dark),
+        themeMode: etat.theme,
+        home: FutureBuilder<void>(
+          future: _demarrage,
+          builder: (context, snap) {
+            if (snap.connectionState != ConnectionState.done) return const _Demarrage();
+            if (snap.hasError) return _Probleme(message: snap.error.toString());
+            return etat.premierLancementFait ? const Coquille() : const EcranDomaines();
+          },
+        ),
       ),
     );
   }

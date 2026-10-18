@@ -99,6 +99,15 @@ const Map<String, Famille> familles = {
 
 Famille familleDe(String code) => familles[code] ?? familles['other']!;
 
+// Ordre d'affichage des familles de chaque fil (filtres, premier lancement).
+const List<String> famillesSciences = [
+  'space', 'environment', 'health', 'technology', 'physics', 'life', 'earth', 'other',
+];
+const List<String> famillesTech = [
+  'mobile', 'computing', 'ai_software', 'mobility', 'aerospace', 'energy_home', 'gaming', 'tech_other',
+];
+List<String> famillesDuFil(String fil) => fil == 'tech' ? famillesTech : famillesSciences;
+
 // ------------------------------- TEXTES --------------------------------
 const String texteSciences = 'Sciences';
 const String texteTechnologies = 'Technologies';
@@ -110,6 +119,37 @@ const String texteVideDetail = 'L’agent n’a encore rien publié dans ce fil.
 const String texteErreur = 'Pas de connexion';
 const String texteErreurDetail = 'Impossible de charger les avancées. Vérifiez votre connexion, puis réessayez.';
 const String texteReessayer = 'Réessayer';
+
+// Onglets de période (cumulatifs) : libellé et nombre de jours couverts.
+const List<(String, int)> periodes = [
+  ('Aujourd’hui', 1),
+  ('Cette semaine', 7),
+  ('Ce mois-ci', 31),
+  ('Cette année', 366),
+];
+const int periodeParDefaut = 1; // 0 = Aujourd'hui, 1 = Cette semaine…
+const String texteTriRecent = 'Plus récent';
+const String texteTriImportant = 'Plus important';
+const String texteFiltres = 'Filtres';
+const String texteAujourdhuiVide = 'Pas encore de découverte aujourd’hui';
+const String texteAujourdhuiVideDetail =
+    'Les chercheurs sont sans doute encore au labo. En attendant, les avancées de la semaine vous attendent.';
+const String texteVoirSemaine = 'Voir cette semaine';
+
+// Premier lancement
+const String texteBienvenueTitre = 'Qu’est-ce qui vous passionne ?';
+const String texteBienvenueDetail = 'Choisissez vos domaines. Vous pourrez les changer à tout moment.';
+
+// Barre du bas
+const String texteOngletActualites = 'Actualités';
+const String texteOngletFavoris = 'Favoris';
+const String texteOngletReglages = 'Réglages';
+
+// Réglages
+const String texteNosSources =
+    'Les avancées viennent de sources scientifiques et technologiques reconnues. '
+    'Les résumés sont rédigés automatiquement ; l’article source fait foi.';
+const String texteVersion = 'Novum 1.0 · sans compte, vos choix restent sur ce téléphone';
 
 // --------------------------- MISE EN PAGE ------------------------------
 const double tailleTitreCarte = 19;   // taille des titres dans les cartes

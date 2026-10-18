@@ -13,8 +13,11 @@ class Avancee {
   final DateTime publieLe;
   final String? image;
   final String? creditImage;
+  /// Données d'origine, gardées pour enregistrer un favori sur le téléphone.
+  final Map<String, dynamic> brut;
 
   const Avancee({
+    this.brut = const {},
     required this.id,
     required this.fil,
     required this.titre,
@@ -33,6 +36,7 @@ class Avancee {
     final imp = (j['importance'] as num?)?.toInt() ?? 2;
     final img = (j['image_url'] as String?)?.trim();
     return Avancee(
+      brut: j,
       id: j['id']?.toString() ?? '',
       fil: (j['feed'] as String?) ?? 'science',
       titre: (j['title'] as String?) ?? '',
@@ -57,3 +61,10 @@ String dateCourte(DateTime d) => '${d.day} ${_mois[d.month - 1]}';
 
 /// « 18 octobre 2026 »
 String dateLongue(DateTime d) => '${d.day} ${_moisLongs[d.month - 1]} ${d.year}';
+
+/// « Octobre » (et l'année si ce n'est pas l'année en cours) : en-têtes de mois.
+String enTeteMois(DateTime d) {
+  final m = _moisLongs[d.month - 1];
+  final nom = m[0].toUpperCase() + m.substring(1);
+  return d.year == DateTime.now().year ? nom : '$nom ${d.year}';
+}

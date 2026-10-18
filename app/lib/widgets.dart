@@ -108,3 +108,48 @@ class TuileFamille extends StatelessWidget {
         child: Icon(famille.symbole, size: taille * 0.56, color: famille.icone),
       );
 }
+
+/// Message centré (vide, erreur…) avec un bouton facultatif.
+class MessageCentre extends StatelessWidget {
+  final IconData icone;
+  final String titre;
+  final String detail;
+  final String? bouton;
+  final VoidCallback? action;
+  const MessageCentre({super.key, required this.icone, required this.titre, required this.detail, this.bouton, this.action});
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 36),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          Container(
+            width: 88,
+            height: 88,
+            decoration: BoxDecoration(color: p.pastille, shape: BoxShape.circle),
+            child: Icon(icone, size: 42, color: p.texteDiscret),
+          ),
+          const SizedBox(height: 16),
+          Text(titre,
+              textAlign: TextAlign.center,
+              style: police(policeTitres, taille: 24, graisse: FontWeight.w800, couleur: p.texte)),
+          const SizedBox(height: 8),
+          Text(detail,
+              textAlign: TextAlign.center,
+              style: police(policeTexte, taille: 15, couleur: p.texteDiscret, hauteur: 1.5)),
+          if (bouton != null) ...[
+            const SizedBox(height: 18),
+            FilledButton(
+              style: FilledButton.styleFrom(
+                  backgroundColor: p.encre, foregroundColor: p.surEncre, shape: const StadiumBorder()),
+              onPressed: action,
+              child: Text(bouton!),
+            ),
+          ],
+        ]),
+      ),
+    );
+  }
+}

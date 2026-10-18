@@ -98,18 +98,32 @@ jobs:
         run: flutter pub get
 
       - name: Compiler la version web
+        shell: bash
         run: >
+          set -o pipefail;
           flutter build web --release
           --base-href "/${{ github.event.repository.name }}/"
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          2>&1 | tee -a ../compilation.log
 
       - name: Compiler l'APK Android
+        shell: bash
         run: >
+          set -o pipefail;
           flutter build apk --release
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          2>&1 | tee -a ../compilation.log
           && cp build/app/outputs/flutter-apk/app-release.apk build/novum.apk
+
+      - name: Afficher les erreurs de compilation
+        if: failure()
+        working-directory: .
+        run: |
+          grep -E "Error:|error:|Error " compilation.log | grep -v "^\s*$" | head -25 | while IFS= read -r l; do
+            echo "::error title=Compilation::$l"
+          done || true
 
       - name: Publier l'APK (lien fixe dans Releases)
         uses: softprops/action-gh-release@v2

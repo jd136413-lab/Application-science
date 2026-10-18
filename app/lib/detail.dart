@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'etat.dart';
 import 'modele.dart';
 import 'reglages.dart';
 import 'widgets.dart';
@@ -35,6 +36,15 @@ class EcranDetail extends StatelessWidget {
             tooltip: libelle,
             onPressed: action,
           ),
+        );
+
+    Widget favori() => ListenableBuilder(
+          listenable: etat,
+          builder: (context, _) {
+            final oui = etat.estFavori(avancee.id);
+            return boutonRond(oui ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+                oui ? 'Retirer des favoris' : 'Ajouter aux favoris', () => etat.basculerFavori(avancee));
+          },
         );
 
     final contenu = Padding(
@@ -112,15 +122,16 @@ class EcranDetail extends StatelessWidget {
                         left: 12,
                         child: boutonRond(Icons.arrow_back_rounded, 'Retour', () => Navigator.of(context).pop()),
                       ),
+                      Positioned(top: 12, right: 12, child: favori()),
                     ]),
                   )
                 else
                   Padding(
                     padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: boutonRond(Icons.arrow_back_rounded, 'Retour', () => Navigator.of(context).pop()),
-                    ),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      boutonRond(Icons.arrow_back_rounded, 'Retour', () => Navigator.of(context).pop()),
+                      favori(),
+                    ]),
                   ),
                 contenu,
               ]),

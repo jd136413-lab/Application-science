@@ -1,10 +1,12 @@
-// Écran principal : logo, sélecteur Sciences / Technologies, fil des avancées.
+// Écran Actualités : logo, Sciences / Technologies, onglets de période,
+// filtres, tri, et le fil des avancées (en-têtes de mois dans « Cette année »).
 
 import 'package:flutter/material.dart';
 
 import 'carte.dart';
 import 'detail.dart';
 import 'donnees.dart';
+import 'etat.dart';
 import 'modele.dart';
 import 'reglages.dart';
 import 'widgets.dart';
@@ -18,6 +20,8 @@ class EcranAccueil extends StatefulWidget {
 
 class _EcranAccueilState extends State<EcranAccueil> {
   String _fil = 'science';
+  int _periode = periodeParDefaut;
+  bool _triImportance = false;
   final Map<String, Future<List<Avancee>>> _chargements = {};
 
   Future<List<Avancee>> _charger({bool forcer = false}) {
@@ -35,66 +39,155 @@ class _EcranAccueilState extends State<EcranAccueil> {
     } catch (_) {}
   }
 
+  /// Applique période, filtres et tri.
+  List<Avancee> _trier(List<Avancee> toutes) {
+    final jours = periodes[_periode].$2;
+    final limite = DateTime.now().subtract(Duration(days: jours));
+    final visibles = etat.famillesVisibles(_fil);
+    final l = toutes.where((a) => a.publieLe.isAfter(limite) && visibles.contains(a.famille)).toList();
+    if (_triImportance) {
+      l.sort((a, b) => b.importance != a.importance
+          ? b.importance.compareTo(a.importance)
+          : b.publieLe.compareTo(a.publieLe));
+    }
+    return l;
+  }
+
+  void _ouvrirFiltres() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: palette(context).carte,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
+      builder: (_) => _FeuilleFiltres(fil: _fil),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
-    return Scaffold(
-      backgroundColor: p.fond,
-      body: SafeArea(
-        bottom: false,
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 22, 20, 12),
-            child: Column(children: [
-              const LogoNovum(),
-              const SizedBox(height: 14),
-              _SelecteurFil(fil: _fil, onChange: (f) => setState(() => _fil = f)),
-            ]),
+    return ListenableBuilder(
+      listenable: etat,
+      builder: (context, _) => Column(children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 22, 20, 10),
+          child: Column(children: [
+            const LogoNovum(),
+            const SizedBox(height: 14),
+            _SelecteurFil(fil: _fil, onChange: (f) => setState(() => _fil = f)),
+          ]),
+        ),
+        // Onglets de période
+        SizedBox(
+          height: 42,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            children: [
+              for (var i = 0; i < periodes.length; i++)
+                Padding(
+                  padding: const EdgeInsets.only(right: 6),
+                  child: _Pastille(
+                    texte: periodes[i].$1,
+                    active: i == _periode,
+                    onTap: () => setState(() => _periode = i),
+                  ),
+                ),
+            ],
           ),
-          Expanded(
-            child: FutureBuilder<List<Avancee>>(
-              future: _charger(),
-              builder: (context, snap) {
-                if (snap.connectionState != ConnectionState.done) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                if (snap.hasError) {
-                  return _Message(
-                    icone: Icons.wifi_off_rounded,
-                    titre: texteErreur,
-                    detail: texteErreurDetail,
-                    bouton: texteReessayer,
-                    action: _rafraichir,
-                  );
-                }
-                final liste = snap.data ?? [];
+        ),
+        // Filtres + tri
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 10),
+          child: Row(children: [
+            _BoutonFiltres(fil: _fil, onTap: _ouvrirFiltres),
+            const Spacer(),
+            _Tri(importance: _triImportance, onChange: (v) => setState(() => _triImportance = v)),
+          ]),
+        ),
+        Expanded(
+          child: FutureBuilder<List<Avancee>>(
+            future: _charger(),
+            builder: (context, snap) {
+              if (snap.connectionState != ConnectionState.done) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snap.hasError) {
+                return MessageCentre(
+                  icone: Icons.wifi_off_rounded,
+                  titre: texteErreur,
+                  detail: texteErreurDetail,
+                  bouton: texteReessayer,
+                  action: _rafraichir,
+                );
+              }
+              final liste = _trier(snap.data ?? []);
+              if (liste.isEmpty) {
+                final aujourdhui = _periode == 0;
                 return RefreshIndicator(
                   onRefresh: _rafraichir,
-                  child: liste.isEmpty
-                      ? ListView(children: const [
-                          SizedBox(height: 120),
-                          _Message(icone: Icons.auto_awesome, titre: texteVide, detail: texteVideDetail),
-                        ])
-                      : ListView.separated(
-                          padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-                          itemCount: liste.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 10),
-                          itemBuilder: (context, i) => CarteAvancee(
-                            avancee: liste[i],
-                            onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => EcranDetail(avancee: liste[i])),
-                            ),
-                          ),
-                        ),
+                  child: ListView(children: [
+                    const SizedBox(height: 70),
+                    MessageCentre(
+                      icone: Icons.auto_awesome,
+                      titre: aujourdhui ? texteAujourdhuiVide : texteVide,
+                      detail: aujourdhui ? texteAujourdhuiVideDetail : texteVideDetail,
+                      bouton: aujourdhui ? texteVoirSemaine : null,
+                      action: aujourdhui ? () => setState(() => _periode = 1) : null,
+                    ),
+                  ]),
                 );
-              },
-            ),
+              }
+              // En-têtes de mois dans « Cette année » (tri par date)
+              final avecMois = _periode == periodes.length - 1 && !_triImportance;
+              final elements = <Object>[];
+              String? moisCourant;
+              for (final a in liste) {
+                if (avecMois) {
+                  final m = enTeteMois(a.publieLe);
+                  if (m != moisCourant) {
+                    elements.add(m);
+                    moisCourant = m;
+                  }
+                }
+                elements.add(a);
+              }
+              return RefreshIndicator(
+                onRefresh: _rafraichir,
+                child: ListView.builder(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+                  itemCount: elements.length,
+                  itemBuilder: (context, i) {
+                    final e = elements[i];
+                    if (e is String) {
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(4, 12, 4, 10),
+                        child: Text(e,
+                            style: police(policeTitres, taille: 24, graisse: FontWeight.w800, couleur: p.texte)),
+                      );
+                    }
+                    final a = e as Avancee;
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: CarteAvancee(
+                        avancee: a,
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
           ),
-        ]),
-      ),
+        ),
+      ]),
     );
   }
 }
+
+// ----------------------------- Éléments -----------------------------
 
 class _SelecteurFil extends StatelessWidget {
   final String fil;
@@ -144,46 +237,201 @@ class _SelecteurFil extends StatelessWidget {
   }
 }
 
-class _Message extends StatelessWidget {
-  final IconData icone;
-  final String titre;
-  final String detail;
-  final String? bouton;
-  final VoidCallback? action;
-  const _Message({required this.icone, required this.titre, required this.detail, this.bouton, this.action});
+class _Pastille extends StatelessWidget {
+  final String texte;
+  final bool active;
+  final VoidCallback onTap;
+  const _Pastille({required this.texte, required this.active, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 36),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Container(
-            width: 88,
-            height: 88,
-            decoration: BoxDecoration(color: p.pastille, shape: BoxShape.circle),
-            child: Icon(icone, size: 42, color: p.texteDiscret),
-          ),
-          const SizedBox(height: 16),
-          Text(titre,
-              textAlign: TextAlign.center,
-              style: police(policeTitres, taille: 24, graisse: FontWeight.w800, couleur: p.texte)),
-          const SizedBox(height: 8),
-          Text(detail,
-              textAlign: TextAlign.center,
-              style: police(policeTexte, taille: 15, couleur: p.texteDiscret, hauteur: 1.5)),
-          if (bouton != null) ...[
-            const SizedBox(height: 18),
-            FilledButton(
-              style: FilledButton.styleFrom(
-                  backgroundColor: p.encre, foregroundColor: p.surEncre, shape: const StadiumBorder()),
-              onPressed: action,
-              child: Text(bouton!),
+    return Semantics(
+      selected: active,
+      button: true,
+      child: Material(
+        color: active ? p.encre : Colors.transparent,
+        shape: const StadiumBorder(),
+        child: InkWell(
+          customBorder: const StadiumBorder(),
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            child: Center(
+              child: Text(texte,
+                  style: police(policeTexte,
+                      taille: 14, graisse: FontWeight.w600, couleur: active ? p.surEncre : p.texteDiscret)),
             ),
-          ],
-        ]),
+          ),
+        ),
       ),
+    );
+  }
+}
+
+class _BoutonFiltres extends StatelessWidget {
+  final String fil;
+  final VoidCallback onTap;
+  const _BoutonFiltres({required this.fil, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    final total = famillesDuFil(fil).length;
+    final visibles = etat.famillesVisibles(fil).length;
+    final resume = visibles == total ? 'Tout' : '$visibles';
+    return Material(
+      color: Colors.transparent,
+      shape: RoundedRectangleBorder(
+          side: BorderSide(color: p.bordure, width: 1.5), borderRadius: BorderRadius.circular(12)),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: onTap,
+        child: SizedBox(
+          height: 40,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              Icon(Icons.tune_rounded, size: 18, color: p.texte),
+              const SizedBox(width: 8),
+              Text('$texteFiltres · $resume',
+                  style: police(policeTexte, taille: 14, graisse: FontWeight.w600, couleur: p.texte)),
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Tri extends StatelessWidget {
+  final bool importance;
+  final ValueChanged<bool> onChange;
+  const _Tri({required this.importance, required this.onChange});
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    Widget option(String texte, bool valeur) {
+      final actif = importance == valeur;
+      return Material(
+        color: actif ? p.pastille : Colors.transparent,
+        borderRadius: BorderRadius.circular(9),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(9),
+          onTap: () => onChange(valeur),
+          child: SizedBox(
+            height: 32,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Center(
+                child: Text(texte,
+                    style: police(policeTexte,
+                        taille: 13, graisse: FontWeight.w600, couleur: actif ? p.texte : p.texteDiscret)),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Container(
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(
+          border: Border.all(color: p.bordure, width: 1.5), borderRadius: BorderRadius.circular(12)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        option(texteTriRecent, false),
+        const SizedBox(width: 2),
+        option(texteTriImportant, true),
+      ]),
+    );
+  }
+}
+
+/// Menu Filtres : une case par famille du fil, plus « Tout ».
+class _FeuilleFiltres extends StatelessWidget {
+  final String fil;
+  const _FeuilleFiltres({required this.fil});
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    final codes = famillesDuFil(fil);
+    return ListenableBuilder(
+      listenable: etat,
+      builder: (context, _) {
+        final visibles = etat.famillesVisibles(fil);
+        final tout = visibles.length == codes.length;
+        void basculer(String code) {
+          final choix = {...etat.domaines};
+          // Si « tout » était affiché sans choix explicite, on part de toutes les familles du fil.
+          if (choix.intersection(codes.toSet()).isEmpty) choix.addAll(codes);
+          choix.contains(code) ? choix.remove(code) : choix.add(code);
+          etat.changerDomaines(choix);
+        }
+
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(color: p.bordure, borderRadius: BorderRadius.circular(2))),
+              const SizedBox(height: 14),
+              Row(children: [
+                Text(texteFiltres,
+                    style: police(policeTitres, taille: 24, graisse: FontWeight.w800, couleur: p.texte)),
+                const Spacer(),
+                Text(fil == 'tech' ? texteTechnologies : texteSciences,
+                    style: police(policeTexte, taille: 14, graisse: FontWeight.w600, couleur: p.texteDiscret)),
+              ]),
+              const SizedBox(height: 6),
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+              CheckboxListTile(
+                contentPadding: EdgeInsets.zero,
+                controlAffinity: ListTileControlAffinity.leading,
+                value: tout,
+                activeColor: p.encre,
+                checkColor: p.surEncre,
+                title: Text('Tout', style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
+                onChanged: (_) {
+                  final choix = {...etat.domaines}..addAll(codes);
+                  etat.changerDomaines(choix);
+                },
+              ),
+              Divider(color: p.bordure, height: 1),
+              for (final code in codes)
+                CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: visibles.contains(code),
+                  activeColor: p.encre,
+                  checkColor: p.surEncre,
+                  secondary: TuileFamille(famille: familleDe(code), taille: 30),
+                  title: Text(familleDe(code).nom, style: police(policeTexte, taille: 15, couleur: p.texte)),
+                  onChanged: (_) => basculer(code),
+                ),
+                  ]),
+                ),
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: FilledButton(
+                  style: FilledButton.styleFrom(
+                      backgroundColor: p.encre, foregroundColor: p.surEncre, shape: const StadiumBorder()),
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text('Afficher', style: police(policeTexte, taille: 15, graisse: FontWeight.w700)),
+                ),
+              ),
+            ]),
+          ),
+        );
+      },
     );
   }
 }
