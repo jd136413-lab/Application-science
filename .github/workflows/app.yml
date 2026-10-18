@@ -45,12 +45,23 @@ jobs:
           flutter --version
           flutter create --org fr.novum --project-name novum --platforms android,web .
           rm -f test/widget_test.dart
-          # Nom affiché sous l'icône + accès à internet (obligatoire en version finale)
-          MANIF=android/app/src/main/AndroidManifest.xml
-          sed -i 's/android:label="novum"/android:label="Novum"/' $MANIF
-          grep -q "android.permission.INTERNET" $MANIF || \
-            sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/>\n    <application#' $MANIF
+          # Réglages Android : nom affiché, accès internet, moteur graphique
+          python3 - <<'PY'
+          import re
+          p = "android/app/src/main/AndroidManifest.xml"
+          s = open(p, encoding="utf-8").read()
+          s = s.replace('android:label="novum"', 'android:label="Novum"')
+          if "android.permission.INTERNET" not in s:
+              s = s.replace("<application", '<uses-permission android:name="android.permission.INTERNET"/>\n    <application', 1)
+          # Moteur « Impeller » désactivé : écrans noirs connus sur certains Xiaomi/POCO
+          if "EnableImpeller" not in s:
+              s = re.sub(r"(<application[^>]*>)", r'\1\n        <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false" />', s, count=1)
+          open(p, "w", encoding="utf-8").write(s)
+          PY
           sed -i 's#<title>novum</title>#<title>Novum</title>#' web/index.html || true
+          # Diagnostic lisible dans le résumé de l'exécution
+          echo "::notice title=Manifeste Android::$(grep -c 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml) permission(s) INTERNET, Impeller=$(grep -o 'EnableImpeller" android:value="[a-z]*' android/app/src/main/AndroidManifest.xml | tail -c 6)"
+          echo "::notice title=Flutter::$(flutter --version | head -1)"
 
       - name: Installer les bibliothèques
         run: flutter pub get
