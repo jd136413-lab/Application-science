@@ -40,3 +40,4 @@ Une ligne par décision ou changement, la plus récente en bas.
 Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles. Lancement manuel uniquement.
 
 ## Phase 3 — Maquettes (en cours)
+- 18/10 — Maquettes v1 publiées sur un canevas claude.ai « Maquettes Application science » : 10 écrans (premier lancement, fil, cette année, filtres, détail, favoris, réglages, aujourd'hui vide, pas de réseau, thème sombre). Choix proposés : polices Sora (titres) et IBM Plex Sans (texte), bleu #1D4ED8, une couleur et une icône par famille, barre de navigation Actualités / Favoris / Réglages. **En attente de validation.**
