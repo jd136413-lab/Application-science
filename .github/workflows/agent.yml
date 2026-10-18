@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
     inputs:
       fil:
-        description: "Fil à collecter (« les deux » partage le nombre d'articles entre les fils)"
+        description: "Sources à lire (Claude décide ensuite du fil de chaque article : Sciences, Technologies ou les deux)"
         type: choice
-        options: [sciences, technologies, les deux]
-        default: sciences
+        options: [les deux, sciences, technologies]
+        default: les deux
       nombre_articles:
         description: "Nombre d'articles à ajouter (plafond de sécurité : 30)"
         type: number

@@ -49,7 +49,7 @@ import feedparser
 import requests
 from anthropic import Anthropic
 
-from prompt import FILS, build_user_message
+from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
 from sources import SOURCES, TITRES_EXCLUS
 
 MAINTENANT = datetime.now(timezone.utc)
@@ -286,124 +286,104 @@ def extraire_json(texte: str) -> dict | None:
         return None
 
 
-def schema_reponse(themes: list[str]) -> dict:
-    """Format de réponse imposé à Claude : l'API garantit un JSON valide."""
+def _fiche(themes: list[str]) -> dict:
     return {
         "type": "object",
         "properties": {
-            "action": {"type": "string", "enum": ["add", "skip"]},
-            "reason": {"type": "string", "enum": ["none", "not_advance", "duplicate"]},
-            "duplicate_of": {"type": "string"},
             "title": {"type": "string"},
             "summary": {"type": "string"},
             "theme": {"type": "string", "enum": themes},
             "importance": {"type": "integer", "enum": [1, 2, 3, 4, 5]},
         },
-        "required": ["action", "reason", "duplicate_of", "title", "summary",
-                     "theme", "importance"],
+        "required": ["title", "summary", "theme", "importance"],
         "additionalProperties": False,
     }
 
 
-def demander_a_claude(client, modele_id, article, sujets, fil) -> tuple[dict | None, int, int, str]:
+# Format de réponse imposé à Claude : l'API garantit un JSON valide.
+SCHEMA_REPONSE = {
+    "type": "object",
+    "properties": {
+        "decision": {"type": "string", "enum": ["science", "tech", "both", "none",
+                                                "undetermined", "duplicate"]},
+        "duplicate_of": {"type": "string"},
+        "explanation": {"type": "string"},
+        "science": _fiche(THEMES),
+        "tech": _fiche(TECH_THEMES),
+    },
+    "required": ["decision", "duplicate_of", "explanation", "science", "tech"],
+    "additionalProperties": False,
+}
+
+# Le long document de classification est mis en cache par l'API :
+# payé en entier au 1er appel, puis environ 10 fois moins cher ensuite.
+SYSTEME = [{"type": "text", "text": SYSTEM_PROMPT, "cache_control": {"type": "ephemeral"}}]
+
+
+def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, dict, str]:
     rep = client.messages.create(
         model=modele_id,
-        max_tokens=1500,
-        system=fil["system"],
-        messages=[{"role": "user", "content": build_user_message(article, sujets)}],
-        output_config={"format": {"type": "json_schema",
-                                  "schema": schema_reponse(fil["themes"])}},
+        max_tokens=2000,
+        system=SYSTEME,
+        messages=[{"role": "user", "content": build_user_message(
+            article, sujets["science"], sujets["tech"])}],
+        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}},
     )
+    u = rep.usage
+    conso = {"in": u.input_tokens or 0, "out": u.output_tokens or 0,
+             "cache_w": getattr(u, "cache_creation_input_tokens", 0) or 0,
+             "cache_r": getattr(u, "cache_read_input_tokens", 0) or 0}
     texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
     if rep.stop_reason == "refusal":
         # Claude a refusé de traiter le sujet : on l'écarte, ce n'est pas une panne.
-        return ({"action": "skip", "reason": "refused"},
-                rep.usage.input_tokens, rep.usage.output_tokens, "refus")
-    fiche = extraire_json(texte)
+        return {"decision": "refused", "explanation": "refus de Claude"}, conso, "refus"
     diag = f"arrêt={rep.stop_reason}, début=« {texte[:80]} »"
-    return fiche, rep.usage.input_tokens, rep.usage.output_tokens, diag
+    return extraire_json(texte), conso, diag
 
 
-# ============================ UN FIL =================================
+# ========================== TRAITEMENT ===============================
 
-def traiter_fil(feed, nb_voulu, appels_max, db, client, modele, urls) -> dict:
-    """Collecte un fil (Sciences ou Technologies) et renvoie son bilan."""
-    fil = FILS[feed]
-    res = {"nom": fil["nom"], "ajoutes": [], "ignores": [], "doublons": [],
-           "erreurs": [], "pannes": [], "appels": 0, "tok_in": 0, "tok_out": 0}
-    log(f"\n━━━━━━━━ Fil {fil['nom']} ━━━━━━━━")
+FIL_NOM = {"science": "Sciences", "tech": "Technologies"}
+THEMES_PAR_FIL = {"science": (THEMES, "other"), "tech": (TECH_THEMES, "tech_other")}
+
+
+def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
+    """Vérifie et nettoie une fiche renvoyée par Claude pour un fil."""
+    titre = str(fiche.get("title", "")).strip().rstrip(".")
+    resume = str(fiche.get("summary", "")).strip()
+    if not titre or not resume:
+        raise ValueError(f"fiche {FIL_NOM[feed]} sans titre ou sans résumé")
+    themes, defaut = THEMES_PAR_FIL[feed]
+    theme = str(fiche.get("theme", "")).strip().lower()
+    if theme not in themes:
+        theme = defaut
     try:
-        sujets = db.sujets_recents(feed)
-    except Exception as ex:
-        res["erreurs"].append(({"title": "Lecture de la base"}, str(ex)[:200]))
-        log(f"❌ {ex}")
-        return res
+        importance = int(round(float(fiche.get("importance", 2))))
+    except (TypeError, ValueError):
+        importance = 2
+    return {
+        "feed": feed, "title": titre, "summary": resume, "theme": theme,
+        "importance": max(1, min(5, importance)), "source_url": art["url"],
+        "source_name": art["source_name"],
+        "published_at": art["published_at"].isoformat(),
+        "image_url": art.get("image_url") or None,
+        "image_credit": art.get("image_credit") or None,
+    }
 
-    log("Lecture des sources :")
-    candidats, res["pannes"] = lire_sources(urls, feed)
-    log(f"{len(candidats)} article(s) candidat(s), {len(sujets)} sujets récents.\n")
 
-    for art in candidats:
-        if len(res["ajoutes"]) >= nb_voulu or res["appels"] >= appels_max:
-            break
-        res["appels"] += 1
-        try:
-            fiche, ti, to, diag = demander_a_claude(client, modele["id"], art, sujets, fil)
-            res["tok_in"] += ti
-            res["tok_out"] += to
-            if fiche is None:
-                raise ValueError(f"réponse illisible ({diag})")
-
-            if fiche.get("action") != "add":
-                db.marquer_ecarte(art["url"], str(fiche.get("reason", "skip")))
-                if fiche.get("reason") == "duplicate":
-                    res["doublons"].append((art, fiche.get("duplicate_of", "")))
-                    log(f"  ↺ doublon   : {art['title'][:80]}")
-                else:
-                    if fiche.get("reason") == "refused":
-                        art = dict(art, title=art["title"] + " [refusé par Claude]")
-                    res["ignores"].append(art)
-                    log(f"  – ignoré    : {art['title'][:80]}")
-                continue
-
-            titre = str(fiche.get("title", "")).strip().rstrip(".")
-            resume = str(fiche.get("summary", "")).strip()
-            if not titre or not resume:
-                raise ValueError("titre ou résumé vide")
-            theme = str(fiche.get("theme", "")).strip().lower()
-            if theme not in fil["themes"]:
-                theme = fil["theme_defaut"]
-            try:
-                importance = int(round(float(fiche.get("importance", 2))))
-            except (TypeError, ValueError):
-                importance = 2
-            importance = max(1, min(5, importance))
-
-            ligne = {
-                "feed": feed, "title": titre, "summary": resume, "theme": theme,
-                "importance": importance, "source_url": art["url"],
-                "source_name": art["source_name"],
-                "published_at": art["published_at"].isoformat(),
-                "image_url": art.get("image_url") or None,
-                "image_credit": art.get("image_credit") or None,
-            }
-            if db.inserer(ligne) == "doublon":
-                res["doublons"].append((art, "même lien"))
-                continue
-            res["ajoutes"].append(ligne)
-            sujets.insert(0, f"{titre} — {' '.join(resume.split()[:14])}…")
-            log(f"  ✔ ajouté [{importance}★ {theme}{' 📷' if ligne['image_url'] else ''}] : {titre}")
-        except Exception as ex:
-            msg = (str(ex) or ex.__class__.__name__)[:200]
-            res["erreurs"].append((art, msg))
-            log(f"  ✖ erreur    : {art['title'][:70]} → {msg}")
-            time.sleep(1)
-    return res
+def melanger(listes: list[list[dict]]) -> list[dict]:
+    """Alterne entre plusieurs listes de candidats (1er de chaque, 2e de chaque…)."""
+    out = []
+    for i in range(max((len(l) for l in listes), default=0)):
+        for l in listes:
+            if i < len(l):
+                out.append(l[i])
+    return out
 
 
 # ============================== MAIN =================================
 
-CHOIX_FIL = {
+CHOIX_SOURCES = {
     "sciences": ["science"], "science": ["science"],
     "technologies": ["tech"], "tech": ["tech"],
     "les deux": ["science", "tech"], "les-deux": ["science", "tech"], "both": ["science", "tech"],
@@ -414,12 +394,9 @@ def main() -> int:
     # --- Réglages de l'exécution ---
     nb_voulu = lire_entier("NOMBRE_ARTICLES", NOMBRE_ARTICLES_PAR_DEFAUT)
     nb_voulu = max(1, min(nb_voulu, PLAFOND_ARTICLES))
-    fils = CHOIX_FIL.get((os.environ.get("FIL") or "sciences").strip().lower(), ["science"])
-    if len(fils) == 2:
-        # Les deux fils se partagent le nombre demandé (et donc le plafond).
-        nb_par_fil = [max(1, (nb_voulu + 1) // 2), max(1, nb_voulu // 2)]
-    else:
-        nb_par_fil = [nb_voulu]
+    appels_max = nb_voulu * FACTEUR_APPELS_MAX
+    groupes = CHOIX_SOURCES.get((os.environ.get("FIL") or "les deux").strip().lower(),
+                                ["science", "tech"])
     cle_modele = (os.environ.get("MODELE") or MODELE_PAR_DEFAUT).strip().lower()
     if cle_modele not in MODELES:
         cle_modele = MODELE_PAR_DEFAUT
@@ -430,9 +407,9 @@ def main() -> int:
             log(f"❌ Secret manquant : {var} (à ajouter dans Settings → Secrets → Actions)")
             return 1
 
-    noms = " + ".join(FILS[f]["nom"] for f in fils)
-    log(f"▶ Objectif : {nb_voulu} article(s) — fil : {noms} — modèle : {cle_modele} ({modele['id']})")
-    log(f"  Au plus {nb_voulu * FACTEUR_APPELS_MAX} appels à Claude au total.")
+    log(f"▶ Objectif : {nb_voulu} article(s) — sources : "
+        f"{' + '.join(FIL_NOM[g] for g in groupes)} — modèle : {cle_modele} ({modele['id']})")
+    log(f"  Au plus {appels_max} appels à Claude.\n")
 
     db = Supabase(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SECRET_KEY"])
     client = Anthropic()  # lit ANTHROPIC_API_KEY
@@ -442,66 +419,131 @@ def main() -> int:
         nb_base = len(urls)
         urls |= db.urls_deja_ecartees()
         nb_ecartes = len(urls) - nb_base
+        sujets = {"science": db.sujets_recents("science"), "tech": db.sujets_recents("tech")}
     except Exception as ex:
         log(f"❌ Impossible de lire Supabase : {ex}")
         return 1
-    log(f"Base : {nb_base} articles publiés, {nb_ecartes} liens déjà écartés.")
+    log(f"Base : {nb_base} articles publiés, {nb_ecartes} liens déjà écartés, "
+        f"{len(sujets['science'])} + {len(sujets['tech'])} sujets récents.\n")
 
-    bilans = [traiter_fil(f, n, n * FACTEUR_APPELS_MAX, db, client, modele, urls)
-              for f, n in zip(fils, nb_par_fil)]
+    listes, pannes = [], []
+    for g in groupes:
+        log(f"Lecture des sources {FIL_NOM[g]} :")
+        cands, p = lire_sources(urls, g)
+        listes.append(cands)
+        pannes += p
+    candidats = melanger(listes)
+    log(f"\n{len(candidats)} article(s) candidat(s).\n")
 
-    # --- Totaux et coût ---
-    def total(cle):
-        return sum(len(b[cle]) if isinstance(b[cle], list) else b[cle] for b in bilans)
-    appels, tok_in, tok_out = total("appels"), total("tok_in"), total("tok_out")
+    ajoutes = []                       # fiches enregistrées (1 ou 2 par article)
+    nb_articles = 0                    # articles retenus (un « les deux » compte pour 1)
+    ignores, doublons, erreurs = [], [], []
+    conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
+    appels = 0
+    decisions = {"science": 0, "tech": 0, "both": 0}
+
+    for art in candidats:
+        if nb_articles >= nb_voulu or appels >= appels_max:
+            break
+        appels += 1
+        try:
+            rep, c, diag = demander_a_claude(client, modele["id"], art, sujets)
+            for k in conso:
+                conso[k] += c[k]
+            if rep is None:
+                raise ValueError(f"réponse illisible ({diag})")
+            decision = rep.get("decision")
+            explication = str(rep.get("explanation", "")).strip()
+
+            if decision == "duplicate":
+                db.marquer_ecarte(art["url"], "duplicate")
+                doublons.append((art, rep.get("duplicate_of", "")))
+                log(f"  ↺ doublon   : {art['title'][:80]}")
+                continue
+            if decision not in ("science", "tech", "both"):
+                db.marquer_ecarte(art["url"], str(decision or "skip"))
+                ignores.append((art, decision, explication))
+                log(f"  – ignoré ({decision}) : {art['title'][:70]}")
+                continue
+
+            fils = ["science", "tech"] if decision == "both" else [decision]
+            lignes = [preparer_ligne(f, rep.get(f) or {}, art) for f in fils]
+            enregistrees = []
+            for ligne in lignes:
+                if db.inserer(ligne) == "doublon":
+                    doublons.append((art, f"même lien déjà dans {FIL_NOM[ligne['feed']]}"))
+                    continue
+                enregistrees.append(ligne)
+                sujets[ligne["feed"]].insert(
+                    0, f"{ligne['title']} — {' '.join(ligne['summary'].split()[:14])}…")
+            if enregistrees:
+                nb_articles += 1
+                decisions[decision] += 1
+                for ligne in enregistrees:
+                    ligne["explication"] = explication
+                    ajoutes.append(ligne)
+                    log(f"  ✔ {FIL_NOM[ligne['feed']]:<12} [{ligne['importance']}★ {ligne['theme']}"
+                        f"{' 📷' if ligne['image_url'] else ''}] : {ligne['title']}")
+        except Exception as ex:
+            msg = (str(ex) or ex.__class__.__name__)[:200]
+            erreurs.append((art, msg))
+            log(f"  ✖ erreur    : {art['title'][:70]} → {msg}")
+            time.sleep(1)
+
+    # --- Coût (cache : écriture = 1,25 × le prix d'entrée, lecture = 0,1 ×) ---
     p_in, p_out = modele["prix"]
-    cout = tok_in / 1e6 * p_in + tok_out / 1e6 * p_out
+    cout = (conso["in"] * p_in + conso["cache_w"] * p_in * 1.25
+            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6
 
     log("\n" + "=" * 60)
-    log(f"RÉSUMÉ : {total('ajoutes')} ajouté(s), {total('ignores')} ignoré(s), "
-        f"{total('doublons')} doublon(s), {total('erreurs')} erreur(s)")
-    log(f"Appels à Claude : {appels} — tokens : {tok_in} entrée / {tok_out} sortie")
+    log(f"RÉSUMÉ : {nb_articles} article(s) retenu(s) → {len(ajoutes)} fiche(s) "
+        f"(sciences {decisions['science']}, tech {decisions['tech']}, les deux {decisions['both']}) ; "
+        f"{len(ignores)} ignoré(s), {len(doublons)} doublon(s), {len(erreurs)} erreur(s)")
+    log(f"Appels à Claude : {appels} — tokens : {conso['in']} entrée, {conso['cache_w']} mis en cache, "
+        f"{conso['cache_r']} lus en cache, {conso['out']} sortie")
     log(f"Coût estimé : {cout:.4f} $")
+    if pannes:
+        log(f"Sources injoignables : {', '.join(pannes)}")
     log("=" * 60)
 
     # --- Résumé lisible dans la page GitHub de l'exécution ---
     fichier = os.environ.get("GITHUB_STEP_SUMMARY")
     if fichier:
         with open(fichier, "a", encoding="utf-8") as f:
-            f.write(f"## Résultat de l'agent\n\n"
-                    f"| Fil | Ajoutés | Ignorés | Doublons | Erreurs | Appels Claude |\n"
-                    f"|---|---|---|---|---|---|\n")
-            for b in bilans:
-                f.write(f"| {b['nom']} | {len(b['ajoutes'])} | {len(b['ignores'])} | "
-                        f"{len(b['doublons'])} | {len(b['erreurs'])} | {b['appels']} |\n")
-            f.write(f"\n**Coût estimé : {cout:.4f} $** · modèle `{modele['id']}`\n\n"
-                    f"Mémoire : {nb_base} articles déjà publiés et "
+            f.write("## Résultat de l'agent\n\n"
+                    "| Articles retenus | Sciences seules | Tech seules | Les deux | "
+                    "Ignorés | Doublons | Erreurs | Appels Claude | Coût estimé |\n"
+                    "|---|---|---|---|---|---|---|---|---|\n"
+                    f"| {nb_articles} | {decisions['science']} | {decisions['tech']} | "
+                    f"{decisions['both']} | {len(ignores)} | {len(doublons)} | {len(erreurs)} | "
+                    f"{appels} | {cout:.4f} $ |\n\n"
+                    f"Modèle : `{modele['id']}` · Mémoire : {nb_base} articles déjà publiés et "
                     f"{nb_ecartes} liens déjà écartés ont été sautés sans appeler Claude"
                     f"{'' if db.memoire_ok else ' ⚠ (table seen_urls introuvable)'}.\n\n")
-            for b in bilans:
-                f.write(f"---\n## Fil {b['nom']}\n\n")
-                if b["ajoutes"]:
-                    f.write("### Articles ajoutés\n\n| Note | Thème | Titre | Photo | Source |\n"
-                            "|---|---|---|---|---|\n")
-                    for a in b["ajoutes"]:
+            for feed in ("science", "tech"):
+                fiches = [a for a in ajoutes if a["feed"] == feed]
+                if fiches:
+                    f.write(f"### Fil {FIL_NOM[feed]}\n\n| Note | Thème | Titre | Photo | Source | Pourquoi |\n"
+                            "|---|---|---|---|---|---|\n")
+                    for a in fiches:
                         f.write(f"| {'★' * a['importance']} | {a['theme']} | {a['title']} | "
                                 f"{'📷' if a['image_url'] else ''} | "
-                                f"[{a['source_name']}]({a['source_url']}) |\n")
-                if b["doublons"]:
-                    f.write("\n### Doublons écartés\n\n")
-                    for art, raison in b["doublons"]:
-                        f.write(f"- {art['title']} → *{raison}*\n")
-                if b["ignores"]:
-                    f.write("\n### Ignorés\n\n")
-                    for art in b["ignores"]:
-                        f.write(f"- {art['title']} ({art['source_name']})\n")
-                if b["erreurs"]:
-                    f.write("\n### Erreurs\n\n")
-                    for art, msg in b["erreurs"]:
-                        f.write(f"- {art['title']} → `{msg}`\n")
-                if b["pannes"]:
-                    f.write(f"\n**Sources injoignables :** {', '.join(b['pannes'])}\n")
-                f.write("\n")
+                                f"[{a['source_name']}]({a['source_url']}) | {a['explication']} |\n")
+                    f.write("\n")
+            if doublons:
+                f.write("### Doublons écartés\n\n")
+                for art, raison in doublons:
+                    f.write(f"- {art['title']} → *{raison}*\n")
+            if ignores:
+                f.write("\n### Ignorés\n\n")
+                for art, decision, explication in ignores:
+                    f.write(f"- {art['title']} ({art['source_name']}) — *{decision}* : {explication}\n")
+            if erreurs:
+                f.write("\n### Erreurs\n\n")
+                for art, msg in erreurs:
+                    f.write(f"- {art['title']} → `{msg}`\n")
+            if pannes:
+                f.write(f"\n**Sources injoignables :** {', '.join(pannes)}\n")
     return 0
 
 

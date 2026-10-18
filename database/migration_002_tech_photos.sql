@@ -1,5 +1,6 @@
 -- =====================================================================
--- Migration 002 (18/10/2026) : fil Technologies + photos libres
+-- Migration 002 (18/10/2026) : fil Technologies, photos libres,
+-- et un même article possible dans les deux fils
 -- Supabase → SQL Editor → New query → New blank query → coller → Run
 -- Sans danger pour les données existantes (elles restent dans le fil Sciences).
 -- =====================================================================
@@ -66,6 +67,20 @@ begin
   return new;
 end $$;
 
--- 4) Index pour charger vite un fil précis
+-- 4) Un même article peut être publié dans les DEUX fils (avancée scientifique
+--    ET technologique) : le lien n'est plus unique tout seul, mais par fil.
+do $$
+declare r record;
+begin
+  for r in select conname from pg_constraint
+           where conrelid = 'public.advances'::regclass and contype = 'u'
+  loop
+    execute format('alter table public.advances drop constraint %I', r.conname);
+  end loop;
+end $$;
+alter table public.advances add constraint advances_source_url_feed_key
+  unique (source_url, feed);
+
+-- 5) Index pour charger vite un fil précis
 create index if not exists advances_feed_published_idx
   on public.advances (feed, published_at desc);
