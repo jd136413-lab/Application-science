@@ -58,6 +58,35 @@ jobs:
               s = re.sub(r"(<application[^>]*>)", r'\1\n        <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false" />', s, count=1)
           open(p, "w", encoding="utf-8").write(s)
           PY
+          # Règles pour le « nettoyeur » de code Android (R8) : ne jamais supprimer
+          # le code des bibliothèques (sinon : NoSuchMethodError au démarrage).
+          cat > android/app/proguard-rules.pro <<'PRO'
+          -keep class io.flutter.plugins.** { *; }
+          -keep class io.flutter.plugin.** { *; }
+          -keep class dev.fluttercommunity.** { *; }
+          -keep class com.llfbandit.** { *; }
+          -keep class kotlin.coroutines.** { *; }
+          -keep class kotlinx.coroutines.** { *; }
+          -dontwarn io.flutter.embedding.**
+          PRO
+          # Branche le fichier de règles dans la configuration de compilation
+          GRADLE=$(ls android/app/build.gradle.kts android/app/build.gradle 2>/dev/null | head -1)
+          python3 - "$GRADLE" <<'PY'
+          import sys
+          p = sys.argv[1]
+          s = open(p, encoding="utf-8").read()
+          if "proguard-rules.pro" not in s:
+              kts = p.endswith(".kts")
+              ligne = ('            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")'
+                       if kts else
+                       "            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'")
+              i = s.find("release {", s.find("buildTypes"))
+              if i != -1:
+                  j = s.find("\n", i)
+                  s = s[:j + 1] + ligne + "\n" + s[j + 1:]
+                  open(p, "w", encoding="utf-8").write(s)
+          PY
+          echo "::notice title=Regles R8::$(grep -c proguard-rules.pro $GRADLE) branchement(s) dans $GRADLE"
           sed -i 's#<title>novum</title>#<title>Novum</title>#' web/index.html || true
           # Diagnostic lisible dans le résumé de l'exécution
           echo "::notice title=Manifeste Android::$(grep -c 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml) permission(s) INTERNET, Impeller=$(grep -o 'EnableImpeller" android:value="[a-z]*' android/app/src/main/AndroidManifest.xml | tail -c 6)"
