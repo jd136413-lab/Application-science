@@ -317,6 +317,7 @@ def main() -> int:
         urls = db.urls_connues()
         nb_base = len(urls)
         urls |= db.urls_deja_ecartees()
+        nb_ecartes = len(urls) - nb_base
         sujets = db.sujets_recents()
     except Exception as ex:
         log(f"❌ Impossible de lire Supabase : {ex}")
@@ -408,7 +409,10 @@ def main() -> int:
                     f"|---|---|---|---|---|---|\n"
                     f"| {len(ajoutes)} | {len(ignores)} | {len(doublons)} | "
                     f"{len(erreurs)} | {appels} | {cout:.4f} $ |\n\n"
-                    f"Modèle : `{modele['id']}`\n\n")
+                    f"Modèle : `{modele['id']}`\n\n"
+                    f"Mémoire : {nb_base} articles déjà publiés et "
+                    f"{nb_ecartes} liens déjà écartés ont été sautés sans appeler Claude"
+                    f"{'' if db.memoire_ok else ' ⚠ (table seen_urls introuvable)'}.\n\n")
             if ajoutes:
                 f.write("### Articles ajoutés\n\n| Note | Thème | Titre | Source |\n|---|---|---|---|\n")
                 for a in ajoutes:
