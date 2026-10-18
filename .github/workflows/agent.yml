@@ -5,6 +5,11 @@ name: Agent de collecte
 on:
   workflow_dispatch:
     inputs:
+      fil:
+        description: "Fil à collecter (« les deux » partage le nombre d'articles entre les fils)"
+        type: choice
+        options: [sciences, technologies, les deux]
+        default: sciences
       nombre_articles:
         description: "Nombre d'articles à ajouter (plafond de sécurité : 30)"
         type: number
@@ -42,4 +47,5 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           NOMBRE_ARTICLES: ${{ inputs.nombre_articles }}
           MODELE: ${{ inputs.modele }}
+          FIL: ${{ inputs.fil }}
         run: python main.py

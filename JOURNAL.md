@@ -58,3 +58,13 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - 18/10 — **Logo retenu : S6** (case du tableau périodique « No », nobélium n° 102, encres rose et bleue décalées, police Fraunces). Installé en haut de l'écran du fil.
 - 18/10 — Case « No 102 » encadrée dans l'en-tête du fil. 6 façons d'accrocher « vum » à la case (V1 En indice, V2 Case voisine, V3 Échappée, V4 Ligne continue, V5 Étiquette, V6 Encre qui déborde) — choix en attente.
 - 18/10 — **Logo final** : case « No 102 » à coins droits (comme le vrai tableau périodique), encres rose et bleue décalées, « vum » en noir collé à la case, sur la même ligne de base. Installé dans l'en-tête du fil.
+- 18/10 — **Style validé (GO)**. Couleurs des familles conservées : la case « No » reste le seul élément rose/bleu. Les 10 écrans des maquettes sont au nouveau style : logo, Sciences/Technologies, familles Tech dans le premier lancement et les filtres, choix du thème (Automatique/Clair/Sombre) et de la langue dans Réglages.
+
+## Phase 3 — Maquettes ✅ (18/10/2026)
+
+## Mise à jour agent + base : fil Technologies et photos (18/10/2026)
+- `database/migration_002_tech_photos.sql` : colonnes `feed` (science/tech), `image_url`, `image_credit` ; 20 thèmes tech ; familles tech calculées automatiquement (mobile, computing, ai_software, mobility, aerospace, energy_home, gaming, tech_other). Testé sur un Postgres local, relançable sans danger.
+- Sources tech (accès automatique autorisé) : TechCrunch, Engadget, IEEE Spectrum, Tom's Hardware, Electrek, GSMArena, Presse-citron, Journal du Geek. Écartées car elles refusent les robots : The Verge, Ars Technica, Numerama, Frandroid, 01net.
+- Consignes Claude séparées pour le fil Tech (produits annoncés/sortis, premières, nouveautés mesurables ; rumeurs, promos, tests, finances écartés ; barème 1 à 5 tech).
+- Photos : seulement NASA (domaine public, crédit « Photo : NASA »). ESA désactivé tant que ses conditions ne sont pas vérifiées.
+- Bouton Run workflow : nouveau choix **Fil** (sciences / technologies / les deux ; « les deux » partage le nombre d'articles).

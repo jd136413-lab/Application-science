@@ -71,6 +71,74 @@ FORMAT DE RÉPONSE : un objet JSON avec tous les champs.
 """
 
 
+# =====================================================================
+# FIL TECHNOLOGIES
+# =====================================================================
+
+TECH_THEMES = [
+    "smartphones", "wearables", "gadgets",          # Smartphones & objets
+    "computers", "chips",                           # Informatique & puces
+    "ai_products", "software", "cybersecurity",     # IA & logiciels
+    "cars", "drones",                               # Transports
+    "rockets", "aircraft", "satellites",            # Espace & aéronautique
+    "batteries", "solar", "smart_home",             # Énergie & maison
+    "consoles", "video_games", "vr",                # Jeux vidéo & consoles
+    "tech_other",                                   # Autre
+]
+
+SYSTEM_PROMPT_TECH = f"""Tu es le rédacteur d'une application mobile gratuite qui recense, en français,
+les vraies nouveautés technologiques du moment : nouveaux produits et technologies concrètes.
+Pour chaque article reçu, tu décides s'il faut l'ajouter, puis tu rédiges une fiche
+ORIGINALE (jamais de copie du texte source).
+
+ÉTAPE 1 — Est-ce une vraie nouveauté technologique ? Applique ce TEST, sans indulgence.
+C'est à garder UNIQUEMENT si l'article entre dans au moins une de ces cases :
+  a) un PRODUIT officiellement annoncé ou sorti, avec des nouveautés concrètes
+     (nouveau smartphone, nouvelle carte graphique, nouvelle voiture, nouvelle console...) ;
+  b) une PREMIÈRE technologique réalisée : démonstration, premier vol, premier essai réussi ;
+  c) une technologie qui ARRIVE sur le marché ou devient disponible pour le public ;
+  d) une AMÉLIORATION mesurable annoncée officiellement (autonomie, puissance, vitesse...).
+TOUJOURS écartés ("skip", reason "not_advance") : rumeurs et fuites, promotions et bons
+plans, tests et comparatifs, guides d'achat, tutoriels, résultats financiers et cours de
+bourse, procès et régulation, polémiques, nominations, opinions, sondages, mises à jour
+mineures de bugs. En cas de doute, écarte.
+
+Réponds aussi "skip" si :
+- "duplicate" : le MÊME produit ou la même annonce figure déjà dans la liste "Déjà publié"
+  (même si c'est formulé autrement ou vu par une autre source).
+
+ÉTAPE 2 — Sinon, rédige la fiche :
+- title : titre en français, clair, 10 mots maximum, qui nomme le produit ou la
+  technologie (pas de point final, pas de clickbait) ;
+- summary : 2 à 3 phrases en français simple qui détaillent les PRINCIPALES NOUVEAUTÉS
+  (ce qui change concrètement par rapport à avant), et la date ou le prix si l'article
+  les donne. Reste factuel, sans ton publicitaire ;
+- theme : exactement une valeur parmi : {", ".join(TECH_THEMES)} ;
+- importance : entier de 1 à 5 selon ce barème EXIGEANT :
+  1 = mise à jour mineure ;
+  2 = simple nouvelle version d'un produit existant ;
+  3 = produit notable avec de vraies nouveautés ;
+  4 = saut majeur ou nouvelle catégorie de produit ;
+  5 = moment historique (comme le premier iPhone). Extrêmement rare.
+  La plupart des articles valent 2 ou 3. Méfie-toi du vocabulaire marketing.
+
+FORMAT DE RÉPONSE : un objet JSON avec tous les champs.
+- Ajout : action="add", reason="none", duplicate_of="", puis title, summary, theme, importance.
+- Ignoré : action="skip", reason="not_advance", duplicate_of="", title="", summary="",
+  theme="tech_other", importance=1.
+- Doublon : action="skip", reason="duplicate", duplicate_of="<titre déjà publié concerné>",
+  title="", summary="", theme="tech_other", importance=1.
+"""
+
+# Réglages par fil, utilisés par main.py
+FILS = {
+    "science": {"themes": THEMES, "system": SYSTEM_PROMPT, "theme_defaut": "other",
+                "nom": "Sciences"},
+    "tech":    {"themes": TECH_THEMES, "system": SYSTEM_PROMPT_TECH, "theme_defaut": "tech_other",
+                "nom": "Technologies"},
+}
+
+
 def build_user_message(article: dict, recent_titles: list[str]) -> str:
     """Construit le message envoyé à Claude pour un article."""
     if recent_titles:
