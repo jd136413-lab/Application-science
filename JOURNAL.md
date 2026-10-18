@@ -34,3 +34,9 @@ Une ligne par décision ou changement, la plus récente en bas.
 - 18/10 — Nouvelle table privée `seen_urls` : l'agent mémorise les liens écartés pour ne plus repayer Claude. Marge d'appels portée à 5 par article demandé (tri strict = peu d'élus).
 - 18/10 — Vérification de la table : familles, notes et dates correctes, aucun doublon (9 fiches). Ajout de `database/reset.sql` pour vider la base pendant les tests.
 - 18/10 — Lancements après remise à zéro (Haiku, 5 articles) : 5 ajoutés à chaque fois, 0 erreur, environ 0,009 $ par lancement. Le tableau de résultat affiche maintenant une ligne « Mémoire » (liens sautés sans appeler Claude).
+- 18/10 — Mémoire vérifiée : 18 liens `not_advance` dans `seen_urls`.
+
+## Phase 2 — Agent ✅ (18/10/2026)
+Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles. Lancement manuel uniquement.
+
+## Phase 3 — Maquettes (en cours)
