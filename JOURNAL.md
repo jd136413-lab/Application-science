@@ -76,3 +76,9 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - 18/10 — Lancement « sciences » : 5 articles retenus, dont 1 avec photo libre (ESO, étoile S301), 0,006 $.
 - 18/10 — Revues en accès libre : **PLOS Biology et PLOS Medicine ajoutées** (tout sous CC BY 4.0, figures comprises). L'agent prend l'« image vedette » de l'article et construit le crédit (« Image : Auteur et al., Revue (année), CC BY 4.0 ») ; image refusée si la page mentionne BioRender (licence contestée). eLife écarté (pages illisibles pour un robot).
 - 18/10 — Nouveau workflow « Télécharger des images » (dossier `design/images/`, crédits dans `CREDITS.md`). Maquettes : deux vraies cartes photo dans le fil (ESO et PLOS) et écran de détail avec la vraie image PLOS.
+
+## Phase 4 — Squelette de l'app et compilation automatique (19/10/2026)
+- Projet Flutter dans `app/` : fichier de réglages unique `app/lib/reglages.dart` (couleurs, polices, familles, textes, commenté pour modification depuis GitHub), lecture des avancées dans Supabase (clé publique injectée à la compilation), sélecteur Sciences/Technologies, cartes texte et photo, étoiles colorées, logo Novum 102, écran de détail avec « Lire l'article », états chargement / vide / erreur, tirer pour rafraîchir. Thème clair/sombre selon le téléphone (choix manuel en phase 7).
+- Workflow `Compiler l'app` : à chaque modification de `app/`, version web sur GitHub Pages et APK publié dans Releases (lien fixe). 1re compilation verte.
+- Version web : https://jd136413-lab.github.io/Application-science/
+- APK : https://github.com/jd136413-lab/Application-science/releases/download/apercu/novum.apk (72 Mo pour l'instant, sera allégé plus tard).
