@@ -41,3 +41,5 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 
 ## Phase 3 — Maquettes (en cours)
 - 18/10 — Maquettes v1 publiées sur un canevas claude.ai « Maquettes Application science » : 10 écrans (premier lancement, fil, cette année, filtres, détail, favoris, réglages, aujourd'hui vide, pas de réseau, thème sombre). Choix proposés : polices Sora (titres) et IBM Plex Sans (texte), bleu #1D4ED8, une couleur et une icône par famille, barre de navigation Actualités / Favoris / Réglages. **En attente de validation.**
+- 18/10 — Demande de Maxime : style plus original et coloré mais sobre → nouveau style proposé sur l'écran du fil (et sa version sombre) : polices Bricolage Grotesque (titres) et Figtree (texte), « bande spectre » des 8 familles sous le titre, tuiles d'icônes pleines aux couleurs vives, onglets en pastilles. À valider avant de l'appliquer aux autres écrans.
+- 18/10 — Questions ouvertes : images par actualité (options proposées), traduction en 10 langues (plan et coût proposés).
