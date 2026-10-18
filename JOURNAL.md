@@ -57,3 +57,4 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - 18/10 — 6 logos « symboles de la science » en encres superposées (S1 Cercle chromatique, S2 Atome, S3 Double hélice, S4 Prisme de Newton, S5 Ondes, S6 Case du tableau périodique « No », nobélium n° 102).
 - 18/10 — **Logo retenu : S6** (case du tableau périodique « No », nobélium n° 102, encres rose et bleue décalées, police Fraunces). Installé en haut de l'écran du fil.
 - 18/10 — Case « No 102 » encadrée dans l'en-tête du fil. 6 façons d'accrocher « vum » à la case (V1 En indice, V2 Case voisine, V3 Échappée, V4 Ligne continue, V5 Étiquette, V6 Encre qui déborde) — choix en attente.
+- 18/10 — **Logo final** : case « No 102 » à coins droits (comme le vrai tableau périodique), encres rose et bleue décalées, « vum » en noir collé à la case, sur la même ligne de base. Installé dans l'en-tête du fil.
