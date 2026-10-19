@@ -9,10 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
   supabase_flutter: ^2.18.3
   google_fonts: ^9.0.0
   url_launcher: ^6.3.0
   shared_preferences: ^2.3.0
+  google_mlkit_translation: ^0.15.1
 
 flutter:
   uses-material-design: true

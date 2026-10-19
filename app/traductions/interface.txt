@@ -1,0 +1,1711 @@
+# Traductions des textes de l'interface Novum.
+#
+# Chaque bloc commence par « @ » suivi du texte FRANÇAIS exact utilisé dans
+# le code (app/lib/reglages.dart ou les écrans), puis une ligne par langue :
+# code de langue, un espace, la traduction. {n} = un nombre, à garder tel quel.
+#
+# Ce fichier est transformé en app/lib/textes_traduits.dart par
+# traductions/generer.py (Claude s'en charge). Si tu modifies un texte
+# français dans reglages.dart, demande à Claude de mettre à jour ce fichier :
+# sinon le nouveau texte s'affichera en français dans toutes les langues.
+
+@ Sciences
+en Science
+es Ciencia
+pt Ciência
+de Wissenschaft
+it Scienza
+nl Wetenschap
+pl Nauka
+ru Наука
+uk Наука
+tr Bilim
+ar العلوم
+hi विज्ञान
+bn বিজ্ঞান
+ur سائنس
+zh 科学
+ja 科学
+ko 과학
+id Sains
+vi Khoa học
+
+@ Technologies
+en Tech
+es Tecnología
+pt Tecnologia
+de Technik
+it Tecnologia
+nl Technologie
+pl Technologie
+ru Технологии
+uk Технології
+tr Teknoloji
+ar التكنولوجيا
+hi तकनीक
+bn প্রযুক্তি
+ur ٹیکنالوجی
+zh 科技
+ja テクノロジー
+ko 기술
+id Teknologi
+vi Công nghệ
+
+@ Mineur
+en Minor
+es Menor
+pt Menor
+de Gering
+it Minore
+nl Klein
+pl Drobne
+ru Незначительное
+uk Незначне
+tr Küçük
+ar طفيف
+hi मामूली
+bn সামান্য
+ur معمولی
+zh 轻微
+ja 小
+ko 작음
+id Kecil
+vi Nhỏ
+
+@ Limité
+en Limited
+es Limitado
+pt Limitado
+de Begrenzt
+it Limitato
+nl Beperkt
+pl Ograniczone
+ru Ограниченное
+uk Обмежене
+tr Sınırlı
+ar محدود
+hi सीमित
+bn সীমিত
+ur محدود
+zh 有限
+ja 限定的
+ko 제한적
+id Terbatas
+vi Hạn chế
+
+@ Notable
+en Notable
+es Notable
+pt Notável
+de Beachtlich
+it Notevole
+nl Opvallend
+pl Znaczące
+ru Заметное
+uk Помітне
+tr Kayda değer
+ar ملحوظ
+hi उल्लेखनीय
+bn উল্লেখযোগ্য
+ur قابلِ ذکر
+zh 值得关注
+ja 注目
+ko 주목할 만함
+id Penting
+vi Đáng chú ý
+
+@ Majeur
+en Major
+es Importante
+pt Importante
+de Bedeutend
+it Importante
+nl Belangrijk
+pl Ważne
+ru Крупное
+uk Велике
+tr Büyük
+ar كبير
+hi बड़ा
+bn বড়
+ur بڑا
+zh 重大
+ja 重大
+ko 중대함
+id Besar
+vi Lớn
+
+@ Rupture
+en Breakthrough
+es Revolucionario
+pt Revolucionário
+de Durchbruch
+it Svolta
+nl Doorbraak
+pl Przełom
+ru Прорыв
+uk Прорив
+tr Çığır açan
+ar ثوري
+hi क्रांतिकारी
+bn যুগান্তকারী
+ur انقلابی
+zh 突破
+ja 画期的
+ko 획기적
+id Terobosan
+vi Đột phá
+
+@ Lire l’article
+en Read the article
+es Leer el artículo
+pt Ler o artigo
+de Artikel lesen
+it Leggi l’articolo
+nl Artikel lezen
+pl Przeczytaj artykuł
+ru Читать статью
+uk Читати статтю
+tr Makaleyi oku
+ar اقرأ المقال
+hi लेख पढ़ें
+bn নিবন্ধটি পড়ুন
+ur مضمون پڑھیں
+zh 阅读原文
+ja 記事を読む
+ko 기사 읽기
+id Baca artikel
+vi Đọc bài viết
+
+@ Résumé automatique · l’article source fait foi
+en Automatic summary · the source article prevails
+es Resumen automático · prevalece el artículo original
+pt Resumo automático · prevalece o artigo original
+de Automatische Zusammenfassung · maßgeblich ist der Originalartikel
+it Riassunto automatico · fa fede l’articolo originale
+nl Automatische samenvatting · het bronartikel is leidend
+pl Streszczenie automatyczne · decyduje artykuł źródłowy
+ru Автоматическое резюме · главным остаётся исходная статья
+uk Автоматичний підсумок · головною є першоджерельна стаття
+tr Otomatik özet · esas olan kaynak makaledir
+ar ملخص تلقائي · المرجع هو المقال الأصلي
+hi स्वचालित सारांश · मूल लेख ही मान्य है
+bn স্বয়ংক্রিয় সারাংশ · মূল নিবন্ধই প্রামাণ্য
+ur خودکار خلاصہ · اصل مضمون ہی مستند ہے
+zh 自动摘要 · 以原文为准
+ja 自動要約 · 元の記事が優先されます
+ko 자동 요약 · 원문 기사가 우선합니다
+id Ringkasan otomatis · artikel sumber yang berlaku
+vi Tóm tắt tự động · bài viết gốc là căn cứ
+
+@ Pas encore d’avancée ici
+en No advances here yet
+es Todavía no hay avances aquí
+pt Ainda não há avanços aqui
+de Hier gibt es noch keine Fortschritte
+it Ancora nessun progresso qui
+nl Hier nog geen doorbraken
+pl Jeszcze nic tu nie ma
+ru Здесь пока ничего нет
+uk Тут поки нічого немає
+tr Burada henüz gelişme yok
+ar لا توجد تطورات هنا بعد
+hi यहाँ अभी कोई प्रगति नहीं है
+bn এখানে এখনও কোনো অগ্রগতি নেই
+ur یہاں ابھی کوئی پیش رفت نہیں
+zh 这里还没有内容
+ja まだ何もありません
+ko 아직 소식이 없어요
+id Belum ada kemajuan di sini
+vi Chưa có tiến bộ nào ở đây
+
+@ L’agent n’a encore rien publié dans ce fil.
+en Nothing has been published in this feed yet.
+es Todavía no se ha publicado nada en esta sección.
+pt Ainda nada foi publicado nesta secção.
+de In diesem Bereich wurde noch nichts veröffentlicht.
+it Non è ancora stato pubblicato nulla in questa sezione.
+nl In deze feed is nog niets gepubliceerd.
+pl W tym kanale nic jeszcze nie opublikowano.
+ru В этой ленте пока ничего не опубликовано.
+uk У цій стрічці поки нічого не опубліковано.
+tr Bu akışta henüz bir şey yayımlanmadı.
+ar لم يُنشر أي شيء في هذا القسم بعد.
+hi इस फ़ीड में अभी कुछ प्रकाशित नहीं हुआ है।
+bn এই ফিডে এখনও কিছু প্রকাশিত হয়নি।
+ur اس فیڈ میں ابھی کچھ شائع نہیں ہوا۔
+zh 此栏目暂无发布内容。
+ja このフィードにはまだ何も公開されていません。
+ko 이 피드에는 아직 게시된 내용이 없어요.
+id Belum ada yang diterbitkan di umpan ini.
+vi Chưa có gì được đăng trong mục này.
+
+@ Pas de connexion
+en No connection
+es Sin conexión
+pt Sem ligação
+de Keine Verbindung
+it Nessuna connessione
+nl Geen verbinding
+pl Brak połączenia
+ru Нет соединения
+uk Немає з’єднання
+tr Bağlantı yok
+ar لا يوجد اتصال
+hi कोई कनेक्शन नहीं
+bn সংযোগ নেই
+ur کنکشن نہیں ہے
+zh 无网络连接
+ja 接続されていません
+ko 연결 없음
+id Tidak ada koneksi
+vi Không có kết nối
+
+@ Impossible de charger les avancées. Vérifiez votre connexion, puis réessayez.
+en Couldn’t load the advances. Check your connection, then try again.
+es No se pudieron cargar los avances. Comprueba tu conexión e inténtalo de nuevo.
+pt Não foi possível carregar os avanços. Verifique a sua ligação e tente novamente.
+de Die Fortschritte konnten nicht geladen werden. Prüfe deine Verbindung und versuche es erneut.
+it Impossibile caricare i progressi. Controlla la connessione e riprova.
+nl Kan de doorbraken niet laden. Controleer je verbinding en probeer het opnieuw.
+pl Nie udało się wczytać. Sprawdź połączenie i spróbuj ponownie.
+ru Не удалось загрузить материалы. Проверьте соединение и повторите попытку.
+uk Не вдалося завантажити матеріали. Перевірте з’єднання та спробуйте ще раз.
+tr Gelişmeler yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.
+ar تعذّر تحميل التطورات. تحقّق من اتصالك ثم حاول مجددًا.
+hi प्रगति लोड नहीं हो सकी। अपना कनेक्शन जाँचें और फिर से कोशिश करें।
+bn অগ্রগতি লোড করা যায়নি। সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।
+ur پیش رفت لوڈ نہیں ہو سکی۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔
+zh 无法加载内容。请检查网络连接后重试。
+ja 読み込めませんでした。接続を確認して、もう一度お試しください。
+ko 소식을 불러오지 못했어요. 연결을 확인한 뒤 다시 시도해 주세요.
+id Gagal memuat kemajuan. Periksa koneksi Anda, lalu coba lagi.
+vi Không tải được dữ liệu. Hãy kiểm tra kết nối rồi thử lại.
+
+@ Réessayer
+en Try again
+es Reintentar
+pt Tentar novamente
+de Erneut versuchen
+it Riprova
+nl Opnieuw proberen
+pl Spróbuj ponownie
+ru Повторить
+uk Повторити
+tr Tekrar dene
+ar إعادة المحاولة
+hi फिर से कोशिश करें
+bn আবার চেষ্টা করুন
+ur دوبارہ کوشش کریں
+zh 重试
+ja 再試行
+ko 다시 시도
+id Coba lagi
+vi Thử lại
+
+@ Aujourd’hui
+en Today
+es Hoy
+pt Hoje
+de Heute
+it Oggi
+nl Vandaag
+pl Dziś
+ru Сегодня
+uk Сьогодні
+tr Bugün
+ar اليوم
+hi आज
+bn আজ
+ur آج
+zh 今天
+ja 今日
+ko 오늘
+id Hari ini
+vi Hôm nay
+
+@ Cette semaine
+en This week
+es Esta semana
+pt Esta semana
+de Diese Woche
+it Questa settimana
+nl Deze week
+pl Ten tydzień
+ru Эта неделя
+uk Цей тиждень
+tr Bu hafta
+ar هذا الأسبوع
+hi इस सप्ताह
+bn এই সপ্তাহ
+ur اس ہفتے
+zh 本周
+ja 今週
+ko 이번 주
+id Minggu ini
+vi Tuần này
+
+@ Ce mois-ci
+en This month
+es Este mes
+pt Este mês
+de Diesen Monat
+it Questo mese
+nl Deze maand
+pl Ten miesiąc
+ru Этот месяц
+uk Цей місяць
+tr Bu ay
+ar هذا الشهر
+hi इस महीने
+bn এই মাস
+ur اس مہینے
+zh 本月
+ja 今月
+ko 이번 달
+id Bulan ini
+vi Tháng này
+
+@ Cette année
+en This year
+es Este año
+pt Este ano
+de Dieses Jahr
+it Quest’anno
+nl Dit jaar
+pl Ten rok
+ru Этот год
+uk Цей рік
+tr Bu yıl
+ar هذا العام
+hi इस साल
+bn এই বছর
+ur اس سال
+zh 今年
+ja 今年
+ko 올해
+id Tahun ini
+vi Năm nay
+
+@ Plus récent
+en Newest
+es Más reciente
+pt Mais recente
+de Neueste
+it Più recenti
+nl Nieuwste
+pl Najnowsze
+ru Новые
+uk Нові
+tr En yeni
+ar الأحدث
+hi नवीनतम
+bn সর্বশেষ
+ur تازہ ترین
+zh 最新
+ja 新着順
+ko 최신순
+id Terbaru
+vi Mới nhất
+
+@ Plus important
+en Most important
+es Más importante
+pt Mais importante
+de Wichtigste
+it Più importanti
+nl Belangrijkste
+pl Najważniejsze
+ru Важные
+uk Важливі
+tr En önemli
+ar الأهم
+hi सबसे अहम
+bn সবচেয়ে গুরুত্বপূর্ণ
+ur سب سے اہم
+zh 最重要
+ja 重要度順
+ko 중요도순
+id Terpenting
+vi Quan trọng nhất
+
+@ Filtres
+en Filters
+es Filtros
+pt Filtros
+de Filter
+it Filtri
+nl Filters
+pl Filtry
+ru Фильтры
+uk Фільтри
+tr Filtreler
+ar عوامل التصفية
+hi फ़िल्टर
+bn ফিল্টার
+ur فلٹر
+zh 筛选
+ja フィルター
+ko 필터
+id Filter
+vi Bộ lọc
+
+@ Pas encore de découverte aujourd’hui
+en No discoveries yet today
+es Todavía no hay descubrimientos hoy
+pt Ainda não há descobertas hoje
+de Heute noch keine Entdeckungen
+it Ancora nessuna scoperta oggi
+nl Vandaag nog geen ontdekkingen
+pl Dziś jeszcze bez odkryć
+ru Сегодня открытий пока нет
+uk Сьогодні відкриттів поки немає
+tr Bugün henüz keşif yok
+ar لا اكتشافات اليوم بعد
+hi आज अभी कोई खोज नहीं
+bn আজ এখনও কোনো আবিষ্কার নেই
+ur آج ابھی کوئی دریافت نہیں
+zh 今天还没有新发现
+ja 今日はまだ発見がありません
+ko 오늘은 아직 새로운 발견이 없어요
+id Belum ada penemuan hari ini
+vi Hôm nay chưa có khám phá nào
+
+@ Les chercheurs sont sans doute encore au labo. En attendant, les avancées de la semaine vous attendent.
+en The researchers are probably still in the lab. In the meantime, this week’s advances are waiting for you.
+es Seguramente los investigadores siguen en el laboratorio. Mientras tanto, te esperan los avances de la semana.
+pt Os investigadores ainda devem estar no laboratório. Entretanto, os avanços da semana esperam por si.
+de Die Forschenden sind wohl noch im Labor. Bis dahin warten die Fortschritte der Woche auf dich.
+it I ricercatori sono probabilmente ancora in laboratorio. Nel frattempo, ti aspettano i progressi della settimana.
+nl De onderzoekers zitten vast nog in het lab. Intussen wachten de doorbraken van deze week op je.
+pl Naukowcy pewnie wciąż są w laboratorium. W międzyczasie zobacz osiągnięcia z tego tygodnia.
+ru Учёные, наверное, ещё в лаборатории. А пока вас ждут достижения этой недели.
+uk Науковці, мабуть, ще в лабораторії. А поки на вас чекають досягнення цього тижня.
+tr Araştırmacılar muhtemelen hâlâ laboratuvarda. Bu arada haftanın gelişmeleri sizi bekliyor.
+ar ربما ما زال الباحثون في المختبر. في الأثناء، تنتظرك تطورات هذا الأسبوع.
+hi शोधकर्ता शायद अभी प्रयोगशाला में हैं। तब तक इस सप्ताह की प्रगति आपका इंतज़ार कर रही है।
+bn গবেষকেরা সম্ভবত এখনও ল্যাবে। ততক্ষণ এই সপ্তাহের অগ্রগতিগুলো দেখে নিন।
+ur محققین شاید ابھی لیب میں ہیں۔ تب تک اس ہفتے کی پیش رفت آپ کی منتظر ہے۔
+zh 研究人员可能还在实验室。先看看本周的进展吧。
+ja 研究者たちはまだ研究室にいるようです。その間に今週の成果をどうぞ。
+ko 연구자들은 아마 아직 연구실에 있을 거예요. 그동안 이번 주 소식을 확인해 보세요.
+id Para peneliti mungkin masih di lab. Sementara itu, kemajuan minggu ini menanti Anda.
+vi Có lẽ các nhà nghiên cứu vẫn đang ở phòng thí nghiệm. Trong lúc chờ, hãy xem các tiến bộ của tuần này.
+
+@ Voir cette semaine
+en See this week
+es Ver esta semana
+pt Ver esta semana
+de Diese Woche ansehen
+it Vedi questa settimana
+nl Bekijk deze week
+pl Zobacz ten tydzień
+ru Смотреть за неделю
+uk Переглянути тиждень
+tr Bu haftayı gör
+ar عرض هذا الأسبوع
+hi इस सप्ताह देखें
+bn এই সপ্তাহ দেখুন
+ur اس ہفتے کی دیکھیں
+zh 查看本周
+ja 今週を見る
+ko 이번 주 보기
+id Lihat minggu ini
+vi Xem tuần này
+
+@ Qu’est-ce qui vous passionne ?
+en What are you passionate about?
+es ¿Qué te apasiona?
+pt O que o apaixona?
+de Wofür begeisterst du dich?
+it Che cosa ti appassiona?
+nl Waar ben je gek op?
+pl Co cię pasjonuje?
+ru Что вас увлекает?
+uk Що вас захоплює?
+tr Neye tutkunsunuz?
+ar ما الذي يشغفك؟
+hi आपको किसमें रुचि है?
+bn আপনার আগ্রহ কিসে?
+ur آپ کو کس چیز کا شوق ہے؟
+zh 你对什么感兴趣？
+ja 興味のある分野は？
+ko 어떤 분야에 관심 있나요?
+id Apa yang Anda minati?
+vi Bạn đam mê điều gì?
+
+@ Choisissez vos domaines. Vous pourrez les changer à tout moment.
+en Pick your topics. You can change them at any time.
+es Elige tus temas. Podrás cambiarlos en cualquier momento.
+pt Escolha os seus temas. Pode alterá-los a qualquer momento.
+de Wähle deine Themen. Du kannst sie jederzeit ändern.
+it Scegli i tuoi ambiti. Potrai cambiarli in qualsiasi momento.
+nl Kies je onderwerpen. Je kunt ze altijd wijzigen.
+pl Wybierz dziedziny. Możesz je zmienić w każdej chwili.
+ru Выберите темы. Их можно изменить в любой момент.
+uk Оберіть теми. Їх можна змінити будь-коли.
+tr Alanlarınızı seçin. İstediğiniz zaman değiştirebilirsiniz.
+ar اختر مجالاتك. يمكنك تغييرها في أي وقت.
+hi अपने विषय चुनें। आप इन्हें कभी भी बदल सकते हैं।
+bn আপনার বিষয়গুলো বেছে নিন। যেকোনো সময় বদলাতে পারবেন।
+ur اپنے موضوعات منتخب کریں۔ آپ انہیں کسی بھی وقت بدل سکتے ہیں۔
+zh 选择你的领域，随时可以更改。
+ja 分野を選んでください。いつでも変更できます。
+ko 관심 분야를 고르세요. 언제든 바꿀 수 있어요.
+id Pilih bidang Anda. Anda bisa mengubahnya kapan saja.
+vi Chọn lĩnh vực của bạn. Bạn có thể thay đổi bất cứ lúc nào.
+
+@ Actualités
+en News
+es Noticias
+pt Notícias
+de Neuigkeiten
+it Notizie
+nl Nieuws
+pl Aktualności
+ru Новости
+uk Новини
+tr Haberler
+ar الأخبار
+hi समाचार
+bn খবর
+ur خبریں
+zh 动态
+ja ニュース
+ko 소식
+id Berita
+vi Tin tức
+
+@ Favoris
+en Saved
+es Favoritos
+pt Favoritos
+de Favoriten
+it Preferiti
+nl Favorieten
+pl Ulubione
+ru Избранное
+uk Обране
+tr Favoriler
+ar المفضلة
+hi पसंदीदा
+bn প্রিয়
+ur پسندیدہ
+zh 收藏
+ja お気に入り
+ko 즐겨찾기
+id Favorit
+vi Yêu thích
+
+@ Réglages
+en Settings
+es Ajustes
+pt Definições
+de Einstellungen
+it Impostazioni
+nl Instellingen
+pl Ustawienia
+ru Настройки
+uk Налаштування
+tr Ayarlar
+ar الإعدادات
+hi सेटिंग्स
+bn সেটিংস
+ur ترتیبات
+zh 设置
+ja 設定
+ko 설정
+id Pengaturan
+vi Cài đặt
+
+@ Les avancées viennent de sources scientifiques et technologiques reconnues. Les résumés sont rédigés automatiquement ; l’article source fait foi.
+en The advances come from recognised scientific and technology sources. Summaries are written automatically; the source article prevails.
+es Los avances proceden de fuentes científicas y tecnológicas reconocidas. Los resúmenes se redactan automáticamente; prevalece el artículo original.
+pt Os avanços vêm de fontes científicas e tecnológicas reconhecidas. Os resumos são redigidos automaticamente; prevalece o artigo original.
+de Die Fortschritte stammen aus anerkannten Wissenschafts- und Technikquellen. Die Zusammenfassungen werden automatisch erstellt; maßgeblich ist der Originalartikel.
+it I progressi provengono da fonti scientifiche e tecnologiche riconosciute. I riassunti sono scritti automaticamente; fa fede l’articolo originale.
+nl De doorbraken komen uit erkende wetenschappelijke en technologische bronnen. Samenvattingen worden automatisch geschreven; het bronartikel is leidend.
+pl Informacje pochodzą z uznanych źródeł naukowych i technologicznych. Streszczenia są tworzone automatycznie; decyduje artykuł źródłowy.
+ru Материалы берутся из признанных научных и технологических источников. Резюме составляются автоматически; главным остаётся исходная статья.
+uk Матеріали беруться з визнаних наукових і технологічних джерел. Підсумки складаються автоматично; головною є першоджерельна стаття.
+tr Gelişmeler tanınmış bilim ve teknoloji kaynaklarından gelir. Özetler otomatik olarak yazılır; esas olan kaynak makaledir.
+ar تأتي التطورات من مصادر علمية وتقنية معروفة. تُكتب الملخصات تلقائيًا، والمرجع هو المقال الأصلي.
+hi प्रगति की जानकारी मान्यता प्राप्त वैज्ञानिक और तकनीकी स्रोतों से आती है। सारांश स्वचालित रूप से लिखे जाते हैं; मूल लेख ही मान्य है।
+bn অগ্রগতিগুলো স্বীকৃত বৈজ্ঞানিক ও প্রযুক্তি সূত্র থেকে আসে। সারাংশ স্বয়ংক্রিয়ভাবে লেখা হয়; মূল নিবন্ধই প্রামাণ্য।
+ur پیش رفت تسلیم شدہ سائنسی اور تکنیکی ذرائع سے آتی ہے۔ خلاصے خودکار طور پر لکھے جاتے ہیں؛ اصل مضمون ہی مستند ہے۔
+zh 内容来自公认的科学与科技来源。摘要为自动生成，以原文为准。
+ja 掲載する成果は信頼できる科学・技術の情報源から集めています。要約は自動で作成され、元の記事が優先されます。
+ko 소식은 공신력 있는 과학·기술 출처에서 가져옵니다. 요약은 자동으로 작성되며, 원문 기사가 우선합니다.
+id Kemajuan berasal dari sumber sains dan teknologi tepercaya. Ringkasan ditulis otomatis; artikel sumber yang berlaku.
+vi Các tiến bộ được lấy từ những nguồn khoa học và công nghệ uy tín. Bản tóm tắt được viết tự động; bài viết gốc là căn cứ.
+
+@ Novum 1.0 · sans compte, vos choix restent sur ce téléphone
+en Novum 1.0 · no account, your choices stay on this phone
+es Novum 1.0 · sin cuenta, tus preferencias se quedan en este teléfono
+pt Novum 1.0 · sem conta, as suas escolhas ficam neste telemóvel
+de Novum 1.0 · ohne Konto, deine Auswahl bleibt auf diesem Telefon
+it Novum 1.0 · nessun account, le tue scelte restano su questo telefono
+nl Novum 1.0 · geen account, je keuzes blijven op deze telefoon
+pl Novum 1.0 · bez konta, twoje wybory zostają na tym telefonie
+ru Novum 1.0 · без аккаунта, ваши настройки хранятся на этом телефоне
+uk Novum 1.0 · без облікового запису, ваші налаштування зберігаються на цьому телефоні
+tr Novum 1.0 · hesap yok, tercihleriniz bu telefonda kalır
+ar Novum 1.0 · بلا حساب، تبقى اختياراتك على هذا الهاتف
+hi Novum 1.0 · कोई खाता नहीं, आपकी पसंद इसी फ़ोन पर रहती है
+bn Novum 1.0 · কোনো অ্যাকাউন্ট নেই, আপনার পছন্দ এই ফোনেই থাকে
+ur Novum 1.0 · کوئی اکاؤنٹ نہیں، آپ کی ترجیحات اسی فون پر رہتی ہیں
+zh Novum 1.0 · 无需账号，你的选择只保存在本机
+ja Novum 1.0 · アカウント不要、設定はこの端末にのみ保存されます
+ko Novum 1.0 · 계정 없음, 선택한 설정은 이 휴대폰에만 저장돼요
+id Novum 1.0 · tanpa akun, pilihan Anda tetap di ponsel ini
+vi Novum 1.0 · không cần tài khoản, lựa chọn của bạn chỉ lưu trên điện thoại này
+
+@ Espace
+en Space
+es Espacio
+pt Espaço
+de Weltraum
+it Spazio
+nl Ruimte
+pl Kosmos
+ru Космос
+uk Космос
+tr Uzay
+ar الفضاء
+hi अंतरिक्ष
+bn মহাকাশ
+ur خلا
+zh 太空
+ja 宇宙
+ko 우주
+id Antariksa
+vi Vũ trụ
+
+@ Environnement & climat
+en Environment & climate
+es Medio ambiente y clima
+pt Ambiente e clima
+de Umwelt & Klima
+it Ambiente e clima
+nl Milieu & klimaat
+pl Środowisko i klimat
+ru Экология и климат
+uk Довкілля та клімат
+tr Çevre ve iklim
+ar البيئة والمناخ
+hi पर्यावरण और जलवायु
+bn পরিবেশ ও জলবায়ু
+ur ماحول اور موسم
+zh 环境与气候
+ja 環境・気候
+ko 환경·기후
+id Lingkungan & iklim
+vi Môi trường & khí hậu
+
+@ Santé & médecine
+en Health & medicine
+es Salud y medicina
+pt Saúde e medicina
+de Gesundheit & Medizin
+it Salute e medicina
+nl Gezondheid & geneeskunde
+pl Zdrowie i medycyna
+ru Здоровье и медицина
+uk Здоров’я та медицина
+tr Sağlık ve tıp
+ar الصحة والطب
+hi स्वास्थ्य और चिकित्सा
+bn স্বাস্থ্য ও চিকিৎসা
+ur صحت اور طب
+zh 健康与医学
+ja 健康・医学
+ko 건강·의학
+id Kesehatan & kedokteran
+vi Sức khỏe & y học
+
+@ Technologie & IA
+en Technology & AI
+es Tecnología e IA
+pt Tecnologia e IA
+de Technologie & KI
+it Tecnologia e IA
+nl Technologie & AI
+pl Technologia i AI
+ru Технологии и ИИ
+uk Технології та ШІ
+tr Teknoloji ve YZ
+ar التكنولوجيا والذكاء الاصطناعي
+hi तकनीक और एआई
+bn প্রযুক্তি ও এআই
+ur ٹیکنالوجی اور اے آئی
+zh 技术与人工智能
+ja テクノロジー・AI
+ko 기술·AI
+id Teknologi & AI
+vi Công nghệ & AI
+
+@ Physique & chimie
+en Physics & chemistry
+es Física y química
+pt Física e química
+de Physik & Chemie
+it Fisica e chimica
+nl Natuur- & scheikunde
+pl Fizyka i chemia
+ru Физика и химия
+uk Фізика та хімія
+tr Fizik ve kimya
+ar الفيزياء والكيمياء
+hi भौतिकी और रसायन
+bn পদার্থ ও রসায়ন
+ur طبیعیات اور کیمیا
+zh 物理与化学
+ja 物理・化学
+ko 물리·화학
+id Fisika & kimia
+vi Vật lý & hóa học
+
+@ Vivant
+en Life sciences
+es Seres vivos
+pt Seres vivos
+de Lebewesen
+it Mondo vivente
+nl Het leven
+pl Świat żywy
+ru Живая природа
+uk Жива природа
+tr Canlılar
+ar الكائنات الحية
+hi जीव जगत
+bn জীবজগৎ
+ur جاندار
+zh 生命科学
+ja 生命
+ko 생명
+id Makhluk hidup
+vi Sự sống
+
+@ Terre & histoire
+en Earth & history
+es Tierra e historia
+pt Terra e história
+de Erde & Geschichte
+it Terra e storia
+nl Aarde & geschiedenis
+pl Ziemia i historia
+ru Земля и история
+uk Земля та історія
+tr Dünya ve tarih
+ar الأرض والتاريخ
+hi पृथ्वी और इतिहास
+bn পৃথিবী ও ইতিহাস
+ur زمین اور تاریخ
+zh 地球与历史
+ja 地球・歴史
+ko 지구·역사
+id Bumi & sejarah
+vi Trái Đất & lịch sử
+
+@ Autre
+en Other
+es Otros
+pt Outros
+de Sonstiges
+it Altro
+nl Overig
+pl Inne
+ru Другое
+uk Інше
+tr Diğer
+ar أخرى
+hi अन्य
+bn অন্যান্য
+ur دیگر
+zh 其他
+ja その他
+ko 기타
+id Lainnya
+vi Khác
+
+@ Smartphones & objets
+en Smartphones & gadgets
+es Smartphones y dispositivos
+pt Smartphones e dispositivos
+de Smartphones & Geräte
+it Smartphone e dispositivi
+nl Smartphones & gadgets
+pl Smartfony i gadżety
+ru Смартфоны и гаджеты
+uk Смартфони та ґаджети
+tr Akıllı telefonlar ve cihazlar
+ar الهواتف الذكية والأجهزة
+hi स्मार्टफ़ोन और गैजेट
+bn স্মার্টফোন ও গ্যাজেট
+ur اسمارٹ فون اور آلات
+zh 手机与智能设备
+ja スマホ・デバイス
+ko 스마트폰·기기
+id Ponsel & gawai
+vi Điện thoại & thiết bị
+
+@ Informatique & puces
+en Computers & chips
+es Informática y chips
+pt Informática e chips
+de Computer & Chips
+it Informatica e chip
+nl Computers & chips
+pl Komputery i układy
+ru Компьютеры и чипы
+uk Комп’ютери та чипи
+tr Bilgisayarlar ve çipler
+ar الحواسيب والرقائق
+hi कंप्यूटर और चिप
+bn কম্পিউটার ও চিপ
+ur کمپیوٹر اور چپس
+zh 电脑与芯片
+ja コンピューター・半導体
+ko 컴퓨터·반도체
+id Komputer & cip
+vi Máy tính & chip
+
+@ IA & logiciels
+en AI & software
+es IA y software
+pt IA e software
+de KI & Software
+it IA e software
+nl AI & software
+pl AI i oprogramowanie
+ru ИИ и программы
+uk ШІ та програми
+tr YZ ve yazılım
+ar الذكاء الاصطناعي والبرمجيات
+hi एआई और सॉफ़्टवेयर
+bn এআই ও সফটওয়্যার
+ur اے آئی اور سافٹ ویئر
+zh 人工智能与软件
+ja AI・ソフトウェア
+ko AI·소프트웨어
+id AI & perangkat lunak
+vi AI & phần mềm
+
+@ Transports
+en Transport
+es Transporte
+pt Transportes
+de Mobilität
+it Trasporti
+nl Vervoer
+pl Transport
+ru Транспорт
+uk Транспорт
+tr Ulaşım
+ar النقل
+hi परिवहन
+bn পরিবহন
+ur نقل و حمل
+zh 交通出行
+ja 交通・モビリティ
+ko 교통
+id Transportasi
+vi Giao thông
+
+@ Espace & aéronautique
+en Space & aviation
+es Espacio y aeronáutica
+pt Espaço e aeronáutica
+de Raumfahrt & Luftfahrt
+it Spazio e aeronautica
+nl Ruimtevaart & luchtvaart
+pl Kosmos i lotnictwo
+ru Космос и авиация
+uk Космос та авіація
+tr Uzay ve havacılık
+ar الفضاء والطيران
+hi अंतरिक्ष और विमानन
+bn মহাকাশ ও বিমান
+ur خلا اور ہوا بازی
+zh 航天与航空
+ja 宇宙・航空
+ko 우주·항공
+id Antariksa & penerbangan
+vi Hàng không & vũ trụ
+
+@ Énergie & maison
+en Energy & home
+es Energía y hogar
+pt Energia e casa
+de Energie & Zuhause
+it Energia e casa
+nl Energie & huis
+pl Energia i dom
+ru Энергия и дом
+uk Енергія та дім
+tr Enerji ve ev
+ar الطاقة والمنزل
+hi ऊर्जा और घर
+bn শক্তি ও বাড়ি
+ur توانائی اور گھر
+zh 能源与家居
+ja エネルギー・住まい
+ko 에너지·홈
+id Energi & rumah
+vi Năng lượng & nhà ở
+
+@ Jeux vidéo & consoles
+en Video games & consoles
+es Videojuegos y consolas
+pt Videojogos e consolas
+de Videospiele & Konsolen
+it Videogiochi e console
+nl Games & consoles
+pl Gry wideo i konsole
+ru Видеоигры и консоли
+uk Відеоігри та консолі
+tr Video oyunları ve konsollar
+ar ألعاب الفيديو والمنصات
+hi वीडियो गेम और कंसोल
+bn ভিডিও গেম ও কনসোল
+ur ویڈیو گیمز اور کنسولز
+zh 电子游戏与主机
+ja ゲーム・ゲーム機
+ko 게임·콘솔
+id Gim video & konsol
+vi Trò chơi điện tử & máy chơi game
+
+@ Tout
+en All
+es Todo
+pt Tudo
+de Alle
+it Tutto
+nl Alles
+pl Wszystko
+ru Все
+uk Усе
+tr Tümü
+ar الكل
+hi सभी
+bn সব
+ur سب
+zh 全部
+ja すべて
+ko 전체
+id Semua
+vi Tất cả
+
+@ Afficher
+en Show
+es Mostrar
+pt Mostrar
+de Anzeigen
+it Mostra
+nl Tonen
+pl Pokaż
+ru Показать
+uk Показати
+tr Göster
+ar عرض
+hi दिखाएँ
+bn দেখান
+ur دکھائیں
+zh 显示
+ja 表示
+ko 보기
+id Tampilkan
+vi Hiển thị
+
+@ Thème
+en Theme
+es Tema
+pt Tema
+de Design
+it Tema
+nl Thema
+pl Motyw
+ru Тема
+uk Тема
+tr Tema
+ar المظهر
+hi थीम
+bn থিম
+ur تھیم
+zh 主题
+ja テーマ
+ko 테마
+id Tema
+vi Giao diện
+
+@ Automatique
+en Automatic
+es Automático
+pt Automático
+de Automatisch
+it Automatico
+nl Automatisch
+pl Automatyczny
+ru Авто
+uk Авто
+tr Otomatik
+ar تلقائي
+hi स्वचालित
+bn স্বয়ংক্রিয়
+ur خودکار
+zh 自动
+ja 自動
+ko 자동
+id Otomatis
+vi Tự động
+
+@ Clair
+en Light
+es Claro
+pt Claro
+de Hell
+it Chiaro
+nl Licht
+pl Jasny
+ru Светлая
+uk Світла
+tr Açık
+ar فاتح
+hi हल्का
+bn হালকা
+ur ہلکا
+zh 浅色
+ja ライト
+ko 라이트
+id Terang
+vi Sáng
+
+@ Sombre
+en Dark
+es Oscuro
+pt Escuro
+de Dunkel
+it Scuro
+nl Donker
+pl Ciemny
+ru Тёмная
+uk Темна
+tr Koyu
+ar داكن
+hi गहरा
+bn গাঢ়
+ur گہرا
+zh 深色
+ja ダーク
+ko 다크
+id Gelap
+vi Tối
+
+@ Langue
+en Language
+es Idioma
+pt Idioma
+de Sprache
+it Lingua
+nl Taal
+pl Język
+ru Язык
+uk Мова
+tr Dil
+ar اللغة
+hi भाषा
+bn ভাষা
+ur زبان
+zh 语言
+ja 言語
+ko 언어
+id Bahasa
+vi Ngôn ngữ
+
+@ Langue de l’application
+en App language
+es Idioma de la aplicación
+pt Idioma da aplicação
+de App-Sprache
+it Lingua dell’app
+nl Taal van de app
+pl Język aplikacji
+ru Язык приложения
+uk Мова застосунку
+tr Uygulama dili
+ar لغة التطبيق
+hi ऐप की भाषा
+bn অ্যাপের ভাষা
+ur ایپ کی زبان
+zh 应用语言
+ja アプリの言語
+ko 앱 언어
+id Bahasa aplikasi
+vi Ngôn ngữ ứng dụng
+
+@ Automatique (langue du téléphone)
+en Automatic (phone language)
+es Automático (idioma del teléfono)
+pt Automático (idioma do telemóvel)
+de Automatisch (Sprache des Telefons)
+it Automatico (lingua del telefono)
+nl Automatisch (taal van de telefoon)
+pl Automatycznie (język telefonu)
+ru Автоматически (язык телефона)
+uk Автоматично (мова телефону)
+tr Otomatik (telefon dili)
+ar تلقائي (لغة الهاتف)
+hi स्वचालित (फ़ोन की भाषा)
+bn স্বয়ংক্রিয় (ফোনের ভাষা)
+ur خودکار (فون کی زبان)
+zh 自动（跟随手机语言）
+ja 自動（端末の言語）
+ko 자동(휴대폰 언어)
+id Otomatis (bahasa ponsel)
+vi Tự động (ngôn ngữ điện thoại)
+
+@ Les articles sont traduits directement sur votre téléphone. La première fois, la langue est téléchargée (environ 30 Mo), puis tout fonctionne sans réseau.
+en Articles are translated right on your phone. The first time, the language is downloaded (about 30 MB); after that, it works offline.
+es Los artículos se traducen directamente en tu teléfono. La primera vez se descarga el idioma (unos 30 MB) y después funciona sin conexión.
+pt Os artigos são traduzidos diretamente no seu telemóvel. Da primeira vez, o idioma é transferido (cerca de 30 MB) e depois funciona sem rede.
+de Artikel werden direkt auf deinem Telefon übersetzt. Beim ersten Mal wird die Sprache heruntergeladen (ca. 30 MB), danach funktioniert alles offline.
+it Gli articoli vengono tradotti direttamente sul telefono. La prima volta la lingua viene scaricata (circa 30 MB), poi tutto funziona offline.
+nl Artikelen worden direct op je telefoon vertaald. De eerste keer wordt de taal gedownload (ongeveer 30 MB), daarna werkt alles offline.
+pl Artykuły są tłumaczone bezpośrednio na telefonie. Za pierwszym razem język jest pobierany (ok. 30 MB), potem wszystko działa offline.
+ru Статьи переводятся прямо на телефоне. В первый раз язык загружается (около 30 МБ), затем всё работает без сети.
+uk Статті перекладаються просто на телефоні. Першого разу мова завантажується (близько 30 МБ), далі все працює без мережі.
+tr Makaleler doğrudan telefonunuzda çevrilir. İlk seferde dil indirilir (yaklaşık 30 MB), sonra her şey çevrimdışı çalışır.
+ar تُترجم المقالات مباشرة على هاتفك. في المرة الأولى تُنزَّل اللغة (نحو 30 ميغابايت)، ثم يعمل كل شيء دون اتصال.
+hi लेखों का अनुवाद सीधे आपके फ़ोन पर होता है। पहली बार भाषा डाउनलोड होती है (लगभग 30 MB), फिर सब कुछ बिना इंटरनेट के चलता है।
+bn নিবন্ধগুলো সরাসরি আপনার ফোনেই অনুবাদ হয়। প্রথমবার ভাষাটি ডাউনলোড হয় (প্রায় ৩০ MB), তারপর ইন্টারনেট ছাড়াই চলে।
+ur مضامین کا ترجمہ براہِ راست آپ کے فون پر ہوتا ہے۔ پہلی بار زبان ڈاؤن لوڈ ہوتی ہے (تقریباً 30 MB)، پھر سب کچھ انٹرنیٹ کے بغیر چلتا ہے۔
+zh 文章直接在手机上翻译。首次使用时会下载语言包（约 30 MB），之后无需联网。
+ja 記事は端末上で直接翻訳されます。初回のみ言語データ（約30 MB）をダウンロードし、その後はオフラインで使えます。
+ko 기사는 휴대폰에서 바로 번역돼요. 처음 한 번 언어 데이터(약 30MB)를 내려받으면 이후에는 인터넷 없이도 작동해요.
+id Artikel diterjemahkan langsung di ponsel Anda. Pertama kali, bahasa diunduh (sekitar 30 MB), setelah itu semuanya berjalan tanpa internet.
+vi Bài viết được dịch ngay trên điện thoại. Lần đầu, ngôn ngữ sẽ được tải về (khoảng 30 MB), sau đó mọi thứ hoạt động không cần mạng.
+
+@ Sur la version web, les articles restent en français.
+en On the web version, articles stay in French.
+es En la versión web, los artículos se muestran en francés.
+pt Na versão web, os artigos ficam em francês.
+de In der Webversion bleiben die Artikel auf Französisch.
+it Nella versione web gli articoli restano in francese.
+nl In de webversie blijven artikelen in het Frans.
+pl W wersji internetowej artykuły pozostają po francusku.
+ru В веб-версии статьи остаются на французском.
+uk У веб-версії статті залишаються французькою.
+tr Web sürümünde makaleler Fransızca kalır.
+ar في نسخة الويب، تبقى المقالات بالفرنسية.
+hi वेब संस्करण में लेख फ़्रेंच में ही रहते हैं।
+bn ওয়েব সংস্করণে নিবন্ধগুলো ফরাসিতেই থাকে।
+ur ویب ورژن میں مضامین فرانسیسی میں ہی رہتے ہیں۔
+zh 网页版中文章保持法语。
+ja ウェブ版では記事はフランス語のままです。
+ko 웹 버전에서는 기사가 프랑스어로 표시돼요.
+id Di versi web, artikel tetap dalam bahasa Prancis.
+vi Trên phiên bản web, bài viết vẫn bằng tiếng Pháp.
+
+@ Centres d’intérêt
+en Interests
+es Intereses
+pt Interesses
+de Interessen
+it Interessi
+nl Interesses
+pl Zainteresowania
+ru Интересы
+uk Інтереси
+tr İlgi alanları
+ar الاهتمامات
+hi रुचियाँ
+bn আগ্রহ
+ur دلچسپیاں
+zh 兴趣
+ja 興味のある分野
+ko 관심 분야
+id Minat
+vi Sở thích
+
+@ Mes domaines
+en My topics
+es Mis temas
+pt Os meus temas
+de Meine Themen
+it I miei ambiti
+nl Mijn onderwerpen
+pl Moje dziedziny
+ru Мои темы
+uk Мої теми
+tr Alanlarım
+ar مجالاتي
+hi मेरे विषय
+bn আমার বিষয়
+ur میرے موضوعات
+zh 我的领域
+ja マイ分野
+ko 내 관심 분야
+id Bidang saya
+vi Lĩnh vực của tôi
+
+@ À propos
+en About
+es Acerca de
+pt Sobre
+de Über
+it Informazioni
+nl Over
+pl O aplikacji
+ru О приложении
+uk Про застосунок
+tr Hakkında
+ar حول التطبيق
+hi परिचय
+bn সম্পর্কে
+ur تعارف
+zh 关于
+ja このアプリについて
+ko 정보
+id Tentang
+vi Giới thiệu
+
+@ Nos sources
+en Our sources
+es Nuestras fuentes
+pt As nossas fontes
+de Unsere Quellen
+it Le nostre fonti
+nl Onze bronnen
+pl Nasze źródła
+ru Наши источники
+uk Наші джерела
+tr Kaynaklarımız
+ar مصادرنا
+hi हमारे स्रोत
+bn আমাদের সূত্র
+ur ہمارے ذرائع
+zh 我们的来源
+ja 情報源
+ko 출처
+id Sumber kami
+vi Nguồn tin
+
+@ Aucune avancée gardée pour l’instant
+en Nothing saved yet
+es Aún no has guardado nada
+pt Ainda não guardou nada
+de Noch nichts gespeichert
+it Ancora nulla di salvato
+nl Nog niets bewaard
+pl Nic jeszcze nie zapisano
+ru Пока ничего не сохранено
+uk Поки нічого не збережено
+tr Henüz kaydedilen yok
+ar لا شيء محفوظ بعد
+hi अभी कुछ सहेजा नहीं गया
+bn এখনও কিছু সংরক্ষিত নেই
+ur ابھی کچھ محفوظ نہیں
+zh 暂无收藏
+ja まだ保存されていません
+ko 아직 저장한 소식이 없어요
+id Belum ada yang disimpan
+vi Chưa lưu mục nào
+
+@ 1 avancée gardée sur ce téléphone
+en 1 advance saved on this phone
+es 1 avance guardado en este teléfono
+pt 1 avanço guardado neste telemóvel
+de 1 Fortschritt auf diesem Telefon gespeichert
+it 1 progresso salvato su questo telefono
+nl 1 doorbraak bewaard op deze telefoon
+pl Zapisano na tym telefonie: 1
+ru Сохранено на этом телефоне: 1
+uk Збережено на цьому телефоні: 1
+tr Bu telefonda kayıtlı: 1
+ar محفوظ على هذا الهاتف: 1
+hi इस फ़ोन पर सहेजे गए: 1
+bn এই ফোনে সংরক্ষিত: ১
+ur اس فون پر محفوظ: 1
+zh 本机已收藏 1 条
+ja この端末に保存済み：1 件
+ko 이 휴대폰에 저장됨: 1개
+id 1 kemajuan tersimpan di ponsel ini
+vi Đã lưu trên điện thoại này: 1
+
+@ {n} avancées gardées sur ce téléphone
+en {n} advances saved on this phone
+es {n} avances guardados en este teléfono
+pt {n} avanços guardados neste telemóvel
+de {n} Fortschritte auf diesem Telefon gespeichert
+it {n} progressi salvati su questo telefono
+nl {n} doorbraken bewaard op deze telefoon
+pl Zapisano na tym telefonie: {n}
+ru Сохранено на этом телефоне: {n}
+uk Збережено на цьому телефоні: {n}
+tr Bu telefonda kayıtlı: {n}
+ar محفوظ على هذا الهاتف: {n}
+hi इस फ़ोन पर सहेजे गए: {n}
+bn এই ফোনে সংরক্ষিত: {n}
+ur اس فون پر محفوظ: {n}
+zh 本机已收藏 {n} 条
+ja この端末に保存済み：{n} 件
+ko 이 휴대폰에 저장됨: {n}개
+id {n} kemajuan tersimpan di ponsel ini
+vi Đã lưu trên điện thoại này: {n}
+
+@ Pas encore de favori
+en No favourites yet
+es Aún no hay favoritos
+pt Ainda sem favoritos
+de Noch keine Favoriten
+it Ancora nessun preferito
+nl Nog geen favorieten
+pl Brak ulubionych
+ru Избранного пока нет
+uk Обраного поки немає
+tr Henüz favori yok
+ar لا مفضلات بعد
+hi अभी कोई पसंदीदा नहीं
+bn এখনও কোনো প্রিয় নেই
+ur ابھی کوئی پسندیدہ نہیں
+zh 还没有收藏
+ja お気に入りはまだありません
+ko 아직 즐겨찾기가 없어요
+id Belum ada favorit
+vi Chưa có mục yêu thích
+
+@ Touchez le marque-page sur une avancée pour la retrouver ici, même sans réseau.
+en Tap the bookmark on an advance to find it here, even offline.
+es Toca el marcador de un avance para encontrarlo aquí, incluso sin conexión.
+pt Toque no marcador de um avanço para o encontrar aqui, mesmo sem rede.
+de Tippe bei einem Fortschritt auf das Lesezeichen, um ihn hier wiederzufinden – auch offline.
+it Tocca il segnalibro su un progresso per ritrovarlo qui, anche offline.
+nl Tik op de bladwijzer bij een doorbraak om die hier terug te vinden, ook offline.
+pl Dotknij zakładki przy wpisie, aby znaleźć go tutaj, nawet bez internetu.
+ru Нажмите на закладку, чтобы найти материал здесь даже без сети.
+uk Торкніться закладки, щоб знайти матеріал тут навіть без мережі.
+tr Bir gelişmeyi burada, çevrimdışıyken bile bulmak için yer imine dokunun.
+ar اضغط على علامة الحفظ في أي تطور لتجده هنا، حتى دون اتصال.
+hi किसी प्रगति पर बुकमार्क दबाएँ, ताकि वह यहाँ मिले — बिना इंटरनेट के भी।
+bn কোনো অগ্রগতিতে বুকমার্ক চাপুন, ইন্টারনেট ছাড়াও এখানে পাবেন।
+ur کسی پیش رفت پر بُک مارک دبائیں تاکہ وہ یہاں ملے، انٹرنیٹ کے بغیر بھی۔
+zh 点击书签图标即可收藏，离线也能在这里查看。
+ja しおりをタップすると、オフラインでもここで読めます。
+ko 북마크를 누르면 인터넷이 없어도 여기서 다시 볼 수 있어요.
+id Ketuk penanda pada sebuah kemajuan agar bisa ditemukan di sini, bahkan tanpa internet.
+vi Chạm vào biểu tượng dấu trang để xem lại tại đây, kể cả khi không có mạng.
+
+@ Tout voir
+en See everything
+es Verlo todo
+pt Ver tudo
+de Alles ansehen
+it Vedi tutto
+nl Alles bekijken
+pl Pokaż wszystko
+ru Смотреть всё
+uk Дивитися все
+tr Tümünü gör
+ar عرض الكل
+hi सब देखें
+bn সব দেখুন
+ur سب دیکھیں
+zh 查看全部
+ja すべて見る
+ko 모두 보기
+id Lihat semua
+vi Xem tất cả
+
+@ C’est parti ({n})
+en Let’s go ({n})
+es ¡Vamos! ({n})
+pt Vamos lá ({n})
+de Los geht’s ({n})
+it Si parte ({n})
+nl Aan de slag ({n})
+pl Zaczynamy ({n})
+ru Начать ({n})
+uk Почати ({n})
+tr Başlayalım ({n})
+ar لنبدأ ({n})
+hi शुरू करें ({n})
+bn শুরু করুন ({n})
+ur شروع کریں ({n})
+zh 开始（{n}）
+ja はじめる（{n}）
+ko 시작하기 ({n})
+id Mulai ({n})
+vi Bắt đầu ({n})
+
+@ Enregistrer ({n})
+en Save ({n})
+es Guardar ({n})
+pt Guardar ({n})
+de Speichern ({n})
+it Salva ({n})
+nl Opslaan ({n})
+pl Zapisz ({n})
+ru Сохранить ({n})
+uk Зберегти ({n})
+tr Kaydet ({n})
+ar حفظ ({n})
+hi सहेजें ({n})
+bn সংরক্ষণ ({n})
+ur محفوظ کریں ({n})
+zh 保存（{n}）
+ja 保存（{n}）
+ko 저장 ({n})
+id Simpan ({n})
+vi Lưu ({n})
+
+@ Tout sélectionner
+en Select all
+es Seleccionar todo
+pt Selecionar tudo
+de Alle auswählen
+it Seleziona tutto
+nl Alles selecteren
+pl Zaznacz wszystko
+ru Выбрать всё
+uk Вибрати все
+tr Tümünü seç
+ar تحديد الكل
+hi सभी चुनें
+bn সব নির্বাচন করুন
+ur سب منتخب کریں
+zh 全选
+ja すべて選択
+ko 모두 선택
+id Pilih semua
+vi Chọn tất cả
+
+@ 1 domaine choisi
+en 1 topic selected
+es 1 tema elegido
+pt 1 tema escolhido
+de 1 Thema gewählt
+it 1 ambito scelto
+nl 1 onderwerp gekozen
+pl Wybrano: 1
+ru Выбрано: 1
+uk Вибрано: 1
+tr Seçilen: 1
+ar المحدد: 1
+hi चुने गए: 1
+bn নির্বাচিত: ১
+ur منتخب: 1
+zh 已选 1 个
+ja 1 件選択中
+ko 1개 선택됨
+id 1 bidang dipilih
+vi Đã chọn: 1
+
+@ {n} domaines choisis
+en {n} topics selected
+es {n} temas elegidos
+pt {n} temas escolhidos
+de {n} Themen gewählt
+it {n} ambiti scelti
+nl {n} onderwerpen gekozen
+pl Wybrano: {n}
+ru Выбрано: {n}
+uk Вибрано: {n}
+tr Seçilen: {n}
+ar المحدد: {n}
+hi चुने गए: {n}
+bn নির্বাচিত: {n}
+ur منتخب: {n}
+zh 已选 {n} 个
+ja {n} 件選択中
+ko {n}개 선택됨
+id {n} bidang dipilih
+vi Đã chọn: {n}
+
+@ Impossible d’ouvrir l’article
+en Couldn’t open the article
+es No se pudo abrir el artículo
+pt Não foi possível abrir o artigo
+de Artikel konnte nicht geöffnet werden
+it Impossibile aprire l’articolo
+nl Kan het artikel niet openen
+pl Nie można otworzyć artykułu
+ru Не удалось открыть статью
+uk Не вдалося відкрити статтю
+tr Makale açılamadı
+ar تعذّر فتح المقال
+hi लेख नहीं खुल सका
+bn নিবন্ধটি খোলা যায়নি
+ur مضمون نہیں کھل سکا
+zh 无法打开文章
+ja 記事を開けませんでした
+ko 기사를 열 수 없어요
+id Tidak dapat membuka artikel
+vi Không mở được bài viết
+
+@ Retirer des favoris
+en Remove from saved
+es Quitar de favoritos
+pt Remover dos favoritos
+de Aus Favoriten entfernen
+it Rimuovi dai preferiti
+nl Verwijderen uit favorieten
+pl Usuń z ulubionych
+ru Убрать из избранного
+uk Прибрати з обраного
+tr Favorilerden çıkar
+ar إزالة من المفضلة
+hi पसंदीदा से हटाएँ
+bn প্রিয় থেকে সরান
+ur پسندیدہ سے ہٹائیں
+zh 取消收藏
+ja お気に入りから削除
+ko 즐겨찾기에서 삭제
+id Hapus dari favorit
+vi Bỏ khỏi yêu thích
+
+@ Ajouter aux favoris
+en Save
+es Añadir a favoritos
+pt Adicionar aos favoritos
+de Zu Favoriten hinzufügen
+it Aggiungi ai preferiti
+nl Toevoegen aan favorieten
+pl Dodaj do ulubionych
+ru Добавить в избранное
+uk Додати до обраного
+tr Favorilere ekle
+ar إضافة إلى المفضلة
+hi पसंदीदा में जोड़ें
+bn প্রিয়তে যোগ করুন
+ur پسندیدہ میں شامل کریں
+zh 加入收藏
+ja お気に入りに追加
+ko 즐겨찾기에 추가
+id Tambahkan ke favorit
+vi Thêm vào yêu thích
+
+@ Retour
+en Back
+es Volver
+pt Voltar
+de Zurück
+it Indietro
+nl Terug
+pl Wstecz
+ru Назад
+uk Назад
+tr Geri
+ar رجوع
+hi वापस
+bn ফিরে যান
+ur واپس
+zh 返回
+ja 戻る
+ko 뒤로
+id Kembali
+vi Quay lại
+
+@ Photo fournie par la source
+en Photo provided by the source
+es Foto proporcionada por la fuente
+pt Foto fornecida pela fonte
+de Foto der Quelle
+it Foto fornita dalla fonte
+nl Foto aangeleverd door de bron
+pl Zdjęcie dostarczone przez źródło
+ru Фото предоставлено источником
+uk Фото надане джерелом
+tr Fotoğraf kaynak tarafından sağlanmıştır
+ar صورة مقدَّمة من المصدر
+hi स्रोत द्वारा दी गई तस्वीर
+bn সূত্রের দেওয়া ছবি
+ur ذریعے کی فراہم کردہ تصویر
+zh 图片由来源提供
+ja 提供元の写真
+ko 출처에서 제공한 사진
+id Foto dari sumber
+vi Ảnh do nguồn cung cấp
+
+@ Importance {n} sur 5
+en Importance {n} out of 5
+es Importancia {n} de 5
+pt Importância {n} de 5
+de Bedeutung {n} von 5
+it Importanza {n} su 5
+nl Belang {n} van 5
+pl Znaczenie {n} na 5
+ru Важность {n} из 5
+uk Важливість {n} з 5
+tr Önem {n}/5
+ar الأهمية {n} من 5
+hi महत्व 5 में से {n}
+bn গুরুত্ব ৫-এর মধ্যে {n}
+ur اہمیت 5 میں سے {n}
+zh 重要性 {n}/5
+ja 重要度 {n}/5
+ko 중요도 {n}/5
+id Tingkat penting {n} dari 5
+vi Mức quan trọng {n}/5
+
+@ Traduit automatiquement
+en Automatically translated
+es Traducido automáticamente
+pt Traduzido automaticamente
+de Automatisch übersetzt
+it Tradotto automaticamente
+nl Automatisch vertaald
+pl Przetłumaczono automatycznie
+ru Переведено автоматически
+uk Перекладено автоматично
+tr Otomatik çevrildi
+ar مترجم تلقائيًا
+hi स्वचालित अनुवाद
+bn স্বয়ংক্রিয় অনুবাদ
+ur خودکار ترجمہ
+zh 自动翻译
+ja 自動翻訳
+ko 자동 번역됨
+id Diterjemahkan otomatis
+vi Dịch tự động
+
+@ Voir l’original
+en Show original
+es Ver el original
+pt Ver o original
+de Original anzeigen
+it Vedi l’originale
+nl Origineel tonen
+pl Pokaż oryginał
+ru Показать оригинал
+uk Показати оригінал
+tr Orijinali göster
+ar عرض الأصل
+hi मूल देखें
+bn মূল দেখুন
+ur اصل دیکھیں
+zh 查看原文
+ja 原文を表示
+ko 원문 보기
+id Lihat asli
+vi Xem bản gốc
+
+@ Voir la traduction
+en Show translation
+es Ver la traducción
+pt Ver a tradução
+de Übersetzung anzeigen
+it Vedi la traduzione
+nl Vertaling tonen
+pl Pokaż tłumaczenie
+ru Показать перевод
+uk Показати переклад
+tr Çeviriyi göster
+ar عرض الترجمة
+hi अनुवाद देखें
+bn অনুবাদ দেখুন
+ur ترجمہ دیکھیں
+zh 查看译文
+ja 翻訳を表示
+ko 번역 보기
+id Lihat terjemahan
+vi Xem bản dịch

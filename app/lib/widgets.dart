@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'langues.dart';
 import 'reglages.dart';
 
 bool estSombre(BuildContext context) => Theme.of(context).brightness == Brightness.dark;
@@ -78,14 +79,14 @@ class Etoiles extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = palette(context);
     return Semantics(
-      label: 'Importance $note sur 5 : ${motsImportance[note]}',
+      label: '${tr('Importance {n} sur 5', n: note)} : ${tr(motsImportance[note])}',
       child: ExcludeSemantics(
         child: Row(mainAxisSize: MainAxisSize.min, children: [
           for (var i = 1; i <= 5; i++)
             Icon(Icons.star_rounded, size: taille + 2, color: i <= note ? couleur : p.bordure),
           if (avecMot) ...[
             const SizedBox(width: 6),
-            Text(motsImportance[note],
+            Text(tr(motsImportance[note]),
                 style: police(policeTexte, taille: taille - 1, graisse: FontWeight.w700, couleur: p.texte)),
           ],
         ]),

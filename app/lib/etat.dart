@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'langues.dart';
 import 'modele.dart';
 import 'reglages.dart';
 
@@ -15,6 +16,7 @@ class EtatApp extends ChangeNotifier {
   bool premierLancementFait = false;
   Set<String> domaines = {}; // codes de familles choisis (vide = tout)
   ThemeMode theme = ThemeMode.system;
+  String? langueChoisie; // null = suivre la langue du téléphone
   final Map<String, Map<String, dynamic>> _favoris = {}; // id → données
 
   Future<void> charger() async {
@@ -24,6 +26,8 @@ class EtatApp extends ChangeNotifier {
       premierLancementFait = p.getBool('premier_lancement_fait') ?? false;
       domaines = (p.getStringList('domaines') ?? []).toSet();
       theme = ThemeMode.values.firstWhere((t) => t.name == p.getString('theme'), orElse: () => ThemeMode.system);
+      final l = p.getString('langue');
+      langueChoisie = languesDisponibles.containsKey(l) ? l : null;
       final fav = p.getString('favoris');
       if (fav != null) {
         final liste = jsonDecode(fav) as List;
@@ -43,6 +47,7 @@ class EtatApp extends ChangeNotifier {
     p.setBool('premier_lancement_fait', premierLancementFait);
     p.setStringList('domaines', domaines.toList());
     p.setString('theme', theme.name);
+    p.setString('langue', langueChoisie ?? '');
     p.setString('favoris', jsonEncode(_favoris.values.toList()));
   }
 
@@ -71,6 +76,16 @@ class EtatApp extends ChangeNotifier {
   // ---- Thème ----
   void changerTheme(ThemeMode t) {
     theme = t;
+    _enregistrer();
+    notifyListeners();
+  }
+
+  // ---- Langue ----
+  /// Langue utilisée par l'app : le choix des Réglages, sinon celle du téléphone.
+  String get langue => langueChoisie ?? langueDuTelephone();
+
+  void changerLangue(String? code) {
+    langueChoisie = code;
     _enregistrer();
     notifyListeners();
   }

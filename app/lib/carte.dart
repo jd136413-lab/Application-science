@@ -3,8 +3,10 @@
 
 import 'package:flutter/material.dart';
 
+import 'langues.dart';
 import 'modele.dart';
 import 'reglages.dart';
+import 'texte_article.dart';
 import 'widgets.dart';
 
 class CarteAvancee extends StatelessWidget {
@@ -37,14 +39,14 @@ class CarteAvancee extends StatelessWidget {
                 TuileFamille(famille: f),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: Text(f.nom,
+                  child: Text(tr(f.nom),
                       overflow: TextOverflow.ellipsis,
                       style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: encre)),
                 ),
                 Text(dateCourte(avancee.publieLe), style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
               ]),
               const SizedBox(height: 12),
-              Text(avancee.titre,
+              TexteArticle(avancee.titre,
                   style: police(policeTitres,
                       taille: tailleTitreCarte, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.22)),
               const SizedBox(height: 12),
@@ -82,7 +84,7 @@ class _Photo extends StatelessWidget {
           Image.network(
             url,
             fit: BoxFit.cover,
-            semanticLabel: 'Photo fournie par la source',
+            semanticLabel: tr('Photo fournie par la source'),
             loadingBuilder: (c, child, prog) => prog == null ? child : Container(color: p.pastille),
             // Si l'image ne charge pas, on affiche un simple fond (pas de trou).
             errorBuilder: (c, e, s) => Container(color: p.pastille),

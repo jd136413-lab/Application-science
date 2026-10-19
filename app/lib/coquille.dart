@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'accueil.dart';
 import 'ecran_reglages.dart';
 import 'favoris.dart';
+import 'langues.dart';
 import 'reglages.dart';
 import 'widgets.dart';
 
@@ -17,7 +18,8 @@ class Coquille extends StatefulWidget {
 }
 
 class _CoquilleState extends State<Coquille> {
-  int _onglet = 0;
+  // Gardé en mémoire (static) pour rester sur le même onglet quand on change de langue.
+  static int _onglet = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -48,19 +50,19 @@ class _CoquilleState extends State<Coquille> {
           height: 68,
           selectedIndex: _onglet,
           onDestinationSelected: (i) => setState(() => _onglet = i),
-          destinations: const [
+          destinations: [
             NavigationDestination(
-                icon: Icon(Icons.view_agenda_outlined),
-                selectedIcon: Icon(Icons.view_agenda_rounded),
-                label: texteOngletActualites),
+                icon: const Icon(Icons.view_agenda_outlined),
+                selectedIcon: const Icon(Icons.view_agenda_rounded),
+                label: tr(texteOngletActualites)),
             NavigationDestination(
-                icon: Icon(Icons.bookmark_border_rounded),
-                selectedIcon: Icon(Icons.bookmark_rounded),
-                label: texteOngletFavoris),
+                icon: const Icon(Icons.bookmark_border_rounded),
+                selectedIcon: const Icon(Icons.bookmark_rounded),
+                label: tr(texteOngletFavoris)),
             NavigationDestination(
-                icon: Icon(Icons.settings_outlined),
-                selectedIcon: Icon(Icons.settings_rounded),
-                label: texteOngletReglages),
+                icon: const Icon(Icons.settings_outlined),
+                selectedIcon: const Icon(Icons.settings_rounded),
+                label: tr(texteOngletReglages)),
           ],
         ),
       ),

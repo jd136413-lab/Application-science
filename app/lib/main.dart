@@ -7,10 +7,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'coquille.dart';
 import 'donnees.dart';
 import 'etat.dart';
+import 'langues.dart';
 import 'premier_lancement.dart';
 import 'reglages.dart';
 import 'widgets.dart';
@@ -44,7 +47,8 @@ class _AppNovumState extends State<AppNovum> {
       throw 'Configuration manquante : les secrets SUPABASE_URL et SUPABASE_PUBLISHABLE_KEY '
           'ne sont pas arrivés jusqu’à la compilation.';
     }
-    await etat.charger(); // mémoire du téléphone : domaines, favoris, thème
+    await etat.charger(); // mémoire du téléphone : domaines, favoris, thème, langue
+    await initializeDateFormatting(); // dates dans toutes les langues
     await initialiserSupabase().timeout(const Duration(seconds: 15));
   }
 
@@ -69,12 +73,20 @@ class _AppNovumState extends State<AppNovum> {
         theme: _theme(paletteClaire, Brightness.light),
         darkTheme: _theme(paletteSombre, Brightness.dark),
         themeMode: etat.theme,
+        // Langue : textes des boutons système, sens de lecture (arabe, ourdou…).
+        locale: Locale(etat.langue),
+        supportedLocales: [for (final code in languesDisponibles.keys) Locale(code)],
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
         home: FutureBuilder<void>(
           future: _demarrage,
           builder: (context, snap) {
             if (snap.connectionState != ConnectionState.done) return const _Demarrage();
             if (snap.hasError) return _Probleme(message: snap.error.toString());
-            return etat.premierLancementFait ? const Coquille() : const EcranDomaines();
+            // La clé reconstruit tous les écrans quand on change de langue.
+            return KeyedSubtree(
+              key: ValueKey(etat.langue),
+              child: etat.premierLancementFait ? const Coquille() : const EcranDomaines(),
+            );
           },
         ),
       ),

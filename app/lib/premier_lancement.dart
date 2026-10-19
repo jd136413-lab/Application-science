@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'etat.dart';
+import 'langues.dart';
 import 'reglages.dart';
 import 'widgets.dart';
 
@@ -58,20 +59,20 @@ class _EcranDomainesState extends State<EcranDomaines> {
           padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
           child: Column(children: [
             if (widget.premierLancement) ...[const LogoNovum(taille: 34), const SizedBox(height: 18)],
-            Text(texteBienvenueTitre,
+            Text(tr(texteBienvenueTitre),
                 textAlign: TextAlign.center,
                 style: police(policeTitres, taille: 27, graisse: FontWeight.w800, couleur: p.texte, hauteur: 1.1)),
             const SizedBox(height: 6),
-            Text(texteBienvenueDetail,
+            Text(tr(texteBienvenueDetail),
                 textAlign: TextAlign.center,
                 style: police(policeTexte, taille: 15, couleur: p.texteDiscret, hauteur: 1.45)),
             const SizedBox(height: 18),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                  groupe('SCIENCES', famillesSciences),
+                  groupe(tr(texteSciences).toUpperCase(), famillesSciences),
                   const SizedBox(height: 18),
-                  groupe('TECHNOLOGIES', famillesTech),
+                  groupe(tr(texteTechnologies).toUpperCase(), famillesTech),
                 ]),
               ),
             ),
@@ -87,12 +88,14 @@ class _EcranDomainesState extends State<EcranDomaines> {
                   textStyle: police(policeTexte, taille: 16, graisse: FontWeight.w700),
                 ),
                 onPressed: _valider,
-                child: Text(n == 0 ? 'Tout voir' : (widget.premierLancement ? 'C’est parti ($n)' : 'Enregistrer ($n)')),
+                child: Text(n == 0
+                    ? tr('Tout voir')
+                    : (widget.premierLancement ? tr('C’est parti ({n})', n: n) : tr('Enregistrer ({n})', n: n))),
               ),
             ),
             TextButton(
               onPressed: () => setState(() => _choix = {...famillesSciences, ...famillesTech}),
-              child: Text('Tout sélectionner',
+              child: Text(tr('Tout sélectionner'),
                   style: police(policeTexte, taille: 14, graisse: FontWeight.w600, couleur: p.texteDiscret)),
             ),
           ]),
@@ -131,7 +134,7 @@ class _Puce extends StatelessWidget {
                 child: Icon(f.symbole, size: 18, color: f.icone),
               ),
               const SizedBox(width: 8),
-              Text(f.nom,
+              Text(tr(f.nom),
                   style: police(policeTexte,
                       taille: 14, graisse: FontWeight.w600, couleur: choisie ? p.surEncre : p.texte)),
             ]),

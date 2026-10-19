@@ -7,6 +7,7 @@ import 'carte.dart';
 import 'detail.dart';
 import 'donnees.dart';
 import 'etat.dart';
+import 'langues.dart';
 import 'modele.dart';
 import 'reglages.dart';
 import 'widgets.dart';
@@ -88,7 +89,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
                 Padding(
                   padding: const EdgeInsets.only(right: 6),
                   child: _Pastille(
-                    texte: periodes[i].$1,
+                    texte: tr(periodes[i].$1),
                     active: i == _periode,
                     onTap: () => setState(() => _periode = i),
                   ),
@@ -115,9 +116,9 @@ class _EcranAccueilState extends State<EcranAccueil> {
               if (snap.hasError) {
                 return MessageCentre(
                   icone: Icons.wifi_off_rounded,
-                  titre: texteErreur,
-                  detail: texteErreurDetail,
-                  bouton: texteReessayer,
+                  titre: tr(texteErreur),
+                  detail: tr(texteErreurDetail),
+                  bouton: tr(texteReessayer),
                   action: _rafraichir,
                 );
               }
@@ -130,9 +131,9 @@ class _EcranAccueilState extends State<EcranAccueil> {
                     const SizedBox(height: 70),
                     MessageCentre(
                       icone: Icons.auto_awesome,
-                      titre: aujourdhui ? texteAujourdhuiVide : texteVide,
-                      detail: aujourdhui ? texteAujourdhuiVideDetail : texteVideDetail,
-                      bouton: aujourdhui ? texteVoirSemaine : null,
+                      titre: tr(aujourdhui ? texteAujourdhuiVide : texteVide),
+                      detail: tr(aujourdhui ? texteAujourdhuiVideDetail : texteVideDetail),
+                      bouton: aujourdhui ? tr(texteVoirSemaine) : null,
                       action: aujourdhui ? () => setState(() => _periode = 1) : null,
                     ),
                   ]),
@@ -214,7 +215,7 @@ class _SelecteurFil extends StatelessWidget {
                 child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Icon(icone, size: 18, color: actif ? p.texte : p.texteDiscret),
                   const SizedBox(width: 8),
-                  Text(texte,
+                  Text(tr(texte),
                       style: police(policeTexte,
                           taille: 15, graisse: FontWeight.w700, couleur: actif ? p.texte : p.texteDiscret)),
                 ]),
@@ -279,7 +280,7 @@ class _BoutonFiltres extends StatelessWidget {
     final p = palette(context);
     final total = famillesDuFil(fil).length;
     final visibles = etat.famillesVisibles(fil).length;
-    final resume = visibles == total ? 'Tout' : '$visibles';
+    final resume = visibles == total ? tr('Tout') : '$visibles';
     return Material(
       color: Colors.transparent,
       shape: RoundedRectangleBorder(
@@ -294,7 +295,7 @@ class _BoutonFiltres extends StatelessWidget {
             child: Row(mainAxisSize: MainAxisSize.min, children: [
               Icon(Icons.tune_rounded, size: 18, color: p.texte),
               const SizedBox(width: 8),
-              Text('$texteFiltres · $resume',
+              Text('${tr(texteFiltres)} · $resume',
                   style: police(policeTexte, taille: 14, graisse: FontWeight.w600, couleur: p.texte)),
             ]),
           ),
@@ -340,9 +341,9 @@ class _Tri extends StatelessWidget {
       decoration: BoxDecoration(
           border: Border.all(color: p.bordure, width: 1.5), borderRadius: BorderRadius.circular(12)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        option(texteTriRecent, false),
+        option(tr(texteTriRecent), false),
         const SizedBox(width: 2),
-        option(texteTriImportant, true),
+        option(tr(texteTriImportant), true),
       ]),
     );
   }
@@ -380,10 +381,10 @@ class _FeuilleFiltres extends StatelessWidget {
                   decoration: BoxDecoration(color: p.bordure, borderRadius: BorderRadius.circular(2))),
               const SizedBox(height: 14),
               Row(children: [
-                Text(texteFiltres,
+                Text(tr(texteFiltres),
                     style: police(policeTitres, taille: 24, graisse: FontWeight.w800, couleur: p.texte)),
                 const Spacer(),
-                Text(fil == 'tech' ? texteTechnologies : texteSciences,
+                Text(tr(fil == 'tech' ? texteTechnologies : texteSciences),
                     style: police(policeTexte, taille: 14, graisse: FontWeight.w600, couleur: p.texteDiscret)),
               ]),
               const SizedBox(height: 6),
@@ -396,7 +397,7 @@ class _FeuilleFiltres extends StatelessWidget {
                 value: tout,
                 activeColor: p.encre,
                 checkColor: p.surEncre,
-                title: Text('Tout', style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
+                title: Text(tr('Tout'), style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
                 onChanged: (_) {
                   final choix = {...etat.domaines}..addAll(codes);
                   etat.changerDomaines(choix);
@@ -411,7 +412,7 @@ class _FeuilleFiltres extends StatelessWidget {
                   activeColor: p.encre,
                   checkColor: p.surEncre,
                   secondary: TuileFamille(famille: familleDe(code), taille: 30),
-                  title: Text(familleDe(code).nom, style: police(policeTexte, taille: 15, couleur: p.texte)),
+                  title: Text(tr(familleDe(code).nom), style: police(policeTexte, taille: 15, couleur: p.texte)),
                   onChanged: (_) => basculer(code),
                 ),
                   ]),
@@ -425,7 +426,7 @@ class _FeuilleFiltres extends StatelessWidget {
                   style: FilledButton.styleFrom(
                       backgroundColor: p.encre, foregroundColor: p.surEncre, shape: const StadiumBorder()),
                   onPressed: () => Navigator.of(context).pop(),
-                  child: Text('Afficher', style: police(policeTexte, taille: 15, graisse: FontWeight.w700)),
+                  child: Text(tr('Afficher'), style: police(policeTexte, taille: 15, graisse: FontWeight.w700)),
                 ),
               ),
             ]),
