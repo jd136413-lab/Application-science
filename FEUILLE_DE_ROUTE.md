@@ -55,7 +55,7 @@ Chaque nouvel écran passe d'abord par une maquette, validée avant d'être cod�
 - **Carte du monde des découvertes** ★★★ — Où ont eu lieu les avancées (pays, laboratoires). L'agent devrait extraire le lieu.
 
 ### 3. Visuel
-- **Plus de photos libres** ★★ (priorité) — Ajouter des sources d'images sous licence libre avec crédit exact (Wikimedia Commons, autres revues en accès libre, agences publiques). Vérifier chaque licence. Toujours aucune image générée.
+- **Plus de photos libres** ★★ (priorité, entamé le 19/10 : 14 sources à images libres) — Ajouter des sources d'images sous licence libre avec crédit exact (Wikimedia Commons, autres revues en accès libre, agences publiques). Vérifier chaque licence. Toujours aucune image générée.
 - **Partager une avancée en image** ★★ (priorité) — Bouton « Partager » qui crée une jolie carte (titre, étoiles, famille, logo Novum, lien vers l'app) à envoyer sur les réseaux. Sert aussi de publicité.
 - **Widget d'écran d'accueil** ★★ — L'avancée du jour sur le bureau du téléphone (Android, puis iPhone).
 - **Animations douces** ★ — Apparition des cartes, étoiles qui se remplissent, transitions.
@@ -65,7 +65,7 @@ Chaque nouvel écran passe d'abord par une maquette, validée avant d'être cod�
 - **Collection** ★★★ — Long terme : cartes à collectionner débloquées en lisant des avancées de chaque famille, façon jeu (thème « éléments du tableau périodique », clin d'œil au logo No 102).
 
 ### 5. Qualité de l'information
-- **Plus de sources, complémentaires** ★★ (priorité) — Objectif : ne rater aucune avancée importante, en sciences comme en tech. Ajouter des sources francophones (CNRS, Inserm, CEA, Inrae, universités…) et des sources qui couvrent les angles morts actuels. Vérifier pour chacune que l'accès automatique est autorisé. Attention au budget : plus de sources ne veut pas dire plus d'articles par passage, l'agent garde 5 articles mais choisit dans un plus grand panier.
+- **Plus de sources, complémentaires** ★★ (priorité, entamé le 19/10 : 55 sources + présélection) — Objectif : ne rater aucune avancée importante, en sciences comme en tech. Ajouter des sources francophones (CNRS, Inserm, CEA, Inrae, universités…) et des sources qui couvrent les angles morts actuels. Vérifier pour chacune que l'accès automatique est autorisé. Attention au budget : plus de sources ne veut pas dire plus d'articles par passage, l'agent garde 5 articles mais choisit dans un plus grand panier.
 
 ### 6. Plateformes
 - **iPhone et tablette** ★★ — Déjà prévu en phase 9 (Codemagic, compte Apple). Mise en page adaptée aux grands écrans pour les tablettes.

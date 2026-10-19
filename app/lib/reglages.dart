@@ -149,6 +149,9 @@ const String texteOngletReglages = 'Réglages';
 const String texteNosSources =
     'Les avancées viennent de sources scientifiques et technologiques reconnues. '
     'Les résumés sont rédigés automatiquement ; l’article source fait foi.';
+// Politique de confidentialité (pages publiées avec la version web)
+const String lienConfidentialiteFr = 'https://jd136413-lab.github.io/Application-science/confidentialite.html';
+const String lienConfidentialiteEn = 'https://jd136413-lab.github.io/Application-science/privacy.html';
 const String texteVersion = 'Novum 1.0 · sans compte, vos choix restent sur ce téléphone';
 
 // --------------------------- MISE EN PAGE ------------------------------

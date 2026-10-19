@@ -38,6 +38,27 @@ SOURCES = [
      "photo": "PLOS", "credit_mode": "plos", "age_max": 45},
     {"feed": "science", "name": "PLOS Medicine",  "url": "https://journals.plos.org/plosmedicine/feed/atom",
      "photo": "PLOS", "credit_mode": "plos", "age_max": 45},
+    # Ajouts du 19/10/2026 (licences vérifiées, flux testés : agent/verif_sources.md)
+    # ESA/Webb et ESA/Hubble : CC BY 4.0, crédit exact lu sous chaque image (comme l'ESO).
+    {"feed": "science", "name": "ESA/Webb",       "url": "https://esawebb.org/news/feed/",
+     "photo": "ESA/Webb", "credit_page": True, "age_max": 90},
+    {"feed": "science", "name": "ESA/Hubble",     "url": "https://esahubble.org/news/feed/",
+     "photo": "ESA/Hubble", "credit_page": True, "age_max": 90},
+    # NASA Goddard : domaine public, mention « NASA ».
+    {"feed": "science", "name": "NASA Goddard",   "url": "https://www.nasa.gov/centers-and-facilities/goddard/feed/",
+     "photo": "Photo : NASA"},
+    # Autres revues PLOS : CC BY 4.0, même traitement que PLOS Biology.
+    {"feed": "science", "name": "PLOS ONE",       "url": "https://journals.plos.org/plosone/feed/atom",
+     "photo": "PLOS", "credit_mode": "plos"},
+    {"feed": "science", "name": "PLOS Climate",   "url": "https://journals.plos.org/climate/feed/atom",
+     "photo": "PLOS", "credit_mode": "plos", "age_max": 45},
+    {"feed": "science", "name": "PLOS Computational Biology", "url": "https://journals.plos.org/ploscompbiol/feed/atom",
+     "photo": "PLOS", "credit_mode": "plos", "age_max": 45},
+    {"feed": "science", "name": "PLOS Genetics",  "url": "https://journals.plos.org/plosgenetics/feed/atom",
+     "photo": "PLOS", "credit_mode": "plos", "age_max": 45},
+    {"feed": "science", "name": "PLOS Pathogens", "url": "https://journals.plos.org/plospathogens/feed/atom",
+     "photo": "PLOS", "credit_mode": "plos", "age_max": 45},
+    # Testés sans succès : PeerJ (accès refusé), NASA Earth Observatory (flux vide).
     # NOIRLab (CC BY 4.0) : site fermé aux robots, non utilisé.
     # eLife (CC BY 4.0) : pages illisibles sans navigateur complet, non utilisé.
     # ESA : photos désactivées tant que leurs conditions n'ont pas été vérifiées.

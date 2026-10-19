@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novum — Politique de confidentialité</title>
+<style>
+  :root { --fond:#F2F1F6; --carte:#FFFFFF; --texte:#17161F; --discret:#5E5C6B; --bord:#DDDBE5; --rose:#FF5A8A; --bleu:#3D7BFF; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fond:#0F0F14; --carte:#1A1A22; --texte:#F2F1F6; --discret:#A9A8B6; --bord:#2C2C36; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--fond); color:var(--texte); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+  header { margin-bottom: 24px; }
+  .logo { font: 700 40px/1 Georgia, "Times New Roman", serif; letter-spacing: -0.01em; }
+  .logo .no { color: var(--rose); text-shadow: 3px 2px 0 var(--bleu); }
+  h1 { font-size: 28px; line-height: 1.25; margin: 18px 0 6px; }
+  h2 { font-size: 19px; margin: 32px 0 8px; }
+  p, li { color: var(--texte); }
+  .discret { color: var(--discret); font-size: 14px; }
+  section { background: var(--carte); border: 1px solid var(--bord); border-radius: 18px; padding: 4px 20px 16px; margin-top: 16px; }
+  a { color: var(--bleu); }
+  ul { padding-left: 20px; }
+  nav.langues { font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="logo"><span class="no">No</span>vum</div>
+    <h1>Politique de confidentialité</h1>
+    <p class="discret">Application « Novum : sciences et tech » — dernière mise à jour : 19 octobre 2026</p>
+    <nav class="langues"><a href="privacy.html">English version</a></nav>
+  </header>
+
+  <section>
+    <h2>En résumé</h2>
+    <ul>
+      <li>Novum ne demande <strong>aucun compte</strong> et ne collecte <strong>ni nom, ni adresse e-mail, ni localisation, ni contacts</strong>.</li>
+      <li>Vos choix (domaines, favoris, thème, langue, réglages des notifications) restent <strong>sur votre téléphone</strong>.</li>
+      <li>Il n'y a <strong>ni publicité, ni outil de mesure d'audience, ni revente de données</strong>.</li>
+      <li>Si vous activez les notifications, un identifiant technique anonyme est utilisé par le service de notifications de Google (Firebase).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>1. Qui publie Novum ?</h2>
+    <p>Novum est publiée par Maxime Faucogney, sous le nom de développeur <strong>Jupiter Dynamics</strong>, particulier résidant en France.</p>
+    <p>Contact : <a href="mailto:jd136413@gmail.com">jd136413@gmail.com</a></p>
+  </section>
+
+  <section>
+    <h2>2. Données enregistrées sur votre téléphone</h2>
+    <p>L'application garde sur votre appareil, et uniquement sur votre appareil : les domaines choisis au premier lancement, vos favoris (avec leur contenu, pour les lire sans réseau), le thème clair ou sombre, la langue et vos réglages de notifications. Ces données ne nous sont jamais transmises. Elles sont effacées si vous désinstallez l'application ou si vous videz ses données dans les réglages du téléphone.</p>
+  </section>
+
+  <section>
+    <h2>3. Chargement des avancées</h2>
+    <p>Pour afficher les avancées, l'application lit une base de données hébergée par le prestataire Supabase. Cette lecture est anonyme : aucun identifiant personnel n'est envoyé. Comme pour toute connexion à Internet, le prestataire peut enregistrer des données techniques (adresse IP, date de la requête) dans ses journaux de fonctionnement et de sécurité ; nous ne les utilisons pas pour vous identifier.</p>
+  </section>
+
+  <section>
+    <h2>4. Notifications (si vous les activez)</h2>
+    <p>Les notifications sont désactivées par défaut. Si vous les activez dans Réglages → Notifications, l'application utilise <strong>Firebase Cloud Messaging</strong>, un service de Google. Le téléphone reçoit alors un identifiant technique d'installation (jeton) et s'abonne à des « sujets » correspondant à vos choix (par exemple : Espace, importance 4 et plus). Ces abonnements ne contiennent aucune information personnelle et ne permettent pas de savoir qui vous êtes.</p>
+    <p>Pour arrêter : désactivez l'interrupteur dans Réglages → Notifications, ou retirez l'autorisation dans les réglages du téléphone. Le traitement par Google est décrit dans sa politique de confidentialité : <a href="https://policies.google.com/privacy">policies.google.com/privacy</a> et <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a>.</p>
+  </section>
+
+  <section>
+    <h2>5. Traduction des articles</h2>
+    <p>Sur Android et iPhone, les titres et résumés sont traduits <strong>directement sur votre téléphone</strong> grâce à Google ML Kit. Le texte traduit n'est pas envoyé sur Internet. La première fois qu'une langue est utilisée, le modèle de traduction est téléchargé depuis les serveurs de Google.</p>
+  </section>
+
+  <section>
+    <h2>6. Contenu produit par intelligence artificielle</h2>
+    <p>Les avancées sont sélectionnées, résumées et classées automatiquement par une intelligence artificielle (Claude, d'Anthropic) à partir d'articles publiés par des sources scientifiques et technologiques. Ce traitement se fait sur nos serveurs, avant la publication, et <strong>n'utilise aucune donnée vous concernant</strong>. Les résumés peuvent contenir des erreurs : l'article source, accessible par le bouton « Lire l'article », fait toujours foi.</p>
+  </section>
+
+  <section>
+    <h2>7. Liens vers d'autres sites</h2>
+    <p>Le bouton « Lire l'article » ouvre le site de la source dans votre navigateur. Ce site applique sa propre politique de confidentialité, sur laquelle nous n'avons aucun contrôle.</p>
+  </section>
+
+  <section>
+    <h2>8. Enfants</h2>
+    <p>Novum s'adresse à un large public et ne collecte aucune donnée personnelle, y compris auprès des enfants.</p>
+  </section>
+
+  <section>
+    <h2>9. Vos droits</h2>
+    <p>Comme nous ne détenons aucune donnée permettant de vous identifier, nous ne pouvons pas, en pratique, vous retrouver dans nos systèmes. Vous pouvez néanmoins nous écrire pour toute question relative à vos données ou pour exercer les droits prévus par le Règlement général sur la protection des données (accès, rectification, effacement, opposition) : <a href="mailto:jd136413@gmail.com">jd136413@gmail.com</a>. Vous pouvez aussi adresser une réclamation à la CNIL (<a href="https://www.cnil.fr">www.cnil.fr</a>).</p>
+  </section>
+
+  <section>
+    <h2>10. Modifications</h2>
+    <p>Cette politique peut évoluer, par exemple si une fonctionnalité nouvelle (statistiques d'usage anonymes, etc.) est ajoutée. La date de mise à jour figure en haut de cette page. Toute évolution importante sera signalée dans l'application.</p>
+  </section>
+</main>
+</body>
+</html>

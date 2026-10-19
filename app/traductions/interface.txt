@@ -2425,3 +2425,24 @@ ja 一部の機種（Xiaomi、Huawei など）では、通知を受け取るた�
 ko 일부 휴대폰(Xiaomi, Huawei 등)에서는 알림을 받으려면 Novum 자동 시작도 허용해야 합니다.
 id Di beberapa ponsel (Xiaomi, Huawei…), izinkan juga Novum untuk mulai otomatis agar menerima notifikasi.
 vi Trên một số điện thoại (Xiaomi, Huawei…), hãy cho phép Novum tự khởi động để nhận thông báo.
+
+@ Politique de confidentialité
+en Privacy policy
+es Política de privacidad
+pt Política de privacidade
+de Datenschutzerklärung
+it Informativa sulla privacy
+nl Privacybeleid
+pl Polityka prywatności
+ru Политика конфиденциальности
+uk Політика конфіденційності
+tr Gizlilik politikası
+ar سياسة الخصوصية
+hi गोपनीयता नीति
+bn গোপনীয়তা নীতি
+ur رازداری کی پالیسی
+zh 隐私政策
+ja プライバシーポリシー
+ko 개인정보 처리방침
+id Kebijakan privasi
+vi Chính sách quyền riêng tư

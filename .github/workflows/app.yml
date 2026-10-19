@@ -168,6 +168,9 @@ jobs:
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           2>&1 | tee -a ../compilation.log
 
+      - name: Pages publiques (politique de confidentialité)
+        run: cp web_extra/*.html build/web/
+
       - name: Compiler l'APK Android
         shell: bash
         env:

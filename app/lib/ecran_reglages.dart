@@ -1,6 +1,7 @@
 // Écran Réglages : thème, notifications, langue, domaines, à propos.
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'ecran_notifications.dart';
 import 'etat.dart';
@@ -155,6 +156,20 @@ class EcranReglages extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(tr(texteNosSources),
                     style: police(policeTexte, taille: 14, couleur: p.texteDiscret, hauteur: 1.5)),
+              ]),
+            ),
+            const SizedBox(height: 8),
+            bloc(
+              onTap: () => launchUrl(
+                Uri.parse(etat.langue == 'fr' ? lienConfidentialiteFr : lienConfidentialiteEn),
+                mode: LaunchMode.externalApplication,
+              ),
+              child: Row(children: [
+                Expanded(
+                  child: Text(tr('Politique de confidentialité'),
+                      style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+                ),
+                Icon(Icons.open_in_new_rounded, color: p.texte, size: 20),
               ]),
             ),
             const SizedBox(height: 18),
