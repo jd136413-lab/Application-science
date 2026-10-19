@@ -36,6 +36,8 @@ flutter_launcher_icons:
   image_path: assets/icone/icone.png
   adaptive_icon_background: "#F2F1F6"
   adaptive_icon_foreground: assets/icone/icone_avant.png
+  adaptive_icon_foreground_inset: 0               # pas de marge en plus : la taille est réglée dans l'image
+  adaptive_icon_monochrome: assets/icone/icone_mono.png   # icônes « thématiques » (Android 13+)
   min_sdk_android: 21
   web:
     generate: true
