@@ -9,6 +9,11 @@ on:
     branches: [main]
     paths: ["app/**", ".github/workflows/app.yml"]
   workflow_dispatch:
+    inputs:
+      google_play:
+        description: "Préparer aussi le fichier pour Google Play (.aab, tous les téléphones)"
+        type: boolean
+        default: false
 
 # Une seule compilation à la fois ; une nouvelle annule l'ancienne.
 concurrency:
@@ -170,11 +175,45 @@ jobs:
         run: >
           set -o pipefail;
           flutter build apk --release --target-platform android-arm64
+          --build-name=1.0.0 --build-number=${{ github.run_number }}
           --dart-define=NOTIFICATIONS=$( [ "$(cat notifications.txt)" = oui ] && echo true || echo false )
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           2>&1 | tee -a ../compilation.log
           && cp build/app/outputs/flutter-apk/app-release.apk build/novum.apk
+
+      - name: Version Android visée (exigence Google Play)
+        shell: bash
+        run: |
+          AAPT=$(ls $ANDROID_HOME/build-tools/*/aapt2 2>/dev/null | tail -1)
+          if [ -n "$AAPT" ]; then
+            echo "::notice title=Version Android::$($AAPT dump badging build/novum.apk | grep -oE "(versionCode|versionName|targetSdkVersion|sdkVersion)='[^']*'" | tr '\n' ' ')"
+          fi
+
+      - name: Fichier pour Google Play (.aab)
+        if: ${{ inputs.google_play }}
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: >
+          set -o pipefail;
+          test -f android/app/novum.p12 || { echo "::error title=Google Play::clé de signature absente"; exit 1; };
+          flutter build appbundle --release
+          --build-name=1.0.0 --build-number=${{ github.run_number }}
+          --dart-define=NOTIFICATIONS=$( [ "$(cat notifications.txt)" = oui ] && echo true || echo false )
+          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+          --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          2>&1 | tee -a ../compilation.log
+          && cp build/app/outputs/bundle/release/app-release.aab build/novum-${{ github.run_number }}.aab
+          && echo "::notice title=Google Play::Fichier novum-${{ github.run_number }}.aab prêt (Summary → Artifacts → novum-google-play)"
+
+      - name: Mettre le fichier Google Play à disposition
+        if: ${{ inputs.google_play }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: novum-google-play
+          path: app/build/novum-*.aab
+          retention-days: 30
 
       - name: Afficher les erreurs de compilation
         if: failure()

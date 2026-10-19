@@ -132,3 +132,9 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - À savoir : GitHub suspend les horaires automatiques d'un repo public après 60 jours sans aucune modification du repo (il prévient par e-mail ; il suffit de cliquer « Enable workflow »).
 - 19/10 — L'horaire intégré de GitHub (schedule) ne s'est jamais déclenché (8 h 17, puis test à 10 h 55 avec une modification faite par Maxime). Remplacé par **cron-job.org** (gratuit) : tâche « Agent Novum », 8 h 20 et 18 h 20 (fuseau Europe/Paris), requête POST vers l'API GitHub `…/actions/workflows/agent.yml/dispatches` avec `{"ref":"main"}` et un jeton GitHub fine-grained (repo Application-science seul, permission Actions : lecture et écriture, sans expiration). Test réussi (200 OK, agent lancé à 14 h 08). Les lignes `schedule` sont retirées de `agent.yml`.
 - Pour arrêter les passages automatiques : cron-job.org → Cronjobs → « Agent Novum » → ÉDITER → désactiver → ENREGISTRER. Pour tout arrêter : Actions → « Agent de collecte » → « ··· » → « Disable workflow ».
+
+## Phase 9 — Publication (démarrée le 19/10/2026)
+- Choix de Maxime : **Android d'abord** (iPhone pendant le test Android), il a **12 testeurs**, adresse e-mail publique **dédiée** (à créer), nom sur les stores **« Novum : sciences et tech »** (EN : « Novum: science & tech »).
+- Règle Google Play (comptes personnels créés après le 13/11/2023) : test fermé avec au moins 12 testeurs inscrits 14 jours d'affilée avant la mise en production.
+- Compilation : version 1.0.0, numéro de version = numéro d'exécution du workflow (toujours croissant). Nouveau choix « Préparer aussi le fichier pour Google Play » dans Run workflow → fichier `.aab` (tous les téléphones) dans Artifacts. Annotation « Version Android » (targetSdk) à chaque compilation.
+- Dossier `store/` : textes de la fiche (FR/EN), icône 512 × 512, bannière 1024 × 500.
