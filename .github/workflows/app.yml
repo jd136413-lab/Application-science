@@ -187,7 +187,7 @@ jobs:
         run: |
           AAPT=$(ls $ANDROID_HOME/build-tools/*/aapt2 2>/dev/null | tail -1)
           if [ -n "$AAPT" ]; then
-            echo "::notice title=Version Android::$($AAPT dump badging build/novum.apk | grep -oE "(versionCode|versionName|targetSdkVersion|sdkVersion)='[^']*'" | tr '\n' ' ')"
+            echo "::notice title=Version Android::$($AAPT dump badging build/novum.apk | grep -oE "(versionCode|versionName)='[^']*'|(sdkVersion|targetSdkVersion):'[^']*'" | tr '\n' ' ')"
           fi
 
       - name: Fichier pour Google Play (.aab)
