@@ -94,6 +94,10 @@ jobs:
               i = s.find("release {", s.find("buildTypes"))
               j = s.find("\n", i)
               s = s[:j + 1] + lignes + s[j + 1:]
+          # 1 bis) Bibliothèques natives compressées dans l'APK (téléchargement plus léger)
+          if kts and "useLegacyPackaging" not in s:
+              i = s.find("    buildTypes")
+              s = s[:i] + "    packaging {\n        jniLibs {\n            useLegacyPackaging = true\n        }\n    }\n\n" + s[i:]
           # 2) Clé de signature fixe, si les secrets GitHub existent (sinon clé de test)
           if kts and "novum.p12" not in s:
               bloc = ('    signingConfigs {\n'
@@ -155,7 +159,7 @@ jobs:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: >
           set -o pipefail;
-          flutter build apk --release
+          flutter build apk --release --target-platform android-arm64
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           2>&1 | tee -a ../compilation.log

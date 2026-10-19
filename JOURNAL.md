@@ -111,4 +111,5 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - Écran de démarrage (flutter_native_splash) : logo « Novum » sur fond clair ou sombre selon le téléphone ; sur Android 12 et plus, la case « No 102 » seule (règle d'Android).
 - Clé de signature fixe : créée par Claude, remise à Maxime dans un fichier à garder (jamais dans le repo, `.gitignore` protège `*.p12`). Deux secrets GitHub : `ANDROID_KEYSTORE_BASE64` et `ANDROID_KEYSTORE_PASSWORD`. Sans ces secrets, la compilation retombe sur la clé de test (avertissement dans Actions).
 - Nettoyage R8 réactivé avec des règles « keep » complètes (Flutter, Kotlin dont `kotlin.Result`, coroutines, DataStore, ML Kit) et R8 en mode compatible. À tester sur le POCO ; si plantage, l'erreur s'affiche à l'écran.
+- APK de test allégé : uniquement pour les téléphones 64 bits (arm64, comme le POCO) et bibliothèques natives compressées. La version des stores (phase 9) couvrira tous les téléphones.
 - Horaire automatique de l'agent : pas encore activé (décision de Maxime).
