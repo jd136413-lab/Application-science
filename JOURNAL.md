@@ -86,3 +86,13 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - 19/10 — À savoir : chaque compilation signe l'APK avec une nouvelle clé de test → il faut **désinstaller l'ancienne version avant d'installer la nouvelle**. Une clé fixe sera mise en place en phase 8.
 - 19/10 — Le correctif fonctionne en partie : l'app démarre (logo affiché) mais signale une erreur `NoSuchMethodError … SharedPreferencesApiRegistrar.getAll`. Cause : le « nettoyeur » de code Android (R8) supprimait une fonction de la bibliothèque shared_preferences utilisée par Supabase. Correctif : fichier `proguard-rules.pro` (règles « keep » pour les bibliothèques Flutter et Kotlin) branché dans la compilation Android, vérifié par le diagnostic.
 - 19/10 — 2e erreur au démarrage (ClassNotFoundException kotlin/Result) : même cause. Le nettoyage R8 est désormais **désactivé** pour les versions de test (APK 77 Mo). À réactiver proprement avant publication (phase 8/9).
+- 19/10 — **L'app fonctionne sur le POCO** (« Bravo ça marche »).
+
+## Phases 5 à 7 — Onglets, filtres, tri, favoris, réglages (19/10/2026)
+- Premier lancement : choix des domaines (Sciences et Technologies), qui préremplit les filtres. Modifiable ensuite dans Réglages → Mes domaines.
+- Fil : 4 périodes cumulatives (Aujourd'hui = 24 h, Cette semaine, Ce mois-ci, Cette année), en-têtes de mois dans « Cette année », tri Plus récent / Plus important, bouton Filtres avec cases par famille (« Tout » par défaut). « Aujourd'hui » vide → bouton vers « Cette semaine ».
+- Barre du bas : Actualités · Favoris · Réglages.
+- Favoris : bouton marque-page sur l'écran de détail ; les favoris sont gardés sur le téléphone et lisibles sans réseau.
+- Réglages : thème Automatique / Clair / Sombre, mes domaines, nos sources, version. Langue : emplacement prêt, traduction à l'étape suivante.
+- Mémoire locale (shared_preferences) : premier lancement fait, domaines, thème, favoris. Pas de compte.
+- Compilation : en cas d'erreur, les messages du compilateur s'affichent désormais en clair dans l'onglet Actions.
