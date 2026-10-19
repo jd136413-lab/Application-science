@@ -96,3 +96,12 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - Réglages : thème Automatique / Clair / Sombre, mes domaines, nos sources, version. Langue : emplacement prêt, traduction à l'étape suivante.
 - Mémoire locale (shared_preferences) : premier lancement fait, domaines, thème, favoris. Pas de compte.
 - Compilation : en cas d'erreur, les messages du compilateur s'affichent désormais en clair dans l'onglet Actions.
+- 19/10 — **Phases 5 à 7 validées par Maxime** (« tout marche »).
+
+## Traduction (19/10/2026)
+- 20 langues : français, anglais, espagnol, portugais, allemand, italien, néerlandais, polonais, russe, ukrainien, turc, arabe, hindi, bengali, ourdou, chinois, japonais, coréen, indonésien, vietnamien.
+- L'app suit la langue du téléphone (anglais si elle n'est pas dans la liste). Choix manuel : Réglages → Langue.
+- Textes de l'interface : traduits à l'avance (`app/traductions/interface.txt`, transformé en `app/lib/textes_traduits.dart` par `generer.py`, qui vérifie qu'aucune traduction ne manque).
+- Dates écrites dans la langue choisie ; sens de lecture de droite à gauche pour l'arabe et l'ourdou.
+- Articles (titre et résumé) : traduits **sur le téléphone** par Google ML Kit, gratuit et hors ligne. La 1re fois, la langue est téléchargée (~30 Mo). Bouton « Voir l'original » sur l'écran de détail. Version web : articles en français.
+- Aucun coût supplémentaire côté API Anthropic : l'agent continue d'écrire en français.
