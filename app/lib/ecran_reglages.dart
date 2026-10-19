@@ -1,7 +1,8 @@
-// Écran Réglages : thème, domaines, langue, à propos.
+// Écran Réglages : thème, notifications, langue, domaines, à propos.
 
 import 'package:flutter/material.dart';
 
+import 'ecran_notifications.dart';
 import 'etat.dart';
 import 'langues.dart';
 import 'premier_lancement.dart';
@@ -71,6 +72,23 @@ class EcranReglages extends StatelessWidget {
                       ),
                     ),
                   ),
+              ]),
+            ),
+            titreSection('Notifications'),
+            bloc(
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const EcranNotifications()),
+              ),
+              child: Row(children: [
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(tr('Notifications'),
+                        style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+                    const SizedBox(height: 2),
+                    Text(resumeNotifications(), style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                  ]),
+                ),
+                Icon(Icons.chevron_right_rounded, color: p.texte),
               ]),
             ),
             titreSection('Langue'),

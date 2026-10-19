@@ -1,0 +1,14 @@
+// Liens entre les notifications et les écrans de l'app.
+
+import 'package:flutter/widgets.dart';
+
+/// Navigateur principal (pour ouvrir un écran depuis une notification).
+final navigateur = GlobalKey<NavigatorState>();
+
+/// Contenu de la notification touchée : l'identifiant d'une avancée,
+/// ou [payloadFil] pour la notification « + N autres avancées ».
+final demandeOuverture = ValueNotifier<String?>(null);
+const String payloadFil = 'fil';
+
+/// Incrémenté pour demander : onglet Actualités, période « Aujourd'hui ».
+final demandeFilAujourdhui = ValueNotifier<int>(0);

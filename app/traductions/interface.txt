@@ -1709,3 +1709,719 @@ ja 翻訳を表示
 ko 번역 보기
 id Lihat terjemahan
 vi Xem bản dịch
+
+# ---- Notifications (19/10/2026) ----
+
+@ Notifications
+en Notifications
+es Notificaciones
+pt Notificações
+de Benachrichtigungen
+it Notifiche
+nl Meldingen
+pl Powiadomienia
+ru Уведомления
+uk Сповіщення
+tr Bildirimler
+ar الإشعارات
+hi सूचनाएँ
+bn বিজ্ঞপ্তি
+ur اطلاعات
+zh 通知
+ja 通知
+ko 알림
+id Notifikasi
+vi Thông báo
+
+@ Recevoir des notifications
+en Receive notifications
+es Recibir notificaciones
+pt Receber notificações
+de Benachrichtigungen erhalten
+it Ricevi notifiche
+nl Meldingen ontvangen
+pl Otrzymuj powiadomienia
+ru Получать уведомления
+uk Отримувати сповіщення
+tr Bildirim al
+ar تلقي الإشعارات
+hi सूचनाएँ प्राप्त करें
+bn বিজ্ঞপ্তি পান
+ur اطلاعات وصول کریں
+zh 接收通知
+ja 通知を受け取る
+ko 알림 받기
+id Terima notifikasi
+vi Nhận thông báo
+
+@ Quand de nouvelles avancées arrivent, selon vos choix ci-dessous
+en When new breakthroughs arrive, based on your choices below
+es Cuando lleguen nuevos avances, según tus elecciones de abajo
+pt Quando chegarem novos avanços, de acordo com as suas escolhas abaixo
+de Wenn neue Durchbrüche eintreffen, nach Ihrer Auswahl unten
+it Quando arrivano nuove scoperte, secondo le tue scelte qui sotto
+nl Wanneer er nieuwe doorbraken zijn, volgens je keuzes hieronder
+pl Gdy pojawią się nowe odkrycia, zgodnie z Twoimi wyborami poniżej
+ru Когда появляются новые открытия, по вашему выбору ниже
+uk Коли з'являються нові відкриття, за вашим вибором нижче
+tr Yeni gelişmeler geldiğinde, aşağıdaki seçimlerinize göre
+ar عند وصول إنجازات جديدة، حسب اختياراتك أدناه
+hi जब नई उपलब्धियाँ आएँ, नीचे दिए आपके चुनाव के अनुसार
+bn নতুন অগ্রগতি এলে, নিচে আপনার পছন্দ অনুযায়ী
+ur جب نئی پیش رفت آئے، نیچے آپ کے انتخاب کے مطابق
+zh 有新进展时，按照您在下方的选择
+ja 新しい発見があったとき、下の設定に合わせて
+ko 새로운 발전 소식이 있을 때, 아래에서 고른 설정에 따라
+id Saat ada kemajuan baru, sesuai pilihan Anda di bawah
+vi Khi có tiến bộ mới, theo lựa chọn của bạn bên dưới
+
+@ Quelles avancées
+en Which breakthroughs
+es Qué avances
+pt Quais avanços
+de Welche Durchbrüche
+it Quali scoperte
+nl Welke doorbraken
+pl Jakie odkrycia
+ru Какие открытия
+uk Які відкриття
+tr Hangi gelişmeler
+ar أي الإنجازات
+hi कौन-सी उपलब्धियाँ
+bn কোন অগ্রগতি
+ur کون سی پیش رفت
+zh 哪些进展
+ja どの発見
+ko 어떤 소식
+id Kemajuan apa
+vi Tiến bộ nào
+
+@ Les deux
+en Both
+es Ambos
+pt Ambos
+de Beides
+it Entrambi
+nl Allebei
+pl Oba
+ru Оба
+uk Обидва
+tr İkisi de
+ar كلاهما
+hi दोनों
+bn দুটোই
+ur دونوں
+zh 两者
+ja 両方
+ko 둘 다
+id Keduanya
+vi Cả hai
+
+@ Importance minimale
+en Minimum importance
+es Importancia mínima
+pt Importância mínima
+de Mindestwichtigkeit
+it Importanza minima
+nl Minimaal belang
+pl Minimalna ważność
+ru Минимальная важность
+uk Мінімальна важливість
+tr En düşük önem
+ar الحد الأدنى للأهمية
+hi न्यूनतम महत्व
+bn ন্যূনতম গুরুত্ব
+ur کم از کم اہمیت
+zh 最低重要程度
+ja 重要度の下限
+ko 최소 중요도
+id Kepentingan minimum
+vi Mức quan trọng tối thiểu
+
+@ Toutes les avancées
+en All breakthroughs
+es Todos los avances
+pt Todos os avanços
+de Alle Durchbrüche
+it Tutte le scoperte
+nl Alle doorbraken
+pl Wszystkie odkrycia
+ru Все открытия
+uk Усі відкриття
+tr Tüm gelişmeler
+ar كل الإنجازات
+hi सभी उपलब्धियाँ
+bn সব অগ্রগতি
+ur تمام پیش رفت
+zh 全部进展
+ja すべての発見
+ko 모든 소식
+id Semua kemajuan
+vi Tất cả tiến bộ
+
+@ Limité et plus
+en Limited and above
+es Limitado o más
+pt Limitado ou mais
+de Begrenzt und höher
+it Limitato e oltre
+nl Beperkt en hoger
+pl Ograniczone i wyżej
+ru Ограниченное и выше
+uk Обмежене й вище
+tr Sınırlı ve üzeri
+ar محدود فما فوق
+hi सीमित और उससे ऊपर
+bn সীমিত ও তার বেশি
+ur محدود اور اس سے زیادہ
+zh 有限及以上
+ja 限定的以上
+ko 제한적 이상
+id Terbatas ke atas
+vi Hạn chế trở lên
+
+@ Notable et plus
+en Notable and above
+es Notable o más
+pt Notável ou mais
+de Bemerkenswert und höher
+it Notevole e oltre
+nl Opmerkelijk en hoger
+pl Godne uwagi i wyżej
+ru Заметное и выше
+uk Помітне й вище
+tr Kayda değer ve üzeri
+ar لافت فما فوق
+hi उल्लेखनीय और उससे ऊपर
+bn উল্লেখযোগ্য ও তার বেশি
+ur قابل ذکر اور اس سے زیادہ
+zh 值得关注及以上
+ja 注目以上
+ko 주목할 만함 이상
+id Penting ke atas
+vi Đáng chú ý trở lên
+
+@ Majeur et plus
+en Major and above
+es Importante o más
+pt Importante ou mais
+de Bedeutend und höher
+it Importante e oltre
+nl Groot en hoger
+pl Duże i wyżej
+ru Крупное и выше
+uk Значне й вище
+tr Büyük ve üzeri
+ar كبير فما فوق
+hi बड़ा और उससे ऊपर
+bn বড় ও তার বেশি
+ur بڑی اور اس سے زیادہ
+zh 重大及以上
+ja 重大以上
+ko 중대함 이상
+id Besar ke atas
+vi Lớn trở lên
+
+@ Rupture seulement
+en Breakthrough only
+es Solo revoluciones
+pt Apenas revoluções
+de Nur Durchbrüche
+it Solo svolte
+nl Alleen doorbraken
+pl Tylko przełomy
+ru Только прорывы
+uk Лише прориви
+tr Yalnızca çığır açanlar
+ar الثورات العلمية فقط
+hi केवल क्रांतिकारी
+bn শুধু যুগান্তকারী
+ur صرف انقلابی
+zh 仅限突破
+ja 画期的なもののみ
+ko 획기적인 것만
+id Hanya terobosan
+vi Chỉ đột phá
+
+@ Au plus, à chaque arrivée
+en At most, per delivery
+es Como máximo, en cada llegada
+pt No máximo, a cada chegada
+de Höchstens pro Lieferung
+it Al massimo, a ogni arrivo
+nl Hoogstens per keer
+pl Najwyżej za każdym razem
+ru Не больше, за раз
+uk Не більше, за раз
+tr Her gelişte en fazla
+ar الحد الأقصى في كل دفعة
+hi हर बार अधिकतम
+bn প্রতিবার সর্বোচ্চ
+ur ہر بار زیادہ سے زیادہ
+zh 每次最多
+ja 1回あたりの上限
+ko 한 번에 최대
+id Paling banyak, setiap kali
+vi Tối đa mỗi lần
+
+@ Toutes
+en All
+es Todas
+pt Todas
+de Alle
+it Tutte
+nl Alle
+pl Wszystkie
+ru Все
+uk Усі
+tr Hepsi
+ar الكل
+hi सभी
+bn সব
+ur تمام
+zh 全部
+ja すべて
+ko 전부
+id Semua
+vi Tất cả
+
+@ Une notification par avancée, sans regroupement.
+en One notification per breakthrough, no grouping.
+es Una notificación por avance, sin agrupar.
+pt Uma notificação por avanço, sem agrupar.
+de Eine Benachrichtigung pro Durchbruch, ohne Bündelung.
+it Una notifica per scoperta, senza raggruppamento.
+nl Eén melding per doorbraak, zonder bundeling.
+pl Jedno powiadomienie na odkrycie, bez grupowania.
+ru Одно уведомление на открытие, без группировки.
+uk Одне сповіщення на відкриття, без групування.
+tr Her gelişme için bir bildirim, gruplama yok.
+ar إشعار واحد لكل إنجاز، دون تجميع.
+hi हर उपलब्धि के लिए एक सूचना, बिना समूह के।
+bn প্রতিটি অগ্রগতির জন্য একটি বিজ্ঞপ্তি, একত্র না করে।
+ur ہر پیش رفت کے لیے ایک اطلاع، بغیر گروپ کیے۔
+zh 每条进展一条通知，不合并。
+ja 発見ごとに1件の通知。まとめません。
+ko 소식마다 알림 하나씩, 묶지 않음.
+id Satu notifikasi per kemajuan, tanpa pengelompokan.
+vi Mỗi tiến bộ một thông báo, không gộp.
+
+@ La plus importante arrive seule ; les suivantes sont regroupées en une seule notification.
+en The most important arrives on its own; the rest are grouped into a single notification.
+es La más importante llega sola; las demás se agrupan en una sola notificación.
+pt A mais importante chega sozinha; as seguintes são agrupadas numa única notificação.
+de Der wichtigste kommt einzeln; die übrigen werden in einer Benachrichtigung zusammengefasst.
+it La più importante arriva da sola; le successive sono raggruppate in un'unica notifica.
+nl De belangrijkste komt apart; de rest wordt in één melding gebundeld.
+pl Najważniejsze przychodzi osobno; pozostałe są zgrupowane w jednym powiadomieniu.
+ru Самое важное приходит отдельно; остальные объединяются в одно уведомление.
+uk Найважливіше надходить окремо; решта об'єднується в одне сповіщення.
+tr En önemlisi tek başına gelir; diğerleri tek bir bildirimde toplanır.
+ar يصل الأهم وحده، وتُجمع البقية في إشعار واحد.
+hi सबसे महत्वपूर्ण अलग से आती है; बाकी एक ही सूचना में समूहित होती हैं।
+bn সবচেয়ে গুরুত্বপূর্ণটি আলাদা আসে; বাকিগুলো একটি বিজ্ঞপ্তিতে একত্র হয়।
+ur سب سے اہم الگ آتی ہے؛ باقی ایک ہی اطلاع میں جمع ہو جاتی ہیں۔
+zh 最重要的一条单独推送；其余合并为一条通知。
+ja 最も重要なものは単独で届き、残りは1件の通知にまとめられます。
+ko 가장 중요한 소식은 따로 오고, 나머지는 알림 하나로 묶입니다.
+id Yang paling penting datang sendiri; sisanya digabung dalam satu notifikasi.
+vi Tin quan trọng nhất đến riêng; các tin còn lại được gộp vào một thông báo.
+
+@ Les {n} plus importantes arrivent une par une ; les suivantes sont regroupées en une seule notification.
+en The {n} most important arrive one by one; the rest are grouped into a single notification.
+es Las {n} más importantes llegan una a una; las demás se agrupan en una sola notificación.
+pt As {n} mais importantes chegam uma a uma; as seguintes são agrupadas numa única notificação.
+de Die {n} wichtigsten kommen einzeln; die übrigen werden in einer Benachrichtigung zusammengefasst.
+it Le {n} più importanti arrivano una alla volta; le successive sono raggruppate in un'unica notifica.
+nl De {n} belangrijkste komen één voor één; de rest wordt in één melding gebundeld.
+pl {n} najważniejszych przychodzi pojedynczo; pozostałe są zgrupowane w jednym powiadomieniu.
+ru {n} самых важных приходят по одному; остальные объединяются в одно уведомление.
+uk {n} найважливіших надходять по одному; решта об'єднується в одне сповіщення.
+tr En önemli {n} tanesi tek tek gelir; diğerleri tek bir bildirimde toplanır.
+ar تصل أهم {n} واحدة تلو الأخرى، وتُجمع البقية في إشعار واحد.
+hi सबसे महत्वपूर्ण {n} एक-एक करके आती हैं; बाकी एक ही सूचना में समूहित होती हैं।
+bn সবচেয়ে গুরুত্বপূর্ণ {n}টি একে একে আসে; বাকিগুলো একটি বিজ্ঞপ্তিতে একত্র হয়।
+ur سب سے اہم {n} ایک ایک کر کے آتی ہیں؛ باقی ایک ہی اطلاع میں جمع ہو جاتی ہیں۔
+zh 最重要的 {n} 条逐条推送；其余合并为一条通知。
+ja 重要な上位{n}件は1件ずつ届き、残りは1件の通知にまとめられます。
+ko 가장 중요한 {n}개는 하나씩 오고, 나머지는 알림 하나로 묶입니다.
+id {n} yang paling penting datang satu per satu; sisanya digabung dalam satu notifikasi.
+vi {n} tin quan trọng nhất đến lần lượt; các tin còn lại được gộp vào một thông báo.
+
+@ Familles
+en Categories
+es Categorías
+pt Categorias
+de Kategorien
+it Categorie
+nl Categorieën
+pl Kategorie
+ru Категории
+uk Категорії
+tr Kategoriler
+ar الفئات
+hi श्रेणियाँ
+bn বিভাগ
+ur زمرے
+zh 类别
+ja カテゴリー
+ko 분야
+id Kategori
+vi Danh mục
+
+@ Vous recevrez :
+en You will receive:
+es Recibirás:
+pt Vai receber:
+de Sie erhalten:
+it Riceverai:
+nl Je ontvangt:
+pl Otrzymasz:
+ru Вы будете получать:
+uk Ви отримуватимете:
+tr Alacaklarınız:
+ar ستتلقى:
+hi आपको मिलेंगी:
+bn আপনি পাবেন:
+ur آپ کو ملیں گی:
+zh 您将收到：
+ja 受け取る通知：
+ko 받게 될 알림:
+id Anda akan menerima:
+vi Bạn sẽ nhận:
+
+@ Sciences et Technologies
+en Science and Tech
+es Ciencia y Tecnología
+pt Ciência e Tecnologia
+de Wissenschaft und Technik
+it Scienza e Tecnologia
+nl Wetenschap en Technologie
+pl Nauka i Technologie
+ru Наука и Технологии
+uk Наука і Технології
+tr Bilim ve Teknoloji
+ar العلوم والتكنولوجيا
+hi विज्ञान और तकनीक
+bn বিজ্ঞান ও প্রযুক্তি
+ur سائنس اور ٹیکنالوجی
+zh 科学与科技
+ja 科学とテクノロジー
+ko 과학과 기술
+id Sains dan Teknologi
+vi Khoa học và Công nghệ
+
+@ 1 famille
+en 1 category
+es 1 categoría
+pt 1 categoria
+de 1 Kategorie
+it 1 categoria
+nl 1 categorie
+pl 1 kategoria
+ru 1 категория
+uk 1 категорія
+tr 1 kategori
+ar فئة واحدة
+hi 1 श्रेणी
+bn 1টি বিভাগ
+ur 1 زمرہ
+zh 1 个类别
+ja 1カテゴリー
+ko 1개 분야
+id 1 kategori
+vi 1 danh mục
+
+@ {n} familles
+en {n} categories
+es {n} categorías
+pt {n} categorias
+de {n} Kategorien
+it {n} categorie
+nl {n} categorieën
+pl Kategorie: {n}
+ru Категорий: {n}
+uk Категорій: {n}
+tr {n} kategori
+ar {n} فئات
+hi {n} श्रेणियाँ
+bn {n}টি বিভাগ
+ur {n} زمرے
+zh {n} 个类别
+ja {n}カテゴリー
+ko {n}개 분야
+id {n} kategori
+vi {n} danh mục
+
+@ {n} au plus à chaque arrivée
+en at most {n} per delivery
+es {n} como máximo en cada llegada
+pt no máximo {n} a cada chegada
+de höchstens {n} pro Lieferung
+it al massimo {n} a ogni arrivo
+nl hoogstens {n} per keer
+pl najwyżej {n} za każdym razem
+ru не больше {n} за раз
+uk не більше {n} за раз
+tr her gelişte en fazla {n}
+ar {n} كحد أقصى في كل دفعة
+hi हर बार अधिकतम {n}
+bn প্রতিবার সর্বোচ্চ {n}টি
+ur ہر بار زیادہ سے زیادہ {n}
+zh 每次最多 {n} 条
+ja 1回あたり最大{n}件
+ko 한 번에 최대 {n}개
+id paling banyak {n} setiap kali
+vi tối đa {n} mỗi lần
+
+@ Sans limite
+en No limit
+es Sin límite
+pt Sem limite
+de Ohne Begrenzung
+it Senza limite
+nl Geen limiet
+pl Bez limitu
+ru Без ограничений
+uk Без обмежень
+tr Sınırsız
+ar بلا حد
+hi कोई सीमा नहीं
+bn কোনো সীমা নেই
+ur کوئی حد نہیں
+zh 不限
+ja 上限なし
+ko 제한 없음
+id Tanpa batas
+vi Không giới hạn
+
+@ Aucune famille cochée : vous ne recevrez aucune notification.
+en No category selected: you will not receive any notifications.
+es Ninguna categoría marcada: no recibirás notificaciones.
+pt Nenhuma categoria marcada: não vai receber notificações.
+de Keine Kategorie ausgewählt: Sie erhalten keine Benachrichtigungen.
+it Nessuna categoria selezionata: non riceverai notifiche.
+nl Geen categorie aangevinkt: je ontvangt geen meldingen.
+pl Nie zaznaczono żadnej kategorii: nie otrzymasz powiadomień.
+ru Ни одна категория не выбрана: уведомлений не будет.
+uk Жодної категорії не вибрано: сповіщень не буде.
+tr Hiç kategori seçilmedi: bildirim almayacaksınız.
+ar لم تُحدَّد أي فئة: لن تتلقى أي إشعار.
+hi कोई श्रेणी नहीं चुनी गई: आपको कोई सूचना नहीं मिलेगी।
+bn কোনো বিভাগ বাছাই করা হয়নি: আপনি কোনো বিজ্ঞপ্তি পাবেন না।
+ur کوئی زمرہ منتخب نہیں: آپ کو کوئی اطلاع نہیں ملے گی۔
+zh 未选择任何类别：您将不会收到通知。
+ja カテゴリーが選ばれていないため、通知は届きません。
+ko 선택한 분야가 없어 알림을 받지 않습니다.
+id Tidak ada kategori dipilih: Anda tidak akan menerima notifikasi.
+vi Chưa chọn danh mục nào: bạn sẽ không nhận được thông báo.
+
+@ Les notifications sont coupées. Les avancées restent consultables dans l’onglet Actualités.
+en Notifications are off. Breakthroughs are still available in the News tab.
+es Las notificaciones están desactivadas. Los avances siguen disponibles en la pestaña Noticias.
+pt As notificações estão desativadas. Os avanços continuam disponíveis no separador Notícias.
+de Benachrichtigungen sind aus. Die Durchbrüche finden Sie weiterhin unter Neuigkeiten.
+it Le notifiche sono disattivate. Le scoperte restano consultabili nella scheda Notizie.
+nl Meldingen staan uit. De doorbraken blijven te zien in het tabblad Nieuws.
+pl Powiadomienia są wyłączone. Odkrycia nadal znajdziesz w karcie Aktualności.
+ru Уведомления отключены. Открытия по-прежнему доступны во вкладке «Новости».
+uk Сповіщення вимкнено. Відкриття й далі доступні у вкладці «Новини».
+tr Bildirimler kapalı. Gelişmelere Haberler sekmesinden ulaşabilirsiniz.
+ar الإشعارات متوقفة. يمكنك دائمًا متابعة الإنجازات في تبويب الأخبار.
+hi सूचनाएँ बंद हैं। उपलब्धियाँ अब भी समाचार टैब में देखी जा सकती हैं।
+bn বিজ্ঞপ্তি বন্ধ। অগ্রগতিগুলো এখনও সংবাদ ট্যাবে দেখা যাবে।
+ur اطلاعات بند ہیں۔ پیش رفت اب بھی خبریں ٹیب میں دیکھی جا سکتی ہے۔
+zh 通知已关闭。您仍可在“资讯”标签中查看进展。
+ja 通知はオフです。発見は「ニュース」タブで引き続き見られます。
+ko 알림이 꺼져 있습니다. 소식은 계속 뉴스 탭에서 볼 수 있습니다.
+id Notifikasi dimatikan. Kemajuan tetap bisa dilihat di tab Berita.
+vi Thông báo đang tắt. Bạn vẫn xem được các tiến bộ trong thẻ Tin tức.
+
+@ Autorisez les notifications de Novum dans les réglages du téléphone.
+en Allow Novum notifications in your phone settings.
+es Permite las notificaciones de Novum en los ajustes del teléfono.
+pt Permita as notificações do Novum nas definições do telemóvel.
+de Erlauben Sie Novum-Benachrichtigungen in den Einstellungen des Telefons.
+it Consenti le notifiche di Novum nelle impostazioni del telefono.
+nl Sta meldingen van Novum toe in de instellingen van je telefoon.
+pl Zezwól na powiadomienia Novum w ustawieniach telefonu.
+ru Разрешите уведомления Novum в настройках телефона.
+uk Дозвольте сповіщення Novum у налаштуваннях телефона.
+tr Telefon ayarlarından Novum bildirimlerine izin verin.
+ar اسمح بإشعارات Novum من إعدادات الهاتف.
+hi फ़ोन की सेटिंग में Novum की सूचनाओं की अनुमति दें।
+bn ফোনের সেটিংসে Novum-এর বিজ্ঞপ্তির অনুমতি দিন।
+ur فون کی ترتیبات میں Novum کی اطلاعات کی اجازت دیں۔
+zh 请在手机设置中允许 Novum 发送通知。
+ja スマートフォンの設定で Novum の通知を許可してください。
+ko 휴대폰 설정에서 Novum 알림을 허용해 주세요.
+id Izinkan notifikasi Novum di pengaturan ponsel.
+vi Hãy cho phép thông báo của Novum trong cài đặt điện thoại.
+
+@ Les notifications sont disponibles dans l’app Android et iPhone.
+en Notifications are available in the Android and iPhone app.
+es Las notificaciones están disponibles en la app para Android y iPhone.
+pt As notificações estão disponíveis na app para Android e iPhone.
+de Benachrichtigungen gibt es in der App für Android und iPhone.
+it Le notifiche sono disponibili nell'app per Android e iPhone.
+nl Meldingen zijn beschikbaar in de app voor Android en iPhone.
+pl Powiadomienia są dostępne w aplikacji na Androida i iPhone'a.
+ru Уведомления доступны в приложении для Android и iPhone.
+uk Сповіщення доступні в застосунку для Android та iPhone.
+tr Bildirimler Android ve iPhone uygulamasında mevcut.
+ar الإشعارات متاحة في تطبيق أندرويد وآيفون.
+hi सूचनाएँ Android और iPhone ऐप में उपलब्ध हैं।
+bn বিজ্ঞপ্তি Android ও iPhone অ্যাপে পাওয়া যায়।
+ur اطلاعات Android اور iPhone ایپ میں دستیاب ہیں۔
+zh 通知功能仅在 Android 和 iPhone 应用中提供。
+ja 通知は Android と iPhone のアプリで利用できます。
+ko 알림은 Android와 iPhone 앱에서 이용할 수 있습니다.
+id Notifikasi tersedia di aplikasi Android dan iPhone.
+vi Thông báo có trên ứng dụng Android và iPhone.
+
+@ Activées
+en On
+es Activadas
+pt Ativadas
+de An
+it Attive
+nl Aan
+pl Włączone
+ru Включены
+uk Увімкнено
+tr Açık
+ar مفعّلة
+hi चालू
+bn চালু
+ur آن
+zh 已开启
+ja オン
+ko 켜짐
+id Aktif
+vi Bật
+
+@ Désactivées
+en Off
+es Desactivadas
+pt Desativadas
+de Aus
+it Disattivate
+nl Uit
+pl Wyłączone
+ru Выключены
+uk Вимкнено
+tr Kapalı
+ar متوقفة
+hi बंद
+bn বন্ধ
+ur آف
+zh 已关闭
+ja オフ
+ko 꺼짐
+id Nonaktif
+vi Tắt
+
+@ + 1 autre avancée
+en + 1 more breakthrough
+es + 1 avance más
+pt + 1 avanço a mais
+de + 1 weiterer Durchbruch
+it + 1 altra scoperta
+nl + 1 andere doorbraak
+pl + 1 kolejne odkrycie
+ru + ещё 1 открытие
+uk + ще 1 відкриття
+tr + 1 gelişme daha
+ar + إنجاز آخر
+hi + 1 और उपलब्धि
+bn + আরও ১টি অগ্রগতি
+ur + 1 اور پیش رفت
+zh + 另外 1 条进展
+ja ＋ ほか1件の発見
+ko + 소식 1개 더
+id + 1 kemajuan lainnya
+vi + 1 tiến bộ khác
+
+@ + {n} autres avancées
+en + {n} more breakthroughs
+es + {n} avances más
+pt + {n} avanços a mais
+de + {n} weitere Durchbrüche
+it + altre {n} scoperte
+nl + {n} andere doorbraken
+pl + kolejne odkrycia: {n}
+ru + ещё открытий: {n}
+uk + ще відкриттів: {n}
+tr + {n} gelişme daha
+ar + {n} إنجازات أخرى
+hi + {n} और उपलब्धियाँ
+bn + আরও {n}টি অগ্রগতি
+ur + {n} اور پیش رفت
+zh + 另外 {n} 条进展
+ja ＋ ほか{n}件の発見
+ko + 소식 {n}개 더
+id + {n} kemajuan lainnya
+vi + {n} tiến bộ khác
+
+@ Touchez pour les voir dans le fil
+en Tap to see them in the feed
+es Toca para verlos en el feed
+pt Toque para vê-los no feed
+de Tippen, um sie im Feed zu sehen
+it Tocca per vederle nel feed
+nl Tik om ze in de feed te zien
+pl Dotknij, aby zobaczyć je w kanale
+ru Нажмите, чтобы увидеть их в ленте
+uk Торкніться, щоб побачити їх у стрічці
+tr Akışta görmek için dokunun
+ar المس لرؤيتها في الموجز
+hi फ़ीड में देखने के लिए टैप करें
+bn ফিডে দেখতে ট্যাপ করুন
+ur فیڈ میں دیکھنے کے لیے ٹیپ کریں
+zh 点按即可在资讯流中查看
+ja タップしてフィードで見る
+ko 탭하여 피드에서 보기
+id Ketuk untuk melihatnya di feed
+vi Chạm để xem trong bảng tin
+
+@ Nouvelles avancées
+en New breakthroughs
+es Nuevos avances
+pt Novos avanços
+de Neue Durchbrüche
+it Nuove scoperte
+nl Nieuwe doorbraken
+pl Nowe odkrycia
+ru Новые открытия
+uk Нові відкриття
+tr Yeni gelişmeler
+ar إنجازات جديدة
+hi नई उपलब्धियाँ
+bn নতুন অগ্রগতি
+ur نئی پیش رفت
+zh 新进展
+ja 新しい発見
+ko 새로운 소식
+id Kemajuan baru
+vi Tiến bộ mới
+
+@ Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.
+en On some phones (Xiaomi, Huawei…), also allow Novum to autostart to receive notifications.
+es En algunos teléfonos (Xiaomi, Huawei…), permite también el inicio automático de Novum para recibir notificaciones.
+pt Em alguns telemóveis (Xiaomi, Huawei…), permita também o arranque automático do Novum para receber notificações.
+de Auf manchen Telefonen (Xiaomi, Huawei…) müssen Sie auch den Autostart von Novum erlauben, um Benachrichtigungen zu erhalten.
+it Su alcuni telefoni (Xiaomi, Huawei…), consenti anche l'avvio automatico di Novum per ricevere le notifiche.
+nl Op sommige telefoons (Xiaomi, Huawei…) moet je ook automatisch starten van Novum toestaan om meldingen te krijgen.
+pl Na niektórych telefonach (Xiaomi, Huawei…) zezwól też na autostart Novum, aby otrzymywać powiadomienia.
+ru На некоторых телефонах (Xiaomi, Huawei…) разрешите также автозапуск Novum, чтобы получать уведомления.
+uk На деяких телефонах (Xiaomi, Huawei…) дозвольте також автозапуск Novum, щоб отримувати сповіщення.
+tr Bazı telefonlarda (Xiaomi, Huawei…) bildirim almak için Novum'un otomatik başlatılmasına da izin verin.
+ar على بعض الهواتف (Xiaomi وHuawei…) اسمح أيضًا بالتشغيل التلقائي لـ Novum لتلقي الإشعارات.
+hi कुछ फ़ोन (Xiaomi, Huawei…) पर सूचनाएँ पाने के लिए Novum के ऑटो-स्टार्ट की अनुमति भी दें।
+bn কিছু ফোনে (Xiaomi, Huawei…) বিজ্ঞপ্তি পেতে Novum-এর অটো-স্টার্টও চালু করুন।
+ur کچھ فونز (Xiaomi، Huawei…) پر اطلاعات کے لیے Novum کے خودکار آغاز کی اجازت بھی دیں۔
+zh 在部分手机（小米、华为等）上，还需允许 Novum 自启动才能收到通知。
+ja 一部の機種（Xiaomi、Huawei など）では、通知を受け取るために Novum の自動起動も許可してください。
+ko 일부 휴대폰(Xiaomi, Huawei 등)에서는 알림을 받으려면 Novum 자동 시작도 허용해야 합니다.
+id Di beberapa ponsel (Xiaomi, Huawei…), izinkan juga Novum untuk mulai otomatis agar menerima notifikasi.
+vi Trên một số điện thoại (Xiaomi, Huawei…), hãy cho phép Novum tự khởi động để nhận thông báo.

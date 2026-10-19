@@ -11,9 +11,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'coquille.dart';
+import 'detail.dart';
 import 'donnees.dart';
 import 'etat.dart';
 import 'langues.dart';
+import 'navigation.dart';
+import 'notifications.dart';
 import 'premier_lancement.dart';
 import 'reglages.dart';
 import 'widgets.dart';
@@ -50,6 +53,32 @@ class _AppNovumState extends State<AppNovum> {
     await etat.charger(); // mémoire du téléphone : domaines, favoris, thème, langue
     await initializeDateFormatting(); // dates dans toutes les langues
     await initialiserSupabase().timeout(const Duration(seconds: 15));
+    // Notifications : jamais bloquant (Firebase absent, pas de réseau…).
+    demandeOuverture.addListener(_ouvrirDepuisNotification);
+    unawaited(initialiserNotifications().then((_) => synchroniserSujets(etat.sujetsNotif)));
+  }
+
+  /// Une notification a été touchée : ouvre l'avancée, ou le fil « Aujourd'hui ».
+  Future<void> _ouvrirDepuisNotification() async {
+    final contenu = demandeOuverture.value;
+    if (contenu == null) return;
+    // Attendre que l'app soit prête (premier écran affiché).
+    for (var i = 0; i < 50 && navigateur.currentState == null; i++) {
+      await Future<void>.delayed(const Duration(milliseconds: 100));
+    }
+    final nav = navigateur.currentState;
+    if (nav == null || !etat.premierLancementFait) return;
+    nav.popUntil((r) => r.isFirst);
+    if (contenu == payloadFil) {
+      demandeFilAujourdhui.value++;
+      return;
+    }
+    try {
+      final a = await chargerAvancee(contenu);
+      if (a != null) nav.push(MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)));
+    } catch (_) {
+      demandeFilAujourdhui.value++; // pas de réseau : au moins le fil
+    }
   }
 
   ThemeData _theme(Palette p, Brightness luminosite) => ThemeData(
@@ -68,6 +97,7 @@ class _AppNovumState extends State<AppNovum> {
     return ListenableBuilder(
       listenable: etat,
       builder: (context, _) => MaterialApp(
+        navigatorKey: navigateur,
         title: 'Novum',
         debugShowCheckedModeBanner: false,
         theme: _theme(paletteClaire, Brightness.light),

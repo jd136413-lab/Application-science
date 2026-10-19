@@ -47,6 +47,8 @@ from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 
 import feedparser
 import requests
+
+import notifications
 from anthropic import Anthropic
 
 from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
@@ -176,13 +178,21 @@ class Supabase:
         return sujets
 
     def inserer(self, ligne: dict) -> str:
-        """Renvoie 'ok', 'doublon' ou lève une erreur."""
-        h = dict(self.headers, Prefer="return=minimal")
-        r = requests.post(self.base, headers=h, json=ligne, timeout=30)
+        """Renvoie 'ok', 'doublon' ou lève une erreur. En cas de succès, ajoute à
+        `ligne` son identifiant et sa famille (calculée par la base), utiles
+        pour les notifications."""
+        h = dict(self.headers, Prefer="return=representation")
+        r = requests.post(self.base, headers=h, json=ligne, timeout=30,
+                          params={"select": "id,family"})
         if r.status_code == 409:
             return "doublon"
         if r.status_code >= 300:
             raise RuntimeError(f"Supabase {r.status_code} : {r.text[:200]}")
+        try:
+            cree = r.json()[0]
+            ligne["id"], ligne["family"] = cree.get("id"), cree.get("family")
+        except Exception:
+            pass
         return "ok"
 
 
@@ -567,6 +577,9 @@ def main() -> int:
         log(f"Sources injoignables : {', '.join(pannes)}")
     log("=" * 60)
 
+    # --- Notifications sur les téléphones (si Firebase est configuré) ---
+    notif_ok, notif_ko = notifications.envoyer(ajoutes, log)
+
     # --- Résumé lisible dans la page GitHub de l'exécution ---
     fichier = os.environ.get("GITHUB_STEP_SUMMARY")
     if fichier:
@@ -580,7 +593,10 @@ def main() -> int:
                     f"{appels} | {cout:.4f} $ |\n\n"
                     f"Modèle : `{modele['id']}` · Mémoire : {nb_base} articles déjà publiés et "
                     f"{nb_ecartes} liens déjà écartés ont été sautés sans appeler Claude"
-                    f"{'' if db.memoire_ok else ' ⚠ (table seen_urls introuvable)'}.\n\n")
+                    f"{'' if db.memoire_ok else ' ⚠ (table seen_urls introuvable)'}.\n\n"
+                    f"Notifications : {notif_ok} envoyée(s)"
+                    f"{f', {notif_ko} échec(s)' if notif_ko else ''}"
+                    f"{'' if os.environ.get('FIREBASE_SERVICE_ACCOUNT') else ' (Firebase pas encore configuré)'}.\n\n")
             for feed in ("science", "tech"):
                 fiches = [a for a in ajoutes if a["feed"] == feed]
                 if fiches:

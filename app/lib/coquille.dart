@@ -7,6 +7,7 @@ import 'accueil.dart';
 import 'ecran_reglages.dart';
 import 'favoris.dart';
 import 'langues.dart';
+import 'navigation.dart';
 import 'reglages.dart';
 import 'widgets.dart';
 
@@ -20,6 +21,20 @@ class Coquille extends StatefulWidget {
 class _CoquilleState extends State<Coquille> {
   // Gardé en mémoire (static) pour rester sur le même onglet quand on change de langue.
   static int _onglet = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    demandeFilAujourdhui.addListener(_versActualites);
+  }
+
+  @override
+  void dispose() {
+    demandeFilAujourdhui.removeListener(_versActualites);
+    super.dispose();
+  }
+
+  void _versActualites() => setState(() => _onglet = 0);
 
   @override
   Widget build(BuildContext context) {

@@ -116,3 +116,11 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - 19/10 — **Nouvelle icône : piste A** (« No » en grand, encres rose et bleue, « 102 » au-dessus, sans cadre), choisie parmi 6. Écran de démarrage inchangé. Poussée sans compilation ([skip ci]) : elle sera dans le prochain APK, avec les modifications suivantes.
 - 19/10 — **Phase 8 validée sur le POCO** (« tout marche très bien ») : clé fixe, icône, démarrage, R8 réactivé sans plantage.
 - Horaire automatique de l'agent : pas encore activé (décision de Maxime).
+
+## En-tête repliable et notifications (19/10/2026)
+- Maquettes validées (écrans 16 à 18 + Réglages) : logo qui disparaît en descendant, Réglages → Notifications, exemple de notifications reçues.
+- Fil : le logo glisse et disparaît dès qu'on fait défiler la liste ; les 3 menus (Sciences/Technologies, périodes, Filtres + tri) restent en haut ; le logo revient tout en haut de la liste.
+- Réglages → Notifications : interrupteur général (demande l'autorisation d'Android), fil (Sciences / Technologies / Les deux), importance minimale (Toutes → Rupture seulement), « Au plus, à chaque arrivée » (1, 3, 5, Toutes), familles à cocher avec « Tout » par fil, résumé en clair. Réglages par défaut : les deux fils, Majeur et plus, 3 au plus, toutes les familles. Textes traduits en 20 langues.
+- Fonctionnement : Firebase Cloud Messaging (gratuit). Le téléphone s'abonne à un « sujet » par famille et par niveau accepté (ex. `n_space_4`). L'agent envoie chaque nouvelle avancée sur son sujet, de la plus importante à la moins importante. Le téléphone affiche lui-même la notification, applique la limite et regroupe les suivantes en « + N autres avancées ». Toucher une avancée ouvre son détail ; toucher le regroupement ouvre « Aujourd'hui ».
+- Secrets à créer (guidage pas à pas) : `GOOGLE_SERVICES_JSON` (app) et `FIREBASE_SERVICE_ACCOUNT` (agent). Sans eux, l'app compile sans notifications et l'agent n'envoie rien. Nom du paquet Android à déclarer dans Firebase : `fr.novum.novum`.
+- Nouvelle icône A incluse dans cette compilation.

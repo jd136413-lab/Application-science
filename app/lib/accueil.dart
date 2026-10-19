@@ -1,5 +1,7 @@
 // Écran Actualités : logo, Sciences / Technologies, onglets de période,
 // filtres, tri, et le fil des avancées (en-têtes de mois dans « Cette année »).
+// Le logo disparaît quand on fait défiler la liste vers le bas et revient
+// quand on remonte tout en haut ; les 3 menus restent toujours visibles.
 
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,7 @@ import 'donnees.dart';
 import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart';
+import 'navigation.dart';
 import 'reglages.dart';
 import 'widgets.dart';
 
@@ -23,7 +26,40 @@ class _EcranAccueilState extends State<EcranAccueil> {
   String _fil = 'science';
   int _periode = periodeParDefaut;
   bool _triImportance = false;
+  bool _logoVisible = true;
   final Map<String, Future<List<Avancee>>> _chargements = {};
+
+  @override
+  void initState() {
+    super.initState();
+    demandeFilAujourdhui.addListener(_allerAujourdhui);
+  }
+
+  @override
+  void dispose() {
+    demandeFilAujourdhui.removeListener(_allerAujourdhui);
+    super.dispose();
+  }
+
+  /// Notification « + N autres avancées » touchée : période « Aujourd'hui », à jour.
+  void _allerAujourdhui() {
+    setState(() {
+      _periode = 0;
+      _logoVisible = true;
+    });
+    _rafraichir();
+  }
+
+  /// Suit la position de la liste : logo visible seulement tout en haut.
+  bool _suivreDefilement(Notification n) {
+    ScrollMetrics? m;
+    if (n is ScrollNotification && n.depth == 0) m = n.metrics;
+    if (n is ScrollMetricsNotification && n.depth == 0) m = n.metrics;
+    if (m == null || m.axis != Axis.vertical) return false;
+    final enHaut = m.pixels <= 0;
+    if (enHaut != _logoVisible) setState(() => _logoVisible = enHaut);
+    return false;
+  }
 
   Future<List<Avancee>> _charger({bool forcer = false}) {
     if (forcer || !_chargements.containsKey(_fil)) {
@@ -70,11 +106,27 @@ class _EcranAccueilState extends State<EcranAccueil> {
     return ListenableBuilder(
       listenable: etat,
       builder: (context, _) => Column(children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 22, 20, 10),
+        AnimatedPadding(
+          duration: const Duration(milliseconds: 220),
+          padding: EdgeInsets.fromLTRB(20, _logoVisible ? 22 : 12, 20, 10),
           child: Column(children: [
-            const LogoNovum(),
-            const SizedBox(height: 14),
+            // Logo repliable : glisse et disparaît pendant le défilement.
+            ClipRect(
+              child: AnimatedAlign(
+                duration: const Duration(milliseconds: 220),
+                curve: Curves.easeOut,
+                alignment: Alignment.bottomCenter,
+                heightFactor: _logoVisible ? 1 : 0,
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 180),
+                  opacity: _logoVisible ? 1 : 0,
+                  child: const Padding(
+                    padding: EdgeInsets.only(bottom: 14),
+                    child: LogoNovum(),
+                  ),
+                ),
+              ),
+            ),
             _SelecteurFil(fil: _fil, onChange: (f) => setState(() => _fil = f)),
           ]),
         ),
@@ -107,7 +159,9 @@ class _EcranAccueilState extends State<EcranAccueil> {
           ]),
         ),
         Expanded(
-          child: FutureBuilder<List<Avancee>>(
+          child: NotificationListener<Notification>(
+            onNotification: _suivreDefilement,
+            child: FutureBuilder<List<Avancee>>(
             future: _charger(),
             builder: (context, snap) {
               if (snap.connectionState != ConnectionState.done) {
@@ -181,6 +235,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
                 ),
               );
             },
+          ),
           ),
         ),
       ]),

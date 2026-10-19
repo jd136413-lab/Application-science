@@ -48,4 +48,5 @@ jobs:
           NOMBRE_ARTICLES: ${{ inputs.nombre_articles }}
           MODELE: ${{ inputs.modele }}
           FIL: ${{ inputs.fil }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python main.py

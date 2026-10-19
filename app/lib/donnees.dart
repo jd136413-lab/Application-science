@@ -30,3 +30,9 @@ Future<List<Avancee>> chargerAvancees(String fil) async {
       .map((l) => Avancee.depuisJson(Map<String, dynamic>.from(l as Map)))
       .toList();
 }
+
+/// Une seule avancée, par son identifiant (ouverte depuis une notification).
+Future<Avancee?> chargerAvancee(String id) async {
+  final ligne = await Supabase.instance.client.from('advances').select().eq('id', id).maybeSingle();
+  return ligne == null ? null : Avancee.depuisJson(Map<String, dynamic>.from(ligne));
+}

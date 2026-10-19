@@ -41,6 +41,8 @@ jobs:
           cache: true
 
       - name: Compléter le projet (dossiers Android et Web)
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: |
           flutter --version
           flutter create --org fr.novum --project-name novum --platforms android,web .
@@ -75,6 +77,12 @@ jobs:
           -dontwarn io.flutter.embedding.**
           -dontwarn com.google.android.play.core.**
           -dontwarn com.google.mlkit.**
+          -keep class com.dexterous.** { *; }
+          -keep class com.google.firebase.** { *; }
+          -keep class io.flutter.plugins.firebase.** { *; }
+          -keep class com.google.gson.** { *; }
+          -keep class * extends com.google.gson.reflect.TypeToken
+          -dontwarn com.google.firebase.**
           PRO
           # R8 en mode « compatible » (moins agressif que le mode complet).
           grep -q "android.enableR8.fullMode" android/gradle.properties || echo "android.enableR8.fullMode=false" >> android/gradle.properties
@@ -119,6 +127,8 @@ jobs:
           PY2
           echo "::notice title=Nettoyage R8::$(grep -c -E 'isMinifyEnabled = true|minifyEnabled true' $GRADLE) activation(s) dans $GRADLE"
           echo "::notice title=Signature::$(grep -c 'getByName("novum")' $GRADLE) branchement(s) de la clé fixe dans $GRADLE"
+          # Notifications : autorisation, petite icône, Firebase (si configuré)
+          python3 ../.github/scripts/notifications_android.py
           sed -i 's#<title>novum</title>#<title>Novum</title>#' web/index.html || true
           # Diagnostic lisible dans le résumé de l'exécution
           echo "::notice title=Manifeste Android::$(grep -c 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml) permission(s) INTERNET, Impeller=$(grep -o 'EnableImpeller" android:value="[a-z]*' android/app/src/main/AndroidManifest.xml | tail -c 6)"
@@ -160,6 +170,7 @@ jobs:
         run: >
           set -o pipefail;
           flutter build apk --release --target-platform android-arm64
+          --dart-define=NOTIFICATIONS=$( [ "$(cat notifications.txt)" = oui ] && echo true || echo false )
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           2>&1 | tee -a ../compilation.log
