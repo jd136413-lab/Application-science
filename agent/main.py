@@ -26,6 +26,14 @@ AGE_MAX_JOURS = 30
 # pour détecter les doublons.
 JOURS_ANTI_DOUBLONS = 21
 
+# Présélection : avant de résumer, Claude lit en un seul appel (très bon marché)
+# les titres de tous les candidats récents et les classe du plus prometteur
+# (avancée majeure probable) au moins prometteur. L'agent traite ensuite les
+# articles dans cet ordre : plus de chances de trouver les avancées importantes.
+PRESELECTION = True
+PRESELECTION_JOURS = 7       # âge max des articles présélectionnés (jours)
+PRESELECTION_MAX = 250       # nombre max de titres envoyés à Claude
+
 # Modèles Claude disponibles et tarifs en dollars par million de tokens
 # (entrée, sortie). Tarifs vérifiés en octobre 2026.
 MODELES = {
@@ -390,6 +398,67 @@ SCHEMA_REPONSE = {
 SYSTEME = [{"type": "text", "text": SYSTEM_PROMPT, "cache_control": {"type": "ephemeral"}}]
 
 
+SCHEMA_PRESELECTION = {
+    "type": "object",
+    "properties": {"ordre": {"type": "array", "items": {"type": "integer"}}},
+    "required": ["ordre"],
+    "additionalProperties": False,
+}
+
+CONSIGNE_PRESELECTION = """Tu tries des titres d'articles pour une application qui présente les avancées scientifiques et technologiques les plus importantes du moment.
+
+On te donne une liste numérotée (titre, source, début du texte). Renvoie dans "ordre" les numéros des articles qui ont une chance réelle d'être une VRAIE avancée, du plus important au moins important, en mettant en tête ceux qui pourraient valoir 4 ou 5 sur 5 :
+- première mondiale, découverte majeure, résultat qui change la compréhension d'un domaine ;
+- traitement ou vaccin validé chez l'humain, essai clinique de phase avancée réussi ;
+- produit technologique majeur réellement annoncé ou sorti (nouvelle génération de puce, de téléphone, de modèle d'IA, de lanceur, de véhicule…) avec des nouveautés mesurables ;
+- record mesurable, mission spatiale réussie, percée en énergie ou en informatique quantique.
+Mets plus bas les études incrémentales, très spécialisées ou seulement chez l'animal/en simulation. N'inclus PAS : actualités sans avancée (politique, finances, procès, nominations, rumeurs, promos, tests de produits, tutoriels, opinions, rubriques récurrentes). Sois exigeant face aux titres racoleurs. Garde au maximum {k} numéros."""
+
+
+def preselectionner(client, modele_id, candidats: list[dict], k: int) -> tuple[list[dict], dict]:
+    """Classe les candidats récents par importance probable (un seul appel bon marché).
+    En cas de souci, renvoie la liste d'origine : la présélection n'est jamais bloquante."""
+    conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
+    limite = MAINTENANT - timedelta(days=PRESELECTION_JOURS)
+    # (les sources aux photos libres, qui publient peu, gardent leur propre limite d'âge)
+    pool = [a for a in candidats
+            if a["published_at"] >= limite or a.get("photo")][:PRESELECTION_MAX]
+    if len(pool) <= 3:
+        return candidats, conso
+    lignes = []
+    for i, a in enumerate(pool):
+        debut = " ".join(a["text"].split()[:30])
+        lignes.append(f"{i}. {a['title'][:160]} [{a['source_name']}] — {debut}")
+    try:
+        rep = client.messages.create(
+            model=modele_id,
+            max_tokens=1500,
+            system=CONSIGNE_PRESELECTION.replace("{k}", str(k)),
+            messages=[{"role": "user", "content": "\n".join(lignes)}],
+            output_config={"format": {"type": "json_schema", "schema": SCHEMA_PRESELECTION}},
+        )
+        u = rep.usage
+        conso["in"], conso["out"] = u.input_tokens or 0, u.output_tokens or 0
+        texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
+        ordre = (extraire_json(texte) or {}).get("ordre", [])
+    except Exception as ex:
+        log(f"⚠ Présélection impossible ({ex.__class__.__name__}) : ordre habituel.")
+        return candidats, conso
+    choisis, vus = [], set()
+    for i in ordre:
+        if isinstance(i, int) and 0 <= i < len(pool) and i not in vus:
+            vus.add(i)
+            choisis.append(pool[i])
+    if not choisis:
+        return candidats, conso
+    log(f"Présélection : {len(pool)} titres récents lus, {len(choisis)} retenus, "
+        f"traités du plus prometteur au moins prometteur :")
+    for a in choisis[:k]:
+        log(f"  ↑ {a['title'][:90]} [{a['source_name']}]")
+    log("")
+    return choisis, conso
+
+
 def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, dict, str]:
     rep = client.messages.create(
         model=modele_id,
@@ -510,6 +579,10 @@ def main() -> int:
     ignores, doublons, erreurs = [], [], []
     conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
     appels = 0
+    if PRESELECTION:
+        candidats, c = preselectionner(client, modele["id"], candidats, max(3 * nb_voulu, 15))
+        for k in conso:
+            conso[k] += c[k]
     decisions = {"science": 0, "tech": 0, "both": 0}
 
     for art in candidats:

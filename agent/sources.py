@@ -46,6 +46,20 @@ SOURCES = [
     {"feed": "science", "name": "Science",         "url": "https://www.science.org/rss/news_current.xml"},
     {"feed": "science", "name": "CNRS Le journal", "url": "https://lejournal.cnrs.fr/rss"},
     {"feed": "science", "name": "Inserm",          "url": "https://presse.inserm.fr/feed/"},
+    # Ajouts du 19/10/2026 (robots.txt et flux vérifiés : agent/verif_sources.md)
+    {"feed": "science", "name": "Quanta Magazine", "url": "https://www.quantamagazine.org/feed/"},
+    {"feed": "science", "name": "Live Science",    "url": "https://www.livescience.com/feeds/all"},
+    {"feed": "science", "name": "Space.com",       "url": "https://www.space.com/feeds/all"},
+    {"feed": "science", "name": "Medical Xpress",  "url": "https://medicalxpress.com/rss-feed/"},
+    {"feed": "science", "name": "MIT News",        "url": "https://news.mit.edu/rss/feed"},
+    {"feed": "science", "name": "NOAA",            "url": "https://www.noaa.gov/rss.xml"},
+    {"feed": "science", "name": "Nature Medicine", "url": "https://www.nature.com/nm.rss"},
+    {"feed": "science", "name": "Futura Sciences", "url": "https://www.futura-sciences.com/rss/actualites.xml"},
+    {"feed": "science", "name": "Sciences et Avenir", "url": "https://www.sciencesetavenir.fr/rss.xml"},
+    {"feed": "science", "name": "Le Monde Sciences", "url": "https://www.lemonde.fr/sciences/rss_full.xml"},
+    # Écartés le 19/10/2026 : robots.txt refuse (New Scientist, NEJM, The Lancet,
+    # Science Advances, The Register) ; flux introuvable (CERN, NIH, Max Planck,
+    # CEA, INRAE, Institut Pasteur, Polytechnique Insights).
     # EurekAlert! bloque les robots (injoignable au 1er essai du 18/10/2026)
     # {"feed": "science", "name": "EurekAlert!", "url": "https://www.eurekalert.org/rss.xml"},
 
@@ -58,6 +72,26 @@ SOURCES = [
     {"feed": "tech", "name": "GSMArena",         "url": "https://www.gsmarena.com/rss-news-reviews.php3"},
     {"feed": "tech", "name": "Presse-citron",    "url": "https://www.presse-citron.net/feed/"},
     {"feed": "tech", "name": "Journal du Geek",  "url": "https://www.journaldugeek.com/feed/"},
+    # Ajouts du 19/10/2026 (robots.txt et flux vérifiés : agent/verif_sources.md)
+    {"feed": "tech", "name": "MIT Technology Review", "url": "https://www.technologyreview.com/feed/"},
+    {"feed": "tech", "name": "Wired",            "url": "https://www.wired.com/feed/rss"},
+    {"feed": "tech", "name": "Tech Xplore",      "url": "https://techxplore.com/rss-feed/"},
+    {"feed": "tech", "name": "New Atlas",        "url": "https://newatlas.com/index.rss"},
+    {"feed": "tech", "name": "9to5Mac",          "url": "https://9to5mac.com/feed/"},
+    {"feed": "tech", "name": "9to5Google",       "url": "https://9to5google.com/feed/"},
+    {"feed": "tech", "name": "SpaceNews",        "url": "https://spacenews.com/feed/"},
+    {"feed": "tech", "name": "InsideEVs",        "url": "https://insideevs.com/rss/news/all/"},
+    {"feed": "tech", "name": "Les Numériques",   "url": "https://www.lesnumeriques.com/rss.xml"},
+    {"feed": "tech", "name": "Clubic",           "url": "https://www.clubic.com/feed/news.rss"},
+    {"feed": "tech", "name": "Siècle Digital",   "url": "https://siecledigital.fr/feed/"},
+    # Sources officielles : annonces de produits à la source
+    {"feed": "tech", "name": "Apple Newsroom",   "url": "https://www.apple.com/newsroom/rss-feed.rss"},
+    {"feed": "tech", "name": "NVIDIA Newsroom",  "url": "https://nvidianews.nvidia.com/releases.xml"},
+    {"feed": "tech", "name": "Google Blog",      "url": "https://blog.google/rss/"},
+    {"feed": "tech", "name": "OpenAI News",      "url": "https://openai.com/news/rss.xml"},
+    {"feed": "tech", "name": "Microsoft News",   "url": "https://news.microsoft.com/source/feed/"},
+    # Écartés le 19/10/2026 : VideoCardz (accès refusé), Samsung Newsroom
+    # (robots.txt illisible), Korben (surtout des outils et tutoriels).
 ]
 
 # Titres écartés d'office, SANS appeler Claude (donc gratuitement) :
@@ -76,4 +110,5 @@ TITRES_EXCLUS = [
     "Deals:", "Deal:", "deal of the day", "all-time low", "% off", "Black Friday",
     "Prime Day", "Weekly poll", "bon plan", "code promo", "Test de ", "Test du ",
     "Test :", "review:", "How to ", "Tuto",
+    "The Download:", "Actualité : Bon plan", "Sponsored", "Partner content",
 ]

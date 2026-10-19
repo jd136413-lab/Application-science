@@ -141,3 +141,9 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 
 ## Feuille de route (19/10/2026)
 - Brainstorming avec Maxime : idées retenues, rangées par faisabilité et par catégorie dans `FEUILLE_DE_ROUTE.md` (aussi dans le projet Claude : `claude/feuille-de-route.md`). Priorités après la publication : plus de sources, plus de photos libres, statistiques sans pister, partage en image.
+
+## Plus de sources et plus d'avancées importantes (19/10/2026)
+- Nom de développeur choisi par Maxime : **Jupiter Dynamics**.
+- Nouvel outil gratuit « Tester des sources » (workflow) : vérifie robots.txt, la réponse et la fraîcheur de flux candidats ; résultat dans `agent/verif_sources.md`.
+- **+26 sources** (47 au total) : Sciences → Quanta Magazine, Live Science, Space.com, Medical Xpress, MIT News, NOAA, Nature Medicine, Futura Sciences, Sciences et Avenir, Le Monde Sciences ; Technologies → MIT Technology Review, Wired, Tech Xplore, New Atlas, 9to5Mac, 9to5Google, SpaceNews, InsideEVs, Les Numériques, Clubic, Siècle Digital, et les sources officielles Apple Newsroom, NVIDIA Newsroom, Google Blog, OpenAI News, Microsoft News. Écartés : robots.txt refusé (New Scientist, NEJM, The Lancet, Science Advances, The Register), flux introuvables (CERN, NIH, Max Planck, CEA, INRAE, Pasteur…).
+- **Présélection** : avant de résumer, l'agent envoie en un seul appel les titres récents (7 jours, 250 max) à Claude, qui les classe du plus prometteur (avancée majeure probable : première mondiale, essai humain réussi, grand lancement de produit…) au moins prometteur, en écartant ce qui n'est pas une avancée. Les articles sont ensuite traités dans cet ordre. Le barème d'importance reste aussi exigeant : on cherche mieux, on ne note pas plus généreusement. Coût estimé : environ 0,002 $ de plus par passage, compensé par moins d'appels gaspillés sur des articles écartés.
