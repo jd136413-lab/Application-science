@@ -683,6 +683,17 @@ def main() -> int:
     # --- Notifications sur les téléphones (si Firebase est configuré) ---
     notif_ok, notif_ko = notifications.envoyer(ajoutes, log)
 
+    # --- Résumé en annotations GitHub (lisibles par Claude sans ouvrir les journaux) ---
+    if os.environ.get("GITHUB_ACTIONS"):
+        notes = [a["importance"] for a in ajoutes]
+        print(f"::notice title=Résultat::{nb_articles} article(s) retenu(s), {len(ajoutes)} fiche(s), "
+              f"{len(ignores)} ignoré(s), {len(doublons)} doublon(s), {len(erreurs)} erreur(s), "
+              f"coût {cout:.4f} $, notifications {notif_ok} envoyée(s)", flush=True)
+        print(f"::notice title=Notes::{', '.join('★' * n for n in sorted(notes, reverse=True)) or 'aucune'} ; "
+              f"avec image : {sum(1 for a in ajoutes if a.get('image_url'))}", flush=True)
+        for a in ajoutes[:8]:
+            print(f"::notice title={a['importance']}★ {FIL_NOM[a['feed']]}::{a['title']} ({a['source_name']})", flush=True)
+
     # --- Résumé lisible dans la page GitHub de l'exécution ---
     fichier = os.environ.get("GITHUB_STEP_SUMMARY")
     if fichier:
