@@ -10,7 +10,7 @@ name: Agent de collecte
 
 on:
   # Horaire automatique. Les heures sont en temps universel (UTC) :
-  #   17 6,16 = 8 h 17 et 18 h 17 à Paris en été, 7 h 17 et 17 h 17 en hiver.
+  #   20 6,16 = 8 h 20 et 18 h 20 à Paris en été, 7 h 20 et 17 h 20 en hiver.
   # GitHub peut avoir quelques minutes (parfois plus) de retard.
   schedule:
     - cron: "17 6,16 * * *"
