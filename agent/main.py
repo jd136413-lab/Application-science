@@ -185,6 +185,20 @@ class Supabase:
             sujets.append(f"{x['title']} — {debut}…")
         return sujets
 
+    def corriger_credits(self) -> int:
+        """Corrige les crédits d'image déjà enregistrés avec une parenthèse orpheline."""
+        r = requests.get(self.base, headers=self.headers, timeout=30, params={
+            "select": "id,image_credit", "image_credit": "like.*)", "limit": "500"})
+        r.raise_for_status()
+        n = 0
+        for x in r.json():
+            propre = nettoyer_credit(x["image_credit"])
+            if propre != x["image_credit"]:
+                requests.patch(self.base, headers=dict(self.headers, Prefer="return=minimal"),
+                               params={"id": f"eq.{x['id']}"}, json={"image_credit": propre}, timeout=30)
+                n += 1
+        return n
+
     def inserer(self, ligne: dict) -> str:
         """Renvoie 'ok', 'doublon' ou lève une erreur. En cas de succès, ajoute à
         `ligne` son identifiant et sa famille (calculée par la base), utiles
@@ -297,6 +311,16 @@ AGENCES = re.compile(r"Getty|Shutterstock|iStock|AP Photo|Associated Press|Reute
                      re.I)
 
 
+def nettoyer_credit(c: str) -> str:
+    """Retire les parenthèses orphelines lues sur la page (ex. « ESO/GRAVITY collaboration) »)."""
+    c = re.sub(r"\s+", " ", c or "").strip(" ,;")
+    while c.endswith(")") and c.count(")") > c.count("("):
+        c = c[:-1].rstrip(" ,;")
+    while c.startswith("(") and c.count("(") > c.count(")"):
+        c = c[1:].lstrip()
+    return c
+
+
 def completer_image(art: dict) -> None:
     """Pour un article retenu d'une source aux images libres : ouvre la page
     de l'article pour trouver l'image principale (si le flux n'en donne pas),
@@ -335,7 +359,7 @@ def completer_image(art: dict) -> None:
     elif art.get("credit_page") and page:
         m = re.search(r"Credit:\s*(?:<[^>]+>\s*)*([^<]{2,150})", page)
         if m:
-            credit = "Image : " + re.sub(r"\s+", " ", html.unescape(m.group(1))).strip()
+            credit = "Image : " + nettoyer_credit(html.unescape(m.group(1)))
         else:
             credit = "Image : " + credit
     # Contrôle agence photo autour de l'image dans la page, et dans le crédit
@@ -562,6 +586,12 @@ def main() -> int:
     except Exception as ex:
         log(f"❌ Impossible de lire Supabase : {ex}")
         return 1
+    try:
+        n = db.corriger_credits()
+        if n:
+            log(f"Crédits d'image corrigés : {n}")
+    except Exception:
+        pass
     log(f"Base : {nb_base} articles publiés, {nb_ecartes} liens déjà écartés, "
         f"{len(sujets['science'])} + {len(sujets['tech'])} sujets récents.\n")
 
