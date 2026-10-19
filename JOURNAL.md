@@ -138,3 +138,6 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - Règle Google Play (comptes personnels créés après le 13/11/2023) : test fermé avec au moins 12 testeurs inscrits 14 jours d'affilée avant la mise en production.
 - Compilation : version 1.0.0, numéro de version = numéro d'exécution du workflow (toujours croissant). Nouveau choix « Préparer aussi le fichier pour Google Play » dans Run workflow → fichier `.aab` (tous les téléphones) dans Artifacts. Annotation « Version Android » (targetSdk) à chaque compilation.
 - Dossier `store/` : textes de la fiche (FR/EN), icône 512 × 512, bannière 1024 × 500.
+
+## Feuille de route (19/10/2026)
+- Brainstorming avec Maxime : idées retenues, rangées par faisabilité et par catégorie dans `FEUILLE_DE_ROUTE.md` (aussi dans le projet Claude : `claude/feuille-de-route.md`). Priorités après la publication : plus de sources, plus de photos libres, statistiques sans pister, partage en image.
