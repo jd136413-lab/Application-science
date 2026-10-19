@@ -58,37 +58,63 @@ jobs:
               s = re.sub(r"(<application[^>]*>)", r'\1\n        <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false" />', s, count=1)
           open(p, "w", encoding="utf-8").write(s)
           PY
-          # Règles pour le « nettoyeur » de code Android (R8) : ne jamais supprimer
-          # le code des bibliothèques (sinon : NoSuchMethodError au démarrage).
+          # Règles pour le « nettoyeur » de code Android (R8) : il allège l'app mais ne doit
+          # jamais supprimer le code appelé par les bibliothèques (sinon NoSuchMethodError,
+          # ClassNotFoundException kotlin/Result au démarrage, vus le 19/10).
           cat > android/app/proguard-rules.pro <<'PRO'
-          -keep class io.flutter.plugins.** { *; }
-          -keep class io.flutter.plugin.** { *; }
+          -keepattributes Signature,*Annotation*,InnerClasses,EnclosingMethod,Exceptions
+          -keep class io.flutter.** { *; }
           -keep class dev.fluttercommunity.** { *; }
           -keep class com.llfbandit.** { *; }
           -keep class kotlin.** { *; }
+          -keep class kotlin.Metadata { *; }
           -keep class kotlinx.coroutines.** { *; }
+          -keep class androidx.datastore.** { *; }
+          -keep class com.google.mlkit.** { *; }
+          -keep class com.google.android.gms.internal.mlkit_** { *; }
           -dontwarn io.flutter.embedding.**
+          -dontwarn com.google.android.play.core.**
+          -dontwarn com.google.mlkit.**
           PRO
-          # Désactive le « nettoyage » R8 en version de test : il supprimait du code
-          # appelé par les bibliothèques (NoSuchMethodError, ClassNotFoundException).
+          # R8 en mode « compatible » (moins agressif que le mode complet).
+          grep -q "android.enableR8.fullMode" android/gradle.properties || echo "android.enableR8.fullMode=false" >> android/gradle.properties
           GRADLE=$(ls android/app/build.gradle.kts android/app/build.gradle 2>/dev/null | head -1)
-          python3 - "$GRADLE" <<'PY'
+          python3 - "$GRADLE" <<'PY2'
           import sys
           p = sys.argv[1]
           s = open(p, encoding="utf-8").read()
-          if "isMinifyEnabled = false" not in s and "minifyEnabled false" not in s:
-              kts = p.endswith(".kts")
-              lignes = ('            isMinifyEnabled = false\n            isShrinkResources = false\n'
+          kts = p.endswith(".kts")
+          # 1) Nettoyage R8 réactivé, avec les règles ci-dessus
+          if "proguard-rules.pro" not in s:
+              lignes = ('            isMinifyEnabled = true\n            isShrinkResources = true\n'
                         '            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")\n'
                         if kts else
-                        '            minifyEnabled false\n            shrinkResources false\n'
+                        '            minifyEnabled true\n            shrinkResources true\n'
                         "            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n")
               i = s.find("release {", s.find("buildTypes"))
               j = s.find("\n", i)
               s = s[:j + 1] + lignes + s[j + 1:]
-              open(p, "w", encoding="utf-8").write(s)
-          PY
-          echo "::notice title=Nettoyage R8::$(grep -c -E 'isMinifyEnabled = false|minifyEnabled false' $GRADLE) désactivation(s) dans $GRADLE"
+          # 2) Clé de signature fixe, si les secrets GitHub existent (sinon clé de test)
+          if kts and "novum.p12" not in s:
+              bloc = ('    signingConfigs {\n'
+                      '        create("novum") {\n'
+                      '            val fichier = file("novum.p12")\n'
+                      '            if (fichier.exists()) {\n'
+                      '                storeFile = fichier\n'
+                      '                storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")\n'
+                      '                keyAlias = "novum"\n'
+                      '                keyPassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")\n'
+                      '            }\n'
+                      '        }\n'
+                      '    }\n\n')
+              i = s.find("    buildTypes")
+              s = s[:i] + bloc + s[i:]
+              s = s.replace('signingConfig = signingConfigs.getByName("debug")',
+                            'signingConfig = if (file("novum.p12").exists()) signingConfigs.getByName("novum") else signingConfigs.getByName("debug")')
+          open(p, "w", encoding="utf-8").write(s)
+          PY2
+          echo "::notice title=Nettoyage R8::$(grep -c -E 'isMinifyEnabled = true|minifyEnabled true' $GRADLE) activation(s) dans $GRADLE"
+          echo "::notice title=Signature::$(grep -c 'getByName("novum")' $GRADLE) branchement(s) de la clé fixe dans $GRADLE"
           sed -i 's#<title>novum</title>#<title>Novum</title>#' web/index.html || true
           # Diagnostic lisible dans le résumé de l'exécution
           echo "::notice title=Manifeste Android::$(grep -c 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml) permission(s) INTERNET, Impeller=$(grep -o 'EnableImpeller" android:value="[a-z]*' android/app/src/main/AndroidManifest.xml | tail -c 6)"
@@ -96,6 +122,22 @@ jobs:
 
       - name: Installer les bibliothèques
         run: flutter pub get
+
+      - name: Icône et écran de démarrage
+        run: |
+          dart run flutter_launcher_icons
+          dart run flutter_native_splash:create
+
+      - name: Clé de signature Android
+        env:
+          CLE: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$CLE" ]; then
+            echo "$CLE" | base64 -d > android/app/novum.p12
+            echo "::notice title=Signature::Clé fixe Novum utilisée"
+          else
+            echo "::warning title=Signature::Secret ANDROID_KEYSTORE_BASE64 absent : clé de test (désinstaller avant chaque réinstallation)"
+          fi
 
       - name: Compiler la version web
         shell: bash
@@ -109,6 +151,8 @@ jobs:
 
       - name: Compiler l'APK Android
         shell: bash
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: >
           set -o pipefail;
           flutter build apk --release

@@ -105,3 +105,10 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - Dates écrites dans la langue choisie ; sens de lecture de droite à gauche pour l'arabe et l'ourdou.
 - Articles (titre et résumé) : traduits **sur le téléphone** par Google ML Kit, gratuit et hors ligne. La 1re fois, la langue est téléchargée (~30 Mo). Bouton « Voir l'original » sur l'écran de détail. Version web : articles en français.
 - Aucun coût supplémentaire côté API Anthropic : l'agent continue d'écrire en français.
+
+## Phase 8 — Tests, icône, démarrage, signature (19/10/2026)
+- Icône « No 102 » (case du tableau périodique, encres rose et bleue, police Fraunces) : images dans `app/assets/icone/`, posées automatiquement à chaque compilation (flutter_launcher_icons). Icône adaptative Android (fond #F2F1F6) et icône de la version web.
+- Écran de démarrage (flutter_native_splash) : logo « Novum » sur fond clair ou sombre selon le téléphone ; sur Android 12 et plus, la case « No 102 » seule (règle d'Android).
+- Clé de signature fixe : créée par Claude, remise à Maxime dans un fichier à garder (jamais dans le repo, `.gitignore` protège `*.p12`). Deux secrets GitHub : `ANDROID_KEYSTORE_BASE64` et `ANDROID_KEYSTORE_PASSWORD`. Sans ces secrets, la compilation retombe sur la clé de test (avertissement dans Actions).
+- Nettoyage R8 réactivé avec des règles « keep » complètes (Flutter, Kotlin dont `kotlin.Result`, coroutines, DataStore, ML Kit) et R8 en mode compatible. À tester sur le POCO ; si plantage, l'erreur s'affiche à l'écran.
+- Horaire automatique de l'agent : pas encore activé (décision de Maxime).

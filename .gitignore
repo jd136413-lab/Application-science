@@ -1,0 +1,6 @@
+# Ne jamais publier la clé de signature
+*.p12
+*.jks
+*.keystore
+cle-signature*
+key.properties
