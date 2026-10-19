@@ -1,0 +1,27 @@
+# Teste des flux RSS candidats (robots.txt, réponse, nombre d'articles).
+# N'appelle pas Claude : gratuit. Résultat dans agent/verif_sources.md.
+name: Tester des sources
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tester:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install feedparser requests
+      - run: python .github/scripts/tester_sources.py agent/verif_sources.md
+      - name: Enregistrer le résultat
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add agent/verif_sources.md
+          git commit -m "Vérification des sources candidates [skip ci]" && git push || echo "rien à enregistrer"
