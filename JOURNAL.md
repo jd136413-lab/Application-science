@@ -125,3 +125,8 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - Secrets à créer (guidage pas à pas) : `GOOGLE_SERVICES_JSON` (app) et `FIREBASE_SERVICE_ACCOUNT` (agent). Sans eux, l'app compile sans notifications et l'agent n'envoie rien. Nom du paquet Android à déclarer dans Firebase : `fr.novum.novum`.
 - Nouvelle icône A incluse dans cette compilation.
 - 19/10 — **Notifications validées sur le POCO**, y compris app fermée (Firebase configuré, secrets GOOGLE_SERVICES_JSON et FIREBASE_SERVICE_ACCOUNT en place). Logo repliable et icône A validés.
+
+## Horaire automatique de l'agent (19/10/2026)
+- Décision de Maxime : budget de moins de 1 € par mois. Agent lancé automatiquement **2 fois par jour** (8 h 17 et 18 h 17 à Paris en été, 7 h 17 et 17 h 17 en hiver), 5 articles, haiku, sources Sciences + Technologies : environ 0,01 $ par passage, soit environ 0,60 $ par mois. Le lancement manuel reste possible.
+- Pour tout arrêter : Actions → « Agent de collecte » → « ··· » → « Disable workflow » (« Enable workflow » pour reprendre).
+- À savoir : GitHub suspend les horaires automatiques d'un repo public après 60 jours sans aucune modification du repo (il prévient par e-mail ; il suffit de cliquer « Enable workflow »).

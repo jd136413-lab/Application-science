@@ -1,8 +1,19 @@
-# Lance l'agent de collecte À LA MAIN uniquement (aucun horaire automatique).
-# Onglet « Actions » → « Agent de collecte » → bouton « Run workflow ».
+# Agent de collecte.
+#  - AUTOMATIQUE : 2 fois par jour (voir « schedule » ci-dessous), 5 articles,
+#    modèle haiku, sources Sciences + Technologies (environ 0,01 $ par passage).
+#  - À LA MAIN : onglet « Actions » → « Agent de collecte » → « Run workflow ».
+#
+# POUR TOUT ARRÊTER (automatique ET manuel) sans toucher au code :
+#   Actions → « Agent de collecte » (colonne de gauche) → bouton « ··· » en haut
+#   à droite → « Disable workflow ». Pour reprendre : même endroit → « Enable workflow ».
 name: Agent de collecte
 
 on:
+  # Horaire automatique. Les heures sont en temps universel (UTC) :
+  #   17 6,16 = 8 h 17 et 18 h 17 à Paris en été, 7 h 17 et 17 h 17 en hiver.
+  # GitHub peut avoir quelques minutes (parfois plus) de retard.
+  schedule:
+    - cron: "17 6,16 * * *"
   workflow_dispatch:
     inputs:
       fil:
@@ -45,8 +56,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-          NOMBRE_ARTICLES: ${{ inputs.nombre_articles }}
-          MODELE: ${{ inputs.modele }}
-          FIL: ${{ inputs.fil }}
+          NOMBRE_ARTICLES: ${{ inputs.nombre_articles || 5 }}
+          MODELE: ${{ inputs.modele || 'haiku' }}
+          FIL: ${{ inputs.fil || 'les deux' }}
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python main.py
