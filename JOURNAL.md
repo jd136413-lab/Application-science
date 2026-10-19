@@ -114,4 +114,5 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - APK de test allégé : uniquement pour les téléphones 64 bits (arm64, comme le POCO) et bibliothèques natives compressées. La version des stores (phase 9) couvrira tous les téléphones.
 - 19/10 — Icône trop petite sur le bureau du POCO (marge automatique de 16 % ajoutée par l'outil). Marge supprimée et case agrandie au maximum sûr (coins juste dans le cercle visible, valable pour toutes les formes d'icônes : rond, carré arrondi, goutte…). Ajout d'une icône monochrome pour les icônes « thématiques » d'Android 13+.
 - 19/10 — **Nouvelle icône : piste A** (« No » en grand, encres rose et bleue, « 102 » au-dessus, sans cadre), choisie parmi 6. Écran de démarrage inchangé. Poussée sans compilation ([skip ci]) : elle sera dans le prochain APK, avec les modifications suivantes.
+- 19/10 — **Phase 8 validée sur le POCO** (« tout marche très bien ») : clé fixe, icône, démarrage, R8 réactivé sans plantage.
 - Horaire automatique de l'agent : pas encore activé (décision de Maxime).
