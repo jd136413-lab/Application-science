@@ -3,8 +3,8 @@
 - autorisation d'afficher des notifications (Android 13+) ;
 - petite icône blanche « No » de la barre d'état (gardée par le nettoyage R8) ;
 - « desugaring » Java exigé par flutter_local_notifications ;
-- si le secret GOOGLE_SERVICES_JSON existe : fichier google-services.json et
-  module Google Services (Firebase). Écrit « oui » ou « non » dans
+- si le secret GOOGLE_SERVICES_JSON existe : fichier google-services.json,
+  module Google Services (Firebase) et Crashlytics (rapports de plantage). Écrit « oui » ou « non » dans
   notifications.txt pour la suite de la compilation.
 """
 import os
@@ -50,10 +50,12 @@ if actif:
     if "com.google.gms.google-services" not in r:
         r = r.replace('id("dev.flutter.flutter-plugin-loader") version "1.0.0"',
                       'id("dev.flutter.flutter-plugin-loader") version "1.0.0"\n'
-                      '    id("com.google.gms.google-services") version "4.4.2" apply false', 1)
+                      '    id("com.google.gms.google-services") version "4.4.2" apply false\n'
+                      '    id("com.google.firebase.crashlytics") version "3.0.2" apply false', 1)
         reglages.write_text(r, encoding="utf-8")
     if "com.google.gms.google-services" not in g:
-        g = re.sub(r"plugins \{\n", 'plugins {\n    id("com.google.gms.google-services")\n', g, count=1)
+        g = re.sub(r"plugins \{\n", 'plugins {\n    id("com.google.gms.google-services")\n'
+                   '    id("com.google.firebase.crashlytics")\n', g, count=1)
 gradle.write_text(g, encoding="utf-8")
 
 Path("notifications.txt").write_text("oui" if actif else "non", encoding="utf-8")

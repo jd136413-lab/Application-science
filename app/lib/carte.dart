@@ -11,6 +11,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart';
 import 'reglages.dart';
+import 'stats.dart';
 import 'texte_article.dart';
 import 'widgets.dart';
 
@@ -58,6 +59,7 @@ class CarteAvancee extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () {
+          stat('lecture', a: avancee);
           etat.marquerLue(avancee.id);
           onTap();
         },
@@ -199,6 +201,7 @@ class CarteBalayable extends StatelessWidget {
       onDismissed: (_) {
         HapticFeedback.lightImpact();
         etat.masquer(avancee.id);
+        stat('masquee', a: avancee);
         afficherMessage(context, tr('Avancée masquée'),
             icone: Icons.visibility_off_rounded, annuler: () => etat.demasquer(avancee.id));
       },
@@ -245,18 +248,22 @@ void ouvrirMenuCarte(BuildContext context, Avancee a) {
                   icone: Icons.bookmark_rounded);
             }),
             ligne(Icons.share_outlined, tr('Partager'), () {
-              SharePlus.instance.share(ShareParams(text: '${a.titre}\n${a.lien}\n\n${tr('Découvert sur NovaSTEM')}'));
+              stat('partage', a: a);
+              SharePlus.instance.share(ShareParams(
+                  text: '${a.titre}\n${lienPartage(a.id)}\n\n${tr('Découvert sur NovaSTEM')}'));
             }),
             ligne(Icons.north_east_rounded, tr(texteLireArticle), () {
               final uri = Uri.tryParse(a.lien);
               if (uri != null) {
                 etat.marquerLue(a.id);
+                stat('article', a: a);
                 ouvrirArticle(uri);
               }
             }),
             if (a.source.isNotEmpty)
               ligne(Icons.block_rounded, tr('Masquer cette source'), () {
                 etat.masquerSource(a.source);
+                stat('source_masquee', a: a, valeur: a.source);
                 afficherMessage(context, tr('Les avancées de {s} sont masquées').replaceAll('{s}', a.source),
                     icone: Icons.visibility_off_rounded,
                     annuler: () => etat.masquerSource(a.source, visible: true));

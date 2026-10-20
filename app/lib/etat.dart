@@ -11,6 +11,7 @@ import 'langues.dart';
 import 'modele.dart';
 import 'notifications.dart';
 import 'reglages.dart';
+import 'stats.dart';
 
 class EtatApp extends ChangeNotifier {
   SharedPreferences? _prefs;
@@ -20,6 +21,9 @@ class EtatApp extends ChangeNotifier {
   ThemeMode theme = ThemeMode.system;
   String? langueChoisie; // null = suivre la langue du téléphone
   final Map<String, Map<String, dynamic>> _favoris = {}; // id → données
+  int ouvertures = 0; // nombre de lancements de l'app (pour la demande d'avis)
+  int favorisAjoutes = 0;
+  bool avisDemande = false;
   List<String> lues = []; // avancées déjà ouvertes (cartes grisées)
   /// Moment de la visite précédente : ce qui a été ajouté depuis est « Nouveau ».
   DateTime? visitePrecedente;
@@ -48,6 +52,10 @@ class EtatApp extends ChangeNotifier {
       notifLimite = p.getInt('notif_limite') ?? 1;
       final nf = p.getStringList('notif_familles');
       if (nf != null) notifFamilles = nf.toSet();
+      ouvertures = (p.getInt('ouvertures') ?? 0) + 1;
+      favorisAjoutes = p.getInt('favoris_ajoutes') ?? 0;
+      avisDemande = p.getBool('avis_demande') ?? false;
+      p.setInt('ouvertures', ouvertures);
       lues = p.getStringList('lues') ?? [];
       final v = p.getString('derniere_visite');
       visitePrecedente = v == null ? null : DateTime.tryParse(v);
@@ -77,6 +85,8 @@ class EtatApp extends ChangeNotifier {
     p.setString('favoris', jsonEncode(_favoris.values.toList()));
     p.setStringList('masquees', masquees);
     p.setStringList('lues', lues);
+    p.setInt('favoris_ajoutes', favorisAjoutes);
+    p.setBool('avis_demande', avisDemande);
     p.setStringList('sources_masquees', sourcesMasquees.toList());
     p.setBool('notif_actives', notifActives);
     p.setString('notif_fil', notifFil);
@@ -89,6 +99,7 @@ class EtatApp extends ChangeNotifier {
   void terminerPremierLancement(Set<String> choix) {
     domaines = {...choix};
     premierLancementFait = true;
+    stat('installation', valeur: choix.isEmpty ? 'tout' : (choix.toList()..sort()).join(','));
     _enregistrer();
     notifyListeners();
   }
@@ -154,13 +165,26 @@ class EtatApp extends ChangeNotifier {
 
   void basculerFavori(Avancee a) {
     HapticFeedback.lightImpact(); // petite vibration
+    stat(_favoris.containsKey(a.id) ? 'favori_retire' : 'favori', a: a);
     if (_favoris.containsKey(a.id)) {
       _favoris.remove(a.id);
     } else {
       _favoris[a.id] = {...a.brut, 'id': a.id};
+      favorisAjoutes++;
+      verifierDemandeAvis();
     }
     _enregistrer();
     notifyListeners();
+  }
+
+  // ---- Demande d'avis Google Play (une seule fois) ----
+  /// Après la 10e ouverture de l'app ou le 5e favori : fenêtre officielle « Noter l'app ».
+  Future<void> verifierDemandeAvis() async {
+    if (avisDemande || (ouvertures < 10 && favorisAjoutes < 5)) return;
+    avisDemande = true;
+    _enregistrer();
+    await Future<void>.delayed(const Duration(seconds: 4)); // laisser l'écran s'afficher
+    if (await demanderAvis()) stat('avis_demande');
   }
 
   // ---- Lu / nouveau ----

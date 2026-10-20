@@ -22,6 +22,8 @@ dependencies:
   firebase_core: ^4.0.0
   firebase_messaging: ^16.0.0
   flutter_local_notifications: ^19.0.0
+  firebase_crashlytics: ^5.0.0   # rapports de plantage
+  in_app_review: ^2.0.10         # fenêtre « Noter l'app » de Google Play
 
 flutter:
   uses-material-design: true

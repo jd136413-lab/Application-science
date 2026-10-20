@@ -120,6 +120,13 @@ const List<String> motsImportance = ['', 'Mineur', 'Limité', 'Notable', 'Majeur
 const String texteLireArticle = 'Lire l’article';
 const String texteMentionResume = 'Résumé généré par IA · l’article source fait foi'; // obligatoire (AI Act, art. 50)
 const String texteVide = 'Pas encore d’avancée ici';
+// Adresse de la version web (GitHub Pages). Le bouton « Partager » envoie un
+// lien vers la page avancee.html de ce site, qui montre l'avancée et propose
+// de télécharger l'app.
+const String lienWeb = 'https://jd136413-lab.github.io/Application-science';
+String lienPartage(String id) => '$lienWeb/avancee.html?id=$id';
+const String lienGooglePlay = 'https://play.google.com/store/apps/details?id=fr.novum.novum';
+
 // Heures d'arrivée des nouvelles avancées, À L'HEURE DE PARIS : l'agent est
 // lancé par cron-job.org à 8 h 20 et 18 h 20 (Europe/Paris) et finit quelques
 // minutes plus tard. L'app les convertit dans le fuseau horaire du téléphone.

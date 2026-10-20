@@ -8,6 +8,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'notifications.dart';
 import 'reglages.dart';
+import 'stats.dart';
 import 'widgets.dart';
 
 /// Libellés des niveaux d'importance minimale (1 à 5).
@@ -124,6 +125,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
   }
 
   Future<void> _choisir(String code) async {
+    stat('notif_formule', valeur: code);
     if (code == 'aucune') {
       etat.changerNotifications(actives: false);
       setState(() => _mesure = false);

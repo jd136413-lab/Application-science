@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>NovaSTEM — Statistiques</title>
+<style>
+  :root { --fond:#F2F1F6; --carte:#FFFFFF; --texte:#17161F; --discret:#5E5C6B; --bord:#DDDBE5; --pastille:#E6E4EE; --or:#E0A800; --rose:#FF5A8A; --bleu:#3D7BFF; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fond:#0F0F14; --carte:#1A1A22; --texte:#F2F1F6; --discret:#A9A8B6; --bord:#2C2C36; --pastille:#2A2A35; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--fond); color:var(--texte); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; display: flex; flex-direction: column; gap: 18px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  h1 { margin: 0; font-size: 26px; }
+  .periodes { display: flex; gap: 4px; padding: 4px; background: var(--pastille); border-radius: 14px; }
+  .periodes button { border: none; background: transparent; color: var(--discret); font: 600 14px system-ui, sans-serif; padding: 8px 12px; border-radius: 10px; cursor: pointer; min-height: 40px; }
+  .periodes button[aria-pressed="true"] { background: var(--carte); color: var(--texte); }
+  .tuiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .tuile { background: var(--carte); border-radius: 18px; padding: 14px 16px; }
+  .tuile .n { font-size: 30px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .tuile .l { font-size: 13px; color: var(--discret); }
+  .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; }
+  section { background: var(--carte); border-radius: 20px; padding: 16px 18px; }
+  h2 { margin: 0 0 10px; font-size: 16px; }
+  .ligne { display: grid; grid-template-columns: minmax(0, 1fr) 2fr 44px; align-items: center; gap: 10px; padding: 4px 0; font-size: 14px; }
+  .ligne .nom { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .barre { height: 10px; border-radius: 5px; background: var(--pastille); overflow: hidden; }
+  .barre span { display: block; height: 100%; border-radius: 5px; background: var(--bleu); }
+  .ligne .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+  .vide { color: var(--discret); font-size: 14px; }
+  .jours { display: flex; align-items: flex-end; gap: 3px; height: 120px; padding-top: 6px; }
+  .jours div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+  .jours span { display: block; background: var(--bleu); border-radius: 3px 3px 0 0; min-height: 2px; }
+  .legende { display: flex; justify-content: space-between; font-size: 12px; color: var(--discret); margin-top: 6px; }
+  .note { font-size: 13px; color: var(--discret); }
+  .note a { color: var(--bleu); }
+  .or { color: var(--or); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Statistiques NovaSTEM</h1>
+    <div class="periodes" role="group" aria-label="Période">
+      <button data-j="1">24 h</button><button data-j="7">7 jours</button><button data-j="30" aria-pressed="true">30 jours</button><button data-j="365">1 an</button>
+    </div>
+  </header>
+  <p class="note">Compteurs anonymes envoyés par l’app (aucun identifiant de téléphone ni de personne). Les plantages sont dans la
+    <a href="https://console.firebase.google.com/" rel="noopener">console Firebase → Crashlytics</a>.</p>
+  <div id="etat" class="note">Chargement…</div>
+  <div class="tuiles" id="tuiles"></div>
+  <section><h2>Ouvertures de l’app par jour</h2><div class="jours" id="jours"></div><div class="legende" id="legende"></div></section>
+  <div class="grille">
+    <section><h2>Lectures par famille</h2><div id="lf"></div></section>
+    <section><h2>Lectures par thème</h2><div id="lt"></div></section>
+    <section><h2>Avancées les plus lues</h2><div id="top"></div></section>
+    <section><h2>Lectures par importance</h2><div id="li"></div></section>
+    <section><h2>Favoris par famille</h2><div id="ff"></div></section>
+    <section><h2>Masquées par famille</h2><div id="mf"></div></section>
+    <section><h2>Sources masquées</h2><div id="sm"></div></section>
+    <section><h2>Langues de l’app</h2><div id="la"></div></section>
+    <section><h2>Formules de notifications choisies</h2><div id="fn"></div></section>
+  </div>
+</main>
+<script>
+(function () {
+  var URL_SB = "__SUPABASE_URL__", CLE = "__SUPABASE_KEY__";
+  var FAM = { space: "Espace", environment: "Environnement & climat", health: "Santé & médecine",
+    technology: "Technologie & IA", physics: "Physique & chimie", life: "Vivant", earth: "Terre & histoire",
+    other: "Autre (sciences)", mobile: "Smartphones & objets", computing: "Informatique & puces", ai_software: "IA & logiciels",
+    mobility: "Transports", aerospace: "Espace & aéronautique", energy_home: "Énergie & maison",
+    gaming: "Jeux vidéo & consoles", tech_other: "Autre (tech)" };
+  var FORMULES = { aucune: "Aucune", exceptionnel: "Seulement l’exceptionnel", essentiel: "L’essentiel",
+    courant: "Rester au courant", mesure: "Sur mesure" };
+  var MOTS = ["", "Mineur", "Limité", "Notable", "Majeur", "Rupture"];
+  var TUILES = [["ouverture", "ouvertures de l’app"], ["installation", "nouvelles installations"], ["lecture", "avancées ouvertes"],
+    ["article", "articles source ouverts"], ["favori", "favoris ajoutés"], ["masquee", "avancées masquées"],
+    ["partage", "partages"], ["notif_ouverte", "notifications touchées"]];
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function barres(id, lignes, nom, valeur) {
+    var z = document.getElementById(id); z.textContent = "";
+    if (!lignes || !lignes.length) { z.appendChild(el("div", "vide", "Pas encore de données.")); return; }
+    var max = Math.max.apply(null, lignes.map(valeur)) || 1;
+    lignes.forEach(function (l) {
+      var r = el("div", "ligne"); var n = nom(l);
+      var a = el("span", "nom", n); a.title = n; r.appendChild(a);
+      var b = el("div", "barre"); var s = el("span"); s.style.width = (100 * valeur(l) / max) + "%"; b.appendChild(s); r.appendChild(b);
+      r.appendChild(el("span", "v", String(valeur(l)))); z.appendChild(r);
+    });
+  }
+  function n(l) { return l.n; }
+  function charger(jours) {
+    document.getElementById("etat").textContent = "Chargement…";
+    fetch(URL_SB + "/rest/v1/rpc/stats_resume", { method: "POST",
+      headers: { apikey: CLE, Authorization: "Bearer " + CLE, "Content-Type": "application/json" },
+      body: JSON.stringify({ jours: jours }) })
+    .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
+    .then(function (d) {
+      document.getElementById("etat").textContent = "Mis à jour : " + new Date().toLocaleString("fr-FR");
+      var t = document.getElementById("tuiles"); t.textContent = "";
+      TUILES.forEach(function (x) {
+        var c = el("div", "tuile"); c.appendChild(el("div", "n", String((d.totaux || {})[x[0]] || 0)));
+        c.appendChild(el("div", "l", x[1])); t.appendChild(c);
+      });
+      var j = document.getElementById("jours"); j.textContent = "";
+      var pj = d.par_jour || []; var max = Math.max.apply(null, pj.map(function (x) { return x.ouvertures; }).concat([1]));
+      pj.forEach(function (x) {
+        var col = el("div"); col.title = x.jour + " : " + x.ouvertures + " ouvertures, " + x.lectures + " lectures";
+        var s = el("span"); s.style.height = (100 * x.ouvertures / max) + "%"; col.appendChild(s); j.appendChild(col);
+      });
+      var lg = document.getElementById("legende"); lg.textContent = "";
+      if (pj.length) { lg.appendChild(el("span", "", pj[0].jour)); lg.appendChild(el("span", "", "max " + max + " / jour")); lg.appendChild(el("span", "", pj[pj.length - 1].jour)); }
+      else lg.appendChild(el("span", "vide", "Pas encore de données."));
+      barres("lf", d.lectures_famille, function (l) { return FAM[l.famille] || l.famille; }, n);
+      barres("lt", d.lectures_theme, function (l) { return l.theme; }, n);
+      barres("top", d.top_avancees, function (l) { return "★" + l.importance + " · " + l.titre; }, n);
+      barres("li", d.lectures_importance, function (l) { return "★".repeat(l.importance) + " " + MOTS[l.importance]; }, n);
+      barres("ff", d.favoris_famille, function (l) { return FAM[l.famille] || l.famille; }, n);
+      barres("mf", d.masquees_famille, function (l) { return FAM[l.famille] || l.famille; }, n);
+      barres("sm", d.sources_masquees, function (l) { return l.source; }, n);
+      barres("la", d.langues, function (l) { return l.langue; }, n);
+      barres("fn", d.formules_notif, function (l) { return FORMULES[l.formule] || l.formule; }, n);
+    })
+    .catch(function (e) {
+      document.getElementById("etat").textContent = e === 404
+        ? "La fonction stats_resume n’existe pas encore : lance le script database/migration_003_stats.sql dans Supabase."
+        : "Impossible de charger les statistiques (" + e + ").";
+    });
+  }
+  var boutons = document.querySelectorAll(".periodes button");
+  boutons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      boutons.forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true"); charger(+b.dataset.j);
+    });
+  });
+  charger(30);
+})();
+</script>
+</body>
+</html>

@@ -19,6 +19,7 @@ import 'navigation.dart';
 import 'notifications.dart';
 import 'premier_lancement.dart';
 import 'reglages.dart';
+import 'stats.dart';
 import 'widgets.dart';
 
 void main() {
@@ -54,6 +55,8 @@ class _AppNovaStemState extends State<AppNovaStem> {
     await initializeDateFormatting(); // dates dans toutes les langues
     await initialiserSupabase().timeout(const Duration(seconds: 15));
     // Notifications : jamais bloquant (Firebase absent, pas de réseau…).
+    stat('ouverture', valeur: etat.langue); // statistiques anonymes
+    unawaited(etat.verifierDemandeAvis());
     demandeOuverture.addListener(_ouvrirDepuisNotification);
     unawaited(initialiserNotifications().then((_) => synchroniserSujets(etat.sujetsNotif)));
   }
@@ -75,7 +78,11 @@ class _AppNovaStemState extends State<AppNovaStem> {
     }
     try {
       final a = await chargerAvancee(contenu);
-      if (a != null) nav.push(MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)));
+      if (a != null) {
+        stat('notif_ouverte', a: a);
+        etat.marquerLue(a.id);
+        nav.push(MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)));
+      }
     } catch (_) {
       demandeFilAujourdhui.value++; // pas de réseau : au moins le fil
     }

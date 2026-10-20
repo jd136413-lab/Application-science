@@ -177,8 +177,14 @@ jobs:
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           2>&1 | tee -a ../compilation.log
 
-      - name: Pages publiques (politique de confidentialité)
-        run: cp web_extra/*.html build/web/
+      - name: Pages publiques (confidentialité, contact, avancée partagée, statistiques)
+        env:
+          SB_URL: ${{ secrets.SUPABASE_URL }}
+          SB_CLE: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          cp web_extra/*.html build/web/
+          # Adresse et clé PUBLIQUE de Supabase (lecture seule) pour avancee.html et stats.html
+          sed -i "s#__SUPABASE_URL__#${SB_URL}#g; s#__SUPABASE_KEY__#${SB_CLE}#g" build/web/*.html
 
       - name: Compiler l'APK Android
         shell: bash

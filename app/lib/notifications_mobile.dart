@@ -14,6 +14,9 @@
 import 'dart:ui' show PlatformDispatcher;
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart' show FlutterError;
+import 'package:in_app_review/in_app_review.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_mlkit_translation/google_mlkit_translation.dart';
@@ -37,6 +40,12 @@ Future<void> initialiserNotifications() async {
   if (!notificationsPossibles) return;
   try {
     await Firebase.initializeApp();
+    // Rapports de plantage (Firebase Crashlytics) : visibles dans la console Firebase.
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    PlatformDispatcher.instance.onError = (erreur, pile) {
+      FirebaseCrashlytics.instance.recordError(erreur, pile, fatal: true);
+      return true;
+    };
     FirebaseMessaging.onBackgroundMessage(_messageEnArrierePlan);
     await _preparerAffichage(onTouche: (r) => _touche(r.payload));
     FirebaseMessaging.onMessage.listen((m) => _afficher(m.data));
@@ -48,6 +57,18 @@ Future<void> initialiserNotifications() async {
   } catch (_) {
     // Les notifications ne doivent jamais empêcher l'app de fonctionner.
   }
+}
+
+/// Fenêtre officielle Google Play « Noter l'app » (Google décide s'il l'affiche).
+Future<bool> demanderAvis() async {
+  try {
+    final avis = InAppReview.instance;
+    if (await avis.isAvailable()) {
+      await avis.requestReview();
+      return true;
+    }
+  } catch (_) {}
+  return false;
 }
 
 void _touche(String? contenu) {

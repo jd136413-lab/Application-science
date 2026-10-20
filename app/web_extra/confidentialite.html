@@ -33,7 +33,7 @@
   <header>
     <div class="logo"><span class="case"><span class="num">102</span><span class="no">No</span></span>va<sup class="stem">STEM</sup></div>
     <h1>Politique de confidentialité</h1>
-    <p class="discret">Application « NovaSTEM : sciences et tech » — dernière mise à jour : 20 octobre 2026</p>
+    <p class="discret">Application « NovaSTEM : sciences et tech » — dernière mise à jour : 21 octobre 2026</p>
     <nav class="langues"><a href="privacy.html">English version</a></nav>
   </header>
 
@@ -42,7 +42,7 @@
     <ul>
       <li>NovaSTEM ne demande <strong>aucun compte</strong> et ne collecte <strong>ni nom, ni adresse e-mail, ni localisation, ni contacts</strong>.</li>
       <li>Vos choix (domaines, favoris, thème, langue, réglages des notifications) restent <strong>sur votre téléphone</strong>.</li>
-      <li>Il n'y a <strong>ni publicité, ni outil de mesure d'audience, ni revente de données</strong>.</li>
+      <li>Il n'y a <strong>ni publicité, ni revente de données</strong>. Une mesure d'audience <strong>anonyme</strong> (sans aucun identifiant) et des rapports de plantage nous aident à améliorer l'application.</li>
       <li>Si vous activez les notifications, un identifiant technique anonyme est utilisé par le service de notifications de Google (Firebase).</li>
     </ul>
   </section>
@@ -67,6 +67,21 @@
     <h2>4. Notifications (si vous les activez)</h2>
     <p>Les notifications sont désactivées par défaut. Si vous les activez dans Réglages → Notifications, l'application utilise <strong>Firebase Cloud Messaging</strong>, un service de Google. Le téléphone reçoit alors un identifiant technique d'installation (jeton) et s'abonne à des « sujets » correspondant à vos choix (par exemple : Espace, importance 4 et plus). Ces abonnements ne contiennent aucune information personnelle et ne permettent pas de savoir qui vous êtes.</p>
     <p>Pour arrêter : désactivez l'interrupteur dans Réglages → Notifications, ou retirez l'autorisation dans les réglages du téléphone. Le traitement par Google est décrit dans sa politique de confidentialité : <a href="https://policies.google.com/privacy">policies.google.com/privacy</a> et <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a>.</p>
+  </section>
+
+  <section>
+    <h2>4 bis. Statistiques anonymes</h2>
+    <p>Pour savoir quels domaines intéressent le plus et améliorer l'application, celle-ci envoie des compteurs <strong>anonymes</strong> à notre base de données (hébergée par Supabase) : ouverture de l'application, avancée ouverte (avec son domaine et sa note), ajout aux favoris, avancée ou source masquée, partage, choix des notifications, langue de l'application. Ces compteurs ne contiennent <strong>aucun identifiant</strong> du téléphone ou de la personne (ni nom, ni adresse e-mail, ni identifiant publicitaire, ni identifiant d'installation) : il est impossible de savoir qui a fait quoi, ni de relier deux actions entre elles. Seuls des totaux sont consultés.</p>
+  </section>
+
+  <section>
+    <h2>4 ter. Rapports de plantage</h2>
+    <p>Si l'application se ferme à cause d'une erreur, un rapport technique est envoyé à <strong>Firebase Crashlytics</strong> (Google) : description de l'erreur, modèle et version du téléphone, version de l'application, et un identifiant technique d'installation qui sert à compter les plantages. Ces rapports ne contiennent ni nom, ni adresse e-mail, ni contenu personnel. Ils servent uniquement à corriger les erreurs et sont conservés 90 jours par Google (<a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a>).</p>
+  </section>
+
+  <section>
+    <h2>4 quater. Avis sur Google Play</h2>
+    <p>Après plusieurs utilisations, l'application peut afficher la fenêtre officielle de Google Play qui propose de noter l'application. Cette fenêtre est gérée par Google ; nous ne recevons que la note et le commentaire publics que vous choisissez de laisser.</p>
   </section>
 
   <section>
@@ -96,7 +111,7 @@
 
   <section>
     <h2>10. Modifications</h2>
-    <p>Cette politique peut évoluer, par exemple si une fonctionnalité nouvelle (statistiques d'usage anonymes, etc.) est ajoutée. La date de mise à jour figure en haut de cette page. Toute évolution importante sera signalée dans l'application.</p>
+    <p>Cette politique peut évoluer, par exemple si une fonctionnalité nouvelle est ajoutée. La date de mise à jour figure en haut de cette page. Toute évolution importante sera signalée dans l'application.</p>
   </section>
 </main>
 </body>

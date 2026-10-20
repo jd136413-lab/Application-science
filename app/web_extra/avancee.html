@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaSTEM — une avancée scientifique</title>
+<meta name="description" content="Les avancées scientifiques et technologiques du moment, résumées et classées.">
+<meta property="og:title" content="NovaSTEM : sciences et tech">
+<meta property="og:description" content="Une avancée scientifique ou technologique partagée depuis l'app NovaSTEM.">
+<style>
+  :root { --fond:#F2F1F6; --carte:#FFFFFF; --texte:#17161F; --discret:#5E5C6B; --bord:#DDDBE5; --rose:#FF5A8A; --bleu:#3D7BFF; --or:#E0A800; --pastille:#E6E4EE; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fond:#0F0F14; --carte:#1A1A22; --texte:#F2F1F6; --discret:#A9A8B6; --bord:#2C2C36; --pastille:#2A2A35; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--fond); color:var(--texte); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 28px 16px 48px; display: flex; flex-direction: column; gap: 18px; }
+  .logo { font: 700 34px/1 Georgia, "Times New Roman", serif; letter-spacing: -0.01em; align-self: center; }
+  .logo .case { display: inline-block; position: relative; border: 3px solid currentColor; padding: 11px 6px 3px; margin-right: 3px; }
+  .logo .num { position: absolute; left: 5px; top: 2px; font: 700 9px/1 system-ui, sans-serif; }
+  .logo .no { color: var(--rose); text-shadow: 3px 2px 0 var(--bleu); }
+  .logo .stem { font: 700 12px/1 system-ui, sans-serif; letter-spacing: 0.08em; vertical-align: 15px; margin-left: 2px; }
+  .carte { background: var(--carte); border-radius: 24px; overflow: hidden; }
+  .carte img { width: 100%; max-height: 320px; object-fit: cover; display: block; }
+  .credit { font-size: 12px; color: var(--discret); padding: 6px 20px 0; }
+  .contenu { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .meta { font-size: 14px; color: var(--discret); }
+  .meta b { color: var(--texte); }
+  h1 { margin: 0; font-size: 26px; line-height: 1.2; }
+  .etoiles { font-size: 18px; letter-spacing: 2px; }
+  .etoiles .on { color: var(--or); } .etoiles .off { color: var(--bord); }
+  .mention { font-size: 12px; color: var(--discret); }
+  .bouton { display: flex; align-items: center; justify-content: center; gap: 8px; height: 54px; border-radius: 27px; font-weight: 700; text-decoration: none; }
+  .principal { background: var(--texte); color: var(--fond); }
+  .secondaire { background: var(--pastille); color: var(--texte); }
+  .attente { text-align: center; color: var(--discret); padding: 40px 0; }
+  .pied { text-align: center; font-size: 13px; color: var(--discret); }
+  .pied a { color: var(--discret); }
+</style>
+</head>
+<body>
+<main>
+  <div class="logo" aria-label="NovaSTEM"><span class="case"><span class="num">102</span><span class="no">No</span></span>va<sup class="stem">STEM</sup></div>
+  <div id="zone" class="attente">Chargement…</div>
+  <a class="bouton principal" href="https://play.google.com/store/apps/details?id=fr.novum.novum">Télécharger NovaSTEM sur Google Play</a>
+  <p class="pied">Les avancées scientifiques et technologiques du moment, résumées en français et classées par importance.<br>
+    <a href="confidentialite.html">Confidentialité</a> · <a href="contact.html">Contact et mentions légales</a></p>
+</main>
+<script>
+(function () {
+  var URL_SB = "__SUPABASE_URL__", CLE = "__SUPABASE_KEY__";
+  var FAMILLES = { space: "Espace", environment: "Environnement & climat", health: "Santé & médecine",
+    technology: "Technologie & IA", physics: "Physique & chimie", life: "Vivant", earth: "Terre & histoire",
+    other: "Autre", mobile: "Smartphones & objets", computing: "Informatique & puces", ai_software: "IA & logiciels",
+    mobility: "Transports", aerospace: "Espace & aéronautique", energy_home: "Énergie & maison",
+    gaming: "Jeux vidéo & consoles", tech_other: "Autre" };
+  var MOTS = ["", "Mineur", "Limité", "Notable", "Majeur", "Rupture"];
+  var zone = document.getElementById("zone");
+  function texte(balise, classe, contenu) {
+    var e = document.createElement(balise); if (classe) e.className = classe; e.textContent = contenu; return e;
+  }
+  function erreur(msg) { zone.className = "attente"; zone.textContent = msg; }
+  var id = new URLSearchParams(location.search).get("id") || "";
+  if (!/^[0-9a-f-]{36}$/i.test(id)) { erreur("Lien incomplet : cette avancée est introuvable."); return; }
+  fetch(URL_SB + "/rest/v1/advances?id=eq." + id +
+        "&select=title,summary,importance,family,source_name,source_url,published_at,image_url,image_credit",
+        { headers: { apikey: CLE, Authorization: "Bearer " + CLE } })
+    .then(function (r) { return r.json(); })
+    .then(function (l) {
+      if (!l || !l.length) { erreur("Cette avancée n'existe plus."); return; }
+      var a = l[0];
+      document.title = a.title + " — NovaSTEM";
+      zone.className = "carte"; zone.textContent = "";
+      if (a.image_url) {
+        var img = document.createElement("img"); img.src = a.image_url; img.alt = "Image fournie par la source";
+        zone.appendChild(img);
+        if (a.image_credit) zone.appendChild(texte("div", "credit", a.image_credit));
+      }
+      var c = document.createElement("div"); c.className = "contenu";
+      var d = new Date(a.published_at);
+      var meta = document.createElement("div"); meta.className = "meta";
+      meta.appendChild(texte("b", "", FAMILLES[a.family] || "Autre"));
+      meta.appendChild(document.createTextNode(" · " + d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })));
+      c.appendChild(meta);
+      c.appendChild(texte("h1", "", a.title));
+      var et = document.createElement("div"); et.className = "etoiles";
+      et.appendChild(texte("span", "on", "★".repeat(a.importance)));
+      et.appendChild(texte("span", "off", "★".repeat(5 - a.importance)));
+      et.appendChild(texte("b", "", "  " + MOTS[a.importance]));
+      c.appendChild(et);
+      c.appendChild(texte("p", "", a.summary));
+      c.appendChild(texte("div", "mention", "Résumé généré par IA · l’article source fait foi"));
+      var lien = document.createElement("a"); lien.className = "bouton secondaire";
+      lien.href = a.source_url; lien.rel = "noopener"; lien.textContent = "Lire l’article sur " + a.source_name + " ↗";
+      c.appendChild(lien);
+      zone.appendChild(c);
+    })
+    .catch(function () { erreur("Impossible de charger l'avancée. Vérifiez votre connexion."); });
+})();
+</script>
+</body>
+</html>

@@ -7,6 +7,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart';
 import 'reglages.dart';
+import 'stats.dart';
 import 'texte_article.dart';
 import 'traducteur.dart';
 import 'widgets.dart';
@@ -17,6 +18,7 @@ class EcranDetail extends StatelessWidget {
 
   Future<void> _ouvrir(BuildContext context) async {
     final uri = Uri.tryParse(avancee.lien);
+    stat('article', a: avancee);
     if (uri == null || !await ouvrirArticle(uri)) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Impossible d’ouvrir l’article'))));

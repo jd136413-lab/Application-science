@@ -69,8 +69,11 @@ Types de données à cocher (rien d'autre) :
 |---|---|---|---|---|---|---|
 | Identifiants de l'appareil ou autres | Identifiants de l'appareil ou autres | Oui | Non | Non | Obligatoire | Fonctionnement de l'application, Analyse (diagnostic technique) |
 | Infos et performances de l'application | Diagnostics | Oui | Non | Non | Obligatoire | Analyse (diagnostic technique) |
+| Infos et performances de l'application | Journaux de plantage | Oui | Non | Non | Obligatoire | Analyse (diagnostic technique) |
+| Activité dans l'application | Interactions avec l'application | Oui | Non | Non | Obligatoire | Analyse |
 
 Pourquoi : Firebase Cloud Messaging (notifications) utilise un identifiant d'installation qui ne permet pas d'identifier la personne ; ML Kit (traduction sur le téléphone) envoie à Google des informations techniques anonymes (modèle du téléphone, version, temps de traitement, erreurs) pour le diagnostic. Ces données vont à Google en tant que prestataire de service, ce qui ne compte pas comme un « partage » au sens de Google Play.
+Ajout du 21/10 : **Firebase Crashlytics** envoie les rapports de plantage (description de l'erreur, modèle du téléphone, identifiant d'installation) → « Journaux de plantage » ; les **statistiques anonymes** NovaSTEM (avancées ouvertes, favoris, masquées, partages, sans aucun identifiant) → « Interactions avec l'application ».
 Non collectés : nom, e-mail, position, contacts, photos, historique de navigation, données de santé, données financières, messages.
 
 ### Applis gouvernementales
