@@ -14,66 +14,126 @@ TextStyle police(String nom, {double? taille, FontWeight? graisse, Color? couleu
     GoogleFonts.getFont(nom, fontSize: taille, fontWeight: graisse, color: couleur, height: hauteur);
 
 /// Logo NovaSTEM : la case du tableau périodique « No 102 » + « va » + « STEM » en exposant.
-class LogoNovaStem extends StatelessWidget {
+/// Avec [anime], le logo se compose la première fois qu'il apparaît (une fois par
+/// lancement) : les « No » rose et bleu arrivent des deux côtés, la case se trace,
+/// puis « 102 » et « vaSTEM » apparaissent (maquette 22).
+class LogoNovaStem extends StatefulWidget {
   final double taille;
-  const LogoNovaStem({super.key, this.taille = 44});
+  final bool anime;
+  const LogoNovaStem({super.key, this.taille = 44, this.anime = false});
+
+  @override
+  State<LogoNovaStem> createState() => _LogoNovaStemState();
+}
+
+class _LogoNovaStemState extends State<LogoNovaStem> with SingleTickerProviderStateMixin {
+  static bool _dejaAnime = false;
+  late final AnimationController _t =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 1100), value: 1);
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.anime && !_dejaAnime) {
+      _dejaAnime = true;
+      _t.value = 0;
+      _t.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    _t.dispose();
+    super.dispose();
+  }
+
+  /// Avancement (0 à 1) de la partie [debut]–[fin] de l'animation.
+  double _phase(double debut, double fin, [Curve courbe = Curves.easeOutCubic]) =>
+      courbe.transform(((_t.value - debut) / (fin - debut)).clamp(0.0, 1.0));
 
   @override
   Widget build(BuildContext context) {
+    final taille = widget.taille;
     final p = palette(context);
     final sombre = estSombre(context);
     final bord = taille * 0.068;
     final padBas = taille * 0.11;
     final style = police(policeLogo, taille: taille, graisse: FontWeight.w700, couleur: p.texte, hauteur: 1.0);
-    Paint encre(Color c) => Paint()
-      ..color = c
+    Paint encre(Color c, double opacite) => Paint()
+      ..color = c.withValues(alpha: opacite)
       ..blendMode = sombre ? BlendMode.screen : BlendMode.multiply;
     return Semantics(
       label: nomApp,
       child: ExcludeSemantics(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(taille * 0.18, taille * 0.27, taille * 0.18, padBas),
-              decoration: BoxDecoration(border: Border.all(color: p.texte, width: bord)),
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Text(logoSymbole, style: style.copyWith(color: null, foreground: encre(logoEncreRose))),
-                  Positioned(
-                    left: taille * 0.068,
-                    top: taille * 0.045,
-                    child: Text(logoSymbole, style: style.copyWith(color: null, foreground: encre(logoEncreBleue))),
+        child: AnimatedBuilder(
+          animation: _t,
+          builder: (context, _) {
+            final arrivee = _phase(0, 0.45);
+            final cadre = _phase(0.3, 0.65, Curves.easeInOut);
+            final fin = _phase(0.5, 1);
+            return Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(taille * 0.18, taille * 0.27, taille * 0.18, padBas),
+                  decoration: BoxDecoration(border: Border.all(color: p.texte.withValues(alpha: cadre), width: bord)),
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Transform.translate(
+                        offset: Offset(-taille * 0.9 * (1 - arrivee), 0),
+                        child: Text(logoSymbole,
+                            style: style.copyWith(color: null, foreground: encre(logoEncreRose, arrivee))),
+                      ),
+                      Positioned(
+                        left: taille * 0.068,
+                        top: taille * 0.045,
+                        child: Transform.translate(
+                          offset: Offset(taille * 0.9 * (1 - arrivee), 0),
+                          child: Text(logoSymbole,
+                              style: style.copyWith(color: null, foreground: encre(logoEncreBleue, arrivee))),
+                        ),
+                      ),
+                      Positioned(
+                        left: -taille * 0.05,
+                        top: -taille * 0.21,
+                        child: Opacity(
+                          opacity: fin,
+                          child: Text(logoNumero,
+                              style: police(policeTexte,
+                                  taille: taille * 0.23, graisse: FontWeight.w700, couleur: p.texte, hauteur: 1.0)),
+                        ),
+                      ),
+                    ],
                   ),
-                  Positioned(
-                    left: -taille * 0.05,
-                    top: -taille * 0.21,
-                    child: Text(logoNumero,
-                        style: police(policeTexte, taille: taille * 0.23, graisse: FontWeight.w700, couleur: p.texte, hauteur: 1.0)),
+                ),
+                Opacity(
+                  opacity: fin,
+                  child: Transform.translate(
+                    offset: Offset(0, taille * 0.12 * (1 - fin)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: taille * 0.07, bottom: padBas + bord),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(logoSuite, style: style),
+                          Padding(
+                            padding: EdgeInsets.only(left: taille * 0.04, top: taille * 0.04),
+                            child: Text(logoExposant,
+                                style: police(policeTexte,
+                                        taille: taille * 0.36, graisse: FontWeight.w700, couleur: p.texte, hauteur: 1.0)
+                                    .copyWith(letterSpacing: taille * 0.36 * 0.08)),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: taille * 0.07, bottom: padBas + bord),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(logoSuite, style: style),
-                  Padding(
-                    padding: EdgeInsets.only(left: taille * 0.04, top: taille * 0.04),
-                    child: Text(logoExposant,
-                        style: police(policeTexte,
-                                taille: taille * 0.36, graisse: FontWeight.w700, couleur: p.texte, hauteur: 1.0)
-                            .copyWith(letterSpacing: taille * 0.36 * 0.08)),
-                  ),
-                ],
-              ),
-            ),
-          ],
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

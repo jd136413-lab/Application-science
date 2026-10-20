@@ -15,6 +15,8 @@ class Avancee {
   final String lien;
   final String source;
   final DateTime publieLe;
+  /// Date d'ajout dans la base (sert à la pastille « Nouveau »).
+  final DateTime? ajouteLe;
   final String? image;
   final String? creditImage;
   /// Données d'origine, gardées pour enregistrer un favori sur le téléphone.
@@ -32,6 +34,7 @@ class Avancee {
     required this.lien,
     required this.source,
     required this.publieLe,
+    this.ajouteLe,
     this.image,
     this.creditImage,
   });
@@ -51,6 +54,7 @@ class Avancee {
       lien: (j['source_url'] as String?) ?? '',
       source: (j['source_name'] as String?) ?? '',
       publieLe: DateTime.tryParse((j['published_at'] as String?) ?? '')?.toLocal() ?? DateTime.now(),
+      ajouteLe: DateTime.tryParse((j['created_at'] as String?) ?? '')?.toLocal(),
       image: (img == null || img.isEmpty) ? null : img,
       creditImage: j['image_credit'] as String?,
     );

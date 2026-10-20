@@ -1,8 +1,8 @@
 // Écran de détail d'une avancée.
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
+import 'carte.dart';
 import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart';
@@ -17,7 +17,7 @@ class EcranDetail extends StatelessWidget {
 
   Future<void> _ouvrir(BuildContext context) async {
     final uri = Uri.tryParse(avancee.lien);
-    if (uri == null || !await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    if (uri == null || !await ouvrirArticle(uri)) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Impossible d’ouvrir l’article'))));
       }

@@ -20,6 +20,9 @@ class EtatApp extends ChangeNotifier {
   ThemeMode theme = ThemeMode.system;
   String? langueChoisie; // null = suivre la langue du téléphone
   final Map<String, Map<String, dynamic>> _favoris = {}; // id → données
+  List<String> lues = []; // avancées déjà ouvertes (cartes grisées)
+  /// Moment de la visite précédente : ce qui a été ajouté depuis est « Nouveau ».
+  DateTime? visitePrecedente;
   List<String> masquees = []; // avancées masquées (balayage vers la gauche)
   Set<String> sourcesMasquees = {}; // sources masquées (appui long → « Masquer cette source »)
 
@@ -45,6 +48,10 @@ class EtatApp extends ChangeNotifier {
       notifLimite = p.getInt('notif_limite') ?? 1;
       final nf = p.getStringList('notif_familles');
       if (nf != null) notifFamilles = nf.toSet();
+      lues = p.getStringList('lues') ?? [];
+      final v = p.getString('derniere_visite');
+      visitePrecedente = v == null ? null : DateTime.tryParse(v);
+      p.setString('derniere_visite', DateTime.now().toIso8601String());
       masquees = p.getStringList('masquees') ?? [];
       sourcesMasquees = (p.getStringList('sources_masquees') ?? []).toSet();
       final fav = p.getString('favoris');
@@ -69,6 +76,7 @@ class EtatApp extends ChangeNotifier {
     p.setString('langue', langueChoisie ?? '');
     p.setString('favoris', jsonEncode(_favoris.values.toList()));
     p.setStringList('masquees', masquees);
+    p.setStringList('lues', lues);
     p.setStringList('sources_masquees', sourcesMasquees.toList());
     p.setBool('notif_actives', notifActives);
     p.setString('notif_fil', notifFil);
@@ -153,6 +161,24 @@ class EtatApp extends ChangeNotifier {
     }
     _enregistrer();
     notifyListeners();
+  }
+
+  // ---- Lu / nouveau ----
+  bool estLue(String id) => lues.contains(id);
+
+  void marquerLue(String id) {
+    if (lues.contains(id)) return;
+    lues = [...lues, id];
+    if (lues.length > 1000) lues = lues.sublist(lues.length - 1000);
+    _enregistrer();
+    notifyListeners();
+  }
+
+  /// Arrivée depuis la visite précédente et pas encore ouverte.
+  bool estNouvelle(Avancee a) {
+    final v = visitePrecedente;
+    final d = a.ajouteLe;
+    return v != null && d != null && d.isAfter(v) && !estLue(a.id);
   }
 
   // ---- Avancées et sources masquées ----

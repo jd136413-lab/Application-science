@@ -3096,3 +3096,108 @@ ja 非表示の情報を再表示
 ko 숨긴 소식 다시 보기
 id Tampilkan lagi kemajuan tersembunyi
 vi Hiện lại các tin đã ẩn
+
+@ NOUVEAU
+en NEW
+es NUEVO
+pt NOVO
+de NEU
+it NUOVO
+nl NIEUW
+pl NOWE
+ru НОВОЕ
+uk НОВЕ
+tr YENİ
+ar جديد
+hi नया
+bn নতুন
+ur نیا
+zh 新
+ja 新着
+ko 새 소식
+id BARU
+vi MỚI
+
+@ Lu
+en Read
+es Leído
+pt Lido
+de Gelesen
+it Letto
+nl Gelezen
+pl Przeczytane
+ru Прочитано
+uk Прочитано
+tr Okundu
+ar مقروء
+hi पढ़ा गया
+bn পড়া হয়েছে
+ur پڑھ لیا
+zh 已读
+ja 既読
+ko 읽음
+id Dibaca
+vi Đã đọc
+
+@ 1 nouvelle avancée
+en 1 new breakthrough
+es 1 avance nuevo
+pt 1 novo avanço
+de 1 neuer Durchbruch
+it 1 nuovo progresso
+nl 1 nieuwe doorbraak
+pl 1 nowe osiągnięcie
+ru 1 новая новость
+uk 1 нова новина
+tr 1 yeni gelişme
+ar إنجاز جديد واحد
+hi 1 नई उपलब्धि
+bn ১টি নতুন অগ্রগতি
+ur 1 نئی پیش رفت
+zh 1 条新进展
+ja 新着 1 件
+ko 새 소식 1개
+id 1 kemajuan baru
+vi 1 tin mới
+
+@ {n} nouvelles avancées
+en {n} new breakthroughs
+es {n} avances nuevos
+pt {n} novos avanços
+de {n} neue Durchbrüche
+it {n} nuovi progressi
+nl {n} nieuwe doorbraken
+pl Nowe osiągnięcia: {n}
+ru Новых новостей: {n}
+uk Нових новин: {n}
+tr {n} yeni gelişme
+ar {n} إنجازات جديدة
+hi {n} नई उपलब्धियाँ
+bn {n}টি নতুন অগ্রগতি
+ur {n} نئی پیش رفتیں
+zh {n} 条新进展
+ja 新着 {n} 件
+ko 새 소식 {n}개
+id {n} kemajuan baru
+vi {n} tin mới
+
+@ Déjà vu lors de votre dernière visite
+en Already seen on your last visit
+es Ya visto en tu última visita
+pt Já visto na sua última visita
+de Bei Ihrem letzten Besuch gesehen
+it Già visto all’ultima visita
+nl Al gezien bij je vorige bezoek
+pl Widziane podczas ostatniej wizyty
+ru Уже видели в прошлый раз
+uk Уже бачили минулого разу
+tr Son ziyaretinizde görüldü
+ar شوهد في زيارتك السابقة
+hi पिछली बार देखा गया
+bn গতবার দেখা হয়েছে
+ur پچھلی بار دیکھا گیا
+zh 上次访问时已看过
+ja 前回の訪問時に表示済み
+ko 지난 방문 때 본 소식
+id Sudah dilihat di kunjungan terakhir
+vi Đã xem trong lần truy cập trước

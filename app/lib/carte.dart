@@ -27,12 +27,40 @@ class CarteAvancee extends StatelessWidget {
     final f = familleDe(avancee.famille);
     final encre = estSombre(context) ? f.encreSombre : f.encreClaire;
 
-    return Material(
-      color: p.carte,
+    final lue = etat.estLue(avancee.id);
+    final nouvelle = etat.estNouvelle(avancee);
+    final rupture = avancee.importance == 5;
+    final sombre = estSombre(context);
+    final texte = lue ? p.texteDiscret : p.texte;
+    // Carte « Rupture » (5 étoiles) : fond doré léger + lueur (maquette 22, version 2).
+    final decoration = rupture
+        ? BoxDecoration(
+            borderRadius: BorderRadius.circular(arrondiCarte),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: const [0, 0.7],
+              colors: [sombre ? const Color(0xFF3A3012) : const Color(0xFFFFF6D6), p.carte],
+            ),
+            border: Border.all(color: sombre ? const Color(0xFF6B5A1A) : const Color(0xFFF2D27A), width: 1.5),
+            boxShadow: [BoxShadow(color: couleurEtoiles.withValues(alpha: 0.30), blurRadius: 22, offset: const Offset(0, 6))],
+          )
+        : BoxDecoration(
+            color: lue ? (sombre ? const Color(0xFF15151B) : const Color(0xFFECEBF1)) : p.carte,
+            borderRadius: BorderRadius.circular(arrondiCarte),
+          );
+
+    return DecoratedBox(
+      decoration: decoration,
+      child: Material(
+      color: Colors.transparent,
       borderRadius: BorderRadius.circular(arrondiCarte),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: onTap,
+        onTap: () {
+          etat.marquerLue(avancee.id);
+          onTap();
+        },
         onLongPress: () => _menu(context),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -49,14 +77,29 @@ class CarteAvancee extends StatelessWidget {
                 Expanded(
                   child: Text(tr(f.nom),
                       overflow: TextOverflow.ellipsis,
-                      style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: encre)),
+                      style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: lue ? p.texteDiscret : encre)),
                 ),
+                if (nouvelle)
+                  Container(
+                    margin: const EdgeInsets.only(right: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                    decoration: BoxDecoration(color: logoEncreRose, borderRadius: BorderRadius.circular(8)),
+                    child: Text(tr('NOUVEAU'),
+                        style: police(policeTexte, taille: 10.5, graisse: FontWeight.w800, couleur: Colors.white)
+                            .copyWith(letterSpacing: 0.5)),
+                  )
+                else if (lue)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Text('✓ ${tr('Lu')}',
+                        style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: p.texteDiscret)),
+                  ),
                 Text(dateCourte(avancee.publieLe), style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
               ]),
               const SizedBox(height: 12),
               TexteArticle(avancee.titre,
                   style: police(policeTitres,
-                      taille: tailleTitreCarte, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.22)),
+                      taille: tailleTitreCarte, graisse: FontWeight.w600, couleur: texte, hauteur: 1.22)),
               const SizedBox(height: 12),
               Row(children: [
                 Etoiles(note: avancee.importance),
@@ -71,6 +114,7 @@ class CarteAvancee extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
   }
 }
@@ -205,7 +249,10 @@ void ouvrirMenuCarte(BuildContext context, Avancee a) {
             }),
             ligne(Icons.north_east_rounded, tr(texteLireArticle), () {
               final uri = Uri.tryParse(a.lien);
-              if (uri != null) launchUrl(uri, mode: LaunchMode.externalApplication);
+              if (uri != null) {
+                etat.marquerLue(a.id);
+                ouvrirArticle(uri);
+              }
             }),
             if (a.source.isNotEmpty)
               ligne(Icons.block_rounded, tr('Masquer cette source'), () {
@@ -219,4 +266,75 @@ void ouvrirMenuCarte(BuildContext context, Avancee a) {
       );
     },
   );
+}
+
+
+/// Ouvre l'article dans l'app (onglet Chrome intégré / Safari intégré) ;
+/// si ce n'est pas possible, dans le navigateur du téléphone.
+Future<bool> ouvrirArticle(Uri uri) async {
+  try {
+    if (await launchUrl(uri, mode: LaunchMode.inAppBrowserView)) return true;
+  } catch (_) {}
+  return launchUrl(uri, mode: LaunchMode.externalApplication);
+}
+
+/// Carte grise qui « respire » pendant le chargement (maquette 22).
+class SqueletteCarte extends StatefulWidget {
+  final int decalage;
+  const SqueletteCarte({super.key, this.decalage = 0});
+
+  @override
+  State<SqueletteCarte> createState() => _SqueletteCarteState();
+}
+
+class _SqueletteCarteState extends State<SqueletteCarte> with SingleTickerProviderStateMixin {
+  late final AnimationController _anim =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 1400))..repeat(reverse: true);
+
+  @override
+  void initState() {
+    super.initState();
+    _anim.value = (widget.decalage * 0.25) % 1;
+  }
+
+  @override
+  void dispose() {
+    _anim.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    Widget barre(double largeur, double hauteur) => FractionallySizedBox(
+          alignment: Alignment.centerLeft,
+          widthFactor: largeur,
+          child: Container(
+              height: hauteur,
+              decoration: BoxDecoration(color: p.pastille, borderRadius: BorderRadius.circular(6))),
+        );
+    return FadeTransition(
+      opacity: Tween<double>(begin: 1, end: 0.45).animate(CurvedAnimation(parent: _anim, curve: Curves.easeInOut)),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(arrondiCarte)),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            Container(
+                width: 34,
+                height: 34,
+                decoration: BoxDecoration(color: p.pastille, borderRadius: BorderRadius.circular(11))),
+            const SizedBox(width: 10),
+            Expanded(child: barre(0.5, 12)),
+          ]),
+          const SizedBox(height: 14),
+          barre(0.95, 17),
+          const SizedBox(height: 8),
+          barre(0.7, 17),
+          const SizedBox(height: 14),
+          barre(0.55, 12),
+        ]),
+      ),
+    );
+  }
 }
