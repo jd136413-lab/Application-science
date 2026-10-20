@@ -148,7 +148,7 @@ const String texteOngletReglages = 'Réglages';
 // Réglages
 const String texteNosSources =
     'Les avancées viennent de sources scientifiques et technologiques reconnues. '
-    'Elles sont sélectionnées et résumées par une intelligence artificielle ; l’article source fait foi.'; l’article source fait foi.';
+    'Elles sont sélectionnées et résumées par une intelligence artificielle ; l’article source fait foi.';
 // Politique de confidentialité (pages publiées avec la version web)
 const String lienConfidentialiteFr = 'https://jd136413-lab.github.io/Application-science/confidentialite.html';
 const String lienConfidentialiteEn = 'https://jd136413-lab.github.io/Application-science/privacy.html';
