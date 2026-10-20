@@ -72,6 +72,8 @@ Chaque nouvel écran passe d'abord par une maquette, validée avant d'être cod�
 - **iPhone et tablette** ★★ — Déjà prévu en phase 9 (Codemagic, compte Apple). Mise en page adaptée aux grands écrans pour les tablettes.
 - **PC** ★★ — La version web existe déjà ; Flutter peut aussi produire une app Windows/Mac si besoin.
 
+- **Notifications la nuit hors d'Europe** ★★ — L'agent tourne à 8 h 20 et 18 h 20 heure de Paris : au Québec ou au Japon, une arrivée tombe en pleine nuit. Piste : garder la notification sur le téléphone jusqu'au matin (heure locale). L'écran Notifications affiche déjà les heures converties dans le fuseau du téléphone (21/10).
+
 ### 7. Faire vivre le projet
 - **Statistiques sans pister** ★★ (priorité) — Compteurs anonymes : ouvertures de l'app, avancées lues, partages, langues, réglages de notifications les plus choisis. Aucune donnée personnelle, aucun identifiant publicitaire. À annoncer dans la politique de confidentialité. Piste : un simple compteur dans Supabase, ou Firebase Analytics avec les options de confidentialité.
 - **Modèle économique** — À décider plus tard : don volontaire, publicité, abonnement (par exemple avec « Explique-moi »), ou une combinaison. Des pubs imposeraient de mettre à jour la politique de confidentialité et les déclarations Google Play.

@@ -2551,3 +2551,296 @@ ja 終了
 ko 종료
 id Keluar
 vi Thoát
+@ Choisissez à quelle fréquence être prévenu :
+en Choose how often you want to be notified:
+es Elige con qué frecuencia quieres recibir avisos:
+pt Escolha com que frequência quer ser avisado:
+de Wählen Sie, wie oft Sie benachrichtigt werden möchten:
+it Scegli quanto spesso ricevere avvisi:
+nl Kies hoe vaak je een melding wilt krijgen:
+pl Wybierz, jak często chcesz otrzymywać powiadomienia:
+ru Выберите, как часто получать уведомления:
+uk Виберіть, як часто отримувати сповіщення:
+tr Ne sıklıkla bildirim almak istediğinizi seçin:
+ar اختر عدد مرات تلقي الإشعارات:
+hi चुनें कि आपको कितनी बार सूचना मिले:
+bn কত ঘন ঘন জানাতে চান তা বেছে নিন:
+ur منتخب کریں کہ آپ کو کتنی بار اطلاع دی جائے:
+zh 选择接收通知的频率：
+ja 通知を受け取る頻度を選んでください：
+ko 알림을 받을 빈도를 선택하세요:
+id Pilih seberapa sering Anda ingin diberi tahu:
+vi Chọn tần suất bạn muốn nhận thông báo:
+
+@ Aucune
+en None
+es Ninguna
+pt Nenhuma
+de Keine
+it Nessuna
+nl Geen
+pl Brak
+ru Нет
+uk Немає
+tr Hiçbiri
+ar لا شيء
+hi कोई नहीं
+bn কোনোটি নয়
+ur کوئی نہیں
+zh 不接收
+ja なし
+ko 받지 않음
+id Tidak ada
+vi Không
+
+@ Je regarde l’app quand je veux
+en I check the app when I want
+es Miro la app cuando quiero
+pt Vejo o app quando quiser
+de Ich schaue in die App, wann ich will
+it Guardo l’app quando voglio
+nl Ik kijk in de app wanneer ik wil
+pl Zaglądam do aplikacji, kiedy chcę
+ru Я сам открываю приложение, когда хочу
+uk Я сам відкриваю застосунок, коли хочу
+tr Uygulamaya istediğim zaman bakarım
+ar أتصفح التطبيق متى أشاء
+hi मैं जब चाहूँ ऐप देख लेता हूँ
+bn যখন ইচ্ছা অ্যাপটি দেখি
+ur میں جب چاہوں ایپ دیکھ لیتا ہوں
+zh 想看时再打开应用
+ja 好きなときにアプリを見る
+ko 원할 때 앱을 확인할게요
+id Saya buka aplikasinya kapan saja
+vi Tôi tự xem ứng dụng khi muốn
+
+@ Seulement l’exceptionnel
+en Only the exceptional
+es Solo lo excepcional
+pt Só o excepcional
+de Nur das Außergewöhnliche
+it Solo l’eccezionale
+nl Alleen het uitzonderlijke
+pl Tylko wyjątkowe
+ru Только исключительное
+uk Лише виняткове
+tr Yalnızca olağanüstü olanlar
+ar الاستثنائي فقط
+hi केवल असाधारण
+bn শুধু ব্যতিক্রমী
+ur صرف غیر معمولی
+zh 只要非凡突破
+ja 特別なものだけ
+ko 특별한 소식만
+id Hanya yang luar biasa
+vi Chỉ điều đặc biệt
+
+@ Les ruptures : très rare
+en Breakthroughs: very rare
+es Las rupturas: muy poco frecuente
+pt As rupturas: muito raro
+de Durchbrüche: sehr selten
+it Le svolte: molto raro
+nl Doorbraken: zeer zeldzaam
+pl Przełomy: bardzo rzadko
+ru Прорывы: очень редко
+uk Прориви: дуже рідко
+tr Çığır açanlar: çok nadir
+ar الاختراقات: نادر جدًا
+hi क्रांतिकारी खोजें: बहुत कम
+bn যুগান্তকারী আবিষ্কার: খুবই কম
+ur انقلابی دریافتیں: بہت کم
+zh 重大突破：非常少见
+ja 画期的な成果：ごくまれ
+ko 혁신적 성과: 매우 드묾
+id Terobosan: sangat jarang
+vi Đột phá: rất hiếm
+
+@ L’essentiel
+en The essentials
+es Lo esencial
+pt O essencial
+de Das Wichtigste
+it L’essenziale
+nl Het belangrijkste
+pl Najważniejsze
+ru Самое главное
+uk Найголовніше
+tr Önemli olanlar
+ar الأساسي
+hi ज़रूरी बातें
+bn মূল বিষয়গুলো
+ur ضروری باتیں
+zh 重要内容
+ja 重要なものだけ
+ko 핵심 소식
+id Yang penting
+vi Những điều cốt lõi
+
+@ Les avancées majeures, 1 à la fois
+en Major breakthroughs, 1 at a time
+es Los avances importantes, de 1 en 1
+pt Os grandes avanços, 1 de cada vez
+de Wichtige Durchbrüche, jeweils 1
+it I progressi importanti, 1 alla volta
+nl Grote doorbraken, 1 tegelijk
+pl Ważne osiągnięcia, po 1 naraz
+ru Крупные достижения, по 1 за раз
+uk Великі досягнення, по 1 за раз
+tr Büyük gelişmeler, her seferinde 1
+ar الإنجازات الكبرى، واحد في كل مرة
+hi बड़ी उपलब्धियाँ, एक बार में 1
+bn বড় অগ্রগতি, একবারে ১টি
+ur بڑی پیش رفت، ایک وقت میں 1
+zh 重大进展，每次 1 条
+ja 大きな成果を、1回に1件
+ko 주요 성과, 한 번에 1개
+id Kemajuan besar, 1 setiap kali
+vi Tiến bộ lớn, mỗi lần 1 tin
+
+@ Rester au courant
+en Stay up to date
+es Estar al día
+pt Ficar por dentro
+de Auf dem Laufenden bleiben
+it Restare aggiornato
+nl Op de hoogte blijven
+pl Być na bieżąco
+ru Быть в курсе
+uk Бути в курсі
+tr Gelişmeleri takip et
+ar البقاء على اطلاع
+hi अपडेट रहें
+bn সবসময় জেনে রাখুন
+ur باخبر رہیں
+zh 及时了解
+ja 最新情報を追う
+ko 최신 소식 받기
+id Tetap mengikuti
+vi Luôn cập nhật
+
+@ Notables et plus, 3 à la fois
+en Notable and above, 3 at a time
+es Notables o más, de 3 en 3
+pt Notáveis ou mais, 3 de cada vez
+de Bemerkenswert und mehr, jeweils 3
+it Notevoli e oltre, 3 alla volta
+nl Opmerkelijk en hoger, 3 tegelijk
+pl Godne uwagi i ważniejsze, po 3 naraz
+ru Заметные и важнее, по 3 за раз
+uk Помітні й важливіші, по 3 за раз
+tr Kayda değer ve üstü, her seferinde 3
+ar الملحوظة فما فوق، 3 في كل مرة
+hi उल्लेखनीय और उससे ऊपर, एक बार में 3
+bn উল্লেখযোগ্য ও তার বেশি, একবারে ৩টি
+ur قابل ذکر اور اس سے زیادہ، ایک وقت میں 3
+zh 值得关注及以上，每次 3 条
+ja 注目以上を、1回に3件
+ko 주목할 만한 성과 이상, 한 번에 3개
+id Penting dan di atasnya, 3 setiap kali
+vi Đáng chú ý trở lên, mỗi lần 3 tin
+
+@ Sur mesure
+en Custom
+es Personalizado
+pt Personalizado
+de Individuell
+it Personalizzato
+nl Op maat
+pl Własne ustawienia
+ru Настроить вручную
+uk Налаштувати вручну
+tr Özel
+ar مخصص
+hi अपने हिसाब से
+bn নিজের মতো করে
+ur اپنی مرضی کے مطابق
+zh 自定义
+ja カスタム
+ko 직접 설정
+id Kustom
+vi Tùy chỉnh
+
+@ Fil, importance, nombre et domaines
+en Feed, importance, number and fields
+es Canal, importancia, cantidad y áreas
+pt Canal, importância, quantidade e áreas
+de Feed, Wichtigkeit, Anzahl und Bereiche
+it Feed, importanza, numero e ambiti
+nl Feed, belang, aantal en domeinen
+pl Kanał, ważność, liczba i dziedziny
+ru Лента, важность, количество и области
+uk Стрічка, важливість, кількість і галузі
+tr Akış, önem, sayı ve alanlar
+ar الموجز والأهمية والعدد والمجالات
+hi फ़ीड, महत्व, संख्या और क्षेत्र
+bn ফিড, গুরুত্ব, সংখ্যা ও ক্ষেত্র
+ur فیڈ، اہمیت، تعداد اور شعبے
+zh 频道、重要性、数量和领域
+ja フィード、重要度、件数、分野
+ko 피드, 중요도, 개수, 분야
+id Umpan, kepentingan, jumlah, dan bidang
+vi Kênh, mức độ quan trọng, số lượng và lĩnh vực
+
+@ C’est noté : vous recevrez « {f} » vers {a} et {b}.
+en Done: you’ll get “{f}” around {a} and {b}.
+es Hecho: recibirás «{f}» hacia las {a} y las {b}.
+pt Pronto: você receberá “{f}” por volta de {a} e {b}.
+de Erledigt: Sie erhalten „{f}“ gegen {a} und {b}.
+it Fatto: riceverai «{f}» verso le {a} e le {b}.
+nl Genoteerd: je krijgt ‘{f}’ rond {a} en {b}.
+pl Gotowe: otrzymasz „{f}” około {a} i {b}.
+ru Готово: вы будете получать «{f}» около {a} и {b}.
+uk Готово: ви отримуватимете «{f}» близько {a} і {b}.
+tr Tamam: “{f}” bildirimlerini yaklaşık {a} ve {b} saatlerinde alacaksınız.
+ar تم: ستصلك «{f}» نحو {a} و{b}.
+hi हो गया: आपको “{f}” लगभग {a} और {b} बजे मिलेंगी।
+bn হয়ে গেছে: আপনি “{f}” পাবেন প্রায় {a} ও {b}-এ।
+ur ہو گیا: آپ کو “{f}” تقریباً {a} اور {b} بجے ملیں گی۔
+zh 已设置：您将在 {a} 和 {b} 左右收到“{f}”。
+ja 設定しました：「{f}」を {a} と {b} ごろに受け取ります。
+ko 설정 완료: {a}와 {b}쯤 “{f}” 알림을 받습니다.
+id Beres: Anda akan menerima “{f}” sekitar pukul {a} dan {b}.
+vi Đã xong: bạn sẽ nhận “{f}” vào khoảng {a} và {b}.
+
+@ C’est noté : vous serez prévenu vers {a} et {b}.
+en Done: you’ll be notified around {a} and {b}.
+es Hecho: recibirás avisos hacia las {a} y las {b}.
+pt Pronto: você será avisado por volta de {a} e {b}.
+de Erledigt: Sie werden gegen {a} und {b} benachrichtigt.
+it Fatto: riceverai avvisi verso le {a} e le {b}.
+nl Genoteerd: je krijgt een melding rond {a} en {b}.
+pl Gotowe: powiadomienia przyjdą około {a} i {b}.
+ru Готово: уведомления будут приходить около {a} и {b}.
+uk Готово: сповіщення надходитимуть близько {a} і {b}.
+tr Tamam: yaklaşık {a} ve {b} saatlerinde bildirim alacaksınız.
+ar تم: ستصلك الإشعارات نحو {a} و{b}.
+hi हो गया: आपको लगभग {a} और {b} बजे सूचना मिलेगी।
+bn হয়ে গেছে: প্রায় {a} ও {b}-এ আপনাকে জানানো হবে।
+ur ہو گیا: آپ کو تقریباً {a} اور {b} بجے اطلاع دی جائے گی۔
+zh 已设置：您将在 {a} 和 {b} 左右收到通知。
+ja 設定しました：{a} と {b} ごろに通知します。
+ko 설정 완료: {a}와 {b}쯤 알림을 받습니다.
+id Beres: Anda akan diberi tahu sekitar pukul {a} dan {b}.
+vi Đã xong: bạn sẽ được thông báo vào khoảng {a} và {b}.
+
+@ C’est noté : plus de notifications.
+en Done: no more notifications.
+es Hecho: ya no recibirás avisos.
+pt Pronto: sem mais notificações.
+de Erledigt: keine Benachrichtigungen mehr.
+it Fatto: niente più notifiche.
+nl Genoteerd: geen meldingen meer.
+pl Gotowe: koniec z powiadomieniami.
+ru Готово: уведомлений больше не будет.
+uk Готово: сповіщень більше не буде.
+tr Tamam: artık bildirim yok.
+ar تم: لن تصلك إشعارات بعد الآن.
+hi हो गया: अब कोई सूचना नहीं।
+bn হয়ে গেছে: আর কোনো বিজ্ঞপ্তি নয়।
+ur ہو گیا: اب کوئی اطلاع نہیں۔
+zh 已设置：不再接收通知。
+ja 設定しました：通知を停止しました。
+ko 설정 완료: 더 이상 알림이 없습니다.
+id Beres: tidak ada notifikasi lagi.
+vi Đã xong: không còn thông báo nữa.

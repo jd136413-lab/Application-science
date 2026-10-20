@@ -24,7 +24,7 @@ class EtatApp extends ChangeNotifier {
   bool notifActives = false;
   String notifFil = 'both'; // 'science', 'tech' ou 'both'
   int notifMin = 4; // importance minimale (1 à 5)
-  int notifLimite = 3; // au plus N par arrivée ; 0 = sans limite
+  int notifLimite = 1; // au plus N par arrivée ; 0 = sans limite (1 = formule « L’essentiel »)
   Set<String> notifFamilles = {...famillesSciences, ...famillesTech};
 
   Future<void> charger() async {
@@ -39,7 +39,7 @@ class EtatApp extends ChangeNotifier {
       notifActives = p.getBool('notif_actives') ?? false;
       notifFil = p.getString('notif_fil') ?? 'both';
       notifMin = (p.getInt('notif_min') ?? 4).clamp(1, 5);
-      notifLimite = p.getInt('notif_limite') ?? 3;
+      notifLimite = p.getInt('notif_limite') ?? 1;
       final nf = p.getStringList('notif_familles');
       if (nf != null) notifFamilles = nf.toSet();
       final fav = p.getString('favoris');

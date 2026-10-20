@@ -120,6 +120,12 @@ const List<String> motsImportance = ['', 'Mineur', 'Limité', 'Notable', 'Majeur
 const String texteLireArticle = 'Lire l’article';
 const String texteMentionResume = 'Résumé généré par IA · l’article source fait foi'; // obligatoire (AI Act, art. 50)
 const String texteVide = 'Pas encore d’avancée ici';
+// Heures d'arrivée des nouvelles avancées, À L'HEURE DE PARIS : l'agent est
+// lancé par cron-job.org à 8 h 20 et 18 h 20 (Europe/Paris) et finit quelques
+// minutes plus tard. L'app les convertit dans le fuseau horaire du téléphone.
+// Si tu changes les horaires dans cron-job.org, change-les aussi ici.
+const List<(int, int)> heuresArriveeParis = [(8, 30), (18, 30)];
+
 // Fenêtre affichée quand on appuie sur le bouton retour du téléphone dans le fil
 const String texteQuitterTitre = 'Quitter NovaSTEM ?';
 const String texteQuitterMessage = 'Voulez-vous vraiment quitter l’application ?';

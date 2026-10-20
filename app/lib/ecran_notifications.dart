@@ -1,5 +1,6 @@
-// Réglages → Notifications : interrupteur, fil, importance minimale,
-// limite par arrivée et familles (maquette 17).
+// Réglages → Notifications : formules toutes prêtes (Aucune, Seulement
+// l'exceptionnel, L'essentiel, Rester au courant) ou « Sur mesure » (fil,
+// importance minimale, limite par arrivée, familles). Maquettes 20 (B) et 21 (B5).
 
 import 'package:flutter/material.dart';
 
@@ -19,10 +20,70 @@ const List<String> niveauxNotif = [
   'Rupture seulement',
 ];
 
-/// Résumé court affiché dans Réglages (« Activées · Majeur et plus · … »).
+/// Une formule toute prête : importance minimale et nombre au plus par arrivée
+/// (fil « les deux » et toutes les familles).
+class Formule {
+  final String code, titre, sousTitre;
+  final int min, limite;
+  const Formule(this.code, this.titre, this.sousTitre, this.min, this.limite);
+}
+
+const List<Formule> formules = [
+  Formule('exceptionnel', 'Seulement l’exceptionnel', 'Les ruptures : très rare', 5, 1),
+  Formule('essentiel', 'L’essentiel', 'Les avancées majeures, 1 à la fois', 4, 1),
+  Formule('courant', 'Rester au courant', 'Notables et plus, 3 à la fois', 3, 3),
+];
+
+/// 'aucune', le code d'une formule, ou 'mesure' si les réglages ne
+/// correspondent à aucune formule.
+String formuleActuelle() {
+  if (!etat.notifActives) return 'aucune';
+  final toutes = [...famillesSciences, ...famillesTech].every(etat.notifFamilles.contains);
+  if (etat.notifFil == 'both' && toutes) {
+    for (final f in formules) {
+      if (f.min == etat.notifMin && f.limite == etat.notifLimite) return f.code;
+    }
+  }
+  return 'mesure';
+}
+
+/// Dernier dimanche d'un mois (pour l'heure d'été européenne).
+int _dernierDimanche(int annee, int mois) {
+  final dernier = DateTime.utc(annee, mois + 1, 0);
+  return dernier.day - (dernier.weekday % 7);
+}
+
+/// Convertit une heure de Paris (heuresArriveeParis) en heure du téléphone.
+DateTime _parisVersTelephone(int h, int m) {
+  final now = DateTime.now();
+  final a = now.year;
+  final ete = DateTime.utc(a, 3, _dernierDimanche(a, 3), 1);
+  final hiver = DateTime.utc(a, 10, _dernierDimanche(a, 10), 1);
+  final brut = DateTime.utc(now.year, now.month, now.day, h, m);
+  final decalage = (brut.isAfter(ete) && brut.isBefore(hiver)) ? 2 : 1; // Paris : UTC+2 l'été, UTC+1 l'hiver
+  return brut.subtract(Duration(hours: decalage)).toLocal();
+}
+
+/// Les deux heures d'arrivée des avancées, à l'heure du téléphone, dans l'ordre
+/// de la journée (« 8 h 30 » en français, « 8:30 AM » en anglais…).
+(String, String) heuresArrivee(BuildContext context) {
+  final heures = [for (final (h, m) in heuresArriveeParis) _parisVersTelephone(h, m)]
+    ..sort((x, y) => (x.hour * 60 + x.minute).compareTo(y.hour * 60 + y.minute));
+  String format(DateTime t) => etat.langue == 'fr'
+      ? '${t.hour} h ${t.minute.toString().padLeft(2, '0')}'
+      : MaterialLocalizations.of(context).formatTimeOfDay(TimeOfDay.fromDateTime(t),
+          alwaysUse24HourFormat: MediaQuery.of(context).alwaysUse24HourFormat);
+  return (format(heures.first), format(heures.last));
+}
+
+/// Résumé court affiché dans Réglages (« Activées · L’essentiel »).
 String resumeNotifications() {
   if (!notificationsPossibles) return tr('Les notifications sont disponibles dans l’app Android et iPhone.');
   if (!etat.notifActives) return tr('Désactivées');
+  final code = formuleActuelle();
+  for (final f in formules) {
+    if (f.code == code) return '${tr('Activées')} · ${tr(f.titre)}';
+  }
   return '${tr('Activées')} · ${tr(niveauxNotif[etat.notifMin])} · ${_nomFil(etat.notifFil)}';
 }
 
@@ -41,16 +102,56 @@ class EcranNotifications extends StatefulWidget {
 
 class _EcranNotificationsState extends State<EcranNotifications> {
   bool _refusee = false;
+  bool _mesure = false; // « Sur mesure » ouvert même si les réglages correspondent à une formule
 
-  Future<void> _basculer() async {
-    if (etat.notifActives) {
+  /// Message de confirmation en bas de l'écran (maquette 21, B5).
+  void _confirmer(String texte) {
+    final p = palette(context);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: p.encre,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        duration: const Duration(seconds: 4),
+        content: Row(children: [
+          const Icon(Icons.schedule_rounded, color: couleurEtoiles, size: 22),
+          const SizedBox(width: 12),
+          Expanded(
+              child: Text(texte, style: police(policeTexte, taille: 14, couleur: p.surEncre, hauteur: 1.4))),
+        ]),
+      ));
+  }
+
+  Future<void> _choisir(String code) async {
+    if (code == 'aucune') {
       etat.changerNotifications(actives: false);
+      setState(() => _mesure = false);
+      _confirmer(tr('C’est noté : plus de notifications.'));
       return;
     }
-    final ok = await demanderAutorisation();
+    if (!etat.notifActives) {
+      final ok = await demanderAutorisation();
+      if (!mounted) return;
+      setState(() => _refusee = !ok);
+      if (!ok) return;
+    }
     if (!mounted) return;
-    setState(() => _refusee = !ok);
-    if (ok) etat.changerNotifications(actives: true);
+    final (a, b) = heuresArrivee(context);
+    if (code == 'mesure') {
+      etat.changerNotifications(actives: true);
+      setState(() => _mesure = true);
+      _confirmer(tr('C’est noté : vous serez prévenu vers {a} et {b}.').replaceAll('{a}', a).replaceAll('{b}', b));
+      return;
+    }
+    final f = formules.firstWhere((x) => x.code == code);
+    etat.changerNotifications(
+        actives: true, fil: 'both', min: f.min, limite: f.limite, familles: {...famillesSciences, ...famillesTech});
+    setState(() => _mesure = false);
+    _confirmer(tr('C’est noté : vous recevrez « {f} » vers {a} et {b}.')
+        .replaceAll('{f}', tr(f.titre))
+        .replaceAll('{a}', a)
+        .replaceAll('{b}', b));
   }
 
   @override
@@ -122,6 +223,55 @@ class _EcranNotificationsState extends State<EcranNotifications> {
         final visibles = [for (final f in fils) ...famillesDuFil(f)];
         final nbFamilles = visibles.where(etat.notifFamilles.contains).length;
         final limite = etat.notifLimite;
+        final formule = formuleActuelle();
+
+        /// Une carte de formule (maquette 20, B) : coche noire si choisie.
+        Widget carteFormule(String code, Widget icone, String titre, String sousTitre) {
+          final affichee = (_mesure && etat.notifActives) ? code == 'mesure' : code == formule;
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Semantics(
+              selected: affichee,
+              inMutuallyExclusiveGroup: true,
+              child: Material(
+                color: p.carte,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18),
+                  side: BorderSide(color: affichee ? p.texte : p.bordure, width: affichee ? 2.5 : 1.5),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: InkWell(
+                  onTap: () => _choisir(code),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(14, 13, 14, 13),
+                    child: Row(children: [
+                      SizedBox(width: 32, child: Center(child: icone)),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Text(tr(titre),
+                              style: police(policeTexte, taille: 16, graisse: FontWeight.w700, couleur: p.texte)),
+                          const SizedBox(height: 2),
+                          Text(tr(sousTitre),
+                              style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.35)),
+                        ]),
+                      ),
+                      if (affichee)
+                        Container(
+                          width: 24,
+                          height: 24,
+                          decoration: BoxDecoration(color: p.encre, shape: BoxShape.circle),
+                          child: Icon(Icons.check_rounded, size: 16, color: p.surEncre),
+                        )
+                      else if (code == 'mesure')
+                        Icon(Icons.chevron_right_rounded, color: p.texteDiscret),
+                    ]),
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
 
         return Scaffold(
           backgroundColor: p.fond,
@@ -139,29 +289,24 @@ class _EcranNotificationsState extends State<EcranNotifications> {
               if (!notificationsPossibles)
                 aide(tr('Les notifications sont disponibles dans l’app Android et iPhone.'))
               else ...[
-                // Interrupteur général
-                Material(
-                  color: p.carte,
-                  borderRadius: BorderRadius.circular(18),
-                  clipBehavior: Clip.antiAlias,
-                  child: SwitchListTile(
-                    value: etat.notifActives,
-                    onChanged: (_) => _basculer(),
-                    activeTrackColor: familleDe('environment').couleur,
-                    contentPadding: const EdgeInsets.fromLTRB(16, 8, 12, 8),
-                    title: Text(tr('Recevoir des notifications'),
-                        style: police(policeTexte, taille: 16, graisse: FontWeight.w700, couleur: p.texte)),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.only(top: 3),
-                      child: Text(tr('Quand de nouvelles avancées arrivent, selon vos choix ci-dessous'),
-                          style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.4)),
-                    ),
-                  ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(4, 0, 4, 12),
+                  child: Text(tr('Choisissez à quelle fréquence être prévenu :'),
+                      style: police(policeTexte, taille: 15, couleur: p.texteDiscret, hauteur: 1.4)),
                 ),
+                carteFormule('aucune', Icon(Icons.notifications_off_outlined, color: p.texteDiscret, size: 24),
+                    'Aucune', 'Je regarde l’app quand je veux'),
+                for (final f in formules)
+                  carteFormule(
+                      f.code,
+                      Text('★${f.min}',
+                          style: police(policeTexte, taille: 14, graisse: FontWeight.w800, couleur: couleurEtoiles)),
+                      f.titre,
+                      f.sousTitre),
+                carteFormule('mesure', Icon(Icons.tune_rounded, color: p.texteDiscret, size: 24), 'Sur mesure',
+                    'Fil, importance, nombre et domaines'),
                 if (_refusee) aide(tr('Autorisez les notifications de NovaSTEM dans les réglages du téléphone.')),
-                if (!etat.notifActives)
-                  aide(tr('Les notifications sont coupées. Les avancées restent consultables dans l’onglet Actualités.'))
-                else ...[
+                if (etat.notifActives && (formule == 'mesure' || _mesure)) ...[
                   titreSection('Quelles avancées'),
                   pastilles<String>(
                     [('science', tr(texteSciences)), ('tech', tr(texteTechnologies)), ('both', tr('Les deux'))],
@@ -317,7 +462,8 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                     ]),
                   ),
                   aide(tr('Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de NovaSTEM pour recevoir les notifications.')),
-                ],
+                ] else if (etat.notifActives)
+                  aide(tr('Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de NovaSTEM pour recevoir les notifications.')),
               ],
             ],
           ),
