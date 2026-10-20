@@ -1,4 +1,4 @@
-// Point d'entrée de l'application Novum.
+// Point d'entrée de l'application NovaSTEM.
 //
 // L'écran s'affiche IMMÉDIATEMENT (logo), puis la connexion à la base se fait
 // en arrière-plan : impossible de rester bloqué sur un écran noir. Toute
@@ -32,17 +32,17 @@ void main() {
               style: const TextStyle(color: Color(0xFF17161F), fontSize: 14)),
         ),
       );
-  runApp(const AppNovum());
+  runApp(const AppNovaStem());
 }
 
-class AppNovum extends StatefulWidget {
-  const AppNovum({super.key});
+class AppNovaStem extends StatefulWidget {
+  const AppNovaStem({super.key});
 
   @override
-  State<AppNovum> createState() => _AppNovumState();
+  State<AppNovaStem> createState() => _AppNovaStemState();
 }
 
-class _AppNovumState extends State<AppNovum> {
+class _AppNovaStemState extends State<AppNovaStem> {
   late final Future<void> _demarrage = _demarrer();
 
   Future<void> _demarrer() async {
@@ -98,7 +98,7 @@ class _AppNovumState extends State<AppNovum> {
       listenable: etat,
       builder: (context, _) => MaterialApp(
         navigatorKey: navigateur,
-        title: 'Novum',
+        title: nomApp,
         debugShowCheckedModeBanner: false,
         theme: _theme(paletteClaire, Brightness.light),
         darkTheme: _theme(paletteSombre, Brightness.dark),
@@ -131,7 +131,7 @@ class _Demarrage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: palette(context).fond,
-        body: const Center(child: LogoNovum(taille: 52)),
+        body: const Center(child: LogoNovaStem(taille: 52)),
       );
 }
 
@@ -147,7 +147,7 @@ class _Probleme extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(28),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const LogoNovum(taille: 40),
+              const LogoNovaStem(taille: 40),
               const SizedBox(height: 24),
               Text('Le démarrage a échoué',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: palette(context).texte)),

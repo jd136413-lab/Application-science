@@ -1,4 +1,4 @@
-# Novum — feuille de route (idées retenues par Maxime, 19/10/2026)
+# NovaSTEM (ex-Novum) — feuille de route (idées retenues par Maxime, 19/10/2026)
 
 Ligne directrice pour la suite du projet, après la publication (phase 9).
 Difficulté : ★ facile · ★★ moyen · ★★★ ambitieux. 💶 = coût à surveiller (budget de l'agent < 1 €/mois).
@@ -57,7 +57,7 @@ Chaque nouvel écran passe d'abord par une maquette, validée avant d'être cod�
 
 ### 3. Visuel
 - **Plus de photos libres** ★★ (priorité, entamé le 19/10 : 14 sources à images libres) — Ajouter des sources d'images sous licence libre avec crédit exact (Wikimedia Commons, autres revues en accès libre, agences publiques). Vérifier chaque licence. Toujours aucune image générée.
-- **Partager une avancée en image** ★★ (priorité) — Bouton « Partager » qui crée une jolie carte (titre, étoiles, famille, logo Novum, lien vers l'app) à envoyer sur les réseaux. Sert aussi de publicité.
+- **Partager une avancée en image** ★★ (priorité) — Bouton « Partager » qui crée une jolie carte (titre, étoiles, famille, logo NovaSTEM, lien vers l'app) à envoyer sur les réseaux. Sert aussi de publicité.
 - **Widget d'écran d'accueil** ★★ — L'avancée du jour sur le bureau du téléphone (Android, puis iPhone).
 - **Animations douces** ★ — Apparition des cartes, étoiles qui se remplissent, transitions.
 

@@ -122,7 +122,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
                   opacity: _logoVisible ? 1 : 0,
                   child: const Padding(
                     padding: EdgeInsets.only(bottom: 14),
-                    child: LogoNovum(),
+                    child: LogoNovaStem(),
                   ),
                 ),
               ),

@@ -1,4 +1,4 @@
-"""Envoi des notifications Novum par Firebase Cloud Messaging (FCM).
+"""Envoi des notifications NovaSTEM par Firebase Cloud Messaging (FCM).
 
 Chaque téléphone s'abonne lui-même à des « sujets » selon ses réglages
 (Réglages → Notifications). Un sujet = une famille + un niveau d'importance :

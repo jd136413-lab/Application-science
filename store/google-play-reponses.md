@@ -1,4 +1,4 @@
-# Google Play — toutes les réponses pour Novum
+# Google Play — toutes les réponses pour NovaSTEM
 
 Réponses prêtes à recopier dans la Play Console, dans l'ordre où Google les demande.
 Les libellés exacts peuvent légèrement changer : en cas de doute, faire une capture et demander à Claude.
@@ -14,7 +14,7 @@ Liens utiles :
 
 | Champ | Réponse |
 |---|---|
-| Nom de l'application | `Novum : sciences et tech` |
+| Nom de l'application | `NovaSTEM : sciences et tech` |
 | Langue par défaut | Français (France) – fr-FR |
 | Application ou jeu | Application |
 | Sans frais ou payante | Sans frais (⚠ définitif : une appli gratuite ne peut plus devenir payante ; un abonnement intégré reste possible plus tard) |
@@ -48,7 +48,7 @@ URL : `https://jd136413-lab.github.io/Application-science/confidentialite.html`
 - L'application peut-elle attirer involontairement les enfants : **Non**
 
 ### Applis d'actualités
-Novum rassemble et résume des actualités scientifiques et technologiques (agrégateur d'actualités utilisant l'IA) : elle entre dans le champ des « applis d'actualités » de Google. Répondre **Oui** et remplir la déclaration :
+NovaSTEM rassemble et résume des actualités scientifiques et technologiques (agrégateur d'actualités utilisant l'IA) : elle entre dans le champ des « applis d'actualités » de Google. Répondre **Oui** et remplir la déclaration :
 - Nom de l'éditeur : Jupiter Dynamics (Maxime Faucogney)
 - URL de contact (doit être la même que dans l'app : Réglages → Nous contacter) : `https://jd136413-lab.github.io/Application-science/contact.html`
 - E-mail : jd136413@gmail.com
@@ -102,11 +102,11 @@ Non.
 
 1. Menu **Tester et publier** (ou « Tests ») → **Test fermé** → créer un canal (ou utiliser « Alpha »), nom : `Test fermé`.
 2. **Pays/régions** : France (+ les pays de tes testeurs).
-3. **Testeurs** : « Créer une liste d'adresses e-mail », nom `Testeurs Novum`, ajouter les adresses Gmail de **15 à 20 personnes** (marge si certains abandonnent). Ce doivent être les comptes Google utilisés sur leur téléphone Android.
+3. **Testeurs** : « Créer une liste d'adresses e-mail », nom `Testeurs NovaSTEM`, ajouter les adresses Gmail de **15 à 20 personnes** (marge si certains abandonnent). Ce doivent être les comptes Google utilisés sur leur téléphone Android.
 4. **Créer une version** :
    - « Signature d'application par Google Play » : accepter **la clé générée par Google** (notre clé actuelle devient la « clé d'importation »).
    - Importer le fichier `.aab` : GitHub → Actions → « Compiler l'app » → l'exécution avec Google Play → en bas, « Artifacts » → `novum-google-play` (fichier zip à extraire : clic droit → « Extraire tout »).
-   - Nom de la version : laisser celui proposé. Notes de version : « Première version de test de Novum. »
+   - Nom de la version : laisser celui proposé. Notes de version : « Première version de test de NovaSTEM. »
 5. **Envoyer pour examen**. Google vérifie (quelques heures à quelques jours). Ensuite, copier le **lien d'inscription** (« Rejoindre sur le Web ») et l'envoyer aux testeurs.
 6. Après 14 jours avec au moins 12 testeurs inscrits : tableau de bord → **Demander l'accès à la production** (questionnaire sur le test : Claude préparera les réponses).
 
@@ -114,7 +114,7 @@ Non.
 
 ## 5. Message pour les testeurs (à copier)
 
-> Salut ! J'ai créé une application, **Novum**, qui rassemble chaque jour les avancées scientifiques et technologiques importantes (résumés courts, note d'importance, notifications sur mesure). Avant de la publier, Google m'oblige à la faire tester par au moins 12 personnes pendant 14 jours. Tu veux bien m'aider ? Il te faut un téléphone **Android**.
+> Salut ! J'ai créé une application, **NovaSTEM**, qui rassemble chaque jour les avancées scientifiques et technologiques importantes (résumés courts, note d'importance, notifications sur mesure). Avant de la publier, Google m'oblige à la faire tester par au moins 12 personnes pendant 14 jours. Tu veux bien m'aider ? Il te faut un téléphone **Android**.
 >
 > 1. Ouvre ce lien avec le compte Google de ton téléphone : **[LIEN D'INSCRIPTION]**
 > 2. Clique sur « Devenir testeur », puis sur le lien pour l'installer depuis le Play Store.

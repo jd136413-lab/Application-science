@@ -1,6 +1,6 @@
 # Agent de collecte.
 #  - AUTOMATIQUE : déclenché 2 fois par jour (8 h 20 et 18 h 20, heure de Paris)
-#    par le site cron-job.org (tâche « Agent Novum »), qui « appuie » sur
+#    par le site cron-job.org (tâche « Agent Novum » ; nom interne, peut rester), qui « appuie » sur
 #    Run workflow avec un jeton GitHub limité à ce repo (permission Actions).
 #    Réglages utilisés : ceux par défaut ci-dessous (5 articles, haiku, les deux fils),
 #    environ 0,01 $ par passage. L'horaire intégré de GitHub (schedule) n'est pas

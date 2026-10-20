@@ -1,4 +1,4 @@
-# Traductions des textes de l'interface Novum.
+# Traductions des textes de l'interface NovaSTEM.
 #
 # Chaque bloc commence par « @ » suivi du texte FRANÇAIS exact utilisé dans
 # le code (app/lib/reglages.dart ou les écrans), puis une ligne par langue :
@@ -639,26 +639,26 @@ ko 소식은 공신력 있는 과학·기술 출처에서 가져오며, 인공�
 id Kemajuan berasal dari sumber sains dan teknologi tepercaya. Dipilih dan diringkas oleh kecerdasan buatan; artikel sumber yang berlaku.
 vi Các tiến bộ được lấy từ những nguồn khoa học và công nghệ uy tín, được trí tuệ nhân tạo chọn lọc và tóm tắt; bài viết gốc là căn cứ.
 
-@ Novum 1.0 · sans compte, vos choix restent sur ce téléphone
-en Novum 1.0 · no account, your choices stay on this phone
-es Novum 1.0 · sin cuenta, tus preferencias se quedan en este teléfono
-pt Novum 1.0 · sem conta, as suas escolhas ficam neste telemóvel
-de Novum 1.0 · ohne Konto, deine Auswahl bleibt auf diesem Telefon
-it Novum 1.0 · nessun account, le tue scelte restano su questo telefono
-nl Novum 1.0 · geen account, je keuzes blijven op deze telefoon
-pl Novum 1.0 · bez konta, twoje wybory zostają na tym telefonie
-ru Novum 1.0 · без аккаунта, ваши настройки хранятся на этом телефоне
-uk Novum 1.0 · без облікового запису, ваші налаштування зберігаються на цьому телефоні
-tr Novum 1.0 · hesap yok, tercihleriniz bu telefonda kalır
-ar Novum 1.0 · بلا حساب، تبقى اختياراتك على هذا الهاتف
-hi Novum 1.0 · कोई खाता नहीं, आपकी पसंद इसी फ़ोन पर रहती है
-bn Novum 1.0 · কোনো অ্যাকাউন্ট নেই, আপনার পছন্দ এই ফোনেই থাকে
-ur Novum 1.0 · کوئی اکاؤنٹ نہیں، آپ کی ترجیحات اسی فون پر رہتی ہیں
-zh Novum 1.0 · 无需账号，你的选择只保存在本机
-ja Novum 1.0 · アカウント不要、設定はこの端末にのみ保存されます
-ko Novum 1.0 · 계정 없음, 선택한 설정은 이 휴대폰에만 저장돼요
-id Novum 1.0 · tanpa akun, pilihan Anda tetap di ponsel ini
-vi Novum 1.0 · không cần tài khoản, lựa chọn của bạn chỉ lưu trên điện thoại này
+@ NovaSTEM 1.0 · sans compte, vos choix restent sur ce téléphone
+en NovaSTEM 1.0 · no account, your choices stay on this phone
+es NovaSTEM 1.0 · sin cuenta, tus preferencias se quedan en este teléfono
+pt NovaSTEM 1.0 · sem conta, as suas escolhas ficam neste telemóvel
+de NovaSTEM 1.0 · ohne Konto, deine Auswahl bleibt auf diesem Telefon
+it NovaSTEM 1.0 · nessun account, le tue scelte restano su questo telefono
+nl NovaSTEM 1.0 · geen account, je keuzes blijven op deze telefoon
+pl NovaSTEM 1.0 · bez konta, twoje wybory zostają na tym telefonie
+ru NovaSTEM 1.0 · без аккаунта, ваши настройки хранятся на этом телефоне
+uk NovaSTEM 1.0 · без облікового запису, ваші налаштування зберігаються на цьому телефоні
+tr NovaSTEM 1.0 · hesap yok, tercihleriniz bu telefonda kalır
+ar NovaSTEM 1.0 · بلا حساب، تبقى اختياراتك على هذا الهاتف
+hi NovaSTEM 1.0 · कोई खाता नहीं, आपकी पसंद इसी फ़ोन पर रहती है
+bn NovaSTEM 1.0 · কোনো অ্যাকাউন্ট নেই, আপনার পছন্দ এই ফোনেই থাকে
+ur NovaSTEM 1.0 · کوئی اکاؤنٹ نہیں، آپ کی ترجیحات اسی فون پر رہتی ہیں
+zh NovaSTEM 1.0 · 无需账号，你的选择只保存在本机
+ja NovaSTEM 1.0 · アカウント不要、設定はこの端末にのみ保存されます
+ko NovaSTEM 1.0 · 계정 없음, 선택한 설정은 이 휴대폰에만 저장돼요
+id NovaSTEM 1.0 · tanpa akun, pilihan Anda tetap di ponsel ini
+vi NovaSTEM 1.0 · không cần tài khoản, lựa chọn của bạn chỉ lưu trên điện thoại này
 
 @ Espace
 en Space
@@ -2237,26 +2237,26 @@ ko 알림이 꺼져 있습니다. 소식은 계속 뉴스 탭에서 볼 수 있�
 id Notifikasi dimatikan. Kemajuan tetap bisa dilihat di tab Berita.
 vi Thông báo đang tắt. Bạn vẫn xem được các tiến bộ trong thẻ Tin tức.
 
-@ Autorisez les notifications de Novum dans les réglages du téléphone.
-en Allow Novum notifications in your phone settings.
-es Permite las notificaciones de Novum en los ajustes del teléfono.
-pt Permita as notificações do Novum nas definições do telemóvel.
-de Erlauben Sie Novum-Benachrichtigungen in den Einstellungen des Telefons.
-it Consenti le notifiche di Novum nelle impostazioni del telefono.
-nl Sta meldingen van Novum toe in de instellingen van je telefoon.
-pl Zezwól na powiadomienia Novum w ustawieniach telefonu.
-ru Разрешите уведомления Novum в настройках телефона.
-uk Дозвольте сповіщення Novum у налаштуваннях телефона.
-tr Telefon ayarlarından Novum bildirimlerine izin verin.
-ar اسمح بإشعارات Novum من إعدادات الهاتف.
-hi फ़ोन की सेटिंग में Novum की सूचनाओं की अनुमति दें।
-bn ফোনের সেটিংসে Novum-এর বিজ্ঞপ্তির অনুমতি দিন।
-ur فون کی ترتیبات میں Novum کی اطلاعات کی اجازت دیں۔
-zh 请在手机设置中允许 Novum 发送通知。
-ja スマートフォンの設定で Novum の通知を許可してください。
-ko 휴대폰 설정에서 Novum 알림을 허용해 주세요.
-id Izinkan notifikasi Novum di pengaturan ponsel.
-vi Hãy cho phép thông báo của Novum trong cài đặt điện thoại.
+@ Autorisez les notifications de NovaSTEM dans les réglages du téléphone.
+en Allow NovaSTEM notifications in your phone settings.
+es Permite las notificaciones de NovaSTEM en los ajustes del teléfono.
+pt Permita as notificações do NovaSTEM nas definições do telemóvel.
+de Erlauben Sie NovaSTEM-Benachrichtigungen in den Einstellungen des Telefons.
+it Consenti le notifiche di NovaSTEM nelle impostazioni del telefono.
+nl Sta meldingen van NovaSTEM toe in de instellingen van je telefoon.
+pl Zezwól na powiadomienia NovaSTEM w ustawieniach telefonu.
+ru Разрешите уведомления NovaSTEM в настройках телефона.
+uk Дозвольте сповіщення NovaSTEM у налаштуваннях телефона.
+tr Telefon ayarlarından NovaSTEM bildirimlerine izin verin.
+ar اسمح بإشعارات NovaSTEM من إعدادات الهاتف.
+hi फ़ोन की सेटिंग में NovaSTEM की सूचनाओं की अनुमति दें।
+bn ফোনের সেটিংসে NovaSTEM-এর বিজ্ঞপ্তির অনুমতি দিন।
+ur فون کی ترتیبات میں NovaSTEM کی اطلاعات کی اجازت دیں۔
+zh 请在手机设置中允许 NovaSTEM 发送通知。
+ja スマートフォンの設定で NovaSTEM の通知を許可してください。
+ko 휴대폰 설정에서 NovaSTEM 알림을 허용해 주세요.
+id Izinkan notifikasi NovaSTEM di pengaturan ponsel.
+vi Hãy cho phép thông báo của NovaSTEM trong cài đặt điện thoại.
 
 @ Les notifications sont disponibles dans l’app Android et iPhone.
 en Notifications are available in the Android and iPhone app.
@@ -2405,26 +2405,26 @@ ko 새로운 소식
 id Kemajuan baru
 vi Tiến bộ mới
 
-@ Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.
-en On some phones (Xiaomi, Huawei…), also allow Novum to autostart to receive notifications.
-es En algunos teléfonos (Xiaomi, Huawei…), permite también el inicio automático de Novum para recibir notificaciones.
-pt Em alguns telemóveis (Xiaomi, Huawei…), permita também o arranque automático do Novum para receber notificações.
-de Auf manchen Telefonen (Xiaomi, Huawei…) müssen Sie auch den Autostart von Novum erlauben, um Benachrichtigungen zu erhalten.
-it Su alcuni telefoni (Xiaomi, Huawei…), consenti anche l'avvio automatico di Novum per ricevere le notifiche.
-nl Op sommige telefoons (Xiaomi, Huawei…) moet je ook automatisch starten van Novum toestaan om meldingen te krijgen.
-pl Na niektórych telefonach (Xiaomi, Huawei…) zezwól też na autostart Novum, aby otrzymywać powiadomienia.
-ru На некоторых телефонах (Xiaomi, Huawei…) разрешите также автозапуск Novum, чтобы получать уведомления.
-uk На деяких телефонах (Xiaomi, Huawei…) дозвольте також автозапуск Novum, щоб отримувати сповіщення.
-tr Bazı telefonlarda (Xiaomi, Huawei…) bildirim almak için Novum'un otomatik başlatılmasına da izin verin.
-ar على بعض الهواتف (Xiaomi وHuawei…) اسمح أيضًا بالتشغيل التلقائي لـ Novum لتلقي الإشعارات.
-hi कुछ फ़ोन (Xiaomi, Huawei…) पर सूचनाएँ पाने के लिए Novum के ऑटो-स्टार्ट की अनुमति भी दें।
-bn কিছু ফোনে (Xiaomi, Huawei…) বিজ্ঞপ্তি পেতে Novum-এর অটো-স্টার্টও চালু করুন।
-ur کچھ فونز (Xiaomi، Huawei…) پر اطلاعات کے لیے Novum کے خودکار آغاز کی اجازت بھی دیں۔
-zh 在部分手机（小米、华为等）上，还需允许 Novum 自启动才能收到通知。
-ja 一部の機種（Xiaomi、Huawei など）では、通知を受け取るために Novum の自動起動も許可してください。
-ko 일부 휴대폰(Xiaomi, Huawei 등)에서는 알림을 받으려면 Novum 자동 시작도 허용해야 합니다.
-id Di beberapa ponsel (Xiaomi, Huawei…), izinkan juga Novum untuk mulai otomatis agar menerima notifikasi.
-vi Trên một số điện thoại (Xiaomi, Huawei…), hãy cho phép Novum tự khởi động để nhận thông báo.
+@ Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de NovaSTEM pour recevoir les notifications.
+en On some phones (Xiaomi, Huawei…), also allow NovaSTEM to autostart to receive notifications.
+es En algunos teléfonos (Xiaomi, Huawei…), permite también el inicio automático de NovaSTEM para recibir notificaciones.
+pt Em alguns telemóveis (Xiaomi, Huawei…), permita também o arranque automático do NovaSTEM para receber notificações.
+de Auf manchen Telefonen (Xiaomi, Huawei…) müssen Sie auch den Autostart von NovaSTEM erlauben, um Benachrichtigungen zu erhalten.
+it Su alcuni telefoni (Xiaomi, Huawei…), consenti anche l'avvio automatico di NovaSTEM per ricevere le notifiche.
+nl Op sommige telefoons (Xiaomi, Huawei…) moet je ook automatisch starten van NovaSTEM toestaan om meldingen te krijgen.
+pl Na niektórych telefonach (Xiaomi, Huawei…) zezwól też na autostart NovaSTEM, aby otrzymywać powiadomienia.
+ru На некоторых телефонах (Xiaomi, Huawei…) разрешите также автозапуск NovaSTEM, чтобы получать уведомления.
+uk На деяких телефонах (Xiaomi, Huawei…) дозвольте також автозапуск NovaSTEM, щоб отримувати сповіщення.
+tr Bazı telefonlarda (Xiaomi, Huawei…) bildirim almak için NovaSTEM'un otomatik başlatılmasına da izin verin.
+ar على بعض الهواتف (Xiaomi وHuawei…) اسمح أيضًا بالتشغيل التلقائي لـ NovaSTEM لتلقي الإشعارات.
+hi कुछ फ़ोन (Xiaomi, Huawei…) पर सूचनाएँ पाने के लिए NovaSTEM के ऑटो-स्टार्ट की अनुमति भी दें।
+bn কিছু ফোনে (Xiaomi, Huawei…) বিজ্ঞপ্তি পেতে NovaSTEM-এর অটো-স্টার্টও চালু করুন।
+ur کچھ فونز (Xiaomi، Huawei…) پر اطلاعات کے لیے NovaSTEM کے خودکار آغاز کی اجازت بھی دیں۔
+zh 在部分手机（小米、华为等）上，还需允许 NovaSTEM 自启动才能收到通知。
+ja 一部の機種（Xiaomi、Huawei など）では、通知を受け取るために NovaSTEM の自動起動も許可してください。
+ko 일부 휴대폰(Xiaomi, Huawei 등)에서는 알림을 받으려면 NovaSTEM 자동 시작도 허용해야 합니다.
+id Di beberapa ponsel (Xiaomi, Huawei…), izinkan juga NovaSTEM untuk mulai otomatis agar menerima notifikasi.
+vi Trên một số điện thoại (Xiaomi, Huawei…), hãy cho phép NovaSTEM tự khởi động để nhận thông báo.
 
 @ Politique de confidentialité
 en Privacy policy

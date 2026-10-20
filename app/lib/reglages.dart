@@ -18,13 +18,15 @@ import 'package:flutter/material.dart';
 
 // ------------------------------- POLICES -------------------------------
 // Noms des polices Google Fonts (https://fonts.google.com).
-const String policeLogo = 'Fraunces';             // logo « Novum »
+const String policeLogo = 'Fraunces';             // logo « NovaSTEM »
 const String policeTitres = 'Bricolage Grotesque'; // titres des avancées
 const String policeTexte = 'Figtree';             // tout le reste
 
 // ------------------------------- LOGO ----------------------------------
 const String logoSymbole = 'No';      // dans la case
-const String logoSuite = 'vum';       // collé à la case
+const String logoSuite = 'va';        // collé à la case, même ligne de base
+const String logoExposant = 'STEM';   // en exposant après « va » (Science, Technologie, Ingénierie, Maths)
+const String nomApp = 'NovaSTEM';     // nom de l'application
 const String logoNumero = '102';      // numéro atomique du nobélium
 const Color logoEncreRose = Color(0xFFFF5A8A);
 const Color logoEncreBleue = Color(0xFF3D7BFF);
@@ -153,7 +155,7 @@ const String texteNosSources =
 const String lienConfidentialiteFr = 'https://jd136413-lab.github.io/Application-science/confidentialite.html';
 const String lienConfidentialiteEn = 'https://jd136413-lab.github.io/Application-science/privacy.html';
 const String lienContact = 'https://jd136413-lab.github.io/Application-science/contact.html';
-const String texteVersion = 'Novum 1.0 · sans compte, vos choix restent sur ce téléphone';
+const String texteVersion = 'NovaSTEM 1.0 · sans compte, vos choix restent sur ce téléphone';
 
 // --------------------------- MISE EN PAGE ------------------------------
 const double tailleTitreCarte = 19;   // taille des titres dans les cartes

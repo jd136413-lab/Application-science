@@ -58,7 +58,7 @@ class _EcranDomainesState extends State<EcranDomaines> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
           child: Column(children: [
-            if (widget.premierLancement) ...[const LogoNovum(taille: 34), const SizedBox(height: 18)],
+            if (widget.premierLancement) ...[const LogoNovaStem(taille: 34), const SizedBox(height: 18)],
             Text(tr(texteBienvenueTitre),
                 textAlign: TextAlign.center,
                 style: police(policeTitres, taille: 27, graisse: FontWeight.w800, couleur: p.texte, hauteur: 1.1)),

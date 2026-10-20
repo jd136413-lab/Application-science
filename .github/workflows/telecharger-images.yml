@@ -27,7 +27,7 @@ jobs:
           for paire in $IMAGES; do
             nom="${paire%%=*}"; url="${paire#*=}"
             case "$nom" in *[!A-Za-z0-9._-]*) echo "nom refusé : $nom"; exit 1;; esac
-            curl -fsSL -A "Mozilla/5.0 (compatible; NovumBot/1.0)" "$url" -o "design/images/$nom"
+            curl -fsSL -A "Mozilla/5.0 (compatible; NovaSTEMBot/1.0)" "$url" -o "design/images/$nom"
             echo "✔ $nom ($(du -h "design/images/$nom" | cut -f1))"
           done
       - name: Enregistrer dans le repo

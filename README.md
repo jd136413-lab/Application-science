@@ -1,4 +1,4 @@
-# Application science
+# NovaSTEM (dépôt « Application science »)
 
 Application mobile (Android / iOS) qui recense en français les avancées scientifiques du moment,
 trouvées, résumées et classées automatiquement par un agent IA.

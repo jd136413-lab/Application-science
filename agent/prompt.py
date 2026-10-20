@@ -36,7 +36,7 @@ CLASSIFICATION = (Path(__file__).parent / "classification.md").read_text(encodin
 REGLES_APP = f"""
 # PARTIE XI — APPLICATION À L'APPLICATION « NOVUM » (prioritaire sur la partie VIII)
 
-Tu alimentes Novum, une application mobile gratuite en français avec DEUX fils :
+Tu alimentes NovaSTEM, une application mobile gratuite en français avec DEUX fils :
 « Sciences » (avancées scientifiques) et « Technologies » (avancées technologiques).
 Pour chaque article reçu, applique mentalement toute la procédure ci-dessus
 (parties I à VII et IX), mais N'ÉCRIS PAS l'analyse détaillée de la partie VIII :

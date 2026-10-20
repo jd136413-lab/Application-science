@@ -1,4 +1,4 @@
-# Fiche Google Play de Novum
+# Fiche Google Play de NovaSTEM
 
 Textes à copier dans la Play Console (Développer la présence sur le Play Store → Fiche principale).
 Les longueurs maximales de Google sont indiquées entre parenthèses.
@@ -15,7 +15,7 @@ Images prêtes dans ce dossier :
 **Nom de l'application** (30 caractères max)
 
 ```
-Novum : sciences et tech
+NovaSTEM : sciences et tech
 ```
 
 **Description courte** (80 caractères max)
@@ -27,7 +27,7 @@ Les avancées scientifiques et technologiques du moment, résumées et classées
 **Description complète** (4 000 caractères max)
 
 ```
-Chaque jour, des chercheurs et des ingénieurs font des découvertes parfois immenses. Mais elles sont éparpillées et difficiles à suivre. Novum les rassemble au même endroit.
+Chaque jour, des chercheurs et des ingénieurs font des découvertes parfois immenses. Mais elles sont éparpillées et difficiles à suivre. NovaSTEM les rassemble au même endroit.
 
 DEUX FILS
 • Sciences : espace, santé, climat, physique, vivant, Terre et histoire…
@@ -64,7 +64,7 @@ Les avancées sont sélectionnées, résumées et classées automatiquement par 
 **App name** (30 max)
 
 ```
-Novum: science & tech
+NovaSTEM: science & tech
 ```
 
 **Short description** (80 max)
@@ -76,7 +76,7 @@ Today's breakthroughs in science and technology, summarized and ranked.
 **Full description** (4,000 max)
 
 ```
-Every day, researchers and engineers make discoveries, some of them huge. But they are scattered and hard to follow. Novum brings them together in one place.
+Every day, researchers and engineers make discoveries, some of them huge. But they are scattered and hard to follow. NovaSTEM brings them together in one place.
 
 TWO FEEDS
 • Science: space, health, climate, physics, life, Earth and history…

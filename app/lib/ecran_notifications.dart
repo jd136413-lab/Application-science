@@ -158,7 +158,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                     ),
                   ),
                 ),
-                if (_refusee) aide(tr('Autorisez les notifications de Novum dans les réglages du téléphone.')),
+                if (_refusee) aide(tr('Autorisez les notifications de NovaSTEM dans les réglages du téléphone.')),
                 if (!etat.notifActives)
                   aide(tr('Les notifications sont coupées. Les avancées restent consultables dans l’onglet Actualités.'))
                 else ...[
@@ -316,7 +316,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                       ),
                     ]),
                   ),
-                  aide(tr('Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.')),
+                  aide(tr('Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de NovaSTEM pour recevoir les notifications.')),
                 ],
               ],
             ],

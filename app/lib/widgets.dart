@@ -13,10 +13,10 @@ Palette palette(BuildContext context) => estSombre(context) ? paletteSombre : pa
 TextStyle police(String nom, {double? taille, FontWeight? graisse, Color? couleur, double? hauteur}) =>
     GoogleFonts.getFont(nom, fontSize: taille, fontWeight: graisse, color: couleur, height: hauteur);
 
-/// Logo Novum : la case du tableau périodique « No 102 » + « vum ».
-class LogoNovum extends StatelessWidget {
+/// Logo NovaSTEM : la case du tableau périodique « No 102 » + « va » + « STEM » en exposant.
+class LogoNovaStem extends StatelessWidget {
   final double taille;
-  const LogoNovum({super.key, this.taille = 44});
+  const LogoNovaStem({super.key, this.taille = 44});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class LogoNovum extends StatelessWidget {
       ..color = c
       ..blendMode = sombre ? BlendMode.screen : BlendMode.multiply;
     return Semantics(
-      label: 'Novum',
+      label: nomApp,
       child: ExcludeSemantics(
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -58,7 +58,20 @@ class LogoNovum extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(left: taille * 0.07, bottom: padBas + bord),
-              child: Text(logoSuite, style: style),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(logoSuite, style: style),
+                  Padding(
+                    padding: EdgeInsets.only(left: taille * 0.04, top: taille * 0.04),
+                    child: Text(logoExposant,
+                        style: police(policeTexte,
+                                taille: taille * 0.36, graisse: FontWeight.w700, couleur: p.texte, hauteur: 1.0)
+                            .copyWith(letterSpacing: taille * 0.36 * 0.08)),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
