@@ -2844,3 +2844,255 @@ ja 設定しました：通知を停止しました。
 ko 설정 완료: 더 이상 알림이 없습니다.
 id Beres: tidak ada notifikasi lagi.
 vi Đã xong: không còn thông báo nữa.
+
+@ Masquer
+en Hide
+es Ocultar
+pt Ocultar
+de Ausblenden
+it Nascondi
+nl Verbergen
+pl Ukryj
+ru Скрыть
+uk Приховати
+tr Gizle
+ar إخفاء
+hi छिपाएँ
+bn লুকান
+ur چھپائیں
+zh 隐藏
+ja 非表示
+ko 숨기기
+id Sembunyikan
+vi Ẩn
+
+@ Ajouté aux favoris
+en Added to favorites
+es Añadido a favoritos
+pt Adicionado aos favoritos
+de Zu Favoriten hinzugefügt
+it Aggiunto ai preferiti
+nl Toegevoegd aan favorieten
+pl Dodano do ulubionych
+ru Добавлено в избранное
+uk Додано до обраного
+tr Favorilere eklendi
+ar أضيف إلى المفضلة
+hi पसंदीदा में जोड़ा गया
+bn প্রিয়তে যোগ করা হয়েছে
+ur پسندیدہ میں شامل کر دیا گیا
+zh 已加入收藏
+ja お気に入りに追加しました
+ko 즐겨찾기에 추가됨
+id Ditambahkan ke favorit
+vi Đã thêm vào mục yêu thích
+
+@ Retiré des favoris
+en Removed from favorites
+es Quitado de favoritos
+pt Removido dos favoritos
+de Aus Favoriten entfernt
+it Rimosso dai preferiti
+nl Verwijderd uit favorieten
+pl Usunięto z ulubionych
+ru Удалено из избранного
+uk Вилучено з обраного
+tr Favorilerden kaldırıldı
+ar أزيل من المفضلة
+hi पसंदीदा से हटाया गया
+bn প্রিয় থেকে সরানো হয়েছে
+ur پسندیدہ سے ہٹا دیا گیا
+zh 已取消收藏
+ja お気に入りから削除しました
+ko 즐겨찾기에서 삭제됨
+id Dihapus dari favorit
+vi Đã xóa khỏi mục yêu thích
+
+@ Avancée masquée
+en Breakthrough hidden
+es Avance ocultado
+pt Avanço ocultado
+de Durchbruch ausgeblendet
+it Progresso nascosto
+nl Doorbraak verborgen
+pl Ukryto osiągnięcie
+ru Новость скрыта
+uk Новину приховано
+tr Gelişme gizlendi
+ar تم إخفاء الإنجاز
+hi उपलब्धि छिपा दी गई
+bn অগ্রগতি লুকানো হয়েছে
+ur پیش رفت چھپا دی گئی
+zh 已隐藏该进展
+ja 非表示にしました
+ko 소식을 숨겼습니다
+id Kemajuan disembunyikan
+vi Đã ẩn tin này
+
+@ Partager
+en Share
+es Compartir
+pt Compartilhar
+de Teilen
+it Condividi
+nl Delen
+pl Udostępnij
+ru Поделиться
+uk Поділитися
+tr Paylaş
+ar مشاركة
+hi साझा करें
+bn শেয়ার করুন
+ur شیئر کریں
+zh 分享
+ja 共有
+ko 공유
+id Bagikan
+vi Chia sẻ
+
+@ Masquer cette source
+en Hide this source
+es Ocultar esta fuente
+pt Ocultar esta fonte
+de Diese Quelle ausblenden
+it Nascondi questa fonte
+nl Deze bron verbergen
+pl Ukryj to źródło
+ru Скрыть этот источник
+uk Приховати це джерело
+tr Bu kaynağı gizle
+ar إخفاء هذا المصدر
+hi यह स्रोत छिपाएँ
+bn এই উৎস লুকান
+ur یہ ماخذ چھپائیں
+zh 隐藏此来源
+ja この情報源を非表示
+ko 이 출처 숨기기
+id Sembunyikan sumber ini
+vi Ẩn nguồn này
+
+@ Les avancées de {s} sont masquées
+en Breakthroughs from {s} are hidden
+es Los avances de {s} están ocultos
+pt Os avanços de {s} estão ocultos
+de Durchbrüche von {s} sind ausgeblendet
+it I progressi di {s} sono nascosti
+nl Doorbraken van {s} zijn verborgen
+pl Osiągnięcia z {s} są ukryte
+ru Новости из {s} скрыты
+uk Новини з {s} приховано
+tr {s} kaynaklı gelişmeler gizlendi
+ar تم إخفاء إنجازات {s}
+hi {s} की उपलब्धियाँ छिपा दी गईं
+bn {s}-এর অগ্রগতি লুকানো হয়েছে
+ur {s} کی پیش رفت چھپا دی گئی
+zh 已隐藏来自 {s} 的进展
+ja {s} の情報を非表示にしました
+ko {s}의 소식을 숨겼습니다
+id Kemajuan dari {s} disembunyikan
+vi Đã ẩn các tin từ {s}
+
+@ Découvert sur NovaSTEM
+en Found on NovaSTEM
+es Descubierto en NovaSTEM
+pt Descoberto no NovaSTEM
+de Entdeckt auf NovaSTEM
+it Scoperto su NovaSTEM
+nl Ontdekt op NovaSTEM
+pl Znalezione w NovaSTEM
+ru Найдено в NovaSTEM
+uk Знайдено в NovaSTEM
+tr NovaSTEM’de keşfedildi
+ar اكتُشف عبر NovaSTEM
+hi NovaSTEM पर मिला
+bn NovaSTEM-এ পাওয়া
+ur NovaSTEM پر ملا
+zh 来自 NovaSTEM
+ja NovaSTEM で見つけました
+ko NovaSTEM에서 발견
+id Ditemukan di NovaSTEM
+vi Tìm thấy trên NovaSTEM
+
+@ Contenu masqué
+en Hidden content
+es Contenido oculto
+pt Conteúdo oculto
+de Ausgeblendete Inhalte
+it Contenuti nascosti
+nl Verborgen inhoud
+pl Ukryte treści
+ru Скрытое
+uk Приховане
+tr Gizlenen içerik
+ar المحتوى المخفي
+hi छिपी सामग्री
+bn লুকানো বিষয়বস্তু
+ur چھپایا گیا مواد
+zh 已隐藏的内容
+ja 非表示の内容
+ko 숨긴 콘텐츠
+id Konten tersembunyi
+vi Nội dung đã ẩn
+
+@ Avancées masquées : {n}
+en Hidden breakthroughs: {n}
+es Avances ocultos: {n}
+pt Avanços ocultos: {n}
+de Ausgeblendete Durchbrüche: {n}
+it Progressi nascosti: {n}
+nl Verborgen doorbraken: {n}
+pl Ukryte osiągnięcia: {n}
+ru Скрытые новости: {n}
+uk Приховані новини: {n}
+tr Gizlenen gelişmeler: {n}
+ar إنجازات مخفية: {n}
+hi छिपी उपलब्धियाँ: {n}
+bn লুকানো অগ্রগতি: {n}
+ur چھپائی گئی پیش رفت: {n}
+zh 已隐藏的进展：{n}
+ja 非表示の情報：{n}
+ko 숨긴 소식: {n}
+id Kemajuan tersembunyi: {n}
+vi Tin đã ẩn: {n}
+
+@ Sources masquées : {n}
+en Hidden sources: {n}
+es Fuentes ocultas: {n}
+pt Fontes ocultas: {n}
+de Ausgeblendete Quellen: {n}
+it Fonti nascoste: {n}
+nl Verborgen bronnen: {n}
+pl Ukryte źródła: {n}
+ru Скрытые источники: {n}
+uk Приховані джерела: {n}
+tr Gizlenen kaynaklar: {n}
+ar مصادر مخفية: {n}
+hi छिपे स्रोत: {n}
+bn লুকানো উৎস: {n}
+ur چھپائے گئے ماخذ: {n}
+zh 已隐藏的来源：{n}
+ja 非表示の情報源：{n}
+ko 숨긴 출처: {n}
+id Sumber tersembunyi: {n}
+vi Nguồn đã ẩn: {n}
+
+@ Réafficher les avancées masquées
+en Show hidden breakthroughs again
+es Volver a mostrar los avances ocultos
+pt Mostrar de novo os avanços ocultos
+de Ausgeblendete Durchbrüche wieder anzeigen
+it Mostra di nuovo i progressi nascosti
+nl Verborgen doorbraken weer tonen
+pl Pokaż ponownie ukryte osiągnięcia
+ru Снова показать скрытые новости
+uk Знову показати приховані новини
+tr Gizlenen gelişmeleri yeniden göster
+ar إظهار الإنجازات المخفية من جديد
+hi छिपी उपलब्धियाँ फिर से दिखाएँ
+bn লুকানো অগ্রগতি আবার দেখান
+ur چھپائی گئی پیش رفت دوبارہ دکھائیں
+zh 重新显示已隐藏的进展
+ja 非表示の情報を再表示
+ko 숨긴 소식 다시 보기
+id Tampilkan lagi kemajuan tersembunyi
+vi Hiện lại các tin đã ẩn

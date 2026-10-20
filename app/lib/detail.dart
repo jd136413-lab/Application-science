@@ -92,9 +92,11 @@ class EcranDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: p.carte,
       body: SafeArea(
-        child: Column(children: [
+        child: GlisserPourFermer(
+          child: Column(children: [
           Expanded(
             child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 if (aPhoto)
                   SizedBox(
@@ -158,6 +160,7 @@ class EcranDetail extends StatelessWidget {
             ]),
           ),
         ]),
+        ),
       ),
     );
   }

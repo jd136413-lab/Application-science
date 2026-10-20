@@ -166,3 +166,69 @@ class MessageCentre extends StatelessWidget {
     );
   }
 }
+
+
+/// Petit message en bas de l'écran, avec un bouton « Annuler » facultatif.
+void afficherMessage(BuildContext context, String texte, {IconData icone = Icons.check_rounded, VoidCallback? annuler}) {
+  final p = palette(context);
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(SnackBar(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: p.encre,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      duration: const Duration(seconds: 4),
+      content: Row(children: [
+        Icon(icone, color: couleurEtoiles, size: 22),
+        const SizedBox(width: 12),
+        Expanded(child: Text(texte, style: police(policeTexte, taille: 14, couleur: p.surEncre, hauteur: 1.4))),
+      ]),
+      action: annuler == null
+          ? null
+          : SnackBarAction(label: tr(texteAnnuler), textColor: couleurEtoiles, onPressed: annuler),
+    ));
+}
+
+/// Ferme l'écran quand on le tire vers le bas depuis le haut (comme une photo).
+/// Le contenu suit le doigt ; au-delà de 110 pixels, l'écran se ferme.
+class GlisserPourFermer extends StatefulWidget {
+  final Widget child;
+  const GlisserPourFermer({super.key, required this.child});
+
+  @override
+  State<GlisserPourFermer> createState() => _GlisserPourFermerState();
+}
+
+class _GlisserPourFermerState extends State<GlisserPourFermer> {
+  double _decalage = 0;
+  bool _ferme = false;
+
+  bool _suivre(ScrollNotification n) {
+    if (n.depth != 0 || _ferme) return false;
+    if (n is OverscrollNotification && n.dragDetails != null && n.overscroll < 0) {
+      setState(() => _decalage += -n.overscroll);
+    } else if (n is ScrollUpdateNotification && _decalage > 0 && n.dragDetails != null && (n.scrollDelta ?? 0) > 0) {
+      setState(() => _decalage = (_decalage - n.scrollDelta!).clamp(0, double.infinity));
+    } else if (n is ScrollEndNotification && _decalage > 0) {
+      if (_decalage > 110) {
+        _ferme = true;
+        Navigator.of(context).maybePop();
+      } else {
+        setState(() => _decalage = 0);
+      }
+    }
+    return false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return NotificationListener<ScrollNotification>(
+      onNotification: _suivre,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: _decalage == 0 ? 200 : 0),
+        transform: Matrix4.translationValues(0, _decalage * 0.6, 0),
+        child: widget.child,
+      ),
+    );
+  }
+}

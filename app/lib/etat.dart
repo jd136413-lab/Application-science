@@ -4,6 +4,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'langues.dart';
@@ -19,6 +20,8 @@ class EtatApp extends ChangeNotifier {
   ThemeMode theme = ThemeMode.system;
   String? langueChoisie; // null = suivre la langue du téléphone
   final Map<String, Map<String, dynamic>> _favoris = {}; // id → données
+  List<String> masquees = []; // avancées masquées (balayage vers la gauche)
+  Set<String> sourcesMasquees = {}; // sources masquées (appui long → « Masquer cette source »)
 
   // Notifications (Réglages → Notifications)
   bool notifActives = false;
@@ -42,6 +45,8 @@ class EtatApp extends ChangeNotifier {
       notifLimite = p.getInt('notif_limite') ?? 1;
       final nf = p.getStringList('notif_familles');
       if (nf != null) notifFamilles = nf.toSet();
+      masquees = p.getStringList('masquees') ?? [];
+      sourcesMasquees = (p.getStringList('sources_masquees') ?? []).toSet();
       final fav = p.getString('favoris');
       if (fav != null) {
         final liste = jsonDecode(fav) as List;
@@ -63,6 +68,8 @@ class EtatApp extends ChangeNotifier {
     p.setString('theme', theme.name);
     p.setString('langue', langueChoisie ?? '');
     p.setString('favoris', jsonEncode(_favoris.values.toList()));
+    p.setStringList('masquees', masquees);
+    p.setStringList('sources_masquees', sourcesMasquees.toList());
     p.setBool('notif_actives', notifActives);
     p.setString('notif_fil', notifFil);
     p.setInt('notif_min', notifMin);
@@ -138,11 +145,40 @@ class EtatApp extends ChangeNotifier {
   bool estFavori(String id) => _favoris.containsKey(id);
 
   void basculerFavori(Avancee a) {
+    HapticFeedback.lightImpact(); // petite vibration
     if (_favoris.containsKey(a.id)) {
       _favoris.remove(a.id);
     } else {
       _favoris[a.id] = {...a.brut, 'id': a.id};
     }
+    _enregistrer();
+    notifyListeners();
+  }
+
+  // ---- Avancées et sources masquées ----
+  bool estMasquee(Avancee a) => masquees.contains(a.id) || sourcesMasquees.contains(a.source);
+
+  void masquer(String id) {
+    masquees = [...masquees.where((x) => x != id), id];
+    if (masquees.length > 500) masquees = masquees.sublist(masquees.length - 500); // on garde les 500 dernières
+    _enregistrer();
+    notifyListeners();
+  }
+
+  void demasquer(String id) {
+    masquees = masquees.where((x) => x != id).toList();
+    _enregistrer();
+    notifyListeners();
+  }
+
+  void reafficherAvancees() {
+    masquees = [];
+    _enregistrer();
+    notifyListeners();
+  }
+
+  void masquerSource(String source, {bool visible = false}) {
+    visible ? sourcesMasquees.remove(source) : sourcesMasquees.add(source);
     _enregistrer();
     notifyListeners();
   }

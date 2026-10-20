@@ -12,3 +12,6 @@ const String payloadFil = 'fil';
 
 /// Incrémenté pour demander : onglet Actualités, période « Aujourd'hui ».
 final demandeFilAujourdhui = ValueNotifier<int>(0);
+
+/// Incrémenté quand on touche « Actualités » alors qu'on y est déjà : retour en haut du fil.
+final demandeHautDuFil = ValueNotifier<int>(0);

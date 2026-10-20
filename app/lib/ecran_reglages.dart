@@ -148,6 +148,26 @@ class EcranReglages extends StatelessWidget {
                 Icon(Icons.chevron_right_rounded, color: p.texte),
               ]),
             ),
+            if (etat.masquees.isNotEmpty || etat.sourcesMasquees.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              bloc(
+                onTap: () => _ouvrirMasques(context),
+                child: Row(children: [
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(tr('Contenu masqué'),
+                          style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+                      const SizedBox(height: 4),
+                      Text(
+                          '${tr('Avancées masquées : {n}', n: etat.masquees.length)} · '
+                          '${tr('Sources masquées : {n}', n: etat.sourcesMasquees.length)}',
+                          style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                    ]),
+                  ),
+                  Icon(Icons.chevron_right_rounded, color: p.texte),
+                ]),
+              ),
+            ],
             titreSection('À propos'),
             bloc(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -245,4 +265,65 @@ class EcranLangue extends StatelessWidget {
       },
     );
   }
+}
+
+
+/// Feuille « Contenu masqué » : réafficher les avancées masquées et les sources.
+void _ouvrirMasques(BuildContext context) {
+  final p = palette(context);
+  showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: p.carte,
+    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
+    builder: (feuille) => ListenableBuilder(
+      listenable: etat,
+      builder: (feuille, _) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+          child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Center(
+              child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(color: p.bordure, borderRadius: BorderRadius.circular(2))),
+            ),
+            const SizedBox(height: 14),
+            Text(tr('Contenu masqué'),
+                style: police(policeTitres, taille: 24, graisse: FontWeight.w800, couleur: p.texte)),
+            const SizedBox(height: 12),
+            if (etat.masquees.isNotEmpty)
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  style: OutlinedButton.styleFrom(
+                      foregroundColor: p.texte, side: BorderSide(color: p.bordure, width: 1.5), shape: const StadiumBorder()),
+                  onPressed: etat.reafficherAvancees,
+                  icon: const Icon(Icons.visibility_rounded),
+                  label: Text('${tr('Réafficher les avancées masquées')} (${etat.masquees.length})'),
+                ),
+              ),
+            if (etat.sourcesMasquees.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Flexible(
+                child: ListView(shrinkWrap: true, children: [
+                  for (final s in etat.sourcesMasquees.toList()..sort())
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.block_rounded, color: p.texteDiscret),
+                      title: Text(s, style: police(policeTexte, taille: 15, couleur: p.texte)),
+                      trailing: TextButton(
+                        onPressed: () => etat.masquerSource(s, visible: true),
+                        child: Text(tr('Afficher'),
+                            style: police(policeTexte, taille: 14, graisse: FontWeight.w700, couleur: p.texte)),
+                      ),
+                    ),
+                ]),
+              ),
+            ],
+          ]),
+        ),
+      ),
+    ),
+  );
 }

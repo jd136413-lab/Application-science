@@ -103,7 +103,10 @@ class _CoquilleState extends State<Coquille> {
         child: NavigationBar(
           height: 68,
           selectedIndex: _onglet,
-          onDestinationSelected: (i) => setState(() => _onglet = i),
+          onDestinationSelected: (i) {
+            if (i == 0 && _onglet == 0) demandeHautDuFil.value++; // déjà sur le fil : retour en haut
+            setState(() => _onglet = i);
+          },
           destinations: [
             NavigationDestination(
                 icon: const Icon(Icons.view_agenda_outlined),

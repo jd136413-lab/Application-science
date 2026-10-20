@@ -4,6 +4,7 @@
 // quand on remonte tout en haut ; les 3 menus restent toujours visibles.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'carte.dart';
 import 'detail.dart';
@@ -28,17 +29,28 @@ class _EcranAccueilState extends State<EcranAccueil> {
   bool _triImportance = false;
   bool _logoVisible = true;
   final Map<String, Future<List<Avancee>>> _chargements = {};
+  final _defilement = ScrollController();
 
   @override
   void initState() {
     super.initState();
     demandeFilAujourdhui.addListener(_allerAujourdhui);
+    demandeHautDuFil.addListener(_remonter);
   }
 
   @override
   void dispose() {
     demandeFilAujourdhui.removeListener(_allerAujourdhui);
+    demandeHautDuFil.removeListener(_remonter);
+    _defilement.dispose();
     super.dispose();
+  }
+
+  /// « Actualités » touché alors qu'on y est déjà : retour en haut du fil.
+  void _remonter() {
+    if (_defilement.hasClients) {
+      _defilement.animateTo(0, duration: const Duration(milliseconds: 450), curve: Curves.easeOutCubic);
+    }
   }
 
   /// Notification « + N autres avancées » touchée : période « Aujourd'hui », à jour.
@@ -81,7 +93,9 @@ class _EcranAccueilState extends State<EcranAccueil> {
     final jours = periodes[_periode].$2;
     final limite = DateTime.now().subtract(Duration(days: jours));
     final visibles = etat.famillesVisibles(_fil);
-    final l = toutes.where((a) => a.publieLe.isAfter(limite) && visibles.contains(a.famille)).toList();
+    final l = toutes
+        .where((a) => a.publieLe.isAfter(limite) && visibles.contains(a.famille) && !etat.estMasquee(a))
+        .toList();
     if (_triImportance) {
       l.sort((a, b) => b.importance != a.importance
           ? b.importance.compareTo(a.importance)
@@ -210,6 +224,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
               return RefreshIndicator(
                 onRefresh: _rafraichir,
                 child: ListView.builder(
+                  controller: _defilement,
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
                   itemCount: elements.length,
                   itemBuilder: (context, i) {
@@ -224,7 +239,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
                     final a = e as Avancee;
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 10),
-                      child: CarteAvancee(
+                      child: CarteBalayable(
                         avancee: a,
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)),
@@ -423,6 +438,7 @@ class _FeuilleFiltres extends StatelessWidget {
           // Si « tout » était affiché sans choix explicite, on part de toutes les familles du fil.
           if (choix.intersection(codes.toSet()).isEmpty) choix.addAll(codes);
           choix.contains(code) ? choix.remove(code) : choix.add(code);
+          HapticFeedback.selectionClick(); // petite vibration
           etat.changerDomaines(choix);
         }
 
@@ -455,6 +471,7 @@ class _FeuilleFiltres extends StatelessWidget {
                 title: Text(tr('Tout'), style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
                 onChanged: (_) {
                   final choix = {...etat.domaines}..addAll(codes);
+                  HapticFeedback.selectionClick();
                   etat.changerDomaines(choix);
                 },
               ),
