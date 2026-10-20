@@ -92,7 +92,7 @@ Non.
 - Nom, description courte, description complète : `store/fiche-google-play.md` (FR, puis ajouter la traduction anglaise : « Gérer les traductions » → Anglais)
 - Icône 512 × 512 : `store/icone-512.png`
 - Image de présentation 1024 × 500 : `store/banniere-1024x500.png`
-- Captures d'écran du téléphone : les 6 fichiers de `store/captures/` (refaire les 1 et 2 si l'ancienne parenthèse du crédit apparaît encore)
+- Captures d'écran du téléphone : les 6 fichiers de `store/captures/` (logo NovaSTEM ; la 2, écran de détail, est à refaire : ancienne mention « Résumé automatique » et parenthèse du crédit)
 - Catégorie : **Actualités et magazines** · Tags : Science, Technologie
 - E-mail : jd136413@gmail.com · Site web : https://jd136413-lab.github.io/Application-science/ · Téléphone : laisser vide
 
