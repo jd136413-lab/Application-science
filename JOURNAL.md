@@ -158,3 +158,4 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - Novum entre dans le champ des « applis d'actualités » de Google (agrégateur d'actualités utilisant l'IA) : page **Contact** ajoutée (`app/web_extra/contact.html`, en ligne) et lien « Nous contacter » dans Réglages → À propos (20 langues), exigés par la déclaration.
 - `store/google-play-reponses.md` : toutes les réponses à la Play Console (création, contenu de l'appli, classification, public cible, applis d'actualités, sécurité des données d'après les fiches officielles de Firebase et ML Kit, fiche, test fermé, message aux testeurs).
 - Cible Android de l'APK : API 36 (Android 16), conforme à l'exigence Google Play d'août 2026.
+- 20/10 — Page Contact devenue « Contact et mentions légales » : hébergeurs (GitHub Pages, Supabase, Firebase/Google Ireland, Google Play) et directeur de la publication (loi LCEN).
