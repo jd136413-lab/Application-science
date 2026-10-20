@@ -172,6 +172,17 @@ class EcranReglages extends StatelessWidget {
                 Icon(Icons.open_in_new_rounded, color: p.texte, size: 20),
               ]),
             ),
+            const SizedBox(height: 8),
+            bloc(
+              onTap: () => launchUrl(Uri.parse(lienContact), mode: LaunchMode.externalApplication),
+              child: Row(children: [
+                Expanded(
+                  child: Text(tr('Nous contacter'),
+                      style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+                ),
+                Icon(Icons.mail_outline_rounded, color: p.texte, size: 20),
+              ]),
+            ),
             const SizedBox(height: 18),
             Center(
               child: Text(tr(texteVersion),

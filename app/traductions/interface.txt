@@ -2446,3 +2446,24 @@ ja プライバシーポリシー
 ko 개인정보 처리방침
 id Kebijakan privasi
 vi Chính sách quyền riêng tư
+
+@ Nous contacter
+en Contact us
+es Contacto
+pt Contacte-nos
+de Kontakt
+it Contattaci
+nl Contact
+pl Kontakt
+ru Связаться с нами
+uk Зв'язатися з нами
+tr Bize ulaşın
+ar اتصل بنا
+hi संपर्क करें
+bn যোগাযোগ করুন
+ur ہم سے رابطہ کریں
+zh 联系我们
+ja お問い合わせ
+ko 문의하기
+id Hubungi kami
+vi Liên hệ

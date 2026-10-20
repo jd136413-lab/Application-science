@@ -151,3 +151,10 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - 19/10 — **Politique de confidentialité** rédigée (FR + EN), publiée avec la version web : `…/Application-science/confidentialite.html` et `…/privacy.html` (fichiers dans `app/web_extra/`). Éditeur : Maxime Faucogney (Jupiter Dynamics), contact jd136413@gmail.com. Contenu : aucun compte ni donnée personnelle, réglages et favoris sur le téléphone, Supabase (lecture anonyme), Firebase Cloud Messaging si notifications activées, traduction ML Kit sur le téléphone, contenu généré par IA sans données utilisateur, droits RGPD et CNIL. Lien ajouté dans Réglages → À propos (traduit en 20 langues).
 - 19/10 — Captures d'écran du POCO (6) recadrées pour Google Play (sans barre d'état ni barre de navigation : 1080 × 2148, rapport < 2:1 exigé par Google) dans `store/captures/`.
 - 19/10 — Correctif : crédit d'image avec une parenthèse orpheline (« ESO/GRAVITY collaboration) »). Nettoyage à la lecture de la page, et correction des crédits déjà en base au début de chaque passage de l'agent.
+
+## Phase 9 — Google Play (20/10/2026)
+- Identité de Maxime **vérifiée** par Google (compte Play Console personnel, Jupiter Dynamics).
+- Agent : 2 passages par jour par cron-job.org confirmés (19/10 18 h 20, 20/10 8 h 20 et 18 h 20). Coût réel 0,014 à 0,017 $ par passage (≈ 0,90 $/mois, sous 1 €) ; notes obtenues 2★ et 3★, 1 image sur 10 ; 5 notifications envoyées par passage.
+- Novum entre dans le champ des « applis d'actualités » de Google (agrégateur d'actualités utilisant l'IA) : page **Contact** ajoutée (`app/web_extra/contact.html`, en ligne) et lien « Nous contacter » dans Réglages → À propos (20 langues), exigés par la déclaration.
+- `store/google-play-reponses.md` : toutes les réponses à la Play Console (création, contenu de l'appli, classification, public cible, applis d'actualités, sécurité des données d'après les fiches officielles de Firebase et ML Kit, fiche, test fermé, message aux testeurs).
+- Cible Android de l'APK : API 36 (Android 16), conforme à l'exigence Google Play d'août 2026.

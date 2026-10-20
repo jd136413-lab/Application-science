@@ -119,6 +119,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'New breakthroughs',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'On some phones (Xiaomi, Huawei…), also allow Novum to autostart to receive notifications.',
     'Politique de confidentialité': 'Privacy policy',
+    'Nous contacter': 'Contact us',
   },
   'es': {
     'Sciences': 'Ciencia',
@@ -237,6 +238,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Nuevos avances',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'En algunos teléfonos (Xiaomi, Huawei…), permite también el inicio automático de Novum para recibir notificaciones.',
     'Politique de confidentialité': 'Política de privacidad',
+    'Nous contacter': 'Contacto',
   },
   'pt': {
     'Sciences': 'Ciência',
@@ -355,6 +357,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Novos avanços',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'Em alguns telemóveis (Xiaomi, Huawei…), permita também o arranque automático do Novum para receber notificações.',
     'Politique de confidentialité': 'Política de privacidade',
+    'Nous contacter': 'Contacte-nos',
   },
   'de': {
     'Sciences': 'Wissenschaft',
@@ -473,6 +476,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Neue Durchbrüche',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'Auf manchen Telefonen (Xiaomi, Huawei…) müssen Sie auch den Autostart von Novum erlauben, um Benachrichtigungen zu erhalten.',
     'Politique de confidentialité': 'Datenschutzerklärung',
+    'Nous contacter': 'Kontakt',
   },
   'it': {
     'Sciences': 'Scienza',
@@ -591,6 +595,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Nuove scoperte',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'Su alcuni telefoni (Xiaomi, Huawei…), consenti anche l\'avvio automatico di Novum per ricevere le notifiche.',
     'Politique de confidentialité': 'Informativa sulla privacy',
+    'Nous contacter': 'Contattaci',
   },
   'nl': {
     'Sciences': 'Wetenschap',
@@ -709,6 +714,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Nieuwe doorbraken',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'Op sommige telefoons (Xiaomi, Huawei…) moet je ook automatisch starten van Novum toestaan om meldingen te krijgen.',
     'Politique de confidentialité': 'Privacybeleid',
+    'Nous contacter': 'Contact',
   },
   'pl': {
     'Sciences': 'Nauka',
@@ -827,6 +833,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Nowe odkrycia',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'Na niektórych telefonach (Xiaomi, Huawei…) zezwól też na autostart Novum, aby otrzymywać powiadomienia.',
     'Politique de confidentialité': 'Polityka prywatności',
+    'Nous contacter': 'Kontakt',
   },
   'ru': {
     'Sciences': 'Наука',
@@ -945,6 +952,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Новые открытия',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'На некоторых телефонах (Xiaomi, Huawei…) разрешите также автозапуск Novum, чтобы получать уведомления.',
     'Politique de confidentialité': 'Политика конфиденциальности',
+    'Nous contacter': 'Связаться с нами',
   },
   'uk': {
     'Sciences': 'Наука',
@@ -1063,6 +1071,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Нові відкриття',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'На деяких телефонах (Xiaomi, Huawei…) дозвольте також автозапуск Novum, щоб отримувати сповіщення.',
     'Politique de confidentialité': 'Політика конфіденційності',
+    'Nous contacter': 'Зв\'язатися з нами',
   },
   'tr': {
     'Sciences': 'Bilim',
@@ -1181,6 +1190,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Yeni gelişmeler',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'Bazı telefonlarda (Xiaomi, Huawei…) bildirim almak için Novum\'un otomatik başlatılmasına da izin verin.',
     'Politique de confidentialité': 'Gizlilik politikası',
+    'Nous contacter': 'Bize ulaşın',
   },
   'ar': {
     'Sciences': 'العلوم',
@@ -1299,6 +1309,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'إنجازات جديدة',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'على بعض الهواتف (Xiaomi وHuawei…) اسمح أيضًا بالتشغيل التلقائي لـ Novum لتلقي الإشعارات.',
     'Politique de confidentialité': 'سياسة الخصوصية',
+    'Nous contacter': 'اتصل بنا',
   },
   'hi': {
     'Sciences': 'विज्ञान',
@@ -1417,6 +1428,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'नई उपलब्धियाँ',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'कुछ फ़ोन (Xiaomi, Huawei…) पर सूचनाएँ पाने के लिए Novum के ऑटो-स्टार्ट की अनुमति भी दें।',
     'Politique de confidentialité': 'गोपनीयता नीति',
+    'Nous contacter': 'संपर्क करें',
   },
   'bn': {
     'Sciences': 'বিজ্ঞান',
@@ -1535,6 +1547,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'নতুন অগ্রগতি',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'কিছু ফোনে (Xiaomi, Huawei…) বিজ্ঞপ্তি পেতে Novum-এর অটো-স্টার্টও চালু করুন।',
     'Politique de confidentialité': 'গোপনীয়তা নীতি',
+    'Nous contacter': 'যোগাযোগ করুন',
   },
   'ur': {
     'Sciences': 'سائنس',
@@ -1653,6 +1666,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'نئی پیش رفت',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'کچھ فونز (Xiaomi، Huawei…) پر اطلاعات کے لیے Novum کے خودکار آغاز کی اجازت بھی دیں۔',
     'Politique de confidentialité': 'رازداری کی پالیسی',
+    'Nous contacter': 'ہم سے رابطہ کریں',
   },
   'zh': {
     'Sciences': '科学',
@@ -1771,6 +1785,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': '新进展',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': '在部分手机（小米、华为等）上，还需允许 Novum 自启动才能收到通知。',
     'Politique de confidentialité': '隐私政策',
+    'Nous contacter': '联系我们',
   },
   'ja': {
     'Sciences': '科学',
@@ -1889,6 +1904,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': '新しい発見',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': '一部の機種（Xiaomi、Huawei など）では、通知を受け取るために Novum の自動起動も許可してください。',
     'Politique de confidentialité': 'プライバシーポリシー',
+    'Nous contacter': 'お問い合わせ',
   },
   'ko': {
     'Sciences': '과학',
@@ -2007,6 +2023,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': '새로운 소식',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': '일부 휴대폰(Xiaomi, Huawei 등)에서는 알림을 받으려면 Novum 자동 시작도 허용해야 합니다.',
     'Politique de confidentialité': '개인정보 처리방침',
+    'Nous contacter': '문의하기',
   },
   'id': {
     'Sciences': 'Sains',
@@ -2125,6 +2142,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Kemajuan baru',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'Di beberapa ponsel (Xiaomi, Huawei…), izinkan juga Novum untuk mulai otomatis agar menerima notifikasi.',
     'Politique de confidentialité': 'Kebijakan privasi',
+    'Nous contacter': 'Hubungi kami',
   },
   'vi': {
     'Sciences': 'Khoa học',
@@ -2243,5 +2261,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Nouvelles avancées': 'Tiến bộ mới',
     'Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de Novum pour recevoir les notifications.': 'Trên một số điện thoại (Xiaomi, Huawei…), hãy cho phép Novum tự khởi động để nhận thông báo.',
     'Politique de confidentialité': 'Chính sách quyền riêng tư',
+    'Nous contacter': 'Liên hệ',
   },
 };
