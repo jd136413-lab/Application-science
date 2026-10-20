@@ -37,6 +37,7 @@ Chaque nouvel écran passe d'abord par une maquette, validée avant d'être cod�
 | Carte du monde des découvertes | Fil et découverte | « vraiment bien mais long terme » |
 | Assistant « Explique-moi » | Lecture | seulement si l'app marche bien, dans un abonnement payant 💶 |
 | Modèle économique (don, pubs, abonnement) | Faire vivre le projet | « à voir : don, pubs, abonnement, ou plusieurs » |
+| Connexion avec un compte Google (facultative) | Faire vivre le projet | demandée le 20/10, utile pour la monétisation à long terme |
 
 ---
 
@@ -74,6 +75,7 @@ Chaque nouvel écran passe d'abord par une maquette, validée avant d'être cod�
 ### 7. Faire vivre le projet
 - **Statistiques sans pister** ★★ (priorité) — Compteurs anonymes : ouvertures de l'app, avancées lues, partages, langues, réglages de notifications les plus choisis. Aucune donnée personnelle, aucun identifiant publicitaire. À annoncer dans la politique de confidentialité. Piste : un simple compteur dans Supabase, ou Firebase Analytics avec les options de confidentialité.
 - **Modèle économique** — À décider plus tard : don volontaire, publicité, abonnement (par exemple avec « Explique-moi »), ou une combinaison. Des pubs imposeraient de mettre à jour la politique de confidentialité et les déclarations Google Play.
+- **Connexion avec un compte Google (facultative)** ★★★ — Idée de Maxime (20/10). Rester utilisable **sans compte** ; la connexion servirait à retrouver favoris et réglages sur un autre téléphone, et à partager un abonnement entre Android, iPhone et web. Piste : Supabase Auth avec « Se connecter avec Google » (et « Se connecter avec Apple », exigé par Apple si une connexion Google est proposée sur iPhone). Un abonnement Google Play n'a pas besoin de compte dans l'app. À faire en même temps que la monétisation. Impose de mettre à jour : Play Console « Accès à l'application » (expliquer aux examinateurs comment se connecter), « Sécurité des données » (e-mail, identifiant), politique de confidentialité, et une option « Supprimer mon compte » dans l'app (obligatoire pour Google et Apple).
 
 ---
 
