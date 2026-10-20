@@ -28,6 +28,9 @@ const String logoSuite = 'va';        // collé à la case, même ligne de base
 const String logoExposant = 'STEM';   // en exposant après « va » (Science, Technologie, Ingénierie, Maths)
 const String nomApp = 'NovaSTEM';     // nom de l'application
 const String logoNumero = '102';      // numéro atomique du nobélium
+// Couleur des étoiles pleines (note d'importance), partout dans l'app.
+const Color couleurEtoiles = Color(0xFFE0A800);   // jaune doré
+
 const Color logoEncreRose = Color(0xFFFF5A8A);
 const Color logoEncreBleue = Color(0xFF3D7BFF);
 
@@ -117,6 +120,11 @@ const List<String> motsImportance = ['', 'Mineur', 'Limité', 'Notable', 'Majeur
 const String texteLireArticle = 'Lire l’article';
 const String texteMentionResume = 'Résumé généré par IA · l’article source fait foi'; // obligatoire (AI Act, art. 50)
 const String texteVide = 'Pas encore d’avancée ici';
+// Fenêtre affichée quand on appuie sur le bouton retour du téléphone dans le fil
+const String texteQuitterTitre = 'Quitter NovaSTEM ?';
+const String texteQuitterMessage = 'Voulez-vous vraiment quitter l’application ?';
+const String texteAnnuler = 'Annuler';
+const String texteQuitter = 'Quitter';
 const String texteVideDetail = 'L’agent n’a encore rien publié dans ce fil.';
 const String texteErreur = 'Pas de connexion';
 const String texteErreurDetail = 'Impossible de charger les avancées. Vérifiez votre connexion, puis réessayez.';

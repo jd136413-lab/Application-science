@@ -196,7 +196,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                                   const SizedBox(width: 12),
                                   for (var e = 1; e <= 5; e++)
                                     Icon(Icons.star_rounded,
-                                        size: 16, color: e <= n ? const Color(0xFFE0A800) : p.bordure),
+                                        size: 16, color: e <= n ? couleurEtoiles : p.bordure),
                                   const SizedBox(width: 10),
                                   Expanded(
                                     child: Text(tr(niveauxNotif[n]),

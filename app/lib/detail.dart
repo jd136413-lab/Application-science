@@ -186,7 +186,7 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
           original: _original,
           style: police(policeTitres, taille: 27, graisse: FontWeight.w800, couleur: p.texte, hauteur: 1.12)),
       const SizedBox(height: 14),
-      Etoiles(note: a.importance, couleur: f.couleur, taille: 18),
+      Etoiles(note: a.importance, taille: 18),
       const SizedBox(height: 16),
       TexteArticle(a.resume,
           original: _original, style: police(policeTexte, taille: 17, couleur: p.texte, hauteur: 1.6)),

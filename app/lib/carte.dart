@@ -51,7 +51,7 @@ class CarteAvancee extends StatelessWidget {
                       taille: tailleTitreCarte, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.22)),
               const SizedBox(height: 12),
               Row(children: [
-                Etoiles(note: avancee.importance, couleur: f.couleur),
+                Etoiles(note: avancee.importance),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text('· ${avancee.source}',

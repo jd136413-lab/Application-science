@@ -2,6 +2,7 @@
 // (Actualités · Favoris · Réglages).
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'accueil.dart';
 import 'ecran_reglages.dart';
@@ -36,10 +37,48 @@ class _CoquilleState extends State<Coquille> {
 
   void _versActualites() => setState(() => _onglet = 0);
 
+  /// Bouton retour du téléphone : depuis Favoris ou Réglages, on revient au fil ;
+  /// depuis le fil, on demande confirmation avant de quitter.
+  Future<void> _retour() async {
+    if (_onglet != 0) {
+      setState(() => _onglet = 0);
+      return;
+    }
+    final p = palette(context);
+    final quitter = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: p.carte,
+        title: Text(tr(texteQuitterTitre),
+            style: police(policeTitres, taille: 20, graisse: FontWeight.w700, couleur: p.texte)),
+        content: Text(tr(texteQuitterMessage),
+            style: police(policeTexte, taille: 15, couleur: p.texteDiscret)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(tr(texteAnnuler),
+                style: police(policeTexte, taille: 15, graisse: FontWeight.w600, couleur: p.texteDiscret)),
+          ),
+          FilledButton(
+            style: FilledButton.styleFrom(backgroundColor: p.texte, foregroundColor: p.fond),
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(tr(texteQuitter), style: police(policeTexte, taille: 15, graisse: FontWeight.w700)),
+          ),
+        ],
+      ),
+    );
+    if (quitter == true) SystemNavigator.pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (aQuitte, _) {
+        if (!aQuitte) _retour();
+      },
+      child: Scaffold(
       backgroundColor: p.fond,
       body: SafeArea(
         bottom: false,
@@ -81,6 +120,7 @@ class _CoquilleState extends State<Coquille> {
           ],
         ),
       ),
+    ),
     );
   }
 }

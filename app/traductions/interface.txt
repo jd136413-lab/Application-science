@@ -2467,3 +2467,87 @@ ja お問い合わせ
 ko 문의하기
 id Hubungi kami
 vi Liên hệ
+
+@ Quitter NovaSTEM ?
+en Quit NovaSTEM?
+es ¿Salir de NovaSTEM?
+pt Sair do NovaSTEM?
+de NovaSTEM beenden?
+it Uscire da NovaSTEM?
+nl NovaSTEM afsluiten?
+pl Zamknąć NovaSTEM?
+ru Выйти из NovaSTEM?
+uk Вийти з NovaSTEM?
+tr NovaSTEM'den çıkılsın mı?
+ar هل تريد الخروج من NovaSTEM؟
+hi NovaSTEM से बाहर निकलें?
+bn NovaSTEM থেকে বের হবেন?
+ur NovaSTEM سے باہر نکلیں؟
+zh 退出 NovaSTEM？
+ja NovaSTEM を終了しますか？
+ko NovaSTEM을 종료할까요?
+id Keluar dari NovaSTEM?
+vi Thoát NovaSTEM?
+
+@ Voulez-vous vraiment quitter l’application ?
+en Do you really want to quit the app?
+es ¿Seguro que quieres salir de la aplicación?
+pt Tem certeza de que deseja sair do aplicativo?
+de Möchten Sie die App wirklich beenden?
+it Vuoi davvero uscire dall’app?
+nl Wil je de app echt afsluiten?
+pl Czy na pewno chcesz zamknąć aplikację?
+ru Вы действительно хотите выйти из приложения?
+uk Ви справді хочете вийти із застосунку?
+tr Uygulamadan çıkmak istediğinize emin misiniz?
+ar هل تريد حقًا الخروج من التطبيق؟
+hi क्या आप सच में ऐप से बाहर निकलना चाहते हैं?
+bn আপনি কি সত্যিই অ্যাপ থেকে বের হতে চান?
+ur کیا آپ واقعی ایپ سے باہر نکلنا چاہتے ہیں؟
+zh 确定要退出应用吗？
+ja アプリを終了してもよろしいですか？
+ko 앱을 종료하시겠어요?
+id Yakin ingin keluar dari aplikasi?
+vi Bạn có chắc muốn thoát ứng dụng không?
+
+@ Annuler
+en Cancel
+es Cancelar
+pt Cancelar
+de Abbrechen
+it Annulla
+nl Annuleren
+pl Anuluj
+ru Отмена
+uk Скасувати
+tr İptal
+ar إلغاء
+hi रद्द करें
+bn বাতিল
+ur منسوخ کریں
+zh 取消
+ja キャンセル
+ko 취소
+id Batal
+vi Hủy
+
+@ Quitter
+en Quit
+es Salir
+pt Sair
+de Beenden
+it Esci
+nl Afsluiten
+pl Zamknij
+ru Выйти
+uk Вийти
+tr Çık
+ar خروج
+hi बाहर निकलें
+bn বের হন
+ur باہر نکلیں
+zh 退出
+ja 終了
+ko 종료
+id Keluar
+vi Thoát

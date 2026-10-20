@@ -80,13 +80,12 @@ class LogoNovaStem extends StatelessWidget {
   }
 }
 
-/// 5 étoiles, colorées selon la famille, + le mot (Notable, Majeur…).
+/// 5 étoiles jaunes (couleurEtoiles) + le mot (Notable, Majeur…).
 class Etoiles extends StatelessWidget {
   final int note;
-  final Color couleur;
   final double taille;
   final bool avecMot;
-  const Etoiles({super.key, required this.note, required this.couleur, this.taille = 15, this.avecMot = true});
+  const Etoiles({super.key, required this.note, this.taille = 15, this.avecMot = true});
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +95,7 @@ class Etoiles extends StatelessWidget {
       child: ExcludeSemantics(
         child: Row(mainAxisSize: MainAxisSize.min, children: [
           for (var i = 1; i <= 5; i++)
-            Icon(Icons.star_rounded, size: taille + 2, color: i <= note ? couleur : p.bordure),
+            Icon(Icons.star_rounded, size: taille + 2, color: i <= note ? couleurEtoiles : p.bordure),
           if (avecMot) ...[
             const SizedBox(width: 6),
             Text(tr(motsImportance[note]),
