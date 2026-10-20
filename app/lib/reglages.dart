@@ -113,7 +113,7 @@ const String texteSciences = 'Sciences';
 const String texteTechnologies = 'Technologies';
 const List<String> motsImportance = ['', 'Mineur', 'Limité', 'Notable', 'Majeur', 'Rupture'];
 const String texteLireArticle = 'Lire l’article';
-const String texteMentionResume = 'Résumé automatique · l’article source fait foi';
+const String texteMentionResume = 'Résumé généré par IA · l’article source fait foi'; // obligatoire (AI Act, art. 50)
 const String texteVide = 'Pas encore d’avancée ici';
 const String texteVideDetail = 'L’agent n’a encore rien publié dans ce fil.';
 const String texteErreur = 'Pas de connexion';
@@ -148,7 +148,7 @@ const String texteOngletReglages = 'Réglages';
 // Réglages
 const String texteNosSources =
     'Les avancées viennent de sources scientifiques et technologiques reconnues. '
-    'Les résumés sont rédigés automatiquement ; l’article source fait foi.';
+    'Elles sont sélectionnées et résumées par une intelligence artificielle ; l’article source fait foi.'; l’article source fait foi.';
 // Politique de confidentialité (pages publiées avec la version web)
 const String lienConfidentialiteFr = 'https://jd136413-lab.github.io/Application-science/confidentialite.html';
 const String lienConfidentialiteEn = 'https://jd136413-lab.github.io/Application-science/privacy.html';

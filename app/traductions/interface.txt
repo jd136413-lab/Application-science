@@ -177,26 +177,26 @@ ko 기사 읽기
 id Baca artikel
 vi Đọc bài viết
 
-@ Résumé automatique · l’article source fait foi
-en Automatic summary · the source article prevails
-es Resumen automático · prevalece el artículo original
-pt Resumo automático · prevalece o artigo original
-de Automatische Zusammenfassung · maßgeblich ist der Originalartikel
-it Riassunto automatico · fa fede l’articolo originale
-nl Automatische samenvatting · het bronartikel is leidend
-pl Streszczenie automatyczne · decyduje artykuł źródłowy
-ru Автоматическое резюме · главным остаётся исходная статья
-uk Автоматичний підсумок · головною є першоджерельна стаття
-tr Otomatik özet · esas olan kaynak makaledir
-ar ملخص تلقائي · المرجع هو المقال الأصلي
-hi स्वचालित सारांश · मूल लेख ही मान्य है
-bn স্বয়ংক্রিয় সারাংশ · মূল নিবন্ধই প্রামাণ্য
-ur خودکار خلاصہ · اصل مضمون ہی مستند ہے
-zh 自动摘要 · 以原文为准
-ja 自動要約 · 元の記事が優先されます
-ko 자동 요약 · 원문 기사가 우선합니다
-id Ringkasan otomatis · artikel sumber yang berlaku
-vi Tóm tắt tự động · bài viết gốc là căn cứ
+@ Résumé généré par IA · l’article source fait foi
+en AI-generated summary · the source article prevails
+es Resumen generado por IA · prevalece el artículo original
+pt Resumo gerado por IA · prevalece o artigo original
+de KI-generierte Zusammenfassung · maßgeblich ist der Originalartikel
+it Riassunto generato dall’IA · fa fede l’articolo originale
+nl Door AI gegenereerde samenvatting · het bronartikel is leidend
+pl Streszczenie wygenerowane przez AI · decyduje artykuł źródłowy
+ru Резюме создано ИИ · главным остаётся исходная статья
+uk Підсумок створено ШІ · головною є першоджерельна стаття
+tr Yapay zekâ tarafından oluşturulan özet · esas olan kaynak makaledir
+ar ملخص مُنشأ بالذكاء الاصطناعي · المرجع هو المقال الأصلي
+hi एआई द्वारा तैयार सारांश · मूल लेख ही मान्य है
+bn এআই-তৈরি সারাংশ · মূল নিবন্ধই প্রামাণ্য
+ur اے آئی سے تیار کردہ خلاصہ · اصل مضمون ہی مستند ہے
+zh 由 AI 生成的摘要 · 以原文为准
+ja AI が生成した要約 · 元の記事が優先されます
+ko AI가 생성한 요약 · 원문 기사가 우선합니다
+id Ringkasan dibuat oleh AI · artikel sumber yang berlaku
+vi Tóm tắt do AI tạo · bài viết gốc là căn cứ
 
 @ Pas encore d’avancée ici
 en No advances here yet
@@ -618,26 +618,26 @@ ko 설정
 id Pengaturan
 vi Cài đặt
 
-@ Les avancées viennent de sources scientifiques et technologiques reconnues. Les résumés sont rédigés automatiquement ; l’article source fait foi.
-en The advances come from recognised scientific and technology sources. Summaries are written automatically; the source article prevails.
-es Los avances proceden de fuentes científicas y tecnológicas reconocidas. Los resúmenes se redactan automáticamente; prevalece el artículo original.
-pt Os avanços vêm de fontes científicas e tecnológicas reconhecidas. Os resumos são redigidos automaticamente; prevalece o artigo original.
-de Die Fortschritte stammen aus anerkannten Wissenschafts- und Technikquellen. Die Zusammenfassungen werden automatisch erstellt; maßgeblich ist der Originalartikel.
-it I progressi provengono da fonti scientifiche e tecnologiche riconosciute. I riassunti sono scritti automaticamente; fa fede l’articolo originale.
-nl De doorbraken komen uit erkende wetenschappelijke en technologische bronnen. Samenvattingen worden automatisch geschreven; het bronartikel is leidend.
-pl Informacje pochodzą z uznanych źródeł naukowych i technologicznych. Streszczenia są tworzone automatycznie; decyduje artykuł źródłowy.
-ru Материалы берутся из признанных научных и технологических источников. Резюме составляются автоматически; главным остаётся исходная статья.
-uk Матеріали беруться з визнаних наукових і технологічних джерел. Підсумки складаються автоматично; головною є першоджерельна стаття.
-tr Gelişmeler tanınmış bilim ve teknoloji kaynaklarından gelir. Özetler otomatik olarak yazılır; esas olan kaynak makaledir.
-ar تأتي التطورات من مصادر علمية وتقنية معروفة. تُكتب الملخصات تلقائيًا، والمرجع هو المقال الأصلي.
-hi प्रगति की जानकारी मान्यता प्राप्त वैज्ञानिक और तकनीकी स्रोतों से आती है। सारांश स्वचालित रूप से लिखे जाते हैं; मूल लेख ही मान्य है।
-bn অগ্রগতিগুলো স্বীকৃত বৈজ্ঞানিক ও প্রযুক্তি সূত্র থেকে আসে। সারাংশ স্বয়ংক্রিয়ভাবে লেখা হয়; মূল নিবন্ধই প্রামাণ্য।
-ur پیش رفت تسلیم شدہ سائنسی اور تکنیکی ذرائع سے آتی ہے۔ خلاصے خودکار طور پر لکھے جاتے ہیں؛ اصل مضمون ہی مستند ہے۔
-zh 内容来自公认的科学与科技来源。摘要为自动生成，以原文为准。
-ja 掲載する成果は信頼できる科学・技術の情報源から集めています。要約は自動で作成され、元の記事が優先されます。
-ko 소식은 공신력 있는 과학·기술 출처에서 가져옵니다. 요약은 자동으로 작성되며, 원문 기사가 우선합니다.
-id Kemajuan berasal dari sumber sains dan teknologi tepercaya. Ringkasan ditulis otomatis; artikel sumber yang berlaku.
-vi Các tiến bộ được lấy từ những nguồn khoa học và công nghệ uy tín. Bản tóm tắt được viết tự động; bài viết gốc là căn cứ.
+@ Les avancées viennent de sources scientifiques et technologiques reconnues. Elles sont sélectionnées et résumées par une intelligence artificielle ; l’article source fait foi.
+en The advances come from recognised scientific and technology sources. They are selected and summarised by artificial intelligence; the source article prevails.
+es Los avances proceden de fuentes científicas y tecnológicas reconocidas. Una inteligencia artificial los selecciona y resume; prevalece el artículo original.
+pt Os avanços vêm de fontes científicas e tecnológicas reconhecidas. São selecionados e resumidos por uma inteligência artificial; prevalece o artigo original.
+de Die Fortschritte stammen aus anerkannten Wissenschafts- und Technikquellen. Sie werden von einer künstlichen Intelligenz ausgewählt und zusammengefasst; maßgeblich ist der Originalartikel.
+it I progressi provengono da fonti scientifiche e tecnologiche riconosciute. Sono selezionati e riassunti da un’intelligenza artificiale; fa fede l’articolo originale.
+nl De doorbraken komen uit erkende wetenschappelijke en technologische bronnen. Ze worden geselecteerd en samengevat door kunstmatige intelligentie; het bronartikel is leidend.
+pl Informacje pochodzą z uznanych źródeł naukowych i technologicznych. Są wybierane i streszczane przez sztuczną inteligencję; decyduje artykuł źródłowy.
+ru Материалы берутся из признанных научных и технологических источников. Их отбирает и пересказывает искусственный интеллект; главным остаётся исходная статья.
+uk Матеріали беруться з визнаних наукових і технологічних джерел. Їх відбирає й підсумовує штучний інтелект; головною є першоджерельна стаття.
+tr Gelişmeler tanınmış bilim ve teknoloji kaynaklarından gelir. Yapay zekâ tarafından seçilir ve özetlenir; esas olan kaynak makaledir.
+ar تأتي التطورات من مصادر علمية وتقنية معروفة. يختارها الذكاء الاصطناعي ويلخصها، والمرجع هو المقال الأصلي.
+hi प्रगति की जानकारी मान्यता प्राप्त वैज्ञानिक और तकनीकी स्रोतों से आती है। इन्हें कृत्रिम बुद्धिमत्ता चुनती और सारांशित करती है; मूल लेख ही मान्य है।
+bn অগ্রগতিগুলো স্বীকৃত বৈজ্ঞানিক ও প্রযুক্তি সূত্র থেকে আসে। কৃত্রিম বুদ্ধিমত্তা এগুলো বাছাই ও সারাংশ করে; মূল নিবন্ধই প্রামাণ্য।
+ur پیش رفت تسلیم شدہ سائنسی اور تکنیکی ذرائع سے آتی ہے۔ انہیں مصنوعی ذہانت منتخب کرتی اور خلاصہ بناتی ہے؛ اصل مضمون ہی مستند ہے۔
+zh 内容来自公认的科学与科技来源，由人工智能筛选并生成摘要，以原文为准。
+ja 掲載する成果は信頼できる科学・技術の情報源から集め、人工知能が選んで要約しています。元の記事が優先されます。
+ko 소식은 공신력 있는 과학·기술 출처에서 가져오며, 인공지능이 선별하고 요약합니다. 원문 기사가 우선합니다.
+id Kemajuan berasal dari sumber sains dan teknologi tepercaya. Dipilih dan diringkas oleh kecerdasan buatan; artikel sumber yang berlaku.
+vi Các tiến bộ được lấy từ những nguồn khoa học và công nghệ uy tín, được trí tuệ nhân tạo chọn lọc và tóm tắt; bài viết gốc là căn cứ.
 
 @ Novum 1.0 · sans compte, vos choix restent sur ce téléphone
 en Novum 1.0 · no account, your choices stay on this phone
