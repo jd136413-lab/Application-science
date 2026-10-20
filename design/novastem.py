@@ -43,9 +43,9 @@ out = sys.argv[1]
 logo(300,CLAIR,NOIR,False).save(out+"/demarrage.png")
 logo(300,SOMBRE,BLANC,True).save(out+"/demarrage_sombre.png")
 # bannière 1024x500 : logo sans cadre + slogan
-m = logo(170,CLAIR,NOIR,False,cadre=False)
+m = logo(150,CLAIR,NOIR,False)
 ban = Image.new("RGB",(1024,500),CLAIR)
-ban.paste(m,((1024-m.width)//2,70))
+ban.paste(m,((1024-m.width)//2,75))
 d = ImageDraw.Draw(ban)
 f = ImageFont.truetype(F+"Figtree-Medium.ttf",30)
 d.text((512,355),"Les avancées scientifiques et technologiques du moment",font=f,fill=GRIS,anchor="mm")
