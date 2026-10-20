@@ -188,11 +188,15 @@ class Supabase:
     def corriger_credits(self) -> int:
         """Corrige les crédits d'image déjà enregistrés avec une parenthèse orpheline."""
         r = requests.get(self.base, headers=self.headers, timeout=30, params={
-            "select": "id,image_credit", "image_credit": "like.*)", "limit": "500"})
+            "select": "id,image_credit,published_at", "image_credit": "like.*)", "limit": "500"})
         r.raise_for_status()
         n = 0
         for x in r.json():
             propre = nettoyer_credit(x["image_credit"])
+            # Ancien bogue PLOS : « (Oct ) » au lieu de l'année → année de publication
+            an = (x.get("published_at") or "")[:4]
+            propre = re.sub(r"\((?:[A-Za-zéû]{3,9}\.?\s*)\)", f"({an})" if an.isdigit() else "", propre)
+            propre = re.sub(r"\s+,", ",", propre)
             if propre != x["image_credit"]:
                 requests.patch(self.base, headers=dict(self.headers, Prefer="return=minimal"),
                                params={"id": f"eq.{x['id']}"}, json={"image_credit": propre}, timeout=30)
@@ -353,7 +357,9 @@ def completer_image(art: dict) -> None:
         auteur = meta("citation_author")
         nom_famille = auteur.split(",")[0].split()[-1] if auteur else ""
         revue = meta("citation_journal_title") or art["source_name"]
-        annee = (meta("citation_date") or meta("citation_publication_date"))[:4]
+        # La date peut être « 2026/10/16 » ou « Oct 16, 2026 » : on cherche l'année (4 chiffres).
+        m_an = re.search(r"\b(19|20)\d{2}\b", meta("citation_date") or meta("citation_publication_date"))
+        annee = m_an.group(0) if m_an else ""
         credit = (f"Image : {nom_famille + ' et al., ' if nom_famille else ''}{revue}"
                   f"{' (' + annee + ')' if annee else ''}, CC BY 4.0")
     elif art.get("credit_page") and page:
