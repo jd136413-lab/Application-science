@@ -40,6 +40,15 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      # Garde les téléchargements de Gradle (outils Android) d'une compilation à l'autre : plus rapide.
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('app/pubspec.yaml') }}
+          restore-keys: gradle-${{ runner.os }}-
+
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
@@ -194,7 +203,7 @@ jobs:
           fi
 
       - name: Fichier pour Google Play (.aab)
-        if: ${{ inputs.google_play }}
+        if: ${{ github.event_name == 'push' || inputs.google_play }}  # à chaque modification
         shell: bash
         env:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
@@ -211,7 +220,7 @@ jobs:
           && echo "::notice title=Google Play::Fichier novum-${{ github.run_number }}.aab prêt (Summary → Artifacts → novum-google-play)"
 
       - name: Mettre le fichier Google Play à disposition
-        if: ${{ inputs.google_play }}
+        if: ${{ github.event_name == 'push' || inputs.google_play }}  # à chaque modification
         uses: actions/upload-artifact@v4
         with:
           name: novum-google-play
