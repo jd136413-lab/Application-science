@@ -33,9 +33,10 @@ class EtatApp extends ChangeNotifier {
   // Notifications (Réglages → Notifications)
   bool notifActives = false;
   String notifFil = 'both'; // 'science', 'tech' ou 'both'
-  int notifMin = 4; // importance minimale (1 à 5)
-  int notifLimite = 1; // au plus N par arrivée ; 0 = sans limite (1 = formule « L’essentiel »)
-  Set<String> notifFamilles = {...famillesSciences, ...famillesTech};
+  int notifMin = 2; // importance minimale (1 à 5) ; par défaut ★★ Notable (2 à 3 par jour)
+  /// « Sur mesure » : réglage propre à une famille. Absente = suit [notifMin] ;
+  /// 0 = coupée ; 1 à 5 = son importance minimale.
+  Map<String, int> notifParFamille = {};
 
   Future<void> charger() async {
     try {
@@ -48,10 +49,27 @@ class EtatApp extends ChangeNotifier {
       langueChoisie = languesDisponibles.containsKey(l) ? l : null;
       notifActives = p.getBool('notif_actives') ?? false;
       notifFil = p.getString('notif_fil') ?? 'both';
-      notifMin = (p.getInt('notif_min') ?? 4).clamp(1, 5);
-      notifLimite = p.getInt('notif_limite') ?? 1;
-      final nf = p.getStringList('notif_familles');
-      if (nf != null) notifFamilles = nf.toSet();
+      if ((p.getInt('notif_version') ?? 1) < 2) {
+        // Anciens réglages (formules, barème d'avant le 21/10) → nouveau modèle.
+        final ancien = p.getInt('notif_min');
+        if (ancien != null) notifMin = const [2, 1, 1, 2, 4, 5][ancien.clamp(1, 5)];
+        final nf = p.getStringList('notif_familles');
+        if (nf != null) {
+          for (final f in [...famillesSciences, ...famillesTech]) {
+            if (!nf.contains(f)) notifParFamille[f] = 0;
+          }
+        }
+        p.setInt('notif_version', 2);
+        p.setInt('notif_min', notifMin);
+        p.setStringList('notif_par_famille', [for (final e in notifParFamille.entries) '${e.key}:${e.value}']);
+      } else {
+        notifMin = (p.getInt('notif_min') ?? 2).clamp(1, 5);
+        for (final x in p.getStringList('notif_par_famille') ?? <String>[]) {
+          final morceaux = x.split(':');
+          final v = morceaux.length == 2 ? int.tryParse(morceaux[1]) : null;
+          if (v != null) notifParFamille[morceaux[0]] = v.clamp(0, 5);
+        }
+      }
       ouvertures = (p.getInt('ouvertures') ?? 0) + 1;
       favorisAjoutes = p.getInt('favoris_ajoutes') ?? 0;
       avisDemande = p.getBool('avis_demande') ?? false;
@@ -91,8 +109,7 @@ class EtatApp extends ChangeNotifier {
     p.setBool('notif_actives', notifActives);
     p.setString('notif_fil', notifFil);
     p.setInt('notif_min', notifMin);
-    p.setInt('notif_limite', notifLimite);
-    p.setStringList('notif_familles', notifFamilles.toList());
+    p.setStringList('notif_par_famille', [for (final e in notifParFamille.entries) '${e.key}:${e.value}']);
   }
 
   // ---- Premier lancement / domaines ----
@@ -136,7 +153,10 @@ class EtatApp extends ChangeNotifier {
   }
 
   // ---- Notifications ----
-  /// Sujets Firebase à suivre : un par famille cochée et par niveau
+  /// Importance minimale d'une famille (0 = coupée).
+  int minDeFamille(String code) => notifParFamille[code] ?? notifMin;
+
+  /// Sujets Firebase à suivre : un par famille gardée et par niveau
   /// d'importance accepté (ex. n_space_4 et n_space_5 pour « Majeur et plus »).
   Set<String> get sujetsNotif {
     if (!notifActives) return {};
@@ -144,17 +164,27 @@ class EtatApp extends ChangeNotifier {
     return {
       for (final fil in fils)
         for (final f in famillesDuFil(fil))
-          if (notifFamilles.contains(f))
-            for (var i = notifMin; i <= 5; i++) 'n_${f}_$i',
+          if (minDeFamille(f) > 0)
+            for (var i = minDeFamille(f); i <= 5; i++) 'n_${f}_$i',
     };
   }
 
-  void changerNotifications({bool? actives, String? fil, int? min, int? limite, Set<String>? familles}) {
+  void changerNotifications({bool? actives, String? fil, int? min}) {
     if (actives != null) notifActives = actives;
     if (fil != null) notifFil = fil;
     if (min != null) notifMin = min;
-    if (limite != null) notifLimite = limite;
-    if (familles != null) notifFamilles = {...familles};
+    _enregistrer();
+    notifyListeners();
+    synchroniserSujets(sujetsNotif);
+  }
+
+  /// « Sur mesure » : [valeur] null = suivre le réglage général, 0 = couper, 1 à 5 = minimum propre.
+  void changerFamilleNotif(String code, int? valeur) {
+    if (valeur == null) {
+      notifParFamille.remove(code);
+    } else {
+      notifParFamille[code] = valeur;
+    }
     _enregistrer();
     notifyListeners();
     synchroniserSujets(sujetsNotif);

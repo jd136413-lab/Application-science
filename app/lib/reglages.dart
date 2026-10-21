@@ -116,7 +116,7 @@ List<String> famillesDuFil(String fil) => fil == 'tech' ? famillesTech : famille
 // ------------------------------- TEXTES --------------------------------
 const String texteSciences = 'Sciences';
 const String texteTechnologies = 'Technologies';
-const List<String> motsImportance = ['', 'Mineur', 'Limité', 'Notable', 'Majeur', 'Rupture'];
+const List<String> motsImportance = ['', 'Intéressant', 'Notable', 'Important', 'Majeur', 'Rupture']; // barème du 21/10
 const String texteLireArticle = 'Lire l’article';
 const String texteMentionResume = 'Résumé généré par IA · l’article source fait foi'; // obligatoire (AI Act, art. 50)
 const String texteVide = 'Pas encore d’avancée ici';

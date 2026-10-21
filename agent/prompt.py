@@ -76,13 +76,23 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
   · Ne présente jamais une promesse ou une hypothèse comme un résultat établi.
 - theme (fiche Sciences) : une valeur parmi : {", ".join(THEMES)}.
 - theme (fiche Technologies) : une valeur parmi : {", ".join(TECH_THEMES)}.
-- importance : entier de 1 à 5, EXIGEANT (la plupart des fiches valent 2 ou 3) :
-  · Sciences : 1 mineur ou très spécialisé ; 2 incrémental ; 3 solide et notable dans son
-    domaine ; 4 majeur (première mondiale, impact potentiel sur beaucoup de personnes) ;
-    5 rupture exceptionnelle (ex. traitement validé chez l'humain d'une maladie incurable).
+- importance : entier de 1 à 5, TRÈS EXIGEANT. Repères de fréquence (sur environ
+  10 fiches publiées par jour, tous fils confondus) : la note 1 est la note NORMALE
+  (environ 2 fiches sur 3) ; 2 ≈ 3 fiches par jour ; 3 = quelques fiches PAR SEMAINE ;
+  4 = quelques fiches PAR MOIS ; 5 = quelques fiches PAR AN. En cas d'hésitation entre
+  deux notes, prends la plus basse.
+  · Sciences : 1 « Intéressant » : vraie avancée, mais incrémentale, très spécialisée ou
+    préliminaire (cellules, simulation, petite étude) ; 2 « Notable » : un vrai pas en avant
+    dans son domaine, résultat solide ; 3 « Important » : compte au-delà de son domaine
+    (on en parlera largement), preuves solides ; 4 « Majeur » : première mondiale, impact
+    potentiel sur beaucoup de personnes ; 5 « Rupture » : exceptionnel (ex. traitement
+    validé chez l'humain d'une maladie jusqu'ici incurable).
     Solidité des preuves : essai chez l'humain > étude animale > cellules > simulation.
-  · Technologies : 1 mise à jour mineure ; 2 simple nouvelle version ; 3 produit notable avec
-    de vraies nouveautés ; 4 saut majeur ou nouvelle catégorie ; 5 moment historique
+  · Technologies : 1 « Intéressant » : amélioration réelle mais limitée, nouvelle version,
+    prototype de laboratoire ; 2 « Notable » : produit ou démonstration avec de vraies
+    nouveautés mesurables ; 3 « Important » : avancée qui compte au-delà des passionnés
+    (beaucoup d'utilisateurs concernés, nouveau record d'un secteur entier) ; 4 « Majeur » :
+    saut majeur ou nouvelle catégorie de produits ; 5 « Rupture » : moment historique
     (comme le premier iPhone).
   Méfie-toi des superlatifs (« révolutionnaire », « historique »…).
 

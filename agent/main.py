@@ -527,9 +527,9 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     if theme not in themes:
         theme = defaut
     try:
-        importance = int(round(float(fiche.get("importance", 2))))
+        importance = int(round(float(fiche.get("importance", 1))))
     except (TypeError, ValueError):
-        importance = 2
+        importance = 1
     return {
         "feed": feed, "title": titre, "summary": resume, "theme": theme,
         "importance": max(1, min(5, importance)), "source_url": art["url"],

@@ -3201,3 +3201,635 @@ ja 前回の訪問時に表示済み
 ko 지난 방문 때 본 소식
 id Sudah dilihat di kunjungan terakhir
 vi Đã xem trong lần truy cập trước
+
+# ---- Barème du 21/10 et nouvel écran Notifications (maquettes 26, 27, 28 D) ----
+
+@ Intéressant
+en Interesting
+es Interesante
+pt Interessante
+de Interessant
+it Interessante
+nl Interessant
+pl Interesujące
+ru Интересное
+uk Цікаве
+tr İlginç
+ar مثير للاهتمام
+hi रोचक
+bn আকর্ষণীয়
+ur دلچسپ
+zh 有意思
+ja 興味深い
+ko 흥미로움
+id Menarik
+vi Thú vị
+
+@ Important
+en Important
+es Importante
+pt Importante
+de Wichtig
+it Importante
+nl Belangrijk
+pl Ważne
+ru Важное
+uk Важливе
+tr Önemli
+ar مهم
+hi महत्वपूर्ण
+bn গুরুত্বপূর্ণ
+ur اہم
+zh 重要
+ja 重要
+ko 중요함
+id Signifikan
+vi Quan trọng
+
+@ Important et plus
+en Important and above
+es Importante o más
+pt Importante ou mais
+de Wichtig und höher
+it Importante e oltre
+nl Belangrijk en hoger
+pl Ważne i wyżej
+ru Важное и выше
+uk Важливе й вище
+tr Önemli ve üzeri
+ar مهم فما فوق
+hi महत्वपूर्ण और उससे ऊपर
+bn গুরুত্বপূর্ণ ও তার বেশি
+ur اہم اور اس سے زیادہ
+zh 重要及以上
+ja 重要以上
+ko 중요함 이상
+id Signifikan ke atas
+vi Quan trọng trở lên
+
+@ Vers {a} et {b}. Au plus 2 à chaque fois : une pour les Sciences, une pour les Technologies.
+en Around {a} and {b}. At most 2 each time: one for Science, one for Tech.
+es Hacia las {a} y las {b}. Como máximo 2 cada vez: una de Ciencia y una de Tecnología.
+pt Por volta de {a} e {b}. No máximo 2 de cada vez: uma de Ciência e uma de Tecnologia.
+de Gegen {a} und {b}. Höchstens 2 auf einmal: eine für Wissenschaft, eine für Technik.
+it Verso le {a} e le {b}. Al massimo 2 ogni volta: una per Scienza e una per Tecnologia.
+nl Rond {a} en {b}. Hooguit 2 per keer: één voor Wetenschap, één voor Technologie.
+pl Około {a} i {b}. Najwyżej 2 naraz: jedno z Nauki, jedno z Technologii.
+ru Около {a} и {b}. Не больше 2 за раз: одно о науке, одно о технологиях.
+uk Близько {a} і {b}. Не більше 2 за раз: одне про науку, одне про технології.
+tr Yaklaşık {a} ve {b} saatlerinde. Her seferinde en fazla 2: biri Bilim, biri Teknoloji için.
+ar نحو {a} و{b}. إشعاران على الأكثر في كل مرة: واحد للعلوم وواحد للتكنولوجيا.
+hi लगभग {a} और {b} बजे। हर बार ज़्यादा से ज़्यादा 2: एक विज्ञान के लिए, एक तकनीक के लिए।
+bn প্রায় {a} ও {b}-এ। প্রতিবার সর্বোচ্চ ২টি: একটি বিজ্ঞানের, একটি প্রযুক্তির।
+ur تقریباً {a} اور {b} بجے۔ ہر بار زیادہ سے زیادہ 2: ایک سائنس کے لیے، ایک ٹیکنالوجی کے لیے۔
+zh 约 {a} 和 {b}。每次最多 2 条：科学一条，科技一条。
+ja {a} と {b} ごろ。毎回最大 2 件：科学 1 件、テクノロジー 1 件。
+ko {a}와 {b}쯤. 매번 최대 2개: 과학 하나, 기술 하나.
+id Sekitar pukul {a} dan {b}. Paling banyak 2 setiap kali: satu untuk Sains, satu untuk Teknologi.
+vi Khoảng {a} và {b}. Tối đa 2 mỗi lần: một cho Khoa học, một cho Công nghệ.
+
+@ Quelles avancées ?
+en Which advances?
+es ¿Qué avances?
+pt Que avanços?
+de Welche Fortschritte?
+it Quali progressi?
+nl Welke vooruitgang?
+pl Jakie postępy?
+ru Какие достижения?
+uk Які досягнення?
+tr Hangi gelişmeler?
+ar أي تقدّمات؟
+hi कौन-सी प्रगतियाँ?
+bn কোন অগ্রগতি?
+ur کون سی پیش رفت؟
+zh 哪些进展？
+ja どの進展？
+ko 어떤 발전 소식?
+id Kemajuan apa?
+vi Những tiến bộ nào?
+
+@ {n}/jour
+en {n}/day
+es {n}/día
+pt {n}/dia
+de {n}/Tag
+it {n}/giorno
+nl {n}/dag
+pl {n}/dzień
+ru {n}/день
+uk {n}/день
+tr günde {n}
+ar {n}/يوم
+hi {n}/दिन
+bn {n}/দিন
+ur {n}/دن
+zh 每天 {n}
+ja 1日{n}件
+ko 하루 {n}개
+id {n}/hari
+vi {n}/ngày
+
+@ {n} notifications par jour
+en {n} notifications a day
+es {n} notificaciones al día
+pt {n} notificações por dia
+de {n} Benachrichtigungen pro Tag
+it {n} notifiche al giorno
+nl {n} meldingen per dag
+pl {n} powiadomienia dziennie
+ru {n} уведомления в день
+uk {n} сповіщення на день
+tr Günde {n} bildirim
+ar {n} إشعارات يوميًا
+hi रोज़ {n} सूचनाएँ
+bn দিনে {n}টি বিজ্ঞপ্তি
+ur روزانہ {n} اطلاعات
+zh 每天 {n} 条通知
+ja 1日 {n} 件の通知
+ko 하루 {n}개 알림
+id {n} notifikasi per hari
+vi {n} thông báo mỗi ngày
+
+@ qq/sem.
+en a few/wk
+es unas/sem.
+pt algumas/sem.
+de einige/Wo.
+it alcune/sett.
+nl enkele/wk
+pl kilka/tydz.
+ru неск./нед.
+uk кілька/тиж.
+tr haftada birkaç
+ar أسبوعيًا
+hi साप्ताहिक
+bn সাপ্তাহিক
+ur ہفتہ وار
+zh 每周几条
+ja 週数件
+ko 주 몇 개
+id bbrp/mgg
+vi vài/tuần
+
+@ qq/mois
+en a few/mo
+es unas/mes
+pt algumas/mês
+de einige/Mon.
+it alcune/mese
+nl enkele/mnd
+pl kilka/mies.
+ru неск./мес.
+uk кілька/міс.
+tr ayda birkaç
+ar شهريًا
+hi मासिक
+bn মাসিক
+ur ماہانہ
+zh 每月几条
+ja 月数件
+ko 월 몇 개
+id bbrp/bln
+vi vài/tháng
+
+@ qq/an
+en a few/yr
+es unas/año
+pt algumas/ano
+de einige/Jahr
+it alcune/anno
+nl enkele/jaar
+pl kilka/rok
+ru неск./год
+uk кілька/рік
+tr yılda birkaç
+ar سنويًا
+hi वार्षिक
+bn বার্ষিক
+ur سالانہ
+zh 每年几条
+ja 年数件
+ko 연 몇 개
+id bbrp/thn
+vi vài/năm
+
+@ Quelques notifications par semaine
+en A few notifications a week
+es Algunas notificaciones a la semana
+pt Algumas notificações por semana
+de Einige Benachrichtigungen pro Woche
+it Qualche notifica a settimana
+nl Enkele meldingen per week
+pl Kilka powiadomień w tygodniu
+ru Несколько уведомлений в неделю
+uk Кілька сповіщень на тиждень
+tr Haftada birkaç bildirim
+ar بضعة إشعارات في الأسبوع
+hi हफ़्ते में कुछ सूचनाएँ
+bn সপ্তাহে কয়েকটি বিজ্ঞপ্তি
+ur ہفتے میں چند اطلاعات
+zh 每周几条通知
+ja 週に数件の通知
+ko 일주일에 몇 개의 알림
+id Beberapa notifikasi per minggu
+vi Vài thông báo mỗi tuần
+
+@ Quelques notifications par mois
+en A few notifications a month
+es Algunas notificaciones al mes
+pt Algumas notificações por mês
+de Einige Benachrichtigungen pro Monat
+it Qualche notifica al mese
+nl Enkele meldingen per maand
+pl Kilka powiadomień w miesiącu
+ru Несколько уведомлений в месяц
+uk Кілька сповіщень на місяць
+tr Ayda birkaç bildirim
+ar بضعة إشعارات في الشهر
+hi महीने में कुछ सूचनाएँ
+bn মাসে কয়েকটি বিজ্ঞপ্তি
+ur مہینے میں چند اطلاعات
+zh 每月几条通知
+ja 月に数件の通知
+ko 한 달에 몇 개의 알림
+id Beberapa notifikasi per bulan
+vi Vài thông báo mỗi tháng
+
+@ Quelques notifications par an
+en A few notifications a year
+es Algunas notificaciones al año
+pt Algumas notificações por ano
+de Einige Benachrichtigungen pro Jahr
+it Qualche notifica all'anno
+nl Enkele meldingen per jaar
+pl Kilka powiadomień w roku
+ru Несколько уведомлений в год
+uk Кілька сповіщень на рік
+tr Yılda birkaç bildirim
+ar بضعة إشعارات في السنة
+hi साल में कुछ सूचनाएँ
+bn বছরে কয়েকটি বিজ্ঞপ্তি
+ur سال میں چند اطلاعات
+zh 每年几条通知
+ja 年に数件の通知
+ko 일 년에 몇 개의 알림
+id Beberapa notifikasi per tahun
+vi Vài thông báo mỗi năm
+
+@ Tout ce que NovaSTEM publie, matin et soir : de vraies avancées, même modestes.
+en Everything NovaSTEM publishes, morning and evening: real advances, even modest ones.
+es Todo lo que publica NovaSTEM, mañana y tarde: avances reales, aunque sean modestos.
+pt Tudo o que o NovaSTEM publica, de manhã e à noite: avanços reais, mesmo que modestos.
+de Alles, was NovaSTEM morgens und abends veröffentlicht: echte Fortschritte, auch kleine.
+it Tutto ciò che NovaSTEM pubblica, mattina e sera: veri progressi, anche modesti.
+nl Alles wat NovaSTEM ’s ochtends en ’s avonds publiceert: echte vooruitgang, ook als die bescheiden is.
+pl Wszystko, co NovaSTEM publikuje rano i wieczorem: prawdziwe postępy, nawet skromne.
+ru Всё, что публикует NovaSTEM утром и вечером: настоящие достижения, даже скромные.
+uk Усе, що публікує NovaSTEM уранці й увечері: справжні досягнення, навіть скромні.
+tr NovaSTEM'in sabah ve akşam yayımladığı her şey: mütevazı da olsa gerçek gelişmeler.
+ar كل ما ينشره NovaSTEM صباحًا ومساءً: تقدّمات حقيقية، ولو كانت متواضعة.
+hi NovaSTEM सुबह और शाम जो कुछ प्रकाशित करता है: असली प्रगतियाँ, भले ही छोटी हों।
+bn NovaSTEM সকাল ও সন্ধ্যায় যা প্রকাশ করে সবই: সত্যিকারের অগ্রগতি, ছোট হলেও।
+ur NovaSTEM صبح اور شام جو کچھ شائع کرتا ہے: حقیقی پیش رفت، چاہے معمولی ہو۔
+zh NovaSTEM 早晚发布的全部内容：真正的进展，哪怕规模不大。
+ja NovaSTEM が朝と夕方に公開するすべて：小さくても本物の進展です。
+ko NovaSTEM이 아침저녁으로 올리는 모든 소식: 작더라도 진짜 발전입니다.
+id Semua yang diterbitkan NovaSTEM pagi dan sore: kemajuan nyata, meski kecil.
+vi Mọi thứ NovaSTEM đăng sáng và tối: những tiến bộ thật sự, dù nhỏ.
+
+@ Les avancées notables : un vrai pas en avant dans leur domaine.
+en Notable advances: a real step forward in their field.
+es Los avances notables: un verdadero paso adelante en su campo.
+pt Os avanços notáveis: um verdadeiro passo em frente na sua área.
+de Bemerkenswerte Fortschritte: ein echter Schritt nach vorn in ihrem Fachgebiet.
+it I progressi notevoli: un vero passo avanti nel loro campo.
+nl Opmerkelijke vooruitgang: een echte stap vooruit in het eigen vakgebied.
+pl Godne uwagi postępy: prawdziwy krok naprzód w swojej dziedzinie.
+ru Заметные достижения: настоящий шаг вперёд в своей области.
+uk Помітні досягнення: справжній крок уперед у своїй галузі.
+tr Kayda değer gelişmeler: kendi alanında gerçek bir adım.
+ar التقدّمات اللافتة: خطوة حقيقية إلى الأمام في مجالها.
+hi उल्लेखनीय प्रगतियाँ: अपने क्षेत्र में एक असली कदम आगे।
+bn উল্লেখযোগ্য অগ্রগতি: নিজের ক্ষেত্রে সত্যিকারের এক ধাপ এগোনো।
+ur قابل ذکر پیش رفت: اپنے شعبے میں ایک حقیقی قدم آگے۔
+zh 值得关注的进展：在各自领域真正向前迈进一步。
+ja 注目の進展：その分野で本当に一歩前進したもの。
+ko 주목할 만한 발전: 해당 분야에서 진짜 한 걸음 나아간 소식.
+id Kemajuan yang patut dicatat: langkah maju nyata di bidangnya.
+vi Những tiến bộ đáng chú ý: một bước tiến thật sự trong lĩnh vực của chúng.
+
+@ Les avancées importantes, qui comptent au-delà de leur domaine.
+en Important advances that matter beyond their field.
+es Los avances importantes, que cuentan más allá de su campo.
+pt Os avanços importantes, que contam para além da sua área.
+de Wichtige Fortschritte, die über ihr Fachgebiet hinaus zählen.
+it I progressi importanti, che contano oltre il loro campo.
+nl Belangrijke vooruitgang die ook buiten het eigen vakgebied telt.
+pl Ważne postępy, które liczą się poza swoją dziedziną.
+ru Важные достижения, значимые за пределами своей области.
+uk Важливі досягнення, значущі поза межами своєї галузі.
+tr Kendi alanının ötesinde önem taşıyan gelişmeler.
+ar التقدّمات المهمة التي تتجاوز أهميتها مجالها.
+hi महत्वपूर्ण प्रगतियाँ, जो अपने क्षेत्र से आगे भी मायने रखती हैं।
+bn গুরুত্বপূর্ণ অগ্রগতি, যা নিজের ক্ষেত্রের বাইরেও গুরুত্ব রাখে।
+ur اہم پیش رفت، جو اپنے شعبے سے باہر بھی اہمیت رکھتی ہے۔
+zh 重要进展：影响超出其所在领域。
+ja 重要な進展：その分野を超えて意味を持つもの。
+ko 중요한 발전: 해당 분야를 넘어 의미가 있는 소식.
+id Kemajuan signifikan yang berarti di luar bidangnya.
+vi Những tiến bộ quan trọng, có ý nghĩa vượt ra ngoài lĩnh vực của chúng.
+
+@ Seulement les avancées majeures : premières mondiales, grands lancements.
+en Only major advances: world firsts, big launches.
+es Solo los avances mayores: primicias mundiales, grandes lanzamientos.
+pt Só os avanços maiores: estreias mundiais, grandes lançamentos.
+de Nur große Fortschritte: Weltneuheiten, große Markteinführungen.
+it Solo i progressi maggiori: prime mondiali, grandi lanci.
+nl Alleen grote doorbraken: wereldprimeurs, grote lanceringen.
+pl Tylko najważniejsze postępy: pierwsze na świecie osiągnięcia, duże premiery.
+ru Только крупные достижения: мировые первенства, большие запуски.
+uk Лише великі досягнення: світові першості, великі запуски.
+tr Yalnızca büyük gelişmeler: dünyada ilkler, büyük lansmanlar.
+ar التقدّمات الكبرى فقط: إنجازات تتحقق لأول مرة في العالم، وإطلاقات كبرى.
+hi सिर्फ़ बड़ी प्रगतियाँ: दुनिया में पहली बार, बड़े लॉन्च।
+bn শুধু বড় অগ্রগতি: বিশ্বে প্রথম, বড় উদ্বোধন।
+ur صرف بڑی پیش رفت: دنیا میں پہلی بار، بڑے لانچ۔
+zh 只看重大进展：世界首创、重大发布。
+ja 主要な進展のみ：世界初、大型の発表。
+ko 주요 발전만: 세계 최초, 대형 출시.
+id Hanya kemajuan besar: pertama di dunia, peluncuran besar.
+vi Chỉ những tiến bộ lớn: lần đầu tiên trên thế giới, những lần ra mắt lớn.
+
+@ Seulement les ruptures exceptionnelles. Très rare, mais immanquable.
+en Only exceptional breakthroughs. Very rare, but unmissable.
+es Solo las rupturas excepcionales. Muy raro, pero imperdible.
+pt Só as ruturas excecionais. Muito raro, mas imperdível.
+de Nur außergewöhnliche Durchbrüche. Sehr selten, aber unverzichtbar.
+it Solo le svolte eccezionali. Molto raro, ma imperdibile.
+nl Alleen uitzonderlijke doorbraken. Heel zeldzaam, maar niet te missen.
+pl Tylko wyjątkowe przełomy. Bardzo rzadko, ale nie do przegapienia.
+ru Только исключительные прорывы. Очень редко, но пропустить нельзя.
+uk Лише виняткові прориви. Дуже рідко, але не пропустіть.
+tr Yalnızca olağanüstü atılımlar. Çok nadir ama kaçırılmaz.
+ar الاختراقات الاستثنائية فقط. نادرة جدًا، لكن لا تُفوَّت.
+hi सिर्फ़ असाधारण क्रांतिकारी खोजें। बहुत दुर्लभ, पर छोड़ने लायक नहीं।
+bn শুধু ব্যতিক্রমী যুগান্তকারী অগ্রগতি। খুব বিরল, কিন্তু মিস করার মতো নয়।
+ur صرف غیر معمولی انقلابی پیش رفت۔ بہت کم، مگر چھوڑنے کے قابل نہیں۔
+zh 只看非凡的突破。非常少见，但不容错过。
+ja 並外れたブレイクスルーのみ。ごくまれですが、見逃せません。
+ko 특별한 돌파구만. 아주 드물지만 놓칠 수 없습니다.
+id Hanya terobosan luar biasa. Sangat jarang, tapi tak boleh terlewat.
+vi Chỉ những đột phá phi thường. Rất hiếm, nhưng không thể bỏ lỡ.
+
+@ Chaque notification regroupe toutes les avancées du fil arrivées en même temps. Estimation : le nombre réel dépend de l’actualité.
+en Each notification groups all the advances in the feed that arrived together. Estimate: the actual number depends on the news.
+es Cada notificación agrupa todos los avances del canal que llegan a la vez. Estimación: el número real depende de la actualidad.
+pt Cada notificação reúne todos os avanços do feed que chegaram ao mesmo tempo. Estimativa: o número real depende da atualidade.
+de Jede Benachrichtigung bündelt alle Fortschritte des Bereichs, die gleichzeitig eingetroffen sind. Schätzung: Die tatsächliche Zahl hängt von der Nachrichtenlage ab.
+it Ogni notifica raggruppa tutti i progressi del feed arrivati insieme. Stima: il numero reale dipende dall'attualità.
+nl Elke melding bundelt alle vooruitgang uit de feed die tegelijk binnenkwam. Schatting: het echte aantal hangt af van het nieuws.
+pl Każde powiadomienie zbiera wszystkie postępy z kanału, które przyszły jednocześnie. Szacunek: rzeczywista liczba zależy od wydarzeń.
+ru Каждое уведомление объединяет все достижения ленты, пришедшие одновременно. Оценка: реальное число зависит от новостей.
+uk Кожне сповіщення об’єднує всі досягнення стрічки, що надійшли одночасно. Оцінка: реальна кількість залежить від новин.
+tr Her bildirim, akışta aynı anda gelen tüm gelişmeleri bir araya getirir. Tahmin: gerçek sayı gündeme bağlıdır.
+ar يجمع كل إشعار جميع التقدّمات التي وصلت معًا في القسم. تقدير: العدد الفعلي يتوقف على الأخبار.
+hi हर सूचना में उस फ़ीड की एक साथ आई सभी प्रगतियाँ होती हैं। अनुमान: असली संख्या ख़बरों पर निर्भर करती है।
+bn প্রতিটি বিজ্ঞপ্তিতে ফিডে একসঙ্গে আসা সব অগ্রগতি থাকে। আনুমানিক: আসল সংখ্যা খবরের ওপর নির্ভর করে।
+ur ہر اطلاع میں فیڈ کی ایک ساتھ آنے والی تمام پیش رفت شامل ہوتی ہے۔ اندازہ: اصل تعداد خبروں پر منحصر ہے۔
+zh 每条通知汇总该频道同时到达的所有进展。估计值：实际数量取决于新闻情况。
+ja 各通知には、同時に届いたそのフィードの進展がまとめて入ります。目安です：実際の数はニュース次第です。
+ko 각 알림에는 같은 피드에 함께 도착한 발전 소식이 모두 묶입니다. 예상치이며, 실제 개수는 뉴스에 따라 달라집니다.
+id Setiap notifikasi menggabungkan semua kemajuan di feed yang datang bersamaan. Perkiraan: jumlah sebenarnya tergantung berita.
+vi Mỗi thông báo gộp tất cả tiến bộ của mục đến cùng lúc. Ước tính: số thật phụ thuộc vào tin tức.
+
+@ Choisir famille par famille
+en Choose topic by topic
+es Elegir tema por tema
+pt Escolher tema a tema
+de Bereich für Bereich wählen
+it Scegli argomento per argomento
+nl Per onderwerp kiezen
+pl Wybierz dziedzinę po dziedzinie
+ru Выбрать по темам
+uk Вибрати за темами
+tr Konu konu seç
+ar اختر حسب كل موضوع
+hi हर विषय अलग से चुनें
+bn বিষয় ধরে ধরে বেছে নিন
+ur ہر موضوع الگ سے چنیں
+zh 按主题逐个选择
+ja テーマごとに選ぶ
+ko 주제별로 선택
+id Pilih per topik
+vi Chọn theo từng chủ đề
+
+@ Par défaut, chaque famille suit l’importance choisie au-dessus. Touchez les étoiles d’une famille pour la régler à part, ou coupez-la.
+en By default, each topic follows the importance chosen above. Tap a topic’s stars to set it separately, or turn it off.
+es Por defecto, cada tema sigue la importancia elegida arriba. Toca las estrellas de un tema para ajustarlo aparte, o desactívalo.
+pt Por padrão, cada tema segue a importância escolhida acima. Toque nas estrelas de um tema para ajustá-lo à parte, ou desative-o.
+de Standardmäßig folgt jeder Bereich der oben gewählten Wichtigkeit. Tippen Sie auf die Sterne eines Bereichs, um ihn separat einzustellen, oder schalten Sie ihn aus.
+it Per impostazione predefinita, ogni argomento segue l'importanza scelta sopra. Tocca le stelle di un argomento per regolarlo a parte, o disattivalo.
+nl Standaard volgt elk onderwerp de belangrijkheid hierboven. Tik op de sterren van een onderwerp om het apart in te stellen, of zet het uit.
+pl Domyślnie każda dziedzina korzysta z ważności wybranej wyżej. Dotknij gwiazdek dziedziny, aby ustawić ją osobno, albo ją wyłącz.
+ru По умолчанию каждая тема следует важности, выбранной выше. Коснитесь звёзд темы, чтобы настроить её отдельно, или отключите её.
+uk Типово кожна тема дотримується важливості, вибраної вище. Торкніться зірок теми, щоб налаштувати її окремо, або вимкніть її.
+tr Varsayılan olarak her konu yukarıda seçilen önem düzeyini izler. Ayrı ayarlamak için bir konunun yıldızlarına dokunun ya da konuyu kapatın.
+ar افتراضيًا، يتبع كل موضوع الأهمية المختارة أعلاه. المس نجوم موضوع لضبطه على حدة، أو أوقفه.
+hi डिफ़ॉल्ट रूप से हर विषय ऊपर चुनी गई अहमियत का पालन करता है। किसी विषय को अलग से सेट करने के लिए उसके तारे छुएँ, या उसे बंद करें।
+bn ডিফল্টভাবে প্রতিটি বিষয় ওপরে বেছে নেওয়া গুরুত্ব মেনে চলে। আলাদা করে ঠিক করতে কোনো বিষয়ের তারায় ট্যাপ করুন, অথবা সেটি বন্ধ করুন।
+ur پہلے سے ہر موضوع اوپر چنی گئی اہمیت پر چلتا ہے۔ کسی موضوع کو الگ سے سیٹ کرنے کے لیے اس کے ستارے چھوئیں، یا اسے بند کریں۔
+zh 默认情况下，每个主题都沿用上面选择的重要程度。点按某个主题的星星可单独设置，也可以将其关闭。
+ja 初期設定では、各テーマは上で選んだ重要度に従います。テーマの星をタップすると個別に設定でき、オフにもできます。
+ko 기본적으로 각 주제는 위에서 고른 중요도를 따릅니다. 주제의 별을 눌러 따로 정하거나 끌 수 있습니다.
+id Secara bawaan, setiap topik mengikuti tingkat penting yang dipilih di atas. Ketuk bintang sebuah topik untuk mengaturnya terpisah, atau matikan.
+vi Mặc định, mỗi chủ đề theo mức quan trọng đã chọn ở trên. Chạm vào sao của một chủ đề để chỉnh riêng, hoặc tắt nó.
+
+@ par défaut
+en default
+es por defecto
+pt padrão
+de Standard
+it predefinito
+nl standaard
+pl domyślnie
+ru по умолчанию
+uk типово
+tr varsayılan
+ar افتراضي
+hi डिफ़ॉल्ट
+bn ডিফল্ট
+ur پہلے سے طے
+zh 默认
+ja 初期設定
+ko 기본값
+id bawaan
+vi mặc định
+
+@ Avec ces réglages
+en With these settings
+es Con estos ajustes
+pt Com estas definições
+de Mit diesen Einstellungen
+it Con queste impostazioni
+nl Met deze instellingen
+pl Przy tych ustawieniach
+ru С этими настройками
+uk З цими налаштуваннями
+tr Bu ayarlarla
+ar بهذه الإعدادات
+hi इन सेटिंग्स के साथ
+bn এই সেটিংসে
+ur ان ترتیبات کے ساتھ
+zh 按当前设置
+ja この設定では
+ko 이 설정으로는
+id Dengan pengaturan ini
+vi Với cài đặt này
+
+@ Aucune famille gardée : vous ne recevrez aucune notification.
+en No topic kept: you won’t get any notifications.
+es Ningún tema activado: no recibirás notificaciones.
+pt Nenhum tema ativo: não receberá notificações.
+de Kein Bereich aktiv: Sie erhalten keine Benachrichtigungen.
+it Nessun argomento attivo: non riceverai notifiche.
+nl Geen onderwerp aan: je krijgt geen meldingen.
+pl Żadna dziedzina nie jest włączona: nie dostaniesz powiadomień.
+ru Ни одна тема не включена: уведомлений не будет.
+uk Жодну тему не ввімкнено: сповіщень не буде.
+tr Açık konu yok: hiç bildirim almayacaksınız.
+ar لا يوجد موضوع مفعّل: لن تصلك أي إشعارات.
+hi कोई विषय चालू नहीं: आपको कोई सूचना नहीं मिलेगी।
+bn কোনো বিষয় চালু নেই: আপনি কোনো বিজ্ঞপ্তি পাবেন না।
+ur کوئی موضوع فعال نہیں: آپ کو کوئی اطلاع نہیں ملے گی۔
+zh 没有保留任何主题：您将不会收到通知。
+ja オンのテーマがありません：通知は届きません。
+ko 켜진 주제가 없습니다: 알림을 받지 않습니다.
+id Tidak ada topik aktif: Anda tidak akan menerima notifikasi.
+vi Không có chủ đề nào được bật: bạn sẽ không nhận thông báo.
+
+@ certaines familles réglées à part
+en some topics set separately
+es algunos temas ajustados aparte
+pt alguns temas ajustados à parte
+de einige Bereiche eigens eingestellt
+it alcuni argomenti regolati a parte
+nl sommige onderwerpen apart ingesteld
+pl niektóre dziedziny ustawione osobno
+ru некоторые темы настроены отдельно
+uk деякі теми налаштовано окремо
+tr bazı konular ayrı ayarlı
+ar بعض المواضيع مضبوطة على حدة
+hi कुछ विषय अलग से सेट
+bn কিছু বিষয় আলাদাভাবে সেট
+ur کچھ موضوعات الگ سے سیٹ
+zh 部分主题单独设置
+ja 一部のテーマは個別設定
+ko 일부 주제는 따로 설정됨
+id beberapa topik diatur terpisah
+vi một số chủ đề được chỉnh riêng
+
+@ + 1 autre
+en + 1 more
+es + 1 más
+pt + 1 outra
+de + 1 weitere
+it + 1 altra
+nl + 1 andere
+pl + 1 kolejne
+ru + ещё 1
+uk + ще 1
+tr + 1 tane daha
+ar + 1 أخرى
+hi + 1 और
+bn + আরও ১টি
+ur + 1 اور
+zh + 另外 1 条
+ja + ほか 1 件
+ko + 1개 더
+id + 1 lainnya
+vi + 1 tin khác
+
+@ + {n} autres
+en + {n} more
+es + {n} más
+pt + {n} outras
+de + {n} weitere
+it + altre {n}
+nl + {n} andere
+pl + {n} kolejne
+ru + ещё {n}
+uk + ще {n}
+tr + {n} tane daha
+ar + {n} أخرى
+hi + {n} और
+bn + আরও {n}টি
+ur + {n} اور
+zh + 另外 {n} 条
+ja + ほか {n} 件
+ko + {n}개 더
+id + {n} lainnya
+vi + {n} tin khác
+
+@ Aussi :
+en Also:
+es También:
+pt Também:
+de Außerdem:
+it Inoltre:
+nl Ook:
+pl Także:
+ru Также:
+uk Також:
+tr Ayrıca:
+ar أيضًا:
+hi इसके अलावा:
+bn এছাড়া:
+ur اس کے علاوہ:
+zh 另外：
+ja ほかに：
+ko 그 밖에:
+id Juga:
+vi Ngoài ra:
+
+@ Lire
+en Read
+es Leer
+pt Ler
+de Lesen
+it Leggi
+nl Lezen
+pl Czytaj
+ru Читать
+uk Читати
+tr Oku
+ar اقرأ
+hi पढ़ें
+bn পড়ুন
+ur پڑھیں
+zh 阅读
+ja 読む
+ko 읽기
+id Baca
+vi Đọc
+
+@ Voir les {n}
+en See all {n}
+es Ver las {n}
+pt Ver as {n}
+de Alle {n} ansehen
+it Vedi tutte e {n}
+nl Alle {n} bekijken
+pl Zobacz wszystkie ({n})
+ru Смотреть все ({n})
+uk Переглянути всі ({n})
+tr {n} tanesini gör
+ar عرض الـ{n}
+hi सभी {n} देखें
+bn সব {n}টি দেখুন
+ur تمام {n} دیکھیں
+zh 查看全部 {n} 条
+ja {n} 件すべて見る
+ko {n}개 모두 보기
+id Lihat ke-{n}-nya
+vi Xem cả {n}

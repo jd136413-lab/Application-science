@@ -7,15 +7,16 @@ Une avancée de la famille « space » notée 4 part donc sur le sujet n_space_4
 et seuls les téléphones abonnés à ce sujet la reçoivent.
 
 Les messages sont des « données » (pas de notification toute faite) : c'est le
-téléphone qui affiche la notification, applique la limite choisie par
-l'utilisateur (« au plus 3 à chaque arrivée ») et regroupe les suivantes.
-Les avancées partent de la plus importante à la moins importante, pour que
-celles qui s'affichent une par une soient les plus importantes.
+téléphone qui affiche les notifications. Il en garde au plus UNE par fil
+(Sciences, Technologies) : la plus importante en vedette (avec son « en bref »
+et sa photo libre s'il y en a une), les autres listées dessous (maquette 28 D).
+Les avancées partent de la plus importante à la moins importante.
 
 Sans le secret FIREBASE_SERVICE_ACCOUNT, rien n'est envoyé (aucune erreur).
 """
 import json
 import os
+import re
 from datetime import datetime, timezone
 
 import requests
@@ -30,6 +31,14 @@ def _jeton(compte: dict) -> str:
     cred = service_account.Credentials.from_service_account_info(compte, scopes=[PORTEE])
     cred.refresh(Request())
     return cred.token
+
+
+def _en_bref(resume: str) -> str:
+    """Première phrase du résumé (300 caractères au plus), pour la notification."""
+    resume = " ".join((resume or "").split())
+    m = re.match(r"(.+?[.!?])(\s|$)", resume)
+    phrase = m.group(1) if m else resume
+    return phrase if len(phrase) <= 300 else phrase[:297].rstrip() + "…"
 
 
 def envoyer(fiches: list[dict], log) -> tuple[int, int]:
@@ -63,6 +72,8 @@ def envoyer(fiches: list[dict], log) -> tuple[int, int]:
                     "famille": f["family"],
                     "importance": str(int(f["importance"])),
                     "fil": f["feed"],
+                    "resume": _en_bref(f.get("summary", "")),
+                    "image": f.get("image_url") or "",
                 },
                 "android": {"priority": "high", "ttl": "86400s"},
                 "apns": {"headers": {"apns-priority": "5"}, "payload": {"aps": {"content-available": 1}}},

@@ -1,6 +1,10 @@
-// Réglages → Notifications : formules toutes prêtes (Aucune, Seulement
-// l'exceptionnel, L'essentiel, Rester au courant) ou « Sur mesure » (fil,
-// importance minimale, limite par arrivée, familles). Maquettes 20 (B) et 21 (B5).
+// Réglages → Notifications (maquettes 26 et 27, 21/10) :
+// - interrupteur général ;
+// - « Quelles avancées ? » : Sciences, Technologies ou les deux ;
+// - importance minimale de 1 à 5 étoiles, avec la fréquence approximative ;
+// - « Sur mesure » : famille par famille, la recevoir ou non et son minimum.
+// Au plus 2 notifications par arrivée : une Sciences, une Technologies
+// (le regroupement est fait par le téléphone, voir notifications_mobile.dart).
 
 import 'package:flutter/material.dart';
 
@@ -11,41 +15,43 @@ import 'reglages.dart';
 import 'stats.dart';
 import 'widgets.dart';
 
-/// Libellés des niveaux d'importance minimale (1 à 5).
+/// Libellés des niveaux d'importance minimale (1 à 5), barème du 21/10.
 const List<String> niveauxNotif = [
   '',
   'Toutes les avancées',
-  'Limité et plus',
   'Notable et plus',
+  'Important et plus',
   'Majeur et plus',
   'Rupture seulement',
 ];
 
-/// Une formule toute prête : importance minimale et nombre au plus par arrivée
-/// (fil « les deux » et toutes les familles).
-class Formule {
-  final String code, titre, sousTitre;
-  final int min, limite;
-  const Formule(this.code, this.titre, this.sousTitre, this.min, this.limite);
-}
-
-const List<Formule> formules = [
-  Formule('exceptionnel', 'Seulement l’exceptionnel', 'Les ruptures : très rare', 5, 1),
-  Formule('essentiel', 'L’essentiel', 'Les avancées majeures, 1 à la fois', 4, 1),
-  Formule('courant', 'Rester au courant', 'Notables et plus, 3 à la fois', 3, 3),
+/// Ce que chaque niveau laisse passer (phrase sous les étoiles).
+const List<String> explicationsNotif = [
+  '',
+  'Tout ce que NovaSTEM publie, matin et soir : de vraies avancées, même modestes.',
+  'Les avancées notables : un vrai pas en avant dans leur domaine.',
+  'Les avancées importantes, qui comptent au-delà de leur domaine.',
+  'Seulement les avancées majeures : premières mondiales, grands lancements.',
+  'Seulement les ruptures exceptionnelles. Très rare, mais immanquable.',
 ];
 
-/// 'aucune', le code d'une formule, ou 'mesure' si les réglages ne
-/// correspondent à aucune formule.
-String formuleActuelle() {
-  if (!etat.notifActives) return 'aucune';
-  final toutes = [...famillesSciences, ...famillesTech].every(etat.notifFamilles.contains);
-  if (etat.notifFil == 'both' && toutes) {
-    for (final f in formules) {
-      if (f.min == etat.notifMin && f.limite == etat.notifLimite) return f.code;
-    }
+/// Fréquence approximative des NOTIFICATIONS pour une importance minimale :
+/// au plus 1 par fil et par arrivée, 2 arrivées par jour. Estimations du
+/// barème (≈ 10 avancées par jour : 2/3 à ★, ≈ 3 à ★★ et plus…).
+String frequenceNotif(int min, {required bool deuxFils, bool courte = false}) {
+  if (min <= 2) {
+    final n = deuxFils ? (min == 1 ? '4' : '≈ 2–3') : (min == 1 ? '2' : '≈ 1–2');
+    return courte
+        ? tr('{n}/jour').replaceAll('{n}', n.replaceAll('≈ ', ''))
+        : tr('{n} notifications par jour').replaceAll('{n}', n);
   }
-  return 'mesure';
+  if (courte) return tr(const ['', '', '', 'qq/sem.', 'qq/mois', 'qq/an'][min]);
+  return tr(const [
+    '', '', '',
+    'Quelques notifications par semaine',
+    'Quelques notifications par mois',
+    'Quelques notifications par an',
+  ][min]);
 }
 
 /// Dernier dimanche d'un mois (pour l'heure d'été européenne).
@@ -77,14 +83,10 @@ DateTime _parisVersTelephone(int h, int m) {
   return (format(heures.first), format(heures.last));
 }
 
-/// Résumé court affiché dans Réglages (« Activées · L’essentiel »).
+/// Résumé court affiché dans Réglages (« Activées · Notable et plus · Sciences et Technologies »).
 String resumeNotifications() {
   if (!notificationsPossibles) return tr('Les notifications sont disponibles dans l’app Android et iPhone.');
   if (!etat.notifActives) return tr('Désactivées');
-  final code = formuleActuelle();
-  for (final f in formules) {
-    if (f.code == code) return '${tr('Activées')} · ${tr(f.titre)}';
-  }
   return '${tr('Activées')} · ${tr(niveauxNotif[etat.notifMin])} · ${_nomFil(etat.notifFil)}';
 }
 
@@ -103,9 +105,9 @@ class EcranNotifications extends StatefulWidget {
 
 class _EcranNotificationsState extends State<EcranNotifications> {
   bool _refusee = false;
-  bool _mesure = false; // « Sur mesure » ouvert même si les réglages correspondent à une formule
+  late bool _surMesure = etat.notifParFamille.isNotEmpty; // ouvert d'emblée s'il est utilisé
 
-  /// Message de confirmation en bas de l'écran (maquette 21, B5).
+  /// Message de confirmation en bas de l'écran.
   void _confirmer(String texte) {
     final p = palette(context);
     ScaffoldMessenger.of(context)
@@ -124,57 +126,55 @@ class _EcranNotificationsState extends State<EcranNotifications> {
       ));
   }
 
-  Future<void> _choisir(String code) async {
-    stat('notif_formule', valeur: code);
-    if (code == 'aucune') {
+  void _stat() => stat('notif_formule',
+      valeur: etat.notifActives
+          ? 'min${etat.notifMin}_${etat.notifFil}${etat.notifParFamille.isEmpty ? '' : '_mesure'}'
+          : 'aucune');
+
+  Future<void> _basculerActives(bool oui) async {
+    if (!oui) {
       etat.changerNotifications(actives: false);
-      setState(() => _mesure = false);
+      _stat();
       _confirmer(tr('C’est noté : plus de notifications.'));
       return;
     }
-    if (!etat.notifActives) {
-      final ok = await demanderAutorisation();
-      if (!mounted) return;
-      setState(() => _refusee = !ok);
-      if (!ok) return;
-    }
+    final ok = await demanderAutorisation();
     if (!mounted) return;
+    setState(() => _refusee = !ok);
+    if (!ok) return;
+    etat.changerNotifications(actives: true);
+    _stat();
     final (a, b) = heuresArrivee(context);
-    if (code == 'mesure') {
-      etat.changerNotifications(actives: true);
-      setState(() => _mesure = true);
-      _confirmer(tr('C’est noté : vous serez prévenu vers {a} et {b}.').replaceAll('{a}', a).replaceAll('{b}', b));
-      return;
-    }
-    final f = formules.firstWhere((x) => x.code == code);
-    etat.changerNotifications(
-        actives: true, fil: 'both', min: f.min, limite: f.limite, familles: {...famillesSciences, ...famillesTech});
-    setState(() => _mesure = false);
-    _confirmer(tr('C’est noté : vous recevrez « {f} » vers {a} et {b}.')
-        .replaceAll('{f}', tr(f.titre))
-        .replaceAll('{a}', a)
-        .replaceAll('{b}', b));
+    _confirmer(tr('C’est noté : vous serez prévenu vers {a} et {b}.').replaceAll('{a}', a).replaceAll('{b}', b));
   }
 
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
-
-    Widget titreSection(String t) => Padding(
-          padding: const EdgeInsets.fromLTRB(4, 22, 4, 8),
-          child: Text(tr(t).toUpperCase(),
-              style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: p.texteDiscret)),
-        );
+    final sombre = estSombre(context);
+    final fondJaune = sombre ? const Color(0x33E0A800) : const Color(0xFFFFF6DC);
 
     Widget aide(String t) => Padding(
           padding: const EdgeInsets.fromLTRB(4, 8, 4, 0),
           child: Text(t, style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.45)),
         );
 
-    /// Sélecteur en pastilles (comme le choix du thème).
-    Widget pastilles<T>(List<(T, String)> choix, T actuel, void Function(T) choisir) => Container(
+    Widget bloc(List<Widget> enfants, {EdgeInsets padding = const EdgeInsets.all(16)}) => Container(
+          margin: const EdgeInsets.only(bottom: 14),
+          padding: padding,
+          decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(18)),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: enfants),
+        );
+
+    Widget titreBloc(String t) => Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Text(tr(t), style: police(policeTexte, taille: 15, graisse: FontWeight.w800, couleur: p.texte)),
+        );
+
+    /// Sélecteur en pastilles (Sciences / Technologies / Les deux).
+    Widget pastilles(List<(String, String)> choix, String actuel, void Function(String) choisir) => Container(
           padding: const EdgeInsets.all(4),
-          decoration: BoxDecoration(color: p.pastille, borderRadius: BorderRadius.circular(16)),
+          decoration: BoxDecoration(color: p.pastille, borderRadius: BorderRadius.circular(14)),
           child: Row(children: [
             for (final (valeur, texte) in choix)
               Expanded(
@@ -182,13 +182,13 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                   selected: valeur == actuel,
                   button: true,
                   child: Material(
-                    color: valeur == actuel ? p.carte : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12),
+                    color: valeur == actuel ? p.encre : Colors.transparent,
+                    borderRadius: BorderRadius.circular(11),
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(11),
                       onTap: () => choisir(valeur),
                       child: SizedBox(
-                        height: 42,
+                        height: 44,
                         child: Center(
                           child: Text(texte,
                               textAlign: TextAlign.center,
@@ -197,7 +197,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                               style: police(policeTexte,
                                   taille: 14,
                                   graisse: FontWeight.w700,
-                                  couleur: valeur == actuel ? p.texte : p.texteDiscret)),
+                                  couleur: valeur == actuel ? p.surEncre : p.texte)),
                         ),
                       ),
                     ),
@@ -207,73 +207,122 @@ class _EcranNotificationsState extends State<EcranNotifications> {
           ]),
         );
 
-    Widget caseACocher(bool coche) => Container(
-          width: 24,
-          height: 24,
-          decoration: BoxDecoration(
-            color: coche ? p.encre : Colors.transparent,
-            borderRadius: BorderRadius.circular(7),
-            border: Border.all(color: coche ? p.encre : p.texteDiscret, width: 2),
-          ),
-          child: coche ? Icon(Icons.check_rounded, size: 16, color: p.surEncre) : null,
-        );
-
     return ListenableBuilder(
       listenable: etat,
       builder: (context, _) {
-        final fils = etat.notifFil == 'both' ? ['science', 'tech'] : [etat.notifFil];
-        final visibles = [for (final f in fils) ...famillesDuFil(f)];
-        final nbFamilles = visibles.where(etat.notifFamilles.contains).length;
-        final limite = etat.notifLimite;
-        final formule = formuleActuelle();
+        final deux = etat.notifFil == 'both';
+        final fils = deux ? ['science', 'tech'] : [etat.notifFil];
+        final min = etat.notifMin;
 
-        /// Une carte de formule (maquette 20, B) : coche noire si choisie.
-        Widget carteFormule(String code, Widget icone, String titre, String sousTitre) {
-          final affichee = (_mesure && etat.notifActives) ? code == 'mesure' : code == formule;
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Semantics(
-              selected: affichee,
-              inMutuallyExclusiveGroup: true,
-              child: Material(
-                color: p.carte,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  side: BorderSide(color: affichee ? p.texte : p.bordure, width: affichee ? 2.5 : 1.5),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: InkWell(
-                  onTap: () => _choisir(code),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(14, 13, 14, 13),
-                    child: Row(children: [
-                      SizedBox(width: 32, child: Center(child: icone)),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          Text(tr(titre),
-                              style: police(policeTexte, taille: 16, graisse: FontWeight.w700, couleur: p.texte)),
-                          const SizedBox(height: 2),
-                          Text(tr(sousTitre),
-                              style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.35)),
-                        ]),
+        /// Les 5 grandes étoiles, avec la fréquence en abrégé sous chacune.
+        Widget grandesEtoiles() => Row(children: [
+              for (var k = 1; k <= 5; k++)
+                Expanded(
+                  child: Semantics(
+                    button: true,
+                    selected: k == min,
+                    label: '${tr(niveauxNotif[k])} : ${frequenceNotif(k, deuxFils: deux)}',
+                    child: Material(
+                      color: k == min ? fondJaune : Colors.transparent,
+                      borderRadius: BorderRadius.circular(12),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(12),
+                        onTap: () {
+                          etat.changerNotifications(min: k);
+                          _stat();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          child: ExcludeSemantics(
+                            child: Column(children: [
+                              Icon(Icons.star_rounded, size: 40, color: k <= min ? couleurEtoiles : p.bordure),
+                              const SizedBox(height: 2),
+                              Text(frequenceNotif(k, deuxFils: deux, courte: true),
+                                  textAlign: TextAlign.center,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: police(policeTexte,
+                                      taille: 11, graisse: FontWeight.w700, couleur: p.texteDiscret)),
+                            ]),
+                          ),
+                        ),
                       ),
-                      if (affichee)
-                        Container(
-                          width: 24,
-                          height: 24,
-                          decoration: BoxDecoration(color: p.encre, shape: BoxShape.circle),
-                          child: Icon(Icons.check_rounded, size: 16, color: p.surEncre),
-                        )
-                      else if (code == 'mesure')
-                        Icon(Icons.chevron_right_rounded, color: p.texteDiscret),
-                    ]),
+                    ),
                   ),
                 ),
-              ),
-            ),
+            ]);
+
+        /// Une famille dans « Sur mesure » : interrupteur + 5 petites étoiles.
+        Widget ligneFamille(String code) {
+          final f = familleDe(code);
+          final propre = etat.notifParFamille[code];
+          final m = etat.minDeFamille(code);
+          final active = m > 0;
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(children: [
+                Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      color: active ? f.couleur : p.bordure, borderRadius: BorderRadius.circular(9)),
+                  child: Icon(f.symbole, size: 18, color: active ? f.icone : p.texteDiscret),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(tr(f.nom),
+                      style: police(policeTexte,
+                          taille: 15, graisse: FontWeight.w600, couleur: active ? p.texte : p.texteDiscret)),
+                ),
+                Switch(
+                  value: active,
+                  activeTrackColor: p.encre,
+                  onChanged: (oui) {
+                    etat.changerFamilleNotif(code, oui ? null : 0);
+                    _stat();
+                  },
+                ),
+              ]),
+              if (active)
+                Padding(
+                  padding: const EdgeInsets.only(left: 38),
+                  child: Row(children: [
+                    for (var k = 1; k <= 5; k++)
+                      Semantics(
+                        button: true,
+                        label: '${tr(f.nom)} : ${tr(niveauxNotif[k])}',
+                        child: InkWell(
+                          customBorder: const CircleBorder(),
+                          onTap: () {
+                            etat.changerFamilleNotif(code, k == etat.notifMin ? null : k);
+                            _stat();
+                          },
+                          child: SizedBox(
+                            width: 34,
+                            height: 34,
+                            child: Icon(Icons.star_rounded, size: 24, color: k <= m ? couleurEtoiles : p.bordure),
+                          ),
+                        ),
+                      ),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                          propre == null
+                              ? '${tr(niveauxNotif[m])} · ${tr('par défaut')}'
+                              : tr(niveauxNotif[m]),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: p.texteDiscret)),
+                    ),
+                  ]),
+                ),
+            ]),
           );
         }
+
+        final coupees = [for (final fil in fils) ...famillesDuFil(fil)].where((c) => etat.minDeFamille(c) == 0);
+        final toutCoupe = coupees.length == [for (final fil in fils) ...famillesDuFil(fil)].length;
 
         return Scaffold(
           backgroundColor: p.fond,
@@ -291,181 +340,132 @@ class _EcranNotificationsState extends State<EcranNotifications> {
               if (!notificationsPossibles)
                 aide(tr('Les notifications sont disponibles dans l’app Android et iPhone.'))
               else ...[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(4, 0, 4, 12),
-                  child: Text(tr('Choisissez à quelle fréquence être prévenu :'),
-                      style: police(policeTexte, taille: 15, couleur: p.texteDiscret, hauteur: 1.4)),
-                ),
-                carteFormule('aucune', Icon(Icons.notifications_off_outlined, color: p.texteDiscret, size: 24),
-                    'Aucune', 'Je regarde l’app quand je veux'),
-                for (final f in formules)
-                  carteFormule(
-                      f.code,
-                      Text('★${f.min}',
-                          style: police(policeTexte, taille: 14, graisse: FontWeight.w800, couleur: couleurEtoiles)),
-                      f.titre,
-                      f.sousTitre),
-                carteFormule('mesure', Icon(Icons.tune_rounded, color: p.texteDiscret, size: 24), 'Sur mesure',
-                    'Fil, importance, nombre et domaines'),
-                if (_refusee) aide(tr('Autorisez les notifications de NovaSTEM dans les réglages du téléphone.')),
-                if (etat.notifActives && (formule == 'mesure' || _mesure)) ...[
-                  titreSection('Quelles avancées'),
-                  pastilles<String>(
-                    [('science', tr(texteSciences)), ('tech', tr(texteTechnologies)), ('both', tr('Les deux'))],
-                    etat.notifFil,
-                    (v) => etat.changerNotifications(fil: v),
-                  ),
-
-                  titreSection('Importance minimale'),
-                  Material(
-                    color: p.carte,
-                    borderRadius: BorderRadius.circular(18),
-                    clipBehavior: Clip.antiAlias,
-                    child: Column(children: [
-                      for (var n = 1; n <= 5; n++) ...[
-                        if (n > 1) Divider(height: 1, color: p.bordure),
-                        Semantics(
-                          selected: etat.notifMin == n,
-                          inMutuallyExclusiveGroup: true,
-                          child: InkWell(
-                            onTap: () => etat.changerNotifications(min: n),
-                            child: SizedBox(
-                              height: 52,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16),
-                                child: Row(children: [
-                                  Icon(
-                                      etat.notifMin == n
-                                          ? Icons.radio_button_checked_rounded
-                                          : Icons.radio_button_off_rounded,
-                                      color: etat.notifMin == n ? p.texte : p.texteDiscret,
-                                      size: 22),
-                                  const SizedBox(width: 12),
-                                  for (var e = 1; e <= 5; e++)
-                                    Icon(Icons.star_rounded,
-                                        size: 16, color: e <= n ? couleurEtoiles : p.bordure),
-                                  const SizedBox(width: 10),
-                                  Expanded(
-                                    child: Text(tr(niveauxNotif[n]),
-                                        style: police(policeTexte,
-                                            taille: 15, graisse: FontWeight.w600, couleur: p.texte)),
-                                  ),
-                                ]),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ]),
-                  ),
-
-                  titreSection('Au plus, à chaque arrivée'),
-                  pastilles<int>(
-                    [(1, '1'), (3, '3'), (5, '5'), (0, tr('Toutes'))],
-                    limite,
-                    (v) => etat.changerNotifications(limite: v),
-                  ),
-                  aide(limite == 0
-                      ? tr('Une notification par avancée, sans regroupement.')
-                      : limite == 1
-                          ? tr('La plus importante arrive seule ; les suivantes sont regroupées en une seule notification.')
-                          : tr('Les {n} plus importantes arrivent une par une ; les suivantes sont regroupées en une seule notification.',
-                              n: limite)),
-
-                  titreSection('Familles'),
-                  for (final fil in fils) ...[
-                    Material(
-                      color: p.carte,
-                      borderRadius: BorderRadius.circular(18),
-                      clipBehavior: Clip.antiAlias,
-                      child: Column(children: [
+                // Interrupteur général
+                bloc([
+                  Row(children: [
+                    Expanded(
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Text(tr('Recevoir des notifications'),
+                            style: police(policeTexte, taille: 16, graisse: FontWeight.w700, couleur: p.texte)),
+                        const SizedBox(height: 2),
                         Builder(builder: (context) {
-                          final duFil = famillesDuFil(fil);
-                          final tout = duFil.every(etat.notifFamilles.contains);
-                          return InkWell(
-                            onTap: () {
-                              final n = {...etat.notifFamilles};
-                              tout ? n.removeAll(duFil) : n.addAll(duFil);
-                              etat.changerNotifications(familles: n);
-                            },
-                            child: SizedBox(
-                              height: 52,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16),
-                                child: Row(children: [
-                                  Expanded(
-                                    child: Text(
-                                        '${tr(fil == 'tech' ? texteTechnologies : texteSciences)} · ${tr('Tout')}',
-                                        style: police(policeTexte,
-                                            taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
-                                  ),
-                                  caseACocher(tout),
-                                ]),
-                              ),
-                            ),
-                          );
+                          final (a, b) = heuresArrivee(context);
+                          return Text(
+                              tr('Vers {a} et {b}. Au plus 2 à chaque fois : une pour les Sciences, une pour les Technologies.')
+                                  .replaceAll('{a}', a)
+                                  .replaceAll('{b}', b),
+                              style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.4));
                         }),
-                        for (final code in famillesDuFil(fil)) ...[
-                          Divider(height: 1, color: p.bordure),
-                          InkWell(
-                            onTap: () {
-                              final n = {...etat.notifFamilles};
-                              n.contains(code) ? n.remove(code) : n.add(code);
-                              etat.changerNotifications(familles: n);
-                            },
-                            child: SizedBox(
-                              height: 48,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16),
-                                child: Row(children: [
-                                  Container(
-                                    width: 14,
-                                    height: 14,
-                                    decoration: BoxDecoration(
-                                        color: familleDe(code).couleur, borderRadius: BorderRadius.circular(4)),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: Text(tr(familleDe(code).nom),
-                                        style: police(policeTexte, taille: 15, couleur: p.texte)),
-                                  ),
-                                  caseACocher(etat.notifFamilles.contains(code)),
-                                ]),
-                              ),
-                            ),
-                          ),
-                        ],
                       ]),
                     ),
-                    const SizedBox(height: 10),
-                  ],
+                    const SizedBox(width: 8),
+                    Switch(value: etat.notifActives, activeTrackColor: p.encre, onChanged: _basculerActives),
+                  ]),
+                ], padding: const EdgeInsets.fromLTRB(16, 12, 10, 12)),
+                if (_refusee) aide(tr('Autorisez les notifications de NovaSTEM dans les réglages du téléphone.')),
 
-                  // Résumé en clair
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(color: p.bordure, width: 1.5),
+                if (etat.notifActives) ...[
+                  // 1. Quel fil
+                  bloc([
+                    titreBloc('Quelles avancées ?'),
+                    pastilles(
+                      [('science', tr(texteSciences)), ('tech', tr(texteTechnologies)), ('both', tr('Les deux'))],
+                      etat.notifFil,
+                      (v) {
+                        etat.changerNotifications(fil: v);
+                        _stat();
+                      },
                     ),
-                    child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Icon(Icons.notifications_none_rounded, color: p.texte, size: 22),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                            nbFamilles == 0
-                                ? tr('Aucune famille cochée : vous ne recevrez aucune notification.')
-                                : '${tr('Vous recevrez :')} ${tr(niveauxNotif[etat.notifMin])} · '
-                                    '${_nomFil(etat.notifFil)} · '
-                                    '${nbFamilles == 1 ? tr('1 famille') : tr('{n} familles', n: nbFamilles)} · '
-                                    '${limite == 0 ? tr('Sans limite') : tr('{n} au plus à chaque arrivée', n: limite)}',
-                            style: police(policeTexte, taille: 14, couleur: p.texte, hauteur: 1.5)),
+                  ]),
+
+                  // 2. Importance minimale
+                  bloc([
+                    titreBloc('Importance minimale'),
+                    grandesEtoiles(),
+                    const SizedBox(height: 12),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+                      decoration: BoxDecoration(color: fondJaune, borderRadius: BorderRadius.circular(14)),
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Text('${tr(niveauxNotif[min])} : ${frequenceNotif(min, deuxFils: deux)}',
+                            style: police(policeTexte, taille: 15, graisse: FontWeight.w800, couleur: p.texte)),
+                        const SizedBox(height: 4),
+                        Text(tr(explicationsNotif[min]),
+                            style: police(policeTexte, taille: 14, couleur: p.texte, hauteur: 1.45)),
+                      ]),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                        tr('Chaque notification regroupe toutes les avancées du fil arrivées en même temps. Estimation : le nombre réel dépend de l’actualité.'),
+                        style: police(policeTexte, taille: 12, couleur: p.texteDiscret, hauteur: 1.4)),
+                  ]),
+
+                  // 3. Sur mesure
+                  bloc([
+                    InkWell(
+                      borderRadius: BorderRadius.circular(12),
+                      onTap: () => setState(() => _surMesure = !_surMesure),
+                      child: SizedBox(
+                        height: 56,
+                        child: Row(children: [
+                          Expanded(
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(tr('Sur mesure'),
+                                      style: police(policeTexte,
+                                          taille: 15, graisse: FontWeight.w800, couleur: p.texte)),
+                                  Text(tr('Choisir famille par famille'),
+                                      style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                                ]),
+                          ),
+                          AnimatedRotation(
+                            turns: _surMesure ? 0.5 : 0,
+                            duration: const Duration(milliseconds: 200),
+                            child: Icon(Icons.expand_more_rounded, color: p.texte),
+                          ),
+                        ]),
                       ),
+                    ),
+                    if (_surMesure) ...[
+                      Text(
+                          tr('Par défaut, chaque famille suit l’importance choisie au-dessus. Touchez les étoiles d’une famille pour la régler à part, ou coupez-la.'),
+                          style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.45)),
+                      for (final fil in fils) ...[
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 16, 0, 2),
+                          child: Text(tr(fil == 'tech' ? texteTechnologies : texteSciences).toUpperCase(),
+                              style: police(policeTexte,
+                                  taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+                        ),
+                        for (final code in famillesDuFil(fil)) ...[
+                          Divider(height: 1, color: p.bordure),
+                          ligneFamille(code),
+                        ],
+                      ],
+                    ],
+                  ], padding: const EdgeInsets.fromLTRB(16, 4, 12, 8)),
+
+                  // Bilan
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+                    decoration: BoxDecoration(color: p.encre, borderRadius: BorderRadius.circular(18)),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(tr('Avec ces réglages'),
+                          style: police(policeTexte,
+                              taille: 13, graisse: FontWeight.w700, couleur: p.surEncre.withValues(alpha: 0.75))),
+                      const SizedBox(height: 4),
+                      Text(
+                          toutCoupe
+                              ? tr('Aucune famille gardée : vous ne recevrez aucune notification.')
+                              : '${tr(niveauxNotif[min])} · ${frequenceNotif(min, deuxFils: deux)}'
+                                  '${etat.notifParFamille.isEmpty ? '' : ' · ${tr('certaines familles réglées à part')}'}',
+                          style: police(policeTexte, taille: 16, graisse: FontWeight.w800, couleur: p.surEncre)),
                     ]),
                   ),
                   aide(tr('Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de NovaSTEM pour recevoir les notifications.')),
-                ] else if (etat.notifActives)
-                  aide(tr('Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de NovaSTEM pour recevoir les notifications.')),
+                ],
               ],
             ],
           ),

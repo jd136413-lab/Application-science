@@ -59,7 +59,11 @@ class _EcranAccueilState extends State<EcranAccueil> {
     setState(() {
       _periode = 0;
       _logoVisible = true;
+      final f = filDemande;
+      if (f == 'science' || f == 'tech') _fil = f!;
+      filDemande = null;
     });
+    _remonter();
     _rafraichir();
   }
 

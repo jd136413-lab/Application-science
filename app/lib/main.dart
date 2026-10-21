@@ -75,7 +75,9 @@ class _AppNovaStemState extends State<AppNovaStem> {
     final nav = navigateur.currentState;
     if (nav == null || !etat.premierLancementFait) return;
     nav.popUntil((r) => r.isFirst);
-    if (contenu == payloadFil) {
+    if (contenu == payloadFil || contenu.startsWith('$payloadFil:')) {
+      filDemande = contenu.contains(':') ? contenu.split(':').last : null;
+      stat('notif_ouverte', valeur: filDemande ?? 'fil');
       demandeFilAujourdhui.value++;
       return;
     }
