@@ -1,0 +1,28 @@
+# Contrôle de la semaine, SEUL (sans passage de l'agent) : les grands sujets
+# des 7 derniers jours sont-ils dans l'app ? Un appel à Claude Haiku (≈ 0,002 $).
+# Automatique le dimanche soir à la fin du passage de l'agent (voir agent.yml) ;
+# ce workflow-ci sert à le lancer à la main quand on veut.
+name: Contrôle de la semaine
+
+on:
+  workflow_dispatch:
+
+jobs:
+  controle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: agent/requirements.txt
+      - run: pip install -r agent/requirements.txt
+      - name: Contrôle de la semaine
+        working-directory: agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: python controle_semaine.py

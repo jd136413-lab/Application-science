@@ -31,6 +31,10 @@ on:
         type: choice
         options: [haiku, sonnet]
         default: haiku
+      controle_semaine:
+        description: "Faire aussi le contrôle de la semaine (grands sujets ratés ?) — automatique le dimanche soir"
+        type: boolean
+        default: false
 
 # Une seule exécution à la fois : un double clic ne lance pas deux agents.
 concurrency:
@@ -68,3 +72,19 @@ jobs:
           FIL: ${{ inputs.fil || 'les deux' }}
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python main.py
+      # Contrôle hebdomadaire : le dimanche soir (passage de 18 h 20), ou à la main.
+      - name: Contrôle de la semaine
+        if: always()
+        working-directory: agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          A_LA_MAIN: ${{ inputs.controle_semaine }}
+        run: |
+          JOUR=$(TZ=Europe/Paris date +%u); HEURE=$(TZ=Europe/Paris date +%H)
+          if [ "$A_LA_MAIN" = "true" ] || { [ "$JOUR" = "7" ] && [ "$HEURE" -ge 15 ]; }; then
+            python controle_semaine.py
+          else
+            echo "Pas de contrôle aujourd'hui (seulement le dimanche soir ou à la main)."
+          fi
