@@ -39,19 +39,22 @@ const List<String> explicationsNotif = [
 /// au plus 1 par fil et par arrivée, 2 arrivées par jour. Estimations du
 /// barème (≈ 10 avancées par jour : 2/3 à ★, ≈ 3 à ★★ et plus…).
 String frequenceNotif(int min, {required bool deuxFils, bool courte = false}) {
-  if (min <= 2) {
-    final n = deuxFils ? (min == 1 ? '4' : '≈ 2–3') : (min == 1 ? '2' : '≈ 1–2');
-    return courte
-        ? tr('{n}/jour').replaceAll('{n}', n.replaceAll('≈ ', ''))
-        : tr('{n} notifications par jour').replaceAll('{n}', n);
-  }
-  if (courte) return tr(const ['', '', '', 'qq/sem.', 'qq/mois', 'qq/an'][min]);
-  return tr(const [
-    '', '', '',
-    'Quelques notifications par semaine',
-    'Quelques notifications par mois',
-    'Quelques notifications par an',
-  ][min]);
+  // Nombre de notifications (estimations du barème), puis l'unité de temps.
+  final n = switch (min) {
+    1 => deuxFils ? '4' : '2',
+    2 => deuxFils ? '≈ 2–3' : '≈ 1–2',
+    3 => deuxFils ? '≈ 2–4' : '≈ 1–2',
+    _ => deuxFils ? '≈ 1–3' : '≈ 1–2',
+  };
+  final nombre = etat.langue == 'fr' ? n.replaceAll('–', ' à ') : n;
+  if (courte) return tr('{n}/jour').replaceAll('{n}', n.replaceAll('≈ ', ''));
+  final modele = switch (min) {
+    1 || 2 => '{n} notifications par jour',
+    3 => '{n} notifications par semaine',
+    4 => '{n} notifications par mois',
+    _ => '{n} notifications par an',
+  };
+  return tr(modele).replaceAll('{n}', nombre);
 }
 
 /// Dernier dimanche d'un mois (pour l'heure d'été européenne).

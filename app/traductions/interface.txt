@@ -3854,3 +3854,66 @@ ja {a} と {b} ごろ
 ko {a}와 {b}쯤
 id Sekitar pukul {a} dan {b}
 vi Khoảng {a} và {b}
+
+@ {n} notifications par semaine
+en {n} notifications a week
+es {n} notificaciones a la semana
+pt {n} notificações por semana
+de {n} Benachrichtigungen pro Woche
+it {n} notifiche a settimana
+nl {n} meldingen per week
+pl {n} powiadomienia w tygodniu
+ru {n} уведомления в неделю
+uk {n} сповіщення на тиждень
+tr Haftada {n} bildirim
+ar {n} إشعارات في الأسبوع
+hi हफ़्ते में {n} सूचनाएँ
+bn সপ্তাহে {n}টি বিজ্ঞপ্তি
+ur ہفتے میں {n} اطلاعات
+zh 每周 {n} 条通知
+ja 週に {n} 件の通知
+ko 일주일에 {n}개 알림
+id {n} notifikasi per minggu
+vi {n} thông báo mỗi tuần
+
+@ {n} notifications par mois
+en {n} notifications a month
+es {n} notificaciones al mes
+pt {n} notificações por mês
+de {n} Benachrichtigungen pro Monat
+it {n} notifiche al mese
+nl {n} meldingen per maand
+pl {n} powiadomienia w miesiącu
+ru {n} уведомления в месяц
+uk {n} сповіщення на місяць
+tr Ayda {n} bildirim
+ar {n} إشعارات في الشهر
+hi महीने में {n} सूचनाएँ
+bn মাসে {n}টি বিজ্ঞপ্তি
+ur مہینے میں {n} اطلاعات
+zh 每月 {n} 条通知
+ja 月に {n} 件の通知
+ko 한 달에 {n}개 알림
+id {n} notifikasi per bulan
+vi {n} thông báo mỗi tháng
+
+@ {n} notifications par an
+en {n} notifications a year
+es {n} notificaciones al año
+pt {n} notificações por ano
+de {n} Benachrichtigungen pro Jahr
+it {n} notifiche all'anno
+nl {n} meldingen per jaar
+pl {n} powiadomienia w roku
+ru {n} уведомления в год
+uk {n} сповіщення на рік
+tr Yılda {n} bildirim
+ar {n} إشعارات في السنة
+hi साल में {n} सूचनाएँ
+bn বছরে {n}টি বিজ্ঞপ্তি
+ur سال میں {n} اطلاعات
+zh 每年 {n} 条通知
+ja 年に {n} 件の通知
+ko 일 년에 {n}개 알림
+id {n} notifikasi per tahun
+vi {n} thông báo mỗi năm

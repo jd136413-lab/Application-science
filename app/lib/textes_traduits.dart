@@ -186,6 +186,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Read',
     'Voir les {n}': 'See all {n}',
     'Vers {a} et {b}': 'Around {a} and {b}',
+    '{n} notifications par semaine': '{n} notifications a week',
+    '{n} notifications par mois': '{n} notifications a month',
+    '{n} notifications par an': '{n} notifications a year',
   },
   'es': {
     'Sciences': 'Ciencia',
@@ -371,6 +374,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Leer',
     'Voir les {n}': 'Ver las {n}',
     'Vers {a} et {b}': 'Hacia las {a} y las {b}',
+    '{n} notifications par semaine': '{n} notificaciones a la semana',
+    '{n} notifications par mois': '{n} notificaciones al mes',
+    '{n} notifications par an': '{n} notificaciones al año',
   },
   'pt': {
     'Sciences': 'Ciência',
@@ -556,6 +562,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Ler',
     'Voir les {n}': 'Ver as {n}',
     'Vers {a} et {b}': 'Por volta de {a} e {b}',
+    '{n} notifications par semaine': '{n} notificações por semana',
+    '{n} notifications par mois': '{n} notificações por mês',
+    '{n} notifications par an': '{n} notificações por ano',
   },
   'de': {
     'Sciences': 'Wissenschaft',
@@ -741,6 +750,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Lesen',
     'Voir les {n}': 'Alle {n} ansehen',
     'Vers {a} et {b}': 'Gegen {a} und {b}',
+    '{n} notifications par semaine': '{n} Benachrichtigungen pro Woche',
+    '{n} notifications par mois': '{n} Benachrichtigungen pro Monat',
+    '{n} notifications par an': '{n} Benachrichtigungen pro Jahr',
   },
   'it': {
     'Sciences': 'Scienza',
@@ -926,6 +938,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Leggi',
     'Voir les {n}': 'Vedi tutte e {n}',
     'Vers {a} et {b}': 'Verso le {a} e le {b}',
+    '{n} notifications par semaine': '{n} notifiche a settimana',
+    '{n} notifications par mois': '{n} notifiche al mese',
+    '{n} notifications par an': '{n} notifiche all\'anno',
   },
   'nl': {
     'Sciences': 'Wetenschap',
@@ -1111,6 +1126,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Lezen',
     'Voir les {n}': 'Alle {n} bekijken',
     'Vers {a} et {b}': 'Rond {a} en {b}',
+    '{n} notifications par semaine': '{n} meldingen per week',
+    '{n} notifications par mois': '{n} meldingen per maand',
+    '{n} notifications par an': '{n} meldingen per jaar',
   },
   'pl': {
     'Sciences': 'Nauka',
@@ -1296,6 +1314,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Czytaj',
     'Voir les {n}': 'Zobacz wszystkie ({n})',
     'Vers {a} et {b}': 'Około {a} i {b}',
+    '{n} notifications par semaine': '{n} powiadomienia w tygodniu',
+    '{n} notifications par mois': '{n} powiadomienia w miesiącu',
+    '{n} notifications par an': '{n} powiadomienia w roku',
   },
   'ru': {
     'Sciences': 'Наука',
@@ -1481,6 +1502,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Читать',
     'Voir les {n}': 'Смотреть все ({n})',
     'Vers {a} et {b}': 'Около {a} и {b}',
+    '{n} notifications par semaine': '{n} уведомления в неделю',
+    '{n} notifications par mois': '{n} уведомления в месяц',
+    '{n} notifications par an': '{n} уведомления в год',
   },
   'uk': {
     'Sciences': 'Наука',
@@ -1666,6 +1690,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Читати',
     'Voir les {n}': 'Переглянути всі ({n})',
     'Vers {a} et {b}': 'Близько {a} і {b}',
+    '{n} notifications par semaine': '{n} сповіщення на тиждень',
+    '{n} notifications par mois': '{n} сповіщення на місяць',
+    '{n} notifications par an': '{n} сповіщення на рік',
   },
   'tr': {
     'Sciences': 'Bilim',
@@ -1851,6 +1878,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Oku',
     'Voir les {n}': '{n} tanesini gör',
     'Vers {a} et {b}': 'Yaklaşık {a} ve {b} saatlerinde',
+    '{n} notifications par semaine': 'Haftada {n} bildirim',
+    '{n} notifications par mois': 'Ayda {n} bildirim',
+    '{n} notifications par an': 'Yılda {n} bildirim',
   },
   'ar': {
     'Sciences': 'العلوم',
@@ -2036,6 +2066,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'اقرأ',
     'Voir les {n}': 'عرض الـ{n}',
     'Vers {a} et {b}': 'نحو {a} و{b}',
+    '{n} notifications par semaine': '{n} إشعارات في الأسبوع',
+    '{n} notifications par mois': '{n} إشعارات في الشهر',
+    '{n} notifications par an': '{n} إشعارات في السنة',
   },
   'hi': {
     'Sciences': 'विज्ञान',
@@ -2221,6 +2254,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'पढ़ें',
     'Voir les {n}': 'सभी {n} देखें',
     'Vers {a} et {b}': 'लगभग {a} और {b} बजे',
+    '{n} notifications par semaine': 'हफ़्ते में {n} सूचनाएँ',
+    '{n} notifications par mois': 'महीने में {n} सूचनाएँ',
+    '{n} notifications par an': 'साल में {n} सूचनाएँ',
   },
   'bn': {
     'Sciences': 'বিজ্ঞান',
@@ -2406,6 +2442,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'পড়ুন',
     'Voir les {n}': 'সব {n}টি দেখুন',
     'Vers {a} et {b}': 'প্রায় {a} ও {b}-এ',
+    '{n} notifications par semaine': 'সপ্তাহে {n}টি বিজ্ঞপ্তি',
+    '{n} notifications par mois': 'মাসে {n}টি বিজ্ঞপ্তি',
+    '{n} notifications par an': 'বছরে {n}টি বিজ্ঞপ্তি',
   },
   'ur': {
     'Sciences': 'سائنس',
@@ -2591,6 +2630,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'پڑھیں',
     'Voir les {n}': 'تمام {n} دیکھیں',
     'Vers {a} et {b}': 'تقریباً {a} اور {b} بجے',
+    '{n} notifications par semaine': 'ہفتے میں {n} اطلاعات',
+    '{n} notifications par mois': 'مہینے میں {n} اطلاعات',
+    '{n} notifications par an': 'سال میں {n} اطلاعات',
   },
   'zh': {
     'Sciences': '科学',
@@ -2776,6 +2818,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': '阅读',
     'Voir les {n}': '查看全部 {n} 条',
     'Vers {a} et {b}': '约 {a} 和 {b}',
+    '{n} notifications par semaine': '每周 {n} 条通知',
+    '{n} notifications par mois': '每月 {n} 条通知',
+    '{n} notifications par an': '每年 {n} 条通知',
   },
   'ja': {
     'Sciences': '科学',
@@ -2961,6 +3006,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': '読む',
     'Voir les {n}': '{n} 件すべて見る',
     'Vers {a} et {b}': '{a} と {b} ごろ',
+    '{n} notifications par semaine': '週に {n} 件の通知',
+    '{n} notifications par mois': '月に {n} 件の通知',
+    '{n} notifications par an': '年に {n} 件の通知',
   },
   'ko': {
     'Sciences': '과학',
@@ -3146,6 +3194,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': '읽기',
     'Voir les {n}': '{n}개 모두 보기',
     'Vers {a} et {b}': '{a}와 {b}쯤',
+    '{n} notifications par semaine': '일주일에 {n}개 알림',
+    '{n} notifications par mois': '한 달에 {n}개 알림',
+    '{n} notifications par an': '일 년에 {n}개 알림',
   },
   'id': {
     'Sciences': 'Sains',
@@ -3331,6 +3382,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Baca',
     'Voir les {n}': 'Lihat ke-{n}-nya',
     'Vers {a} et {b}': 'Sekitar pukul {a} dan {b}',
+    '{n} notifications par semaine': '{n} notifikasi per minggu',
+    '{n} notifications par mois': '{n} notifikasi per bulan',
+    '{n} notifications par an': '{n} notifikasi per tahun',
   },
   'vi': {
     'Sciences': 'Khoa học',
@@ -3516,5 +3570,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Lire': 'Đọc',
     'Voir les {n}': 'Xem cả {n}',
     'Vers {a} et {b}': 'Khoảng {a} và {b}',
+    '{n} notifications par semaine': '{n} thông báo mỗi tuần',
+    '{n} notifications par mois': '{n} thông báo mỗi tháng',
+    '{n} notifications par an': '{n} thông báo mỗi năm',
   },
 };
