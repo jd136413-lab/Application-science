@@ -386,10 +386,6 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                   // 2. Importance minimale
                   bloc([
                     listeNiveaux(),
-                    const SizedBox(height: 8),
-                    Text(
-                        tr('Chaque notification regroupe toutes les avancées du fil arrivées en même temps. Estimation : le nombre réel dépend de l’actualité.'),
-                        style: police(policeTexte, taille: 12, couleur: p.texteDiscret, hauteur: 1.4)),
                   ]),
 
                   // 3. Sur mesure
@@ -401,16 +397,8 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                         height: 56,
                         child: Row(children: [
                           Expanded(
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(tr('Sur mesure'),
-                                      style: police(policeTexte,
-                                          taille: 15, graisse: FontWeight.w800, couleur: p.texte)),
-                                  Text(tr('Choisir famille par famille'),
-                                      style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
-                                ]),
+                            child: Text(tr('Sur mesure'),
+                                style: police(policeTexte, taille: 15, graisse: FontWeight.w800, couleur: p.texte)),
                           ),
                           AnimatedRotation(
                             turns: _surMesure ? 0.5 : 0,
