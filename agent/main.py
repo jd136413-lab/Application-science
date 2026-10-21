@@ -603,7 +603,7 @@ SCHEMA_REGROUPEMENT = {
 }
 
 
-def _appel_json(client, modele_id, consigne, contenu, schema, conso, max_tokens=4000):
+def _appel_json(client, modele_id, consigne, contenu, schema, conso, max_tokens=12000):
     rep = client.messages.create(
         model=modele_id, max_tokens=max_tokens, system=consigne,
         messages=[{"role": "user", "content": contenu}],
@@ -613,6 +613,8 @@ def _appel_json(client, modele_id, consigne, contenu, schema, conso, max_tokens=
     conso["in"] += u.input_tokens or 0
     conso["out"] += u.output_tokens or 0
     texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
+    if getattr(rep, "stop_reason", "") == "max_tokens":
+        STATS["coupees"] = STATS.get("coupees", 0) + 1   # réponse coupée : à surveiller
     return extraire_json(texte) or {}
 
 
@@ -679,7 +681,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
                + "\n\nArticles candidats :\n" + "\n".join(lignes))
     choisis = []
     try:
-        rep = _appel_json(client, modele_id, CONSIGNE_REGROUPEMENT, contenu, SCHEMA_REGROUPEMENT, conso, 8000)
+        rep = _appel_json(client, modele_id, CONSIGNE_REGROUPEMENT, contenu, SCHEMA_REGROUPEMENT, conso, 16000)
         if not rep.get("groupes"):
             raise ValueError("réponse vide ou coupée")
         groupes = []
@@ -780,7 +782,7 @@ def lire_debut_page(art: dict, n: int = 1800) -> None:
 def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, dict, str]:
     rep = client.messages.create(
         model=modele_id,
-        max_tokens=3000,
+        max_tokens=8000,   # le modèle peut réfléchir avant la fiche
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
             article, sujets["science"], sujets["tech"])}],
@@ -1031,7 +1033,8 @@ def main() -> int:
               f"{STATS.get('tries', '?')} prometteurs, "
               f"{STATS.get('groupes', '?')} sujets distincts, {STATS.get('choisis', '?')} à examiner, "
               f"coût de la présélection {STATS.get('cout_pre', 0):.4f} $"
-              + (f" ; regroupement en erreur : {STATS['erreur_regroupement']}" if STATS.get("erreur_regroupement") else ""),
+              + (f" ; regroupement en erreur : {STATS['erreur_regroupement']}" if STATS.get("erreur_regroupement") else "")
+              + (f" ; réponses coupées : {STATS['coupees']}" if STATS.get("coupees") else ""),
               flush=True)
         if STATS.get("top"):
             print("::warning title=Choix de la présélection (dans l'ordre)::" + "  ||  ".join(STATS["top"]), flush=True)

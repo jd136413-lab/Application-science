@@ -112,7 +112,7 @@ def main() -> int:
     contenu = ("A) Sources de référence (7 derniers jours) :\n" + "\n".join(refs[:400])
                + "\n\nB) Fiches publiées dans l'application :\n" + ("\n".join(fiches) or "(aucune)"))
     rep = Anthropic().messages.create(
-        model=MODELE, max_tokens=4000, system=CONSIGNE,
+        model=MODELE, max_tokens=16000, system=CONSIGNE,   # large : le modèle réfléchit avant de répondre
         messages=[{"role": "user", "content": contenu}],
         output_config={"format": {"type": "json_schema", "schema": SCHEMA}},
     )
@@ -120,8 +120,13 @@ def main() -> int:
     try:
         sujets = json.loads(texte).get("sujets", [])
     except Exception:
-        m = re.search(r"\{.*\}", texte, re.S)
-        sujets = json.loads(m.group(0)).get("sujets", []) if m else []
+        # Réponse coupée : on récupère les sujets complets
+        sujets = []
+        for m in re.finditer(r'\{"sujet":.*?"fiche":\s*"(?:[^"\\]|\\.)*"\s*\}', texte, re.S):
+            try:
+                sujets.append(json.loads(m.group(0)))
+            except Exception:
+                pass
     cout = (rep.usage.input_tokens * PRIX[0] + rep.usage.output_tokens * PRIX[1]) / 1_000_000
     sources_lues = sorted({re.search(r"\[([^\]]+)\]$", l).group(1) for l in refs if re.search(r"\[([^\]]+)\]$", l)})
     print(f"::warning title=Contrôle — diagnostic::{len(refs)} titres de référence ({len(sources_lues)} sources : "
