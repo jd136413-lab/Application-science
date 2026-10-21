@@ -549,6 +549,8 @@ def preselectionner(client, modele_id, candidats: list[dict], k: int,
 #    note de 4 ou 5 est toujours examinée, même au-delà du quota.
 # ---------------------------------------------------------------------
 PAQUET_PRESELECTION = 150      # titres par appel
+TRI_HEURES = 36                # on ne trie que les articles des 36 dernières heures :
+                               # les plus anciens ont déjà été triés aux passages précédents
 PRESELECTION_MAX_TOTAL = 1200  # sécurité
 APPELS_EN_PLUS_MAJEURS = 3     # appels supplémentaires pour les notes 4-5
 
@@ -563,20 +565,21 @@ Preuves : essai chez l'humain > animal > cellules > simulation. Méfie-toi des s
 CONSIGNE_TRI = """Tu tries des titres d'articles pour une application qui présente les vraies avancées scientifiques et technologiques du moment.
 
 On te donne des titres numérotés (avec la source). Renvoie dans "articles" UNIQUEMENT ceux qui annoncent probablement une VRAIE avancée : découverte, résultat de recherche nouveau, première, record mesurable, mission réussie, produit ou technologie réellement annoncé ou sorti avec des nouveautés mesurables.
-N'inclus PAS : politique, finances, levées de fonds, procès, nominations, rumeurs, fuites, promos, tests de produits, tutoriels, opinions, rétrospectives, anniversaires, événements, interviews, rubriques récurrentes, stratégie d'entreprise sans produit.
+N'inclus PAS : politique, stratégie d'entreprise sans produit, anniversaires, rubriques récurrentes.
+Écarte TOUJOURS (comme le fera ensuite la rédaction) : projet ou mission seulement à venir (un lancement dont les résultats restent à venir n'est PAS une avancée), rumeur ou fuite, promotion ou bon plan, test ou comparatif, guide d'achat, tutoriel, résultats financiers, procès ou régulation (une autorisation réglementaire seule n'est pas une avancée), nomination, partenariat, financement, prix, événement ou salon, vidéo ou article d'explication, synthèse de connaissances déjà établies, rétrospective, portrait, entretien, opinion, sondage, galerie d'images, mise à jour mineure, produit commercial sans innovation technique significative (option, nouvelle gamme, simple amélioration de fiche technique).
 Pour chaque article gardé : "i" (son numéro), "note" de 1 à 5, "sujet" (4 à 10 mots en français qui décrivent précisément LA découverte ou LE produit, pour reconnaître les articles qui parlent de la même chose).
 
 """ + BAREME_COURT + """
 
-Garde au plus 45 articles."""
+Garde au plus 30 articles (les plus prometteurs)."""
 
 CONSIGNE_REGROUPEMENT = """Tu prépares la sélection d'une application qui présente les vraies avancées scientifiques et technologiques du moment.
 
 On te donne : la liste des sujets DÉJÀ PUBLIÉS ces derniers jours, puis des articles candidats numérotés (note provisoire, sujet, titre, source, début du texte).
 1. Regroupe les articles qui parlent du MÊME sujet (même découverte, même étude, même produit), même formulés autrement.
-2. Écarte les groupes dont le sujet est déjà publié.
+2. Écarte les groupes dont le sujet est déjà publié, et ceux qui ne sont pas une vraie avancée.    (Pas une vraie avancée : projet ou mission seulement à venir (un lancement dont les résultats restent à venir n'est PAS une avancée), rumeur ou fuite, promotion ou bon plan, test ou comparatif, guide d'achat, tutoriel, résultats financiers, procès ou régulation (une autorisation réglementaire seule n'est pas une avancée), nomination, partenariat, financement, prix, événement ou salon, vidéo ou article d'explication, synthèse de connaissances déjà établies, rétrospective, portrait, entretien, opinion, sondage, galerie d'images, mise à jour mineure, produit commercial sans innovation technique significative (option, nouvelle gamme, simple amélioration de fiche technique).)
 3. Pour chaque groupe : "articles" (tous ses numéros), "choisi" (le meilleur article à lire : de préférence la source d'origine — l'université, le laboratoire, l'agence, la revue ou l'entreprise qui annonce son propre résultat —, sinon le plus complet), "note" de 1 à 5. Un sujet repris par plusieurs sources indépendantes est probablement plus important : tiens-en compte, sans dépasser ce que justifie l'avancée elle-même.
-4. Classe les groupes du plus important au moins important. Garde au plus 40 groupes.
+4. Classe les groupes du plus important au moins important. Garde au plus 25 groupes (les plus importants).
 
 """ + BAREME_COURT
 
@@ -617,7 +620,10 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
     (chacun avec note_pre, nb_sources, autres_sources). Jamais bloquante."""
     conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
     limite = MAINTENANT - timedelta(days=PRESELECTION_JOURS)
-    pool = [a for a in candidats if a["published_at"] >= limite or a.get("photo")][:PRESELECTION_MAX_TOTAL]
+    recent = MAINTENANT - timedelta(hours=TRI_HEURES)
+    pool = [a for a in candidats
+            if a["published_at"] >= recent or (a.get("photo") and a["published_at"] >= limite)]
+    pool = pool[:PRESELECTION_MAX_TOTAL]
     STATS["pool"] = len(pool)
     if len(pool) <= 3:
         return candidats, conso
@@ -637,7 +643,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
     if not notes:
         log("⚠ Présélection vide : ordre habituel.")
         return candidats, conso
-    liste = sorted(notes, key=lambda i: -notes[i][0])[:150]
+    liste = sorted(notes, key=lambda i: -notes[i][0])[:100]
     STATS["tries"] = len(notes)
     # 2) Regroupement par sujet (+ sujets déjà publiés)
     lignes = []
@@ -650,7 +656,9 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
                + "\n\nArticles candidats :\n" + "\n".join(lignes))
     choisis = []
     try:
-        rep = _appel_json(client, modele_id, CONSIGNE_REGROUPEMENT, contenu, SCHEMA_REGROUPEMENT, conso, 5000)
+        rep = _appel_json(client, modele_id, CONSIGNE_REGROUPEMENT, contenu, SCHEMA_REGROUPEMENT, conso, 8000)
+        if not rep.get("groupes"):
+            raise ValueError("réponse vide ou coupée")
         groupes = []
         for g in rep.get("groupes", []):
             membres = [k for k in g.get("articles", []) if isinstance(k, int) and 0 <= k < len(liste)]
@@ -675,11 +683,34 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
             choisis.append(a)
         STATS["groupes"] = len(groupes)
     except Exception as ex:
-        log(f"⚠ Regroupement impossible ({ex.__class__.__name__}) : tri seul.")
+        STATS["erreur_regroupement"] = f"{ex.__class__.__name__}: {str(ex)[:120]}"
+        log(f"⚠ Regroupement impossible ({ex.__class__.__name__}) : regroupement simple par sujet.")
     if not choisis:
+        # Secours : regroupement local par mots communs du « sujet » (sans appel à Claude)
+        vides = set("étude nouvelle nouveau nouveaux nouvelles découverte première premier chercheurs "
+                    "scientifiques révèle révèlent montre montrent permet grâce avec pour dans plus leur "
+                    "leurs cette entre sans sous selon mieux très après avant être fait font".split())
+
+        def mots(t):
+            return {m for m in re.findall(r"[a-zà-ÿ0-9]{4,}", t.lower())} - vides
+        groupes_loc = []
         for i in liste:
-            pool[i]["note_pre"], pool[i]["nb_sources"] = notes[i][0], 1
-            choisis.append(pool[i])
+            mi = mots(notes[i][1])
+            for g in groupes_loc:
+                commun = len(mi & g["mots"])
+                if commun >= 3 and commun >= 0.6 * min(len(mi), len(g["mots"])):
+                    g["membres"].append(i)
+                    break
+            else:
+                groupes_loc.append({"mots": mi, "membres": [i]})
+        for g in sorted(groupes_loc, key=lambda g: (-max(notes[i][0] for i in g["membres"]), -len(g["membres"]))):
+            i = max(g["membres"], key=lambda i: notes[i][0])
+            sources = sorted({pool[k]["source_name"] for k in g["membres"]})
+            a = pool[i]
+            a["note_pre"], a["nb_sources"] = notes[i][0], len(sources)
+            a["autres_sources"] = [x for x in sources if x != a["source_name"]]
+            choisis.append(a)
+        STATS["groupes"] = f"{len(groupes_loc)} (secours)"
     STATS["choisis"] = len(choisis)
     STATS["top"] = [f"{a['note_pre']}★ ×{a.get('nb_sources', 1)} {a['title'][:65]} [{a['source_name']}]"
                     for a in choisis[:15]]
@@ -872,6 +903,8 @@ def main() -> int:
     if PRESELECTION:
         candidats, c = preselection_complete(client, modele["id"], candidats,
                                              sujets["science"] + sujets["tech"])
+        p_in, p_out = modele["prix"]
+        STATS["cout_pre"] = (c["in"] * p_in + c["out"] * p_out) / 1_000_000
         for k in conso:
             conso[k] += c[k]
     decisions = {"science": 0, "tech": 0, "both": 0}
@@ -972,7 +1005,10 @@ def main() -> int:
                       + "  ||  ".join(lignes_ec[i:i + 8]), flush=True)
         print(f"::warning title=Présélection::{STATS.get('candidats', '?')} articles lus dans les flux, "
               f"{STATS.get('pool', '?')} récents triés, {STATS.get('tries', '?')} jugés prometteurs, "
-              f"{STATS.get('groupes', '?')} sujets distincts, {STATS.get('choisis', '?')} à examiner", flush=True)
+              f"{STATS.get('groupes', '?')} sujets distincts, {STATS.get('choisis', '?')} à examiner, "
+              f"coût de la présélection {STATS.get('cout_pre', 0):.4f} $"
+              + (f" ; regroupement en erreur : {STATS['erreur_regroupement']}" if STATS.get("erreur_regroupement") else ""),
+              flush=True)
         if STATS.get("top"):
             print("::warning title=Choix de la présélection (dans l'ordre)::" + "  ||  ".join(STATS["top"]), flush=True)
 
