@@ -22,6 +22,8 @@ import feedparser
 import requests
 from anthropic import Anthropic
 
+from main import BAREME_COURT   # même barème que les fiches
+
 MODELE = "claude-haiku-5-5"
 PRIX = (0.10, 0.50)   # $ par million de jetons (entrée, sortie)
 UA = "Mozilla/5.0 (compatible; ApplicationScienceBot/1.0)"
@@ -50,9 +52,11 @@ On te donne :
 A) les titres de la semaine dans des sources de référence (grands médias et revues), avec la source ;
 B) les titres des fiches publiées dans l'application pendant la même semaine (en français).
 
-1. Repère les GRANDS SUJETS de la semaine qui sont de vraies avancées : repris par au moins 2 sources de référence différentes, ou clairement majeurs (première mondiale, découverte qui fera date, produit qui change un secteur). Ignore la politique, l'économie, les procès, les nominations, les opinions, les explications, les rumeurs et les missions seulement à venir.
-2. Pour chaque grand sujet, dis s'il est couvert par une fiche de l'application (même sujet, même formulé autrement ou dans une autre langue) et laquelle.
-Renvoie au plus 20 grands sujets, du plus important au moins important. "sujet" : 6 à 12 mots en français."""
+1. Repère UNIQUEMENT les avancées de la semaine qui méritent AU MOINS 3 étoiles selon le barème ci-dessous (« Important », « Majeur » ou « Rupture »). Sois exigeant : une avancée solide mais qui reste dans son domaine vaut 2 étoiles et ne doit PAS être listée. Ignore la politique, l'économie, les procès, les nominations, les opinions, les explications, les rumeurs et les missions seulement à venir.
+2. Pour chacune : "note" (3, 4 ou 5), "sources" (sources de référence qui en parlent), "couvert" (une fiche de l'application traite-t-elle ce sujet, même formulé autrement ou dans une autre langue ?), "fiche" (le titre de cette fiche, sinon ""), "note_app" (la note de cette fiche dans l'application, 0 si pas couvert).
+Renvoie au plus 15 sujets, du plus important au moins important. "sujet" : 6 à 12 mots en français. S'il n'y en a aucun, renvoie une liste vide.
+
+""" + BAREME_COURT
 
 SCHEMA = {
     "type": "object",
@@ -63,8 +67,10 @@ SCHEMA = {
             "sources": {"type": "array", "items": {"type": "string"}},
             "couvert": {"type": "boolean"},
             "fiche": {"type": "string"},
+            "note": {"type": "integer"},
+            "note_app": {"type": "integer"},
         },
-        "required": ["sujet", "sources", "couvert", "fiche"], "additionalProperties": False}}},
+        "required": ["sujet", "sources", "couvert", "fiche", "note", "note_app"], "additionalProperties": False}}},
     "required": ["sujets"], "additionalProperties": False,
 }
 
@@ -133,25 +139,33 @@ def main() -> int:
           f"{', '.join(sources_lues)}) ; {len(fiches)} fiches ; arrêt : {rep.stop_reason} ; "
           f"jetons {rep.usage.input_tokens} → {rep.usage.output_tokens} ; "
           f"blocs : {[getattr(b, 'type', '?') for b in rep.content]} ; début de réponse : {texte[:300]!r}", flush=True)
+    sujets = [s for s in sujets if int(s.get("note") or 0) >= 3]
     couverts = [s for s in sujets if s.get("couvert")]
     rates = [s for s in sujets if not s.get("couvert")]
+    sous_notes = [s for s in couverts if 0 < int(s.get("note_app") or 0) < int(s.get("note") or 0)]
+    par_note = {n: sum(1 for s in sujets if int(s.get("note") or 0) == n) for n in (5, 4, 3)}
 
-    print(f"::notice title=Contrôle de la semaine::{len(sujets)} grands sujets : {len(couverts)} couverts, "
-          f"{len(rates)} ratés ({len(fiches)} fiches publiées en 7 jours ; coût {cout:.4f} $)", flush=True)
+    print(f"::notice title=Contrôle de la semaine::{len(sujets)} avancées à 3★ ou plus "
+          f"({par_note[5]} × 5★, {par_note[4]} × 4★, {par_note[3]} × 3★) : {len(couverts)} couvertes, "
+          f"{len(rates)} ratées, {len(sous_notes)} sous-notées dans l'app "
+          f"({len(fiches)} fiches publiées en 7 jours ; coût {cout:.4f} $)", flush=True)
     if rates:
-        print("::warning title=Grands sujets ratés::" + "  ||  ".join(
-            f"{s['sujet']} ({', '.join(s.get('sources', [])[:4])})" for s in rates), flush=True)
+        print("::warning title=Ratées (3★ et plus)::" + "  ||  ".join(
+            f"{s['note']}★ {s['sujet']} ({', '.join(s.get('sources', [])[:4])})" for s in rates), flush=True)
+    if sous_notes:
+        print("::warning title=Couvertes mais sous-notées::" + "  ||  ".join(
+            f"{s['sujet']} : {s.get('note_app')}★ dans l'app, vaut {s['note']}★" for s in sous_notes), flush=True)
     if couverts:
-        print("::notice title=Grands sujets couverts::" + "  ||  ".join(
-            f"{s['sujet']} → {s.get('fiche', '')[:80]}" for s in couverts), flush=True)
+        print("::notice title=Couvertes::" + "  ||  ".join(
+            f"{s['note']}★ {s['sujet']} → {s.get('fiche', '')[:70]}" for s in couverts), flush=True)
 
     fichier = os.environ.get("GITHUB_STEP_SUMMARY")
     if fichier:
         with open(fichier, "a", encoding="utf-8") as f:
-            f.write(f"\n## Contrôle de la semaine\n\n{len(sujets)} grands sujets : "
-                    f"**{len(couverts)} couverts**, **{len(rates)} ratés**.\n\n")
+            f.write(f"\n## Contrôle de la semaine\n\n{len(sujets)} avancées à 3★ ou plus : "
+                    f"**{len(couverts)} couvertes**, **{len(rates)} ratées**, {len(sous_notes)} sous-notées.\n\n")
             for s in sujets:
-                f.write(f"- {'✅' if s.get('couvert') else '❌'} {s['sujet']} "
+                f.write(f"- {'✅' if s.get('couvert') else '❌'} {s['note']}★ {s['sujet']} "
                         f"({', '.join(s.get('sources', []))})"
                         + (f" → {s.get('fiche')}" if s.get("couvert") else "") + "\n")
     return 0
