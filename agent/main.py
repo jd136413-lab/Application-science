@@ -484,6 +484,9 @@ Mets plus bas les études incrémentales, très spécialisées ou seulement chez
 DOUBLONS : n'inclus PAS un article dont le sujet est déjà dans la liste « Déjà publié » (même découverte ou même produit, même formulé autrement), et si plusieurs articles de la liste parlent du même sujet, garde seulement le plus complet (de préférence la source d'origine : l'université, le laboratoire, l'agence ou l'entreprise qui annonce son propre résultat). N'inclus PAS : actualités sans avancée (politique, finances, procès, nominations, rumeurs, promos, tests de produits, tutoriels, opinions, rubriques récurrentes). Sois exigeant face aux titres racoleurs. Garde au maximum {k} numéros."""
 
 
+STATS: dict = {}   # chiffres du passage, pour les annotations
+
+
 def preselectionner(client, modele_id, candidats: list[dict], k: int,
                     deja: list[str] | None = None) -> tuple[list[dict], dict]:
     """Classe les candidats récents par importance probable (un seul appel bon marché).
@@ -524,6 +527,8 @@ def preselectionner(client, modele_id, candidats: list[dict], k: int,
             choisis.append(pool[i])
     if not choisis:
         return candidats, conso
+    STATS["pool"], STATS["choisis"] = len(pool), len(choisis)
+    STATS["top"] = [f"{a['title'][:70]} [{a['source_name']}]" for a in choisis[:15]]
     log(f"Présélection : {len(pool)} titres récents lus, {len(choisis)} retenus, "
         f"traités du plus prometteur au moins prometteur :")
     for a in choisis[:k]:
@@ -671,6 +676,7 @@ def main() -> int:
         pannes += p
     candidats = melanger(listes)
     log(f"\n{len(candidats)} article(s) candidat(s).\n")
+    STATS["candidats"] = len(candidats)
 
     ajoutes = []                       # fiches enregistrées (1 ou 2 par article)
     nb_articles = 0                    # articles retenus (un « les deux » compte pour 1)
@@ -766,11 +772,18 @@ def main() -> int:
         if ignores:
             from collections import Counter
             motifs = Counter(str(d or "skip") for _, d, _ in ignores)
-            print(f"::notice title=Écartés::{', '.join(f'{m} × {n}' for m, n in motifs.most_common())}"
+            # (« warning » : GitHub n'affiche que 10 annotations de chaque niveau par étape)
+            print(f"::warning title=Écartés::{', '.join(f'{m} × {n}' for m, n in motifs.most_common())}"
                   f" ; appels à Claude : {appels}/{appels_max}", flush=True)
-            for art, d, expl in ignores[:12]:
-                texte = f"{art['title'][:90]} — {expl[:160]}".replace("\n", " ")
-                print(f"::notice title=Écarté ({d})::{texte}", flush=True)
+            lignes_ec = [f"[{d}] {art['title'][:80]} ({art['source_name']}) — {expl[:150]}".replace("\n", " ")
+                         for art, d, expl in ignores]
+            for i in range(0, min(len(lignes_ec), 40), 8):
+                print(f"::warning title=Écartés {i + 1}-{min(i + 8, len(lignes_ec))}::"
+                      + "  ||  ".join(lignes_ec[i:i + 8]), flush=True)
+        print(f"::warning title=Présélection::{STATS.get('candidats', '?')} candidats lus, "
+              f"{STATS.get('pool', '?')} envoyés à la présélection, {STATS.get('choisis', '?')} choisis", flush=True)
+        if STATS.get("top"):
+            print("::warning title=Choix de la présélection (dans l'ordre)::" + "  ||  ".join(STATS["top"]), flush=True)
 
     # --- Résumé lisible dans la page GitHub de l'exécution ---
     fichier = os.environ.get("GITHUB_STEP_SUMMARY")
