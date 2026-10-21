@@ -40,7 +40,7 @@ concurrency:
 jobs:
   collecte:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25   # 160 sources à lire
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
