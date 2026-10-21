@@ -4,6 +4,10 @@ name: Découvrir des sources
 
 on:
   workflow_dispatch:
+    inputs:
+      serie:
+        description: "Liste à tester (CANDIDATS, CANDIDATS2…)"
+        default: "CANDIDATS"
 
 permissions:
   contents: write
@@ -18,10 +22,12 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install feedparser requests
-      - run: python .github/scripts/decouvrir_sources.py agent/decouverte_sources.md agent/decouverte_sources.json
+      - run: python .github/scripts/decouvrir_sources.py agent/decouverte_${{ inputs.serie }}.md agent/decouverte_${{ inputs.serie }}.json
+        env:
+          SERIE: ${{ inputs.serie }}
       - name: Enregistrer le résultat
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add agent/decouverte_sources.md agent/decouverte_sources.json
+          git add agent/decouverte_*.md agent/decouverte_*.json
           git commit -m "Découverte des sources candidates [skip ci]" && git push || echo "rien à enregistrer"

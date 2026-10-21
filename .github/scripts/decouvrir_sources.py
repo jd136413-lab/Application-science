@@ -24,7 +24,9 @@ UA = "Mozilla/5.0 (compatible; ApplicationScienceBot/1.0)"
 MAINTENANT = datetime.now(timezone.utc).replace(tzinfo=None)
 SUFFIXES = ["feed/", "rss.xml", "rss", "feed.xml", "atom.xml", "index.xml", "news/rss.xml", "news/feed/"]
 
-from candidats_sources import CANDIDATS  # noqa: E402  (liste dans le même dossier)
+import os  # noqa: E402
+import candidats_sources  # noqa: E402  (liste dans le même dossier)
+CANDIDATS = getattr(candidats_sources, os.environ.get("SERIE", "CANDIDATS"))
 
 _robots = {}
 

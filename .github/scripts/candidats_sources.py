@@ -257,3 +257,21 @@ CANDIDATS = [
     ("tech", "ZDNet France", ["https://www.zdnet.fr/feeds/rss/actualites/", "https://www.zdnet.fr/"]),
     ("tech", "Next (France)", ["https://next.ink/feed/"]),
 ]
+
+# Série 2 (21/10/2026) : adresses trouvées par recherche pour des sources importantes
+CANDIDATS2 = [
+    ("science", "RIKEN (Japon)", ["https://www.riken.jp/feed/news_feed/"]),
+    ("science", "Max Planck", ["https://www.mpg.de/en/research.rss", "https://www.mpg.de/en/news.rss"]),
+    ("science", "CERN", ["https://home.cern/rss.xml", "https://home.cern/news/rss.xml", "https://home.cern/api/news/news/feed.rss?lang=en"]),
+    ("science", "ETH Zurich", ["https://ethz.ch/en/news-and-events/eth-news/news/_jcr_content.feed", "https://ethz.ch/en/news-and-events/eth-news/news.rss.xml"]),
+    ("science", "USGS", ["https://www.usgs.gov/news/national-news-release/feed", "https://www.usgs.gov/science-support/communications-and-publishing/news/feed"]),
+    ("science", "Webb (NASA/STScI)", ["https://webbtelescope.org/news/news-releases.rss", "https://webbtelescope.org/rss/news"]),
+    ("science", "Chandra (NASA)", ["https://chandra.harvard.edu/press/chandra_rss.xml", "https://chandra.harvard.edu/chandra_rss.xml"]),
+    ("science", "INRAE", ["https://www.inrae.fr/rss/actualites", "https://www.inrae.fr/actualites/rss"]),
+    ("science", "Inria", ["https://www.inria.fr/fr/actualites/rss", "https://www.inria.fr/rss/actualites.xml"]),
+    ("science", "Institut Pasteur", ["https://www.pasteur.fr/fr/rss/actualites", "https://www.pasteur.fr/fr/journal-recherche/rss"]),
+    ("science", "IRD", ["https://www.ird.fr/rss/actualites", "https://www.ird.fr/actualites/rss.xml"]),
+    ("science", "NIH (communiqués datés)", ["https://www.nih.gov/news-events/news-releases/feed", "https://www.nih.gov/rss/news-releases.xml"]),
+    ("tech", "Intel Newsroom", ["https://www.intel.com/content/www/us/en/newsroom/news.rss", "https://newsroom.intel.com/news/feed/"]),
+    ("tech", "Samsung Semiconductor", ["https://news.samsungsemiconductor.com/global/feed/"]),
+]
