@@ -145,6 +145,14 @@ def _liste(sujets: list[str]) -> str:
     return "\n".join(f"- {t}" for t in sujets) if sujets else "(rien pour l'instant)"
 
 
+def _reprise(article: dict) -> str:
+    """Indique si le même sujet est repris par d'autres sources (signal d'importance)."""
+    autres = article.get("autres_sources") or []
+    if not autres:
+        return ""
+    return f"Même sujet aussi repris par {len(autres)} autre(s) source(s) : {', '.join(autres[:8])}\n"
+
+
 def build_user_message(article: dict, sujets_science: list[str], sujets_tech: list[str]) -> str:
     """Construit le message envoyé à Claude pour un article."""
     return f"""Déjà publié — fil Sciences (sujets récents) :
@@ -157,5 +165,5 @@ Nouvel article :
 Source : {article['source_name']}
 Titre d'origine : {article['title']}
 Date : {article['published_at'].strftime('%Y-%m-%d')}
-Extrait : {article['text']}
+{_reprise(article)}Extrait : {article['text']}
 """

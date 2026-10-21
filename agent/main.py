@@ -537,6 +537,192 @@ def preselectionner(client, modele_id, candidats: list[dict], k: int,
     return choisis, conso
 
 
+# ---------------------------------------------------------------------
+# PRÉSÉLECTION COMPLÈTE (22/10/2026)
+# 1) Tous les articles récents sont lus (titres seuls, par paquets de 150) :
+#    Claude note chacun de 1 à 5 avec le même barème que la fiche, et
+#    résume son sujet en quelques mots. Les non-avancées sont écartées.
+# 2) Regroupement : les articles qui parlent du même sujet sont réunis ;
+#    on garde la source d'origine, et le nombre de sources qui en parlent
+#    compte dans la note. Les sujets déjà publiés sont écartés.
+# 3) Les sujets sont traités de la meilleure note à la plus basse ; une
+#    note de 4 ou 5 est toujours examinée, même au-delà du quota.
+# ---------------------------------------------------------------------
+PAQUET_PRESELECTION = 150      # titres par appel
+PRESELECTION_MAX_TOTAL = 1200  # sécurité
+APPELS_EN_PLUS_MAJEURS = 3     # appels supplémentaires pour les notes 4-5
+
+BAREME_COURT = """Barème (le même que pour les fiches ; sois TRÈS exigeant, en cas de doute prends la note la plus basse) :
+1 « Intéressant » : vraie avancée mais incrémentale, très spécialisée ou préliminaire (cellules, simulation, petite étude ; nouvelle version, prototype de labo). C'est la note normale.
+2 « Notable » : vrai pas en avant dans son domaine, résultat solide ; produit ou démonstration avec de vraies nouveautés mesurables.
+3 « Important » : compte au-delà de son domaine, on en parlera largement ; nouveau record d'un secteur, beaucoup d'utilisateurs concernés.
+4 « Majeur » : première mondiale, impact potentiel sur beaucoup de personnes ; saut majeur ou nouvelle catégorie de produits.
+5 « Rupture » : exceptionnel (traitement validé chez l'humain d'une maladie incurable, moment historique comme le premier iPhone).
+Preuves : essai chez l'humain > animal > cellules > simulation. Méfie-toi des superlatifs."""
+
+CONSIGNE_TRI = """Tu tries des titres d'articles pour une application qui présente les vraies avancées scientifiques et technologiques du moment.
+
+On te donne des titres numérotés (avec la source). Renvoie dans "articles" UNIQUEMENT ceux qui annoncent probablement une VRAIE avancée : découverte, résultat de recherche nouveau, première, record mesurable, mission réussie, produit ou technologie réellement annoncé ou sorti avec des nouveautés mesurables.
+N'inclus PAS : politique, finances, levées de fonds, procès, nominations, rumeurs, fuites, promos, tests de produits, tutoriels, opinions, rétrospectives, anniversaires, événements, interviews, rubriques récurrentes, stratégie d'entreprise sans produit.
+Pour chaque article gardé : "i" (son numéro), "note" de 1 à 5, "sujet" (4 à 10 mots en français qui décrivent précisément LA découverte ou LE produit, pour reconnaître les articles qui parlent de la même chose).
+
+""" + BAREME_COURT + """
+
+Garde au plus 45 articles."""
+
+CONSIGNE_REGROUPEMENT = """Tu prépares la sélection d'une application qui présente les vraies avancées scientifiques et technologiques du moment.
+
+On te donne : la liste des sujets DÉJÀ PUBLIÉS ces derniers jours, puis des articles candidats numérotés (note provisoire, sujet, titre, source, début du texte).
+1. Regroupe les articles qui parlent du MÊME sujet (même découverte, même étude, même produit), même formulés autrement.
+2. Écarte les groupes dont le sujet est déjà publié.
+3. Pour chaque groupe : "articles" (tous ses numéros), "choisi" (le meilleur article à lire : de préférence la source d'origine — l'université, le laboratoire, l'agence, la revue ou l'entreprise qui annonce son propre résultat —, sinon le plus complet), "note" de 1 à 5. Un sujet repris par plusieurs sources indépendantes est probablement plus important : tiens-en compte, sans dépasser ce que justifie l'avancée elle-même.
+4. Classe les groupes du plus important au moins important. Garde au plus 40 groupes.
+
+""" + BAREME_COURT
+
+SCHEMA_TRI = {
+    "type": "object",
+    "properties": {"articles": {"type": "array", "items": {
+        "type": "object",
+        "properties": {"i": {"type": "integer"}, "note": {"type": "integer"}, "sujet": {"type": "string"}},
+        "required": ["i", "note", "sujet"], "additionalProperties": False}}},
+    "required": ["articles"], "additionalProperties": False,
+}
+SCHEMA_REGROUPEMENT = {
+    "type": "object",
+    "properties": {"groupes": {"type": "array", "items": {
+        "type": "object",
+        "properties": {"articles": {"type": "array", "items": {"type": "integer"}},
+                       "choisi": {"type": "integer"}, "note": {"type": "integer"}},
+        "required": ["articles", "choisi", "note"], "additionalProperties": False}}},
+    "required": ["groupes"], "additionalProperties": False,
+}
+
+
+def _appel_json(client, modele_id, consigne, contenu, schema, conso, max_tokens=4000):
+    rep = client.messages.create(
+        model=modele_id, max_tokens=max_tokens, system=consigne,
+        messages=[{"role": "user", "content": contenu}],
+        output_config={"format": {"type": "json_schema", "schema": schema}},
+    )
+    u = rep.usage
+    conso["in"] += u.input_tokens or 0
+    conso["out"] += u.output_tokens or 0
+    texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
+    return extraire_json(texte) or {}
+
+
+def preselection_complete(client, modele_id, candidats: list[dict], deja: list[str]) -> tuple[list[dict], dict]:
+    """Renvoie les articles à examiner, du plus important au moins important
+    (chacun avec note_pre, nb_sources, autres_sources). Jamais bloquante."""
+    conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
+    limite = MAINTENANT - timedelta(days=PRESELECTION_JOURS)
+    pool = [a for a in candidats if a["published_at"] >= limite or a.get("photo")][:PRESELECTION_MAX_TOTAL]
+    STATS["pool"] = len(pool)
+    if len(pool) <= 3:
+        return candidats, conso
+    # 1) Tri par paquets
+    notes = {}
+    for debut in range(0, len(pool), PAQUET_PRESELECTION):
+        paquet = range(debut, min(debut + PAQUET_PRESELECTION, len(pool)))
+        lignes = [f"{i}. {pool[i]['title'][:150]} [{pool[i]['source_name']}]" for i in paquet]
+        try:
+            rep = _appel_json(client, modele_id, CONSIGNE_TRI, "\n".join(lignes), SCHEMA_TRI, conso)
+            for x in rep.get("articles", []):
+                i = x.get("i")
+                if isinstance(i, int) and debut <= i < debut + PAQUET_PRESELECTION and i < len(pool):
+                    notes[i] = (max(1, min(5, int(x.get("note") or 1))), str(x.get("sujet", ""))[:100])
+        except Exception as ex:
+            log(f"⚠ Tri d'un paquet impossible ({ex.__class__.__name__})")
+    if not notes:
+        log("⚠ Présélection vide : ordre habituel.")
+        return candidats, conso
+    liste = sorted(notes, key=lambda i: -notes[i][0])[:150]
+    STATS["tries"] = len(notes)
+    # 2) Regroupement par sujet (+ sujets déjà publiés)
+    lignes = []
+    for k, i in enumerate(liste):
+        a = pool[i]
+        debut_txt = " ".join(a["text"].split()[:22])
+        lignes.append(f"{k}. [{notes[i][0]}] {notes[i][1]} — {a['title'][:120]} [{a['source_name']}] — {debut_txt}")
+    contenu = ("Déjà publié ces derniers jours :\n"
+               + ("\n".join(f"- {t.split(' — ')[0]}" for t in deja[:150]) or "(rien)")
+               + "\n\nArticles candidats :\n" + "\n".join(lignes))
+    choisis = []
+    try:
+        rep = _appel_json(client, modele_id, CONSIGNE_REGROUPEMENT, contenu, SCHEMA_REGROUPEMENT, conso, 5000)
+        groupes = []
+        for g in rep.get("groupes", []):
+            membres = [k for k in g.get("articles", []) if isinstance(k, int) and 0 <= k < len(liste)]
+            ch = g.get("choisi")
+            if not isinstance(ch, int) or not 0 <= ch < len(liste):
+                ch = membres[0] if membres else None
+            if ch is None:
+                continue
+            if ch not in membres:
+                membres.append(ch)
+            groupes.append((max(1, min(5, int(g.get("note") or 1))), membres, ch))
+        groupes.sort(key=lambda g: (-g[0], -len(g[1])))
+        vus = set()
+        for note, membres, ch in groupes:
+            a = pool[liste[ch]]
+            if a["url"] in vus:
+                continue
+            vus.add(a["url"])
+            sources = sorted({pool[liste[k]]["source_name"] for k in membres})
+            a["note_pre"], a["nb_sources"] = note, len(sources)
+            a["autres_sources"] = [x for x in sources if x != a["source_name"]]
+            choisis.append(a)
+        STATS["groupes"] = len(groupes)
+    except Exception as ex:
+        log(f"⚠ Regroupement impossible ({ex.__class__.__name__}) : tri seul.")
+    if not choisis:
+        for i in liste:
+            pool[i]["note_pre"], pool[i]["nb_sources"] = notes[i][0], 1
+            choisis.append(pool[i])
+    STATS["choisis"] = len(choisis)
+    STATS["top"] = [f"{a['note_pre']}★ ×{a.get('nb_sources', 1)} {a['title'][:65]} [{a['source_name']}]"
+                    for a in choisis[:15]]
+    log(f"Présélection : {len(pool)} articles récents, {len(notes)} jugés prometteurs, "
+        f"{len(choisis)} sujets distincts à examiner :")
+    for a in choisis[:20]:
+        log(f"  ↑ {a['note_pre']}★ ×{a['nb_sources']} {a['title'][:80]} [{a['source_name']}]")
+    log("")
+    return choisis, conso
+
+
+def lire_debut_page(art: dict, n: int = 1800) -> None:
+    """Amélioration 6 : si le flux ne donne qu'un court extrait, on lit le début de la
+    page de l'article (chapeau et premiers paragraphes) pour que Claude puisse juger."""
+    if len(art.get("text", "")) >= 700:
+        return
+    try:
+        r = requests.get(art["url"], timeout=20, headers={"User-Agent": USER_AGENT})
+        if not r.ok or "html" not in r.headers.get("content-type", ""):
+            return
+        page = r.text[:800000]
+    except Exception:
+        return
+    morceaux = []
+    for nom in ("og:description", "description", "dc.description", "citation_abstract"):
+        m = (re.search(r'<meta[^>]+(?:property|name)=["\']' + re.escape(nom) + r'["\'][^>]+content=["\']([^"\']{40,})', page, re.I)
+             or re.search(r'<meta[^>]+content=["\']([^"\']{40,})["\'][^>]+(?:property|name)=["\']' + re.escape(nom) + r'["\']', page, re.I))
+        if m:
+            morceaux.append(html.unescape(m.group(1)))
+            break
+    corps = re.sub(r"(?is)<(script|style|nav|header|footer|aside)[^>]*>.*?</\1>", " ", page)
+    for p in re.findall(r"(?is)<p[^>]*>(.*?)</p>", corps):
+        t = nettoyer_texte(p, 2000)
+        if len(t) >= 80 and not re.search(r"cookie|subscribe|newsletter|copyright|all rights reserved", t, re.I):
+            morceaux.append(t)
+        if sum(len(x) for x in morceaux) > n:
+            break
+    texte = nettoyer_texte(" ".join(morceaux), n)
+    if len(texte) > len(art.get("text", "")):
+        art["text"] = texte
+        art["page_lue"] = True
+
+
 def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, dict, str]:
     rep = client.messages.create(
         model=modele_id,
@@ -684,16 +870,20 @@ def main() -> int:
     conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
     appels = 0
     if PRESELECTION:
-        candidats, c = preselectionner(client, modele["id"], candidats, max(3 * nb_voulu, 15),
-                                       sujets["science"] + sujets["tech"])
+        candidats, c = preselection_complete(client, modele["id"], candidats,
+                                             sujets["science"] + sujets["tech"])
         for k in conso:
             conso[k] += c[k]
     decisions = {"science": 0, "tech": 0, "both": 0}
 
     for art in candidats:
-        if nb_articles >= nb_voulu or appels >= appels_max:
+        majeur = art.get("note_pre", 0) >= 4   # amélioration 4 : toujours examiné
+        if (nb_articles >= nb_voulu or appels >= appels_max) and not majeur:
+            break
+        if appels >= appels_max + APPELS_EN_PLUS_MAJEURS:
             break
         appels += 1
+        lire_debut_page(art)                    # amélioration 6
         try:
             rep, c, diag = demander_a_claude(client, modele["id"], art, sujets)
             for k in conso:
@@ -780,8 +970,9 @@ def main() -> int:
             for i in range(0, min(len(lignes_ec), 40), 8):
                 print(f"::warning title=Écartés {i + 1}-{min(i + 8, len(lignes_ec))}::"
                       + "  ||  ".join(lignes_ec[i:i + 8]), flush=True)
-        print(f"::warning title=Présélection::{STATS.get('candidats', '?')} candidats lus, "
-              f"{STATS.get('pool', '?')} envoyés à la présélection, {STATS.get('choisis', '?')} choisis", flush=True)
+        print(f"::warning title=Présélection::{STATS.get('candidats', '?')} articles lus dans les flux, "
+              f"{STATS.get('pool', '?')} récents triés, {STATS.get('tries', '?')} jugés prometteurs, "
+              f"{STATS.get('groupes', '?')} sujets distincts, {STATS.get('choisis', '?')} à examiner", flush=True)
         if STATS.get("top"):
             print("::warning title=Choix de la présélection (dans l'ordre)::" + "  ||  ".join(STATS["top"]), flush=True)
 
