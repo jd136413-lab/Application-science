@@ -41,13 +41,13 @@ const List<String> explicationsNotif = [
 String frequenceNotif(int min, {required bool deuxFils, bool courte = false}) {
   // Nombre de notifications (estimations du barème), puis l'unité de temps.
   final n = switch (min) {
-    1 => deuxFils ? '4' : '2',
+    1 => deuxFils ? '= 4' : '= 2',
     2 => deuxFils ? '≈ 2–3' : '≈ 1–2',
     3 => deuxFils ? '≈ 2–4' : '≈ 1–2',
     _ => deuxFils ? '≈ 1–3' : '≈ 1–2',
   };
   final nombre = etat.langue == 'fr' ? n.replaceAll('–', ' à ') : n;
-  if (courte) return tr('{n}/jour').replaceAll('{n}', n.replaceAll('≈ ', ''));
+  if (courte) return tr('{n}/jour').replaceAll('{n}', n.replaceAll('≈ ', '').replaceAll('= ', ''));
   final modele = switch (min) {
     1 || 2 => '{n} notifications par jour',
     3 => '{n} notifications par semaine',
@@ -264,7 +264,6 @@ class _EcranNotificationsState extends State<EcranNotifications> {
         /// Une famille dans « Sur mesure » : interrupteur + 5 petites étoiles.
         Widget ligneFamille(String code) {
           final f = familleDe(code);
-          final propre = etat.notifParFamille[code];
           final m = etat.minDeFamille(code);
           final active = m > 0;
           return Padding(
@@ -317,9 +316,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
-                          propre == null
-                              ? '${tr(niveauxNotif[m])} · ${tr('par défaut')}'
-                              : tr(niveauxNotif[m]),
+                          tr(niveauxNotif[m]),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: p.texteDiscret)),
@@ -424,9 +421,6 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                       ),
                     ),
                     if (_surMesure) ...[
-                      Text(
-                          tr('Par défaut, chaque famille suit l’importance choisie au-dessus. Touchez les étoiles d’une famille pour la régler à part, ou coupez-la.'),
-                          style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.45)),
                       for (final fil in fils) ...[
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 16, 0, 2),
