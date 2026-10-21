@@ -275,3 +275,15 @@ CANDIDATS2 = [
     ("tech", "Intel Newsroom", ["https://www.intel.com/content/www/us/en/newsroom/news.rss", "https://newsroom.intel.com/news/feed/"]),
     ("tech", "Samsung Semiconductor", ["https://news.samsungsemiconductor.com/global/feed/"]),
 ]
+
+
+def _sources_actuelles():
+    """Les sources lues aujourd'hui par l'agent (pour mesurer le volume quotidien)."""
+    import os
+    import sys
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "agent"))
+    from sources import SOURCES
+    return [(s["feed"], s["name"], [s["url"]]) for s in SOURCES]
+
+
+SOURCES_ACTUELLES = _sources_actuelles()
