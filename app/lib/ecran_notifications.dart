@@ -248,11 +248,6 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                               const SizedBox(height: 2),
                               Text(frequenceNotif(k, deuxFils: deux),
                                   style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
-                              if (k == min) ...[
-                                const SizedBox(height: 4),
-                                Text(tr(explicationsNotif[k]),
-                                    style: police(policeTexte, taille: 13, couleur: p.texte, hauteur: 1.4)),
-                              ],
                             ]),
                           ),
                         ]),
@@ -378,7 +373,6 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                 if (etat.notifActives) ...[
                   // 1. Quel fil
                   bloc([
-                    titreBloc('Quelles avancées ?'),
                     pastilles(
                       [('science', tr(texteSciences)), ('tech', tr(texteTechnologies)), ('both', tr('Les deux'))],
                       etat.notifFil,
@@ -391,7 +385,6 @@ class _EcranNotificationsState extends State<EcranNotifications> {
 
                   // 2. Importance minimale
                   bloc([
-                    titreBloc('Importance minimale'),
                     listeNiveaux(),
                     const SizedBox(height: 8),
                     Text(
