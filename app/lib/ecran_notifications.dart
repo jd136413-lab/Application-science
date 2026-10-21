@@ -151,9 +151,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
-    final sombre = estSombre(context);
-    final fondJaune = sombre ? const Color(0x33E0A800) : const Color(0xFFFFF6DC);
-
+    
     Widget aide(String t) => Padding(
           padding: const EdgeInsets.fromLTRB(4, 8, 4, 0),
           child: Text(t, style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.45)),
@@ -214,43 +212,56 @@ class _EcranNotificationsState extends State<EcranNotifications> {
         final fils = deux ? ['science', 'tech'] : [etat.notifFil];
         final min = etat.notifMin;
 
-        /// Les 5 grandes étoiles, avec la fréquence en abrégé sous chacune.
-        Widget grandesEtoiles() => Row(children: [
-              for (var k = 1; k <= 5; k++)
-                Expanded(
-                  child: Semantics(
-                    button: true,
+        /// Les 5 niveaux en liste (comme la planche 17) : bouton radio, petites
+        /// étoiles, niveau, fréquence ; l'explication sous le niveau choisi.
+        Widget listeNiveaux() => Material(
+              color: Colors.transparent,
+              child: Column(children: [
+                for (var k = 1; k <= 5; k++) ...[
+                  if (k > 1) Divider(height: 1, color: p.bordure),
+                  Semantics(
                     selected: k == min,
-                    label: '${tr(niveauxNotif[k])} : ${frequenceNotif(k, deuxFils: deux)}',
-                    child: Material(
-                      color: k == min ? fondJaune : Colors.transparent,
-                      borderRadius: BorderRadius.circular(12),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(12),
-                        onTap: () {
-                          etat.changerNotifications(min: k);
-                          _stat();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
-                          child: ExcludeSemantics(
-                            child: Column(children: [
-                              Icon(Icons.star_rounded, size: 40, color: k <= min ? couleurEtoiles : p.bordure),
-                              const SizedBox(height: 2),
-                              Text(frequenceNotif(k, deuxFils: deux, courte: true),
-                                  textAlign: TextAlign.center,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: police(policeTexte,
-                                      taille: 11, graisse: FontWeight.w700, couleur: p.texteDiscret)),
+                    inMutuallyExclusiveGroup: true,
+                    child: InkWell(
+                      onTap: () {
+                        etat.changerNotifications(min: k);
+                        _stat();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 11),
+                        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Icon(k == min ? Icons.radio_button_checked_rounded : Icons.radio_button_off_rounded,
+                              color: k == min ? p.texte : p.texteDiscret, size: 22),
+                          const SizedBox(width: 12),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 3),
+                            child: Row(mainAxisSize: MainAxisSize.min, children: [
+                              for (var e = 1; e <= 5; e++)
+                                Icon(Icons.star_rounded, size: 16, color: e <= k ? couleurEtoiles : p.bordure),
                             ]),
                           ),
-                        ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                              Text(tr(niveauxNotif[k]),
+                                  style: police(policeTexte, taille: 15, graisse: FontWeight.w600, couleur: p.texte)),
+                              const SizedBox(height: 2),
+                              Text(frequenceNotif(k, deuxFils: deux),
+                                  style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                              if (k == min) ...[
+                                const SizedBox(height: 4),
+                                Text(tr(explicationsNotif[k]),
+                                    style: police(policeTexte, taille: 13, couleur: p.texte, hauteur: 1.4)),
+                              ],
+                            ]),
+                          ),
+                        ]),
                       ),
                     ),
                   ),
-                ),
-            ]);
+                ],
+              ]),
+            );
 
         /// Une famille dans « Sur mesure » : interrupteur + 5 petites étoiles.
         Widget ligneFamille(String code) {
@@ -351,7 +362,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                         Builder(builder: (context) {
                           final (a, b) = heuresArrivee(context);
                           return Text(
-                              tr('Vers {a} et {b}. Au plus 2 à chaque fois : une pour les Sciences, une pour les Technologies.')
+                              tr('Vers {a} et {b}')
                                   .replaceAll('{a}', a)
                                   .replaceAll('{b}', b),
                               style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.4));
@@ -381,19 +392,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                   // 2. Importance minimale
                   bloc([
                     titreBloc('Importance minimale'),
-                    grandesEtoiles(),
-                    const SizedBox(height: 12),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-                      decoration: BoxDecoration(color: fondJaune, borderRadius: BorderRadius.circular(14)),
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Text('${tr(niveauxNotif[min])} : ${frequenceNotif(min, deuxFils: deux)}',
-                            style: police(policeTexte, taille: 15, graisse: FontWeight.w800, couleur: p.texte)),
-                        const SizedBox(height: 4),
-                        Text(tr(explicationsNotif[min]),
-                            style: police(policeTexte, taille: 14, couleur: p.texte, hauteur: 1.45)),
-                      ]),
-                    ),
+                    listeNiveaux(),
                     const SizedBox(height: 8),
                     Text(
                         tr('Chaque notification regroupe toutes les avancées du fil arrivées en même temps. Estimation : le nombre réel dépend de l’actualité.'),
@@ -447,23 +446,7 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                     ],
                   ], padding: const EdgeInsets.fromLTRB(16, 4, 12, 8)),
 
-                  // Bilan
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-                    decoration: BoxDecoration(color: p.encre, borderRadius: BorderRadius.circular(18)),
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Text(tr('Avec ces réglages'),
-                          style: police(policeTexte,
-                              taille: 13, graisse: FontWeight.w700, couleur: p.surEncre.withValues(alpha: 0.75))),
-                      const SizedBox(height: 4),
-                      Text(
-                          toutCoupe
-                              ? tr('Aucune famille gardée : vous ne recevrez aucune notification.')
-                              : '${tr(niveauxNotif[min])} · ${frequenceNotif(min, deuxFils: deux)}'
-                                  '${etat.notifParFamille.isEmpty ? '' : ' · ${tr('certaines familles réglées à part')}'}',
-                          style: police(policeTexte, taille: 16, graisse: FontWeight.w800, couleur: p.surEncre)),
-                    ]),
-                  ),
+                  if (toutCoupe) aide(tr('Aucune famille gardée : vous ne recevrez aucune notification.')),
                   aide(tr('Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de NovaSTEM pour recevoir les notifications.')),
                 ],
               ],

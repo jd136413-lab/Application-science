@@ -3833,3 +3833,24 @@ ja {n} 件すべて見る
 ko {n}개 모두 보기
 id Lihat ke-{n}-nya
 vi Xem cả {n}
+
+@ Vers {a} et {b}
+en Around {a} and {b}
+es Hacia las {a} y las {b}
+pt Por volta de {a} e {b}
+de Gegen {a} und {b}
+it Verso le {a} e le {b}
+nl Rond {a} en {b}
+pl Około {a} i {b}
+ru Около {a} и {b}
+uk Близько {a} і {b}
+tr Yaklaşık {a} ve {b} saatlerinde
+ar نحو {a} و{b}
+hi लगभग {a} और {b} बजे
+bn প্রায় {a} ও {b}-এ
+ur تقریباً {a} اور {b} بجے
+zh 约 {a} 和 {b}
+ja {a} と {b} ごろ
+ko {a}와 {b}쯤
+id Sekitar pukul {a} dan {b}
+vi Khoảng {a} và {b}

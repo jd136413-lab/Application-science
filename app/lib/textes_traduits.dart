@@ -185,6 +185,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Also:',
     'Lire': 'Read',
     'Voir les {n}': 'See all {n}',
+    'Vers {a} et {b}': 'Around {a} and {b}',
   },
   'es': {
     'Sciences': 'Ciencia',
@@ -369,6 +370,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'También:',
     'Lire': 'Leer',
     'Voir les {n}': 'Ver las {n}',
+    'Vers {a} et {b}': 'Hacia las {a} y las {b}',
   },
   'pt': {
     'Sciences': 'Ciência',
@@ -553,6 +555,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Também:',
     'Lire': 'Ler',
     'Voir les {n}': 'Ver as {n}',
+    'Vers {a} et {b}': 'Por volta de {a} e {b}',
   },
   'de': {
     'Sciences': 'Wissenschaft',
@@ -737,6 +740,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Außerdem:',
     'Lire': 'Lesen',
     'Voir les {n}': 'Alle {n} ansehen',
+    'Vers {a} et {b}': 'Gegen {a} und {b}',
   },
   'it': {
     'Sciences': 'Scienza',
@@ -921,6 +925,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Inoltre:',
     'Lire': 'Leggi',
     'Voir les {n}': 'Vedi tutte e {n}',
+    'Vers {a} et {b}': 'Verso le {a} e le {b}',
   },
   'nl': {
     'Sciences': 'Wetenschap',
@@ -1105,6 +1110,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Ook:',
     'Lire': 'Lezen',
     'Voir les {n}': 'Alle {n} bekijken',
+    'Vers {a} et {b}': 'Rond {a} en {b}',
   },
   'pl': {
     'Sciences': 'Nauka',
@@ -1289,6 +1295,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Także:',
     'Lire': 'Czytaj',
     'Voir les {n}': 'Zobacz wszystkie ({n})',
+    'Vers {a} et {b}': 'Około {a} i {b}',
   },
   'ru': {
     'Sciences': 'Наука',
@@ -1473,6 +1480,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Также:',
     'Lire': 'Читать',
     'Voir les {n}': 'Смотреть все ({n})',
+    'Vers {a} et {b}': 'Около {a} и {b}',
   },
   'uk': {
     'Sciences': 'Наука',
@@ -1657,6 +1665,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Також:',
     'Lire': 'Читати',
     'Voir les {n}': 'Переглянути всі ({n})',
+    'Vers {a} et {b}': 'Близько {a} і {b}',
   },
   'tr': {
     'Sciences': 'Bilim',
@@ -1841,6 +1850,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Ayrıca:',
     'Lire': 'Oku',
     'Voir les {n}': '{n} tanesini gör',
+    'Vers {a} et {b}': 'Yaklaşık {a} ve {b} saatlerinde',
   },
   'ar': {
     'Sciences': 'العلوم',
@@ -2025,6 +2035,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'أيضًا:',
     'Lire': 'اقرأ',
     'Voir les {n}': 'عرض الـ{n}',
+    'Vers {a} et {b}': 'نحو {a} و{b}',
   },
   'hi': {
     'Sciences': 'विज्ञान',
@@ -2209,6 +2220,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'इसके अलावा:',
     'Lire': 'पढ़ें',
     'Voir les {n}': 'सभी {n} देखें',
+    'Vers {a} et {b}': 'लगभग {a} और {b} बजे',
   },
   'bn': {
     'Sciences': 'বিজ্ঞান',
@@ -2393,6 +2405,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'এছাড়া:',
     'Lire': 'পড়ুন',
     'Voir les {n}': 'সব {n}টি দেখুন',
+    'Vers {a} et {b}': 'প্রায় {a} ও {b}-এ',
   },
   'ur': {
     'Sciences': 'سائنس',
@@ -2577,6 +2590,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'اس کے علاوہ:',
     'Lire': 'پڑھیں',
     'Voir les {n}': 'تمام {n} دیکھیں',
+    'Vers {a} et {b}': 'تقریباً {a} اور {b} بجے',
   },
   'zh': {
     'Sciences': '科学',
@@ -2761,6 +2775,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': '另外：',
     'Lire': '阅读',
     'Voir les {n}': '查看全部 {n} 条',
+    'Vers {a} et {b}': '约 {a} 和 {b}',
   },
   'ja': {
     'Sciences': '科学',
@@ -2945,6 +2960,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'ほかに：',
     'Lire': '読む',
     'Voir les {n}': '{n} 件すべて見る',
+    'Vers {a} et {b}': '{a} と {b} ごろ',
   },
   'ko': {
     'Sciences': '과학',
@@ -3129,6 +3145,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': '그 밖에:',
     'Lire': '읽기',
     'Voir les {n}': '{n}개 모두 보기',
+    'Vers {a} et {b}': '{a}와 {b}쯤',
   },
   'id': {
     'Sciences': 'Sains',
@@ -3313,6 +3330,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Juga:',
     'Lire': 'Baca',
     'Voir les {n}': 'Lihat ke-{n}-nya',
+    'Vers {a} et {b}': 'Sekitar pukul {a} dan {b}',
   },
   'vi': {
     'Sciences': 'Khoa học',
@@ -3497,5 +3515,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Aussi :': 'Ngoài ra:',
     'Lire': 'Đọc',
     'Voir les {n}': 'Xem cả {n}',
+    'Vers {a} et {b}': 'Khoảng {a} và {b}',
   },
 };
