@@ -549,6 +549,7 @@ def preselectionner(client, modele_id, candidats: list[dict], k: int,
 #    note de 4 ou 5 est toujours examinée, même au-delà du quota.
 # ---------------------------------------------------------------------
 PAQUET_PRESELECTION = 150      # titres par appel
+FICHIER_MEMOIRE_TRI = "memoire_tri.json"   # notes déjà données (gardée entre les passages)
 TRI_HEURES = 36                # on ne trie que les articles des 36 dernières heures :
                                # les plus anciens ont déjà été triés aux passages précédents
 PRESELECTION_MAX_TOTAL = 1200  # sécurité
@@ -627,19 +628,41 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
     STATS["pool"] = len(pool)
     if len(pool) <= 3:
         return candidats, conso
-    # 1) Tri par paquets
+    # 1) Tri par paquets — seulement les articles jamais triés (mémoire des passages précédents)
+    try:
+        memoire = json.load(open(FICHIER_MEMOIRE_TRI, encoding="utf-8"))
+    except Exception:
+        memoire = {}
     notes = {}
-    for debut in range(0, len(pool), PAQUET_PRESELECTION):
-        paquet = range(debut, min(debut + PAQUET_PRESELECTION, len(pool)))
+    a_trier = []
+    for i, a in enumerate(pool):
+        m = memoire.get(a["url"])
+        if m is None:
+            a_trier.append(i)
+        elif m[0] > 0:                       # déjà jugé prometteur : on le garde
+            notes[i] = (m[0], m[1])
+    STATS["deja_tries"] = len(pool) - len(a_trier)
+    for debut in range(0, len(a_trier), PAQUET_PRESELECTION):
+        paquet = a_trier[debut:debut + PAQUET_PRESELECTION]
         lignes = [f"{i}. {pool[i]['title'][:150]} [{pool[i]['source_name']}]" for i in paquet]
         try:
             rep = _appel_json(client, modele_id, CONSIGNE_TRI, "\n".join(lignes), SCHEMA_TRI, conso)
             for x in rep.get("articles", []):
                 i = x.get("i")
-                if isinstance(i, int) and debut <= i < debut + PAQUET_PRESELECTION and i < len(pool):
+                if isinstance(i, int) and i in paquet:
                     notes[i] = (max(1, min(5, int(x.get("note") or 1))), str(x.get("sujet", ""))[:100])
+            for i in paquet:                 # mémoire : note, ou 0 = pas une avancée
+                memoire[pool[i]["url"]] = [notes[i][0], notes[i][1], MAINTENANT.isoformat()] if i in notes \
+                    else [0, "", MAINTENANT.isoformat()]
         except Exception as ex:
             log(f"⚠ Tri d'un paquet impossible ({ex.__class__.__name__})")
+    # On oublie ce qui a plus de 8 jours, puis on enregistre la mémoire
+    seuil = (MAINTENANT - timedelta(days=8)).isoformat()
+    memoire = {u: m for u, m in memoire.items() if m[2] >= seuil}
+    try:
+        json.dump(memoire, open(FICHIER_MEMOIRE_TRI, "w", encoding="utf-8"))
+    except Exception:
+        pass
     if not notes:
         log("⚠ Présélection vide : ordre habituel.")
         return candidats, conso
@@ -1004,7 +1027,8 @@ def main() -> int:
                 print(f"::warning title=Écartés {i + 1}-{min(i + 8, len(lignes_ec))}::"
                       + "  ||  ".join(lignes_ec[i:i + 8]), flush=True)
         print(f"::warning title=Présélection::{STATS.get('candidats', '?')} articles lus dans les flux, "
-              f"{STATS.get('pool', '?')} récents triés, {STATS.get('tries', '?')} jugés prometteurs, "
+              f"{STATS.get('pool', '?')} récents ({STATS.get('deja_tries', 0)} déjà triés avant), "
+              f"{STATS.get('tries', '?')} prometteurs, "
               f"{STATS.get('groupes', '?')} sujets distincts, {STATS.get('choisis', '?')} à examiner, "
               f"coût de la présélection {STATS.get('cout_pre', 0):.4f} $"
               + (f" ; regroupement en erreur : {STATS['erreur_regroupement']}" if STATS.get("erreur_regroupement") else ""),
