@@ -293,7 +293,9 @@ def lire_sources(urls_connues: set[str], feed: str) -> tuple[list[dict], list[st
                                  "published_at": d, "image_url": image,
                                  "image_credit": credit, "photo": src.get("photo"),
                                  "credit_page": bool(src.get("credit_page")),
-                                 "credit_mode": src.get("credit_mode", "")})
+                                 "credit_mode": src.get("credit_mode", ""),
+                                 "image_motif": src.get("image_motif", ""),
+                                 "credit_requis": src.get("credit_requis", "")})
             articles.sort(key=lambda a: a["published_at"], reverse=True)
             log(f"  • {src['name']} : {len(flux.entries)} dans le flux, "
                 f"{len(articles)} nouveaux")
@@ -351,7 +353,7 @@ def completer_image(art: dict) -> None:
         art["image_credit"] = ""
         return
     credit = art["photo"]
-    if art.get("credit_mode") == "plos":
+    if art.get("credit_mode") in ("plos", "citation"):
         # Figures dessinées avec BioRender : licence contestée → pas d'image.
         if not page or re.search(r"biorender", page, re.I):
             log("    (image ignorée : page illisible ou figure BioRender)")
@@ -374,6 +376,17 @@ def completer_image(art: dict) -> None:
             credit = "Image : " + nettoyer_credit(html.unescape(m.group(1)))
         else:
             credit = "Image : " + credit
+    # L'image doit avoir la forme attendue (ex. une figure de l'article, pas un logo)
+    if art.get("image_motif") and not re.search(art["image_motif"], art.get("image_url", "")):
+        log("    (image ignorée : ce n'est pas une figure de l'article)")
+        art["image_url"], art["image_credit"] = "", ""
+        return
+    # Le crédit doit nommer l'institution dont la licence est vérifiée (ex. NRAO) ;
+    # sinon l'image peut appartenir à quelqu'un d'autre.
+    if art.get("credit_requis") and art["credit_requis"].lower() not in credit.lower():
+        log(f"    (image ignorée : crédit sans « {art['credit_requis']} »)")
+        art["image_url"], art["image_credit"] = "", ""
+        return
     # Contrôle agence photo autour de l'image dans la page, et dans le crédit
     fichier = art["image_url"].split("/")[-1].split("?")[0]
     i = page.find(fichier) if fichier else -1
@@ -467,10 +480,12 @@ On te donne une liste numérotée (titre, source, début du texte). Renvoie dans
 - traitement ou vaccin validé chez l'humain, essai clinique de phase avancée réussi ;
 - produit technologique majeur réellement annoncé ou sorti (nouvelle génération de puce, de téléphone, de modèle d'IA, de lanceur, de véhicule…) avec des nouveautés mesurables ;
 - record mesurable, mission spatiale réussie, percée en énergie ou en informatique quantique.
-Mets plus bas les études incrémentales, très spécialisées ou seulement chez l'animal/en simulation. N'inclus PAS : actualités sans avancée (politique, finances, procès, nominations, rumeurs, promos, tests de produits, tutoriels, opinions, rubriques récurrentes). Sois exigeant face aux titres racoleurs. Garde au maximum {k} numéros."""
+Mets plus bas les études incrémentales, très spécialisées ou seulement chez l'animal/en simulation.
+DOUBLONS : n'inclus PAS un article dont le sujet est déjà dans la liste « Déjà publié » (même découverte ou même produit, même formulé autrement), et si plusieurs articles de la liste parlent du même sujet, garde seulement le plus complet (de préférence la source d'origine : l'université, le laboratoire, l'agence ou l'entreprise qui annonce son propre résultat). N'inclus PAS : actualités sans avancée (politique, finances, procès, nominations, rumeurs, promos, tests de produits, tutoriels, opinions, rubriques récurrentes). Sois exigeant face aux titres racoleurs. Garde au maximum {k} numéros."""
 
 
-def preselectionner(client, modele_id, candidats: list[dict], k: int) -> tuple[list[dict], dict]:
+def preselectionner(client, modele_id, candidats: list[dict], k: int,
+                    deja: list[str] | None = None) -> tuple[list[dict], dict]:
     """Classe les candidats récents par importance probable (un seul appel bon marché).
     En cas de souci, renvoie la liste d'origine : la présélection n'est jamais bloquante."""
     conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
@@ -489,7 +504,10 @@ def preselectionner(client, modele_id, candidats: list[dict], k: int) -> tuple[l
             model=modele_id,
             max_tokens=1500,
             system=CONSIGNE_PRESELECTION.replace("{k}", str(k)),
-            messages=[{"role": "user", "content": "\n".join(lignes)}],
+            messages=[{"role": "user", "content":
+                       "Déjà publié ces derniers jours (titres) :\n"
+                       + ("\n".join(f"- {t.split(' — ')[0]}" for t in (deja or [])[:150]) or "(rien)")
+                       + "\n\nArticles à trier :\n" + "\n".join(lignes)}],
             output_config={"format": {"type": "json_schema", "schema": SCHEMA_PRESELECTION}},
         )
         u = rep.usage
@@ -660,7 +678,8 @@ def main() -> int:
     conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
     appels = 0
     if PRESELECTION:
-        candidats, c = preselectionner(client, modele["id"], candidats, max(3 * nb_voulu, 15))
+        candidats, c = preselectionner(client, modele["id"], candidats, max(3 * nb_voulu, 15),
+                                       sujets["science"] + sujets["tech"])
         for k in conso:
             conso[k] += c[k]
     decisions = {"science": 0, "tech": 0, "both": 0}

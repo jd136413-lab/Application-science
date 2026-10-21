@@ -78,6 +78,91 @@ SOURCES = [
     {"feed": "science", "name": "Futura Sciences", "url": "https://www.futura-sciences.com/rss/actualites.xml"},
     {"feed": "science", "name": "Sciences et Avenir", "url": "https://www.sciencesetavenir.fr/rss.xml"},
     {"feed": "science", "name": "Le Monde Sciences", "url": "https://www.lemonde.fr/sciences/rss_full.xml"},
+
+    # =================================================================
+    # AJOUTS DU 21/10/2026 — stratégie « sources complémentaires »
+    # (testées le 21/10 : agent/decouverte_CANDIDATS.md et _CANDIDATS2.md)
+    # 1. Sources PRIMAIRES : l'institution annonce SES propres résultats →
+    #    beaucoup de vraies avancées et presque pas de doublons entre elles.
+    # 2. Couverture par RÉGION (Europe, Amérique, Asie, Océanie, Moyen-Orient)
+    #    et par DOMAINE (océans, climat, chimie, neurosciences, archéologie…).
+    # 3. Revues en accès libre CC BY 4.0 : images autorisées (figure de
+    #    l'article, crédit auteurs + revue + année, refus si BioRender).
+    # =================================================================
+    # --- Instituts et universités : France et Europe ---
+    {"feed": "science", "name": "Observatoire de Paris", "url": "https://www.observatoiredeparis.psl.eu/spip.php?page=backend", "age_max": 45},
+    {"feed": "science", "name": "Max Planck", "url": "https://www.mpg.de/en/research.rss"},
+    {"feed": "science", "name": "ETH Zurich", "url": "https://ethz.ch/en/news-and-events/eth-news/news/_jcr_content.feed"},
+    {"feed": "science", "name": "EPFL", "url": "https://actu.epfl.ch/feeds/rss/mediacom/en/"},
+    {"feed": "science", "name": "Institut Paul Scherrer (PSI)", "url": "https://www.psi.ch/rss.xml", "age_max": 45},
+    {"feed": "science", "name": "EMBL", "url": "https://www.embl.org/news/feed/", "age_max": 45},
+    {"feed": "science", "name": "Fraunhofer", "url": "https://www.fraunhofer.de/en/rss/press.rss", "age_max": 45},
+    {"feed": "science", "name": "Université de Copenhague", "url": "https://news.ku.dk/all_news/?get_rss=1"},
+    {"feed": "science", "name": "Université de Lund", "url": "https://www.lunduniversity.lu.se/news/rss"},
+    {"feed": "science", "name": "CNIO (cancer, Espagne)", "url": "https://www.cnio.es/en/feed/", "age_max": 45},
+    {"feed": "science", "name": "Université de Cambridge", "url": "https://www.cam.ac.uk/news/feed"},
+    {"feed": "science", "name": "Francis Crick Institute", "url": "https://www.crick.ac.uk/rss.xml", "age_max": 45},
+    # --- Amérique du Nord : agences fédérales, laboratoires nationaux, universités ---
+    {"feed": "science", "name": "NSF", "url": "https://www.nsf.gov/rss/rss_www_news.xml"},
+    {"feed": "science", "name": "NIST", "url": "https://www.nist.gov/news-events/news/rss.xml"},
+    {"feed": "science", "name": "USGS", "url": "https://www.usgs.gov/news/national-news-release/feed", "age_max": 45},
+    {"feed": "science", "name": "Berkeley Lab", "url": "https://newscenter.lbl.gov/feed/"},
+    {"feed": "science", "name": "Argonne", "url": "https://www.anl.gov/rss.xml", "age_max": 45},
+    {"feed": "science", "name": "Oak Ridge (ORNL)", "url": "https://www.ornl.gov/news/feed/"},
+    {"feed": "science", "name": "SLAC", "url": "https://www6.slac.stanford.edu/rss.xml"},
+    {"feed": "science", "name": "Harvard Gazette", "url": "https://news.harvard.edu/gazette/feed/"},
+    {"feed": "science", "name": "Caltech", "url": "https://www.caltech.edu/about/news/rss"},
+    {"feed": "science", "name": "University of Washington", "url": "https://www.washington.edu/news/feed/"},
+    {"feed": "science", "name": "University of Michigan", "url": "https://news.umich.edu/feed/"},
+    {"feed": "science", "name": "Broad Institute", "url": "https://www.broadinstitute.org/rss.xml", "age_max": 45},
+    {"feed": "science", "name": "MBARI (océans)", "url": "https://www.mbari.org/feed/", "age_max": 45},
+    {"feed": "science", "name": "Carnegie Science", "url": "https://carnegiescience.edu/rss.xml"},
+    # NRAO : images CC BY 4.0 (vérifié le 21/10), seulement si le crédit nomme le NRAO.
+    {"feed": "science", "name": "NRAO (radioastronomie)", "url": "https://public.nrao.edu/feed/", "photo": "NRAO/AUI/NSF", "credit_page": True, "credit_requis": "NRAO", "age_max": 60},
+    {"feed": "science", "name": "ALMA", "url": "https://www.almaobservatory.org/en/feed/", "age_max": 60},
+    {"feed": "science", "name": "Observatoire Keck", "url": "https://keckobservatory.org/feed/", "age_max": 60},
+    {"feed": "science", "name": "SETI Institute", "url": "https://www.seti.org/rss.xml"},
+    {"feed": "science", "name": "UBC (Canada)", "url": "https://news.ubc.ca/feed/"},
+    # --- Asie, Moyen-Orient ---
+    {"feed": "science", "name": "RIKEN (Japon)", "url": "https://www.riken.jp/feed/news_feed/"},
+    {"feed": "science", "name": "Université de Kyoto", "url": "https://www.kyoto-u.ac.jp/en/rss.xml"},
+    {"feed": "science", "name": "A*STAR (Singapour)", "url": "https://research.a-star.edu.sg/feed/", "age_max": 45},
+    {"feed": "science", "name": "NUS (Singapour)", "url": "https://news.nus.edu.sg/feed/"},
+    {"feed": "science", "name": "KAUST Discovery (Arabie saoudite)", "url": "https://discovery.kaust.edu.sa/feed/", "age_max": 45},
+    # --- Médias spécialisés par domaine ---
+    {"feed": "science", "name": "Physics (APS)", "url": "https://feeds.aps.org/rss/recent/physics.xml"},
+    {"feed": "science", "name": "Chemistry World", "url": "https://www.chemistryworld.com/409.rss"},
+    {"feed": "science", "name": "Eos (sciences de la Terre)", "url": "https://eos.org/feed"},
+    {"feed": "science", "name": "Carbon Brief (climat)", "url": "https://www.carbonbrief.org/feed/"},
+    {"feed": "science", "name": "Yale Environment 360", "url": "https://e360.yale.edu/feed.xml"},
+    {"feed": "science", "name": "Mongabay (biodiversité)", "url": "https://news.mongabay.com/feed/"},
+    {"feed": "science", "name": "The Transmitter (neurosciences)", "url": "https://www.thetransmitter.org/feed/"},
+    {"feed": "science", "name": "STAT News (santé)", "url": "https://www.statnews.com/feed/"},
+    {"feed": "science", "name": "Science News", "url": "https://www.sciencenews.org/feed"},
+    {"feed": "science", "name": "Universe Today", "url": "https://www.universetoday.com/feed/"},
+    {"feed": "science", "name": "Archaeology Magazine", "url": "https://archaeology.org/feed/"},
+    {"feed": "science", "name": "BBC Science", "url": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml"},
+    {"feed": "science", "name": "The Guardian Science", "url": "https://www.theguardian.com/science/rss"},
+    {"feed": "science", "name": "Pour la Science", "url": "https://www.pourlascience.fr/rss.xml"},
+    {"feed": "science", "name": "Techno-Science.net", "url": "https://www.techno-science.net/fr/actualites/rss.xml"},
+    {"feed": "science", "name": "Ciel & Espace", "url": "https://www.cieletespace.fr/rss"},
+    # --- Revues : accès libre CC BY 4.0 (images autorisées : figure de l'article) ---
+    {"feed": "science", "name": "Nature Communications", "url": "https://www.nature.com/ncomms.rss", "photo": "Nature Portfolio", "credit_mode": "citation", "image_motif": "springer-static/image/art"},
+    {"feed": "science", "name": "Communications Biology", "url": "https://www.nature.com/commsbio.rss", "photo": "Nature Portfolio", "credit_mode": "citation", "image_motif": "springer-static/image/art"},
+    {"feed": "science", "name": "Communications Earth & Environment", "url": "https://www.nature.com/commsenv.rss", "photo": "Nature Portfolio", "credit_mode": "citation", "image_motif": "springer-static/image/art"},
+    {"feed": "science", "name": "Communications Physics", "url": "https://www.nature.com/commsphys.rss", "photo": "Nature Portfolio", "credit_mode": "citation", "image_motif": "springer-static/image/art"},
+    {"feed": "science", "name": "Communications Medicine", "url": "https://www.nature.com/commsmed.rss", "photo": "Nature Portfolio", "credit_mode": "citation", "image_motif": "springer-static/image/art"},
+    {"feed": "science", "name": "Scientific Reports", "url": "https://www.nature.com/srep.rss", "photo": "Nature Portfolio", "credit_mode": "citation", "image_motif": "springer-static/image/art"},
+    # --- Revues de référence par domaine (pas d'image : articles pas tous en accès libre) ---
+    {"feed": "science", "name": "Nature Astronomy", "url": "https://www.nature.com/natastron.rss"},
+    {"feed": "science", "name": "Nature Climate Change", "url": "https://www.nature.com/nclimate.rss"},
+    {"feed": "science", "name": "Nature Ecology & Evolution", "url": "https://www.nature.com/natecolevol.rss"},
+    {"feed": "science", "name": "Nature Physics", "url": "https://www.nature.com/nphys.rss"},
+    {"feed": "science", "name": "Nature Geoscience", "url": "https://www.nature.com/ngeo.rss"},
+    {"feed": "science", "name": "Nature Neuroscience", "url": "https://www.nature.com/neuro.rss"},
+    {"feed": "science", "name": "Nature Biotechnology", "url": "https://www.nature.com/nbt.rss"},
+    {"feed": "science", "name": "Cell", "url": "https://www.cell.com/cell/inpress.rss"},
+    {"feed": "science", "name": "BMJ", "url": "https://www.bmj.com/rss/recent.xml"},
     # Écartés le 19/10/2026 : robots.txt refuse (New Scientist, NEJM, The Lancet,
     # Science Advances, The Register) ; flux introuvable (CERN, NIH, Max Planck,
     # CEA, INRAE, Institut Pasteur, Polytechnique Insights).
@@ -111,6 +196,59 @@ SOURCES = [
     {"feed": "tech", "name": "Google Blog",      "url": "https://blog.google/rss/"},
     {"feed": "tech", "name": "OpenAI News",      "url": "https://openai.com/news/rss.xml"},
     {"feed": "tech", "name": "Microsoft News",   "url": "https://news.microsoft.com/source/feed/"},
+    # =================================================================
+    # AJOUTS DU 21/10/2026 — sources complémentaires (voir plus haut)
+    # =================================================================
+    # --- Laboratoires de recherche et entreprises (annoncent leurs propres nouveautés) ---
+    {"feed": "tech", "name": "Google Research", "url": "https://research.google/blog/rss/"},
+    {"feed": "tech", "name": "Google DeepMind", "url": "https://deepmind.google/blog/rss.xml"},
+    {"feed": "tech", "name": "Microsoft Research", "url": "https://www.microsoft.com/en-us/research/feed/"},
+    {"feed": "tech", "name": "IBM Research", "url": "https://research.ibm.com/rss"},
+    {"feed": "tech", "name": "Hugging Face", "url": "https://huggingface.co/blog/feed.xml"},
+    {"feed": "tech", "name": "Arm", "url": "https://newsroom.arm.com/rss", "age_max": 45},
+    {"feed": "tech", "name": "Samsung Semiconductor", "url": "https://news.samsungsemiconductor.com/global/feed/"},
+    {"feed": "tech", "name": "Siemens", "url": "https://press.siemens.com/global/en/rss.xml"},
+    {"feed": "tech", "name": "Airbus", "url": "https://www.airbus.com/rss.xml", "age_max": 45},
+    {"feed": "tech", "name": "Rocket Lab", "url": "https://www.rocketlabusa.com/updates/rss/", "age_max": 45},
+    {"feed": "tech", "name": "ESA (technologie spatiale)", "url": "https://www.esa.int/rssfeed/Our_Activities/Space_Engineering_Technology", "age_max": 45},
+    {"feed": "tech", "name": "PlayStation Blog", "url": "https://blog.playstation.com/feed/"},
+    # --- Médias spécialisés par domaine ---
+    {"feed": "tech", "name": "ServeTheHome (serveurs, puces)", "url": "https://www.servethehome.com/feed/"},
+    {"feed": "tech", "name": "EE Times (électronique)", "url": "https://www.eetimes.com/feed/"},
+    {"feed": "tech", "name": "Semiconductor Engineering", "url": "https://semiengineering.com/feed/"},
+    {"feed": "tech", "name": "The Decoder (IA)", "url": "https://the-decoder.com/feed/"},
+    {"feed": "tech", "name": "The Robot Report", "url": "https://www.therobotreport.com/feed/"},
+    {"feed": "tech", "name": "Robohub", "url": "https://robohub.org/feed/"},
+    {"feed": "tech", "name": "The Quantum Insider", "url": "https://thequantuminsider.com/feed/"},
+    {"feed": "tech", "name": "pv magazine (solaire)", "url": "https://www.pv-magazine.com/feed/"},
+    {"feed": "tech", "name": "Energy-Storage.news (batteries)", "url": "https://www.energy-storage.news/feed/"},
+    {"feed": "tech", "name": "electrive (véhicules électriques, Europe)", "url": "https://www.electrive.com/feed/"},
+    {"feed": "tech", "name": "CnEVPost (véhicules électriques, Chine)", "url": "https://cnevpost.com/feed/"},
+    {"feed": "tech", "name": "Spaceflight Now", "url": "https://spaceflightnow.com/feed/"},
+    {"feed": "tech", "name": "NASASpaceflight", "url": "https://www.nasaspaceflight.com/feed/"},
+    {"feed": "tech", "name": "Payload (industrie spatiale)", "url": "https://payloadspace.com/feed/"},
+    {"feed": "tech", "name": "European Spaceflight", "url": "https://europeanspaceflight.com/feed/"},
+    {"feed": "tech", "name": "MedTech Dive (technologies médicales)", "url": "https://www.medtechdive.com/feeds/news/"},
+    {"feed": "tech", "name": "DroneDJ (drones)", "url": "https://dronedj.com/feed/"},
+    {"feed": "tech", "name": "Nintendo Life", "url": "https://www.nintendolife.com/feeds/latest"},
+    {"feed": "tech", "name": "Gematsu (jeux vidéo, Japon)", "url": "https://www.gematsu.com/feed"},
+    # --- Par région ---
+    {"feed": "tech", "name": "Rest of World (tech hors Occident)", "url": "https://restofworld.org/feed/latest/"},
+    {"feed": "tech", "name": "TechNode (Chine)", "url": "https://technode.com/feed/"},
+    {"feed": "tech", "name": "Pandaily (Chine)", "url": "https://pandaily.com/feed/"},
+    {"feed": "tech", "name": "SCMP Tech (Asie)", "url": "https://www.scmp.com/rss/36/feed"},
+    {"feed": "tech", "name": "TechCabal (Afrique)", "url": "https://techcabal.com/feed/"},
+    {"feed": "tech", "name": "L'Usine Nouvelle", "url": "https://www.usinenouvelle.com/rss/"},
+    {"feed": "tech", "name": "L'Usine Digitale", "url": "https://www.usine-digitale.fr/rss"},
+    # Testés le 21/10 et NON retenus : robots.txt refuse (Smithsonian, PNAS),
+    # dates absentes dans le flux (DESY, Karolinska, ISTA, NIH, FAPESP, Fierce
+    # Biotech, KED Global), flux abandonné (CNRS, Sorbonne, KU Leuven, Salk,
+    # Sanger, Toronto, McGill), trop de rumeurs, promos ou actualités d'affaires
+    # (TechPowerUp, Android Authority, MacRumors, Gizmochina, CleanTechnica,
+    # Canary Media, Light Reading, Sifted, Inc42, Journal du Net, ZDNet, heise,
+    # AWS, The Conversation, Knowable). Introuvables : CERN, Stanford, Oxford,
+    # Imperial, JAXA, CSIRO, Meta AI, Anthropic, Intel, AMD, Qualcomm, TSMC,
+    # CEA, INRAE, Inria, Institut Pasteur (liste complète : agent/decouverte_*.md).
     # Écartés le 19/10/2026 : VideoCardz (accès refusé), Samsung Newsroom
     # (robots.txt illisible), Korben (surtout des outils et tutoriels).
 ]
