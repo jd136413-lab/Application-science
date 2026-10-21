@@ -64,7 +64,20 @@ par une autre source. Deux études ou deux produits différents sur un même gra
 ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
 
 ## C. Rédaction des fiches (en français, ORIGINALES, jamais de copie du texte source)
-- title : 10 mots maximum, clair, concret, sans point final ni clickbait.
+- title : TOUJOURS sous la forme « Thème : phrase » (choix de Maxime, maquette 29 B).
+  · Thème : 1 à 3 mots que tout le monde connaît, avec une majuscule (Douleur, Climat,
+    Planètes, Trous noirs, Cancer, Robots, Puces, Archéologie, Smartphones…).
+  · Puis « : » (avec une espace avant et après, comme en français).
+  · Puis une vraie phrase au présent de l'indicatif : sujet + verbe conjugué + complément.
+    Le verbe dit ce qui a été fait ou trouvé (repère, montre, mesure, fabrique, lance…).
+  · Interdits : participe présent (« montrant », « permettant »…), titre sans verbe,
+    superlatif ou promesse que l'étude ne montre pas (« révolutionne », « guérit »).
+  · 12 mots au plus en tout (thème compris), sans point final, mots de tous les jours
+    (« artères bouchées » plutôt que « athérosclérose »).
+  · Exemples : « Planètes : Webb repère les traces de chocs géants » ;
+    « Douleur : nos nerfs détectent la brûlure grâce à une protéine » ;
+    « Robots : un robot vole puis plonge comme un macareux » ;
+    « Climat : les forêts des Caraïbes se réchauffent et souffrent plus ».
 - summary : 2 à 3 phrases en français simple.
   · Fiche Sciences : centrée sur la CONNAISSANCE nouvelle (ce que l'on sait désormais,
     comment on l'a établi, les limites : étude animale, simulation, résultat préliminaire…).
