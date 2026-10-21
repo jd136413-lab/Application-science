@@ -108,7 +108,7 @@ class EcranNotifications extends StatefulWidget {
 
 class _EcranNotificationsState extends State<EcranNotifications> {
   bool _refusee = false;
-  late bool _surMesure = etat.notifParFamille.isNotEmpty; // ouvert d'emblée s'il est utilisé
+  bool _surMesure = true; // ouvert à l'arrivée sur l'écran (maquette 31)
 
   /// Message de confirmation en bas de l'écran.
   void _confirmer(String texte) {
@@ -425,7 +425,6 @@ class _EcranNotificationsState extends State<EcranNotifications> {
                   ], padding: const EdgeInsets.fromLTRB(16, 4, 12, 8)),
 
                   if (toutCoupe) aide(tr('Aucune famille gardée : vous ne recevrez aucune notification.')),
-                  aide(tr('Sur certains téléphones (Xiaomi, Huawei…), autorisez aussi le démarrage automatique de NovaSTEM pour recevoir les notifications.')),
                 ],
               ],
             ],
