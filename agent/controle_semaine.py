@@ -123,6 +123,11 @@ def main() -> int:
         m = re.search(r"\{.*\}", texte, re.S)
         sujets = json.loads(m.group(0)).get("sujets", []) if m else []
     cout = (rep.usage.input_tokens * PRIX[0] + rep.usage.output_tokens * PRIX[1]) / 1_000_000
+    sources_lues = sorted({re.search(r"\[([^\]]+)\]$", l).group(1) for l in refs if re.search(r"\[([^\]]+)\]$", l)})
+    print(f"::warning title=Contrôle — diagnostic::{len(refs)} titres de référence ({len(sources_lues)} sources : "
+          f"{', '.join(sources_lues)}) ; {len(fiches)} fiches ; arrêt : {rep.stop_reason} ; "
+          f"jetons {rep.usage.input_tokens} → {rep.usage.output_tokens} ; "
+          f"blocs : {[getattr(b, 'type', '?') for b in rep.content]} ; début de réponse : {texte[:300]!r}", flush=True)
     couverts = [s for s in sujets if s.get("couvert")]
     rates = [s for s in sujets if not s.get("couvert")]
 
