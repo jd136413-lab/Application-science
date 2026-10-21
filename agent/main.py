@@ -743,6 +743,15 @@ def main() -> int:
               f"avec image : {sum(1 for a in ajoutes if a.get('image_url'))}", flush=True)
         for a in ajoutes[:8]:
             print(f"::notice title={a['importance']}★ {FIL_NOM[a['feed']]}::{a['title']} ({a['source_name']})", flush=True)
+        # Pourquoi des articles ont été écartés (pour régler l'agent sans ouvrir les journaux)
+        if ignores:
+            from collections import Counter
+            motifs = Counter(str(d or "skip") for _, d, _ in ignores)
+            print(f"::notice title=Écartés::{', '.join(f'{m} × {n}' for m, n in motifs.most_common())}"
+                  f" ; appels à Claude : {appels}/{appels_max}", flush=True)
+            for art, d, expl in ignores[:12]:
+                texte = f"{art['title'][:90]} — {expl[:160]}".replace("\n", " ")
+                print(f"::notice title=Écarté ({d})::{texte}", flush=True)
 
     # --- Résumé lisible dans la page GitHub de l'exécution ---
     fichier = os.environ.get("GITHUB_STEP_SUMMARY")
