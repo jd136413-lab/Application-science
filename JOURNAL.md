@@ -187,3 +187,4 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - 21/10 — Fréquences en chiffres : ★★★ ≈ 2 à 4 notifications par semaine, ★★★★ ≈ 1 à 3 par mois, ★★★★★ ≈ 1 à 3 par an (≈ 1 à 2 pour un seul fil) ; « à » en français, tiret dans les autres langues.
 - 21/10 — Maquette 31 retouchée : plus de phrase d'explication dans « Sur mesure », plus de mention « par défaut » sous les familles, « = 4 notifications par jour » (= 2 pour un fil). Réglage par défaut confirmé : ★★ Notable et plus.
 - 21/10 — Maquette 31 : « Sur mesure » sans sous-titre, plus de note « Chaque notification regroupe… » sous les niveaux ; planche montrée avec « Sur mesure » ouvert.
+- 21/10 — Niveau 1 de l'importance minimale renommé « Tout » (au lieu de « Toutes les avancées »).

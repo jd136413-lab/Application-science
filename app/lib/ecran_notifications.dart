@@ -18,7 +18,7 @@ import 'widgets.dart';
 /// Libellés des niveaux d'importance minimale (1 à 5), barème du 21/10.
 const List<String> niveauxNotif = [
   '',
-  'Toutes les avancées',
+  'Tout',
   'Notable et plus',
   'Important et plus',
   'Majeur et plus',
