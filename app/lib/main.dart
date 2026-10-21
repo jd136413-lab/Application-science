@@ -7,6 +7,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -24,6 +25,8 @@ import 'widgets.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // L'app s'étend sous la barre du bas du téléphone (boutons ◀ ● ■), qui devient transparente.
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   // Une erreur d'affichage montre un message lisible au lieu d'un écran vide.
   ErrorWidget.builder = (details) => Material(
         color: const Color(0xFFF2F1F6),
@@ -114,6 +117,24 @@ class _AppNovaStemState extends State<AppNovaStem> {
         locale: Locale(etat.langue),
         supportedLocales: [for (final code in languesDisponibles.keys) Locale(code)],
         localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        // Barres du téléphone (heure en haut, boutons en bas) : transparentes, icônes
+        // claires ou foncées selon le thème, pour se fondre dans l'app.
+        builder: (context, enfant) {
+          final sombre = Theme.of(context).brightness == Brightness.dark;
+          final icones = sombre ? Brightness.light : Brightness.dark;
+          return AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: icones,
+              statusBarBrightness: sombre ? Brightness.dark : Brightness.light,
+              systemNavigationBarColor: Colors.transparent,
+              systemNavigationBarDividerColor: Colors.transparent,
+              systemNavigationBarIconBrightness: icones,
+              systemNavigationBarContrastEnforced: false,
+            ),
+            child: enfant!,
+          );
+        },
         home: FutureBuilder<void>(
           future: _demarrage,
           builder: (context, snap) {

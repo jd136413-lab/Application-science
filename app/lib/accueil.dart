@@ -63,14 +63,26 @@ class _EcranAccueilState extends State<EcranAccueil> {
     _rafraichir();
   }
 
-  /// Suit la position de la liste : logo visible seulement tout en haut.
+  /// Suit la position de la liste : le logo se cache quand on descend de plus
+  /// de 60 pixels et ne revient que tout en haut (moins de 4 pixels).
+  /// L'écart entre les deux seuils évite que le logo apparaisse et disparaisse
+  /// en boucle quand on défile doucement près du haut (l'en-tête change de
+  /// taille, ce qui décalait la liste et relançait le changement).
+  /// Seuls les défilements faits par le doigt comptent, pas les changements
+  /// de taille de la liste.
   bool _suivreDefilement(Notification n) {
-    ScrollMetrics? m;
-    if (n is ScrollNotification && n.depth == 0) m = n.metrics;
-    if (n is ScrollMetricsNotification && n.depth == 0) m = n.metrics;
-    if (m == null || m.axis != Axis.vertical) return false;
-    final enHaut = m.pixels <= 0;
-    if (enHaut != _logoVisible) setState(() => _logoVisible = enHaut);
+    // Liste devenue trop courte pour défiler (changement de filtre…) : on remet le logo.
+    if (n is ScrollMetricsNotification && n.depth == 0 && !_logoVisible && n.metrics.maxScrollExtent <= 0) {
+      setState(() => _logoVisible = true);
+      return false;
+    }
+    if (n is! ScrollUpdateNotification || n.depth != 0 || n.metrics.axis != Axis.vertical) return false;
+    final y = n.metrics.pixels;
+    if (_logoVisible && y > 60) {
+      setState(() => _logoVisible = false);
+    } else if (!_logoVisible && y < 4) {
+      setState(() => _logoVisible = true);
+    }
     return false;
   }
 
