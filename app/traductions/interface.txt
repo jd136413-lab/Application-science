@@ -3917,3 +3917,782 @@ ja 年に {n} 件の通知
 ko 일 년에 {n}개 알림
 id {n} notifikasi per tahun
 vi {n} thông báo mỗi năm
+
+# ---- Résumé en 3 parties, badges (maquette 33) et onglet Vocabulaire (planches 35-36) ----
+
+@ Avant
+en Before
+es Antes
+pt Antes
+de Vorher
+it Prima
+nl Eerder
+pl Wcześniej
+ru Раньше
+uk Раніше
+tr Önce
+ar من قبل
+hi पहले
+bn আগে
+ur پہلے
+zh 此前
+ja これまで
+ko 이전
+id Sebelumnya
+vi Trước đây
+
+@ La découverte
+en The discovery
+es El descubrimiento
+pt A descoberta
+de Die Entdeckung
+it La scoperta
+nl De ontdekking
+pl Odkrycie
+ru Открытие
+uk Відкриття
+tr Keşif
+ar الاكتشاف
+hi खोज
+bn আবিষ্কার
+ur دریافت
+zh 新发现
+ja 発見
+ko 발견
+id Temuan
+vi Khám phá
+
+@ La nouveauté
+en What’s new
+es La novedad
+pt A novidade
+de Das Neue
+it La novità
+nl Het nieuwe
+pl Nowość
+ru Что нового
+uk Що нового
+tr Yenilik
+ar الجديد
+hi नया क्या है
+bn নতুন কী
+ur نیا کیا ہے
+zh 新在哪里
+ja 新しい点
+ko 새로운 점
+id Yang baru
+vi Điểm mới
+
+@ Et après ?
+en What’s next?
+es ¿Y ahora qué?
+pt E depois?
+de Und dann?
+it E poi?
+nl En nu?
+pl I co dalej?
+ru Что дальше?
+uk Що далі?
+tr Sırada ne var?
+ar وماذا بعد؟
+hi आगे क्या?
+bn এরপর কী?
+ur آگے کیا؟
+zh 接下来呢？
+ja この先は？
+ko 그다음은?
+id Lalu apa?
+vi Rồi sao nữa?
+
+@ Les mots à connaître
+en Words to know
+es Palabras clave
+pt Palavras a conhecer
+de Wörter zum Merken
+it Parole da sapere
+nl Woorden om te kennen
+pl Słowa do zapamiętania
+ru Слова, которые стоит знать
+uk Слова, які варто знати
+tr Bilinmesi gereken kelimeler
+ar كلمات يجب معرفتها
+hi जानने लायक शब्द
+bn জানার মতো শব্দ
+ur جاننے کے قابل الفاظ
+zh 需要知道的词
+ja 知っておきたい言葉
+ko 알아 둘 단어
+id Kata yang perlu diketahui
+vi Từ cần biết
+
+@ Essai clinique
+en Clinical trial
+es Ensayo clínico
+pt Ensaio clínico
+de Klinische Studie
+it Studio clinico
+nl Klinische studie
+pl Badanie kliniczne
+ru Клиническое испытание
+uk Клінічне випробування
+tr Klinik deneme
+ar تجربة سريرية
+hi क्लिनिकल ट्रायल
+bn ক্লিনিক্যাল ট্রায়াল
+ur کلینیکل ٹرائل
+zh 临床试验
+ja 臨床試験
+ko 임상시험
+id Uji klinis
+vi Thử nghiệm lâm sàng
+
+@ Étude chez l’humain
+en Human study
+es Estudio en humanos
+pt Estudo em humanos
+de Studie am Menschen
+it Studio sull’uomo
+nl Studie bij mensen
+pl Badanie na ludziach
+ru Исследование на людях
+uk Дослідження на людях
+tr İnsan çalışması
+ar دراسة على البشر
+hi मनुष्यों पर अध्ययन
+bn মানুষের ওপর গবেষণা
+ur انسانوں پر تحقیق
+zh 人体研究
+ja ヒトでの研究
+ko 사람 대상 연구
+id Studi pada manusia
+vi Nghiên cứu trên người
+
+@ Étude chez l’animal
+en Animal study
+es Estudio en animales
+pt Estudo em animais
+de Tierstudie
+it Studio sugli animali
+nl Dierstudie
+pl Badanie na zwierzętach
+ru Исследование на животных
+uk Дослідження на тваринах
+tr Hayvan çalışması
+ar دراسة على الحيوانات
+hi पशुओं पर अध्ययन
+bn প্রাণীর ওপর গবেষণা
+ur جانوروں پر تحقیق
+zh 动物研究
+ja 動物での研究
+ko 동물 연구
+id Studi pada hewan
+vi Nghiên cứu trên động vật
+
+@ Étude sur des cellules
+en Cell study
+es Estudio en células
+pt Estudo em células
+de Zellstudie
+it Studio su cellule
+nl Studie op cellen
+pl Badanie na komórkach
+ru Исследование на клетках
+uk Дослідження на клітинах
+tr Hücre çalışması
+ar دراسة على الخلايا
+hi कोशिकाओं पर अध्ययन
+bn কোষের ওপর গবেষণা
+ur خلیات پر تحقیق
+zh 细胞研究
+ja 細胞での研究
+ko 세포 연구
+id Studi pada sel
+vi Nghiên cứu trên tế bào
+
+@ Simulation / modèle
+en Simulation / model
+es Simulación / modelo
+pt Simulação / modelo
+de Simulation / Modell
+it Simulazione / modello
+nl Simulatie / model
+pl Symulacja / model
+ru Моделирование
+uk Моделювання
+tr Simülasyon / model
+ar محاكاة / نموذج
+hi सिमुलेशन / मॉडल
+bn সিমুলেশন / মডেল
+ur سمیولیشن / ماڈل
+zh 模拟 / 模型
+ja シミュレーション / モデル
+ko 시뮬레이션 / 모델
+id Simulasi / model
+vi Mô phỏng / mô hình
+
+@ Observation
+en Observation
+es Observación
+pt Observação
+de Beobachtung
+it Osservazione
+nl Waarneming
+pl Obserwacja
+ru Наблюдение
+uk Спостереження
+tr Gözlem
+ar رصد
+hi अवलोकन
+bn পর্যবেক্ষণ
+ur مشاہدہ
+zh 观测
+ja 観測
+ko 관측
+id Pengamatan
+vi Quan sát
+
+@ Fouilles / terrain
+en Fieldwork
+es Trabajo de campo
+pt Trabalho de campo
+de Feldforschung
+it Ricerca sul campo
+nl Veldwerk
+pl Badania terenowe
+ru Полевые работы
+uk Польові дослідження
+tr Saha çalışması
+ar عمل ميداني
+hi क्षेत्र अध्ययन
+bn মাঠ পর্যায়ের কাজ
+ur فیلڈ ورک
+zh 实地考察
+ja 現地調査
+ko 현장 조사
+id Kerja lapangan
+vi Khảo sát thực địa
+
+@ Analyse de données
+en Data analysis
+es Análisis de datos
+pt Análise de dados
+de Datenanalyse
+it Analisi dei dati
+nl Data-analyse
+pl Analiza danych
+ru Анализ данных
+uk Аналіз даних
+tr Veri analizi
+ar تحليل بيانات
+hi डेटा विश्लेषण
+bn ডেটা বিশ্লেষণ
+ur ڈیٹا تجزیہ
+zh 数据分析
+ja データ分析
+ko 데이터 분석
+id Analisis data
+vi Phân tích dữ liệu
+
+@ En vente
+en On sale
+es A la venta
+pt À venda
+de Im Handel
+it In vendita
+nl Te koop
+pl W sprzedaży
+ru В продаже
+uk У продажу
+tr Satışta
+ar متوفر للبيع
+hi बिक्री पर
+bn বিক্রিতে
+ur فروخت پر
+zh 已上市
+ja 発売中
+ko 판매 중
+id Dijual
+vi Đang bán
+
+@ Annoncé
+en Announced
+es Anunciado
+pt Anunciado
+de Angekündigt
+it Annunciato
+nl Aangekondigd
+pl Zapowiedziane
+ru Анонсировано
+uk Анонсовано
+tr Duyuruldu
+ar معلن عنه
+hi घोषित
+bn ঘোষিত
+ur اعلان شدہ
+zh 已发布
+ja 発表済み
+ko 발표됨
+id Diumumkan
+vi Đã công bố
+
+@ Démonstration
+en Demonstration
+es Demostración
+pt Demonstração
+de Vorführung
+it Dimostrazione
+nl Demonstratie
+pl Pokaz
+ru Демонстрация
+uk Демонстрація
+tr Gösterim
+ar عرض توضيحي
+hi प्रदर्शन
+bn প্রদর্শনী
+ur مظاہرہ
+zh 演示
+ja デモ
+ko 시연
+id Demonstrasi
+vi Trình diễn
+
+@ Prototype
+en Prototype
+es Prototipo
+pt Protótipo
+de Prototyp
+it Prototipo
+nl Prototype
+pl Prototyp
+ru Прототип
+uk Прототип
+tr Prototip
+ar نموذج أولي
+hi प्रोटोटाइप
+bn প্রোটোটাইপ
+ur پروٹوٹائپ
+zh 原型
+ja 試作機
+ko 시제품
+id Prototipe
+vi Nguyên mẫu
+
+@ Mise à jour
+en Update
+es Actualización
+pt Atualização
+de Update
+it Aggiornamento
+nl Update
+pl Aktualizacja
+ru Обновление
+uk Оновлення
+tr Güncelleme
+ar تحديث
+hi अपडेट
+bn আপডেট
+ur اپ ڈیٹ
+zh 更新
+ja アップデート
+ko 업데이트
+id Pembaruan
+vi Cập nhật
+
+@ Vocabulaire
+en Words
+es Vocabulario
+pt Vocabulário
+de Wörter
+it Vocabolario
+nl Woorden
+pl Słówka
+ru Словарь
+uk Словник
+tr Kelimeler
+ar المفردات
+hi शब्दावली
+bn শব্দভান্ডার
+ur ذخیرہ الفاظ
+zh 词汇
+ja 用語集
+ko 단어장
+id Kosakata
+vi Từ vựng
+
+@ Pas encore de mots
+en No words yet
+es Aún no hay palabras
+pt Ainda não há palavras
+de Noch keine Wörter
+it Ancora nessuna parola
+nl Nog geen woorden
+pl Na razie brak słów
+ru Пока нет слов
+uk Поки немає слів
+tr Henüz kelime yok
+ar لا كلمات بعد
+hi अभी कोई शब्द नहीं
+bn এখনও কোনো শব্দ নেই
+ur ابھی کوئی لفظ نہیں
+zh 还没有词语
+ja まだ言葉がありません
+ko 아직 단어가 없습니다
+id Belum ada kata
+vi Chưa có từ nào
+
+@ Les mots à connaître des avancées que vous ouvrez apparaîtront ici.
+en The words to know from the advances you open will appear here.
+es Las palabras clave de los avances que abras aparecerán aquí.
+pt As palavras a conhecer dos avanços que abrir aparecerão aqui.
+de Die wichtigen Wörter der Fortschritte, die Sie öffnen, erscheinen hier.
+it Le parole da sapere dei progressi che apri appariranno qui.
+nl De woorden om te kennen uit de vooruitgang die je opent, verschijnen hier.
+pl Tu pojawią się słowa do zapamiętania z postępów, które otworzysz.
+ru Здесь появятся слова из достижений, которые вы откроете.
+uk Тут з’являться слова з досягнень, які ви відкриєте.
+tr Açtığınız gelişmelerdeki bilinmesi gereken kelimeler burada görünecek.
+ar ستظهر هنا الكلمات المهمة من التقدّمات التي تفتحها.
+hi आप जो प्रगतियाँ खोलेंगे, उनके जानने लायक शब्द यहाँ दिखेंगे।
+bn আপনি যে অগ্রগতিগুলো খুলবেন, সেগুলোর জানার মতো শব্দ এখানে দেখা যাবে।
+ur آپ جو پیش رفت کھولیں گے، ان کے اہم الفاظ یہاں نظر آئیں گے۔
+zh 你打开的进展中需要知道的词会显示在这里。
+ja 開いた進展の「知っておきたい言葉」がここに表示されます。
+ko 열어 본 발전 소식의 알아 둘 단어가 여기에 표시됩니다.
+id Kata-kata penting dari kemajuan yang Anda buka akan muncul di sini.
+vi Các từ cần biết trong những tiến bộ bạn mở sẽ hiện ở đây.
+
+@ À revoir · carte {a} sur {b}
+en To review · card {a} of {b}
+es Por repasar · tarjeta {a} de {b}
+pt A rever · cartão {a} de {b}
+de Zu wiederholen · Karte {a} von {b}
+it Da ripassare · carta {a} di {b}
+nl Te herhalen · kaart {a} van {b}
+pl Do powtórki · karta {a} z {b}
+ru Повторить · карточка {a} из {b}
+uk Повторити · картка {a} з {b}
+tr Tekrar edilecek · kart {a}/{b}
+ar للمراجعة · البطاقة {a} من {b}
+hi दोहराना है · कार्ड {a} / {b}
+bn আবার দেখতে হবে · কার্ড {a}/{b}
+ur دہرانا ہے · کارڈ {a} از {b}
+zh 待复习 · 第 {a} 张，共 {b} 张
+ja 復習 · {b} 枚中 {a} 枚目
+ko 복습할 단어 · {b}장 중 {a}번째
+id Perlu diulang · kartu {a} dari {b}
+vi Cần ôn · thẻ {a}/{b}
+
+@ À revoir
+en To review
+es Por repasar
+pt A rever
+de Wiederholen
+it Da ripassare
+nl Herhalen
+pl Do powtórki
+ru Повторить
+uk Повторити
+tr Tekrar et
+ar للمراجعة
+hi दोहराना है
+bn আবার দেখুন
+ur دہرانا ہے
+zh 再复习
+ja もう一度
+ko 다시 보기
+id Ulangi
+vi Ôn lại
+
+@ Je savais
+en I knew it
+es Lo sabía
+pt Eu sabia
+de Wusste ich
+it Lo sapevo
+nl Wist ik al
+pl Wiedziałem
+ru Я знал
+uk Я знав
+tr Biliyordum
+ar كنت أعرف
+hi मुझे पता था
+bn আমি জানতাম
+ur مجھے معلوم تھا
+zh 我知道
+ja 知っていた
+ko 알고 있었어요
+id Saya tahu
+vi Tôi biết rồi
+
+@ Tous vos mots sont connus. Bravo !
+en You know all your words. Well done!
+es Ya conoces todas tus palabras. ¡Bravo!
+pt Já conhece todas as palavras. Parabéns!
+de Sie kennen alle Ihre Wörter. Bravo!
+it Conosci tutte le tue parole. Bravo!
+nl Je kent al je woorden. Goed gedaan!
+pl Znasz już wszystkie słowa. Brawo!
+ru Вы знаете все свои слова. Браво!
+uk Ви знаєте всі свої слова. Браво!
+tr Tüm kelimelerinizi biliyorsunuz. Tebrikler!
+ar أنت تعرف كل كلماتك. أحسنت!
+hi आप अपने सभी शब्द जानते हैं। शाबाश!
+bn আপনি সব শব্দ জানেন। দারুণ!
+ur آپ اپنے سب الفاظ جانتے ہیں۔ شاباش!
+zh 你已经认识所有词语了，真棒！
+ja すべての言葉を覚えました。すごい！
+ko 모든 단어를 알고 있어요. 잘했어요!
+id Anda sudah tahu semua kata. Hebat!
+vi Bạn đã biết hết các từ. Giỏi lắm!
+
+@ Tout réviser à nouveau
+en Review everything again
+es Repasar todo de nuevo
+pt Rever tudo de novo
+de Alles noch einmal wiederholen
+it Ripassa tutto di nuovo
+nl Alles opnieuw herhalen
+pl Powtórz wszystko jeszcze raz
+ru Повторить всё заново
+uk Повторити все знову
+tr Hepsini yeniden tekrar et
+ar راجع كل شيء من جديد
+hi सब फिर से दोहराएँ
+bn সব আবার দেখুন
+ur سب دوبارہ دہرائیں
+zh 全部重新复习
+ja すべてもう一度復習する
+ko 모두 다시 복습하기
+id Ulangi semuanya
+vi Ôn lại tất cả
+
+@ Le mot
+en The word
+es La palabra
+pt A palavra
+de Das Wort
+it La parola
+nl Het woord
+pl Słowo
+ru Слово
+uk Слово
+tr Kelime
+ar الكلمة
+hi शब्द
+bn শব্দ
+ur لفظ
+zh 词语
+ja 言葉
+ko 단어
+id Kata
+vi Từ
+
+@ La définition
+en The definition
+es La definición
+pt A definição
+de Die Definition
+it La definizione
+nl De definitie
+pl Definicja
+ru Определение
+uk Визначення
+tr Tanım
+ar التعريف
+hi परिभाषा
+bn সংজ্ঞা
+ur تعریف
+zh 定义
+ja 意味
+ko 정의
+id Definisi
+vi Định nghĩa
+
+@ Touchez la carte pour voir la définition
+en Tap the card to see the definition
+es Toca la tarjeta para ver la definición
+pt Toque no cartão para ver a definição
+de Tippen Sie auf die Karte, um die Definition zu sehen
+it Tocca la carta per vedere la definizione
+nl Tik op de kaart om de definitie te zien
+pl Dotknij karty, aby zobaczyć definicję
+ru Коснитесь карточки, чтобы увидеть определение
+uk Торкніться картки, щоб побачити визначення
+tr Tanımı görmek için karta dokunun
+ar المس البطاقة لرؤية التعريف
+hi परिभाषा देखने के लिए कार्ड छुएँ
+bn সংজ্ঞা দেখতে কার্ডে ট্যাপ করুন
+ur تعریف دیکھنے کے لیے کارڈ چھوئیں
+zh 点按卡片查看定义
+ja カードをタップすると意味が表示されます
+ko 카드를 누르면 정의가 보입니다
+id Ketuk kartu untuk melihat definisinya
+vi Chạm vào thẻ để xem định nghĩa
+
+@ Vu dans :
+en Seen in:
+es Visto en:
+pt Visto em:
+de Gesehen in:
+it Visto in:
+nl Gezien in:
+pl Widziane w:
+ru Встречалось в:
+uk Траплялося в:
+tr Görüldüğü yer:
+ar ورد في:
+hi यहाँ देखा:
+bn যেখানে দেখা:
+ur یہاں دیکھا:
+zh 出自：
+ja 出典：
+ko 나온 곳:
+id Dilihat di:
+vi Xuất hiện trong:
+
+@ Retourner la carte
+en Flip the card
+es Dar la vuelta a la tarjeta
+pt Virar o cartão
+de Karte umdrehen
+it Gira la carta
+nl Kaart omdraaien
+pl Odwróć kartę
+ru Перевернуть карточку
+uk Перевернути картку
+tr Kartı çevir
+ar اقلب البطاقة
+hi कार्ड पलटें
+bn কার্ড উল্টান
+ur کارڈ پلٹیں
+zh 翻转卡片
+ja カードを裏返す
+ko 카드 뒤집기
+id Balik kartu
+vi Lật thẻ
+
+@ Tous les mots · {n}
+en All words · {n}
+es Todas las palabras · {n}
+pt Todas as palavras · {n}
+de Alle Wörter · {n}
+it Tutte le parole · {n}
+nl Alle woorden · {n}
+pl Wszystkie słowa · {n}
+ru Все слова · {n}
+uk Усі слова · {n}
+tr Tüm kelimeler · {n}
+ar كل الكلمات · {n}
+hi सभी शब्द · {n}
+bn সব শব্দ · {n}
+ur تمام الفاظ · {n}
+zh 全部词语 · {n}
+ja すべての言葉 · {n}
+ko 모든 단어 · {n}
+id Semua kata · {n}
+vi Tất cả các từ · {n}
+
+@ À revoir · {n}
+en To review · {n}
+es Por repasar · {n}
+pt A rever · {n}
+de Zu wiederholen · {n}
+it Da ripassare · {n}
+nl Te herhalen · {n}
+pl Do powtórki · {n}
+ru Повторить · {n}
+uk Повторити · {n}
+tr Tekrar · {n}
+ar للمراجعة · {n}
+hi दोहराना · {n}
+bn আবার দেখুন · {n}
+ur دہرانا · {n}
+zh 待复习 · {n}
+ja 復習 · {n}
+ko 복습 · {n}
+id Diulang · {n}
+vi Cần ôn · {n}
+
+@ Je savais · {n}
+en Known · {n}
+es Sabidas · {n}
+pt Já sabia · {n}
+de Gewusst · {n}
+it Sapute · {n}
+nl Gekend · {n}
+pl Znane · {n}
+ru Знал · {n}
+uk Знав · {n}
+tr Biliniyor · {n}
+ar أعرفها · {n}
+hi पता था · {n}
+bn জানা · {n}
+ur معلوم · {n}
+zh 已知道 · {n}
+ja 知っていた · {n}
+ko 알던 단어 · {n}
+id Sudah tahu · {n}
+vi Đã biết · {n}
+
+@ Chercher un mot
+en Search for a word
+es Buscar una palabra
+pt Procurar uma palavra
+de Wort suchen
+it Cerca una parola
+nl Woord zoeken
+pl Szukaj słowa
+ru Найти слово
+uk Знайти слово
+tr Kelime ara
+ar ابحث عن كلمة
+hi शब्द खोजें
+bn শব্দ খুঁজুন
+ur لفظ تلاش کریں
+zh 搜索词语
+ja 言葉を検索
+ko 단어 검색
+id Cari kata
+vi Tìm một từ
+
+@ Aucun mot ne correspond.
+en No matching word.
+es Ninguna palabra coincide.
+pt Nenhuma palavra corresponde.
+de Kein passendes Wort.
+it Nessuna parola corrisponde.
+nl Geen woord gevonden.
+pl Brak pasujących słów.
+ru Нет подходящих слов.
+uk Немає відповідних слів.
+tr Eşleşen kelime yok.
+ar لا توجد كلمة مطابقة.
+hi कोई मेल खाता शब्द नहीं।
+bn কোনো মিল পাওয়া শব্দ নেই।
+ur کوئی مماثل لفظ نہیں۔
+zh 没有匹配的词语。
+ja 一致する言葉はありません。
+ko 일치하는 단어가 없습니다.
+id Tidak ada kata yang cocok.
+vi Không có từ nào phù hợp.
+
+@ Afficher les {n} autres
+en Show {n} more
+es Mostrar {n} más
+pt Mostrar mais {n}
+de {n} weitere anzeigen
+it Mostra altre {n}
+nl Nog {n} tonen
+pl Pokaż {n} więcej
+ru Показать ещё {n}
+uk Показати ще {n}
+tr {n} tane daha göster
+ar عرض {n} أخرى
+hi {n} और दिखाएँ
+bn আরও {n}টি দেখুন
+ur مزید {n} دکھائیں
+zh 再显示 {n} 个
+ja ほか {n} 件を表示
+ko {n}개 더 보기
+id Tampilkan {n} lagi
+vi Hiện thêm {n}

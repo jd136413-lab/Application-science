@@ -29,6 +29,8 @@ class EtatApp extends ChangeNotifier {
   DateTime? visitePrecedente;
   List<String> masquees = []; // avancées masquées (balayage vers la gauche)
   Set<String> sourcesMasquees = {}; // sources masquées (appui long → « Masquer cette source »)
+  /// Onglet Vocabulaire : les « mots à connaître » des avancées ouvertes.
+  List<MotAppris> vocabulaire = [];
 
   // Notifications (Réglages → Notifications)
   bool notifActives = false;
@@ -80,6 +82,12 @@ class EtatApp extends ChangeNotifier {
       p.setString('derniere_visite', DateTime.now().toIso8601String());
       masquees = p.getStringList('masquees') ?? [];
       sourcesMasquees = (p.getStringList('sources_masquees') ?? []).toSet();
+      final voc = p.getString('vocabulaire');
+      if (voc != null) {
+        vocabulaire = [
+          for (final m in jsonDecode(voc) as List) MotAppris.depuisJson(Map<String, dynamic>.from(m as Map)),
+        ];
+      }
       final fav = p.getString('favoris');
       if (fav != null) {
         final liste = jsonDecode(fav) as List;
@@ -106,6 +114,7 @@ class EtatApp extends ChangeNotifier {
     p.setInt('favoris_ajoutes', favorisAjoutes);
     p.setBool('avis_demande', avisDemande);
     p.setStringList('sources_masquees', sourcesMasquees.toList());
+    p.setString('vocabulaire', jsonEncode([for (final m in vocabulaire) m.versJson()]));
     p.setBool('notif_actives', notifActives);
     p.setString('notif_fil', notifFil);
     p.setInt('notif_min', notifMin);
@@ -263,6 +272,40 @@ class EtatApp extends ChangeNotifier {
     notifyListeners();
   }
 
+  // ---- Vocabulaire (planches 35-36) ----
+  /// Ajoute les « mots à connaître » d'une avancée ouverte (sans doublon).
+  /// Un mot nouveau arrive dans « À revoir », avec la mention « Nouveau ».
+  void apprendre(Avancee a) {
+    var ajout = false;
+    for (final m in a.mots) {
+      final cle = m.mot.toLowerCase();
+      if (vocabulaire.any((v) => v.mot.toLowerCase() == cle)) continue;
+      vocabulaire = [
+        ...vocabulaire,
+        MotAppris(
+            mot: m.mot,
+            definition: m.definition,
+            idAvancee: a.id,
+            titreAvancee: a.titre,
+            famille: a.famille,
+            appris: DateTime.now(),
+            statut: 'nouveau'),
+      ];
+      ajout = true;
+    }
+    if (!ajout) return;
+    if (vocabulaire.length > 2000) vocabulaire = vocabulaire.sublist(vocabulaire.length - 2000);
+    _enregistrer();
+    notifyListeners();
+  }
+
+  /// Range un mot dans « Je savais » ('su') ou « À revoir » ('revoir').
+  void classerMot(String mot, String statut) {
+    vocabulaire = [for (final v in vocabulaire) v.mot == mot ? v.avecStatut(statut) : v];
+    _enregistrer();
+    notifyListeners();
+  }
+
   List<Avancee> get favoris {
     final l = _favoris.values.map(Avancee.depuisJson).toList();
     l.sort((a, b) => b.publieLe.compareTo(a.publieLe));
@@ -272,3 +315,51 @@ class EtatApp extends ChangeNotifier {
 
 /// L'état unique de l'app, accessible partout.
 final etat = EtatApp();
+
+/// Un mot de l'onglet Vocabulaire, gardé sur le téléphone.
+class MotAppris {
+  final String mot, definition, idAvancee, titreAvancee, famille;
+  final DateTime appris;
+  /// 'nouveau' (jamais révisé, compté dans « À revoir »), 'revoir' ou 'su'.
+  final String statut;
+  const MotAppris({
+    required this.mot,
+    required this.definition,
+    required this.idAvancee,
+    required this.titreAvancee,
+    required this.famille,
+    required this.appris,
+    required this.statut,
+  });
+
+  bool get aRevoir => statut != 'su';
+
+  MotAppris avecStatut(String s) => MotAppris(
+      mot: mot,
+      definition: definition,
+      idAvancee: idAvancee,
+      titreAvancee: titreAvancee,
+      famille: famille,
+      appris: appris,
+      statut: s);
+
+  Map<String, dynamic> versJson() => {
+        'mot': mot,
+        'def': definition,
+        'id': idAvancee,
+        'titre': titreAvancee,
+        'famille': famille,
+        'appris': appris.toIso8601String(),
+        'statut': statut,
+      };
+
+  factory MotAppris.depuisJson(Map<String, dynamic> j) => MotAppris(
+        mot: (j['mot'] ?? '').toString(),
+        definition: (j['def'] ?? '').toString(),
+        idAvancee: (j['id'] ?? '').toString(),
+        titreAvancee: (j['titre'] ?? '').toString(),
+        famille: (j['famille'] ?? 'other').toString(),
+        appris: DateTime.tryParse((j['appris'] ?? '').toString()) ?? DateTime.now(),
+        statut: (j['statut'] ?? 'nouveau').toString(),
+      );
+}

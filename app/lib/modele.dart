@@ -19,8 +19,16 @@ class Avancee {
   final DateTime? ajouteLe;
   final String? image;
   final String? creditImage;
+  /// Nouveau résumé (maquette 33) : vides pour les fiches d'avant le 21/10.
+  final String avant, decouverte, apres;
+  final List<MotAConnaitre> mots;
+  /// Type d'étude ou stade (badge) : 'animal', 'prototype'… ou null.
+  final String? typeEtude;
   /// Données d'origine, gardées pour enregistrer un favori sur le téléphone.
   final Map<String, dynamic> brut;
+
+  /// Vrai si la fiche a le résumé en trois parties.
+  bool get nouveauResume => decouverte.isNotEmpty;
 
   const Avancee({
     this.brut = const {},
@@ -37,6 +45,11 @@ class Avancee {
     this.ajouteLe,
     this.image,
     this.creditImage,
+    this.avant = '',
+    this.decouverte = '',
+    this.apres = '',
+    this.mots = const [],
+    this.typeEtude,
   });
 
   factory Avancee.depuisJson(Map<String, dynamic> j) {
@@ -57,8 +70,23 @@ class Avancee {
       ajouteLe: DateTime.tryParse((j['created_at'] as String?) ?? '')?.toLocal(),
       image: (img == null || img.isEmpty) ? null : img,
       creditImage: j['image_credit'] as String?,
+      avant: (j['avant'] as String?)?.trim() ?? '',
+      decouverte: (j['decouverte'] as String?)?.trim() ?? '',
+      apres: (j['apres'] as String?)?.trim() ?? '',
+      mots: [
+        for (final m in (j['mots'] is List ? j['mots'] as List : const []))
+          if (m is Map && (m['mot'] ?? '').toString().trim().isNotEmpty)
+            MotAConnaitre(m['mot'].toString().trim(), (m['definition'] ?? '').toString().trim()),
+      ],
+      typeEtude: (j['type_etude'] as String?)?.trim(),
     );
   }
+}
+
+/// Un « mot à connaître » et sa définition (en français, traduits à l'affichage).
+class MotAConnaitre {
+  final String mot, definition;
+  const MotAConnaitre(this.mot, this.definition);
 }
 
 // Dates écrites dans la langue de l'app (format propre à chaque langue).

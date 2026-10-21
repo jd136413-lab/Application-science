@@ -72,7 +72,7 @@ def envoyer(fiches: list[dict], log) -> tuple[int, int]:
                     "famille": f["family"],
                     "importance": str(int(f["importance"])),
                     "fil": f["feed"],
-                    "resume": _en_bref(f.get("summary", "")),
+                    "resume": _en_bref(f.get("decouverte") or f.get("summary", "")),
                     "image": f.get("image_url") or "",
                 },
                 "android": {"priority": "high", "ttl": "86400s"},

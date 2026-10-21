@@ -210,6 +210,12 @@ class Supabase:
         h = dict(self.headers, Prefer="return=representation")
         r = requests.post(self.base, headers=h, json=ligne, timeout=30,
                           params={"select": "id,family"})
+        if r.status_code == 400 and "column" in r.text and any(c in r.text for c in COLONNES_005):
+            # Migration 005 pas encore lancée : on enregistre sans les nouvelles colonnes.
+            print("⚠ Colonnes du nouveau résumé absentes (lancer database/migration_005_resume.sql) : "
+                  "fiche enregistrée avec son résumé d'un seul tenant.", flush=True)
+            r = requests.post(self.base, headers=h, timeout=30, params={"select": "id,family"},
+                              json={k: v for k, v in ligne.items() if k not in COLONNES_005})
         if r.status_code == 409:
             return "doublon"
         if r.status_code >= 300:
@@ -394,16 +400,35 @@ def extraire_json(texte: str) -> dict | None:
         return None
 
 
+TYPES_ETUDE = {
+    "science": ["essai_clinique", "humain", "animal", "cellules", "simulation",
+                "observation", "terrain", "donnees"],
+    "tech": ["en_vente", "annonce", "demonstration", "prototype", "mise_a_jour"],
+}
+
+
 def _fiche(themes: list[str]) -> dict:
     return {
         "type": "object",
         "properties": {
             "title": {"type": "string"},
-            "summary": {"type": "string"},
+            "avant": {"type": "string"},
+            "decouverte": {"type": "string"},
+            "apres": {"type": "string"},
+            "mots": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {"mot": {"type": "string"}, "definition": {"type": "string"}},
+                    "required": ["mot", "definition"],
+                    "additionalProperties": False,
+                },
+            },
+            "type_etude": {"type": "string", "enum": TYPES_ETUDE["science"] + TYPES_ETUDE["tech"]},
             "theme": {"type": "string", "enum": themes},
             "importance": {"type": "integer", "enum": [1, 2, 3, 4, 5]},
         },
-        "required": ["title", "summary", "theme", "importance"],
+        "required": ["title", "avant", "decouverte", "apres", "mots", "type_etude", "theme", "importance"],
         "additionalProperties": False,
     }
 
@@ -492,7 +517,7 @@ def preselectionner(client, modele_id, candidats: list[dict], k: int) -> tuple[l
 def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, dict, str]:
     rep = client.messages.create(
         model=modele_id,
-        max_tokens=2000,
+        max_tokens=3000,
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
             article, sujets["science"], sujets["tech"])}],
@@ -519,9 +544,22 @@ THEMES_PAR_FIL = {"science": (THEMES, "other"), "tech": (TECH_THEMES, "tech_othe
 def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     """Vérifie et nettoie une fiche renvoyée par Claude pour un fil."""
     titre = str(fiche.get("title", "")).strip().rstrip(".")
-    resume = str(fiche.get("summary", "")).strip()
+    avant = " ".join(str(fiche.get("avant", "")).split())
+    decouverte = " ".join(str(fiche.get("decouverte", "")).split())
+    apres = " ".join(str(fiche.get("apres", "")).split())
+    # Résumé d'un seul tenant, gardé pour les anciennes versions de l'app et la page de partage.
+    resume = " ".join(x for x in (avant, decouverte, apres) if x) or str(fiche.get("summary", "")).strip()
     if not titre or not resume:
         raise ValueError(f"fiche {FIL_NOM[feed]} sans titre ou sans résumé")
+    mots = []
+    for m in fiche.get("mots") or []:
+        if isinstance(m, dict):
+            mot, definition = str(m.get("mot", "")).strip(), str(m.get("definition", "")).strip()
+            if mot and definition and len(mots) < 2:
+                mots.append({"mot": mot[:60], "definition": definition[:300]})
+    type_etude = str(fiche.get("type_etude", "")).strip()
+    if type_etude not in TYPES_ETUDE[feed]:
+        type_etude = None
     themes, defaut = THEMES_PAR_FIL[feed]
     theme = str(fiche.get("theme", "")).strip().lower()
     if theme not in themes:
@@ -537,7 +575,13 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
         "published_at": art["published_at"].isoformat(),
         "image_url": art.get("image_url") or None,
         "image_credit": art.get("image_credit") or None,
+        # Nouveau résumé (maquette 33) : colonnes de la migration 005.
+        "avant": avant or None, "decouverte": decouverte or None, "apres": apres or None,
+        "mots": mots, "type_etude": type_etude,
     }
+
+
+COLONNES_005 = ("avant", "decouverte", "apres", "mots", "type_etude")
 
 
 def melanger(listes: list[list[dict]]) -> list[dict]:

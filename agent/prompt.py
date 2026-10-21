@@ -78,15 +78,32 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
     « Douleur : nos nerfs détectent la brûlure grâce à une protéine » ;
     « Robots : un robot vole puis plonge comme un macareux » ;
     « Climat : les forêts des Caraïbes se réchauffent et souffrent plus ».
-- summary : 2 à 3 phrases en français simple.
-  · Fiche Sciences : centrée sur la CONNAISSANCE nouvelle (ce que l'on sait désormais,
-    comment on l'a établi, les limites : étude animale, simulation, résultat préliminaire…).
-  · Fiche Technologies : centrée sur la CAPACITÉ nouvelle (ce que l'on peut désormais faire,
-    les principales nouveautés et performances, le stade : prototype, démonstration,
-    commercialisé ; date ou prix si l'article les donne). Ton factuel, jamais publicitaire.
-  · Si "both" : les deux fiches ont chacune leur propre titre et leur propre résumé,
-    orientés selon leur fil. Ne répète pas le même texte.
-  · Ne présente jamais une promesse ou une hypothèse comme un résultat établi.
+- Écriture (maquette 33) : pour un lycéen curieux. Phrases courtes, mots de tous les
+  jours, aucun sigle sans explication, des comparaisons concrètes. On simplifie les mots,
+  jamais le résultat : les faits restent exacts. Ne présente jamais une promesse ou une
+  hypothèse comme un résultat établi.
+- avant : 1 à 2 phrases. Ce qu'on savait ou ce qui existait jusque-là (le contexte).
+- decouverte : 2 à 3 phrases.
+  · Fiche Sciences (« La découverte ») : la CONNAISSANCE nouvelle et comment on l'a établie.
+  · Fiche Technologies (« La nouveauté ») : la CAPACITÉ nouvelle, ses principales
+    nouveautés et performances. Ton factuel, jamais publicitaire.
+  La 1re phrase doit se suffire à elle-même : elle sert de texte aux notifications.
+- apres : 1 à 2 phrases (« Et après ? »). Ce que ça peut changer, et ce qu'il reste à
+  prouver : limites (étude chez l'animal, simulation, petit échantillon…), stade
+  (prototype, démonstration, en vente), date ou prix si l'article les donne.
+- mots : 0 à 2 « mots à connaître », seulement pour des mots vraiment difficiles utilisés
+  dans la fiche (avant, decouverte ou apres). Pour chacun : "mot" (avec une majuscule
+  initiale, au singulier) et "definition" (une phrase simple de 25 mots au plus, sans
+  reprendre le mot lui-même). Liste vide si aucun mot n'est difficile.
+- type_etude : la nature de la preuve, UNE valeur.
+  · Fiche Sciences : "essai_clinique" (traitement testé sur des volontaires), "humain"
+    (autre étude chez l'humain), "animal", "cellules", "simulation" (modèle, calcul),
+    "observation" (télescope, satellite, mesures de terrain en astronomie, climat…),
+    "terrain" (fouilles, relevés sur le terrain), "donnees" (analyse de données existantes).
+  · Fiche Technologies : "en_vente", "annonce" (présenté, pas encore en vente),
+    "demonstration", "prototype", "mise_a_jour".
+- Si "both" : les deux fiches ont chacune leur propre titre et leurs propres textes,
+  orientés selon leur fil. Ne répète pas le même texte.
 - theme (fiche Sciences) : une valeur parmi : {", ".join(THEMES)}.
 - theme (fiche Technologies) : une valeur parmi : {", ".join(TECH_THEMES)}.
 - importance : entier de 1 à 5, TRÈS EXIGEANT. Repères de fréquence (sur environ
@@ -114,9 +131,11 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
 - duplicate_of : titre déjà publié concerné, sinon ""
 - explanation : UNE phrase courte en français qui justifie la décision
 - science : la fiche Sciences si decision vaut "science" ou "both" ; sinon
-  title="", summary="", theme="other", importance=1
+  title="", avant="", decouverte="", apres="", mots=[], type_etude="donnees",
+  theme="other", importance=1
 - tech : la fiche Technologies si decision vaut "tech" ou "both" ; sinon
-  title="", summary="", theme="tech_other", importance=1
+  title="", avant="", decouverte="", apres="", mots=[], type_etude="mise_a_jour",
+  theme="tech_other", importance=1
 """
 
 SYSTEM_PROMPT = CLASSIFICATION + "\n\n" + REGLES_APP

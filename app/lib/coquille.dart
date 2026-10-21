@@ -1,5 +1,5 @@
-// Structure principale : les 3 onglets et la barre du bas
-// (Actualités · Favoris · Réglages).
+// Structure principale : les 4 onglets et la barre du bas
+// (Actualités · Favoris · Vocabulaire · Réglages).
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +10,7 @@ import 'favoris.dart';
 import 'langues.dart';
 import 'navigation.dart';
 import 'reglages.dart';
+import 'vocabulaire.dart';
 import 'widgets.dart';
 
 class Coquille extends StatefulWidget {
@@ -86,6 +87,7 @@ class _CoquilleState extends State<Coquille> {
         child: IndexedStack(index: _onglet, children: const [
           EcranAccueil(),
           EcranFavoris(),
+          EcranVocabulaire(),
           EcranReglages(),
         ]),
       ),
@@ -116,6 +118,10 @@ class _CoquilleState extends State<Coquille> {
                 icon: const Icon(Icons.bookmark_border_rounded),
                 selectedIcon: const Icon(Icons.bookmark_rounded),
                 label: tr(texteOngletFavoris)),
+            NavigationDestination(
+                icon: const Icon(Icons.menu_book_outlined),
+                selectedIcon: const Icon(Icons.menu_book_rounded),
+                label: tr(texteOngletVocabulaire)),
             NavigationDestination(
                 icon: const Icon(Icons.settings_outlined),
                 selectedIcon: const Icon(Icons.settings_rounded),

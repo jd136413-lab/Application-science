@@ -292,3 +292,23 @@ class _GlisserPourFermerState extends State<GlisserPourFermer> {
     );
   }
 }
+
+
+/// Badge « type d'étude » (Étude chez l'animal, Prototype…), maquette 30/33.
+class BadgeEtude extends StatelessWidget {
+  final String code;
+  const BadgeEtude({super.key, required this.code});
+
+  @override
+  Widget build(BuildContext context) {
+    final (libelle, niveau) = badgesEtude[code] ?? ('', 'bleu');
+    final (fondClair, texteClair, fondSombre, texteSombre) = couleursBadges[niveau]!;
+    final sombre = estSombre(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(color: sombre ? fondSombre : fondClair, borderRadius: BorderRadius.circular(10)),
+      child: Text(tr(libelle),
+          style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: sombre ? texteSombre : texteClair)),
+    );
+  }
+}

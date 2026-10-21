@@ -28,6 +28,8 @@ class EcranDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Les « mots à connaître » de l'avancée ouverte rejoignent l'onglet Vocabulaire.
+    WidgetsBinding.instance.addPostFrameCallback((_) => etat.apprendre(avancee));
     final p = palette(context);
     final f = familleDe(avancee.famille);
     final encre = estSombre(context) ? f.encreSombre : f.encreClaire;
@@ -191,10 +193,51 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
           original: _original,
           style: police(policeTitres, taille: 27, graisse: FontWeight.w800, couleur: p.texte, hauteur: 1.12)),
       const SizedBox(height: 14),
-      Etoiles(note: a.importance, taille: 18),
+      Wrap(spacing: 12, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
+        Etoiles(note: a.importance, taille: 18),
+        if (a.typeEtude != null && badgesEtude.containsKey(a.typeEtude)) BadgeEtude(code: a.typeEtude!),
+      ]),
       const SizedBox(height: 16),
-      TexteArticle(a.resume,
-          original: _original, style: police(policeTexte, taille: 17, couleur: p.texte, hauteur: 1.6)),
+      if (!a.nouveauResume)
+        TexteArticle(a.resume,
+            original: _original, style: police(policeTexte, taille: 17, couleur: p.texte, hauteur: 1.6))
+      else ...[
+        for (final (titre, texte) in [
+          (texteAvant, a.avant),
+          (a.fil == 'tech' ? texteNouveaute : texteDecouverte, a.decouverte),
+          (texteEtApres, a.apres),
+        ])
+          if (texte.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 14),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(tr(titre).toUpperCase(),
+                    style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+                const SizedBox(height: 4),
+                TexteArticle(texte,
+                    original: _original, style: police(policeTexte, taille: 16, couleur: p.texte, hauteur: 1.55)),
+              ]),
+            ),
+        if (a.mots.isNotEmpty)
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top: 2),
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: p.bordure, width: 1.5),
+            ),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(tr(texteMotsAConnaitre).toUpperCase(),
+                  style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+              for (final m in a.mots) ...[
+                const SizedBox(height: 8),
+                TexteArticle('${m.mot} : ${m.definition}',
+                    original: _original, style: police(policeTexte, taille: 14, couleur: p.texte, hauteur: 1.45)),
+              ],
+            ]),
+          ),
+      ],
       if (traduit) ...[
         const SizedBox(height: 10),
         Row(children: [

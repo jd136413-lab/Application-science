@@ -11,7 +11,8 @@ class TexteArticle extends StatefulWidget {
   final String texte;
   final TextStyle style;
   final bool original; // true = toujours le texte français
-  const TexteArticle(this.texte, {super.key, required this.style, this.original = false});
+  final TextAlign? textAlign;
+  const TexteArticle(this.texte, {super.key, required this.style, this.original = false, this.textAlign});
 
   @override
   State<TexteArticle> createState() => _TexteArticleState();
@@ -41,14 +42,14 @@ class _TexteArticleState extends State<TexteArticle> {
   @override
   Widget build(BuildContext context) {
     if (widget.original || etat.langue == 'fr' || !traductionArticlesPossible) {
-      return Text(widget.texte, style: widget.style);
+      return Text(widget.texte, style: widget.style, textAlign: widget.textAlign);
     }
     final deja = _traductionsPretes['${etat.langue}|${widget.texte}'];
-    if (deja != null) return Text(deja, style: widget.style); // déjà traduit : tout de suite, sans saut
+    if (deja != null) return Text(deja, style: widget.style, textAlign: widget.textAlign); // déjà traduit : tout de suite, sans saut
     _preparer();
     return FutureBuilder<String>(
       future: _traduction,
-      builder: (context, snap) => Text(snap.data ?? widget.texte, style: widget.style),
+      builder: (context, snap) => Text(snap.data ?? widget.texte, style: widget.style, textAlign: widget.textAlign),
     );
   }
 }

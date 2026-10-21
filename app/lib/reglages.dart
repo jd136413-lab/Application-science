@@ -118,6 +118,39 @@ const String texteSciences = 'Sciences';
 const String texteTechnologies = 'Technologies';
 const List<String> motsImportance = ['', 'Intéressant', 'Notable', 'Important', 'Majeur', 'Rupture']; // barème du 21/10
 const String texteLireArticle = 'Lire l’article';
+
+// ---- Nouveau résumé (maquette 33) ----
+const String texteAvant = 'Avant';
+const String texteDecouverte = 'La découverte'; // fil Sciences
+const String texteNouveaute = 'La nouveauté'; // fil Technologies
+const String texteEtApres = 'Et après ?';
+const String texteMotsAConnaitre = 'Les mots à connaître';
+
+/// Badges « type d'étude » : code enregistré par l'agent → (libellé, niveau de preuve).
+/// Niveau : 'vert' = le plus solide, 'jaune' = étape intermédiaire, 'bleu' = observation,
+/// simulation ou annonce.
+const Map<String, (String, String)> badgesEtude = {
+  'essai_clinique': ('Essai clinique', 'vert'),
+  'humain': ('Étude chez l’humain', 'vert'),
+  'animal': ('Étude chez l’animal', 'jaune'),
+  'cellules': ('Étude sur des cellules', 'jaune'),
+  'simulation': ('Simulation / modèle', 'bleu'),
+  'observation': ('Observation', 'bleu'),
+  'terrain': ('Fouilles / terrain', 'bleu'),
+  'donnees': ('Analyse de données', 'bleu'),
+  'en_vente': ('En vente', 'vert'),
+  'annonce': ('Annoncé', 'bleu'),
+  'demonstration': ('Démonstration', 'jaune'),
+  'prototype': ('Prototype', 'jaune'),
+  'mise_a_jour': ('Mise à jour', 'bleu'),
+};
+
+/// Couleurs des badges : (fond clair, texte clair, fond sombre, texte sombre).
+const Map<String, (Color, Color, Color, Color)> couleursBadges = {
+  'vert': (Color(0xFFDDF5EC), Color(0xFF0B6B53), Color(0xFF12382E), Color(0xFF8FE3C4)),
+  'jaune': (Color(0xFFFFF1D6), Color(0xFF7A4B00), Color(0xFF3A2E12), Color(0xFFF7D58A)),
+  'bleu': (Color(0xFFE3E8F4), Color(0xFF2F3E66), Color(0xFF232B40), Color(0xFFB7C4EA)),
+};
 const String texteMentionResume = 'Résumé généré par IA · l’article source fait foi'; // obligatoire (AI Act, art. 50)
 const String texteVide = 'Pas encore d’avancée ici';
 // Adresse de la version web (GitHub Pages). Le bouton « Partager » envoie un
@@ -166,6 +199,7 @@ const String texteBienvenueDetail = 'Choisissez vos domaines. Vous pourrez les c
 // Barre du bas
 const String texteOngletActualites = 'Actualités';
 const String texteOngletFavoris = 'Favoris';
+const String texteOngletVocabulaire = 'Vocabulaire';
 const String texteOngletReglages = 'Réglages';
 
 // Réglages
