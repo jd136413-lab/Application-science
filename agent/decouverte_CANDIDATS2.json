@@ -1,0 +1,130 @@
+[
+ {
+  "url": "https://www.riken.jp/feed/news_feed/",
+  "n": 50,
+  "recent": "19/10/2026",
+  "jours": 2,
+  "d14": 7,
+  "img": 0,
+  "titre": "アルマ望遠鏡による大規模観測プロジェクト「COMPASS」に貢献",
+  "fil": "science",
+  "nom": "RIKEN (Japon)",
+  "statut": "ok",
+  "robots": "oui"
+ },
+ {
+  "url": "https://www.mpg.de/en/research.rss",
+  "n": 30,
+  "recent": "19/10/2026",
+  "jours": 1,
+  "d14": 11,
+  "img": 0,
+  "titre": "Columbia University and Max Planck Society team up to advance fusion energy scie",
+  "fil": "science",
+  "nom": "Max Planck",
+  "statut": "ok",
+  "robots": "oui"
+ },
+ {
+  "fil": "science",
+  "nom": "CERN",
+  "statut": "introuvable",
+  "code": "404",
+  "robots": "-"
+ },
+ {
+  "url": "https://ethz.ch/en/news-and-events/eth-news/news/_jcr_content.feed",
+  "n": 100,
+  "recent": "21/10/2026",
+  "jours": 0,
+  "d14": 9,
+  "img": 0,
+  "titre": "Nicolas Gruber, are the dire warnings about El Niño justified?",
+  "fil": "science",
+  "nom": "ETH Zurich",
+  "statut": "ok",
+  "robots": "oui"
+ },
+ {
+  "url": "https://www.usgs.gov/news/national-news-release/feed",
+  "n": 30,
+  "recent": "21/10/2026",
+  "jours": 0,
+  "d14": 1,
+  "img": 0,
+  "titre": "USGS Releases Assessment of Undiscovered Natural Gas Resources in Alaska’s North",
+  "fil": "science",
+  "nom": "USGS",
+  "statut": "ok",
+  "robots": "oui"
+ },
+ {
+  "fil": "science",
+  "nom": "Webb (NASA/STScI)",
+  "statut": "introuvable",
+  "code": "page sans flux",
+  "robots": "-"
+ },
+ {
+  "fil": "science",
+  "nom": "Chandra (NASA)",
+  "statut": "introuvable",
+  "code": "404",
+  "robots": "-"
+ },
+ {
+  "fil": "science",
+  "nom": "INRAE",
+  "statut": "introuvable",
+  "code": "404",
+  "robots": "-"
+ },
+ {
+  "fil": "science",
+  "nom": "Inria",
+  "statut": "introuvable",
+  "code": "page sans flux",
+  "robots": "-"
+ },
+ {
+  "fil": "science",
+  "nom": "Institut Pasteur",
+  "statut": "introuvable",
+  "code": "404",
+  "robots": "-"
+ },
+ {
+  "fil": "science",
+  "nom": "IRD",
+  "statut": "introuvable",
+  "code": "page sans flux",
+  "robots": "-"
+ },
+ {
+  "fil": "science",
+  "nom": "NIH (communiqués datés)",
+  "statut": "introuvable",
+  "code": "404",
+  "robots": "-"
+ },
+ {
+  "fil": "tech",
+  "nom": "Intel Newsroom",
+  "statut": "introuvable",
+  "code": "404",
+  "robots": "-"
+ },
+ {
+  "url": "https://news.samsungsemiconductor.com/global/feed/",
+  "n": 20,
+  "recent": "21/10/2026",
+  "jours": 0,
+  "d14": 4,
+  "img": 0,
+  "titre": "[Interview] A Rocket Toward Her Future: Eva Neill’s Career Journey at Samsung",
+  "fil": "tech",
+  "nom": "Samsung Semiconductor",
+  "statut": "ok",
+  "robots": "oui"
+ }
+]
