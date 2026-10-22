@@ -30,7 +30,6 @@ class _EcranAccueilState extends State<EcranAccueil> {
   bool _logoVisible = true;
   final Map<String, Future<List<Avancee>>> _chargements = {};
   final _defilement = ScrollController();
-  bool _boutonNouveautesVu = false; // bouton « ↑ N nouvelles avancées » déjà utilisé
 
   @override
   void initState() {
@@ -236,14 +235,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
               final avecMois = _periode == periodes.length - 1 && !_triImportance;
               final elements = <Object>[];
               String? moisCourant;
-              // Ligne « Déjà vu lors de votre dernière visite » entre le neuf et l'ancien (tri par date)
-              final nbNouvelles = liste.where(etat.estNouvelle).length;
-              var separateurMis = _triImportance || nbNouvelles == 0;
               for (final a in liste) {
-                if (!separateurMis && !etat.estNouvelle(a)) {
-                  elements.add(const _SeparateurDejaVu());
-                  separateurMis = true;
-                }
                 if (avecMois) {
                   final m = enTeteMois(a.publieLe);
                   if (m != moisCourant) {
@@ -261,7 +253,6 @@ class _EcranAccueilState extends State<EcranAccueil> {
                   itemCount: elements.length,
                   itemBuilder: (context, i) {
                     final e = elements[i];
-                    if (e is _SeparateurDejaVu) return e;
                     if (e is String) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(4, 12, 4, 10),
@@ -282,38 +273,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
                   },
                 ),
               );
-              // Bouton « ↑ N nouvelles avancées » (maquette 22)
-              if (nbNouvelles == 0 || _boutonNouveautesVu) return liste2;
-              return Stack(children: [
-                liste2,
-                Positioned(
-                  top: 6,
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                    child: Material(
-                      color: p.encre,
-                      shape: const StadiumBorder(),
-                      elevation: 4,
-                      child: InkWell(
-                        customBorder: const StadiumBorder(),
-                        onTap: () {
-                          setState(() => _boutonNouveautesVu = true);
-                          _remonter();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
-                          child: Text(
-                              nbNouvelles == 1
-                                  ? '↑ ${tr('1 nouvelle avancée')}'
-                                  : '↑ ${tr('{n} nouvelles avancées', n: nbNouvelles)}',
-                              style: police(policeTexte, taille: 13.5, graisse: FontWeight.w700, couleur: p.surEncre)),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ]);
+              return liste2;
             },
           ),
           ),
@@ -570,30 +530,6 @@ class _FeuilleFiltres extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-
-/// Ligne « Déjà vu lors de votre dernière visite ».
-class _SeparateurDejaVu extends StatelessWidget {
-  const _SeparateurDejaVu();
-
-  @override
-  Widget build(BuildContext context) {
-    final p = palette(context);
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 4, 4, 14),
-      child: Row(children: [
-        Expanded(child: Divider(color: p.bordure)),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(tr('Déjà vu lors de votre dernière visite').toUpperCase(),
-              style: police(policeTexte, taille: 11, graisse: FontWeight.w700, couleur: p.texteDiscret)
-                  .copyWith(letterSpacing: 0.5)),
-        ),
-        Expanded(child: Divider(color: p.bordure)),
-      ]),
     );
   }
 }
