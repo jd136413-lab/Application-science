@@ -6,8 +6,10 @@ import 'package:url_launcher/url_launcher.dart';
 import 'ecran_notifications.dart';
 import 'etat.dart';
 import 'langues.dart';
+import 'memoire.dart';
 import 'premier_lancement.dart';
 import 'reglages.dart';
+import 'retours.dart';
 import 'traducteur.dart';
 import 'widgets.dart';
 
@@ -168,6 +170,8 @@ class EcranReglages extends StatelessWidget {
                 ]),
               ),
             ],
+            titreSection('Stockage'),
+            const _BlocStockage(),
             titreSection('À propos'),
             bloc(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -190,6 +194,22 @@ class EcranReglages extends StatelessWidget {
                       style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
                 ),
                 Icon(Icons.open_in_new_rounded, color: p.texte, size: 20),
+              ]),
+            ),
+            const SizedBox(height: 8),
+            bloc(
+              onTap: () => donnerAvis(context),
+              child: Row(children: [
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(tr('Donner mon avis'),
+                        style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+                    const SizedBox(height: 4),
+                    Text(tr('Ce qui vous plaît, gêne ou manque'),
+                        style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                  ]),
+                ),
+                Icon(Icons.rate_review_outlined, color: p.texte, size: 20),
               ]),
             ),
             const SizedBox(height: 8),
@@ -326,4 +346,67 @@ void _ouvrirMasques(BuildContext context) {
       ),
     ),
   );
+}
+
+
+/// Place prise sur le téléphone par le fil hors ligne et les images, avec « Vider ».
+class _BlocStockage extends StatefulWidget {
+  const _BlocStockage();
+
+  @override
+  State<_BlocStockage> createState() => _BlocStockageState();
+}
+
+class _BlocStockageState extends State<_BlocStockage> {
+  late Future<(int, int)> _tailles = _mesurer();
+
+  Future<(int, int)> _mesurer() async => (await tailleFils(), await tailleImages());
+
+  String _mo(int octets) {
+    final mo = octets / (1024 * 1024);
+    return mo < 0.1 ? '0,1' : (mo < 10 ? mo.toStringAsFixed(1).replaceAll('.', ',') : mo.round().toString());
+  }
+
+  Future<void> _vider() async {
+    await viderMemoire();
+    if (!mounted) return;
+    setState(() => _tailles = _mesurer());
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Mémoire vidée'))));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return Material(
+      color: p.carte,
+      borderRadius: BorderRadius.circular(18),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
+        child: Row(children: [
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(tr('Données gardées sur ce téléphone'),
+                  style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+              const SizedBox(height: 4),
+              FutureBuilder<(int, int)>(
+                future: _tailles,
+                builder: (context, snap) {
+                  final t = snap.data;
+                  final texte = t == null
+                      ? '…'
+                      : '${tr('Fil hors ligne')} ${_mo(t.$1)} Mo · ${tr('images')} ${_mo(t.$2)} Mo '
+                          '(${tr('{n} Mo max.', n: limiteImages ~/ (1024 * 1024))})';
+                  return Text(texte, style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.4));
+                },
+              ),
+            ]),
+          ),
+          TextButton(
+            onPressed: _vider,
+            child: Text(tr('Vider'), style: police(policeTexte, taille: 14, graisse: FontWeight.w700, couleur: p.texte)),
+          ),
+        ]),
+      ),
+    );
+  }
 }

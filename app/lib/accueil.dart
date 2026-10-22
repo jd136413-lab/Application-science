@@ -28,7 +28,12 @@ class _EcranAccueilState extends State<EcranAccueil> {
   int _periode = periodeParDefaut;
   bool _triImportance = false;
   bool _logoVisible = true;
-  final Map<String, Future<List<Avancee>>> _chargements = {};
+  // Fil de chaque onglet (mémoire du téléphone, puis mise à jour réseau)
+  final Map<String, List<Avancee>> _fils = {};
+  final Set<String> _demarres = {};
+  final Set<String> _enCours = {};
+  final Set<String> _horsLigne = {};
+  final Map<String, Object> _erreurs = {};
   final _defilement = ScrollController();
 
   @override
@@ -63,7 +68,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
       filDemande = null;
     });
     _remonter();
-    _rafraichir();
+    _mettreAJour(_fil);
   }
 
   /// Suit la position de la liste : le logo se cache quand on descend de plus
@@ -89,20 +94,49 @@ class _EcranAccueilState extends State<EcranAccueil> {
     return false;
   }
 
-  Future<List<Avancee>> _charger({bool forcer = false}) {
-    if (forcer || !_chargements.containsKey(_fil)) {
-      _chargements[_fil] = chargerAvancees(_fil);
-    }
-    return _chargements[_fil]!;
+  /// Premier affichage d'un fil : la mémoire du téléphone tout de suite,
+  /// puis la mise à jour (seulement les nouveautés si possible).
+  void _demarrer(String fil) {
+    if (!_demarres.add(fil)) return;
+    () async {
+      final garde = await filEnMemoire(fil);
+      if (garde != null && mounted && !_fils.containsKey(fil)) setState(() => _fils[fil] = garde);
+      await _mettreAJour(fil);
+    }();
   }
 
-  Future<void> _rafraichir() async {
-    final f = _charger(forcer: true);
-    setState(() {});
+  Future<void> _mettreAJour(String fil, {bool complet = false}) async {
+    if (!mounted) return;
+    setState(() {
+      _enCours.add(fil);
+      _erreurs.remove(fil);
+    });
     try {
-      await f;
-    } catch (_) {}
+      final l = await mettreAJourFil(fil, complet: complet);
+      if (mounted) {
+        setState(() {
+          _fils[fil] = l;
+          _horsLigne.remove(fil);
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          // Pas de réseau : on garde le fil en mémoire s'il existe, avec un bandeau.
+          if (_fils.containsKey(fil)) {
+            _horsLigne.add(fil);
+          } else {
+            _erreurs[fil] = e;
+          }
+        });
+      }
+    } finally {
+      if (mounted) setState(() => _enCours.remove(fil));
+    }
   }
+
+  /// Tirer la liste vers le bas : fil retéléchargé en entier.
+  Future<void> _rafraichir() => _mettreAJour(_fil, complet: true);
 
   /// Applique période, filtres et tri.
   List<Avancee> _trier(List<Avancee> toutes) {
@@ -191,11 +225,20 @@ class _EcranAccueilState extends State<EcranAccueil> {
         Expanded(
           child: NotificationListener<Notification>(
             onNotification: _suivreDefilement,
-            child: FutureBuilder<List<Avancee>>(
-            future: _charger(),
-            builder: (context, snap) {
-              if (snap.connectionState != ConnectionState.done) {
-                // Squelettes de chargement (maquette 22)
+            child: Builder(builder: (context) {
+              _demarrer(_fil);
+              final toutes = _fils[_fil];
+              if (toutes == null) {
+                if (_erreurs.containsKey(_fil)) {
+                  return MessageCentre(
+                    icone: Icons.wifi_off_rounded,
+                    titre: tr(texteErreur),
+                    detail: tr(texteErreurDetail),
+                    bouton: tr(texteReessayer),
+                    action: _rafraichir,
+                  );
+                }
+                // Squelettes de chargement (maquette 22) : seulement au tout premier lancement
                 return ListView(
                   physics: const NeverScrollableScrollPhysics(),
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
@@ -205,21 +248,15 @@ class _EcranAccueilState extends State<EcranAccueil> {
                   ],
                 );
               }
-              if (snap.hasError) {
-                return MessageCentre(
-                  icone: Icons.wifi_off_rounded,
-                  titre: tr(texteErreur),
-                  detail: tr(texteErreurDetail),
-                  bouton: tr(texteReessayer),
-                  action: _rafraichir,
-                );
-              }
-              final liste = _trier(snap.data ?? []);
+              final horsLigne = _horsLigne.contains(_fil);
+              final liste = _trier(toutes);
               if (liste.isEmpty) {
                 final aujourdhui = _periode == 0;
                 return RefreshIndicator(
                   onRefresh: _rafraichir,
                   child: ListView(children: [
+                    if (horsLigne)
+                      const Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: _BandeauHorsLigne()),
                     const SizedBox(height: 70),
                     MessageCentre(
                       icone: Icons.auto_awesome,
@@ -233,7 +270,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
               }
               // En-têtes de mois dans « Cette année » (tri par date)
               final avecMois = _periode == periodes.length - 1 && !_triImportance;
-              final elements = <Object>[];
+              final elements = <Object>[if (horsLigne) const _BandeauHorsLigne()];
               String? moisCourant;
               for (final a in liste) {
                 if (avecMois) {
@@ -253,6 +290,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
                   itemCount: elements.length,
                   itemBuilder: (context, i) {
                     final e = elements[i];
+                    if (e is Widget) return e;
                     if (e is String) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(4, 12, 4, 10),
@@ -273,9 +311,23 @@ class _EcranAccueilState extends State<EcranAccueil> {
                   },
                 ),
               );
-              return liste2;
-            },
-          ),
+              // « Mise à jour… » par-dessus la liste (sans la décaler)
+              return Stack(children: [
+                liste2,
+                Positioned(
+                  top: 6,
+                  left: 0,
+                  right: 0,
+                  child: IgnorePointer(
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 250),
+                      opacity: _enCours.contains(_fil) && !horsLigne ? 1 : 0,
+                      child: const Center(child: _PastilleMiseAJour()),
+                    ),
+                  ),
+                ),
+              ]);
+            }),
           ),
         ),
       ]),
@@ -284,6 +336,53 @@ class _EcranAccueilState extends State<EcranAccueil> {
 }
 
 // ----------------------------- Éléments -----------------------------
+
+/// Bandeau en haut du fil quand il n'y a pas de réseau (maquette 42, écran 6).
+class _BandeauHorsLigne extends StatelessWidget {
+  const _BandeauHorsLigne();
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
+      decoration: BoxDecoration(color: p.encre, borderRadius: BorderRadius.circular(14)),
+      child: Row(children: [
+        Icon(Icons.cloud_off_rounded, size: 18, color: p.surEncre),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(tr('Hors ligne · voici le dernier fil enregistré. Les résumés restent lisibles.'),
+              style: police(policeTexte, taille: 13, graisse: FontWeight.w600, couleur: p.surEncre, hauteur: 1.35)),
+        ),
+      ]),
+    );
+  }
+}
+
+/// Petite pastille « Mise à jour… » pendant le téléchargement des nouveautés.
+class _PastilleMiseAJour extends StatelessWidget {
+  const _PastilleMiseAJour();
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: p.carte,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: const [BoxShadow(color: Color(0x22000000), blurRadius: 8, offset: Offset(0, 2))],
+      ),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        SizedBox(width: 12, height: 12, child: CircularProgressIndicator(strokeWidth: 2, color: p.texte)),
+        const SizedBox(width: 8),
+        Text(tr('Mise à jour…'), style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: p.texteDiscret)),
+      ]),
+    );
+  }
+}
+
 
 class _SelecteurFil extends StatelessWidget {
   final String fil;

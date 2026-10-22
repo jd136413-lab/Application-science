@@ -24,6 +24,11 @@ dependencies:
   flutter_local_notifications: ^19.0.0
   firebase_crashlytics: ^5.0.0   # rapports de plantage
   in_app_review: ^2.0.10         # fenêtre « Noter l'app » de Google Play
+  # Mémoire sur le téléphone (fil hors ligne, images gardées 30 jours) et retours
+  cached_network_image: any
+  flutter_cache_manager: any
+  path_provider: any
+  device_info_plus: any          # modèle du téléphone dans « Signaler une erreur »
 
 flutter:
   uses-material-design: true

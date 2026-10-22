@@ -16,6 +16,7 @@ import 'detail.dart';
 import 'donnees.dart';
 import 'etat.dart';
 import 'langues.dart';
+import 'memoire.dart';
 import 'navigation.dart';
 import 'notifications.dart';
 import 'presentation.dart';
@@ -59,6 +60,7 @@ class _AppNovaStemState extends State<AppNovaStem> {
     await initialiserSupabase().timeout(const Duration(seconds: 15));
     // Notifications : jamais bloquant (Firebase absent, pas de réseau…).
     stat('ouverture', valeur: etat.langue); // statistiques anonymes
+    unawaited(limiterImages()); // images gardées : 100 Mo au plus
     unawaited(etat.verifierDemandeAvis());
     demandeOuverture.addListener(_ouvrirDepuisNotification);
     unawaited(initialiserNotifications().then((_) => synchroniserSujets(etat.sujetsNotif)));

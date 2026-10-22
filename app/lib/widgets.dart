@@ -1,9 +1,11 @@
 // Petits éléments réutilisés : palette, logo, étoiles, tuile de famille.
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'langues.dart';
+import 'memoire.dart';
 import 'reglages.dart';
 
 bool estSombre(BuildContext context) => Theme.of(context).brightness == Brightness.dark;
@@ -309,6 +311,30 @@ class BadgeEtude extends StatelessWidget {
       decoration: BoxDecoration(color: sombre ? fondSombre : fondClair, borderRadius: BorderRadius.circular(10)),
       child: Text(tr(libelle),
           style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: sombre ? texteSombre : texteClair)),
+    );
+  }
+}
+
+/// Photo d'une avancée, gardée sur le téléphone (30 jours, 100 Mo au plus :
+/// voir memoire.dart). Fond simple pendant le chargement ou en cas d'erreur.
+class ImageGardee extends StatelessWidget {
+  final String url;
+  const ImageGardee({super.key, required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return Semantics(
+      image: true,
+      label: tr('Photo fournie par la source'),
+      child: CachedNetworkImage(
+        imageUrl: url,
+        cacheManager: cacheImages,
+        fit: BoxFit.cover,
+        fadeInDuration: const Duration(milliseconds: 200),
+        placeholder: (c, u) => Container(color: p.pastille),
+        errorWidget: (c, u, e) => Container(color: p.pastille),
+      ),
     );
   }
 }

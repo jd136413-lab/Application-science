@@ -7,6 +7,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart';
 import 'reglages.dart';
+import 'retours.dart';
 import 'stats.dart';
 import 'texte_article.dart';
 import 'traducteur.dart';
@@ -151,10 +152,7 @@ class EcranDetail extends StatelessWidget {
                   SizedBox(
                     height: 270,
                     child: Stack(fit: StackFit.expand, children: [
-                      Image.network(avancee.image!,
-                          fit: BoxFit.cover,
-                          semanticLabel: tr('Photo fournie par la source'),
-                          errorBuilder: (c, e, s) => Container(color: p.pastille)),
+                      ImageGardee(url: avancee.image!),
                       if ((avancee.creditImage ?? '').isNotEmpty)
                         Positioned(
                           right: 10,
@@ -204,8 +202,16 @@ class EcranDetail extends StatelessWidget {
                   label: Text(tr(texteLireArticle)),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
               Text(tr(texteMentionResume), textAlign: TextAlign.center, style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
+              TextButton.icon(
+                onPressed: () => signalerErreur(context, avancee),
+                style: TextButton.styleFrom(
+                    foregroundColor: p.texte, visualDensity: VisualDensity.compact, padding: const EdgeInsets.symmetric(horizontal: 10)),
+                icon: const Icon(Icons.flag_outlined, size: 16),
+                label: Text(tr('Signaler une erreur'),
+                    style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: p.texte)),
+              ),
             ]),
           ),
         ]),

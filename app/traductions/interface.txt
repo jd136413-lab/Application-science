@@ -4928,3 +4928,635 @@ ja 分野を選ぶ
 ko 관심 분야 선택
 id Pilih topik saya
 vi Chọn lĩnh vực của tôi
+
+# Fil gardé sur le téléphone (maquette 42)
+@ Hors ligne · voici le dernier fil enregistré. Les résumés restent lisibles.
+en Offline · here is the last saved feed. Summaries are still readable.
+es Sin conexión · este es el último feed guardado. Los resúmenes siguen disponibles.
+pt Offline · este é o último feed guardado. Os resumos continuam legíveis.
+de Offline · hier ist der zuletzt gespeicherte Feed. Die Zusammenfassungen bleiben lesbar.
+it Offline · ecco l’ultimo feed salvato. I riassunti restano leggibili.
+nl Offline · dit is de laatst opgeslagen feed. De samenvattingen blijven leesbaar.
+pl Offline · oto ostatnio zapisany kanał. Streszczenia nadal są dostępne.
+ru Нет сети · вот последняя сохранённая лента. Краткие изложения доступны.
+uk Немає мережі · ось остання збережена стрічка. Стислі виклади доступні.
+tr Çevrimdışı · son kaydedilen akış gösteriliyor. Özetler okunabilir.
+ar غير متصل · هذه آخر قائمة محفوظة. الملخصات ما زالت متاحة للقراءة.
+hi ऑफ़लाइन · यह आख़िरी सहेजी गई फ़ीड है। सारांश पढ़े जा सकते हैं।
+bn অফলাইন · এটি সর্বশেষ সংরক্ষিত ফিড। সারাংশ পড়া যাবে।
+ur آف لائن · یہ آخری محفوظ شدہ فیڈ ہے۔ خلاصے پڑھے جا سکتے ہیں۔
+zh 离线 · 这是最近保存的信息流，摘要仍可阅读。
+ja オフライン · 最後に保存したフィードです。要約は読めます。
+ko 오프라인 · 마지막으로 저장된 피드입니다. 요약은 계속 읽을 수 있어요.
+id Luring · ini umpan terakhir yang tersimpan. Ringkasan tetap bisa dibaca.
+vi Ngoại tuyến · đây là bảng tin đã lưu gần nhất. Bạn vẫn đọc được các bản tóm tắt.
+
+@ Mise à jour…
+en Updating…
+es Actualizando…
+pt Atualizando…
+de Wird aktualisiert…
+it Aggiornamento…
+nl Bijwerken…
+pl Aktualizacja…
+ru Обновление…
+uk Оновлення…
+tr Güncelleniyor…
+ar جارٍ التحديث…
+hi अपडेट हो रहा है…
+bn আপডেট হচ্ছে…
+ur اپ ڈیٹ ہو رہا ہے…
+zh 正在更新…
+ja 更新中…
+ko 업데이트 중…
+id Memperbarui…
+vi Đang cập nhật…
+
+@ Stockage
+en Storage
+es Almacenamiento
+pt Armazenamento
+de Speicher
+it Spazio di archiviazione
+nl Opslag
+pl Pamięć
+ru Хранилище
+uk Сховище
+tr Depolama
+ar التخزين
+hi स्टोरेज
+bn স্টোরেজ
+ur اسٹوریج
+zh 存储
+ja ストレージ
+ko 저장 공간
+id Penyimpanan
+vi Bộ nhớ
+
+@ Données gardées sur ce téléphone
+en Data stored on this phone
+es Datos guardados en este teléfono
+pt Dados guardados neste telefone
+de Auf diesem Telefon gespeicherte Daten
+it Dati salvati su questo telefono
+nl Gegevens op deze telefoon
+pl Dane zapisane na tym telefonie
+ru Данные на этом телефоне
+uk Дані на цьому телефоні
+tr Bu telefonda saklanan veriler
+ar البيانات المحفوظة على هذا الهاتف
+hi इस फ़ोन पर सहेजा गया डेटा
+bn এই ফোনে সংরক্ষিত ডেটা
+ur اس فون پر محفوظ ڈیٹا
+zh 保存在本机的数据
+ja この端末に保存されたデータ
+ko 이 휴대폰에 저장된 데이터
+id Data yang tersimpan di ponsel ini
+vi Dữ liệu lưu trên điện thoại này
+
+@ Fil hors ligne
+en Offline feed
+es Feed sin conexión
+pt Feed offline
+de Offline-Feed
+it Feed offline
+nl Offline feed
+pl Kanał offline
+ru Лента офлайн
+uk Стрічка офлайн
+tr Çevrimdışı akış
+ar القائمة دون اتصال
+hi ऑफ़लाइन फ़ीड
+bn অফলাইন ফিড
+ur آف لائن فیڈ
+zh 离线信息流
+ja オフライン用フィード
+ko 오프라인 피드
+id Umpan luring
+vi Bảng tin ngoại tuyến
+
+@ images
+en images
+es imágenes
+pt imagens
+de Bilder
+it immagini
+nl afbeeldingen
+pl obrazy
+ru изображения
+uk зображення
+tr görseller
+ar الصور
+hi तस्वीरें
+bn ছবি
+ur تصاویر
+zh 图片
+ja 画像
+ko 이미지
+id gambar
+vi hình ảnh
+
+@ {n} Mo max.
+en {n} MB max.
+es {n} MB máx.
+pt {n} MB máx.
+de max. {n} MB
+it max {n} MB
+nl max. {n} MB
+pl maks. {n} MB
+ru макс. {n} МБ
+uk макс. {n} МБ
+tr en fazla {n} MB
+ar {n} ميغابايت كحد أقصى
+hi अधिकतम {n} MB
+bn সর্বোচ্চ {n} MB
+ur زیادہ سے زیادہ {n} MB
+zh 最多 {n} MB
+ja 最大 {n} MB
+ko 최대 {n}MB
+id maks. {n} MB
+vi tối đa {n} MB
+
+@ Vider
+en Clear
+es Vaciar
+pt Limpar
+de Leeren
+it Svuota
+nl Wissen
+pl Wyczyść
+ru Очистить
+uk Очистити
+tr Temizle
+ar مسح
+hi साफ़ करें
+bn মুছুন
+ur صاف کریں
+zh 清除
+ja 消去
+ko 비우기
+id Kosongkan
+vi Xóa
+
+@ Mémoire vidée
+en Storage cleared
+es Almacenamiento vaciado
+pt Armazenamento limpo
+de Speicher geleert
+it Memoria svuotata
+nl Opslag gewist
+pl Pamięć wyczyszczona
+ru Хранилище очищено
+uk Сховище очищено
+tr Depolama temizlendi
+ar تم مسح التخزين
+hi स्टोरेज साफ़ हो गया
+bn স্টোরেজ মুছে ফেলা হয়েছে
+ur اسٹوریج صاف ہو گیا
+zh 已清除存储
+ja ストレージを消去しました
+ko 저장 공간을 비웠어요
+id Penyimpanan dikosongkan
+vi Đã xóa bộ nhớ
+
+# Retours : signaler une erreur, donner son avis (maquette 42)
+@ Signaler une erreur
+en Report an error
+es Informar de un error
+pt Reportar um erro
+de Fehler melden
+it Segnala un errore
+nl Fout melden
+pl Zgłoś błąd
+ru Сообщить об ошибке
+uk Повідомити про помилку
+tr Hata bildir
+ar الإبلاغ عن خطأ
+hi गलती की रिपोर्ट करें
+bn ভুল জানান
+ur غلطی کی اطلاع دیں
+zh 报告错误
+ja 誤りを報告
+ko 오류 신고
+id Laporkan kesalahan
+vi Báo lỗi
+
+@ Qu’est-ce qui ne va pas avec cette avancée ?
+en What’s wrong with this advance?
+es ¿Qué falla en este avance?
+pt O que está errado neste avanço?
+de Was stimmt mit diesem Fortschritt nicht?
+it Che cosa non va in questo progresso?
+nl Wat klopt er niet aan deze doorbraak?
+pl Co jest nie tak z tym osiągnięciem?
+ru Что не так с этой новостью?
+uk Що не так із цією новиною?
+tr Bu gelişmeyle ilgili sorun nedir?
+ar ما المشكلة في هذا الإنجاز؟
+hi इस खोज में क्या गड़बड़ है?
+bn এই অগ্রগতিতে সমস্যা কী?
+ur اس پیش رفت میں کیا مسئلہ ہے؟
+zh 这条进展有什么问题？
+ja この記事のどこが問題ですか？
+ko 이 소식에 어떤 문제가 있나요?
+id Apa yang salah dengan kemajuan ini?
+vi Tiến bộ này có vấn đề gì?
+
+@ Résumé inexact
+en Inaccurate summary
+es Resumen inexacto
+pt Resumo impreciso
+de Ungenaue Zusammenfassung
+it Riassunto inesatto
+nl Onjuiste samenvatting
+pl Niedokładne streszczenie
+ru Неточное изложение
+uk Неточний виклад
+tr Hatalı özet
+ar ملخص غير دقيق
+hi गलत सारांश
+bn ভুল সারাংশ
+ur غلط خلاصہ
+zh 摘要不准确
+ja 要約が不正確
+ko 부정확한 요약
+id Ringkasan tidak akurat
+vi Tóm tắt không chính xác
+
+@ Un fait, un chiffre ou une exagération
+en A fact, a figure or an exaggeration
+es Un hecho, una cifra o una exageración
+pt Um fato, um número ou um exagero
+de Eine Tatsache, eine Zahl oder eine Übertreibung
+it Un fatto, una cifra o un’esagerazione
+nl Een feit, een getal of een overdrijving
+pl Fakt, liczba lub przesada
+ru Факт, цифра или преувеличение
+uk Факт, цифра чи перебільшення
+tr Bir olgu, bir rakam ya da bir abartı
+ar حقيقة أو رقم أو مبالغة
+hi कोई तथ्य, आँकड़ा या अतिशयोक्ति
+bn কোনো তথ্য, সংখ্যা বা অতিরঞ্জন
+ur کوئی حقیقت، عدد یا مبالغہ
+zh 事实、数字或夸大其词
+ja 事実、数字、または誇張
+ko 사실, 수치 또는 과장
+id Fakta, angka, atau sesuatu yang dilebih-lebihkan
+vi Một sự kiện, con số hoặc sự phóng đại
+
+@ Mauvaise note
+en Wrong rating
+es Puntuación incorrecta
+pt Nota errada
+de Falsche Bewertung
+it Valutazione sbagliata
+nl Verkeerde beoordeling
+pl Zła ocena
+ru Неверная оценка
+uk Неправильна оцінка
+tr Yanlış puan
+ar تقييم خاطئ
+hi गलत रेटिंग
+bn ভুল রেটিং
+ur غلط درجہ بندی
+zh 评分有误
+ja 評価が不適切
+ko 잘못된 평점
+id Nilai salah
+vi Chấm điểm sai
+
+@ Trop ou pas assez d’étoiles
+en Too many or too few stars
+es Demasiadas o muy pocas estrellas
+pt Estrelas a mais ou a menos
+de Zu viele oder zu wenige Sterne
+it Troppe o troppo poche stelle
+nl Te veel of te weinig sterren
+pl Za dużo lub za mało gwiazdek
+ru Слишком много или мало звёзд
+uk Забагато чи замало зірок
+tr Çok fazla ya da çok az yıldız
+ar نجوم كثيرة جدًا أو قليلة جدًا
+hi बहुत ज़्यादा या बहुत कम सितारे
+bn খুব বেশি বা খুব কম তারা
+ur بہت زیادہ یا بہت کم ستارے
+zh 星级过高或过低
+ja 星が多すぎる・少なすぎる
+ko 별이 너무 많거나 적음
+id Bintang terlalu banyak atau terlalu sedikit
+vi Quá nhiều hoặc quá ít sao
+
+@ Pas une vraie avancée
+en Not a real advance
+es No es un avance real
+pt Não é um avanço real
+de Kein echter Fortschritt
+it Non è un vero progresso
+nl Geen echte doorbraak
+pl To nie jest prawdziwe osiągnięcie
+ru Это не настоящее открытие
+uk Це не справжнє відкриття
+tr Gerçek bir gelişme değil
+ar ليس إنجازًا حقيقيًا
+hi असली खोज नहीं है
+bn আসল অগ্রগতি নয়
+ur حقیقی پیش رفت نہیں
+zh 不是真正的进展
+ja 本当の成果ではない
+ko 진짜 발견이 아님
+id Bukan kemajuan sungguhan
+vi Không phải tiến bộ thực sự
+
+@ Annonce, opinion, publicité…
+en Announcement, opinion, advertising…
+es Anuncio, opinión, publicidad…
+pt Anúncio, opinião, publicidade…
+de Ankündigung, Meinung, Werbung…
+it Annuncio, opinione, pubblicità…
+nl Aankondiging, mening, reclame…
+pl Zapowiedź, opinia, reklama…
+ru Анонс, мнение, реклама…
+uk Анонс, думка, реклама…
+tr Duyuru, görüş, reklam…
+ar إعلان أو رأي أو دعاية…
+hi घोषणा, राय, विज्ञापन…
+bn ঘোষণা, মতামত, বিজ্ঞাপন…
+ur اعلان، رائے، اشتہار…
+zh 公告、观点、广告…
+ja 告知、意見、広告など
+ko 발표, 의견, 광고 등
+id Pengumuman, opini, iklan…
+vi Thông báo, ý kiến, quảng cáo…
+
+@ Doublon
+en Duplicate
+es Duplicado
+pt Duplicado
+de Doppelt
+it Duplicato
+nl Dubbel
+pl Duplikat
+ru Дубликат
+uk Дублікат
+tr Tekrar
+ar مكرر
+hi दोहराव
+bn পুনরাবৃত্তি
+ur دہرایا گیا
+zh 重复
+ja 重複
+ko 중복
+id Duplikat
+vi Trùng lặp
+
+@ Déjà présent dans le fil
+en Already in the feed
+es Ya está en el feed
+pt Já está no feed
+de Schon im Feed
+it Già presente nel feed
+nl Staat al in de feed
+pl Już jest w kanale
+ru Уже есть в ленте
+uk Уже є у стрічці
+tr Akışta zaten var
+ar موجود بالفعل في القائمة
+hi फ़ीड में पहले से है
+bn ফিডে আগেই আছে
+ur فیڈ میں پہلے سے موجود ہے
+zh 信息流中已有
+ja すでにフィードにある
+ko 이미 피드에 있음
+id Sudah ada di umpan
+vi Đã có trong bảng tin
+
+@ Lien cassé ou image
+en Broken link or image
+es Enlace roto o imagen
+pt Link quebrado ou imagem
+de Defekter Link oder Bild
+it Link non funzionante o immagine
+nl Kapotte link of afbeelding
+pl Uszkodzony link lub obraz
+ru Битая ссылка или изображение
+uk Зламане посилання чи зображення
+tr Bozuk bağlantı veya görsel
+ar رابط معطّل أو صورة
+hi टूटा लिंक या तस्वीर
+bn ভাঙা লিংক বা ছবি
+ur ٹوٹا لنک یا تصویر
+zh 链接失效或图片问题
+ja リンク切れ・画像の問題
+ko 깨진 링크 또는 이미지
+id Tautan rusak atau gambar
+vi Liên kết hỏng hoặc hình ảnh
+
+@ L’article ou la photo ne s’ouvre pas
+en The article or photo won’t open
+es El artículo o la foto no se abre
+pt O artigo ou a foto não abre
+de Artikel oder Foto lässt sich nicht öffnen
+it L’articolo o la foto non si apre
+nl Het artikel of de foto opent niet
+pl Artykuł lub zdjęcie się nie otwiera
+ru Статья или фото не открывается
+uk Стаття чи фото не відкривається
+tr Makale ya da fotoğraf açılmıyor
+ar المقال أو الصورة لا يفتح
+hi लेख या फ़ोटो नहीं खुलती
+bn নিবন্ধ বা ছবি খুলছে না
+ur مضمون یا تصویر نہیں کھلتی
+zh 文章或照片无法打开
+ja 記事や写真が開かない
+ko 기사나 사진이 열리지 않음
+id Artikel atau foto tidak bisa dibuka
+vi Không mở được bài viết hoặc ảnh
+
+@ Votre application e-mail s’ouvre avec un message déjà rempli : il ne reste qu’à l’envoyer.
+en Your email app opens with a pre-filled message: just send it.
+es Tu aplicación de correo se abre con un mensaje ya rellenado: solo tienes que enviarlo.
+pt Seu app de e-mail abre com uma mensagem já preenchida: é só enviar.
+de Ihre E-Mail-App öffnet sich mit einer fertigen Nachricht: Sie müssen sie nur noch senden.
+it La tua app e-mail si apre con un messaggio già compilato: basta inviarlo.
+nl Je e-mailapp opent met een ingevuld bericht: je hoeft het alleen te versturen.
+pl Aplikacja pocztowa otworzy się z gotową wiadomością: wystarczy ją wysłać.
+ru Откроется почтовое приложение с готовым письмом: останется только отправить.
+uk Відкриється поштовий застосунок із готовим листом: залишиться лише надіслати.
+tr E-posta uygulamanız önceden doldurulmuş bir mesajla açılır: yalnızca gönderin.
+ar يُفتح تطبيق البريد برسالة جاهزة: ما عليك سوى إرسالها.
+hi आपका ईमेल ऐप पहले से भरे संदेश के साथ खुलेगा: बस भेज दीजिए।
+bn আপনার ইমেল অ্যাপ আগে থেকে লেখা বার্তা নিয়ে খুলবে: শুধু পাঠিয়ে দিন।
+ur آپ کی ای میل ایپ پہلے سے لکھے پیغام کے ساتھ کھلے گی: بس بھیج دیں۔
+zh 将打开您的邮件应用，邮件已填好，只需发送。
+ja メールアプリが入力済みのメッセージで開きます。送信するだけです。
+ko 메일 앱이 미리 작성된 메시지로 열립니다. 보내기만 하면 돼요.
+id Aplikasi email Anda terbuka dengan pesan yang sudah terisi: tinggal kirim.
+vi Ứng dụng email sẽ mở với thư đã điền sẵn: bạn chỉ cần gửi.
+
+@ Votre remarque (facultatif) :
+en Your comment (optional):
+es Tu comentario (opcional):
+pt Seu comentário (opcional):
+de Ihre Anmerkung (optional):
+it La tua osservazione (facoltativa):
+nl Je opmerking (optioneel):
+pl Twoja uwaga (opcjonalnie):
+ru Ваш комментарий (необязательно):
+uk Ваш коментар (необов’язково):
+tr Yorumunuz (isteğe bağlı):
+ar ملاحظتك (اختياري):
+hi आपकी टिप्पणी (वैकल्पिक):
+bn আপনার মন্তব্য (ঐচ্ছিক):
+ur آپ کا تبصرہ (اختیاری):
+zh 您的备注（可选）：
+ja コメント（任意）：
+ko 의견 (선택):
+id Catatan Anda (opsional):
+vi Nhận xét của bạn (không bắt buộc):
+
+@ Aucune application e-mail trouvée. Écrivez-nous à :
+en No email app found. Write to us at:
+es No se encontró ninguna aplicación de correo. Escríbenos a:
+pt Nenhum app de e-mail encontrado. Escreva para:
+de Keine E-Mail-App gefunden. Schreiben Sie uns an:
+it Nessuna app e-mail trovata. Scrivici a:
+nl Geen e-mailapp gevonden. Schrijf ons op:
+pl Nie znaleziono aplikacji pocztowej. Napisz do nas na:
+ru Почтовое приложение не найдено. Напишите нам:
+uk Поштовий застосунок не знайдено. Напишіть нам:
+tr E-posta uygulaması bulunamadı. Bize şu adresten yazın:
+ar لم يُعثر على تطبيق بريد. راسلنا على:
+hi कोई ईमेल ऐप नहीं मिला। हमें यहाँ लिखें:
+bn কোনো ইমেল অ্যাপ পাওয়া যায়নি। আমাদের লিখুন:
+ur کوئی ای میل ایپ نہیں ملی۔ ہمیں یہاں لکھیں:
+zh 未找到邮件应用。请写信至：
+ja メールアプリが見つかりません。こちらへご連絡ください：
+ko 메일 앱을 찾을 수 없어요. 다음 주소로 보내 주세요:
+id Tidak ada aplikasi email. Tulis kepada kami di:
+vi Không tìm thấy ứng dụng email. Hãy viết cho chúng tôi tại:
+
+@ Donner mon avis
+en Give feedback
+es Dar mi opinión
+pt Dar minha opinião
+de Feedback geben
+it Dai la tua opinione
+nl Feedback geven
+pl Podziel się opinią
+ru Оставить отзыв
+uk Залишити відгук
+tr Görüş bildir
+ar أبدِ رأيك
+hi अपनी राय दें
+bn মতামত দিন
+ur اپنی رائے دیں
+zh 提供反馈
+ja 意見を送る
+ko 의견 보내기
+id Beri masukan
+vi Gửi góp ý
+
+@ Ce qui vous plaît, gêne ou manque
+en What you like, what bothers you, what’s missing
+es Lo que te gusta, lo que te molesta o lo que falta
+pt O que você gosta, o que incomoda ou o que falta
+de Was Ihnen gefällt, was stört, was fehlt
+it Cosa ti piace, cosa ti dà fastidio, cosa manca
+nl Wat je leuk vindt, wat stoort of wat ontbreekt
+pl Co ci się podoba, co przeszkadza, czego brakuje
+ru Что нравится, что мешает, чего не хватает
+uk Що подобається, що заважає, чого бракує
+tr Neyi sevdiğiniz, neyin rahatsız ettiği, neyin eksik olduğu
+ar ما يعجبك وما يزعجك وما ينقص
+hi क्या पसंद है, क्या खटकता है, क्या कमी है
+bn কী ভালো লাগে, কী বিরক্ত করে, কী নেই
+ur کیا پسند ہے، کیا کھٹکتا ہے، کیا کمی ہے
+zh 您喜欢的、困扰您的、缺少的
+ja 良い点、気になる点、足りない点
+ko 좋은 점, 불편한 점, 아쉬운 점
+id Yang Anda suka, yang mengganggu, yang kurang
+vi Điều bạn thích, điều làm bạn khó chịu, điều còn thiếu
+
+@ Ce que j’aime :
+en What I like:
+es Lo que me gusta:
+pt O que eu gosto:
+de Was mir gefällt:
+it Cosa mi piace:
+nl Wat ik leuk vind:
+pl Co mi się podoba:
+ru Что мне нравится:
+uk Що мені подобається:
+tr Sevdiklerim:
+ar ما يعجبني:
+hi मुझे क्या पसंद है:
+bn আমার যা ভালো লাগে:
+ur مجھے کیا پسند ہے:
+zh 我喜欢的：
+ja 気に入っている点：
+ko 좋은 점:
+id Yang saya suka:
+vi Điều tôi thích:
+
+@ Ce qui me gêne :
+en What bothers me:
+es Lo que me molesta:
+pt O que me incomoda:
+de Was mich stört:
+it Cosa mi dà fastidio:
+nl Wat me stoort:
+pl Co mi przeszkadza:
+ru Что мне мешает:
+uk Що мені заважає:
+tr Beni rahatsız edenler:
+ar ما يزعجني:
+hi मुझे क्या खटकता है:
+bn আমাকে যা বিরক্ত করে:
+ur مجھے کیا کھٹکتا ہے:
+zh 让我困扰的：
+ja 気になる点：
+ko 불편한 점:
+id Yang mengganggu saya:
+vi Điều làm tôi khó chịu:
+
+@ Ce qui me manque :
+en What I’m missing:
+es Lo que echo en falta:
+pt O que me falta:
+de Was mir fehlt:
+it Cosa mi manca:
+nl Wat ik mis:
+pl Czego mi brakuje:
+ru Чего мне не хватает:
+uk Чого мені бракує:
+tr Eksik bulduklarım:
+ar ما ينقصني:
+hi मुझे किस चीज़ की कमी लगती है:
+bn আমার যা নেই বলে মনে হয়:
+ur مجھے کس چیز کی کمی لگتی ہے:
+zh 我觉得缺少的：
+ja 足りない点：
+ko 아쉬운 점:
+id Yang saya rasa kurang:
+vi Điều tôi thấy còn thiếu:
+
+@ Mon avis
+en My feedback
+es Mi opinión
+pt Minha opinião
+de Mein Feedback
+it La mia opinione
+nl Mijn feedback
+pl Moja opinia
+ru Мой отзыв
+uk Мій відгук
+tr Görüşüm
+ar رأيي
+hi मेरी राय
+bn আমার মতামত
+ur میری رائے
+zh 我的反馈
+ja 私の意見
+ko 내 의견
+id Masukan saya
+vi Góp ý của tôi

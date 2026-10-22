@@ -136,21 +136,13 @@ class _Photo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final p = palette(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(14),
       child: SizedBox(
         height: 176,
         width: double.infinity,
         child: Stack(fit: StackFit.expand, children: [
-          Image.network(
-            url,
-            fit: BoxFit.cover,
-            semanticLabel: tr('Photo fournie par la source'),
-            loadingBuilder: (c, child, prog) => prog == null ? child : Container(color: p.pastille),
-            // Si l'image ne charge pas, on affiche un simple fond (pas de trou).
-            errorBuilder: (c, e, s) => Container(color: p.pastille),
-          ),
+          ImageGardee(url: url),
           if (credit != null && credit!.isNotEmpty)
             Positioned(
               right: 8,

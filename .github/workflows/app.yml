@@ -92,6 +92,7 @@ jobs:
           -dontwarn com.google.android.play.core.**
           -dontwarn com.google.mlkit.**
           -keep class com.dexterous.** { *; }
+          -keep class com.tekartik.** { *; }
           -keep class com.google.firebase.** { *; }
           -keep class io.flutter.plugins.firebase.** { *; }
           -keep class com.google.gson.** { *; }
