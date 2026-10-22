@@ -14,6 +14,7 @@ import 'langues.dart';
 import 'modele.dart';
 import 'navigation.dart';
 import 'reglages.dart';
+import 'stats.dart';
 import 'widgets.dart';
 
 class EcranAccueil extends StatefulWidget {
@@ -124,7 +125,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
         setState(() {
           // Pas de réseau : on garde le fil en mémoire s'il existe, avec un bandeau.
           if (_fils.containsKey(fil)) {
-            _horsLigne.add(fil);
+            if (_horsLigne.add(fil)) stat('hors_ligne', valeur: fil);
           } else {
             _erreurs[fil] = e;
           }

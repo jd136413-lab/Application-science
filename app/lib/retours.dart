@@ -11,6 +11,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart';
 import 'reglages.dart';
+import 'stats.dart';
 import 'widgets.dart';
 
 /// Adresse qui reçoit les signalements et les avis.
@@ -122,6 +123,7 @@ Future<void> signalerErreur(BuildContext context, Avancee a) async {
     },
   );
   if (motif == null || !context.mounted) return;
+  stat('signalement', a: a, valeur: motif);
   final corps = '${tr('Votre remarque (facultatif) :')}\n\n\n\n'
       '———\n'
       'Motif : $motif\n'
@@ -135,6 +137,7 @@ Future<void> signalerErreur(BuildContext context, Avancee a) async {
 
 /// « Donner mon avis » (Réglages) : trois questions déjà écrites.
 Future<void> donnerAvis(BuildContext context) async {
+  stat('avis');
   final corps = '${tr('Ce que j’aime :')}\n\n\n'
       '${tr('Ce qui me gêne :')}\n\n\n'
       '${tr('Ce qui me manque :')}\n\n\n'

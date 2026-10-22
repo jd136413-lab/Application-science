@@ -10,6 +10,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'donnees.dart';
 import 'modele.dart';
+import 'reglages.dart';
 
 /// Mettre à false pour couper toutes les statistiques.
 const bool statistiquesActives = true;
@@ -19,6 +20,7 @@ void stat(String evenement, {Avancee? a, String? valeur}) {
   try {
     Supabase.instance.client.from('stats').insert({
       'evenement': evenement,
+      'version': versionApp, // ex. 1.0.38 : pour comparer les mises à jour
       if (a != null && a.id.isNotEmpty) 'avancee_id': a.id,
       if (a != null) 'fil': a.fil,
       if (a != null) 'famille': a.famille,

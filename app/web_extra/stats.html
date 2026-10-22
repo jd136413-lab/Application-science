@@ -2,133 +2,377 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>NovaSTEM — Statistiques</title>
+<title>Statistiques NovaSTEM</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
-  :root { --fond:#F2F1F6; --carte:#FFFFFF; --texte:#17161F; --discret:#5E5C6B; --bord:#DDDBE5; --pastille:#E6E4EE; --or:#E0A800; --rose:#FF5A8A; --bleu:#3D7BFF; }
-  @media (prefers-color-scheme: dark) {
-    :root { --fond:#0F0F14; --carte:#1A1A22; --texte:#F2F1F6; --discret:#A9A8B6; --bord:#2C2C36; --pastille:#2A2A35; }
-  }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--fond); color:var(--texte); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; display: flex; flex-direction: column; gap: 18px; }
-  header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
-  h1 { margin: 0; font-size: 26px; }
-  .periodes { display: flex; gap: 4px; padding: 4px; background: var(--pastille); border-radius: 14px; }
-  .periodes button { border: none; background: transparent; color: var(--discret); font: 600 14px system-ui, sans-serif; padding: 8px 12px; border-radius: 10px; cursor: pointer; min-height: 40px; }
-  .periodes button[aria-pressed="true"] { background: var(--carte); color: var(--texte); }
-  .tuiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-  .tuile { background: var(--carte); border-radius: 18px; padding: 14px 16px; }
-  .tuile .n { font-size: 30px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
-  .tuile .l { font-size: 13px; color: var(--discret); }
-  .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; }
-  section { background: var(--carte); border-radius: 20px; padding: 16px 18px; }
-  h2 { margin: 0 0 10px; font-size: 16px; }
-  .ligne { display: grid; grid-template-columns: minmax(0, 1fr) 2fr 44px; align-items: center; gap: 10px; padding: 4px 0; font-size: 14px; }
-  .ligne .nom { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .barre { height: 10px; border-radius: 5px; background: var(--pastille); overflow: hidden; }
-  .barre span { display: block; height: 100%; border-radius: 5px; background: var(--bleu); }
-  .ligne .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
-  .vide { color: var(--discret); font-size: 14px; }
-  .jours { display: flex; align-items: flex-end; gap: 3px; height: 120px; padding-top: 6px; }
-  .jours div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
-  .jours span { display: block; background: var(--bleu); border-radius: 3px 3px 0 0; min-height: 2px; }
-  .legende { display: flex; justify-content: space-between; font-size: 12px; color: var(--discret); margin-top: 6px; }
-  .note { font-size: 13px; color: var(--discret); }
-  .note a { color: var(--bleu); }
-  .or { color: var(--or); }
+/* Tableau de bord NovaSTEM (v2, 22/10/2026) : d'abord l'essentiel (4 chiffres + évolution),
+   puis « ce qui plaît », puis les détails (familles, étoiles, sources, versions, heures, retours). */
+:root {
+  --fond:#F2F1F6; --carte:#FFFFFF; --texte:#17161F; --discret:#5E5C6B; --bord:#E4E2EC; --pastille:#ECEBF1;
+  --bleu:#3D7BFF; --rose:#FF5A8A; --or:#E0A800; --vert:#12A37F; --rouge:#D93B5C;
+  --titres:"Bricolage Grotesque", system-ui, sans-serif; --corps:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --fond:#0F0F14; --carte:#1A1A22; --texte:#F2F1F6; --discret:#A9A8B6; --bord:#2C2C36; --pastille:#262631;
+          --bleu:#7FA6FF; --rose:#FF7FA3; --or:#F2C230; --vert:#4FD1A8; --rouge:#FF7F96; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fond); color: var(--texte); font: 15px/1.5 var(--corps); }
+main { max-width: 1120px; margin: 0 auto; padding: 24px max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left)); display: flex; flex-direction: column; gap: 22px; }
+h1, h2 { font-family: var(--titres); margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+h1 { font-size: clamp(26px, 4.5vw, 34px); font-weight: 800; }
+h2 { font-size: 19px; font-weight: 800; }
+p { margin: 0; }
+header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.sous { color: var(--discret); font-size: 14px; }
+.periodes { display: flex; gap: 4px; padding: 4px; background: var(--pastille); border-radius: 14px; }
+.periodes button { border: 0; background: transparent; color: var(--discret); font: 600 14px var(--corps); padding: 8px 12px; border-radius: 10px; cursor: pointer; min-height: 40px; }
+.periodes button[aria-pressed="true"] { background: var(--carte); color: var(--texte); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.periodes button:focus-visible { outline: 2px solid var(--bleu); }
+.bandeau { background: var(--carte); border-radius: 14px; padding: 10px 14px; font-size: 14px; color: var(--discret); }
+.bandeau.alerte { color: var(--texte); border: 1.5px solid var(--or); }
+.tuiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.tuile { background: var(--carte); border-radius: 18px; padding: 16px 18px; display: flex; flex-direction: column; gap: 2px; }
+.tuile .n { font-family: var(--titres); font-size: 34px; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.tuile .l { font-weight: 700; font-size: 14px; }
+.tuile .d { font-size: 12.5px; color: var(--discret); }
+section { background: var(--carte); border-radius: 20px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+section > .sous { margin-top: -6px; }
+.grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 14px; }
+.defile { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { padding: 8px 8px; text-align: left; border-bottom: 1px solid var(--bord); vertical-align: middle; }
+thead th { font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--discret); font-weight: 700; white-space: nowrap; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+.rang { color: var(--discret); font-variant-numeric: tabular-nums; width: 28px; }
+.titre { min-width: 220px; font-weight: 600; line-height: 1.3; }
+.meta { display: block; font-weight: 400; font-size: 12.5px; color: var(--discret); margin-top: 2px; }
+.pt { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: 0; }
+.etoiles { color: var(--or); letter-spacing: 1px; white-space: nowrap; }
+.etoiles i { color: var(--bord); font-style: normal; }
+.jauge { display: flex; align-items: center; gap: 8px; min-width: 120px; }
+.jauge .b { flex: 1; height: 8px; border-radius: 4px; background: var(--pastille); overflow: hidden; }
+.jauge .b span { display: block; height: 100%; border-radius: 4px; background: var(--bleu); }
+.jauge .v { font-variant-numeric: tabular-nums; font-weight: 700; min-width: 34px; text-align: right; }
+.vide { color: var(--discret); font-size: 14px; padding: 6px 0; }
+svg { display: block; width: 100%; height: auto; }
+svg text { fill: var(--discret); font: 11px var(--corps); }
+.legende { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--discret); }
+.legende span::before { content: ""; display: inline-block; width: 12px; height: 4px; border-radius: 2px; margin-right: 6px; vertical-align: 3px; background: var(--c); }
+.puces { display: flex; flex-wrap: wrap; gap: 8px; }
+.puce { background: var(--pastille); border-radius: 12px; padding: 8px 12px; font-size: 14px; }
+.puce b { font-variant-numeric: tabular-nums; margin-right: 4px; }
+.note { font-size: 13px; color: var(--discret); }
+.note a { color: var(--bleu); }
+details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
 </style>
 </head>
 <body>
 <main>
   <header>
-    <h1>Statistiques NovaSTEM</h1>
+    <div>
+      <h1>Statistiques NovaSTEM</h1>
+      <p class="sous" id="etat">Chargement…</p>
+    </div>
     <div class="periodes" role="group" aria-label="Période">
-      <button data-j="1">24 h</button><button data-j="7">7 jours</button><button data-j="30" aria-pressed="true">30 jours</button><button data-j="365">1 an</button>
+      <button data-j="1">24 h</button><button data-j="7" aria-pressed="true">7 jours</button><button data-j="30">30 jours</button><button data-j="365">1 an</button>
     </div>
   </header>
-  <p class="note">Compteurs anonymes envoyés par l’app (aucun identifiant de téléphone ni de personne). Les plantages sont dans la
-    <a href="https://console.firebase.google.com/" rel="noopener">console Firebase → Crashlytics</a>.</p>
-  <div id="etat" class="note">Chargement…</div>
+  <p class="bandeau" id="bandeau" hidden></p>
+
   <div class="tuiles" id="tuiles"></div>
-  <section><h2>Ouvertures de l’app par jour</h2><div class="jours" id="jours"></div><div class="legende" id="legende"></div></section>
+
+  <section>
+    <h2>Évolution jour par jour</h2>
+    <div class="legende"><span style="--c:var(--bleu)">ouvertures de l’app</span><span style="--c:var(--rose)">avancées vues</span><span style="--c:var(--or)">favoris</span></div>
+    <div id="courbe"></div>
+  </section>
+
+  <section>
+    <h2>Ce qui plaît le plus</h2>
+    <p class="sous">Classement des avancées par score : 1 point par vue, 2 par article ouvert, 3 par favori ou partage, −3 par masquage.</p>
+    <div class="defile" id="top"></div>
+  </section>
+
   <div class="grille">
-    <section><h2>Lectures par famille</h2><div id="lf"></div></section>
-    <section><h2>Lectures par thème</h2><div id="lt"></div></section>
-    <section><h2>Avancées les plus lues</h2><div id="top"></div></section>
-    <section><h2>Lectures par importance</h2><div id="li"></div></section>
-    <section><h2>Favoris par famille</h2><div id="ff"></div></section>
-    <section><h2>Masquées par famille</h2><div id="mf"></div></section>
-    <section><h2>Sources masquées</h2><div id="sm"></div></section>
-    <section><h2>Langues de l’app</h2><div id="la"></div></section>
-    <section><h2>Formules de notifications choisies</h2><div id="fn"></div></section>
+    <section>
+      <h2>Familles qui intéressent</h2>
+      <p class="sous">« Vues par fiche » corrige l’effet du nombre : une famille avec peu de fiches mais très lues ressort.</p>
+      <div class="defile" id="familles"></div>
+    </section>
+    <section>
+      <h2>Les étoiles sont-elles justes ?</h2>
+      <p class="sous">Si la note est bien calibrée, les avancées les mieux notées sont aussi les plus vues par fiche.</p>
+      <div class="defile" id="importance"></div>
+    </section>
   </div>
+
+  <section>
+    <h2>Sources les plus lues</h2>
+    <div class="defile" id="sources"></div>
+  </section>
+
+  <div class="grille">
+    <section>
+      <h2>Mises à jour de l’app</h2>
+      <p class="sous">Chaque version et l’usage depuis son arrivée sur les téléphones.</p>
+      <div class="defile" id="versions"></div>
+    </section>
+    <section>
+      <h2>Heures d’ouverture</h2>
+      <p class="sous">Heure de Paris. Les nouvelles avancées arrivent vers 8 h 30 et 18 h 30.</p>
+      <div id="heures"></div>
+    </section>
+  </div>
+
+  <div class="grille">
+    <section>
+      <h2>Comment on lit</h2>
+      <div class="puces" id="usage"></div>
+    </section>
+    <section>
+      <h2>Retours des testeurs</h2>
+      <div class="puces" id="retours"></div>
+      <div id="signalements"></div>
+    </section>
+  </div>
+
+  <section>
+    <details><summary>Langues et notifications</summary>
+      <div class="grille" style="margin-top:12px"><div id="langues"></div><div id="formules"></div></div>
+    </details>
+  </section>
+
+  <p class="note">Compteurs anonymes envoyés par l’app, sans aucun identifiant de téléphone ni de personne. Les plantages sont dans la
+    <a href="https://console.firebase.google.com/" rel="noopener">console Firebase → Crashlytics</a>.</p>
 </main>
 <script>
 (function () {
   var URL_SB = "__SUPABASE_URL__", CLE = "__SUPABASE_KEY__";
-  var FAM = { space: "Espace", environment: "Environnement & climat", health: "Santé & médecine",
-    technology: "Technologie & IA", physics: "Physique & chimie", life: "Vivant", earth: "Terre & histoire",
-    other: "Autre (sciences)", mobile: "Smartphones & objets", computing: "Informatique & puces", ai_software: "IA & logiciels",
-    mobility: "Transports", aerospace: "Espace & aéronautique", energy_home: "Énergie & maison",
-    gaming: "Jeux vidéo & consoles", tech_other: "Autre (tech)" };
+  var DEMO = URL_SB.indexOf("__") === 0;  // page ouverte hors de GitHub Pages : données d'exemple
+  var FAM = {
+    space: ["Espace", "#5B4CF0"], environment: ["Environnement & climat", "#12A37F"], health: ["Santé & médecine", "#F0466B"],
+    technology: ["Technologie & IA", "#1E8FE0"], physics: ["Physique & chimie", "#FF7A1A"], life: ["Vivant", "#F2C230"],
+    earth: ["Terre & histoire", "#B5653A"], other: ["Autre (sciences)", "#9B3D8F"],
+    mobile: ["Smartphones & objets", "#5B4CF0"], computing: ["Informatique & puces", "#1E8FE0"], ai_software: ["IA & logiciels", "#F0466B"],
+    mobility: ["Transports", "#FF7A1A"], aerospace: ["Espace & aéronautique", "#12A37F"], energy_home: ["Énergie & maison", "#F2C230"],
+    gaming: ["Jeux vidéo & consoles", "#C24CF0"], tech_other: ["Autre (tech)", "#9B3D8F"]
+  };
+  var MOTS = ["", "Intéressant", "Notable", "Important", "Majeur", "Rupture"];
   var FORMULES = { aucune: "Aucune", exceptionnel: "Seulement l’exceptionnel", essentiel: "L’essentiel",
     courant: "Rester au courant", mesure: "Sur mesure" };
-  var MOTS = ["", "Mineur", "Limité", "Notable", "Majeur", "Rupture"];
-  var TUILES = [["ouverture", "ouvertures de l’app"], ["installation", "nouvelles installations"], ["lecture", "avancées ouvertes"],
-    ["article", "articles source ouverts"], ["favori", "favoris ajoutés"], ["masquee", "avancées masquées"],
-    ["partage", "partages"], ["notif_ouverte", "notifications touchées"]];
-  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
-  function barres(id, lignes, nom, valeur) {
-    var z = document.getElementById(id); z.textContent = "";
-    if (!lignes || !lignes.length) { z.appendChild(el("div", "vide", "Pas encore de données.")); return; }
-    var max = Math.max.apply(null, lignes.map(valeur)) || 1;
-    lignes.forEach(function (l) {
-      var r = el("div", "ligne"); var n = nom(l);
-      var a = el("span", "nom", n); a.title = n; r.appendChild(a);
-      var b = el("div", "barre"); var s = el("span"); s.style.width = (100 * valeur(l) / max) + "%"; b.appendChild(s); r.appendChild(b);
-      r.appendChild(el("span", "v", String(valeur(l)))); z.appendChild(r);
-    });
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function nb(x) { return Number(x || 0); }
+  function fmt(x) { return nb(x).toLocaleString("fr-FR"); }
+  function ratio(a, b) { return b ? (a / b) : 0; }
+  function dec(x) { return x.toLocaleString("fr-FR", { maximumFractionDigits: 1, minimumFractionDigits: x && x < 10 ? 1 : 0 }); }
+  function pct(a, b) { return b ? Math.round(100 * a / b) + " %" : "–"; }
+  function etoiles(n) { n = nb(n); return '<span class="etoiles" aria-label="' + n + ' étoiles">' + "★".repeat(n) + "<i>" + "★".repeat(Math.max(0, 5 - n)) + "</i></span>"; }
+  function famille(code) { var f = FAM[code] || [code || "?", "#9A98A6"]; return '<span class="pt" style="background:' + f[1] + '"></span>' + esc(f[0]); }
+  function jauge(v, max, txt) { return '<div class="jauge"><div class="b"><span style="width:' + (max ? Math.max(0, 100 * v / max) : 0).toFixed(1) + '%"></span></div><span class="v">' + txt + "</span></div>"; }
+  function vide(id) { document.getElementById(id).innerHTML = '<p class="vide">Pas encore de données sur cette période.</p>'; }
+
+  function tuiles(d) {
+    var t = d.totaux || {}, ouv = nb(t.ouverture), vues = nb(t.lecture);
+    var items = [
+      [fmt(ouv), "ouvertures de l’app", fmt(t.installation) + " nouvelles installations"],
+      [fmt(vues), "avancées vues", dec(ratio(vues, ouv)) + " par ouverture en moyenne"],
+      [pct(nb(t.article), vues), "lisent l’article source", fmt(t.article) + " articles ouverts"],
+      [fmt(nb(t.favori) + nb(t.partage)), "favoris et partages", fmt(t.favori) + " favoris · " + fmt(t.partage) + " partages"]
+    ];
+    document.getElementById("tuiles").innerHTML = items.map(function (x) {
+      return '<div class="tuile"><span class="n">' + x[0] + '</span><span class="l">' + x[1] + '</span><span class="d">' + x[2] + "</span></div>";
+    }).join("");
   }
-  function n(l) { return l.n; }
+
+  function courbe(pj, jours) {
+    if (!(pj || []).length) return vide("courbe");
+    // Tous les jours de la période, même sans données
+    var parJour = {}; pj.forEach(function (x) { parJour[x.jour] = x; });
+    var liste = [], n = Math.max(2, Math.min(jours, 120));
+    for (var i = n - 1; i >= 0; i--) {
+      var k = new Date(Date.now() - i * 864e5).toLocaleDateString("sv-SE", { timeZone: "Europe/Paris" });
+      liste.push({ jour: k, x: parJour[k] || {} });
+    }
+    var series = [["ouvertures", "var(--bleu)"], ["lectures", "var(--rose)"], ["favoris", "var(--or)"]];
+    var max = 1; liste.forEach(function (l) { series.forEach(function (s) { max = Math.max(max, nb(l.x[s[0]])); }); });
+    var W = 1000, H = 220, g = 34, b = 26, w = W - g - 10, h = H - b - 10;
+    var X = function (i) { return g + i * w / (liste.length - 1); };
+    var Y = function (v) { return 10 + h - h * v / max; };
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Ouvertures, vues et favoris par jour">';
+    [0, .5, 1].forEach(function (f) { var v = Math.round(max * f), y = Y(v);
+      svg += '<line x1="' + g + '" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="var(--bord)"/><text x="' + (g - 6) + '" y="' + (y + 4) + '" text-anchor="end">' + v + "</text>"; });
+    series.forEach(function (s) {
+      var pts = liste.map(function (l, i) { return X(i).toFixed(1) + "," + Y(nb(l.x[s[0]])).toFixed(1); }).join(" ");
+      svg += '<polyline fill="none" stroke="' + s[1] + '" stroke-width="2.5" stroke-linejoin="round" points="' + pts + '"/>';
+      svg += '<circle cx="' + X(liste.length - 1) + '" cy="' + Y(nb(liste[liste.length - 1].x[s[0]])) + '" r="4" fill="' + s[1] + '"/>';
+    });
+    var pas = Math.max(1, Math.ceil(liste.length / 8));
+    liste.forEach(function (l, i) { if (i % pas === 0 || i === liste.length - 1) {
+      var p = l.jour.split("-"); svg += '<text x="' + X(i) + '" y="' + (H - 6) + '" text-anchor="' + (i === liste.length - 1 ? "end" : i === 0 ? "start" : "middle") + '">' + p[2] + "/" + p[1] + "</text>"; } });
+    document.getElementById("courbe").innerHTML = svg + "</svg>";
+  }
+
+  function top(lignes) {
+    if (!lignes || !lignes.length) return vide("top");
+    var max = Math.max.apply(null, lignes.map(function (l) { return nb(l.score); }).concat([1]));
+    document.getElementById("top").innerHTML = "<table><thead><tr><th></th><th>Avancée</th><th class=n>Vues</th><th class=n>Articles</th><th class=n>Favoris</th><th class=n>Partages</th><th>Score</th></tr></thead><tbody>" +
+      lignes.map(function (l, i) {
+        return '<tr><td class="rang">' + (i + 1) + '</td><td class="titre">' + esc(l.titre) +
+          '<span class="meta">' + famille(l.famille) + " · " + etoiles(l.importance) + " · " + esc(l.source || "") +
+          (nb(l.masquees) ? " · masquée " + l.masquees + "×" : "") + (nb(l.signalements) ? " · signalée " + l.signalements + "×" : "") + "</span></td>" +
+          '<td class="n">' + fmt(l.lectures) + '</td><td class="n">' + fmt(l.articles) + '</td><td class="n">' + fmt(l.favoris) + '</td><td class="n">' + fmt(l.partages) +
+          "</td><td>" + jauge(nb(l.score), max, fmt(l.score)) + "</td></tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  function familles(lignes) {
+    if (!lignes || !lignes.length) return vide("familles");
+    lignes = lignes.map(function (l) { l.vpf = ratio(nb(l.lectures), nb(l.fiches)); return l; })
+      .sort(function (a, b) { return b.vpf - a.vpf || nb(b.lectures) - nb(a.lectures); });
+    var max = Math.max.apply(null, lignes.map(function (l) { return l.vpf; }).concat([0.1]));
+    document.getElementById("familles").innerHTML = "<table><thead><tr><th>Famille</th><th class=n>Fiches</th><th class=n>Vues</th><th>Vues par fiche</th><th class=n>Favoris</th></tr></thead><tbody>" +
+      lignes.map(function (l) {
+        return "<tr><td>" + famille(l.famille) + '<span class="meta">' + (l.fil === "tech" ? "Technologies" : "Sciences") + '</span></td><td class="n">' + fmt(l.fiches) +
+          '</td><td class="n">' + fmt(l.lectures) + "</td><td>" + jauge(l.vpf, max, l.fiches ? dec(l.vpf) : "–") + '</td><td class="n">' + fmt(l.favoris) + "</td></tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  function importance(lignes) {
+    lignes = (lignes || []).filter(function (l) { return l.importance; }).sort(function (a, b) { return b.importance - a.importance; });
+    if (!lignes.length) return vide("importance");
+    var max = Math.max.apply(null, lignes.map(function (l) { return ratio(nb(l.lectures), nb(l.fiches)); }).concat([0.1]));
+    document.getElementById("importance").innerHTML = "<table><thead><tr><th>Note</th><th class=n>Fiches</th><th class=n>Vues</th><th>Vues par fiche</th><th class=n>Favoris</th></tr></thead><tbody>" +
+      lignes.map(function (l) { var v = ratio(nb(l.lectures), nb(l.fiches));
+        return "<tr><td>" + etoiles(l.importance) + '<span class="meta">' + MOTS[l.importance] + '</span></td><td class="n">' + fmt(l.fiches) + '</td><td class="n">' + fmt(l.lectures) +
+          "</td><td>" + jauge(v, max, l.fiches ? dec(v) : "–") + '</td><td class="n">' + fmt(l.favoris) + "</td></tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  function sources(lignes) {
+    if (!lignes || !lignes.length) return vide("sources");
+    var max = Math.max.apply(null, lignes.map(function (l) { return nb(l.lectures); }).concat([1]));
+    document.getElementById("sources").innerHTML = "<table><thead><tr><th>Source</th><th class=n>Fiches publiées</th><th>Vues</th><th class=n>Vues par fiche</th><th class=n>Favoris</th><th class=n>Masquée</th></tr></thead><tbody>" +
+      lignes.map(function (l) {
+        return "<tr><td>" + esc(l.source) + '</td><td class="n">' + fmt(l.fiches) + "</td><td>" + jauge(nb(l.lectures), max, fmt(l.lectures)) +
+          '</td><td class="n">' + (nb(l.fiches) ? dec(ratio(nb(l.lectures), nb(l.fiches))) : "–") + '</td><td class="n">' + fmt(l.favoris) + '</td><td class="n">' + (nb(l.masquee) ? fmt(l.masquee) : "–") + "</td></tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  function versions(lignes) {
+    if (!lignes || !lignes.length) {
+      document.getElementById("versions").innerHTML = '<p class="vide">Le numéro de version est envoyé à partir de la prochaine version de l’app.</p>'; return;
+    }
+    document.getElementById("versions").innerHTML = "<table><thead><tr><th>Version</th><th>Depuis le</th><th class=n>Ouvertures</th><th class=n>Vues</th><th class=n>Vues / ouverture</th></tr></thead><tbody>" +
+      lignes.map(function (l) {
+        return "<tr><td><b>" + esc(l.version) + "</b></td><td>" + new Date(l.premier).toLocaleDateString("fr-FR", { day: "numeric", month: "short" }) +
+          '</td><td class="n">' + fmt(l.ouvertures) + '</td><td class="n">' + fmt(l.lectures) + '</td><td class="n">' + (nb(l.ouvertures) ? dec(ratio(nb(l.lectures), nb(l.ouvertures))) : "–") + "</td></tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  function heures(lignes) {
+    if (!lignes || !lignes.length) return vide("heures");
+    var v = []; for (var i = 0; i < 24; i++) v.push(0);
+    lignes.forEach(function (l) { v[l.heure] = nb(l.n); });
+    var max = Math.max.apply(null, v.concat([1])), W = 480, H = 150, b = 22, bw = W / 24;
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Ouvertures par heure">';
+    [8.5, 18.5].forEach(function (hh) { var x = hh * bw;
+      svg += '<line x1="' + x + '" x2="' + x + '" y1="4" y2="' + (H - b) + '" stroke="var(--or)" stroke-width="1.5" stroke-dasharray="3 3"/>'; });
+    v.forEach(function (n, i) { var hh = (H - b - 8) * n / max;
+      svg += '<rect x="' + (i * bw + 2) + '" y="' + (H - b - hh) + '" width="' + (bw - 4) + '" height="' + Math.max(hh, 1) + '" rx="2" fill="var(--bleu)"><title>' + i + " h : " + n + " ouvertures</title></rect>"; });
+    [0, 6, 12, 18, 23].forEach(function (i) { svg += '<text x="' + (i * bw + bw / 2) + '" y="' + (H - 6) + '" text-anchor="middle">' + i + " h</text>"; });
+    document.getElementById("heures").innerHTML = svg + "</svg>";
+  }
+
+  function puces(id, items) {
+    document.getElementById(id).innerHTML = items.map(function (x) { return '<span class="puce"><b>' + x[0] + "</b>" + x[1] + "</span>"; }).join("");
+  }
+  function petiteTable(titre, lignes, nom) {
+    return "<b>" + titre + "</b>" + (lignes.length ? "<table><tbody>" + lignes.map(function (l) {
+      return "<tr><td>" + esc(nom(l)) + '</td><td class="n">' + fmt(l.n) + "</td></tr>"; }).join("") + "</tbody></table>" : '<p class="vide">Pas de données.</p>');
+  }
+
+  function afficher(d) {
+    var t = d.totaux || {}, o = d.origine_lectures || {};
+    tuiles(d); courbe(d.par_jour, d.jours); top(d.top_avancees);
+    familles(d.familles); importance(d.importance); sources(d.sources);
+    versions(d.par_version); heures(d.par_heure);
+    puces("usage", [
+      [fmt(o.fil), "avancées ouvertes depuis le fil"],
+      [fmt(o.glisse), "en glissant d’une avancée à l’autre"],
+      [fmt(t.notif_ouverte), "notifications touchées"],
+      [fmt(t.hors_ligne), "ouvertures sans réseau"],
+      [fmt(t.masquee), "avancées masquées"],
+      [fmt(d.fiches_publiees), "fiches publiées sur la période"]
+    ]);
+    puces("retours", [[fmt(t.signalement), "erreurs signalées"], [fmt(t.avis), "avis envoyés"],
+      [fmt(t.avis_demande), "demandes de note Google Play"], [fmt(t.memoire_videe), "mémoires vidées"]]);
+    var s = d.signalements || [];
+    document.getElementById("signalements").innerHTML = s.length ? petiteTable("Motifs des signalements", s, function (l) { return l.motif; }) : "";
+    document.getElementById("langues").innerHTML = petiteTable("Langues", d.langues || [], function (l) { return l.langue; });
+    document.getElementById("formules").innerHTML = petiteTable("Formules de notifications choisies", d.formules_notif || [], function (l) { return FORMULES[l.formule] || l.formule; });
+  }
+
+  // Données d'EXEMPLE, seulement pour voir la page hors de GitHub Pages
+  function exemple(jours) {
+    var pj = [], n = Math.min(jours, 30);
+    for (var i = n - 1; i >= 0; i--) { var k = new Date(Date.now() - i * 864e5).toLocaleDateString("sv-SE", { timeZone: "Europe/Paris" });
+      var o = 6 + Math.round(10 * (n - i) / n) + (i % 3); pj.push({ jour: k, ouvertures: o, lectures: Math.round(o * 2.4), favoris: Math.round(o / 4) }); }
+    var hs = [7, 8, 9, 12, 13, 18, 19, 20, 21, 22], ns = [9, 31, 22, 14, 17, 12, 40, 27, 19, 8];
+    return { jours: jours, fiches_publiees: 70,
+      totaux: { ouverture: 312, lecture: 748, article: 196, favori: 64, partage: 11, installation: 14, masquee: 23, notif_ouverte: 58, hors_ligne: 7, signalement: 5, avis: 3, avis_demande: 2, memoire_videe: 1 },
+      par_jour: pj,
+      par_heure: hs.map(function (h, i) { return { heure: h, n: ns[i] }; }),
+      par_version: [{ version: "1.0.39", premier: new Date().toISOString(), ouvertures: 41, lectures: 118 },
+        { version: "1.0.38", premier: new Date(Date.now() - 5 * 864e5).toISOString(), ouvertures: 271, lectures: 630 }],
+      top_avancees: [
+        { titre: "Mars : de l’eau liquide détectée sous la calotte sud", famille: "space", importance: 4, source: "ESA", lectures: 41, articles: 15, favoris: 9, partages: 3, score: 104 },
+        { titre: "Un test sanguin repère 6 cancers avant les symptômes", famille: "health", importance: 3, source: "Nature", lectures: 36, articles: 12, favoris: 6, partages: 2, score: 84 },
+        { titre: "Une puce photonique divise par 10 la consommation des IA", famille: "computing", importance: 3, source: "IEEE Spectrum", lectures: 28, articles: 9, favoris: 4, partages: 1, masquees: 1, score: 58 },
+        { titre: "Un aimant sans terres rares aussi puissant que le néodyme", famille: "physics", importance: 2, source: "Phys.org", lectures: 22, articles: 5, favoris: 2, partages: 0, signalements: 1, score: 38 }],
+      familles: [{ fil: "science", famille: "space", fiches: 9, lectures: 160, favoris: 18 }, { fil: "science", famille: "health", fiches: 11, lectures: 140, favoris: 12 },
+        { fil: "tech", famille: "ai_software", fiches: 12, lectures: 110, favoris: 7 }, { fil: "science", famille: "earth", fiches: 3, lectures: 44, favoris: 5 },
+        { fil: "tech", famille: "gaming", fiches: 6, lectures: 21, favoris: 1 }],
+      importance: [{ importance: 1, fiches: 22, lectures: 120, favoris: 4 }, { importance: 2, fiches: 34, lectures: 330, favoris: 26 },
+        { importance: 3, fiches: 12, lectures: 230, favoris: 24 }, { importance: 4, fiches: 2, lectures: 68, favoris: 10 }],
+      sources: [{ source: "Nature", fiches: 6, lectures: 96, favoris: 11 }, { source: "ESA", fiches: 3, lectures: 70, favoris: 10 },
+        { source: "IEEE Spectrum", fiches: 5, lectures: 52, favoris: 4 }, { source: "TechCrunch", fiches: 8, lectures: 31, favoris: 1, masquee: 2 }],
+      origine_lectures: { fil: 590, glisse: 158 },
+      signalements: [{ motif: "Mauvaise note", n: 3 }, { motif: "Doublon", n: 2 }],
+      langues: [{ langue: "fr", n: 290 }, { langue: "en", n: 22 }],
+      formules_notif: [{ formule: "essentiel", n: 9 }, { formule: "courant", n: 4 }] };
+  }
+
   function charger(jours) {
-    document.getElementById("etat").textContent = "Chargement…";
+    var etat = document.getElementById("etat"), band = document.getElementById("bandeau");
+    if (DEMO) {
+      band.hidden = false; band.className = "bandeau alerte";
+      band.textContent = "Aperçu avec des données d’EXEMPLE : les vrais chiffres s’affichent sur la page publiée par GitHub.";
+      etat.textContent = "Exemple";
+      afficher(exemple(jours)); return;
+    }
+    etat.textContent = "Chargement…";
     fetch(URL_SB + "/rest/v1/rpc/stats_resume", { method: "POST",
       headers: { apikey: CLE, Authorization: "Bearer " + CLE, "Content-Type": "application/json" },
       body: JSON.stringify({ jours: jours }) })
-    .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
-    .then(function (d) {
-      document.getElementById("etat").textContent = "Mis à jour : " + new Date().toLocaleString("fr-FR");
-      var t = document.getElementById("tuiles"); t.textContent = "";
-      TUILES.forEach(function (x) {
-        var c = el("div", "tuile"); c.appendChild(el("div", "n", String((d.totaux || {})[x[0]] || 0)));
-        c.appendChild(el("div", "l", x[1])); t.appendChild(c);
+      .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
+      .then(function (d) {
+        etat.textContent = "Mis à jour le " + new Date().toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" });
+        if (!("par_version" in d)) {
+          band.hidden = false; band.className = "bandeau alerte";
+          band.textContent = "Il manque la mise à jour des statistiques dans Supabase : lance le script database/migration_004_stats_v2.sql (SQL Editor). En attendant, certaines parties restent vides.";
+        } else band.hidden = true;
+        afficher(d);
+      })
+      .catch(function (e) {
+        etat.textContent = e === 404
+          ? "La fonction stats_resume n’existe pas : lance les scripts database/migration_003_stats.sql puis migration_004_stats_v2.sql dans Supabase."
+          : "Impossible de charger les statistiques (" + e + "). Vérifie ta connexion et recharge la page.";
       });
-      var j = document.getElementById("jours"); j.textContent = "";
-      var pj = d.par_jour || []; var max = Math.max.apply(null, pj.map(function (x) { return x.ouvertures; }).concat([1]));
-      pj.forEach(function (x) {
-        var col = el("div"); col.title = x.jour + " : " + x.ouvertures + " ouvertures, " + x.lectures + " lectures";
-        var s = el("span"); s.style.height = (100 * x.ouvertures / max) + "%"; col.appendChild(s); j.appendChild(col);
-      });
-      var lg = document.getElementById("legende"); lg.textContent = "";
-      if (pj.length) { lg.appendChild(el("span", "", pj[0].jour)); lg.appendChild(el("span", "", "max " + max + " / jour")); lg.appendChild(el("span", "", pj[pj.length - 1].jour)); }
-      else lg.appendChild(el("span", "vide", "Pas encore de données."));
-      barres("lf", d.lectures_famille, function (l) { return FAM[l.famille] || l.famille; }, n);
-      barres("lt", d.lectures_theme, function (l) { return l.theme; }, n);
-      barres("top", d.top_avancees, function (l) { return "★" + l.importance + " · " + l.titre; }, n);
-      barres("li", d.lectures_importance, function (l) { return "★".repeat(l.importance) + " " + MOTS[l.importance]; }, n);
-      barres("ff", d.favoris_famille, function (l) { return FAM[l.famille] || l.famille; }, n);
-      barres("mf", d.masquees_famille, function (l) { return FAM[l.famille] || l.famille; }, n);
-      barres("sm", d.sources_masquees, function (l) { return l.source; }, n);
-      barres("la", d.langues, function (l) { return l.langue; }, n);
-      barres("fn", d.formules_notif, function (l) { return FORMULES[l.formule] || l.formule; }, n);
-    })
-    .catch(function (e) {
-      document.getElementById("etat").textContent = e === 404
-        ? "La fonction stats_resume n’existe pas encore : lance le script database/migration_003_stats.sql dans Supabase."
-        : "Impossible de charger les statistiques (" + e + ").";
-    });
   }
   var boutons = document.querySelectorAll(".periodes button");
   boutons.forEach(function (b) {
@@ -137,7 +381,7 @@
       b.setAttribute("aria-pressed", "true"); charger(+b.dataset.j);
     });
   });
-  charger(30);
+  charger(7);
 })();
 </script>
 </body>

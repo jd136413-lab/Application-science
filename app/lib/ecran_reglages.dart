@@ -10,6 +10,7 @@ import 'memoire.dart';
 import 'premier_lancement.dart';
 import 'reglages.dart';
 import 'retours.dart';
+import 'stats.dart';
 import 'traducteur.dart';
 import 'widgets.dart';
 
@@ -369,6 +370,7 @@ class _BlocStockageState extends State<_BlocStockage> {
 
   Future<void> _vider() async {
     await viderMemoire();
+    stat('memoire_videe');
     if (!mounted) return;
     setState(() => _tailles = _mesurer());
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Mémoire vidée'))));

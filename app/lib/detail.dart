@@ -41,7 +41,7 @@ class _EcranDetailFilState extends State<EcranDetailFil> {
 
   void _changement(int i) {
     final a = widget.liste[i];
-    stat('lecture', a: a);
+    stat('lecture', a: a, valeur: 'glisse'); // avancée ouverte en glissant depuis la précédente
     etat.marquerLue(a.id);
     etat.apprendre(a);
   }
