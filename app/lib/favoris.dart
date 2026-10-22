@@ -49,7 +49,7 @@ class EcranFavoris extends StatelessWidget {
                     itemBuilder: (context, i) => CarteAvancee(
                       avancee: liste[i],
                       onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => EcranDetail(avancee: liste[i])),
+                        MaterialPageRoute(builder: (_) => EcranDetailFil(liste: List.of(liste), depart: i)),
                       ),
                     ),
                   ),

@@ -18,7 +18,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'navigation.dart';
 import 'notifications.dart';
-import 'premier_lancement.dart';
+import 'presentation.dart';
 import 'reglages.dart';
 import 'stats.dart';
 import 'widgets.dart';
@@ -145,7 +145,7 @@ class _AppNovaStemState extends State<AppNovaStem> {
             // La clé reconstruit tous les écrans quand on change de langue.
             return KeyedSubtree(
               key: ValueKey(etat.langue),
-              child: etat.premierLancementFait ? const Coquille() : const EcranDomaines(),
+              child: etat.premierLancementFait ? const Coquille() : const PremierLancement(),
             );
           },
         ),

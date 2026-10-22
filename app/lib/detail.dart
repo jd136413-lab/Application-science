@@ -12,9 +12,54 @@ import 'texte_article.dart';
 import 'traducteur.dart';
 import 'widgets.dart';
 
+/// Détail d'une avancée, en glissant à gauche / à droite pour passer à la
+/// suivante / précédente du même fil (dans l'ordre affiché dans la liste).
+class EcranDetailFil extends StatefulWidget {
+  final List<Avancee> liste;
+  final int depart;
+  const EcranDetailFil({super.key, required this.liste, required this.depart});
+
+  @override
+  State<EcranDetailFil> createState() => _EcranDetailFilState();
+}
+
+class _EcranDetailFilState extends State<EcranDetailFil> {
+  late final PageController _pages = PageController(initialPage: widget.depart);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => etat.apprendre(widget.liste[widget.depart]));
+  }
+
+  @override
+  void dispose() {
+    _pages.dispose();
+    super.dispose();
+  }
+
+  void _changement(int i) {
+    final a = widget.liste[i];
+    stat('lecture', a: a);
+    etat.marquerLue(a.id);
+    etat.apprendre(a);
+  }
+
+  @override
+  Widget build(BuildContext context) => PageView.builder(
+        controller: _pages,
+        itemCount: widget.liste.length,
+        onPageChanged: _changement,
+        itemBuilder: (context, i) => EcranDetail(avancee: widget.liste[i], apprendreAuto: false),
+      );
+}
+
 class EcranDetail extends StatelessWidget {
   final Avancee avancee;
-  const EcranDetail({super.key, required this.avancee});
+
+  /// false quand l'écran est une page de [EcranDetailFil] (qui s'en charge).
+  final bool apprendreAuto;
+  const EcranDetail({super.key, required this.avancee, this.apprendreAuto = true});
 
   Future<void> _ouvrir(BuildContext context) async {
     final uri = Uri.tryParse(avancee.lien);
@@ -29,7 +74,7 @@ class EcranDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Les « mots à connaître » de l'avancée ouverte rejoignent l'onglet Vocabulaire.
-    WidgetsBinding.instance.addPostFrameCallback((_) => etat.apprendre(avancee));
+    if (apprendreAuto) WidgetsBinding.instance.addPostFrameCallback((_) => etat.apprendre(avancee));
     final p = palette(context);
     final f = familleDe(avancee.famille);
     final encre = estSombre(context) ? f.encreSombre : f.encreClaire;

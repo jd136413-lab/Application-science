@@ -4696,3 +4696,235 @@ ja ほか {n} 件を表示
 ko {n}개 더 보기
 id Tampilkan {n} lagi
 vi Hiện thêm {n}
+
+# Écran de présentation (premier lancement, maquette 39 · C1)
+@ Le monde avance.
+en The world is moving forward.
+es El mundo avanza.
+pt O mundo avança.
+de Die Welt bewegt sich.
+it Il mondo avanza.
+nl De wereld gaat vooruit.
+pl Świat idzie naprzód.
+ru Мир движется вперёд.
+uk Світ рухається вперед.
+tr Dünya ilerliyor.
+ar العالم يتقدّم.
+hi दुनिया आगे बढ़ रही है।
+bn পৃথিবী এগিয়ে চলেছে।
+ur دنیا آگے بڑھ رہی ہے۔
+zh 世界在前进。
+ja 世界は進んでいる。
+ko 세상은 나아갑니다.
+id Dunia terus bergerak.
+vi Thế giới đang tiến lên.
+
+@ Suivez-le.
+en Keep up.
+es Síguelo.
+pt Acompanhe.
+de Bleiben Sie dran.
+it Seguilo.
+nl Volg het.
+pl Bądź na bieżąco.
+ru Следите за ним.
+uk Стежте за ним.
+tr Takip edin.
+ar تابِعه.
+hi साथ चलिए।
+bn সঙ্গে থাকুন।
+ur ساتھ چلیں۔
+zh 紧跟它。
+ja 追いかけよう。
+ko 함께 따라가세요.
+id Ikuti.
+vi Hãy theo kịp.
+
+@ Les vraies découvertes scientifiques et technologiques, expliquées simplement et notées selon leur importance.
+en Real scientific and technological breakthroughs, explained simply and rated by importance.
+es Los verdaderos descubrimientos científicos y tecnológicos, explicados con sencillez y puntuados según su importancia.
+pt As verdadeiras descobertas científicas e tecnológicas, explicadas de forma simples e classificadas pela importância.
+de Echte Entdeckungen aus Wissenschaft und Technik, einfach erklärt und nach Bedeutung bewertet.
+it Le vere scoperte scientifiche e tecnologiche, spiegate in modo semplice e valutate per importanza.
+nl Echte wetenschappelijke en technologische ontdekkingen, eenvoudig uitgelegd en beoordeeld op belang.
+pl Prawdziwe odkrycia naukowe i technologiczne, prosto wyjaśnione i ocenione według ważności.
+ru Настоящие научные и технологические открытия, простым языком и с оценкой важности.
+uk Справжні наукові та технологічні відкриття, простими словами й з оцінкою важливості.
+tr Gerçek bilimsel ve teknolojik keşifler, sade bir dille anlatılır ve önemine göre puanlanır.
+ar الاكتشافات العلمية والتقنية الحقيقية، مشروحة ببساطة ومقيّمة حسب أهميتها.
+hi असली वैज्ञानिक और तकनीकी खोजें, आसान शब्दों में और महत्व के अनुसार रेटिंग के साथ।
+bn আসল বৈজ্ঞানিক ও প্রযুক্তিগত আবিষ্কার, সহজ ভাষায় ব্যাখ্যা করা ও গুরুত্ব অনুযায়ী রেটিং দেওয়া।
+ur حقیقی سائنسی اور تکنیکی دریافتیں، آسان الفاظ میں اور اہمیت کے مطابق درجہ بندی کے ساتھ۔
+zh 真正的科学与技术突破，简单解读，并按重要性评分。
+ja 本物の科学・技術の進歩を、わかりやすく解説し、重要度で評価します。
+ko 진짜 과학·기술 발견을 쉽게 설명하고 중요도에 따라 평가합니다.
+id Penemuan ilmiah dan teknologi yang sebenarnya, dijelaskan dengan sederhana dan dinilai menurut kepentingannya.
+vi Những khám phá khoa học và công nghệ thực sự, giải thích đơn giản và chấm điểm theo tầm quan trọng.
+
+@ historique, quelques fois par an
+en historic, a few times a year
+es histórico, pocas veces al año
+pt histórico, poucas vezes por ano
+de historisch, wenige Male im Jahr
+it storico, poche volte all’anno
+nl historisch, een paar keer per jaar
+pl historyczne, kilka razy w roku
+ru историческое, несколько раз в год
+uk історичне, кілька разів на рік
+tr tarihî, yılda birkaç kez
+ar تاريخي، بضع مرات في السنة
+hi ऐतिहासिक, साल में कुछ ही बार
+bn ঐতিহাসিক, বছরে কয়েকবার
+ur تاریخی، سال میں چند بار
+zh 历史性的，一年仅几次
+ja 歴史的。年に数回
+ko 역사적, 1년에 몇 번
+id bersejarah, beberapa kali setahun
+vi mang tính lịch sử, vài lần mỗi năm
+
+@ une première, qui touchera beaucoup de monde
+en a first, which will affect many people
+es una primicia que afectará a mucha gente
+pt uma estreia, que vai afetar muita gente
+de eine Premiere, die viele Menschen betreffen wird
+it una prima volta, che riguarderà molte persone
+nl een primeur, die veel mensen zal raken
+pl pierwszy taki przypadek, dotyczący wielu ludzi
+ru впервые, и коснётся многих людей
+uk уперше, і торкнеться багатьох людей
+tr bir ilk, pek çok kişiyi etkileyecek
+ar سابقة، ستمسّ كثيرًا من الناس
+hi पहली बार, जो बहुत लोगों को प्रभावित करेगा
+bn প্রথমবার, যা অনেক মানুষকে প্রভাবিত করবে
+ur پہلی بار، جو بہت سے لوگوں کو متاثر کرے گا
+zh 首创，将影响许多人
+ja 世界初。多くの人に影響する
+ko 최초이며 많은 사람에게 영향을 줄 것
+id yang pertama, akan berdampak pada banyak orang
+vi lần đầu tiên, sẽ ảnh hưởng đến nhiều người
+
+@ change la donne dans son domaine
+en a game changer in its field
+es cambia las reglas en su campo
+pt muda o jogo na sua área
+de verändert sein Fachgebiet
+it cambia le carte in tavola nel suo campo
+nl verandert de zaak binnen het vakgebied
+pl zmienia reguły gry w swojej dziedzinie
+ru меняет правила игры в своей области
+uk змінює правила гри у своїй галузі
+tr kendi alanında oyunun kurallarını değiştirir
+ar يغيّر قواعد اللعبة في مجاله
+hi अपने क्षेत्र में बड़ा बदलाव
+bn নিজের ক্ষেত্রে বড় পরিবর্তন আনে
+ur اپنے شعبے میں بڑی تبدیلی
+zh 改变其领域的格局
+ja その分野の常識を変える
+ko 해당 분야의 판도를 바꿈
+id mengubah permainan di bidangnya
+vi thay đổi cuộc chơi trong lĩnh vực của nó
+
+@ solide et remarqué par les spécialistes
+en solid and noticed by experts
+es sólido y destacado por los especialistas
+pt sólido e notado pelos especialistas
+de solide und von Fachleuten beachtet
+it solido e notato dagli specialisti
+nl degelijk en opgemerkt door specialisten
+pl solidne i zauważone przez specjalistów
+ru солидно и замечено специалистами
+uk солідно й помічено фахівцями
+tr sağlam ve uzmanların dikkatini çeken
+ar متين ولفت انتباه المختصين
+hi ठोस और विशेषज्ञों द्वारा सराहा गया
+bn দৃঢ় এবং বিশেষজ্ঞদের নজরে পড়েছে
+ur ٹھوس اور ماہرین کی توجہ حاصل کرنے والا
+zh 扎实，受到专家关注
+ja 確かな成果で、専門家も注目
+ko 탄탄하고 전문가들의 주목을 받음
+id solid dan diperhatikan para ahli
+vi vững chắc và được giới chuyên môn chú ý
+
+@ un pas de plus, utile à connaître
+en one more step, worth knowing
+es un paso más, útil de conocer
+pt mais um passo, útil de saber
+de ein weiterer Schritt, gut zu wissen
+it un passo in più, utile da conoscere
+nl een stap verder, handig om te weten
+pl kolejny krok, warto wiedzieć
+ru ещё один шаг, полезно знать
+uk ще один крок, корисно знати
+tr bir adım daha, bilmeye değer
+ar خطوة إضافية، تستحق المعرفة
+hi एक और कदम, जानने लायक
+bn আরও এক ধাপ, জানা দরকারি
+ur ایک قدم اور، جاننے کے لائق
+zh 又进一步，值得了解
+ja 一歩前進。知っておくと役立つ
+ko 한 걸음 더, 알아 두면 좋음
+id satu langkah lagi, berguna untuk diketahui
+vi thêm một bước, đáng để biết
+
+@ Des nouvelles avancées sont ajoutées 2 fois par jour
+en New advances are added twice a day
+es Se añaden nuevos avances 2 veces al día
+pt Novos avanços são adicionados 2 vezes por dia
+de Zweimal täglich kommen neue Fortschritte hinzu
+it Nuovi progressi vengono aggiunti 2 volte al giorno
+nl Twee keer per dag komen er nieuwe doorbraken bij
+pl Nowe osiągnięcia są dodawane 2 razy dziennie
+ru Новые открытия добавляются 2 раза в день
+uk Нові відкриття додаються 2 рази на день
+tr Günde 2 kez yeni gelişmeler eklenir
+ar تُضاف إنجازات جديدة مرتين يوميًا
+hi दिन में 2 बार नई खोजें जोड़ी जाती हैं
+bn দিনে ২ বার নতুন অগ্রগতি যোগ করা হয়
+ur دن میں 2 بار نئی پیش رفت شامل کی جاتی ہیں
+zh 每天更新 2 次新进展
+ja 新しい成果は1日2回追加されます
+ko 새로운 발견이 하루 2번 추가됩니다
+id Kemajuan baru ditambahkan 2 kali sehari
+vi Tiến bộ mới được thêm 2 lần mỗi ngày
+
+@ Sélection et résumés automatisés · l’article source fait foi.
+en Automated selection and summaries · the source article prevails.
+es Selección y resúmenes automatizados · el artículo original prevalece.
+pt Seleção e resumos automatizados · o artigo original prevalece.
+de Automatische Auswahl und Zusammenfassungen · maßgeblich ist der Originalartikel.
+it Selezione e riassunti automatici · fa fede l’articolo originale.
+nl Automatische selectie en samenvattingen · het bronartikel is leidend.
+pl Automatyczny wybór i streszczenia · rozstrzyga artykuł źródłowy.
+ru Автоматический отбор и пересказ · приоритет за исходной статьёй.
+uk Автоматичний відбір і стислий виклад · пріоритет за першоджерелом.
+tr Otomatik seçim ve özetler · esas olan kaynak makaledir.
+ar اختيار وملخصات آلية · المرجع هو المقال الأصلي.
+hi स्वचालित चयन और सारांश · मूल लेख ही मान्य है।
+bn স্বয়ংক্রিয় নির্বাচন ও সারাংশ · মূল নিবন্ধই চূড়ান্ত।
+ur خودکار انتخاب اور خلاصے · اصل مضمون ہی معتبر ہے۔
+zh 自动筛选与摘要 · 以原文为准。
+ja 自動で選定・要約 · 元記事が正となります。
+ko 자동 선별 및 요약 · 원문 기사가 우선합니다.
+id Seleksi dan ringkasan otomatis · artikel sumber yang berlaku.
+vi Tuyển chọn và tóm tắt tự động · bài gốc là căn cứ.
+
+@ Choisir mes domaines
+en Choose my topics
+es Elegir mis temas
+pt Escolher meus temas
+de Meine Themen wählen
+it Scegli i miei ambiti
+nl Mijn onderwerpen kiezen
+pl Wybierz moje dziedziny
+ru Выбрать мои темы
+uk Обрати мої теми
+tr Alanlarımı seç
+ar اختر مجالاتي
+hi मेरे विषय चुनें
+bn আমার বিষয় বেছে নিন
+ur میرے موضوعات منتخب کریں
+zh 选择我的领域
+ja 分野を選ぶ
+ko 관심 분야 선택
+id Pilih topik saya
+vi Chọn lĩnh vực của tôi

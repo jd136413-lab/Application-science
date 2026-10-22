@@ -266,7 +266,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
                       child: CarteBalayable(
                         avancee: a,
                         onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)),
+                          MaterialPageRoute(builder: (_) => EcranDetailFil(liste: List.of(liste), depart: liste.indexOf(a))),
                         ),
                       ),
                     );
