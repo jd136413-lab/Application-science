@@ -254,6 +254,39 @@ jobs:
         with:
           path: app/build/web
 
+      # Envoi automatique sur Google Play, canal « Tests internes » (22/10/2026).
+      # Compte de service : celui de Firebase (secret FIREBASE_SERVICE_ACCOUNT),
+      # autorisé dans la Play Console à « Déployer les applications sur des
+      # canaux de test » seulement : jamais de publication en production.
+      - name: Notes de version (Google Play)
+        if: ${{ github.event_name == 'push' || inputs.google_play }}
+        env:
+          MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          mkdir -p build/notes
+          texte=$(printf '%s' "${MESSAGE:-Mise à jour de NovaSTEM}" | head -n 1 | sed 's/\[skip ci\]//' | cut -c1-480)
+          printf '%s\n' "$texte" > build/notes/whatsnew-fr-FR
+      - name: Envoyer sur Google Play (tests internes)
+        id: envoi_play
+        if: ${{ github.event_name == 'push' || inputs.google_play }}
+        continue-on-error: true
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          packageName: fr.novum.novum
+          releaseFiles: app/build/novum-${{ github.run_number }}.aab
+          track: internal
+          status: completed
+          whatsNewDirectory: app/build/notes
+      - name: Résultat de l'envoi Google Play
+        if: ${{ steps.envoi_play.outcome != '' && steps.envoi_play.outcome != 'skipped' }}
+        run: |
+          if [ "${{ steps.envoi_play.outcome }}" = "success" ]; then
+            echo "::notice title=Google Play::Version ${{ github.run_number }} envoyée en tests internes (mise à jour sur le téléphone dans quelques minutes)"
+          else
+            echo "::error title=Google Play::Envoi refusé — voir l'étape « Envoyer sur Google Play » (autorisation pas encore active ? réessayer plus tard)"
+          fi
+
   publier-web:
     needs: compiler
     runs-on: ubuntu-latest
