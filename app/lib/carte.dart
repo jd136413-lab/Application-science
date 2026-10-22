@@ -31,21 +31,29 @@ class CarteAvancee extends StatelessWidget {
     final lue = etat.estLue(avancee.id);
     final nouvelle = etat.estNouvelle(avancee);
     final rupture = avancee.importance == 5;
+    final majeur = avancee.importance == 4;
     final sombre = estSombre(context);
     final texte = lue ? p.texteDiscret : p.texte;
-    // Carte « Rupture » (5 étoiles) : fond doré léger + lueur (maquette 22, version 2).
+    // Cartes mises en valeur : fond teinté léger + bordure + lueur (maquette 22, version 2).
+    // « Rupture » (5 étoiles) en doré ; « Majeur » (4 étoiles) en cuivre (maquette 41, choix 6).
+    BoxDecoration enValeur(Color fondClair, Color fondSombre, Color bordClair, Color bordSombre, Color lueur) =>
+        BoxDecoration(
+          borderRadius: BorderRadius.circular(arrondiCarte),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: const [0, 0.7],
+            colors: [sombre ? fondSombre : fondClair, p.carte],
+          ),
+          border: Border.all(color: sombre ? bordSombre : bordClair, width: 1.5),
+          boxShadow: [BoxShadow(color: lueur.withValues(alpha: 0.30), blurRadius: 22, offset: const Offset(0, 6))],
+        );
     final decoration = rupture
-        ? BoxDecoration(
-            borderRadius: BorderRadius.circular(arrondiCarte),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              stops: const [0, 0.7],
-              colors: [sombre ? const Color(0xFF3A3012) : const Color(0xFFFFF6D6), p.carte],
-            ),
-            border: Border.all(color: sombre ? const Color(0xFF6B5A1A) : const Color(0xFFF2D27A), width: 1.5),
-            boxShadow: [BoxShadow(color: couleurEtoiles.withValues(alpha: 0.30), blurRadius: 22, offset: const Offset(0, 6))],
-          )
+        ? enValeur(const Color(0xFFFFF6D6), const Color(0xFF3A3012), const Color(0xFFF2D27A), const Color(0xFF6B5A1A),
+            couleurEtoiles)
+        : majeur
+        ? enValeur(const Color(0xFFFDEBDD), const Color(0xFF33231A), const Color(0xFFE9B68F), const Color(0xFF7A4C2C),
+            const Color(0xFFC86E32))
         : BoxDecoration(
             color: lue ? (sombre ? const Color(0xFF15151B) : const Color(0xFFECEBF1)) : p.carte,
             borderRadius: BorderRadius.circular(arrondiCarte),
