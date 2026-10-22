@@ -19,6 +19,7 @@
           --bleu:#7FA6FF; --rose:#FF7FA3; --or:#F2C230; --vert:#4FD1A8; --rouge:#FF7F96; color-scheme: dark; }
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { margin: 0; background: var(--fond); color: var(--texte); font: 15px/1.5 var(--corps); }
 main { max-width: 1120px; margin: 0 auto; padding: 24px max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left)); display: flex; flex-direction: column; gap: 22px; }
 h1, h2 { font-family: var(--titres); margin: 0; letter-spacing: -.02em; text-wrap: balance; }
@@ -68,6 +69,15 @@ svg text { fill: var(--discret); font: 11px var(--corps); }
 .note { font-size: 13px; color: var(--discret); }
 .note a { color: var(--bleu); }
 details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
+.reinit { display: flex; flex-direction: column; gap: 10px; max-width: 560px; }
+.reinit label { font-size: 14px; font-weight: 600; display: flex; flex-direction: column; gap: 6px; }
+.reinit input { font: inherit; padding: 10px 12px; border-radius: 10px; border: 1.5px solid var(--bord); background: var(--fond); color: var(--texte); }
+.reinit input:focus-visible, .bouton:focus-visible { outline: 2px solid var(--bleu); outline-offset: 1px; }
+.boutons { display: flex; flex-wrap: wrap; gap: 8px; }
+.bouton { font: 700 14px var(--corps); border-radius: 12px; padding: 10px 14px; border: 1.5px solid var(--bord); background: var(--carte); color: var(--texte); cursor: pointer; min-height: 42px; }
+.bouton.danger { background: var(--rouge); border-color: var(--rouge); color: #FFF; }
+.message { font-size: 14px; }
+.message.ok { color: var(--vert); } .message.ko { color: var(--rouge); }
 </style>
 </head>
 <body>
@@ -143,6 +153,22 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
   <section>
     <details><summary>Langues et notifications</summary>
       <div class="grille" style="margin-top:12px"><div id="langues"></div><div id="formules"></div></div>
+    </details>
+  </section>
+
+  <section>
+    <details id="zone-reinit"><summary>Réinitialiser les statistiques</summary>
+      <div class="reinit" style="margin-top:12px">
+        <p class="sous">Les compteurs repartent de zéro à partir de maintenant (par exemple au début du test fermé). Rien n’est supprimé : tu pourras annuler. Il faut le code secret choisi dans Supabase.</p>
+        <label for="code">Code secret<input id="code" type="password" autocomplete="current-password"></label>
+        <div class="boutons" id="etape1"><button class="bouton" id="b-reinit" type="button">Réinitialiser…</button>
+          <button class="bouton" id="b-annuler" type="button" hidden>Annuler la réinitialisation</button></div>
+        <div class="boutons" id="etape2" hidden>
+          <p class="message" style="flex-basis:100%"><b>Confirmer ?</b> Tous les compteurs du tableau de bord repartiront de zéro.</p>
+          <button class="bouton danger" id="b-oui" type="button">Oui, remettre à zéro</button>
+          <button class="bouton" id="b-non" type="button">Non, garder</button></div>
+        <p class="message" id="msg-reinit" role="status"></p>
+      </div>
     </details>
   </section>
 
@@ -361,7 +387,9 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
       body: JSON.stringify({ jours: jours }) })
       .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
       .then(function (d) {
-        etat.textContent = "Mis à jour le " + new Date().toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" });
+        etat.textContent = "Mis à jour le " + new Date().toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" }) +
+          (d.depuis ? " · comptés depuis la réinitialisation du " + new Date(d.depuis).toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" }) : "");
+        document.getElementById("b-annuler").hidden = !d.depuis;
         if (!("par_version" in d)) {
           band.hidden = false; band.className = "bandeau alerte";
           band.textContent = "Il manque la mise à jour des statistiques dans Supabase : lance le script database/migration_004_stats_v2.sql (SQL Editor). En attendant, certaines parties restent vides.";
@@ -381,6 +409,43 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
       b.setAttribute("aria-pressed", "true"); charger(+b.dataset.j);
     });
   });
+  // Réinitialisation (protégée par le code secret, réversible)
+  var periode = 7;
+  boutons.forEach(function (b) { b.addEventListener("click", function () { periode = +b.dataset.j; }); });
+  var msg = document.getElementById("msg-reinit"), e1 = document.getElementById("etape1"), e2 = document.getElementById("etape2");
+  function appel(annuler) {
+    var code = document.getElementById("code").value;
+    if (!code) { msg.className = "message ko"; msg.textContent = "Saisis d’abord le code secret."; return; }
+    if (DEMO) { msg.className = "message ok"; msg.textContent = "Exemple : sur la vraie page, les compteurs repartiraient de zéro."; e2.hidden = true; e1.hidden = false; return; }
+    msg.className = "message"; msg.textContent = "Un instant…";
+    fetch(URL_SB + "/rest/v1/rpc/stats_reinitialiser", { method: "POST",
+      headers: { apikey: CLE, Authorization: "Bearer " + CLE, "Content-Type": "application/json" },
+      body: JSON.stringify({ code: code, annuler: annuler }) })
+      .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
+      .then(function (r) {
+        e2.hidden = true; e1.hidden = false;
+        if (r.ok) {
+          document.getElementById("code").value = "";
+          msg.className = "message ok";
+          msg.textContent = annuler ? "Réinitialisation annulée : toutes les statistiques sont de nouveau comptées." : "C’est fait : les compteurs repartent de zéro.";
+          charger(periode);
+        } else {
+          msg.className = "message ko";
+          msg.textContent = r.raison === "pas_de_code"
+            ? "Aucun code secret n’est encore défini dans Supabase."
+            : "Code incorrect. Rien n’a été changé.";
+        }
+      })
+      .catch(function (e) {
+        e2.hidden = true; e1.hidden = false; msg.className = "message ko";
+        msg.textContent = e === 404 ? "La fonction n’existe pas encore : lance le script database/migration_005_stats_reinitialiser.sql dans Supabase."
+          : "Impossible de joindre Supabase (" + e + "). Rien n’a été changé.";
+      });
+  }
+  document.getElementById("b-reinit").addEventListener("click", function () { msg.textContent = ""; e1.hidden = true; e2.hidden = false; document.getElementById("b-oui").focus(); });
+  document.getElementById("b-non").addEventListener("click", function () { e2.hidden = true; e1.hidden = false; msg.textContent = ""; });
+  document.getElementById("b-oui").addEventListener("click", function () { appel(false); });
+  document.getElementById("b-annuler").addEventListener("click", function () { appel(true); });
   charger(7);
 })();
 </script>
