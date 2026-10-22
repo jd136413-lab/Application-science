@@ -40,7 +40,7 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           packageName: fr.novum.novum
           releaseFiles: aab/*.aab
-          track: internal
+          tracks: internal
           status: completed
           whatsNewDirectory: notes
       - run: echo "::notice title=Google Play::Version envoyée en tests internes"

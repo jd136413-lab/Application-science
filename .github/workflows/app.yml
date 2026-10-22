@@ -275,7 +275,7 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           packageName: fr.novum.novum
           releaseFiles: app/build/novum-${{ github.run_number }}.aab
-          track: internal
+          tracks: internal
           status: completed
           whatsNewDirectory: app/build/notes
       - name: Résultat de l'envoi Google Play
