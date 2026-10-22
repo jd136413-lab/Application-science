@@ -1,0 +1,46 @@
+# Envoie sur Google Play (tests internes) le .aab d'une compilation déjà faite,
+# sans recompiler. À lancer à la main : indiquer le numéro de l'exécution
+# « Compiler l'app » (l'identifiant dans l'adresse de la page, …/runs/<id>).
+name: Envoyer une version sur Google Play
+
+on:
+  workflow_dispatch:
+    inputs:
+      execution:
+        description: "Identifiant de l'exécution « Compiler l'app » (…/actions/runs/<identifiant>)"
+        required: true
+      notes:
+        description: "Notes de version (français)"
+        default: "Mise à jour de NovaSTEM"
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  envoyer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: novum-google-play
+          path: aab
+          run-id: ${{ inputs.execution }}
+          github-token: ${{ github.token }}
+      - name: Notes de version
+        env:
+          NOTES: ${{ inputs.notes }}
+        run: |
+          mkdir -p notes
+          printf '%s\n' "$NOTES" | cut -c1-480 > notes/whatsnew-fr-FR
+          ls -la aab
+      - uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          packageName: fr.novum.novum
+          releaseFiles: aab/*.aab
+          track: internal
+          status: completed
+          whatsNewDirectory: notes
+      - run: echo "::notice title=Google Play::Version envoyée en tests internes"
