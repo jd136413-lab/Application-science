@@ -205,7 +205,7 @@ class EcranReglages extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             Center(
-              child: Text(tr(texteVersion),
+              child: Text(tr(texteVersion).replaceFirst('1.0', versionApp),
                   textAlign: TextAlign.center, style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
             ),
           ],

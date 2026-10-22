@@ -210,6 +210,8 @@ const String texteNosSources =
 const String lienConfidentialiteFr = 'https://jd136413-lab.github.io/Application-science/confidentialite.html';
 const String lienConfidentialiteEn = 'https://jd136413-lab.github.io/Application-science/privacy.html';
 const String lienContact = 'https://jd136413-lab.github.io/Application-science/contact.html';
+/// Numéro de version (1.0.<numéro de compilation>), fourni à la compilation.
+const String versionApp = String.fromEnvironment('VERSION', defaultValue: '1.0');
 const String texteVersion = 'NovaSTEM 1.0 · sans compte, vos choix restent sur ce téléphone';
 
 // --------------------------- MISE EN PAGE ------------------------------

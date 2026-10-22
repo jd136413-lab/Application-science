@@ -173,6 +173,7 @@ jobs:
           set -o pipefail;
           flutter build web --release
           --base-href "/${{ github.event.repository.name }}/"
+          --dart-define=VERSION=1.0.${{ github.run_number }}
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           2>&1 | tee -a ../compilation.log
@@ -193,7 +194,8 @@ jobs:
         run: >
           set -o pipefail;
           flutter build apk --release --target-platform android-arm64
-          --build-name=1.0.0 --build-number=${{ github.run_number }}
+          --build-name=1.0.${{ github.run_number }} --build-number=${{ github.run_number }}
+          --dart-define=VERSION=1.0.${{ github.run_number }}
           --dart-define=NOTIFICATIONS=$( [ "$(cat notifications.txt)" = oui ] && echo true || echo false )
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
@@ -217,7 +219,8 @@ jobs:
           set -o pipefail;
           test -f android/app/novum.p12 || { echo "::error title=Google Play::clé de signature absente"; exit 1; };
           flutter build appbundle --release
-          --build-name=1.0.0 --build-number=${{ github.run_number }}
+          --build-name=1.0.${{ github.run_number }} --build-number=${{ github.run_number }}
+          --dart-define=VERSION=1.0.${{ github.run_number }}
           --dart-define=NOTIFICATIONS=$( [ "$(cat notifications.txt)" = oui ] && echo true || echo false )
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
