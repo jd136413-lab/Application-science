@@ -76,7 +76,13 @@ Chaque nouvel écran passe d'abord par une maquette, validée avant d'être cod�
 
 ### 7. Faire vivre le projet
 - **Statistiques sans pister** ★★ (priorité) — Compteurs anonymes : ouvertures de l'app, avancées lues, partages, langues, réglages de notifications les plus choisis. Aucune donnée personnelle, aucun identifiant publicitaire. À annoncer dans la politique de confidentialité. Piste : un simple compteur dans Supabase, ou Firebase Analytics avec les options de confidentialité.
-- **Modèle économique** — À décider plus tard : don volontaire, publicité, abonnement (par exemple avec « Explique-moi »), ou une combinaison. Des pubs imposeraient de mettre à jour la politique de confidentialité et les déclarations Google Play.
+- **Modèle économique** — Plan retenu par Maxime le 23/10 (maquettes 44-45) :
+  1. **Pas de pub pendant le test fermé ni au tout début** (notes et bouche-à-oreille d'abord) ; ne plus promettre « sans pub » (retiré de la fiche Google Play le 23/10).
+  2. **Pubs natives dans le fil** (une annonce bien signalée toutes les ~8 cartes, style des cartes) vers **~1 000 utilisateurs réguliers**, avec l'option **« Retirer les annonces » (achat unique, ~3,99 €, montant à fixer)**. Bloquer les catégories jeux d'argent, rencontres, politique, santé « miracle ». Consentement RGPD (UMP d'AdMob), « Contient des annonces » et Sécurité des données dans Play Console, politique de confidentialité, statut micro-entreprise.
+  3. Piste « membres fondateurs » : version sans pub offerte à ceux qui avaient l'app avant l'arrivée des pubs.
+  4. **Plus tard : abonnement** avec de vrais services en plus (archives, audio, recherche, « Explique-moi »…), qui inclut l'absence de pub. Les acheteurs de « Retirer les annonces » gardent ce droit à vie.
+  - Pas besoin de compte NovaSTEM pour retrouver l'achat sur un autre téléphone Android : il est lié au compte Google (bouton « Restaurer mes achats »). Un compte ne servira que pour Android ↔ iPhone ↔ web, ou pour synchroniser favoris et réglages.
+  - Ordres de grandeur (prudents) : ≈ 0,12 € par utilisateur régulier et par mois avec les pubs (≈ 120 €/mois pour 1 000 utilisateurs réguliers).
 - **Connexion avec un compte Google (facultative)** ★★★ — Idée de Maxime (20/10). Rester utilisable **sans compte** ; la connexion servirait à retrouver favoris et réglages sur un autre téléphone, et à partager un abonnement entre Android, iPhone et web. Piste : Supabase Auth avec « Se connecter avec Google » (et « Se connecter avec Apple », exigé par Apple si une connexion Google est proposée sur iPhone). Un abonnement Google Play n'a pas besoin de compte dans l'app. À faire en même temps que la monétisation. Impose de mettre à jour : Play Console « Accès à l'application » (expliquer aux examinateurs comment se connecter), « Sécurité des données » (e-mail, identifiant), politique de confidentialité, et une option « Supprimer mon compte » dans l'app (obligatoire pour Google et Apple).
 
 ---
