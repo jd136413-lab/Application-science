@@ -11,6 +11,9 @@
 # (Dans GitHub, le champ « Nombre d'articles » du bouton Run workflow
 #  remplace cette valeur.)
 NOMBRE_ARTICLES_PAR_DEFAUT = 5
+# Part des places réservée au fil Technologies (5 articles → 3 Sciences + 2 Technologies).
+# Si un fil n'a pas assez d'avancées, ses places restantes reviennent à l'autre.
+PART_TECH = 0.4
 
 # Plafond de sécurité : même si on tape 500 par erreur, on s'arrête là.
 PLAFOND_ARTICLES = 30
@@ -288,7 +291,7 @@ def lire_sources(urls_connues: set[str], feed: str) -> tuple[list[dict], list[st
                 if src.get("photo"):
                     image = image_libre(e)
                     credit = src["photo"] if image else ""
-                articles.append({"source_name": src["name"], "url": lien,
+                articles.append({"source_name": src["name"], "url": lien, "fil_source": feed,
                                  "title": titre, "text": texte or titre,
                                  "published_at": d, "image_url": image,
                                  "image_credit": credit, "photo": src.get("photo"),
@@ -563,11 +566,14 @@ BAREME_COURT = """Barème (le même que pour les fiches ; sois TRÈS exigeant, e
 5 « Rupture » : exceptionnel (traitement validé chez l'humain d'une maladie incurable, moment historique comme le premier iPhone).
 Preuves : essai chez l'humain > animal > cellules > simulation. Méfie-toi des superlatifs."""
 
+EXCEPTION_TECH = """Exception pour les technologies : un produit, un véhicule ou un engin RÉELLEMENT montré en fonctionnement, lancé ou mis en service par une entreprise (voiture dévoilée et conduite, fusée ou engin qui vole, essai en vol ou récupération de fusée réussis, smartphone ou appareil présenté et mis en vente) EST une avancée technologique, même si l'information vient de l'entreprise elle-même : note 1 ou 2, davantage seulement pour une vraie première. Restent écartés : rumeurs, fuites, promesses sans démonstration, simples dates de sortie ou de lancement annoncées."""
+
 CONSIGNE_TRI = """Tu tries des titres d'articles pour une application qui présente les vraies avancées scientifiques et technologiques du moment.
 
 On te donne des titres numérotés (avec la source). Renvoie dans "articles" UNIQUEMENT ceux qui annoncent probablement une VRAIE avancée : découverte, résultat de recherche nouveau, première, record mesurable, mission réussie, produit ou technologie réellement annoncé ou sorti avec des nouveautés mesurables.
 N'inclus PAS : politique, stratégie d'entreprise sans produit, anniversaires, rubriques récurrentes.
 Écarte TOUJOURS (comme le fera ensuite la rédaction) : projet ou mission seulement à venir (un lancement dont les résultats restent à venir n'est PAS une avancée), rumeur ou fuite, promotion ou bon plan, test ou comparatif, guide d'achat, tutoriel, résultats financiers, procès ou régulation (une autorisation réglementaire seule n'est pas une avancée), nomination, partenariat, financement, prix, événement ou salon, vidéo ou article d'explication, synthèse de connaissances déjà établies, rétrospective, portrait, entretien, opinion, sondage, galerie d'images, mise à jour mineure, produit commercial sans innovation technique significative (option, nouvelle gamme, simple amélioration de fiche technique).
+""" + EXCEPTION_TECH + """
 Pour chaque article gardé : "i" (son numéro), "note" de 1 à 5, "sujet" (4 à 10 mots en français qui décrivent précisément LA découverte ou LE produit, pour reconnaître les articles qui parlent de la même chose).
 
 """ + BAREME_COURT + """
@@ -578,9 +584,9 @@ CONSIGNE_REGROUPEMENT = """Tu prépares la sélection d'une application qui pré
 
 On te donne : la liste des sujets DÉJÀ PUBLIÉS ces derniers jours, puis des articles candidats numérotés (note provisoire, sujet, titre, source, début du texte).
 1. Regroupe les articles qui parlent du MÊME sujet (même découverte, même étude, même produit), même formulés autrement.
-2. Écarte les groupes dont le sujet est déjà publié, et ceux qui ne sont pas une vraie avancée.    (Pas une vraie avancée : projet ou mission seulement à venir (un lancement dont les résultats restent à venir n'est PAS une avancée), rumeur ou fuite, promotion ou bon plan, test ou comparatif, guide d'achat, tutoriel, résultats financiers, procès ou régulation (une autorisation réglementaire seule n'est pas une avancée), nomination, partenariat, financement, prix, événement ou salon, vidéo ou article d'explication, synthèse de connaissances déjà établies, rétrospective, portrait, entretien, opinion, sondage, galerie d'images, mise à jour mineure, produit commercial sans innovation technique significative (option, nouvelle gamme, simple amélioration de fiche technique).)
+2. Écarte les groupes dont le sujet est déjà publié, et ceux qui ne sont pas une vraie avancée.    (Pas une vraie avancée : projet ou mission seulement à venir (un lancement dont les résultats restent à venir n'est PAS une avancée), rumeur ou fuite, promotion ou bon plan, test ou comparatif, guide d'achat, tutoriel, résultats financiers, procès ou régulation (une autorisation réglementaire seule n'est pas une avancée), nomination, partenariat, financement, prix, événement ou salon, vidéo ou article d'explication, synthèse de connaissances déjà établies, rétrospective, portrait, entretien, opinion, sondage, galerie d'images, mise à jour mineure, produit commercial sans innovation technique significative (option, nouvelle gamme, simple amélioration de fiche technique).) """ + EXCEPTION_TECH + """
 3. Pour chaque groupe : "articles" (tous ses numéros), "choisi" (le meilleur article à lire : de préférence la source d'origine — l'université, le laboratoire, l'agence, la revue ou l'entreprise qui annonce son propre résultat —, sinon le plus complet), "note" de 1 à 5. Un sujet repris par plusieurs sources indépendantes est probablement plus important : tiens-en compte, sans dépasser ce que justifie l'avancée elle-même.
-4. Classe les groupes du plus important au moins important. Garde au plus 25 groupes (les plus importants).
+4. Classe les groupes du plus important au moins important. Garde au plus {k} groupes (les plus importants).
 
 """ + BAREME_COURT
 
@@ -644,8 +650,12 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
         elif m[0] > 0:                       # déjà jugé prometteur : on le garde
             notes[i] = (m[0], m[1])
     STATS["deja_tries"] = len(pool) - len(a_trier)
-    for debut in range(0, len(a_trier), PAQUET_PRESELECTION):
-        paquet = a_trier[debut:debut + PAQUET_PRESELECTION]
+    # Paquets séparés par fil (les titres tech ne sont pas comparés aux études scientifiques)
+    paquets = []
+    for fil in ("science", "tech"):
+        du_fil = [i for i in a_trier if pool[i].get("fil_source", "science") == fil]
+        paquets += [du_fil[d:d + PAQUET_PRESELECTION] for d in range(0, len(du_fil), PAQUET_PRESELECTION)]
+    for paquet in paquets:
         lignes = [f"{i}. {pool[i]['title'][:150]} [{pool[i]['source_name']}]" for i in paquet]
         try:
             rep = _appel_json(client, modele_id, CONSIGNE_TRI, "\n".join(lignes), SCHEMA_TRI, conso)
@@ -668,46 +678,57 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
     if not notes:
         log("⚠ Présélection vide : ordre habituel.")
         return candidats, conso
-    liste = sorted(notes, key=lambda i: -notes[i][0])[:100]
+    # 100 meilleurs articles : 60 places pour les Sciences, 40 pour les Technologies
+    par_fil = {f: sorted((i for i in notes if pool[i].get("fil_source", "science") == f),
+                         key=lambda i: -notes[i][0]) for f in ("science", "tech")}
+    liste = par_fil["science"][:60] + par_fil["tech"][:40]
     STATS["tries"] = len(notes)
-    # 2) Regroupement par sujet (+ sujets déjà publiés)
-    lignes = []
-    for k, i in enumerate(liste):
-        a = pool[i]
-        debut_txt = " ".join(a["text"].split()[:22])
-        lignes.append(f"{k}. [{notes[i][0]}] {notes[i][1]} — {a['title'][:120]} [{a['source_name']}] — {debut_txt}")
-    contenu = ("Déjà publié ces derniers jours :\n"
-               + ("\n".join(f"- {t.split(' — ')[0]}" for t in deja[:150]) or "(rien)")
-               + "\n\nArticles candidats :\n" + "\n".join(lignes))
+    # 2) Regroupement par sujet (+ sujets déjà publiés), un appel par fil
+    deja_txt = "\n".join(f"- {t.split(' — ')[0]}" for t in deja[:150]) or "(rien)"
     choisis = []
+    nb_groupes = 0
     try:
-        rep = _appel_json(client, modele_id, CONSIGNE_REGROUPEMENT, contenu, SCHEMA_REGROUPEMENT, conso, 16000)
-        if not rep.get("groupes"):
-            raise ValueError("réponse vide ou coupée")
-        groupes = []
-        for g in rep.get("groupes", []):
-            membres = [k for k in g.get("articles", []) if isinstance(k, int) and 0 <= k < len(liste)]
-            ch = g.get("choisi")
-            if not isinstance(ch, int) or not 0 <= ch < len(liste):
-                ch = membres[0] if membres else None
-            if ch is None:
+        for fil, k_max in (("science", 15), ("tech", 10)):
+            sous = [i for i in liste if pool[i].get("fil_source", "science") == fil]
+            if not sous:
                 continue
-            if ch not in membres:
-                membres.append(ch)
-            groupes.append((max(1, min(5, int(g.get("note") or 1))), membres, ch))
-        groupes.sort(key=lambda g: (-g[0], -len(g[1])))
-        vus = set()
-        for note, membres, ch in groupes:
-            a = pool[liste[ch]]
-            if a["url"] in vus:
-                continue
-            vus.add(a["url"])
-            sources = sorted({pool[liste[k]]["source_name"] for k in membres})
-            a["note_pre"], a["nb_sources"] = note, len(sources)
-            a["autres_sources"] = [x for x in sources if x != a["source_name"]]
-            choisis.append(a)
-        STATS["groupes"] = len(groupes)
+            lignes = []
+            for k, i in enumerate(sous):
+                a = pool[i]
+                debut_txt = " ".join(a["text"].split()[:22])
+                lignes.append(f"{k}. [{notes[i][0]}] {notes[i][1]} — {a['title'][:120]} [{a['source_name']}] — {debut_txt}")
+            contenu = "Déjà publié ces derniers jours :\n" + deja_txt + "\n\nArticles candidats :\n" + "\n".join(lignes)
+            consigne = CONSIGNE_REGROUPEMENT.replace("{k}", str(k_max))
+            rep = _appel_json(client, modele_id, consigne, contenu, SCHEMA_REGROUPEMENT, conso, 16000)
+            if not rep.get("groupes"):
+                raise ValueError(f"réponse vide ou coupée ({fil})")
+            groupes = []
+            for g in rep.get("groupes", []):
+                membres = [k for k in g.get("articles", []) if isinstance(k, int) and 0 <= k < len(sous)]
+                ch = g.get("choisi")
+                if not isinstance(ch, int) or not 0 <= ch < len(sous):
+                    ch = membres[0] if membres else None
+                if ch is None:
+                    continue
+                if ch not in membres:
+                    membres.append(ch)
+                groupes.append((max(1, min(5, int(g.get("note") or 1))), membres, ch))
+            groupes.sort(key=lambda g: (-g[0], -len(g[1])))
+            nb_groupes += len(groupes)
+            vus = set()
+            for note, membres, ch in groupes:
+                a = pool[sous[ch]]
+                if a["url"] in vus:
+                    continue
+                vus.add(a["url"])
+                sources = sorted({pool[sous[k]]["source_name"] for k in membres})
+                a["note_pre"], a["nb_sources"] = note, len(sources)
+                a["autres_sources"] = [x for x in sources if x != a["source_name"]]
+                choisis.append(a)
+        choisis.sort(key=lambda a: -a["note_pre"])   # tri stable : l'ordre de chaque fil est gardé
+        STATS["groupes"] = nb_groupes
     except Exception as ex:
+        choisis = []
         STATS["erreur_regroupement"] = f"{ex.__class__.__name__}: {str(ex)[:120]}"
         log(f"⚠ Regroupement impossible ({ex.__class__.__name__}) : regroupement simple par sujet.")
     if not choisis:
@@ -934,18 +955,45 @@ def main() -> int:
             conso[k] += c[k]
     decisions = {"science": 0, "tech": 0, "both": 0}
 
-    for art in candidats:
+    # Places réservées par fil (ex. 5 → 3 Sciences + 2 Technologies). 1er tour avec ces
+    # places ; 2e tour sans, pour donner à l'autre fil les places restées libres.
+    if len(groupes) == 2:
+        quota = {"tech": round(nb_voulu * PART_TECH)}
+        quota["science"] = nb_voulu - quota["tech"]
+    else:
+        quota = {g: nb_voulu for g in groupes}
+    par_fil = {"science": 0, "tech": 0}       # articles retenus par fil
+    examines = set()
+
+    def fil_plein(f: str) -> bool:
+        return par_fil.get(f, 0) >= quota.get(f, 0)
+
+    ordre = [(a, True) for a in candidats] + [(a, False) for a in candidats]
+    for art, avec_quota in ordre:
+        if art["url"] in examines:
+            continue
         majeur = art.get("note_pre", 0) >= 4   # amélioration 4 : toujours examiné
         if (nb_articles >= nb_voulu or appels >= appels_max) and not majeur:
+            if avec_quota:
+                continue        # fin du 1er tour : on passe directement au suivant
             break
         if appels >= appels_max + APPELS_EN_PLUS_MAJEURS:
             break
-        appels += 1
-        lire_debut_page(art)                    # amélioration 6
+        # 1er tour : on n'examine pas un article dont le fil (d'après sa source) est déjà plein
+        if avec_quota and fil_plein(art.get("fil_source", "science")) and not majeur:
+            continue
+        examines.add(art["url"])
+        deja_juge = art.pop("_reponse", None)   # jugé au 1er tour mais son fil était plein
+        if deja_juge is None:
+            appels += 1
+            lire_debut_page(art)                    # amélioration 6
         try:
-            rep, c, diag = demander_a_claude(client, modele["id"], art, sujets)
-            for k in conso:
-                conso[k] += c[k]
+            if deja_juge is not None:
+                rep, diag = deja_juge, ""
+            else:
+                rep, c, diag = demander_a_claude(client, modele["id"], art, sujets)
+                for k in conso:
+                    conso[k] += c[k]
             if rep is None:
                 raise ValueError(f"réponse illisible ({diag})")
             decision = rep.get("decision")
@@ -962,8 +1010,15 @@ def main() -> int:
                 log(f"  – ignoré ({decision}) : {art['title'][:70]}")
                 continue
 
-            completer_image(art)
             fils = ["science", "tech"] if decision == "both" else [decision]
+            if avec_quota and not majeur and all(fil_plein(f) for f in fils):
+                # Fil déjà plein : pas de fiche maintenant ; l'article n'est PAS marqué
+                # comme écarté et reste candidat au 2e tour ou au prochain passage.
+                examines.discard(art["url"])
+                art["_reponse"] = rep             # réutilisée au 2e tour, sans nouvel appel
+                log(f"  ⏸ fil {FIL_NOM[fils[0]]} plein : {art['title'][:70]}")
+                continue
+            completer_image(art)
             lignes = [preparer_ligne(f, rep.get(f) or {}, art) for f in fils]
             enregistrees = []
             for ligne in lignes:
@@ -976,6 +1031,8 @@ def main() -> int:
             if enregistrees:
                 nb_articles += 1
                 decisions[decision] += 1
+                for f in {l["feed"] for l in enregistrees}:
+                    par_fil[f] = par_fil.get(f, 0) + 1
                 for ligne in enregistrees:
                     ligne["explication"] = explication
                     ajoutes.append(ligne)

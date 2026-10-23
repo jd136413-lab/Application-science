@@ -57,6 +57,15 @@ financiers, procès ou régulation, nomination, partenariat, financement, prix, 
 vidéo ou article d'explication, synthèse de connaissances déjà établies, rétrospective,
 portrait, entretien, opinion, sondage, galerie d'images, mise à jour mineure.
 
+Exception pour les technologies (choix de Maxime, 23/10) : un produit, un véhicule ou un
+engin RÉELLEMENT montré en fonctionnement, lancé ou mis en service par une entreprise
+(voiture dévoilée et conduite, fusée ou engin qui vole, essai en vol ou récupération de
+fusée réussis, smartphone ou appareil présenté et mis en vente) EST une avancée
+technologique, même si l'information vient de l'entreprise elle-même : fiche
+Technologies, importance 1 ou 2, davantage seulement pour une vraie première. Restent
+« none » : rumeurs, fuites, promesses sans démonstration, simples dates de sortie ou de
+lancement annoncées.
+
 ## B. Doublons
 Réponds "duplicate" si le MÊME sujet (même découverte, même étude, même produit, même
 annonce) figure déjà dans une des listes « Déjà publié », même formulé autrement ou vu

@@ -44,6 +44,9 @@ REFERENCES = [
     ("IEEE Spectrum", "https://spectrum.ieee.org/feeds/feed.rss"),
     ("TechCrunch", "https://techcrunch.com/feed/"),
     ("Engadget", "https://www.engadget.com/rss.xml"),
+    # Grandes actualités spatiales et automobiles (SpaceX, Tesla…), ajoutées le 23/10
+    ("Spaceflight Now", "https://spaceflightnow.com/feed/"),
+    ("Electrek", "https://electrek.co/feed/"),
 ]
 
 CONSIGNE = """Tu contrôles une application qui doit présenter les vraies avancées scientifiques et technologiques importantes (découvertes, résultats de recherche, premières, records, missions réussies, produits technologiques réellement nouveaux).
