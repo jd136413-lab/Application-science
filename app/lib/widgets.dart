@@ -233,13 +233,13 @@ class MessageCentre extends StatelessWidget {
 /// Petit message en bas de l'écran, avec un bouton « Annuler » facultatif.
 void afficherMessage(BuildContext context, String texte, {IconData icone = Icons.check_rounded, VoidCallback? annuler}) {
   final p = palette(context);
-  ScaffoldMessenger.of(context)
-    ..hideCurrentSnackBar()
-    ..showSnackBar(SnackBar(
+  const duree = Duration(seconds: 4);
+  final messager = ScaffoldMessenger.of(context)..hideCurrentSnackBar();
+  final message = messager.showSnackBar(SnackBar(
       behavior: SnackBarBehavior.floating,
       backgroundColor: p.encre,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      duration: const Duration(seconds: 4),
+      duration: duree,
       content: Row(children: [
         Icon(icone, color: couleurEtoiles, size: 22),
         const SizedBox(width: 12),
@@ -249,6 +249,15 @@ void afficherMessage(BuildContext context, String texte, {IconData icone = Icons
           ? null
           : SnackBarAction(label: tr(texteAnnuler), textColor: couleurEtoiles, onPressed: annuler),
     ));
+  // Avec un bouton « Annuler », Flutter laisse le message affiché indéfiniment :
+  // on le ferme nous-mêmes après la même durée (sauf s'il est déjà parti).
+  if (annuler != null) {
+    var ferme = false;
+    message.closed.then((_) => ferme = true);
+    Future.delayed(duree, () {
+      if (!ferme) message.close();
+    });
+  }
 }
 
 /// Ferme l'écran quand on le tire vers le bas depuis le haut (comme une photo).
