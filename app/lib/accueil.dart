@@ -288,12 +288,6 @@ class _EcranAccueilState extends State<EcranAccueil> {
               final avecJours = periodes[_periode].$2 == 7 && !_triImportance;
               final elements = <Object>[
                 if (horsLigne) const _BandeauHorsLigne(),
-                if (periodes[_periode].$2 == 0)
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
-                    child: Text(tr('Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.'),
-                        style: police(policeTexte, taille: 13.5, couleur: p.texteDiscret)),
-                  ),
               ];
               String? moisCourant;
               String? jourCourant;

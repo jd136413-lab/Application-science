@@ -5645,24 +5645,3 @@ ja 新着はすべて見ました。次の成果はまもなく届きます。
 ko 새 소식을 모두 봤어요. 다음 소식이 곧 도착해요.
 id Anda sudah melihat semua yang baru. Kemajuan berikutnya segera hadir.
 vi Bạn đã xem hết tin mới. Những tiến bộ tiếp theo sắp đến.
-
-@ Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.
-en Advances from the last 3 days that you haven’t opened yet.
-es Los avances de los últimos 3 días que aún no has abierto.
-pt Os avanços dos últimos 3 dias que você ainda não abriu.
-de Fortschritte der letzten 3 Tage, die Sie noch nicht geöffnet haben.
-it I progressi degli ultimi 3 giorni che non hai ancora aperto.
-nl Doorbraken van de afgelopen 3 dagen die je nog niet hebt geopend.
-pl Osiągnięcia z ostatnich 3 dni, których jeszcze nie otworzyłeś.
-ru Открытия за последние 3 дня, которые вы ещё не открывали.
-uk Відкриття за останні 3 дні, які ви ще не відкривали.
-tr Son 3 günün henüz açmadığınız gelişmeleri.
-ar إنجازات آخر 3 أيام التي لم تفتحها بعد.
-hi पिछले 3 दिनों की खोजें जिन्हें आपने अभी तक नहीं खोला है।
-bn গত ৩ দিনের অগ্রগতি যা আপনি এখনও খোলেননি।
-ur پچھلے 3 دنوں کی پیش رفت جو آپ نے ابھی تک نہیں کھولی۔
-zh 最近 3 天内您尚未打开的进展。
-ja 過去3日間の、まだ開いていない成果です。
-ko 최근 3일 동안 아직 열어 보지 않은 소식이에요.
-id Kemajuan 3 hari terakhir yang belum Anda buka.
-vi Các tiến bộ trong 3 ngày qua mà bạn chưa mở.

@@ -271,7 +271,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Yesterday',
     'Vous êtes à jour': 'You’re all caught up',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'You’ve seen everything new. The next advances are on their way.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Advances from the last 3 days that you haven’t opened yet.',
   },
   'es': {
     'Sciences': 'Ciencia',
@@ -542,7 +541,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Ayer',
     'Vous êtes à jour': 'Estás al día',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Has visto todas las novedades. Los próximos avances llegarán pronto.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Los avances de los últimos 3 días que aún no has abierto.',
   },
   'pt': {
     'Sciences': 'Ciência',
@@ -813,7 +811,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Ontem',
     'Vous êtes à jour': 'Você está em dia',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Você viu todas as novidades. Os próximos avanços chegam em breve.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Os avanços dos últimos 3 dias que você ainda não abriu.',
   },
   'de': {
     'Sciences': 'Wissenschaft',
@@ -1084,7 +1081,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Gestern',
     'Vous êtes à jour': 'Sie sind auf dem neuesten Stand',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Sie haben alle Neuheiten gesehen. Die nächsten Fortschritte kommen bald.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Fortschritte der letzten 3 Tage, die Sie noch nicht geöffnet haben.',
   },
   'it': {
     'Sciences': 'Scienza',
@@ -1355,7 +1351,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Ieri',
     'Vous êtes à jour': 'Sei aggiornato',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Hai visto tutte le novità. I prossimi progressi arrivano presto.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'I progressi degli ultimi 3 giorni che non hai ancora aperto.',
   },
   'nl': {
     'Sciences': 'Wetenschap',
@@ -1626,7 +1621,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Gisteren',
     'Vous êtes à jour': 'Je bent helemaal bij',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Je hebt alles nieuws gezien. De volgende doorbraken komen eraan.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Doorbraken van de afgelopen 3 dagen die je nog niet hebt geopend.',
   },
   'pl': {
     'Sciences': 'Nauka',
@@ -1897,7 +1891,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Wczoraj',
     'Vous êtes à jour': 'Jesteś na bieżąco',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Wszystkie nowości obejrzane. Kolejne osiągnięcia już wkrótce.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Osiągnięcia z ostatnich 3 dni, których jeszcze nie otworzyłeś.',
   },
   'ru': {
     'Sciences': 'Наука',
@@ -2168,7 +2161,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Вчера',
     'Vous êtes à jour': 'Вы в курсе всего',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Вы посмотрели всё новое. Следующие открытия скоро появятся.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Открытия за последние 3 дня, которые вы ещё не открывали.',
   },
   'uk': {
     'Sciences': 'Наука',
@@ -2439,7 +2431,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Учора',
     'Vous êtes à jour': 'Ви в курсі всього',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Ви переглянули все нове. Наступні відкриття скоро з’являться.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Відкриття за останні 3 дні, які ви ще не відкривали.',
   },
   'tr': {
     'Sciences': 'Bilim',
@@ -2710,7 +2701,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Dün',
     'Vous êtes à jour': 'Her şeyi gördünüz',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Tüm yenilikleri gördünüz. Sıradaki gelişmeler yakında geliyor.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Son 3 günün henüz açmadığınız gelişmeleri.',
   },
   'ar': {
     'Sciences': 'العلوم',
@@ -2981,7 +2971,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'أمس',
     'Vous êtes à jour': 'أنت مطّلع على كل جديد',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'لقد اطّلعت على كل الجديد. الإنجازات التالية قادمة قريبًا.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'إنجازات آخر 3 أيام التي لم تفتحها بعد.',
   },
   'hi': {
     'Sciences': 'विज्ञान',
@@ -3252,7 +3241,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'कल',
     'Vous êtes à jour': 'आप पूरी तरह अपडेट हैं',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'आपने सभी नई खबरें देख लीं। अगली खोजें जल्द आएँगी।',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'पिछले 3 दिनों की खोजें जिन्हें आपने अभी तक नहीं खोला है।',
   },
   'bn': {
     'Sciences': 'বিজ্ঞান',
@@ -3523,7 +3511,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'গতকাল',
     'Vous êtes à jour': 'আপনি সব দেখে ফেলেছেন',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'আপনি সব নতুন দেখে ফেলেছেন। পরের অগ্রগতি শীঘ্রই আসছে।',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'গত ৩ দিনের অগ্রগতি যা আপনি এখনও খোলেননি।',
   },
   'ur': {
     'Sciences': 'سائنس',
@@ -3794,7 +3781,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'کل',
     'Vous êtes à jour': 'آپ سب کچھ دیکھ چکے ہیں',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'آپ نے سب نیا دیکھ لیا۔ اگلی پیش رفت جلد آ رہی ہے۔',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'پچھلے 3 دنوں کی پیش رفت جو آپ نے ابھی تک نہیں کھولی۔',
   },
   'zh': {
     'Sciences': '科学',
@@ -4065,7 +4051,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': '昨天',
     'Vous êtes à jour': '您已看完全部内容',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': '您已看完所有新内容，下一批进展即将到来。',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': '最近 3 天内您尚未打开的进展。',
   },
   'ja': {
     'Sciences': '科学',
@@ -4336,7 +4321,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': '昨日',
     'Vous êtes à jour': 'すべて確認済みです',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': '新着はすべて見ました。次の成果はまもなく届きます。',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': '過去3日間の、まだ開いていない成果です。',
   },
   'ko': {
     'Sciences': '과학',
@@ -4607,7 +4591,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': '어제',
     'Vous êtes à jour': '모두 확인했어요',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': '새 소식을 모두 봤어요. 다음 소식이 곧 도착해요.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': '최근 3일 동안 아직 열어 보지 않은 소식이에요.',
   },
   'id': {
     'Sciences': 'Sains',
@@ -4878,7 +4861,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Kemarin',
     'Vous êtes à jour': 'Anda sudah melihat semuanya',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Anda sudah melihat semua yang baru. Kemajuan berikutnya segera hadir.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Kemajuan 3 hari terakhir yang belum Anda buka.',
   },
   'vi': {
     'Sciences': 'Khoa học',
@@ -5149,6 +5131,5 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Hier': 'Hôm qua',
     'Vous êtes à jour': 'Bạn đã xem hết',
     'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.': 'Bạn đã xem hết tin mới. Những tiến bộ tiếp theo sắp đến.',
-    'Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.': 'Các tiến bộ trong 3 ngày qua mà bạn chưa mở.',
   },
 };
