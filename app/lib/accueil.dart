@@ -139,13 +139,24 @@ class _EcranAccueilState extends State<EcranAccueil> {
   /// Tirer la liste vers le bas : fil retéléchargé en entier.
   Future<void> _rafraichir() => _mettreAJour(_fil, complet: true);
 
+  /// Nombre d'avancées « Nouveau » du fil affiché (filtres et masquages compris).
+  int _nombreNouveautes() {
+    final toutes = _fils[_fil];
+    if (toutes == null) return 0;
+    final visibles = etat.famillesVisibles(_fil);
+    return toutes.where((a) => etat.estNouvelle(a) && visibles.contains(a.famille) && !etat.estMasquee(a)).length;
+  }
+
   /// Applique période, filtres et tri.
   List<Avancee> _trier(List<Avancee> toutes) {
     final jours = periodes[_periode].$2;
     final limite = DateTime.now().subtract(Duration(days: jours));
     final visibles = etat.famillesVisibles(_fil);
     final l = toutes
-        .where((a) => a.publieLe.isAfter(limite) && visibles.contains(a.famille) && !etat.estMasquee(a))
+        .where((a) =>
+            (jours == 0 ? etat.estNouvelle(a) : a.publieLe.isAfter(limite)) &&
+            visibles.contains(a.famille) &&
+            !etat.estMasquee(a))
         .toList();
     if (_triImportance) {
       l.sort((a, b) => b.importance != a.importance
@@ -207,6 +218,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
                   padding: const EdgeInsets.only(right: 6),
                   child: _Pastille(
                     texte: tr(periodes[i].$1),
+                    compteur: periodes[i].$2 == 0 ? _nombreNouveautes() : 0,
                     active: i == _periode,
                     onTap: () => setState(() => _periode = i),
                   ),
@@ -252,7 +264,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
               final horsLigne = _horsLigne.contains(_fil);
               final liste = _trier(toutes);
               if (liste.isEmpty) {
-                final aujourdhui = _periode == 0;
+                final aujourdhui = periodes[_periode].$2 == 0; // onglet Nouveautés
                 return RefreshIndicator(
                   onRefresh: _rafraichir,
                   child: ListView(children: [
@@ -260,9 +272,9 @@ class _EcranAccueilState extends State<EcranAccueil> {
                       const Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: _BandeauHorsLigne()),
                     const SizedBox(height: 70),
                     MessageCentre(
-                      icone: Icons.auto_awesome,
-                      titre: tr(aujourdhui ? texteAujourdhuiVide : texteVide),
-                      detail: tr(aujourdhui ? texteAujourdhuiVideDetail : texteVideDetail),
+                      icone: aujourdhui ? Icons.check_circle_outline_rounded : Icons.auto_awesome,
+                      titre: tr(aujourdhui ? texteNouveautesVide : texteVide),
+                      detail: tr(aujourdhui ? texteNouveautesVideDetail : texteVideDetail),
                       bouton: aujourdhui ? tr(texteVoirSemaine) : null,
                       action: aujourdhui ? () => setState(() => _periode = 1) : null,
                     ),
@@ -270,15 +282,34 @@ class _EcranAccueilState extends State<EcranAccueil> {
                 );
               }
               // En-têtes de mois dans « Cette année » (tri par date)
+              // En-têtes : un par mois dans « Cette année », un par jour dans « Cette semaine »
+              // (tri par date seulement).
               final avecMois = _periode == periodes.length - 1 && !_triImportance;
-              final elements = <Object>[if (horsLigne) const _BandeauHorsLigne()];
+              final avecJours = periodes[_periode].$2 == 7 && !_triImportance;
+              final elements = <Object>[
+                if (horsLigne) const _BandeauHorsLigne(),
+                if (periodes[_periode].$2 == 0)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
+                    child: Text(tr('Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.'),
+                        style: police(policeTexte, taille: 13.5, couleur: p.texteDiscret)),
+                  ),
+              ];
               String? moisCourant;
+              String? jourCourant;
               for (final a in liste) {
                 if (avecMois) {
                   final m = enTeteMois(a.publieLe);
                   if (m != moisCourant) {
                     elements.add(m);
                     moisCourant = m;
+                  }
+                }
+                if (avecJours) {
+                  final j = enTeteJour(a.publieLe);
+                  if (j.$1 != jourCourant) {
+                    elements.add(j);
+                    jourCourant = j.$1;
                   }
                 }
                 elements.add(a);
@@ -292,6 +323,20 @@ class _EcranAccueilState extends State<EcranAccueil> {
                   itemBuilder: (context, i) {
                     final e = elements[i];
                     if (e is Widget) return e;
+                    if (e is (String, String)) {
+                      // Titre de jour : « Aujourd'hui », « Hier », « Mardi » + date en petit
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(4, 12, 4, 10),
+                        child: Text.rich(TextSpan(children: [
+                          TextSpan(
+                              text: e.$1,
+                              style: police(policeTitres, taille: 22, graisse: FontWeight.w800, couleur: p.texte)),
+                          TextSpan(
+                              text: '  ${e.$2}',
+                              style: police(policeTexte, taille: 14, graisse: FontWeight.w600, couleur: p.texteDiscret)),
+                        ])),
+                      );
+                    }
                     if (e is String) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(4, 12, 4, 10),
@@ -437,7 +482,9 @@ class _Pastille extends StatelessWidget {
   final String texte;
   final bool active;
   final VoidCallback onTap;
-  const _Pastille({required this.texte, required this.active, required this.onTap});
+  /// Petit nombre rose à côté du libellé (onglet Nouveautés) ; 0 = rien.
+  final int compteur;
+  const _Pastille({required this.texte, required this.active, required this.onTap, this.compteur = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -454,9 +501,23 @@ class _Pastille extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14),
             child: Center(
-              child: Text(texte,
-                  style: police(policeTexte,
-                      taille: 14, graisse: FontWeight.w600, couleur: active ? p.surEncre : p.texteDiscret)),
+              child: Row(mainAxisSize: MainAxisSize.min, children: [
+                Text(texte,
+                    style: police(policeTexte,
+                        taille: 14, graisse: FontWeight.w600, couleur: active ? p.surEncre : p.texteDiscret)),
+                if (compteur > 0) ...[
+                  const SizedBox(width: 6),
+                  Container(
+                    constraints: const BoxConstraints(minWidth: 20),
+                    height: 20,
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(color: const Color(0xFFFF5A8A), borderRadius: BorderRadius.circular(10)),
+                    child: Text(compteur > 99 ? '99+' : '$compteur',
+                        style: police(policeTexte, taille: 11.5, graisse: FontWeight.w800, couleur: Colors.white)),
+                  ),
+                ],
+              ]),
             ),
           ),
         ),

@@ -237,11 +237,10 @@ class EtatApp extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Arrivée depuis la visite précédente et pas encore ouverte.
+  /// « Nouveau » : ajoutée il y a moins de 3 jours et pas encore ouverte.
   bool estNouvelle(Avancee a) {
-    final v = visitePrecedente;
     final d = a.ajouteLe;
-    return v != null && d != null && d.isAfter(v) && !estLue(a.id);
+    return d != null && DateTime.now().difference(d) < dureeNouveaute && !estLue(a.id);
   }
 
   // ---- Avancées et sources masquées ----

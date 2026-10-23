@@ -176,20 +176,24 @@ const String texteErreur = 'Pas de connexion';
 const String texteErreurDetail = 'Impossible de charger les avancées. Vérifiez votre connexion, puis réessayez.';
 const String texteReessayer = 'Réessayer';
 
-// Onglets de période (cumulatifs) : libellé et nombre de jours couverts.
+// Onglets du fil : « Nouveautés » (jours = 0 : avancées marquées NOUVEAU),
+// puis les périodes cumulatives, avec le nombre de jours couverts.
 const List<(String, int)> periodes = [
-  ('Aujourd’hui', 1),
+  ('Nouveautés', 0),
   ('Cette semaine', 7),
   ('Ce mois-ci', 31),
   ('Cette année', 366),
 ];
-const int periodeParDefaut = 1; // 0 = Aujourd'hui, 1 = Cette semaine…
+const int periodeParDefaut = 1; // 0 = Nouveautés, 1 = Cette semaine…
+
+/// Une avancée reste « Nouveau » pendant ce délai après son ajout, tant qu'elle n'a pas été ouverte.
+const Duration dureeNouveaute = Duration(days: 3);
 const String texteTriRecent = 'Plus récent';
 const String texteTriImportant = 'Plus important';
 const String texteFiltres = 'Filtres';
-const String texteAujourdhuiVide = 'Pas encore de découverte aujourd’hui';
-const String texteAujourdhuiVideDetail =
-    'Les chercheurs sont sans doute encore au labo. En attendant, les avancées de la semaine vous attendent.';
+const String texteNouveautesVide = 'Vous êtes à jour';
+const String texteNouveautesVideDetail =
+    'Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.';
 const String texteVoirSemaine = 'Voir cette semaine';
 
 // Premier lancement

@@ -5560,3 +5560,109 @@ ja 私の意見
 ko 내 의견
 id Masukan saya
 vi Góp ý của tôi
+
+# Onglet Nouveautés et titres de jour (maquette 43)
+@ Nouveautés
+en New
+es Novedades
+pt Novidades
+de Neu
+it Novità
+nl Nieuw
+pl Nowości
+ru Новое
+uk Нове
+tr Yeniler
+ar الجديد
+hi नया
+bn নতুন
+ur نیا
+zh 最新
+ja 新着
+ko 새 소식
+id Terbaru
+vi Mới
+
+@ Hier
+en Yesterday
+es Ayer
+pt Ontem
+de Gestern
+it Ieri
+nl Gisteren
+pl Wczoraj
+ru Вчера
+uk Учора
+tr Dün
+ar أمس
+hi कल
+bn গতকাল
+ur کل
+zh 昨天
+ja 昨日
+ko 어제
+id Kemarin
+vi Hôm qua
+
+@ Vous êtes à jour
+en You’re all caught up
+es Estás al día
+pt Você está em dia
+de Sie sind auf dem neuesten Stand
+it Sei aggiornato
+nl Je bent helemaal bij
+pl Jesteś na bieżąco
+ru Вы в курсе всего
+uk Ви в курсі всього
+tr Her şeyi gördünüz
+ar أنت مطّلع على كل جديد
+hi आप पूरी तरह अपडेट हैं
+bn আপনি সব দেখে ফেলেছেন
+ur آپ سب کچھ دیکھ چکے ہیں
+zh 您已看完全部内容
+ja すべて確認済みです
+ko 모두 확인했어요
+id Anda sudah melihat semuanya
+vi Bạn đã xem hết
+
+@ Vous avez vu toutes les nouveautés. Les prochaines avancées arrivent bientôt.
+en You’ve seen everything new. The next advances are on their way.
+es Has visto todas las novedades. Los próximos avances llegarán pronto.
+pt Você viu todas as novidades. Os próximos avanços chegam em breve.
+de Sie haben alle Neuheiten gesehen. Die nächsten Fortschritte kommen bald.
+it Hai visto tutte le novità. I prossimi progressi arrivano presto.
+nl Je hebt alles nieuws gezien. De volgende doorbraken komen eraan.
+pl Wszystkie nowości obejrzane. Kolejne osiągnięcia już wkrótce.
+ru Вы посмотрели всё новое. Следующие открытия скоро появятся.
+uk Ви переглянули все нове. Наступні відкриття скоро з’являться.
+tr Tüm yenilikleri gördünüz. Sıradaki gelişmeler yakında geliyor.
+ar لقد اطّلعت على كل الجديد. الإنجازات التالية قادمة قريبًا.
+hi आपने सभी नई खबरें देख लीं। अगली खोजें जल्द आएँगी।
+bn আপনি সব নতুন দেখে ফেলেছেন। পরের অগ্রগতি শীঘ্রই আসছে।
+ur آپ نے سب نیا دیکھ لیا۔ اگلی پیش رفت جلد آ رہی ہے۔
+zh 您已看完所有新内容，下一批进展即将到来。
+ja 新着はすべて見ました。次の成果はまもなく届きます。
+ko 새 소식을 모두 봤어요. 다음 소식이 곧 도착해요.
+id Anda sudah melihat semua yang baru. Kemajuan berikutnya segera hadir.
+vi Bạn đã xem hết tin mới. Những tiến bộ tiếp theo sắp đến.
+
+@ Les avancées des 3 derniers jours que vous n’avez pas encore ouvertes.
+en Advances from the last 3 days that you haven’t opened yet.
+es Los avances de los últimos 3 días que aún no has abierto.
+pt Os avanços dos últimos 3 dias que você ainda não abriu.
+de Fortschritte der letzten 3 Tage, die Sie noch nicht geöffnet haben.
+it I progressi degli ultimi 3 giorni che non hai ancora aperto.
+nl Doorbraken van de afgelopen 3 dagen die je nog niet hebt geopend.
+pl Osiągnięcia z ostatnich 3 dni, których jeszcze nie otworzyłeś.
+ru Открытия за последние 3 дня, которые вы ещё не открывали.
+uk Відкриття за останні 3 дні, які ви ще не відкривали.
+tr Son 3 günün henüz açmadığınız gelişmeleri.
+ar إنجازات آخر 3 أيام التي لم تفتحها بعد.
+hi पिछले 3 दिनों की खोजें जिन्हें आपने अभी तक नहीं खोला है।
+bn গত ৩ দিনের অগ্রগতি যা আপনি এখনও খোলেননি।
+ur پچھلے 3 دنوں کی پیش رفت جو آپ نے ابھی تک نہیں کھولی۔
+zh 最近 3 天内您尚未打开的进展。
+ja 過去3日間の、まだ開いていない成果です。
+ko 최근 3일 동안 아직 열어 보지 않은 소식이에요.
+id Kemajuan 3 hari terakhir yang belum Anda buka.
+vi Các tiến bộ trong 3 ngày qua mà bạn chưa mở.

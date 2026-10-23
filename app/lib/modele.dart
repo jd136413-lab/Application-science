@@ -3,6 +3,7 @@
 import 'package:intl/intl.dart';
 
 import 'etat.dart';
+import 'langues.dart';
 
 class Avancee {
   final String id;
@@ -98,6 +99,19 @@ String dateCourte(DateTime d) => DateFormat.MMMd(etat.langue).format(d);
 String dateLongue(DateTime d) => DateFormat.yMMMMd(etat.langue).format(d);
 
 /// « Octobre » (et l'année si ce n'est pas l'année en cours) : en-têtes de mois.
+/// Titre de jour dans « Cette semaine » : (« Aujourd’hui » | « Hier » | « Mardi », « 21 octobre »).
+(String, String) enTeteJour(DateTime d) {
+  final l = d.toLocal();
+  final maintenant = DateTime.now();
+  final jour = DateTime(l.year, l.month, l.day);
+  final ecart = DateTime(maintenant.year, maintenant.month, maintenant.day).difference(jour).inDays;
+  final date = DateFormat('d MMMM', etat.langue).format(l);
+  if (ecart <= 0) return (tr('Aujourd’hui'), date);
+  if (ecart == 1) return (tr('Hier'), date);
+  final nom = DateFormat('EEEE', etat.langue).format(l);
+  return (nom.isEmpty ? nom : nom[0].toUpperCase() + nom.substring(1), date);
+}
+
 String enTeteMois(DateTime d) {
   final format = d.year == DateTime.now().year ? DateFormat('LLLL', etat.langue) : DateFormat('LLLL y', etat.langue);
   final texte = format.format(d);
