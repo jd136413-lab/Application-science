@@ -3,11 +3,11 @@
 Textes à copier dans la Play Console (Développer la présence sur le Play Store → Fiche principale).
 Les longueurs maximales de Google sont indiquées entre parenthèses. **Refaite le 23/10/2026** (version 1.0.40) : onglet Nouveautés, résumé en trois temps, Vocabulaire, type d'étude, mode hors ligne, signalement d'erreur. « Sans publicité » retiré (des annonces pourront être ajoutées plus tard).
 
-**Choix de Maxime (24/10)** : nom « NovaSTEM » seul ; description courte n° 2 ; langues FR + EN ; bannière 2 (claire avec le téléphone, maquette 46) ; captures style B (marketing clair, phrase d'accroche + cadre de téléphone, 1080 × 1920).
+**Choix de Maxime (24/10)** : nom « NovaSTEM » seul ; description courte n° 2 ; **français seulement pour le test fermé** (l'anglais sera ajouté à la publication, avec des captures refaites dans l'app en anglais : voir FEUILLE_DE_ROUTE.md) ; bannière 2 (claire avec le téléphone, maquette 46) ; captures style B (marketing clair, phrase d'accroche + cadre de téléphone, 1080 × 1920).
 
 Images prêtes dans ce dossier :
 - `icone-512.png` → « Icône de l'application » (512 × 512)
-- **Nouvelles images du 24/10 (style B) : dossier `captures-v2/`** → `fr_banniere_1024x500.png` / `en_banniere_1024x500.png` (« Image de présentation ») et `fr_01…fr_07` / `en_01…en_07` (« Captures d'écran du téléphone », 1080 × 1920). Tout en un : `captures-v2.zip`.
+- **Nouvelles images du 24/10 (style B) : dossier `captures-v2/`** → `fr_banniere_1024x500.png` (« Image de présentation ») et `fr_01…fr_07` (« Captures d'écran du téléphone », 1080 × 1920). Tout en un : `captures-v2.zip`.
 - (anciennes : `banniere-1024x500.png`, `captures/`)
 - Captures d'écran du téléphone : à prendre sur le POCO (4 à 8 captures), voir en bas.
 
@@ -68,7 +68,7 @@ Les avancées sont sélectionnées, résumées et notées automatiquement par un
 
 ---
 
-## English
+## English (à ajouter seulement à la publication)
 
 **App name** (30 max)
 

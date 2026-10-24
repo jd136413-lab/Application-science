@@ -87,6 +87,9 @@ Chaque nouvel écran passe d'abord par une maquette, validée avant d'être cod�
 
 ---
 
+## À faire au moment de la publication (rappel)
+- **Fiche Google Play en anglais** (décision de Maxime, 24/10) : pendant le test fermé, la fiche reste **en français seulement**. À la publication, ajouter l'anglais : les textes sont déjà prêts dans `store/fiche-google-play.md`, mais les **captures sont à refaire avec l'application réglée en anglais** (interface et avancées en anglais), puis passées dans le même style (fond gris clair, phrase d'accroche, cadre noir).
+
 ## Ordre proposé après la publication
 1. Plus de sources + plus de photos libres (meilleur contenu)
 2. Statistiques sans pister (savoir ce qui marche)
