@@ -225,10 +225,7 @@ class EcranReglages extends StatelessWidget {
               ]),
             ),
             const SizedBox(height: 18),
-            Center(
-              child: Text(tr(texteVersion).replaceFirst('1.0', versionApp),
-                  textAlign: TextAlign.center, style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
-            ),
+            const Center(child: _LigneVersion()),
           ],
         );
       },
@@ -408,6 +405,52 @@ class _BlocStockageState extends State<_BlocStockage> {
             child: Text(tr('Vider'), style: police(policeTexte, taille: 14, graisse: FontWeight.w700, couleur: p.texte)),
           ),
         ]),
+      ),
+    );
+  }
+}
+
+/// Ligne de version. Caché : 7 appuis rapides excluent ce téléphone des
+/// statistiques (pour que les essais de Maxime ne faussent pas les chiffres) ;
+/// 7 appuis de plus le réintègrent.
+class _LigneVersion extends StatefulWidget {
+  const _LigneVersion();
+  @override
+  State<_LigneVersion> createState() => _LigneVersionState();
+}
+
+class _LigneVersionState extends State<_LigneVersion> {
+  int _appuis = 0;
+  DateTime _dernier = DateTime(2000);
+
+  void _appui() {
+    final maintenant = DateTime.now();
+    _appuis = maintenant.difference(_dernier) < const Duration(milliseconds: 800) ? _appuis + 1 : 1;
+    _dernier = maintenant;
+    if (_appuis < 7) return;
+    _appuis = 0;
+    etat.basculerStatsExclues();
+    setState(() {});
+    afficherMessage(
+        context,
+        etat.statsExclues
+            ? 'Ce téléphone n’est plus compté dans les statistiques'
+            : 'Ce téléphone est de nouveau compté dans les statistiques',
+        icone: Icons.bar_chart_rounded);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: _appui,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+        child: Text(
+            tr(texteVersion).replaceFirst('1.0', versionApp) + (etat.statsExclues ? ' · hors statistiques' : ''),
+            textAlign: TextAlign.center,
+            style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
       ),
     );
   }

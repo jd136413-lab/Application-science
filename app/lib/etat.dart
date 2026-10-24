@@ -24,6 +24,8 @@ class EtatApp extends ChangeNotifier {
   int ouvertures = 0; // nombre de lancements de l'app (pour la demande d'avis)
   int favorisAjoutes = 0;
   bool avisDemande = false;
+  /// Appareil exclu des statistiques (téléphone de Maxime) : 7 appuis sur la version dans Réglages.
+  bool statsExclues = false;
   List<String> lues = []; // avancées déjà ouvertes (cartes grisées)
   /// Moment de la visite précédente : ce qui a été ajouté depuis est « Nouveau ».
   DateTime? visitePrecedente;
@@ -75,6 +77,7 @@ class EtatApp extends ChangeNotifier {
       ouvertures = (p.getInt('ouvertures') ?? 0) + 1;
       favorisAjoutes = p.getInt('favoris_ajoutes') ?? 0;
       avisDemande = p.getBool('avis_demande') ?? false;
+      statsExclues = p.getBool('stats_exclues') ?? false;
       p.setInt('ouvertures', ouvertures);
       lues = p.getStringList('lues') ?? [];
       final v = p.getString('derniere_visite');
@@ -113,12 +116,20 @@ class EtatApp extends ChangeNotifier {
     p.setStringList('lues', lues);
     p.setInt('favoris_ajoutes', favorisAjoutes);
     p.setBool('avis_demande', avisDemande);
+    p.setBool('stats_exclues', statsExclues);
     p.setStringList('sources_masquees', sourcesMasquees.toList());
     p.setString('vocabulaire', jsonEncode([for (final m in vocabulaire) m.versJson()]));
     p.setBool('notif_actives', notifActives);
     p.setString('notif_fil', notifFil);
     p.setInt('notif_min', notifMin);
     p.setStringList('notif_par_famille', [for (final e in notifParFamille.entries) '${e.key}:${e.value}']);
+  }
+
+  /// Exclut (ou réintègre) ce téléphone dans les statistiques.
+  void basculerStatsExclues() {
+    statsExclues = !statsExclues;
+    _enregistrer();
+    notifyListeners();
   }
 
   // ---- Premier lancement / domaines ----

@@ -10,6 +10,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'donnees.dart';
+import 'etat.dart';
 import 'modele.dart';
 import 'reglages.dart';
 
@@ -19,7 +20,7 @@ const bool statistiquesActives = true;
 void stat(String evenement, {Avancee? a, String? valeur}) {
   // Pas de statistiques depuis la version web (aperçu GitHub Pages) :
   // seuls les vrais téléphones sont comptés.
-  if (!statistiquesActives || !configurationPresente || kIsWeb) return;
+  if (!statistiquesActives || !configurationPresente || kIsWeb || etat.statsExclues) return;
   try {
     Supabase.instance.client.from('stats').insert({
       'evenement': evenement,
