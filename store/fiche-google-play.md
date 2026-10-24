@@ -7,7 +7,8 @@ Les longueurs maximales de Google sont indiquées entre parenthèses. **Refaite 
 
 Images prêtes dans ce dossier :
 - `icone-512.png` → « Icône de l'application » (512 × 512)
-- `banniere-1024x500.png` → « Image de présentation » (1024 × 500)
+- **Nouvelles images du 24/10 (style B) : dossier `captures-v2/`** → `fr_banniere_1024x500.png` / `en_banniere_1024x500.png` (« Image de présentation ») et `fr_01…fr_07` / `en_01…en_07` (« Captures d'écran du téléphone », 1080 × 1920). Tout en un : `captures-v2.zip`.
+- (anciennes : `banniere-1024x500.png`, `captures/`)
 - Captures d'écran du téléphone : à prendre sur le POCO (4 à 8 captures), voir en bas.
 
 ---
