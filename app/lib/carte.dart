@@ -247,10 +247,12 @@ void ouvrirMenuCarte(BuildContext context, Avancee a) {
               afficherMessage(context, tr(etat.estFavori(a.id) ? 'Ajouté aux favoris' : 'Retiré des favoris'),
                   icone: Icons.bookmark_rounded);
             }),
-            ligne(Icons.share_outlined, tr('Partager'), () {
-              stat('partage', a: a);
-              SharePlus.instance.share(ShareParams(
+            ligne(Icons.share_outlined, tr('Partager'), () async {
+              final r = await SharePlus.instance.share(ShareParams(
                   text: '${a.titre}\n${lienPartage(a.id)}\n\n${tr('Découvert sur NovaSTEM')}'));
+              // Compté seulement si une application a vraiment été choisie
+              // (fenêtre de partage fermée sans envoyer = pas de partage).
+              if (r.status == ShareResultStatus.success) stat('partage', a: a);
             }),
             ligne(Icons.north_east_rounded, tr(texteLireArticle), () {
               final uri = Uri.tryParse(a.lien);

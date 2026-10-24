@@ -6,6 +6,7 @@
 // les lire. Les totaux se consultent dans le tableau de bord NovaSTEM.
 // Rien n'est bloquant : sans réseau, l'événement est simplement perdu.
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'donnees.dart';
@@ -16,7 +17,9 @@ import 'reglages.dart';
 const bool statistiquesActives = true;
 
 void stat(String evenement, {Avancee? a, String? valeur}) {
-  if (!statistiquesActives || !configurationPresente) return;
+  // Pas de statistiques depuis la version web (aperçu GitHub Pages) :
+  // seuls les vrais téléphones sont comptés.
+  if (!statistiquesActives || !configurationPresente || kIsWeb) return;
   try {
     Supabase.instance.client.from('stats').insert({
       'evenement': evenement,

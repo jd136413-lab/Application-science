@@ -228,3 +228,4 @@ Modèle par défaut : Haiku 5.5. Coût mesuré : environ 0,009 $ pour 5 articles
 - Nouvelle fiche Play Store FR envoyée (textes de `store/fiche-google-play.md`, bannière et 7 captures de `store/captures-v2/`, cadre noir partout). Anglais reporté à la publication (FEUILLE_DE_ROUTE.md).
 - Test fermé « Alpha » actif depuis le 24/10 à 12 h 42 avec la version 40 (1.0.40) ; pays Belgique, Canada, France ; liste « Testeurs NovaSTEM ».
 - Rappels programmés : 31/10 (7e jour) et 7/11 (14e jour).
+- Statistiques corrigées (à inclure dans la prochaine compilation) : un partage n'est compté que si une application a vraiment été choisie (ShareResultStatus.success) ; plus aucune statistique envoyée depuis la version web (kIsWeb), pour ne compter que les téléphones. Les chiffres déjà enregistrés (dont les 5 « partages » du 23-24/10) restent tels quels : réinitialiser les stats au début du test si besoin.
