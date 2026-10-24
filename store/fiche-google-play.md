@@ -3,6 +3,8 @@
 Textes à copier dans la Play Console (Développer la présence sur le Play Store → Fiche principale).
 Les longueurs maximales de Google sont indiquées entre parenthèses. **Refaite le 23/10/2026** (version 1.0.40) : onglet Nouveautés, résumé en trois temps, Vocabulaire, type d'étude, mode hors ligne, signalement d'erreur. « Sans publicité » retiré (des annonces pourront être ajoutées plus tard).
 
+**Choix de Maxime (24/10)** : nom « NovaSTEM » seul ; description courte n° 2 ; langues FR + EN ; bannière 2 (claire avec le téléphone, maquette 46) ; captures style B (marketing clair, phrase d'accroche + cadre de téléphone, 1080 × 1920).
+
 Images prêtes dans ce dossier :
 - `icone-512.png` → « Icône de l'application » (512 × 512)
 - `banniere-1024x500.png` → « Image de présentation » (1024 × 500)
@@ -15,13 +17,13 @@ Images prêtes dans ce dossier :
 **Nom de l'application** (30 caractères max)
 
 ```
-NovaSTEM : sciences et tech
+NovaSTEM
 ```
 
 **Description courte** (80 caractères max)
 
 ```
-Les vraies avancées scientifiques et tech du jour, expliquées et notées.
+Sciences et tech : les vraies avancées du jour, expliquées en une minute.
 ```
 
 **Description complète** (4 000 caractères max)
@@ -70,13 +72,13 @@ Les avancées sont sélectionnées, résumées et notées automatiquement par un
 **App name** (30 max)
 
 ```
-NovaSTEM: science & tech
+NovaSTEM
 ```
 
 **Short description** (80 max)
 
 ```
-Real science and tech breakthroughs, explained simply and rated.
+Science & tech: today’s real breakthroughs, explained in a minute.
 ```
 
 **Full description** (4,000 max)
