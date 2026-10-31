@@ -140,14 +140,21 @@ def passage_agent(db, client, fiches: list[dict], log) -> tuple[int, float]:
     return len(changees), cout
 
 
-CONSIGNE_CORRECTION = """Tu corriges des titres de NovaSTEM (application d'avancées scientifiques et technologiques pour le grand public).
+CONSIGNE_CORRECTION = """Tu donnes le titre FINAL de fiches NovaSTEM (application d'avancées scientifiques et technologiques pour le grand public : lycéens curieux, adultes sans formation scientifique).
 
-Pour chaque fiche, on te donne le titre D'ORIGINE, sa version SIMPLIFIÉE (écrite pour être comprise par quelqu'un qui ne connaît pas le sujet) et le résumé. La version simplifiée a parfois été trop loin :
-- elle a retiré des mots que tout le monde connaît (ordinateur quantique, IA, ADN, ARN, gène, vaccin, virus, robot, satellite, astéroïde, trou noir, Einstein…) : remets-les (« Ordinateurs quantiques » et non « Ordinateurs ») ;
-- elle est devenue vague et a perdu le résultat concret (chiffre, record, ce qui a été vu ou fait) : rends-le.
-Garde la simplification quand elle est bonne (nom propre inconnu remplacé par ce que c'est, jargon remplacé).
+Pour chaque fiche : le titre d'ORIGINE, la version SIMPLIFIÉE, et le résumé. Le titre final doit respecter EN MÊME TEMPS les deux règles :
 
-Donne pour chaque fiche le TITRE FINAL : forme « Thème : phrase », 12 mots au plus, sans point final, exact (n'invente rien). Si la version simplifiée est déjà la meilleure, renvoie-la telle quelle.
+1. TEST DU PASSANT : compréhensible par quelqu'un qui n'a jamais entendu parler du sujet.
+   INTERDITS : noms propres inconnus du grand public (médicaments comme retatrutide ou Ozempic, produits et modèles comme Genie 4, Helios, Pura 90, Dessa, sites comme Silverpit ou Xujiayao, missions, entreprises peu connues comme Block ou MMDesign, objets comme 3I/ATLAS), mots savants (amygdale, insula, CRISPR, qubit, deutérium, lymphocyte, colite, conjecture de Kakeya, métastases, archées, supraconducteur…). Remplace-les par CE QUE C'EST : « un nouveau médicament », « une IA de Google », « une zone du cerveau », « des ciseaux à ADN », « des cellules de défense », « un problème de maths », « un objet venu d'une autre étoile ».
+2. MOTS CONNUS DE TOUS À GARDER : ordinateur quantique, IA, ADN, ARN, gène, vaccin, virus, robot, satellite, astéroïde, trou noir, Einstein, cancer, Apple, Google, IBM, Huawei, NASA, Webb (dire « le télescope Webb »)… Et le résultat concret reste (chiffre, record, ce qui a été vu ou fait) : jamais plus vague que l'origine.
+
+Exemples :
+« Ordinateurs : une machine fait un million de calculs avec seulement cinq erreurs » → « Ordinateurs quantiques : une machine fait un million d'opérations avec cinq erreurs »
+« Diabète : le retatrutide fait mieux que l'Ozempic » → « Diabète : un nouveau médicament fait mieux que le traitement de référence »
+« Mémoire : des neurones de l'amygdale annoncent les souvenirs qui restent » → « Mémoire : une zone du cerveau annonce les souvenirs qui resteront »
+« Muscles : un traitement CRISPR modifie le gène dans les muscles humains » → « Muscles : des ciseaux à ADN modifient un gène dans des muscles humains »
+
+Forme : « Thème : phrase » (thème en mots simples), 12 mots au plus, sans point final, exact (n'invente rien, appuie-toi sur le résumé).
 Réponds uniquement avec le JSON demandé, une entrée par fiche, avec le même numéro « n »."""
 
 SCHEMA_CORRECTION = {
@@ -163,11 +170,20 @@ def corriger(db, client, log) -> int:
     """Reprend les titres listés dans titres_reecrits.md (avant → après) : remet les mots
     connus de tous et la précision perdue. Retraduit les titres modifiés."""
     import traduction
-    paires = []
+    paires = []          # (titre d'origine, titre actuel en base)
     for ligne in open("titres_reecrits.md", encoding="utf-8"):
         morceaux = [m.strip() for m in ligne.strip().strip("|").split("|")]
         if len(morceaux) == 2 and " : " in morceaux[1] and morceaux[0] != "Avant":
             paires.append(tuple(morceaux))
+    try:                 # une correction précédente a pu changer le titre actuel
+        finals = {}
+        for ligne in open("titres_corriges.md", encoding="utf-8"):
+            m = [x.strip() for x in ligne.strip().strip("|").split("|")]
+            if len(m) == 3 and " : " in m[2] and m[0] != "Origine":
+                finals[m[1]] = m[2]
+        paires = [(o, finals.get(a, a)) for o, a in paires]
+    except FileNotFoundError:
+        pass
     r = requests.get(db.base, headers=db.headers, timeout=60, params={
         "select": "id,title,summary,avant,decouverte,apres,mots,traductions", "limit": "5000"})
     r.raise_for_status()
@@ -201,8 +217,8 @@ def corriger(db, client, log) -> int:
                 f = paquet[n]
                 f["_ancien_titre"], f["title"] = f["title"], nouveau
                 changees.append(f)
-    lignes_md = ["# Titres corrigés (mots connus remis, précision rendue)", "",
-                 "| Origine | Simplifié | Final |", "|---|---|---|"]
+    lignes_md = ["# Titres corrigés (test du passant + mots connus gardés)", "",
+                 "| Origine | Précédent | Final |", "|---|---|---|"]
     for f in changees:
         f.setdefault("traductions", {}).pop("en", None)
         r = requests.patch(db.base, headers=dict(db.headers, Prefer="return=minimal"), timeout=30,
