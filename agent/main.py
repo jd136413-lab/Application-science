@@ -70,6 +70,7 @@ import requests
 
 import notifications
 import traduction
+import bilan_sources
 from anthropic import Anthropic
 
 from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
@@ -768,6 +769,8 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
         json.dump(memoire, open(FICHIER_MEMOIRE_TRI, "w", encoding="utf-8"))
     except Exception:
         pass
+    for i in notes:
+        pool[i]["note_tri"] = notes[i][0]       # bilan des sources : « prometteur »
     if not notes:
         log("⚠ Présélection vide : ordre habituel.")
         return candidats, conso
@@ -822,6 +825,9 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
                     continue
                 vus.add(a["url"])
                 sources = sorted({pool[sous[k]]["source_name"] for k in membres})
+                for k in membres:
+                    if k != ch:
+                        pool[sous[k]]["_meme_sujet"] = True   # bilan des sources
                 a["note_pre"], a["nb_sources"] = note, len(sources)
                 a["famille_pre"] = notes[sous[ch]][2]
                 a["autres_sources"] = [x for x in sources if x != a["source_name"]]
@@ -1041,6 +1047,7 @@ def main() -> int:
         listes.append(cands)
         pannes += p
     candidats = melanger(listes)
+    tous = list(candidats)              # pour le bilan des sources
     log(f"\n{len(candidats)} article(s) candidat(s).\n")
     STATS["candidats"] = len(candidats)
 
@@ -1196,6 +1203,13 @@ def main() -> int:
     # --- Notifications sur les téléphones (si Firebase est configuré) ---
     notif_ok, notif_ko = notifications.envoyer(ajoutes, log)
 
+    # --- Bilan des sources (gratuit) : mémoire + agent/bilan_sources.md ---
+    bilan_sources.enregistrer(tous, examines, ajoutes, doublons, ignores, au_plafond, MAINTENANT)
+    try:
+        resume_sources = bilan_sources.ecrire_rapport(SOURCES, MAINTENANT)
+    except Exception as ex:
+        resume_sources = f"bilan impossible ({ex.__class__.__name__})"
+
     # --- Résumé en annotations GitHub (lisibles par Claude sans ouvrir les journaux) ---
     if os.environ.get("GITHUB_ACTIONS"):
         notes = [a["importance"] for a in ajoutes]
@@ -1227,6 +1241,7 @@ def main() -> int:
               + (f" ; regroupement en erreur : {STATS['erreur_regroupement']}" if STATS.get("erreur_regroupement") else "")
               + (f" ; réponses coupées : {STATS['coupees']}" if STATS.get("coupees") else ""),
               flush=True)
+        print(f"::notice title=Bilan des sources (14 jours)::{resume_sources} — détail : agent/bilan_sources.md", flush=True)
         if equilibre.actif:
             print(f"::warning title=Équilibre des familles (7 jours)::Sciences : {equilibre.resume('science')} ; "
                   f"Technologies : {equilibre.resume('tech')} ; "

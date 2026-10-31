@@ -240,6 +240,38 @@ SOURCES = [
     {"feed": "tech", "name": "TechCabal (Afrique)", "url": "https://techcabal.com/feed/"},
     {"feed": "tech", "name": "L'Usine Nouvelle", "url": "https://www.usinenouvelle.com/rss/"},
     {"feed": "tech", "name": "L'Usine Digitale", "url": "https://www.usine-digitale.fr/rss"},
+    # =================================================================
+    # AJOUTS DU 31/10/2026 — régions et domaines absents, jeux vidéo
+    # (série CANDIDATS3 testée le 31/10 : agent/decouverte_CANDIDATS3.md ;
+    # gardées : robots.txt d'accord, flux actif ces 14 derniers jours)
+    # =================================================================
+    # --- Afrique, Asie, Moyen-Orient, Amérique latine (fil Sciences) ---
+    {"feed": "science", "name": "Nature Africa", "url": "https://www.nature.com/natafrica.rss"},
+    {"feed": "science", "name": "ILRI (élevage, Afrique)", "url": "https://www.ilri.org/rss"},
+    {"feed": "science", "name": "CGIAR (agriculture)", "url": "https://www.cgiar.org/rss.xml"},
+    {"feed": "science", "name": "CGTN Sci-Tech", "url": "https://www.cgtn.com/subscribe/rss/section/tech-sci.xml"},
+    {"feed": "science", "name": "The Hindu Science", "url": "https://www.thehindu.com/sci-tech/science/feeder/default.rss"},
+    {"feed": "science", "name": "Institut Weizmann", "url": "https://www.weizmann.ac.il/pages/news/rss.xml"},
+    {"feed": "science", "name": "El País Ciencia", "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/ciencia/portada"},
+    # --- Océans ---
+    {"feed": "science", "name": "Woods Hole (WHOI)", "url": "https://www.whoi.edu/feed/"},
+    # --- Jeux vidéo et réalité virtuelle (fil Technologies) ---
+    {"feed": "tech", "name": "Eurogamer", "url": "https://www.eurogamer.net/feed"},   # dont Digital Foundry (analyse technique)
+    {"feed": "tech", "name": "Game Developer", "url": "https://www.gamedeveloper.com/rss.xml"},
+    {"feed": "tech", "name": "Xbox Wire", "url": "https://news.xbox.com/en-us/feed/"},
+    {"feed": "tech", "name": "Road to VR", "url": "https://www.roadtovr.com/feed/"},
+    {"feed": "tech", "name": "UploadVR", "url": "https://www.uploadvr.com/rss/"},
+    {"feed": "tech", "name": "VGC (Video Games Chronicle)", "url": "https://www.videogameschronicle.com/feed/"},
+    {"feed": "tech", "name": "Gamekult", "url": "https://www.gamekult.com/feed.xml"},
+    {"feed": "tech", "name": "Unreal Engine (blog)", "url": "https://www.unrealengine.com/en-US/rss"},
+    # Testés le 31/10 et NON retenus : robots.txt refuse (Jeuxvideo.com) ; accès
+    # refusé ou flux introuvable (SciDev.Net, Wits, Stellenbosch, icipe, Techpoint
+    # Africa, UNSW, Sydney, Melbourne, Cosmos, Auckland, ANU, Académie chinoise des
+    # sciences, Down To Earth, IISc, KAIST, IBS, Korea Herald, Technion, Nature
+    # Middle East, British Antarctic Survey, AWI, Natural History Museum, Heritage
+    # Daily, LLNL, Railway Gazette) ; flux sans article depuis plus de 14 jours
+    # (UCT, Disrupt Africa, Xinhua, Times of India Tech, Pesquisa FAPESP, SciELO,
+    # Schmidt Ocean, Sapiens, Copernicus, ITER) ; Steam (surtout des soldes).
     # Testés le 21/10 et NON retenus : robots.txt refuse (Smithsonian, PNAS),
     # dates absentes dans le flux (DESY, Karolinska, ISTA, NIH, FAPESP, Fierce
     # Biotech, KED Global), flux abandonné (CNRS, Sorbonne, KU Leuven, Salk,
@@ -270,4 +302,7 @@ TITRES_EXCLUS = [
     "Prime Day", "Weekly poll", "bon plan", "code promo", "Test de ", "Test du ",
     "Test :", "review:", "How to ", "Tuto",
     "The Download:", "Actualité : Bon plan", "Sponsored", "Partner content",
+    # Jeux vidéo (31/10) : guides, soldes, bandes-annonces, précommandes
+    "Guide:", "Walkthrough", "Soluce", "trailer", "bande-annonce", "pre-order", "précommande",
+    "free games", "jeux gratuits", "Wordle", "Connections hint", "Strands hint",
 ]
