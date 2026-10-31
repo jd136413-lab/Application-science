@@ -90,16 +90,16 @@ const Map<String, Famille> familles = {
   'physics':     Famille('Physique & chimie', Color(0xFFFF7A1A), Color(0xFF2A1300), Color(0xFFB85000), Color(0xFFFFB27A), Icons.science),
   'life':        Famille('Vivant', Color(0xFFF2C230), Color(0xFF2B2000), Color(0xFF8A6A00), Color(0xFFF7D86A), Icons.biotech),
   'earth':       Famille('Terre & histoire', Color(0xFFB5653A), Colors.white, Color(0xFF8E4E2B), Color(0xFFE8A57E), Icons.terrain),
-  'other':       Famille('Autre', Color(0xFF9B3D8F), Colors.white, Color(0xFF8A3480), Color(0xFFE7A9DE), Icons.more_horiz), // prune (maquette 24, choix 4)
+  'other':       Famille('Humain & société', Color(0xFF9B3D8F), Colors.white, Color(0xFF8A3480), Color(0xFFE7A9DE), Icons.diversity_3), // prune ; ex-« Autre » (31/10)
   // ------ Fil Technologies ------
-  'mobile':      Famille('Smartphones & objets', Color(0xFF5B4CF0), Colors.white, Color(0xFF4A3BD6), Color(0xFFB3AAFF), Icons.smartphone),
+  'mobile':      Famille('Appareils & objets', Color(0xFF5B4CF0), Colors.white, Color(0xFF4A3BD6), Color(0xFFB3AAFF), Icons.smartphone),
   'computing':   Famille('Informatique & puces', Color(0xFF1E8FE0), Colors.white, Color(0xFF0F6FB3), Color(0xFF8CCBFF), Icons.memory),
   'ai_software': Famille('IA & logiciels', Color(0xFFF0466B), Colors.white, Color(0xFFC8264B), Color(0xFFFF9BB1), Icons.auto_awesome),
   'mobility':    Famille('Transports', Color(0xFFFF7A1A), Color(0xFF2A1300), Color(0xFFB85000), Color(0xFFFFB27A), Icons.directions_car),
-  'aerospace':   Famille('Espace & aéronautique', Color(0xFF12A37F), Colors.white, Color(0xFF0B7D61), Color(0xFF6EE2BE), Icons.rocket_launch),
+  'aerospace':   Famille('Espace, aviation & défense', Color(0xFF12A37F), Colors.white, Color(0xFF0B7D61), Color(0xFF6EE2BE), Icons.rocket_launch),
   'energy_home': Famille('Énergie & maison', Color(0xFFF2C230), Color(0xFF2B2000), Color(0xFF8A6A00), Color(0xFFF7D86A), Icons.bolt),
   'gaming':      Famille('Jeux vidéo & consoles', Color(0xFFC24CF0), Colors.white, Color(0xFF9A2BC4), Color(0xFFE2A8FF), Icons.sports_esports),
-  'tech_other':  Famille('Autre', Color(0xFF9B3D8F), Colors.white, Color(0xFF8A3480), Color(0xFFE7A9DE), Icons.more_horiz), // prune
+  'tech_other':  Famille('Industrie & fabrication', Color(0xFF9B3D8F), Colors.white, Color(0xFF8A3480), Color(0xFFE7A9DE), Icons.precision_manufacturing), // prune ; ex-« Autre » (31/10)
 };
 
 Famille familleDe(String code) => familles[code] ?? familles['other']!;

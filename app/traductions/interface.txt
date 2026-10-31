@@ -5645,3 +5645,89 @@ ja 新着はすべて見ました。次の成果はまもなく届きます。
 ko 새 소식을 모두 봤어요. 다음 소식이 곧 도착해요.
 id Anda sudah melihat semua yang baru. Kemajuan berikutnya segera hadir.
 vi Bạn đã xem hết tin mới. Những tiến bộ tiếp theo sắp đến.
+
+# Familles élargies (31/10/2026) : « Autre » → « Humain & société » (Sciences)
+# et « Industrie & fabrication » (Technologies) ; défense et appareils photo.
+@ Humain & société
+en People & society
+es Ser humano y sociedad
+pt Ser humano e sociedade
+de Mensch & Gesellschaft
+it Persone e società
+nl Mens & samenleving
+pl Człowiek i społeczeństwo
+ru Человек и общество
+uk Людина і суспільство
+tr İnsan ve toplum
+ar الإنسان والمجتمع
+hi मनुष्य और समाज
+bn মানুষ ও সমাজ
+ur انسان اور معاشرہ
+zh 人类与社会
+ja 人間と社会
+ko 인간과 사회
+id Manusia & masyarakat
+vi Con người & xã hội
+
+@ Industrie & fabrication
+en Industry & manufacturing
+es Industria y fabricación
+pt Indústria e fabricação
+de Industrie & Fertigung
+it Industria e produzione
+nl Industrie & productie
+pl Przemysł i produkcja
+ru Промышленность и производство
+uk Промисловість і виробництво
+tr Sanayi ve üretim
+ar الصناعة والتصنيع
+hi उद्योग और निर्माण
+bn শিল্প ও উৎপাদন
+ur صنعت اور تیاری
+zh 工业与制造
+ja 産業とものづくり
+ko 산업과 제조
+id Industri & manufaktur
+vi Công nghiệp & sản xuất
+
+@ Espace, aviation & défense
+en Space, aviation & defense
+es Espacio, aviación y defensa
+pt Espaço, aviação e defesa
+de Raumfahrt, Luftfahrt & Verteidigung
+it Spazio, aviazione e difesa
+nl Ruimtevaart, luchtvaart & defensie
+pl Kosmos, lotnictwo i obronność
+ru Космос, авиация и оборона
+uk Космос, авіація та оборона
+tr Uzay, havacılık ve savunma
+ar الفضاء والطيران والدفاع
+hi अंतरिक्ष, विमानन और रक्षा
+bn মহাকাশ, বিমান ও প্রতিরক্ষা
+ur خلا، ہوابازی اور دفاع
+zh 航天、航空与国防
+ja 宇宙・航空・防衛
+ko 우주·항공·국방
+id Antariksa, penerbangan & pertahanan
+vi Vũ trụ, hàng không & quốc phòng
+
+@ Appareils & objets
+en Devices & gadgets
+es Dispositivos y objetos
+pt Dispositivos e objetos
+de Geräte & Gadgets
+it Dispositivi e oggetti
+nl Apparaten & gadgets
+pl Urządzenia i gadżety
+ru Устройства и гаджеты
+uk Пристрої та гаджети
+tr Cihazlar ve aletler
+ar الأجهزة والأدوات
+hi उपकरण और गैजेट
+bn ডিভাইস ও গ্যাজেট
+ur آلات اور گیجٹس
+zh 设备与小工具
+ja デバイスとガジェット
+ko 기기와 가젯
+id Perangkat & gawai
+vi Thiết bị & đồ công nghệ

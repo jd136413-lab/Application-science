@@ -16,19 +16,22 @@ THEMES = [
     "robotics", "health", "medicine", "neuroscience", "genetics", "biology",
     "chemistry", "physics", "quantum", "materials", "energy", "ocean",
     "geology", "paleontology", "archaeology", "agriculture", "mathematics",
-    "transportation", "other",
+    "transportation",
+    "psychology", "society",                        # Humain & société (31/10)
+    "other",
 ]
 
 # Thèmes du fil Technologies
 TECH_THEMES = [
-    "smartphones", "wearables", "gadgets",          # Smartphones & objets
-    "computers", "chips",                           # Informatique & puces
-    "ai_products", "software", "cybersecurity",     # IA & logiciels
-    "cars", "drones",                               # Transports
-    "rockets", "aircraft", "satellites",            # Espace & aéronautique
-    "batteries", "solar", "smart_home",             # Énergie & maison
-    "consoles", "video_games", "vr",                # Jeux vidéo & consoles
-    "tech_other",                                   # Autre
+    "smartphones", "wearables", "gadgets", "cameras",            # Appareils & objets
+    "computers", "chips",                                         # Informatique & puces
+    "ai_products", "software", "cybersecurity",                   # IA & logiciels
+    "cars", "drones", "trains", "ships",                          # Transports
+    "rockets", "aircraft", "satellites", "defense",               # Espace, aviation & défense
+    "batteries", "solar", "nuclear", "smart_home",                # Énergie & maison
+    "consoles", "video_games", "vr",                              # Jeux vidéo & consoles
+    "manufacturing", "construction", "agritech",                  # Industrie & fabrication
+    "tech_other",                                                 # Industrie & fabrication (inclassable)
 ]
 
 CLASSIFICATION = (Path(__file__).parent / "classification.md").read_text(encoding="utf-8")
@@ -88,14 +91,21 @@ Nouvelles sources (choix de Maxime, 31/10) :
   d'un médicament connu, rappel, avertissement, politique) : « none ».
 - Psychologie et comportement humain : avancée possible si l'étude est solide (taille,
   méthode) ; méfie-toi des petites études et des corrélations présentées comme des causes.
-  Thème "other" (en attendant une famille dédiée).
+  Thème "psychology" (famille Humain & société).
 - Défense (DARPA) : seulement un résultat réellement démontré (essai réussi, prototype qui
   fonctionne), jamais un programme lancé, un contrat ou un appel à projets.
 - Nucléaire et fusion, impression 3D, bâtiment, transport maritime, agriculture et
   alimentation de demain, photo et imagerie : mêmes règles que les autres technologies.
-  Thèmes en attendant leurs familles dédiées : nucléaire → "solar" (énergie), bateaux →
-  "cars" (transports), photo → "gadgets", impression 3D / bâtiment / agriculture →
-  "tech_other".
+
+Familles élargies (choix de Maxime, 31/10) — thèmes à utiliser :
+- Sciences « Humain & société » : "psychology" (psychologie, comportement, cerveau et
+  apprentissage vus sous l'angle du comportement), "society" (sciences sociales,
+  éducation, langage, économie expérimentale). "other" seulement si rien ne convient.
+- Technologies : "cameras" (appareils photo, capteurs d'image) ; "trains", "ships"
+  (transports) ; "defense" (défense, armées, DARPA) ; "nuclear" (fission, fusion, petits
+  réacteurs) ; "manufacturing" (impression 3D, usines, robots industriels de production),
+  "construction" (bâtiment, ponts, matériaux de construction), "agritech" (agriculture et
+  alimentation de demain) ; "tech_other" seulement si rien ne convient.
 
 ## B. Doublons
 Réponds "duplicate" si le MÊME sujet (même découverte, même étude, même produit, même
