@@ -170,12 +170,17 @@ def corriger(db, client, log) -> int:
     """Reprend les titres listés dans titres_reecrits.md (avant → après) : remet les mots
     connus de tous et la précision perdue. Retraduit les titres modifiés."""
     import traduction
+    forcer = os.environ.get("MODE") == "forcer"
     paires = []          # (titre d'origine, titre actuel en base)
-    for ligne in open("titres_reecrits.md", encoding="utf-8"):
+    if forcer:           # titres listés à la main par Claude : ils ÉCHOUENT au test, à réécrire
+        paires = [(t.strip(), t.strip()) for t in open("titres_a_forcer.txt", encoding="utf-8") if " : " in t]
+    for ligne in ([] if forcer else open("titres_reecrits.md", encoding="utf-8")):
         morceaux = [m.strip() for m in ligne.strip().strip("|").split("|")]
         if len(morceaux) == 2 and " : " in morceaux[1] and morceaux[0] != "Avant":
             paires.append(tuple(morceaux))
-    try:                 # une correction précédente a pu changer le titre actuel
+    try:
+        if forcer:
+            raise FileNotFoundError                 # une correction précédente a pu changer le titre actuel
         finals = {}
         for ligne in open("titres_corriges.md", encoding="utf-8"):
             m = [x.strip() for x in ligne.strip().strip("|").split("|")]
@@ -201,7 +206,10 @@ def corriger(db, client, log) -> int:
         lignes = [{"n": i, "origine": f["_origine"], "simplifie": f["title"], "resume": _resume(f)}
                   for i, f in enumerate(paquet)]
         rep = client.messages.create(
-            model=MODELE, max_tokens=6000, system=CONSIGNE_CORRECTION,
+            model=MODELE, max_tokens=6000,
+            system=CONSIGNE_CORRECTION + ("\n\nATTENTION : chacun de ces titres ÉCHOUE au test du passant "
+                                          "(nom inconnu, mot savant ou formulation vague) : réécris-les TOUS."
+                                          if forcer else ""),
             messages=[{"role": "user", "content": json.dumps({"fiches": lignes}, ensure_ascii=False)}],
             output_config={"format": {"type": "json_schema", "schema": SCHEMA_CORRECTION}},
         )
@@ -233,7 +241,7 @@ def corriger(db, client, log) -> int:
     cout = (t_in * PRIX[0] + t_out * PRIX[1]) / 1e6 + cout_trad
     lignes_md.insert(2, f"{len(changees)} titre(s) corrigé(s) sur {len(fiches)}, {n_trad} retraduit(s), coût {cout:.4f} $.")
     lignes_md.insert(3, "")
-    open("titres_corriges.md", "w", encoding="utf-8").write("\n".join(lignes_md) + "\n")
+    open("titres_forces.md" if forcer else "titres_corriges.md", "w", encoding="utf-8").write("\n".join(lignes_md) + "\n")
     log(f"✔ {len(changees)} titre(s) corrigé(s), {n_trad} retraduit(s), coût {cout:.4f} $")
     if os.environ.get("GITHUB_ACTIONS"):
         print(f"::notice title=Titres corrigés::{len(changees)} sur {len(fiches)}, coût {cout:.4f} $", flush=True)
@@ -254,7 +262,7 @@ def main() -> int:
             log(f"❌ Secret manquant : {var}")
             return 1
     db = Supabase(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SECRET_KEY"])
-    if os.environ.get("MODE") == "corriger":
+    if os.environ.get("MODE") in ("corriger", "forcer"):
         return corriger(db, Anthropic(), log)
     avec_trad = True
     r = requests.get(db.base, headers=db.headers, timeout=60, params={

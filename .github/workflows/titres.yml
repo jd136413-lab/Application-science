@@ -42,13 +42,14 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           # Branche « titres/corriger… » : reprend les titres déjà réécrits (titres_reecrits.md)
-          MODE: ${{ contains(github.ref_name, 'corriger') && 'corriger' || '' }}
+          # Branche « titres/forcer… » : réécrit les titres listés dans agent/titres_a_forcer.txt
+          MODE: ${{ contains(github.ref_name, 'forcer') && 'forcer' || (contains(github.ref_name, 'corriger') && 'corriger' || '') }}
         run: python titres.py
       - name: Enregistrer la liste des titres réécrits
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in agent/titres_reecrits.md agent/titres_corriges.md; do [ -f "$f" ] && git add "$f"; done
+          for f in agent/titres_reecrits.md agent/titres_corriges.md agent/titres_forces.md; do [ -f "$f" ] && git add "$f"; done
           git commit -m "Titres réécrits (test du passant) [skip ci]" || exit 0
           for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
