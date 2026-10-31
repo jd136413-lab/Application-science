@@ -114,28 +114,22 @@ class EcranDetail extends StatelessWidget {
         const SizedBox(height: 16),
         _TitreEtResume(avancee: avancee),
         const SizedBox(height: 18),
-        Container(
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(color: p.fond, borderRadius: BorderRadius.circular(16)),
-          child: Row(children: [
-            Container(
-              width: 40,
-              height: 40,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(12)),
-              child: Text(avancee.source.isEmpty ? '?' : avancee.source.characters.first.toUpperCase(),
-                  style: police(policeTitres, taille: 18, graisse: FontWeight.w800, couleur: p.texte)),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(avancee.source, style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
-                Text(Uri.tryParse(avancee.lien)?.host.replaceFirst('www.', '') ?? '',
-                    style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
-              ]),
-            ),
-          ]),
-        ),
+        avancee.autresSources.isEmpty
+            ? Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(color: p.fond, borderRadius: BorderRadius.circular(16)),
+                child: Row(children: [
+                  _TuileSource(nom: avancee.source, fond: p.carte, taille: 40),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(avancee.source, style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
+                      Text(_domaine(avancee.lien), style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                    ]),
+                  ),
+                ]),
+              )
+            : _Sources(avancee: avancee),
       ]),
     );
 
@@ -305,6 +299,172 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
           ),
         ]),
       ],
+    ]);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Plusieurs sources pour une même avancée (maquette 49, disposition B1) :
+// une ligne repliée « Source + N autres » avec les initiales empilées ; un
+// toucher la déplie en liste (source principale en premier). Chaque source
+// s'ouvre dans l'app.
+
+String _domaine(String lien) => Uri.tryParse(lien)?.host.replaceFirst('www.', '') ?? '';
+
+/// Fonds des initiales empilées (bleu, rose, vert, jaune pâles), en boucle.
+const List<Color> _fondsSources = [Color(0xFFE3EDFF), Color(0xFFFFE3EA), Color(0xFFE5F6EC), Color(0xFFFFF1D6)];
+
+class _TuileSource extends StatelessWidget {
+  final String nom;
+  final Color fond;
+  final double taille;
+  const _TuileSource({required this.nom, required this.fond, this.taille = 34});
+
+  @override
+  Widget build(BuildContext context) => Container(
+        width: taille,
+        height: taille,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(color: fond, borderRadius: BorderRadius.circular(taille / 3)),
+        child: Text(nom.isEmpty ? '?' : nom.characters.first.toUpperCase(),
+            style: police(policeTitres, taille: taille * 0.45, graisse: FontWeight.w800, couleur: const Color(0xFF17161F))),
+      );
+}
+
+class _Sources extends StatefulWidget {
+  final Avancee avancee;
+  const _Sources({required this.avancee});
+
+  @override
+  State<_Sources> createState() => _SourcesState();
+}
+
+class _SourcesState extends State<_Sources> {
+  bool _ouvert = false;
+
+  Future<void> _ouvrirSource(String nom, String lien) async {
+    final uri = Uri.tryParse(lien);
+    stat('article', a: widget.avancee, valeur: nom == widget.avancee.source ? null : 'autre_source');
+    if (uri == null || !await ouvrirArticle(uri)) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Impossible d’ouvrir l’article'))));
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    final a = widget.avancee;
+    final n = a.autresSources.length;
+    final noms = [a.source, for (final s in a.autresSources) s.nom];
+    final sombre = estSombre(context);
+
+    Widget pile() => SizedBox(
+          width: 30.0 + 20.0 * (noms.take(4).length - 1),
+          height: 34,
+          child: Stack(children: [
+            for (var i = 0; i < noms.take(4).length; i++)
+              Positioned(
+                left: 20.0 * i,
+                child: Container(
+                  padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(12)),
+                  child: _TuileSource(nom: noms[i], fond: _fondsSources[i % 4], taille: 30),
+                ),
+              ),
+          ]),
+        );
+
+    Widget ligne(String nom, String lien, String langue, {bool principale = false, required int rang}) {
+      final nomLangue = languesDisponibles[langue];
+      return Padding(
+        padding: const EdgeInsets.only(top: 6),
+        child: Material(
+          color: p.fond,
+          borderRadius: BorderRadius.circular(14),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(14),
+            onTap: () => _ouvrirSource(nom, lien),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              child: Row(children: [
+                _TuileSource(nom: nom, fond: _fondsSources[rang % 4]),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(nom, style: police(policeTexte, taille: 14, graisse: FontWeight.w700, couleur: p.texte)),
+                    Text(nomLangue == null ? _domaine(lien) : '${_domaine(lien)} · $nomLangue',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
+                  ]),
+                ),
+                if (principale)
+                  Container(
+                    margin: const EdgeInsets.only(left: 6),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(
+                        color: sombre ? const Color(0xFF233A66) : const Color(0xFFE3EDFF),
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Text(tr('Source principale'),
+                        style: police(policeTexte, taille: 11, graisse: FontWeight.w700,
+                            couleur: sombre ? const Color(0xFFBBD0FF) : const Color(0xFF1F4FB8))),
+                  ),
+                const SizedBox(width: 4),
+                Icon(Icons.chevron_right_rounded, color: p.texteDiscret, size: 20),
+              ]),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: () => setState(() => _ouvert = !_ouvert),
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: p.bordure, width: 1.5),
+            ),
+            child: Row(children: [
+              pile(),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('${a.source} ${n == 1 ? tr('+ 1 autre') : tr('+ {n} autres', n: n)}',
+                      style: police(policeTexte, taille: 14, graisse: FontWeight.w700, couleur: p.texte)),
+                  Text(_ouvert ? tr('Toucher pour replier') : tr('Voir toutes les sources'),
+                      style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
+                ]),
+              ),
+              AnimatedRotation(
+                turns: _ouvert ? 0.5 : 0,
+                duration: const Duration(milliseconds: 200),
+                child: Icon(Icons.expand_more_rounded, color: p.texteDiscret),
+              ),
+            ]),
+          ),
+        ),
+      ),
+      AnimatedSize(
+        duration: const Duration(milliseconds: 220),
+        curve: Curves.easeOut,
+        alignment: Alignment.topCenter,
+        child: !_ouvert
+            ? const SizedBox(width: double.infinity)
+            : Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                const SizedBox(height: 2),
+                ligne(a.source, a.lien, '', principale: true, rang: 0),
+                for (var i = 0; i < n; i++)
+                  ligne(a.autresSources[i].nom, a.autresSources[i].url, a.autresSources[i].langue, rang: i + 1),
+              ]),
+      ),
     ]);
   }
 }
