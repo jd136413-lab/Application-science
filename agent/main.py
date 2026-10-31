@@ -37,6 +37,14 @@ PRESELECTION = True
 PRESELECTION_JOURS = 7       # âge max des articles présélectionnés (jours)
 PRESELECTION_MAX = 250       # nombre max de titres envoyés à Claude
 
+# Équilibre des familles (choix de Maxime, 31/10/2026) : sur les 7 derniers jours,
+# une famille ne dépasse pas environ 25 % des fiches de son fil (ex. la santé dans
+# Sciences). Les avancées pré-notées ou notées ★★★ et plus passent TOUJOURS.
+# À note égale, la famille la moins publiée passe en premier. Pas de minimum :
+# on ne publie jamais une fiche faible juste pour remplir une famille.
+PLAFOND_FAMILLE = 0.25
+JOURS_EQUILIBRE = 7
+
 # Modèles Claude disponibles et tarifs en dollars par million de tokens
 # (entrée, sortie). Tarifs vérifiés en octobre 2026.
 MODELES = {
@@ -48,6 +56,7 @@ MODELE_PAR_DEFAUT = "haiku"
 
 import html
 import json
+import math
 import os
 import random
 import re
@@ -188,6 +197,22 @@ class Supabase:
             debut = " ".join((x.get("summary") or "").split()[:14])
             sujets.append(f"{x['title']} — {debut}…")
         return sujets
+
+    def familles_recentes(self) -> dict[tuple[str, str], int] | None:
+        """Nombre de fiches par (fil, famille) sur les JOURS_EQUILIBRE derniers jours."""
+        try:
+            depuis = (MAINTENANT - timedelta(days=JOURS_EQUILIBRE)).isoformat()
+            r = requests.get(self.base, headers=self.headers, timeout=30, params={
+                "select": "feed,family", "created_at": f"gte.{depuis}", "limit": "2000"})
+            r.raise_for_status()
+            compte = {}
+            for x in r.json():
+                k = (x.get("feed") or "science", x.get("family") or "other")
+                compte[k] = compte.get(k, 0) + 1
+            return compte
+        except Exception as ex:
+            log(f"⚠ Équilibre des familles indisponible ({ex.__class__.__name__}) : pas de plafond ce passage.")
+            return None
 
     def corriger_credits(self) -> int:
         """Corrige les crédits d'image déjà enregistrés avec une parenthèse orpheline."""
@@ -402,6 +427,68 @@ def completer_image(art: dict) -> None:
     art["image_credit"] = credit
 
 
+# ============================ FAMILLES ===============================
+# Même calcul que la base (fonction set_family, migration 002).
+FAMILLES_THEMES = {
+    "space": ("space", "astronomy"),
+    "environment": ("environment", "climate", "ocean", "agriculture"),
+    "health": ("health", "medicine", "neuroscience"),
+    "technology": ("technology", "ai", "robotics", "energy", "transportation"),
+    "physics": ("physics", "quantum", "chemistry", "materials", "mathematics"),
+    "life": ("biology", "genetics"),
+    "earth": ("geology", "paleontology", "archaeology"),
+    "other": ("other",),
+    "mobile": ("smartphones", "wearables", "gadgets"),
+    "computing": ("computers", "chips"),
+    "ai_software": ("ai_products", "software", "cybersecurity"),
+    "mobility": ("cars", "drones"),
+    "aerospace": ("rockets", "aircraft", "satellites"),
+    "energy_home": ("batteries", "solar", "smart_home"),
+    "gaming": ("consoles", "video_games", "vr"),
+    "tech_other": ("tech_other",),
+}
+FAMILLE_DU_THEME = {t: f for f, ts in FAMILLES_THEMES.items() for t in ts}
+FAMILLES_TEXTE = ("Sciences : space (espace, astronomie), environment (environnement, climat, océans, "
+                  "agriculture), health (santé, médecine, cerveau), technology (technologie, IA, robots, énergie), "
+                  "physics (physique, chimie, matériaux, maths), life (biologie, génétique, animaux, plantes), "
+                  "earth (géologie, fossiles, archéologie), other. Technologies : mobile (smartphones, objets), "
+                  "computing (ordinateurs, puces), ai_software (IA, logiciels, cybersécurité), mobility (voitures, "
+                  "drones), aerospace (fusées, avions, satellites), energy_home (batteries, solaire, maison), "
+                  "gaming (jeux vidéo, consoles, VR), tech_other.")
+
+
+class Equilibre:
+    """Part de chaque famille dans son fil sur les JOURS_EQUILIBRE derniers jours."""
+
+    def __init__(self, compte: dict[tuple[str, str], int] | None):
+        self.actif = compte is not None
+        self.compte = dict(compte or {})
+
+    def total(self, fil: str) -> int:
+        return sum(n for (f, _), n in self.compte.items() if f == fil)
+
+    def part(self, fil: str, famille: str | None) -> float:
+        if not famille:
+            return 0.0
+        return self.compte.get((fil, famille), 0) / max(1, self.total(fil))
+
+    def trop(self, fil: str, famille: str | None) -> bool:
+        """Vrai si une fiche de plus dépasserait le plafond (au moins 2 fiches permises)."""
+        if not self.actif or not famille:
+            return False
+        permis = max(2, math.ceil(PLAFOND_FAMILLE * (self.total(fil) + 1)))
+        return self.compte.get((fil, famille), 0) >= permis
+
+    def ajouter(self, fil: str, famille: str | None) -> None:
+        if famille:
+            self.compte[(fil, famille)] = self.compte.get((fil, famille), 0) + 1
+
+    def resume(self, fil: str) -> str:
+        t = self.total(fil)
+        lignes = sorted(((n, f) for (fl, f), n in self.compte.items() if fl == fil), reverse=True)
+        return ", ".join(f"{f} {round(100 * n / max(1, t))} %" for n, f in lignes) or "aucune fiche"
+
+
 # ============================= CLAUDE ================================
 
 def extraire_json(texte: str) -> dict | None:
@@ -567,7 +654,10 @@ BAREME_COURT = """Barème (le même que pour les fiches ; sois TRÈS exigeant, e
 5 « Rupture » : exceptionnel (traitement validé chez l'humain d'une maladie incurable, moment historique comme le premier iPhone).
 Preuves : essai chez l'humain > animal > cellules > simulation. Méfie-toi des superlatifs."""
 
-EXCEPTION_TECH = """Exception pour les technologies : un produit, un véhicule ou un engin RÉELLEMENT montré en fonctionnement, lancé ou mis en service par une entreprise (voiture dévoilée et conduite, fusée ou engin qui vole, essai en vol ou récupération de fusée réussis, smartphone ou appareil présenté et mis en vente) EST une avancée technologique, même si l'information vient de l'entreprise elle-même : note 1 ou 2, davantage seulement pour une vraie première. Restent écartés : rumeurs, fuites, promesses sans démonstration, simples dates de sortie ou de lancement annoncées."""
+JEUX_VIDEO = """Jeux vidéo (choix de Maxime, 31/10) : SONT des avancées technologiques (famille gaming) : la SORTIE effective d'un jeu très attendu dont parle toute la presse, notée selon ce qu'il apporte réellement (réalisme, ampleur et densité du monde, technologies graphiques, physiques ou d'IA, prouesse technique) — 1 ou 2 en général, 3 pour une sortie qui marque l'histoire du jeu vidéo par son ampleur et ses nouveautés techniques ; une mécanique de jeu ou une technologie de jeu jamais vue, réellement jouable ou démontrée ; une console, un casque de réalité virtuelle ou une manette réellement mis en vente ; un record technique. Restent écartés : annonces, bandes-annonces, dates de sortie, rumeurs, précommandes, extensions et mises à jour ordinaires, promos, tests et critiques, chiffres de ventes, e-sport, jeux ordinaires sans nouveauté."""
+
+EXCEPTION_TECH = """Exception pour les technologies : un produit, un véhicule ou un engin RÉELLEMENT montré en fonctionnement, lancé ou mis en service par une entreprise (voiture dévoilée et conduite, fusée ou engin qui vole, essai en vol ou récupération de fusée réussis, smartphone ou appareil présenté et mis en vente) EST une avancée technologique, même si l'information vient de l'entreprise elle-même : note 1 ou 2, davantage seulement pour une vraie première. Restent écartés : rumeurs, fuites, promesses sans démonstration, simples dates de sortie ou de lancement annoncées.
+""" + JEUX_VIDEO
 
 CONSIGNE_TRI = """Tu tries des titres d'articles pour une application qui présente les vraies avancées scientifiques et technologiques du moment.
 
@@ -575,7 +665,7 @@ On te donne des titres numérotés (avec la source). Renvoie dans "articles" UNI
 N'inclus PAS : politique, stratégie d'entreprise sans produit, anniversaires, rubriques récurrentes.
 Écarte TOUJOURS (comme le fera ensuite la rédaction) : projet ou mission seulement à venir (un lancement dont les résultats restent à venir n'est PAS une avancée), rumeur ou fuite, promotion ou bon plan, test ou comparatif, guide d'achat, tutoriel, résultats financiers, procès ou régulation (une autorisation réglementaire seule n'est pas une avancée), nomination, partenariat, financement, prix, événement ou salon, vidéo ou article d'explication, synthèse de connaissances déjà établies, rétrospective, portrait, entretien, opinion, sondage, galerie d'images, mise à jour mineure, produit commercial sans innovation technique significative (option, nouvelle gamme, simple amélioration de fiche technique).
 """ + EXCEPTION_TECH + """
-Pour chaque article gardé : "i" (son numéro), "note" de 1 à 5, "sujet" (4 à 10 mots en français qui décrivent précisément LA découverte ou LE produit, pour reconnaître les articles qui parlent de la même chose).
+Pour chaque article gardé : "i" (son numéro), "note" de 1 à 5, "sujet" (4 à 10 mots en français qui décrivent précisément LA découverte ou LE produit, pour reconnaître les articles qui parlent de la même chose), "famille" (le domaine de l'article, parmi : """ + FAMILLES_TEXTE + """).
 
 """ + BAREME_COURT + """
 
@@ -587,7 +677,7 @@ On te donne : la liste des sujets DÉJÀ PUBLIÉS ces derniers jours, puis des a
 1. Regroupe les articles qui parlent du MÊME sujet (même découverte, même étude, même produit), même formulés autrement.
 2. Écarte les groupes dont le sujet est déjà publié, et ceux qui ne sont pas une vraie avancée.    (Pas une vraie avancée : projet ou mission seulement à venir (un lancement dont les résultats restent à venir n'est PAS une avancée), rumeur ou fuite, promotion ou bon plan, test ou comparatif, guide d'achat, tutoriel, résultats financiers, procès ou régulation (une autorisation réglementaire seule n'est pas une avancée), nomination, partenariat, financement, prix, événement ou salon, vidéo ou article d'explication, synthèse de connaissances déjà établies, rétrospective, portrait, entretien, opinion, sondage, galerie d'images, mise à jour mineure, produit commercial sans innovation technique significative (option, nouvelle gamme, simple amélioration de fiche technique).) """ + EXCEPTION_TECH + """
 3. Pour chaque groupe : "articles" (tous ses numéros), "choisi" (le meilleur article à lire : de préférence la source d'origine — l'université, le laboratoire, l'agence, la revue ou l'entreprise qui annonce son propre résultat —, sinon le plus complet), "note" de 1 à 5. Un sujet repris par plusieurs sources indépendantes est probablement plus important : tiens-en compte, sans dépasser ce que justifie l'avancée elle-même.
-4. Classe les groupes du plus important au moins important. Garde au plus {k} groupes (les plus importants).
+4. Classe les groupes du plus important au moins important. Garde au plus {k} groupes (les plus importants). À importance proche, garde des domaines VARIÉS (pas seulement de la santé ou de l'IA) : l'application veut couvrir toute la science et toute la technologie.
 
 """ + BAREME_COURT
 
@@ -595,8 +685,9 @@ SCHEMA_TRI = {
     "type": "object",
     "properties": {"articles": {"type": "array", "items": {
         "type": "object",
-        "properties": {"i": {"type": "integer"}, "note": {"type": "integer"}, "sujet": {"type": "string"}},
-        "required": ["i", "note", "sujet"], "additionalProperties": False}}},
+        "properties": {"i": {"type": "integer"}, "note": {"type": "integer"}, "sujet": {"type": "string"},
+                       "famille": {"type": "string", "enum": list(FAMILLES_THEMES)}},
+        "required": ["i", "note", "sujet", "famille"], "additionalProperties": False}}},
     "required": ["articles"], "additionalProperties": False,
 }
 SCHEMA_REGROUPEMENT = {
@@ -649,7 +740,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
         if m is None:
             a_trier.append(i)
         elif m[0] > 0:                       # déjà jugé prometteur : on le garde
-            notes[i] = (m[0], m[1])
+            notes[i] = (m[0], m[1], m[3] if len(m) > 3 else None)
     STATS["deja_tries"] = len(pool) - len(a_trier)
     # Paquets séparés par fil (les titres tech ne sont pas comparés aux études scientifiques)
     paquets = []
@@ -663,9 +754,10 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
             for x in rep.get("articles", []):
                 i = x.get("i")
                 if isinstance(i, int) and i in paquet:
-                    notes[i] = (max(1, min(5, int(x.get("note") or 1))), str(x.get("sujet", ""))[:100])
+                    fam = x.get("famille") if x.get("famille") in FAMILLES_THEMES else None
+                    notes[i] = (max(1, min(5, int(x.get("note") or 1))), str(x.get("sujet", ""))[:100], fam)
             for i in paquet:                 # mémoire : note, ou 0 = pas une avancée
-                memoire[pool[i]["url"]] = [notes[i][0], notes[i][1], MAINTENANT.isoformat()] if i in notes \
+                memoire[pool[i]["url"]] = [notes[i][0], notes[i][1], MAINTENANT.isoformat(), notes[i][2]] if i in notes \
                     else [0, "", MAINTENANT.isoformat()]
         except Exception as ex:
             log(f"⚠ Tri d'un paquet impossible ({ex.__class__.__name__})")
@@ -680,8 +772,15 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
         log("⚠ Présélection vide : ordre habituel.")
         return candidats, conso
     # 100 meilleurs articles : 60 places pour les Sciences, 40 pour les Technologies
-    par_fil = {f: sorted((i for i in notes if pool[i].get("fil_source", "science") == f),
-                         key=lambda i: -notes[i][0]) for f in ("science", "tech")}
+    # À note égale, les familles alternent (sinon la plus abondante, la santé, remplit tout).
+    par_fil = {}
+    for f in ("science", "tech"):
+        rang, cles = {}, {}
+        for i in sorted((i for i in notes if pool[i].get("fil_source", "science") == f), key=lambda i: -notes[i][0]):
+            k = (notes[i][0], notes[i][2])
+            rang[k] = rang.get(k, 0) + 1
+            cles[i] = (-notes[i][0], rang[k])
+        par_fil[f] = sorted(cles, key=lambda i: cles[i])
     liste = par_fil["science"][:60] + par_fil["tech"][:40]
     STATS["tries"] = len(notes)
     # 2) Regroupement par sujet (+ sujets déjà publiés), un appel par fil
@@ -724,6 +823,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
                 vus.add(a["url"])
                 sources = sorted({pool[sous[k]]["source_name"] for k in membres})
                 a["note_pre"], a["nb_sources"] = note, len(sources)
+                a["famille_pre"] = notes[sous[ch]][2]
                 a["autres_sources"] = [x for x in sources if x != a["source_name"]]
                 choisis.append(a)
         choisis.sort(key=lambda a: -a["note_pre"])   # tri stable : l'ordre de chaque fil est gardé
@@ -755,11 +855,12 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
             sources = sorted({pool[k]["source_name"] for k in g["membres"]})
             a = pool[i]
             a["note_pre"], a["nb_sources"] = notes[i][0], len(sources)
+            a["famille_pre"] = notes[i][2]
             a["autres_sources"] = [x for x in sources if x != a["source_name"]]
             choisis.append(a)
         STATS["groupes"] = f"{len(groupes_loc)} (secours)"
     STATS["choisis"] = len(choisis)
-    STATS["top"] = [f"{a['note_pre']}★ ×{a.get('nb_sources', 1)} {a['title'][:65]} [{a['source_name']}]"
+    STATS["top"] = [f"{a['note_pre']}★ {a.get('famille_pre') or '?'} ×{a.get('nb_sources', 1)} {a['title'][:60]} [{a['source_name']}]"
                     for a in choisis[:15]]
     log(f"Présélection : {len(pool)} articles récents, {len(notes)} jugés prometteurs, "
         f"{len(choisis)} sujets distincts à examiner :")
@@ -920,6 +1021,7 @@ def main() -> int:
         urls |= db.urls_deja_ecartees()
         nb_ecartes = len(urls) - nb_base
         sujets = {"science": db.sujets_recents("science"), "tech": db.sujets_recents("tech")}
+        equilibre = Equilibre(db.familles_recentes())
     except Exception as ex:
         log(f"❌ Impossible de lire Supabase : {ex}")
         return 1
@@ -969,6 +1071,15 @@ def main() -> int:
     def fil_plein(f: str) -> bool:
         return par_fil.get(f, 0) >= quota.get(f, 0)
 
+    # Équilibre des familles : à note égale, la famille la moins publiée d'abord (tri stable).
+    if equilibre.actif:
+        log(f"Familles des {JOURS_EQUILIBRE} derniers jours (plafond {round(100 * PLAFOND_FAMILLE)} %, sauf ★★★ et plus) :")
+        for f in ("science", "tech"):
+            log(f"  {FIL_NOM[f]} : {equilibre.resume(f)}")
+        candidats.sort(key=lambda a: (-a.get("note_pre", 0),
+                                      equilibre.part(a.get("fil_source", "science"), a.get("famille_pre"))))
+    au_plafond = []
+
     ordre = [(a, True) for a in candidats] + [(a, False) for a in candidats]
     for art, avec_quota in ordre:
         if art["url"] in examines:
@@ -982,6 +1093,12 @@ def main() -> int:
             break
         # 1er tour : on n'examine pas un article dont le fil (d'après sa source) est déjà plein
         if avec_quota and fil_plein(art.get("fil_source", "science")) and not majeur:
+            continue
+        # Famille déjà au plafond sur 7 jours : pas examiné (sauf pré-noté ★★★ et plus).
+        # Pas marqué comme écarté : il reste candidat aux prochains passages.
+        if art.get("note_pre", 0) < 3 and equilibre.trop(art.get("fil_source", "science"), art.get("famille_pre")):
+            if art["url"] not in {a["url"] for a in au_plafond}:
+                au_plafond.append(art)
             continue
         examines.add(art["url"])
         deja_juge = art.pop("_reponse", None)   # jugé au 1er tour mais son fil était plein
@@ -1019,14 +1136,24 @@ def main() -> int:
                 art["_reponse"] = rep             # réutilisée au 2e tour, sans nouvel appel
                 log(f"  ⏸ fil {FIL_NOM[fils[0]]} plein : {art['title'][:70]}")
                 continue
-            completer_image(art)
             lignes = [preparer_ligne(f, rep.get(f) or {}, art) for f in fils]
+            # Vérification avec la vraie famille (thème choisi par le juge) : au plafond et
+            # moins de ★★★ → pas publiée maintenant, ni écartée (candidate plus tard).
+            gardees = [l for l in lignes if l["importance"] >= 3
+                       or not equilibre.trop(l["feed"], FAMILLE_DU_THEME.get(l["theme"]))]
+            if not gardees:
+                au_plafond.append(art)
+                log(f"  ⚖ famille au plafond ({FAMILLE_DU_THEME.get(lignes[0]['theme'])}) : {art['title'][:70]}")
+                continue
+            lignes = gardees
+            completer_image(art)
             enregistrees = []
             for ligne in lignes:
                 if db.inserer(ligne) == "doublon":
                     doublons.append((art, f"même lien déjà dans {FIL_NOM[ligne['feed']]}"))
                     continue
                 enregistrees.append(ligne)
+                equilibre.ajouter(ligne["feed"], ligne.get("family") or FAMILLE_DU_THEME.get(ligne["theme"]))
                 sujets[ligne["feed"]].insert(
                     0, f"{ligne['title']} — {' '.join(ligne['summary'].split()[:14])}…")
             if enregistrees:
@@ -1100,6 +1227,12 @@ def main() -> int:
               + (f" ; regroupement en erreur : {STATS['erreur_regroupement']}" if STATS.get("erreur_regroupement") else "")
               + (f" ; réponses coupées : {STATS['coupees']}" if STATS.get("coupees") else ""),
               flush=True)
+        if equilibre.actif:
+            print(f"::warning title=Équilibre des familles (7 jours)::Sciences : {equilibre.resume('science')} ; "
+                  f"Technologies : {equilibre.resume('tech')} ; "
+                  f"{len(au_plafond)} article(s) laissé(s) de côté car leur famille est au plafond"
+                  + (" : " + " | ".join(f"{a.get('famille_pre') or '?'} · {a['title'][:50]}" for a in au_plafond[:6])
+                     if au_plafond else ""), flush=True)
         if STATS.get("top"):
             print("::warning title=Choix de la présélection (dans l'ordre)::" + "  ||  ".join(STATS["top"]), flush=True)
 

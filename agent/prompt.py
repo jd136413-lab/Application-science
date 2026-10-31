@@ -66,6 +66,18 @@ Technologies, importance 1 ou 2, davantage seulement pour une vraie première. R
 « none » : rumeurs, fuites, promesses sans démonstration, simples dates de sortie ou de
 lancement annoncées.
 
+Jeux vidéo (choix de Maxime, 31/10) : SONT des avancées (fiche Technologies, thème
+video_games, consoles ou vr) : la SORTIE effective d'un jeu très attendu dont parle toute
+la presse, notée selon ce qu'il apporte réellement (réalisme, ampleur et densité du monde,
+technologies graphiques, physiques ou d'IA, prouesse technique) — 1 ou 2 en général, 3 pour
+une sortie qui marque l'histoire du jeu vidéo par son ampleur et ses nouveautés techniques ;
+une mécanique de jeu ou une technologie de jeu jamais vue, réellement jouable ou démontrée ;
+une console, un casque de réalité virtuelle ou une manette réellement mis en vente ; un
+record technique. La fiche explique ce qui est nouveau (pas une critique du jeu). Restent
+« none » : annonces, bandes-annonces, dates de sortie, rumeurs, précommandes, extensions et
+mises à jour ordinaires, promos, tests et critiques, chiffres de ventes, e-sport, jeux
+ordinaires sans nouveauté.
+
 ## B. Doublons
 Réponds "duplicate" si le MÊME sujet (même découverte, même étude, même produit, même
 annonce) figure déjà dans une des listes « Déjà publié », même formulé autrement ou vu
