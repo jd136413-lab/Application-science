@@ -60,6 +60,7 @@ import feedparser
 import requests
 
 import notifications
+import traduction
 from anthropic import Anthropic
 
 from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
@@ -1044,10 +1045,13 @@ def main() -> int:
             log(f"  ✖ erreur    : {art['title'][:70]} → {msg}")
             time.sleep(1)
 
+    # --- Traductions (anglais…) : nouvelles fiches + rattrapage d'anciennes (traduction.py) ---
+    trad_nouv, trad_anc, cout_trad = traduction.passage_agent(db, client, ajoutes, log)
+
     # --- Coût (cache : écriture = 1,25 × le prix d'entrée, lecture = 0,1 ×) ---
     p_in, p_out = modele["prix"]
     cout = (conso["in"] * p_in + conso["cache_w"] * p_in * 1.25
-            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6
+            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad
 
     log("\n" + "=" * 60)
     log(f"RÉSUMÉ : {nb_articles} article(s) retenu(s) → {len(ajoutes)} fiche(s) "
@@ -1055,7 +1059,9 @@ def main() -> int:
         f"{len(ignores)} ignoré(s), {len(doublons)} doublon(s), {len(erreurs)} erreur(s)")
     log(f"Appels à Claude : {appels} — tokens : {conso['in']} entrée, {conso['cache_w']} mis en cache, "
         f"{conso['cache_r']} lus en cache, {conso['out']} sortie")
-    log(f"Coût estimé : {cout:.4f} $")
+    log(f"Traductions ({', '.join(traduction.LANGUES)}) : {trad_nouv} nouvelle(s) fiche(s), "
+        f"{trad_anc} ancienne(s) rattrapée(s), {cout_trad:.4f} $")
+    log(f"Coût estimé : {cout:.4f} $ (traductions comprises)")
     if pannes:
         log(f"Sources injoignables : {', '.join(pannes)}")
     log("=" * 60)
@@ -1068,7 +1074,8 @@ def main() -> int:
         notes = [a["importance"] for a in ajoutes]
         print(f"::notice title=Résultat::{nb_articles} article(s) retenu(s), {len(ajoutes)} fiche(s), "
               f"{len(ignores)} ignoré(s), {len(doublons)} doublon(s), {len(erreurs)} erreur(s), "
-              f"coût {cout:.4f} $, notifications {notif_ok} envoyée(s)", flush=True)
+              f"coût {cout:.4f} $ (dont traductions {cout_trad:.4f} $, {trad_nouv} + {trad_anc} fiche(s)), "
+              f"notifications {notif_ok} envoyée(s)", flush=True)
         print(f"::notice title=Notes::{', '.join('★' * n for n in sorted(notes, reverse=True)) or 'aucune'} ; "
               f"avec image : {sum(1 for a in ajoutes if a.get('image_url'))}", flush=True)
         for a in ajoutes[:8]:

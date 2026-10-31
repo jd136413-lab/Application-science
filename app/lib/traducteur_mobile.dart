@@ -36,6 +36,13 @@ Future<OnDeviceTranslator?> _traducteur(String langue) {
   });
 }
 
+/// Télécharge à l'avance le modèle de [langue] (au démarrage ou au choix de la
+/// langue), pour que les premiers articles ne restent pas en français.
+Future<void> preparerTraduction(String langue) async {
+  if (langue == 'fr') return;
+  await _traducteur(langue);
+}
+
 /// Traduit un texte français dans [langue]. En cas de souci : le texte d'origine.
 Future<String> traduireArticle(String texte, String langue) async {
   if (langue == 'fr' || texte.trim().isEmpty) return texte;

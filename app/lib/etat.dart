@@ -12,6 +12,7 @@ import 'modele.dart';
 import 'notifications.dart';
 import 'reglages.dart';
 import 'stats.dart';
+import 'traducteur.dart';
 
 class EtatApp extends ChangeNotifier {
   SharedPreferences? _prefs;
@@ -170,6 +171,7 @@ class EtatApp extends ChangeNotifier {
     langueChoisie = code;
     _enregistrer();
     notifyListeners();
+    if (!languesTraduitesParAgent.contains(langue)) preparerTraduction(langue);
   }
 
   // ---- Notifications ----

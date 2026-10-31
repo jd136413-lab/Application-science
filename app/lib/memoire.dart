@@ -24,6 +24,9 @@ const Duration dureeImages = Duration(days: 30);
 /// Au-delà de ce délai, le fil est retéléchargé en entier (sinon : seulement les nouveautés).
 const Duration dureeFilComplet = Duration(hours: 24);
 
+/// Traductions faites par le téléphone, gardées d'une ouverture à l'autre (texte_article.dart).
+const String cleTraductionsGardees = 'traductions_telephone_v1';
+
 // ----------------------------- Images -----------------------------
 
 const String _cleImages = 'novastem_images';
@@ -146,6 +149,7 @@ Future<void> viderMemoire() async {
       await p.remove(_cleFil(fil));
       await p.remove(_cleDate(fil));
     }
+    await p.remove(cleTraductionsGardees);
   } catch (_) {}
   try {
     await cacheImages.emptyCache();

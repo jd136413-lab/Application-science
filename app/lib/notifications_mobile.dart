@@ -272,11 +272,15 @@ Future<void> _afficherUne(Map<String, dynamic> data) async {
     } catch (_) {}
   }
   liste.removeWhere((x) => x['id'] == id);
+  // Traduction faite par l'agent (titre_en, resume_en…) : utilisée telle quelle.
+  final titreTraduit = data['titre_$langue']?.toString() ?? '';
+  final dejaTraduit = langue != 'fr' && titreTraduit.isNotEmpty;
   liste.add({
     'id': id,
-    'titre': titre,
+    'titre': dejaTraduit ? titreTraduit : titre,
+    'tr': dejaTraduit,
     'imp': (int.tryParse(data['importance']?.toString() ?? '') ?? 1).clamp(1, 5),
-    'resume': data['resume']?.toString() ?? '',
+    'resume': dejaTraduit ? (data['resume_$langue']?.toString() ?? '') : (data['resume']?.toString() ?? ''),
     'image': data['image']?.toString() ?? '',
     'lot': data['lot']?.toString() ?? '',
   });
@@ -295,10 +299,13 @@ Future<void> _afficherUne(Map<String, dynamic> data) async {
   final etoiles = '★' * imp;
   final mot = _tr(motsImportance[imp], langue);
   final nomFil = _tr(fil == 'tech' ? texteTechnologies : texteSciences, langue);
-  final titreV = await _traduire(vedette['titre'] as String, langue);
-  final resumeV = await _traduire(vedette['resume'] as String, langue);
+  // Déjà traduit par l'agent ('tr') : tel quel ; sinon traduction du téléphone.
+  Future<String> texte(Map<String, dynamic> a, String champ) async =>
+      a['tr'] == true ? a[champ] as String : await _traduire(a[champ] as String, langue);
+  final titreV = await texte(vedette, 'titre');
+  final resumeV = await texte(vedette, 'resume');
   final titresAutres = [
-    for (final a in autres.take(5)) '${'★' * (a['imp'] as int)} ${await _traduire(a['titre'] as String, langue)}'
+    for (final a in autres.take(5)) '${'★' * (a['imp'] as int)} ${await texte(a, 'titre')}'
   ];
   final plus = autres.isEmpty
       ? ''

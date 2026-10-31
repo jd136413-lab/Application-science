@@ -3,6 +3,8 @@
 // Le logo disparaît quand on fait défiler la liste vers le bas et revient
 // quand on remonte tout en haut ; les 3 menus restent toujours visibles.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,6 +17,7 @@ import 'modele.dart';
 import 'navigation.dart';
 import 'reglages.dart';
 import 'stats.dart';
+import 'texte_article.dart';
 import 'widgets.dart';
 
 class EcranAccueil extends StatefulWidget {
@@ -102,6 +105,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
     () async {
       final garde = await filEnMemoire(fil);
       if (garde != null && mounted && !_fils.containsKey(fil)) setState(() => _fils[fil] = garde);
+      if (garde != null) unawaited(pretraduire(garde));
       await _mettreAJour(fil);
     }();
   }
@@ -119,6 +123,7 @@ class _EcranAccueilState extends State<EcranAccueil> {
           _fils[fil] = l;
           _horsLigne.remove(fil);
         });
+        unawaited(pretraduire(l));
       }
     } catch (e) {
       if (mounted) {

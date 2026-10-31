@@ -74,6 +74,11 @@ def envoyer(fiches: list[dict], log) -> tuple[int, int]:
                     "fil": f["feed"],
                     "resume": _en_bref(f.get("decouverte") or f.get("summary", "")),
                     "image": f.get("image_url") or "",
+                    # Traductions faites par l'agent (traduction.py) : titre_en, resume_en…
+                    **{k: v for code, t in (f.get("traductions") or {}).items() if isinstance(t, dict)
+                       for k, v in ((f"titre_{code}", t.get("title") or ""),
+                                    (f"resume_{code}", _en_bref(t.get("decouverte") or t.get("summary") or "")))
+                       if v},
                 },
                 "android": {"priority": "high", "ttl": "86400s"},
                 "apns": {"headers": {"apns-priority": "5"}, "payload": {"aps": {"content-available": 1}}},

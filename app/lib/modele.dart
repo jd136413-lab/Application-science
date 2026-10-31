@@ -54,6 +54,7 @@ class Avancee {
   });
 
   factory Avancee.depuisJson(Map<String, dynamic> j) {
+    _retenirTraductions(j);
     final imp = (j['importance'] as num?)?.toInt() ?? 2;
     final img = (j['image_url'] as String?)?.trim();
     return Avancee(
@@ -82,6 +83,50 @@ class Avancee {
       typeEtude: (j['type_etude'] as String?)?.trim(),
     );
   }
+}
+
+/// Langues traduites à l'avance par l'agent (agent/traduction.py, LANGUES) :
+/// pour elles, le téléphone ne télécharge pas son modèle de traduction au démarrage.
+const Set<String> languesTraduitesParAgent = {'en'};
+
+/// Traductions faites par l'agent (colonne « traductions », migration 006) :
+/// langue → texte français → traduction. Remplies à la lecture des fiches.
+final Map<String, Map<String, String>> traductionsAgent = {};
+
+/// Traduction faite par l'agent de ce texte français (titre, partie du résumé,
+/// mot à connaître…) dans la langue de l'app, ou null s'il n'y en a pas.
+String? traductionAgent(String francais, [String? langue]) => traductionsAgent[langue ?? etat.langue]?[francais];
+
+void _retenirTraductions(Map<String, dynamic> j) {
+  final t = j['traductions'];
+  if (t is! Map) return;
+  t.forEach((langue, v) {
+    if (v is! Map) return;
+    final d = traductionsAgent.putIfAbsent(langue.toString(), () => {});
+    void paire(Object? fr, Object? trad) {
+      final a = (fr ?? '').toString(), b = (trad ?? '').toString().trim();
+      if (a.trim().isEmpty || b.isEmpty) return;
+      d[a] = b;
+      d[a.trim()] = b;
+    }
+
+    for (final c in const ['title', 'summary', 'avant', 'decouverte', 'apres']) {
+      paire(j[c], v[c]);
+    }
+    final mf = j['mots'] is List ? j['mots'] as List : const [];
+    final mt = v['mots'] is List ? v['mots'] as List : const [];
+    if (mf.length != mt.length) return;
+    for (var i = 0; i < mf.length; i++) {
+      final f = mf[i], g = mt[i];
+      if (f is! Map || g is! Map) continue;
+      final mot = (f['mot'] ?? '').toString().trim(), def = (f['definition'] ?? '').toString().trim();
+      final tmot = (g['mot'] ?? '').toString().trim(), tdef = (g['definition'] ?? '').toString().trim();
+      paire(mot, tmot);
+      paire(def, tdef);
+      // Forme affichée dans le détail : « mot : définition »
+      if (tmot.isNotEmpty && tdef.isNotEmpty) d['$mot : $def'] = '$tmot: $tdef';
+    }
+  });
 }
 
 /// Un « mot à connaître » et sa définition (en français, traduits à l'affichage).

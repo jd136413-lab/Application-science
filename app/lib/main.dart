@@ -17,11 +17,14 @@ import 'donnees.dart';
 import 'etat.dart';
 import 'langues.dart';
 import 'memoire.dart';
+import 'modele.dart';
 import 'navigation.dart';
 import 'notifications.dart';
 import 'presentation.dart';
 import 'reglages.dart';
 import 'stats.dart';
+import 'texte_article.dart';
+import 'traducteur.dart';
 import 'widgets.dart';
 
 void main() {
@@ -49,6 +52,7 @@ class AppNovaStem extends StatefulWidget {
 
 class _AppNovaStemState extends State<AppNovaStem> {
   late final Future<void> _demarrage = _demarrer();
+  AppLifecycleListener? _cycle;
 
   Future<void> _demarrer() async {
     if (!configurationPresente) {
@@ -56,10 +60,16 @@ class _AppNovaStemState extends State<AppNovaStem> {
           'ne sont pas arrivés jusqu’à la compilation.';
     }
     await etat.charger(); // mémoire du téléphone : domaines, favoris, thème, langue
+    await chargerTraductionsGardees(); // traductions déjà faites par le téléphone
+    // Langue sans traduction de l'agent : modèle du téléphone préparé dès maintenant.
+    if (!languesTraduitesParAgent.contains(etat.langue)) unawaited(preparerTraduction(etat.langue));
     await initializeDateFormatting(); // dates dans toutes les langues
     await initialiserSupabase().timeout(const Duration(seconds: 15));
     // Notifications : jamais bloquant (Firebase absent, pas de réseau…).
     stat('ouverture', valeur: etat.langue); // statistiques anonymes
+    unawaited(statsActivite()); // utilisateurs par langue (une fois par jour et par mois)
+    // App restée ouverte en arrière-plan plusieurs jours : comptée aussi à son retour.
+    _cycle ??= AppLifecycleListener(onResume: () => unawaited(statsActivite()));
     unawaited(limiterImages()); // images gardées : 100 Mo au plus
     unawaited(etat.verifierDemandeAvis());
     demandeOuverture.addListener(_ouvrirDepuisNotification);
