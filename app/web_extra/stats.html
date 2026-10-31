@@ -151,8 +151,14 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
   </div>
 
   <section>
-    <details><summary>Langues et notifications</summary>
-      <div class="grille" style="margin-top:12px"><div id="langues"></div><div id="formules"></div></div>
+    <h2>Langues</h2>
+    <div id="langues"></div>
+    <p class="note">Nombre de téléphones qui ont ouvert l’app, par langue de l’app. Chaque téléphone est compté une fois par jour et une fois par mois, sans aucun identifiant. « Moyenne / jour » : sur les jours de la période où l’app a servi. Compté à partir de la version qui suit le 31/10/2026.</p>
+  </section>
+
+  <section>
+    <details><summary>Notifications</summary>
+      <div class="grille" style="margin-top:12px"><div id="formules"></div></div>
     </details>
   </section>
 
@@ -339,8 +345,31 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
       [fmt(t.avis_demande), "demandes de note Google Play"], [fmt(t.memoire_videe), "mémoires vidées"]]);
     var s = d.signalements || [];
     document.getElementById("signalements").innerHTML = s.length ? petiteTable("Motifs des signalements", s, function (l) { return l.motif; }) : "";
-    document.getElementById("langues").innerHTML = petiteTable("Langues", d.langues || [], function (l) { return l.langue; });
+    langues(d.utilisateurs_langues, d.langues || []);
     document.getElementById("formules").innerHTML = petiteTable("Formules de notifications choisies", d.formules_notif || [], function (l) { return FORMULES[l.formule] || l.formule; });
+  }
+
+  var NOMS_LANGUES = { fr: "Français", en: "Anglais", es: "Espagnol", pt: "Portugais", de: "Allemand", it: "Italien",
+    nl: "Néerlandais", pl: "Polonais", ru: "Russe", uk: "Ukrainien", tr: "Turc", ar: "Arabe", hi: "Hindi", bn: "Bengali",
+    ur: "Ourdou", zh: "Chinois", ja: "Japonais", ko: "Coréen", id: "Indonésien", vi: "Vietnamien" };
+  function nomLangue(c) { return (NOMS_LANGUES[c] || c) + " (" + c + ")"; }
+
+  // Utilisateurs par langue (fonction stats_langues, migration 006).
+  // Sans elle : l'ancien tableau (ouvertures par langue) et un rappel.
+  function langues(u, anciennes) {
+    var z = document.getElementById("langues");
+    if (!u) {
+      z.innerHTML = '<p class="vide">Pour voir le nombre d’utilisateurs par langue, lance le script database/migration_006_traductions_langues.sql dans Supabase (SQL Editor). En attendant : nombre d’ouvertures par langue.</p>' +
+        petiteTable("Ouvertures par langue", anciennes, function (l) { return nomLangue(l.langue); });
+      return;
+    }
+    if (!u.length) { z.innerHTML = '<p class="vide">Pas encore de données (il faut la nouvelle version de l’app).</p>'; return; }
+    z.innerHTML = "<table><thead><tr><th>Langue</th><th class=n>Aujourd’hui</th><th class=n>Moyenne / jour</th><th class=n>Max / jour</th><th class=n>Ce mois-ci</th><th class=n>Mois dernier</th><th class=n>Ouvertures</th></tr></thead><tbody>" +
+      u.map(function (l) {
+        return "<tr><td>" + esc(nomLangue(l.langue)) + '</td><td class="n">' + fmt(l.aujourdhui) + '</td><td class="n">' + dec(nb(l.moyenne_jour)) +
+          '</td><td class="n">' + fmt(l.max_jour) + '</td><td class="n"><b>' + fmt(l.ce_mois) + '</b></td><td class="n">' + fmt(l.mois_dernier) +
+          '</td><td class="n">' + fmt(l.ouvertures) + "</td></tr>";
+      }).join("") + "</tbody></table>";
   }
 
   // Données d'EXEMPLE, seulement pour voir la page hors de GitHub Pages
@@ -370,6 +399,8 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
       origine_lectures: { fil: 590, glisse: 158 },
       signalements: [{ motif: "Mauvaise note", n: 3 }, { motif: "Doublon", n: 2 }],
       langues: [{ langue: "fr", n: 290 }, { langue: "en", n: 22 }],
+      utilisateurs_langues: [{ langue: "fr", aujourdhui: 11, moyenne_jour: 9.4, max_jour: 14, ce_mois: 17, mois_dernier: 12, ouvertures: 290 },
+        { langue: "en", aujourdhui: 1, moyenne_jour: 0.8, max_jour: 2, ce_mois: 3, mois_dernier: 0, ouvertures: 22 }],
       formules_notif: [{ formule: "essentiel", n: 9 }, { formule: "courant", n: 4 }] };
   }
 
@@ -386,6 +417,15 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
       headers: { apikey: CLE, Authorization: "Bearer " + CLE, "Content-Type": "application/json" },
       body: JSON.stringify({ jours: jours }) })
       .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
+      .then(function (d) {
+        // Utilisateurs par langue : fonction à part (migration 006) ; si elle manque, l'ancien tableau.
+        return fetch(URL_SB + "/rest/v1/rpc/stats_langues", { method: "POST",
+          headers: { apikey: CLE, Authorization: "Bearer " + CLE, "Content-Type": "application/json" },
+          body: JSON.stringify({ jours: jours }) })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .catch(function () { return null; })
+          .then(function (u) { d.utilisateurs_langues = u; return d; });
+      })
       .then(function (d) {
         etat.textContent = "Mis à jour le " + new Date().toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" }) +
           (d.depuis ? " · comptés depuis la réinitialisation du " + new Date(d.depuis).toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" }) : "");

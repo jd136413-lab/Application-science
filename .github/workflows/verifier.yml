@@ -1,0 +1,49 @@
+# Vérifier le code SANS compiler l'app (31/10/2026) : analyse du code Flutter
+# (erreurs, oublis) et lecture des fichiers Python de l'agent. Gratuit, ~2 min.
+# Ne produit ni APK, ni version web, ni envoi sur Google Play.
+# Se lance tout seul quand Claude pousse une branche « verif/… » (avant de
+# mettre les modifications sur main), ou à la main : Actions → « Vérifier le code ».
+name: Vérifier le code
+
+on:
+  push:
+    branches: ["verif/**"]
+  workflow_dispatch:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Agent (Python)
+        run: |
+          python3 -m py_compile agent/*.py
+          echo "Agent (Python) : aucun problème de syntaxe."
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Analyse du code de l'app
+        working-directory: app
+        run: |
+          flutter pub get
+          flutter analyze --no-fatal-infos --no-fatal-warnings > analyse.txt 2>&1 || true
+          cat analyse.txt
+          # Chaque erreur ou avertissement devient une annotation lisible sans ouvrir les journaux.
+          python3 - <<'PY'
+          import re, sys
+          erreurs = 0
+          for l in open("analyse.txt", encoding="utf-8"):
+              m = re.match(r"\s*(error|warning|info) • (.+?) • (\S+?):(\d+):(\d+) • (\S+)", l)
+              if not m:
+                  continue
+              niveau, msg, fichier, ligne, col, regle = m.groups()
+              if niveau == "info":
+                  continue
+              erreurs += niveau == "error"
+              n = "error" if niveau == "error" else "warning"
+              print(f"::{n} file=app/{fichier},line={ligne},col={col}::{msg} ({regle})")
+          print(f"::notice title=Analyse::{erreurs} erreur(s)")
+          sys.exit(1 if erreurs else 0)
+          PY

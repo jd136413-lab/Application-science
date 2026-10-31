@@ -7,6 +7,7 @@
 // Rien n'est bloquant : sans réseau, l'événement est simplement perdu.
 
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'donnees.dart';
@@ -32,5 +33,33 @@ void stat(String evenement, {Avancee? a, String? valeur}) {
       if (a != null) 'importance': a.importance,
       if (valeur != null) 'valeur': valeur.length > 200 ? valeur.substring(0, 200) : valeur,
     }).then((_) {}, onError: (_) {});
+  } catch (_) {}
+}
+
+/// Utilisateurs par langue (tableau de bord) : chaque téléphone envoie
+/// « actif_jour » une fois par jour et « actif_mois » une fois par mois, avec la
+/// langue de l'app. En les comptant, on connaît le nombre de téléphones actifs
+/// par langue, toujours sans aucun identifiant. Si l'envoi échoue (pas de
+/// réseau), on réessaiera à la prochaine ouverture.
+Future<void> statsActivite() async {
+  if (!statistiquesActives || !configurationPresente || kIsWeb || etat.statsExclues) return;
+  try {
+    final p = await SharedPreferences.getInstance();
+    final langue = etat.langue;
+    final n = DateTime.now();
+    final mois = '${n.year}-${n.month.toString().padLeft(2, '0')}';
+    final jour = '$mois-${n.day.toString().padLeft(2, '0')}';
+    for (final (evenement, cle, valeur) in [
+      ('actif_jour', 'stat_actif_jour', '$jour|$langue'),
+      ('actif_mois', 'stat_actif_mois', '$mois|$langue'),
+    ]) {
+      if (p.getString(cle) == valeur) continue; // déjà compté
+      await Supabase.instance.client.from('stats').insert({
+        'evenement': evenement,
+        'version': versionApp,
+        'valeur': langue,
+      });
+      await p.setString(cle, valeur);
+    }
   } catch (_) {}
 }

@@ -238,7 +238,7 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
     final p = palette(context);
     final a = widget.avancee;
     final f = familleDe(a.famille);
-    final traduit = etat.langue != 'fr' && traductionArticlesPossible;
+    final traduit = etat.langue != 'fr' && (traductionArticlesPossible || traductionAgent(a.titre) != null);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       TexteArticle(a.titre,
           original: _original,

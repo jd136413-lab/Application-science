@@ -2,6 +2,7 @@
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'etat.dart';
 import 'memoire.dart';
 import 'modele.dart';
 
@@ -70,8 +71,30 @@ Future<List<Avancee>> mettreAJourFil(String fil, {bool complet = false}) async {
     lignes = await _lignes(fil);
     dateComplet = DateTime.now();
   }
+  await _completerTraductions(lignes);
   await ecrireFil(fil, lignes, dateComplet: dateComplet);
   return _versAvancees(lignes);
+}
+
+/// Les traductions de l'agent peuvent arriver après la fiche (rattrapage des
+/// anciennes fiches) : pour les fiches gardées qui n'ont pas encore la langue
+/// de l'app, on va chercher seulement leurs traductions (requête légère).
+Future<void> _completerTraductions(List<Map<String, dynamic>> lignes) async {
+  final langue = etat.langue;
+  if (!languesTraduitesParAgent.contains(langue)) return;
+  final sans = [
+    for (final l in lignes)
+      if (!((l['traductions'] is Map) && (l['traductions'] as Map).containsKey(langue))) l['id'],
+  ].where((id) => id != null).take(100).toList();
+  if (sans.isEmpty) return;
+  try {
+    final r = await Supabase.instance.client.from('advances').select('id,traductions').inFilter('id', sans);
+    final par = {for (final x in r as List) (x as Map)['id']: x['traductions']};
+    for (final l in lignes) {
+      final t = par[l['id']];
+      if (t is Map && t.isNotEmpty) l['traductions'] = t;
+    }
+  } catch (_) {} // colonne absente (migration 006 pas lancée) ou pas de réseau : plus tard
 }
 
 /// Avancées d'un fil, directement depuis la base (sans mémoire).
