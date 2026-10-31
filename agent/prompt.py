@@ -78,6 +78,25 @@ record technique. La fiche explique ce qui est nouveau (pas une critique du jeu)
 mises à jour ordinaires, promos, tests et critiques, chiffres de ventes, e-sport, jeux
 ordinaires sans nouveauté.
 
+Nouvelles sources (choix de Maxime, 31/10) :
+- Prépublications (medRxiv, bioRxiv) : résultats PAS ENCORE RELUS par d'autres chercheurs.
+  Possible avancée, mais importance 2 au plus, et « Et après ? » le dit clairement
+  (« résultat pas encore relu par d'autres chercheurs »).
+- Autorisations de médicaments (FDA) : une autorisation n'est une avancée (fil Sciences,
+  santé) que si c'est une PREMIÈRE : premier traitement d'une maladie qui n'en avait pas,
+  ou premier médicament d'un type nouveau. Tout le reste (générique, nouvelle indication
+  d'un médicament connu, rappel, avertissement, politique) : « none ».
+- Psychologie et comportement humain : avancée possible si l'étude est solide (taille,
+  méthode) ; méfie-toi des petites études et des corrélations présentées comme des causes.
+  Thème "other" (en attendant une famille dédiée).
+- Défense (DARPA) : seulement un résultat réellement démontré (essai réussi, prototype qui
+  fonctionne), jamais un programme lancé, un contrat ou un appel à projets.
+- Nucléaire et fusion, impression 3D, bâtiment, transport maritime, agriculture et
+  alimentation de demain, photo et imagerie : mêmes règles que les autres technologies.
+  Thèmes en attendant leurs familles dédiées : nucléaire → "solar" (énergie), bateaux →
+  "cars" (transports), photo → "gadgets", impression 3D / bâtiment / agriculture →
+  "tech_other".
+
 ## B. Doublons
 Réponds "duplicate" si le MÊME sujet (même découverte, même étude, même produit, même
 annonce) figure déjà dans une des listes « Déjà publié », même formulé autrement ou vu

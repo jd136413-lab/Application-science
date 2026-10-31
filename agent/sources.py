@@ -264,6 +264,23 @@ SOURCES = [
     {"feed": "tech", "name": "VGC (Video Games Chronicle)", "url": "https://www.videogameschronicle.com/feed/"},
     {"feed": "tech", "name": "Gamekult", "url": "https://www.gamekult.com/feed.xml"},
     {"feed": "tech", "name": "Unreal Engine (blog)", "url": "https://www.unrealengine.com/en-US/rss"},
+    # --- Nouveaux types de sources et domaines (choix de Maxime, 31/10) ---
+    # Prépublications : résultats pas encore relus → note ★★ au plus (main.py)
+    {"feed": "science", "name": "medRxiv (prépublications santé)", "url": "https://connect.medrxiv.org/medrxiv_xml.php?subject=all"},
+    {"feed": "science", "name": "bioRxiv (prépublications biologie)", "url": "https://connect.biorxiv.org/biorxiv_xml.php?subject=all"},
+    # Autorisations de médicaments : seulement les « premières » (prompt.py)
+    {"feed": "science", "name": "FDA (autorisations, États-Unis)", "url": "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml"},
+    # Psychologie et comportement humain
+    {"feed": "science", "name": "PsyPost (psychologie)", "url": "https://www.psypost.org/feed/"},
+    {"feed": "science", "name": "APS (psychologie)", "url": "https://www.psychologicalscience.org/feed"},
+    # Défense, nucléaire, fabrication, bâtiment, maritime, agriculture, photo
+    {"feed": "tech", "name": "DARPA", "url": "https://www.darpa.mil/rss.xml"},
+    {"feed": "tech", "name": "World Nuclear News", "url": "https://www.world-nuclear-news.org/rss"},
+    {"feed": "tech", "name": "3D Printing Industry", "url": "https://3dprintingindustry.com/feed/"},
+    {"feed": "tech", "name": "Construction Dive (bâtiment)", "url": "https://www.constructiondive.com/feeds/news/"},
+    {"feed": "tech", "name": "gCaptain (maritime)", "url": "https://gcaptain.com/feed/"},
+    {"feed": "tech", "name": "AgFunderNews (agritech, foodtech)", "url": "https://agfundernews.com/feed"},
+    {"feed": "tech", "name": "PetaPixel (photo, imagerie)", "url": "https://petapixel.com/feed/"},
     # Testés le 31/10 et NON retenus : robots.txt refuse (Jeuxvideo.com) ; accès
     # refusé ou flux introuvable (SciDev.Net, Wits, Stellenbosch, icipe, Techpoint
     # Africa, UNSW, Sydney, Melbourne, Cosmos, Auckland, ANU, Académie chinoise des
