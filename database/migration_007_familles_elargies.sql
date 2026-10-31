@@ -1,5 +1,6 @@
 -- =====================================================================
--- NovaSTEM — migration 007 : familles élargies (31/10/2026, choix de Maxime)
+-- NovaSTEM — migration 007 : familles élargies + plusieurs sources par avancée
+-- (31/10/2026, choix de Maxime)
 -- On garde les 16 familles (mêmes codes, donc les filtres, favoris et
 -- abonnements aux notifications ne bougent pas), mais certaines s'élargissent
 -- grâce à de nouveaux thèmes :
@@ -59,6 +60,13 @@ begin
   return new;
 end $$;
 
+-- 3) Plusieurs sources pour une même avancée (maquette 49 B1) : les autres
+--    médias qui en parlent, [{"nom", "url", "langue", "date"}].
+alter table public.advances add column if not exists autres_sources jsonb not null default '[]'::jsonb;
+
 -- Vérification : doit afficher « ok »
-select case when pg_get_constraintdef(oid) like '%psychology%' then 'ok' else 'à relancer' end as familles_elargies
+select case when pg_get_constraintdef(oid) like '%psychology%'
+             and exists (select 1 from information_schema.columns
+                         where table_name = 'advances' and column_name = 'autres_sources')
+            then 'ok' else 'à relancer' end as migration_007
   from pg_constraint where conname = 'advances_theme_check';

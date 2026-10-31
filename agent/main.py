@@ -43,6 +43,11 @@ PRESELECTION_MAX = 250       # nombre max de titres envoyés à Claude
 # À note égale, la famille la moins publiée passe en premier. Pas de minimum :
 # on ne publie jamais une fiche faible juste pour remplir une famille.
 PLAFOND_FAMILLE = 0.25
+
+# Plusieurs sources pour une même avancée (choix de Maxime, 31/10, maquette 49 B1) :
+# l'agent garde chaque autre média qui parle de la même avancée (nom, lien, langue, date),
+# affiché dans la fiche détaillée. Au plus ce nombre d'autres sources par fiche.
+MAX_AUTRES_SOURCES = 8
 JOURS_EQUILIBRE = 7
 
 # Modèles Claude disponibles et tarifs en dollars par million de tokens
@@ -199,6 +204,33 @@ class Supabase:
             sujets.append(f"{x['title']} — {debut}…")
         return sujets
 
+    def fiches_recentes(self) -> list[dict]:
+        """Fiches des JOURS_ANTI_DOUBLONS derniers jours (pour leur ajouter une source)."""
+        try:
+            depuis = (MAINTENANT - timedelta(days=JOURS_ANTI_DOUBLONS)).isoformat()
+            r = requests.get(self.base, headers=self.headers, timeout=30, params={
+                "select": "id,title,source_name,source_url,autres_sources", "created_at": f"gte.{depuis}",
+                "limit": "2000"})
+            r.raise_for_status()
+            return r.json()
+        except Exception:
+            return []                       # colonne absente (migration 007) ou panne : tant pis
+
+    def ajouter_source(self, fiche: dict, source: dict) -> bool:
+        """Ajoute une source (même avancée, autre média) à une fiche déjà publiée."""
+        deja = fiche.get("autres_sources") or []
+        if source["nom"] == fiche.get("source_name") or source["url"] == fiche.get("source_url") \
+                or any(s.get("nom") == source["nom"] or s.get("url") == source["url"] for s in deja) \
+                or len(deja) >= MAX_AUTRES_SOURCES:
+            return False
+        fiche["autres_sources"] = deja + [source]
+        try:
+            r = requests.patch(self.base, headers=dict(self.headers, Prefer="return=minimal"), timeout=30,
+                               params={"id": f"eq.{fiche['id']}"}, json={"autres_sources": fiche["autres_sources"]})
+            return r.status_code < 300
+        except Exception:
+            return False
+
     def familles_recentes(self) -> dict[tuple[str, str], int] | None:
         """Nombre de fiches par (fil, famille) sur les JOURS_EQUILIBRE derniers jours."""
         try:
@@ -238,21 +270,27 @@ class Supabase:
         `ligne` son identifiant et sa famille (calculée par la base), utiles
         pour les notifications."""
         h = dict(self.headers, Prefer="return=representation")
-        r = requests.post(self.base, headers=h, json=ligne, timeout=30,
-                          params={"select": "id,family"})
-        if r.status_code == 400 and "column" in r.text and any(c in r.text for c in COLONNES_005):
-            # Migration 005 pas encore lancée : on enregistre sans les nouvelles colonnes.
-            print("⚠ Colonnes du nouveau résumé absentes (lancer database/migration_005_resume.sql) : "
-                  "fiche enregistrée avec son résumé d'un seul tenant.", flush=True)
-            r = requests.post(self.base, headers=h, timeout=30, params={"select": "id,family"},
-                              json={k: v for k, v in ligne.items() if k not in COLONNES_005})
-        if r.status_code == 400 and "advances_theme_check" in r.text and ligne.get("theme") in THEME_DE_SECOURS:
-            # Migration 007 pas encore lancée : thème d'avant l'élargissement des familles.
-            print("⚠ Nouveaux thèmes refusés par la base (lancer database/migration_007_familles_elargies.sql) : "
-                  f"{ligne['theme']} → {THEME_DE_SECOURS[ligne['theme']]}", flush=True)
-            ligne["theme"] = THEME_DE_SECOURS[ligne["theme"]]
-            r = requests.post(self.base, headers=h, timeout=30, params={"select": "id,family"},
-                              json=ligne)
+        envoi = dict(ligne)
+        for _ in range(4):
+            r = requests.post(self.base, headers=h, json=envoi, timeout=30, params={"select": "id,family"})
+            if r.status_code != 400:
+                break
+            if "autres_sources" in r.text and "autres_sources" in envoi:
+                # Migration 007 pas encore lancée : fiche enregistrée sans ses autres sources.
+                print("⚠ Colonne autres_sources absente (lancer database/migration_007_familles_elargies.sql).", flush=True)
+                envoi.pop("autres_sources")
+            elif "column" in r.text and any(c in r.text for c in COLONNES_005 if c in envoi):
+                # Migration 005 pas encore lancée : on enregistre sans les nouvelles colonnes.
+                print("⚠ Colonnes du nouveau résumé absentes (lancer database/migration_005_resume.sql) : "
+                      "fiche enregistrée avec son résumé d'un seul tenant.", flush=True)
+                envoi = {k: v for k, v in envoi.items() if k not in COLONNES_005}
+            elif "advances_theme_check" in r.text and envoi.get("theme") in THEME_DE_SECOURS:
+                # Migration 007 pas encore lancée : thème d'avant l'élargissement des familles.
+                print("⚠ Nouveaux thèmes refusés par la base (lancer database/migration_007_familles_elargies.sql) : "
+                      f"{envoi['theme']} → {THEME_DE_SECOURS[envoi['theme']]}", flush=True)
+                envoi["theme"] = ligne["theme"] = THEME_DE_SECOURS[envoi["theme"]]
+            else:
+                break
         if r.status_code == 409:
             return "doublon"
         if r.status_code >= 300:
@@ -456,6 +494,35 @@ FAMILLES_THEMES = {
     "tech_other": ("manufacturing", "construction", "agritech", "tech_other"),
 }
 FAMILLE_DU_THEME = {t: f for f, ts in FAMILLES_THEMES.items() for t in ts}
+
+# Langue de chaque source (affichée dans la liste des sources d'une fiche) ; par défaut l'anglais.
+SOURCES_FR = {"CNRS Le journal", "Inserm", "Futura Sciences", "Sciences et Avenir", "Le Monde Sciences",
+              "Observatoire de Paris", "Pour la Science", "Techno-Science.net", "Ciel & Espace", "Presse-citron",
+              "Journal du Geek", "Les Numériques", "Clubic", "Siècle Digital", "L'Usine Nouvelle",
+              "L'Usine Digitale", "Gamekult"}
+SOURCES_ES = {"El País Ciencia"}
+
+
+def langue_source(nom: str) -> str:
+    return "fr" if nom in SOURCES_FR else "es" if nom in SOURCES_ES else "en"
+
+
+def fiche_source(a: dict) -> dict:
+    """Une autre source d'une avancée : {nom, url, langue, date}."""
+    d = a.get("published_at")
+    return {"nom": a["source_name"], "url": a["url"], "langue": langue_source(a["source_name"]),
+            "date": d.date().isoformat() if hasattr(d, "date") else ""}
+
+
+def autres_sources_de(principal: dict, membres: list[dict]) -> list[dict]:
+    """Autres médias du même sujet (une entrée par média, sans la source principale)."""
+    vus, res = {principal["source_name"]}, []
+    for m in sorted(membres, key=lambda m: m.get("published_at") or MAINTENANT):
+        if m["source_name"] in vus or m["url"] == principal["url"]:
+            continue
+        vus.add(m["source_name"])
+        res.append(fiche_source(m))
+    return res[:MAX_AUTRES_SOURCES]
 # Thèmes ajoutés le 31/10 (migration 007) → thème d'avant, si la base ne les connaît pas encore.
 THEME_DE_SECOURS = {"psychology": "other", "society": "other", "cameras": "gadgets", "trains": "cars",
                     "ships": "cars", "defense": "aircraft", "nuclear": "solar", "manufacturing": "tech_other",
@@ -844,6 +911,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
                         pool[sous[k]]["_meme_sujet"] = True   # bilan des sources
                 a["note_pre"], a["nb_sources"] = note, len(sources)
                 a["famille_pre"] = notes[sous[ch]][2]
+                a["autres_sources_det"] = autres_sources_de(a, [pool[sous[k]] for k in membres])
                 a["autres_sources"] = [x for x in sources if x != a["source_name"]]
                 choisis.append(a)
         choisis.sort(key=lambda a: -a["note_pre"])   # tri stable : l'ordre de chaque fil est gardé
@@ -876,6 +944,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
             a = pool[i]
             a["note_pre"], a["nb_sources"] = notes[i][0], len(sources)
             a["famille_pre"] = notes[i][2]
+            a["autres_sources_det"] = autres_sources_de(a, [pool[k] for k in g["membres"]])
             a["autres_sources"] = [x for x in sources if x != a["source_name"]]
             choisis.append(a)
         STATS["groupes"] = f"{len(groupes_loc)} (secours)"
@@ -988,6 +1057,8 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
         # Nouveau résumé (maquette 33) : colonnes de la migration 005.
         "avant": avant or None, "decouverte": decouverte or None, "apres": apres or None,
         "mots": mots, "type_etude": type_etude,
+        # Autres médias qui parlent de la même avancée (migration 007, maquette 49 B1)
+        "autres_sources": art.get("autres_sources_det") or [],
     }
 
 
@@ -1044,6 +1115,8 @@ def main() -> int:
         nb_ecartes = len(urls) - nb_base
         sujets = {"science": db.sujets_recents("science"), "tech": db.sujets_recents("tech")}
         equilibre = Equilibre(db.familles_recentes())
+        fiches_pub = db.fiches_recentes()     # pour leur ajouter les sources des doublons
+        sources_ajoutees = 0
     except Exception as ex:
         log(f"❌ Impossible de lire Supabase : {ex}")
         return 1
@@ -1142,6 +1215,12 @@ def main() -> int:
 
             if decision == "duplicate":
                 db.marquer_ecarte(art["url"], "duplicate")
+                # Même avancée qu'une fiche déjà publiée : ce média rejoint ses sources.
+                cible = str(rep.get("duplicate_of", "")).split(" — ")[0].strip()
+                fiche = next((f for f in fiches_pub if cible and (f["title"] == cible or titres_proches(f["title"], cible))), None)
+                if fiche and db.ajouter_source(fiche, fiche_source(art)):
+                    sources_ajoutees += 1
+                    log(f"  + source ajoutée à « {fiche['title'][:60]} » : {art['source_name']}")
                 doublons.append((art, rep.get("duplicate_of", "")))
                 log(f"  ↺ doublon   : {art['title'][:80]}")
                 continue
@@ -1209,6 +1288,8 @@ def main() -> int:
         f"{len(ignores)} ignoré(s), {len(doublons)} doublon(s), {len(erreurs)} erreur(s)")
     log(f"Appels à Claude : {appels} — tokens : {conso['in']} entrée, {conso['cache_w']} mis en cache, "
         f"{conso['cache_r']} lus en cache, {conso['out']} sortie")
+    log(f"Sources ajoutées à des fiches déjà publiées (même avancée, autre média) : {sources_ajoutees} ; "
+        f"fiches publiées avec plusieurs sources : {sum(1 for a in ajoutes if a.get('autres_sources'))}")
     log(f"Traductions ({', '.join(traduction.LANGUES)}) : {trad_nouv} nouvelle(s) fiche(s), "
         f"{trad_anc} ancienne(s) rattrapée(s), {cout_trad:.4f} $")
     log(f"Coût estimé : {cout:.4f} $ (traductions comprises)")

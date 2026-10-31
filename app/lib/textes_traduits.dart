@@ -275,6 +275,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Industry & manufacturing',
     'Espace, aviation & défense': 'Space, aviation & defense',
     'Appareils & objets': 'Devices & gadgets',
+    'Source principale': 'Main source',
+    'Voir toutes les sources': 'See all sources',
+    'Toucher pour replier': 'Tap to collapse',
   },
   'es': {
     'Sciences': 'Ciencia',
@@ -549,6 +552,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Industria y fabricación',
     'Espace, aviation & défense': 'Espacio, aviación y defensa',
     'Appareils & objets': 'Dispositivos y objetos',
+    'Source principale': 'Fuente principal',
+    'Voir toutes les sources': 'Ver todas las fuentes',
+    'Toucher pour replier': 'Toca para plegar',
   },
   'pt': {
     'Sciences': 'Ciência',
@@ -823,6 +829,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Indústria e fabricação',
     'Espace, aviation & défense': 'Espaço, aviação e defesa',
     'Appareils & objets': 'Dispositivos e objetos',
+    'Source principale': 'Fonte principal',
+    'Voir toutes les sources': 'Ver todas as fontes',
+    'Toucher pour replier': 'Toque para recolher',
   },
   'de': {
     'Sciences': 'Wissenschaft',
@@ -1097,6 +1106,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Industrie & Fertigung',
     'Espace, aviation & défense': 'Raumfahrt, Luftfahrt & Verteidigung',
     'Appareils & objets': 'Geräte & Gadgets',
+    'Source principale': 'Hauptquelle',
+    'Voir toutes les sources': 'Alle Quellen anzeigen',
+    'Toucher pour replier': 'Zum Einklappen tippen',
   },
   'it': {
     'Sciences': 'Scienza',
@@ -1371,6 +1383,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Industria e produzione',
     'Espace, aviation & défense': 'Spazio, aviazione e difesa',
     'Appareils & objets': 'Dispositivi e oggetti',
+    'Source principale': 'Fonte principale',
+    'Voir toutes les sources': 'Vedi tutte le fonti',
+    'Toucher pour replier': 'Tocca per chiudere',
   },
   'nl': {
     'Sciences': 'Wetenschap',
@@ -1645,6 +1660,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Industrie & productie',
     'Espace, aviation & défense': 'Ruimtevaart, luchtvaart & defensie',
     'Appareils & objets': 'Apparaten & gadgets',
+    'Source principale': 'Hoofdbron',
+    'Voir toutes les sources': 'Alle bronnen bekijken',
+    'Toucher pour replier': 'Tik om in te klappen',
   },
   'pl': {
     'Sciences': 'Nauka',
@@ -1919,6 +1937,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Przemysł i produkcja',
     'Espace, aviation & défense': 'Kosmos, lotnictwo i obronność',
     'Appareils & objets': 'Urządzenia i gadżety',
+    'Source principale': 'Główne źródło',
+    'Voir toutes les sources': 'Zobacz wszystkie źródła',
+    'Toucher pour replier': 'Dotknij, aby zwinąć',
   },
   'ru': {
     'Sciences': 'Наука',
@@ -2193,6 +2214,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Промышленность и производство',
     'Espace, aviation & défense': 'Космос, авиация и оборона',
     'Appareils & objets': 'Устройства и гаджеты',
+    'Source principale': 'Основной источник',
+    'Voir toutes les sources': 'Показать все источники',
+    'Toucher pour replier': 'Нажмите, чтобы свернуть',
   },
   'uk': {
     'Sciences': 'Наука',
@@ -2467,6 +2491,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Промисловість і виробництво',
     'Espace, aviation & défense': 'Космос, авіація та оборона',
     'Appareils & objets': 'Пристрої та гаджети',
+    'Source principale': 'Основне джерело',
+    'Voir toutes les sources': 'Показати всі джерела',
+    'Toucher pour replier': 'Торкніться, щоб згорнути',
   },
   'tr': {
     'Sciences': 'Bilim',
@@ -2741,6 +2768,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Sanayi ve üretim',
     'Espace, aviation & défense': 'Uzay, havacılık ve savunma',
     'Appareils & objets': 'Cihazlar ve aletler',
+    'Source principale': 'Ana kaynak',
+    'Voir toutes les sources': 'Tüm kaynakları gör',
+    'Toucher pour replier': 'Daraltmak için dokunun',
   },
   'ar': {
     'Sciences': 'العلوم',
@@ -3015,6 +3045,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'الصناعة والتصنيع',
     'Espace, aviation & défense': 'الفضاء والطيران والدفاع',
     'Appareils & objets': 'الأجهزة والأدوات',
+    'Source principale': 'المصدر الرئيسي',
+    'Voir toutes les sources': 'عرض كل المصادر',
+    'Toucher pour replier': 'المس للطي',
   },
   'hi': {
     'Sciences': 'विज्ञान',
@@ -3289,6 +3322,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'उद्योग और निर्माण',
     'Espace, aviation & défense': 'अंतरिक्ष, विमानन और रक्षा',
     'Appareils & objets': 'उपकरण और गैजेट',
+    'Source principale': 'मुख्य स्रोत',
+    'Voir toutes les sources': 'सभी स्रोत देखें',
+    'Toucher pour replier': 'समेटने के लिए छुएँ',
   },
   'bn': {
     'Sciences': 'বিজ্ঞান',
@@ -3563,6 +3599,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'শিল্প ও উৎপাদন',
     'Espace, aviation & défense': 'মহাকাশ, বিমান ও প্রতিরক্ষা',
     'Appareils & objets': 'ডিভাইস ও গ্যাজেট',
+    'Source principale': 'প্রধান উৎস',
+    'Voir toutes les sources': 'সব উৎস দেখুন',
+    'Toucher pour replier': 'গুটাতে ছুঁয়ে দিন',
   },
   'ur': {
     'Sciences': 'سائنس',
@@ -3837,6 +3876,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'صنعت اور تیاری',
     'Espace, aviation & défense': 'خلا، ہوابازی اور دفاع',
     'Appareils & objets': 'آلات اور گیجٹس',
+    'Source principale': 'بنیادی ذریعہ',
+    'Voir toutes les sources': 'تمام ذرائع دیکھیں',
+    'Toucher pour replier': 'سمیٹنے کے لیے چھوئیں',
   },
   'zh': {
     'Sciences': '科学',
@@ -4111,6 +4153,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': '工业与制造',
     'Espace, aviation & défense': '航天、航空与国防',
     'Appareils & objets': '设备与小工具',
+    'Source principale': '主要来源',
+    'Voir toutes les sources': '查看所有来源',
+    'Toucher pour replier': '点按收起',
   },
   'ja': {
     'Sciences': '科学',
@@ -4385,6 +4430,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': '産業とものづくり',
     'Espace, aviation & défense': '宇宙・航空・防衛',
     'Appareils & objets': 'デバイスとガジェット',
+    'Source principale': '主な情報源',
+    'Voir toutes les sources': 'すべての情報源を見る',
+    'Toucher pour replier': 'タップして閉じる',
   },
   'ko': {
     'Sciences': '과학',
@@ -4659,6 +4707,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': '산업과 제조',
     'Espace, aviation & défense': '우주·항공·국방',
     'Appareils & objets': '기기와 가젯',
+    'Source principale': '주요 출처',
+    'Voir toutes les sources': '모든 출처 보기',
+    'Toucher pour replier': '탭하여 접기',
   },
   'id': {
     'Sciences': 'Sains',
@@ -4933,6 +4984,9 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Industri & manufaktur',
     'Espace, aviation & défense': 'Antariksa, penerbangan & pertahanan',
     'Appareils & objets': 'Perangkat & gawai',
+    'Source principale': 'Sumber utama',
+    'Voir toutes les sources': 'Lihat semua sumber',
+    'Toucher pour replier': 'Ketuk untuk menutup',
   },
   'vi': {
     'Sciences': 'Khoa học',
@@ -5207,5 +5261,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Industrie & fabrication': 'Công nghiệp & sản xuất',
     'Espace, aviation & défense': 'Vũ trụ, hàng không & quốc phòng',
     'Appareils & objets': 'Thiết bị & đồ công nghệ',
+    'Source principale': 'Nguồn chính',
+    'Voir toutes les sources': 'Xem tất cả nguồn',
+    'Toucher pour replier': 'Chạm để thu gọn',
   },
 };

@@ -25,6 +25,8 @@ class Avancee {
   final List<MotAConnaitre> mots;
   /// Type d'étude ou stade (badge) : 'animal', 'prototype'… ou null.
   final String? typeEtude;
+  /// Autres médias qui parlent de la même avancée (maquette 49 B1).
+  final List<SourceAvancee> autresSources;
   /// Données d'origine, gardées pour enregistrer un favori sur le téléphone.
   final Map<String, dynamic> brut;
 
@@ -51,6 +53,7 @@ class Avancee {
     this.apres = '',
     this.mots = const [],
     this.typeEtude,
+    this.autresSources = const [],
   });
 
   factory Avancee.depuisJson(Map<String, dynamic> j) {
@@ -81,6 +84,12 @@ class Avancee {
             MotAConnaitre(m['mot'].toString().trim(), (m['definition'] ?? '').toString().trim()),
       ],
       typeEtude: (j['type_etude'] as String?)?.trim(),
+      autresSources: [
+        for (final s in (j['autres_sources'] is List ? j['autres_sources'] as List : const []))
+          if (s is Map && (s['nom'] ?? '').toString().isNotEmpty && (s['url'] ?? '').toString().isNotEmpty)
+            SourceAvancee(s['nom'].toString(), s['url'].toString(), (s['langue'] ?? '').toString(),
+                DateTime.tryParse((s['date'] ?? '').toString())),
+      ],
     );
   }
 }
@@ -130,6 +139,13 @@ void _retenirTraductions(Map<String, dynamic> j) {
 }
 
 /// Un « mot à connaître » et sa définition (en français, traduits à l'affichage).
+/// Un média qui parle d'une avancée : nom, lien, langue (fr, en…), date.
+class SourceAvancee {
+  final String nom, url, langue;
+  final DateTime? date;
+  const SourceAvancee(this.nom, this.url, this.langue, this.date);
+}
+
 class MotAConnaitre {
   final String mot, definition;
   const MotAConnaitre(this.mot, this.definition);

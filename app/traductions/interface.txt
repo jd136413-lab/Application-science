@@ -5731,3 +5731,67 @@ ja デバイスとガジェット
 ko 기기와 가젯
 id Perangkat & gawai
 vi Thiết bị & đồ công nghệ
+
+# Plusieurs sources pour une avancée (maquette 49 B1, 31/10/2026)
+@ Source principale
+en Main source
+es Fuente principal
+pt Fonte principal
+de Hauptquelle
+it Fonte principale
+nl Hoofdbron
+pl Główne źródło
+ru Основной источник
+uk Основне джерело
+tr Ana kaynak
+ar المصدر الرئيسي
+hi मुख्य स्रोत
+bn প্রধান উৎস
+ur بنیادی ذریعہ
+zh 主要来源
+ja 主な情報源
+ko 주요 출처
+id Sumber utama
+vi Nguồn chính
+
+@ Voir toutes les sources
+en See all sources
+es Ver todas las fuentes
+pt Ver todas as fontes
+de Alle Quellen anzeigen
+it Vedi tutte le fonti
+nl Alle bronnen bekijken
+pl Zobacz wszystkie źródła
+ru Показать все источники
+uk Показати всі джерела
+tr Tüm kaynakları gör
+ar عرض كل المصادر
+hi सभी स्रोत देखें
+bn সব উৎস দেখুন
+ur تمام ذرائع دیکھیں
+zh 查看所有来源
+ja すべての情報源を見る
+ko 모든 출처 보기
+id Lihat semua sumber
+vi Xem tất cả nguồn
+
+@ Toucher pour replier
+en Tap to collapse
+es Toca para plegar
+pt Toque para recolher
+de Zum Einklappen tippen
+it Tocca per chiudere
+nl Tik om in te klappen
+pl Dotknij, aby zwinąć
+ru Нажмите, чтобы свернуть
+uk Торкніться, щоб згорнути
+tr Daraltmak için dokunun
+ar المس للطي
+hi समेटने के लिए छुएँ
+bn গুটাতে ছুঁয়ে দিন
+ur سمیٹنے کے لیے چھوئیں
+zh 点按收起
+ja タップして閉じる
+ko 탭하여 접기
+id Ketuk untuk menutup
+vi Chạm để thu gọn
