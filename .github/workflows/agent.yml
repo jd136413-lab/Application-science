@@ -36,6 +36,9 @@ on:
         type: boolean
         default: false
 
+permissions:
+  contents: write   # enregistrer agent/bilan_sources.md
+
 # Une seule exécution à la fois : un double clic ne lance pas deux agents.
 concurrency:
   group: agent
@@ -47,6 +50,8 @@ jobs:
     timeout-minutes: 25   # 160 sources à lire
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50   # pour savoir si le bilan des sources a déjà été enregistré aujourd'hui
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -61,6 +66,13 @@ jobs:
           path: agent/memoire_tri.json
           key: memoire-tri-v3-${{ github.run_id }}
           restore-keys: memoire-tri-v3-
+      # Mémoire du bilan des sources (ce que chaque source apporte, 30 jours).
+      - name: Mémoire du bilan des sources
+        uses: actions/cache@v4
+        with:
+          path: agent/stats_sources.json
+          key: stats-sources-v1-${{ github.run_id }}
+          restore-keys: stats-sources-v1-
       - name: Lancer l'agent
         working-directory: agent
         env:
@@ -72,6 +84,21 @@ jobs:
           FIL: ${{ inputs.fil || 'les deux' }}
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python main.py
+      # Bilan des sources (agent/bilan_sources.md) enregistré dans le repo une fois par jour
+      # (premier passage de la journée) : lisible par Claude et par Maxime.
+      - name: Enregistrer le bilan des sources
+        if: always()
+        run: |
+          if [ ! -f agent/bilan_sources.md ]; then echo "Pas de bilan."; exit 0; fi
+          # Une fois par jour : au premier passage de la journée (celui du matin).
+          if git ls-files --error-unmatch agent/bilan_sources.md >/dev/null 2>&1 && [ "$(TZ=Europe/Paris git log -1 --format=%cd --date=format-local:%Y-%m-%d -- agent/bilan_sources.md)" = "$(TZ=Europe/Paris date +%Y-%m-%d)" ]; then
+            echo "Bilan déjà enregistré aujourd'hui."; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add agent/bilan_sources.md
+          git commit -m "Bilan des sources [skip ci]" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
       # Contrôle hebdomadaire : le dimanche soir (passage de 18 h 20), ou à la main.
       - name: Contrôle de la semaine
         if: always()
