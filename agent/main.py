@@ -658,7 +658,8 @@ Preuves : essai chez l'humain > animal > cellules > simulation. Méfie-toi des s
 JEUX_VIDEO = """Jeux vidéo (choix de Maxime, 31/10) : SONT des avancées technologiques (famille gaming) : la SORTIE effective d'un jeu très attendu dont parle toute la presse, notée selon ce qu'il apporte réellement (réalisme, ampleur et densité du monde, technologies graphiques, physiques ou d'IA, prouesse technique) — 1 ou 2 en général, 3 pour une sortie qui marque l'histoire du jeu vidéo par son ampleur et ses nouveautés techniques ; une mécanique de jeu ou une technologie de jeu jamais vue, réellement jouable ou démontrée ; une console, un casque de réalité virtuelle ou une manette réellement mis en vente ; un record technique. Restent écartés : annonces, bandes-annonces, dates de sortie, rumeurs, précommandes, extensions et mises à jour ordinaires, promos, tests et critiques, chiffres de ventes, e-sport, jeux ordinaires sans nouveauté."""
 
 EXCEPTION_TECH = """Exception pour les technologies : un produit, un véhicule ou un engin RÉELLEMENT montré en fonctionnement, lancé ou mis en service par une entreprise (voiture dévoilée et conduite, fusée ou engin qui vole, essai en vol ou récupération de fusée réussis, smartphone ou appareil présenté et mis en vente) EST une avancée technologique, même si l'information vient de l'entreprise elle-même : note 1 ou 2, davantage seulement pour une vraie première. Restent écartés : rumeurs, fuites, promesses sans démonstration, simples dates de sortie ou de lancement annoncées.
-""" + JEUX_VIDEO
+""" + JEUX_VIDEO + """
+Exceptions (choix de Maxime, 31/10) : l'autorisation d'un médicament EST une avancée si c'est une PREMIÈRE (premier traitement d'une maladie qui n'en avait pas, premier médicament d'un type nouveau). Prépublications (medRxiv, bioRxiv, pas encore relues) : note 2 au plus. Défense (DARPA) : seulement un résultat réellement démontré."""
 
 CONSIGNE_TRI = """Tu tries des titres d'articles pour une application qui présente les vraies avancées scientifiques et technologiques du moment.
 
@@ -954,6 +955,8 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     type_etude = str(fiche.get("type_etude", "")).strip()
     if type_etude not in TYPES_ETUDE[feed]:
         type_etude = None
+    # Prépublications (pas encore relues) : ★★ au plus (choix de Maxime, 31/10)
+    prepublication = "Rxiv" in art.get("source_name", "")
     themes, defaut = THEMES_PAR_FIL[feed]
     theme = str(fiche.get("theme", "")).strip().lower()
     if theme not in themes:
@@ -964,7 +967,7 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
         importance = 1
     return {
         "feed": feed, "title": titre, "summary": resume, "theme": theme,
-        "importance": max(1, min(5, importance)), "source_url": art["url"],
+        "importance": max(1, min(2 if prepublication else 5, importance)), "source_url": art["url"],
         "source_name": art["source_name"],
         "published_at": art["published_at"].isoformat(),
         "image_url": art.get("image_url") or None,

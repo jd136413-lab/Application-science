@@ -36,7 +36,8 @@ Wired|9to5Mac|9to5Google|SpaceNews|InsideEVs|Apple Newsroom|NVIDIA Newsroom|Goog
 Google Research|Microsoft Research|IBM Research|Rocket Lab|PlayStation Blog|ServeTheHome (serveurs, puces)|EE Times (électronique)|
 Semiconductor Engineering|The Robot Report|The Quantum Insider|Spaceflight Now|NASASpaceflight|Payload (industrie spatiale)|
 MedTech Dive (technologies médicales)|DroneDJ (drones)|Woods Hole (WHOI)|Schmidt Ocean Institute|LLNL (fusion, Livermore)|
-FDA (autorisations, États-Unis)|DARPA|Xbox Wire|Road to VR|UploadVR|Game Developer|PC Gamer|Steam (actualités)|
+FDA (autorisations, États-Unis)|DARPA|medRxiv (prépublications santé)|bioRxiv (prépublications biologie)|
+PsyPost (psychologie)|APS (psychologie)|Xbox Wire|Road to VR|UploadVR|Game Developer|PC Gamer|Steam (actualités)|
 Unreal Engine (blog)|Construction Dive (bâtiment)|AgFunderNews (agritech, foodtech)|gCaptain (maritime)|PetaPixel (photo, imagerie)""",
     "Europe": """ESO|ESA/Webb|ESA/Hubble|ESA|Nature|CNRS Le journal|Inserm|Futura Sciences|Sciences et Avenir|Le Monde Sciences|
 Observatoire de Paris|Max Planck|ETH Zurich|EPFL|Institut Paul Scherrer (PSI)|EMBL|Fraunhofer|Université de Copenhague|
