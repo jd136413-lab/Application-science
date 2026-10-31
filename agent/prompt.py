@@ -122,12 +122,30 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
     Le verbe dit ce qui a été fait ou trouvé (repère, montre, mesure, fabrique, lance…).
   · Interdits : participe présent (« montrant », « permettant »…), titre sans verbe,
     superlatif ou promesse que l'étude ne montre pas (« révolutionne », « guérit »).
-  · 12 mots au plus en tout (thème compris), sans point final, mots de tous les jours
-    (« artères bouchées » plutôt que « athérosclérose »).
-  · Exemples : « Planètes : Webb repère les traces de chocs géants » ;
-    « Douleur : nos nerfs détectent la brûlure grâce à une protéine » ;
-    « Robots : un robot vole puis plonge comme un macareux » ;
-    « Climat : les forêts des Caraïbes se réchauffent et souffrent plus ».
+  · 12 mots au plus en tout (thème compris), sans point final.
+  · TEST DU PASSANT (choix de Maxime, 31/10) : le titre doit se comprendre par quelqu'un
+    qui n'a JAMAIS entendu parler du sujet.
+    - Nom propre seulement s'il est connu de tous (Apple, Google, NASA, Mars, Alzheimer,
+      Covid…). Sinon, dis CE QUE C'EST : « un nouveau médicament », « une IA de Google »,
+      « des fossiles chinois », « un télescope spatial ». Le nom exact va dans le résumé.
+    - Le thème aussi en mots simples : « Intestin » et non « Colite », « Espace » et non
+      « Sursauts gamma », « Électricité » et non « Supraconducteurs ».
+    - Aucun mot technique, sigle ou unité savante (qubit, CRISPR, Gbps, amygdale…) :
+      remplace-les (« des ciseaux à ADN », « une zone du cerveau ») ou fais une
+      comparaison parlante (« 750 fois plus rapide qu'une fibre à la maison »).
+    - Dis ce que ça change ou à quoi ça sert quand c'est possible (« apaise une maladie
+      de l'intestin » plutôt que « fait mieux qu'un placebo »).
+  · Exemples (avant → après) :
+    « Diabète : le retatrutide fait mieux que l'Ozempic » → « Diabète : un nouveau
+    médicament fait mieux que le traitement de référence » ;
+    « Colite : un comprimé fait mieux qu'un placebo » → « Intestin : un comprimé apaise
+    une maladie inflammatoire de l'intestin » ;
+    « Sursauts gamma : une explosion dure 27 jours, un record » → « Espace : une explosion
+    cosmique dure 27 jours, du jamais vu » ;
+    « Mémoire : des neurones de l'amygdale annoncent les souvenirs qui restent » →
+    « Mémoire : une zone du cerveau prédit quels souvenirs on gardera ».
+    Déjà bons : « Smartphones : Apple lance en magasin son premier iPhone pliable » ;
+    « Cancer : une prise de sang repère les patients à risque de rechute ».
 - Écriture (maquette 33) : pour un lycéen curieux. Phrases courtes, mots de tous les
   jours, aucun sigle sans explication, des comparaisons concrètes. On simplifie les mots,
   jamais le résultat : les faits restent exacts. Ne présente jamais une promesse ou une

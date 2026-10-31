@@ -75,6 +75,7 @@ import requests
 
 import notifications
 import traduction
+import titres
 import bilan_sources
 from anthropic import Anthropic
 
@@ -1274,13 +1275,16 @@ def main() -> int:
             log(f"  ✖ erreur    : {art['title'][:70]} → {msg}")
             time.sleep(1)
 
+    # --- Relecture des titres (« test du passant », titres.py), avant traductions et notifications ---
+    nb_titres, cout_titres = titres.passage_agent(db, client, ajoutes, log)
+
     # --- Traductions (anglais…) : nouvelles fiches + rattrapage d'anciennes (traduction.py) ---
     trad_nouv, trad_anc, cout_trad = traduction.passage_agent(db, client, ajoutes, log)
 
     # --- Coût (cache : écriture = 1,25 × le prix d'entrée, lecture = 0,1 ×) ---
     p_in, p_out = modele["prix"]
     cout = (conso["in"] * p_in + conso["cache_w"] * p_in * 1.25
-            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad
+            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad + cout_titres
 
     log("\n" + "=" * 60)
     log(f"RÉSUMÉ : {nb_articles} article(s) retenu(s) → {len(ajoutes)} fiche(s) "
@@ -1288,6 +1292,7 @@ def main() -> int:
         f"{len(ignores)} ignoré(s), {len(doublons)} doublon(s), {len(erreurs)} erreur(s)")
     log(f"Appels à Claude : {appels} — tokens : {conso['in']} entrée, {conso['cache_w']} mis en cache, "
         f"{conso['cache_r']} lus en cache, {conso['out']} sortie")
+    log(f"Titres simplifiés à la relecture (test du passant) : {nb_titres} sur {len(ajoutes)}, {cout_titres:.4f} $")
     log(f"Sources ajoutées à des fiches déjà publiées (même avancée, autre média) : {sources_ajoutees} ; "
         f"fiches publiées avec plusieurs sources : {sum(1 for a in ajoutes if a.get('autres_sources'))}")
     log(f"Traductions ({', '.join(traduction.LANGUES)}) : {trad_nouv} nouvelle(s) fiche(s), "
