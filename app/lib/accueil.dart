@@ -15,6 +15,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart';
 import 'navigation.dart';
+import 'proposition_notifs.dart';
 import 'reglages.dart';
 import 'stats.dart';
 import 'texte_article.dart';
@@ -39,16 +40,42 @@ class _EcranAccueilState extends State<EcranAccueil> {
   final Set<String> _horsLigne = {};
   final Map<String, Object> _erreurs = {};
   final _defilement = ScrollController();
+  // Proposition d'activer les notifications (proposition_notifs.dart)
+  Timer? _minuteurNotif;
+  bool _carteNotif = false;
+  bool _feuilleNotifOuverte = false;
 
   @override
   void initState() {
     super.initState();
     demandeFilAujourdhui.addListener(_allerAujourdhui);
     demandeHautDuFil.addListener(_remonter);
+    _minuteurNotif = Timer.periodic(const Duration(seconds: 15), (_) => _verifierPropositionNotif());
+  }
+
+  /// Toutes les 15 s : faut-il proposer les notifications (feuille A ou carte D) ?
+  /// Seulement quand le fil est à l'écran (pas pendant la lecture d'une avancée).
+  void _verifierPropositionNotif() {
+    if (!mounted || _carteNotif || _feuilleNotifOuverte) return;
+    if (ModalRoute.of(context)?.isCurrent != true) return;
+    switch (propositionNotifDue()) {
+      case FormeProposition.carte:
+        setState(() => _carteNotif = true);
+      case FormeProposition.feuille:
+        _feuilleNotifOuverte = true;
+        // Aperçu : l'avancée la mieux notée du fil affiché parmi les plus récentes
+        final recentes = (_fils[_fil] ?? const <Avancee>[]).take(30).toList()
+          ..sort((a, b) => b.importance.compareTo(a.importance));
+        montrerFeuilleNotifs(context, recentes.isEmpty ? null : recentes.first)
+            .whenComplete(() => _feuilleNotifOuverte = false);
+      case FormeProposition.aucune:
+        break;
+    }
   }
 
   @override
   void dispose() {
+    _minuteurNotif?.cancel();
     demandeFilAujourdhui.removeListener(_allerAujourdhui);
     demandeHautDuFil.removeListener(_remonter);
     _defilement.dispose();
@@ -293,6 +320,8 @@ class _EcranAccueilState extends State<EcranAccueil> {
               final avecJours = periodes[_periode].$2 == 7 && !_triImportance;
               final elements = <Object>[
                 if (horsLigne) const _BandeauHorsLigne(),
+                // Proposition d'activer les notifications (maquette 50 D)
+                if (_carteNotif) CarteNotifs(onFermer: () => setState(() => _carteNotif = false)),
               ];
               String? moisCourant;
               String? jourCourant;

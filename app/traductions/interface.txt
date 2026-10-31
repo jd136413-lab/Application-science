@@ -5795,3 +5795,193 @@ ja タップして閉じる
 ko 탭하여 접기
 id Ketuk untuk menutup
 vi Chạm để thu gọn
+
+# Proposition d'activer les notifications (maquette 50, 31/10/2026)
+@ Ne ratez pas les grandes avancées
+en Don’t miss the big advances
+es No te pierdas los grandes avances
+pt Não perca os grandes avanços
+de Verpassen Sie keine großen Fortschritte
+it Non perdere le grandi scoperte
+nl Mis de grote doorbraken niet
+pl Nie przegap wielkich odkryć
+ru Не пропустите крупные открытия
+uk Не пропустіть великі відкриття
+tr Büyük gelişmeleri kaçırmayın
+ar لا تفوّت التطورات الكبرى
+hi बड़ी खोजों से न चूकें
+bn বড় অগ্রগতিগুলো মিস করবেন না
+ur بڑی پیش رفتوں سے محروم نہ رہیں
+zh 不错过重大进展
+ja 大きな進歩を見逃さない
+ko 중요한 발전을 놓치지 마세요
+id Jangan lewatkan kemajuan besar
+vi Đừng bỏ lỡ những tiến bộ lớn
+
+@ Une notification vers {a} et {b}, seulement quand il y a du nouveau dans vos domaines.
+en A notification around {a} and {b}, only when there’s something new in your topics.
+es Una notificación hacia las {a} y las {b}, solo cuando haya novedades en tus temas.
+pt Uma notificação por volta das {a} e das {b}, só quando houver novidades nos seus temas.
+de Eine Benachrichtigung gegen {a} und {b}, nur wenn es in Ihren Themen Neues gibt.
+it Una notifica verso le {a} e le {b}, solo quando c’è qualcosa di nuovo nei tuoi temi.
+nl Een melding rond {a} en {b}, alleen als er iets nieuws is in je onderwerpen.
+pl Powiadomienie około {a} i {b}, tylko gdy w Twoich tematach jest coś nowego.
+ru Уведомление около {a} и {b}, только когда в ваших темах есть что-то новое.
+uk Сповіщення близько {a} і {b}, лише коли у ваших темах є щось нове.
+tr {a} ve {b} civarında, yalnızca konularınızda yenilik olduğunda bir bildirim.
+ar إشعار نحو {a} و{b}، فقط عند وجود جديد في مواضيعك.
+hi {a} और {b} के आसपास एक सूचना, सिर्फ़ तब जब आपके विषयों में कुछ नया हो।
+bn {a} ও {b}-এর দিকে একটি বিজ্ঞপ্তি, শুধু যখন আপনার বিষয়ে নতুন কিছু থাকে।
+ur {a} اور {b} کے قریب ایک اطلاع، صرف تب جب آپ کے موضوعات میں کچھ نیا ہو۔
+zh 大约 {a} 和 {b} 各一条通知，仅在您关注的领域有新内容时发送。
+ja {a}頃と{b}頃に、あなたの分野で新しいことがあるときだけ通知します。
+ko {a}와 {b}쯤, 관심 분야에 새 소식이 있을 때만 알림을 보내요.
+id Satu notifikasi sekitar {a} dan {b}, hanya jika ada yang baru di topik Anda.
+vi Một thông báo vào khoảng {a} và {b}, chỉ khi có điều mới trong chủ đề của bạn.
+
+@ Réglable à tout moment dans Réglages → Notifications.
+en You can change this anytime in Settings → Notifications.
+es Puedes cambiarlo cuando quieras en Ajustes → Notificaciones.
+pt Pode mudar a qualquer momento em Definições → Notificações.
+de Jederzeit änderbar unter Einstellungen → Benachrichtigungen.
+it Modificabile in qualsiasi momento in Impostazioni → Notifiche.
+nl Altijd aan te passen in Instellingen → Meldingen.
+pl Możesz to zmienić w dowolnej chwili w Ustawienia → Powiadomienia.
+ru Это можно изменить в любой момент в разделе Настройки → Уведомления.
+uk Це можна змінити будь-коли в Налаштування → Сповіщення.
+tr İstediğiniz zaman Ayarlar → Bildirimler bölümünden değiştirebilirsiniz.
+ar يمكنك تغيير ذلك في أي وقت من الإعدادات ← الإشعارات.
+hi इसे कभी भी सेटिंग्स → सूचनाएँ में बदला जा सकता है।
+bn যেকোনো সময় সেটিংস → বিজ্ঞপ্তি থেকে বদলানো যায়।
+ur اسے کسی بھی وقت ترتیبات ← اطلاعات میں بدلا جا سکتا ہے۔
+zh 可随时在“设置 → 通知”中更改。
+ja 設定 → 通知 でいつでも変更できます。
+ko 설정 → 알림에서 언제든 바꿀 수 있어요.
+id Bisa diubah kapan saja di Pengaturan → Notifikasi.
+vi Có thể thay đổi bất cứ lúc nào trong Cài đặt → Thông báo.
+
+@ Activer les notifications
+en Turn on notifications
+es Activar las notificaciones
+pt Ativar as notificações
+de Benachrichtigungen aktivieren
+it Attiva le notifiche
+nl Meldingen inschakelen
+pl Włącz powiadomienia
+ru Включить уведомления
+uk Увімкнути сповіщення
+tr Bildirimleri aç
+ar تفعيل الإشعارات
+hi सूचनाएँ चालू करें
+bn বিজ্ঞপ্তি চালু করুন
+ur اطلاعات آن کریں
+zh 开启通知
+ja 通知をオンにする
+ko 알림 켜기
+id Aktifkan notifikasi
+vi Bật thông báo
+
+@ Plus tard
+en Later
+es Más tarde
+pt Mais tarde
+de Später
+it Più tardi
+nl Later
+pl Później
+ru Позже
+uk Пізніше
+tr Daha sonra
+ar لاحقًا
+hi बाद में
+bn পরে
+ur بعد میں
+zh 稍后
+ja あとで
+ko 나중에
+id Nanti
+vi Để sau
+
+@ Activer
+en Turn on
+es Activar
+pt Ativar
+de Aktivieren
+it Attiva
+nl Inschakelen
+pl Włącz
+ru Включить
+uk Увімкнути
+tr Aç
+ar تفعيل
+hi चालू करें
+bn চালু করুন
+ur آن کریں
+zh 开启
+ja オンにする
+ko 켜기
+id Aktifkan
+vi Bật
+
+@ Nouveau : les notifications
+en New: notifications
+es Novedad: las notificaciones
+pt Novidade: as notificações
+de Neu: Benachrichtigungen
+it Novità: le notifiche
+nl Nieuw: meldingen
+pl Nowość: powiadomienia
+ru Новое: уведомления
+uk Нове: сповіщення
+tr Yeni: bildirimler
+ar جديد: الإشعارات
+hi नया: सूचनाएँ
+bn নতুন: বিজ্ঞপ্তি
+ur نیا: اطلاعات
+zh 新功能：通知
+ja 新機能：通知
+ko 새 기능: 알림
+id Baru: notifikasi
+vi Mới: thông báo
+
+@ Soyez prévenu des avancées de vos domaines, vers {a} et {b}.
+en Get notified about advances in your topics, around {a} and {b}.
+es Recibe avisos de los avances de tus temas, hacia las {a} y las {b}.
+pt Seja avisado dos avanços dos seus temas, por volta das {a} e das {b}.
+de Erfahren Sie von Fortschritten in Ihren Themen, gegen {a} und {b}.
+it Ricevi avvisi sulle scoperte dei tuoi temi, verso le {a} e le {b}.
+nl Krijg een melding over doorbraken in je onderwerpen, rond {a} en {b}.
+pl Otrzymuj powiadomienia o odkryciach w Twoich tematach, około {a} i {b}.
+ru Получайте уведомления об открытиях в ваших темах около {a} и {b}.
+uk Отримуйте сповіщення про відкриття у ваших темах близько {a} і {b}.
+tr Konularınızdaki gelişmelerden {a} ve {b} civarında haberdar olun.
+ar احصل على تنبيه بتطورات مواضيعك نحو {a} و{b}.
+hi अपने विषयों की खोजों की सूचना {a} और {b} के आसपास पाएँ।
+bn আপনার বিষয়ের অগ্রগতির খবর পান {a} ও {b}-এর দিকে।
+ur اپنے موضوعات کی پیش رفت کی اطلاع {a} اور {b} کے قریب پائیں۔
+zh 在 {a} 和 {b} 左右收到您关注领域的进展通知。
+ja あなたの分野の進歩を{a}頃と{b}頃にお知らせします。
+ko 관심 분야의 발전 소식을 {a}와 {b}쯤 받아 보세요.
+id Dapatkan kabar kemajuan di topik Anda sekitar {a} dan {b}.
+vi Nhận thông báo về tiến bộ trong chủ đề của bạn vào khoảng {a} và {b}.
+
+@ Vous pourrez les activer à tout moment dans Réglages → Notifications.
+en You can turn them on anytime in Settings → Notifications.
+es Podrás activarlas cuando quieras en Ajustes → Notificaciones.
+pt Poderá ativá-las a qualquer momento em Definições → Notificações.
+de Sie können sie jederzeit unter Einstellungen → Benachrichtigungen aktivieren.
+it Potrai attivarle in qualsiasi momento in Impostazioni → Notifiche.
+nl Je kunt ze altijd inschakelen in Instellingen → Meldingen.
+pl Możesz je włączyć w dowolnej chwili w Ustawienia → Powiadomienia.
+ru Вы сможете включить их в любой момент в разделе Настройки → Уведомления.
+uk Ви зможете увімкнути їх будь-коли в Налаштування → Сповіщення.
+tr Bunları istediğiniz zaman Ayarlar → Bildirimler bölümünden açabilirsiniz.
+ar يمكنك تفعيلها في أي وقت من الإعدادات ← الإشعارات.
+hi आप इन्हें कभी भी सेटिंग्स → सूचनाएँ में चालू कर सकते हैं।
+bn আপনি যেকোনো সময় সেটিংস → বিজ্ঞপ্তি থেকে এগুলো চালু করতে পারবেন।
+ur آپ انہیں کسی بھی وقت ترتیبات ← اطلاعات میں آن کر سکتے ہیں۔
+zh 您可以随时在“设置 → 通知”中开启。
+ja 設定 → 通知 でいつでもオンにできます。
+ko 설정 → 알림에서 언제든 켤 수 있어요.
+id Anda bisa mengaktifkannya kapan saja di Pengaturan → Notifikasi.
+vi Bạn có thể bật bất cứ lúc nào trong Cài đặt → Thông báo.

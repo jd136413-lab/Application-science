@@ -37,6 +37,12 @@ class EtatApp extends ChangeNotifier {
 
   // Notifications (Réglages → Notifications)
   bool notifActives = false;
+  /// Proposition d'activer les notifications (maquette 50) : nombre de « Plus tard »
+  /// (3 = on ne propose plus), date avant laquelle on ne repropose pas, et date du
+  /// premier lancement (null = app installée avant cette version → carte D).
+  int notifPropositions = 0;
+  DateTime? notifPropositionApres;
+  DateTime? premierLancementLe;
   String notifFil = 'both'; // 'science', 'tech' ou 'both'
   int notifMin = 2; // importance minimale (1 à 5) ; par défaut ★★ Notable (2 à 3 par jour)
   /// « Sur mesure » : réglage propre à une famille. Absente = suit [notifMin] ;
@@ -53,6 +59,9 @@ class EtatApp extends ChangeNotifier {
       final l = p.getString('langue');
       langueChoisie = languesDisponibles.containsKey(l) ? l : null;
       notifActives = p.getBool('notif_actives') ?? false;
+      notifPropositions = p.getInt('notif_propositions') ?? 0;
+      notifPropositionApres = DateTime.tryParse(p.getString('notif_proposition_apres') ?? '');
+      premierLancementLe = DateTime.tryParse(p.getString('premier_lancement_le') ?? '');
       notifFil = p.getString('notif_fil') ?? 'both';
       if ((p.getInt('notif_version') ?? 1) < 2) {
         // Anciens réglages (formules, barème d'avant le 21/10) → nouveau modèle.
@@ -121,6 +130,9 @@ class EtatApp extends ChangeNotifier {
     p.setStringList('sources_masquees', sourcesMasquees.toList());
     p.setString('vocabulaire', jsonEncode([for (final m in vocabulaire) m.versJson()]));
     p.setBool('notif_actives', notifActives);
+    p.setInt('notif_propositions', notifPropositions);
+    if (notifPropositionApres != null) p.setString('notif_proposition_apres', notifPropositionApres!.toIso8601String());
+    if (premierLancementLe != null) p.setString('premier_lancement_le', premierLancementLe!.toIso8601String());
     p.setString('notif_fil', notifFil);
     p.setInt('notif_min', notifMin);
     p.setStringList('notif_par_famille', [for (final e in notifParFamille.entries) '${e.key}:${e.value}']);
@@ -137,6 +149,7 @@ class EtatApp extends ChangeNotifier {
   void terminerPremierLancement(Set<String> choix) {
     domaines = {...choix};
     premierLancementFait = true;
+    premierLancementLe = DateTime.now();
     stat('installation', valeur: choix.isEmpty ? 'tout' : (choix.toList()..sort()).join(','));
     _enregistrer();
     notifyListeners();
@@ -198,6 +211,27 @@ class EtatApp extends ChangeNotifier {
     _enregistrer();
     notifyListeners();
     synchroniserSujets(sujetsNotif);
+  }
+
+  /// Proposition de notifications : « Plus tard » → reproposée dans 7 jours, puis
+  /// 30 jours, puis plus jamais (3 propositions au plus). [definitif] : on arrête.
+  void reporterPropositionNotif({bool definitif = false}) {
+    notifPropositions = definitif ? 3 : notifPropositions + 1;
+    notifPropositionApres = DateTime.now().add(Duration(days: notifPropositions <= 1 ? 7 : 30));
+    _enregistrer();
+    notifyListeners();
+  }
+
+  /// Notifications acceptées depuis la proposition : réglage par défaut (★★ Notable
+  /// et plus, les deux fils), limité aux domaines choisis au premier lancement.
+  void activerNotifsDepuisProposition() {
+    if (domaines.isNotEmpty) {
+      for (final f in [...famillesSciences, ...famillesTech]) {
+        if (!domaines.contains(f)) notifParFamille[f] = 0;
+      }
+    }
+    notifPropositions = 3;
+    changerNotifications(actives: true);
   }
 
   /// « Sur mesure » : [valeur] null = suivre le réglage général, 0 = couper, 1 à 5 = minimum propre.
