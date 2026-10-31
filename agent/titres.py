@@ -140,6 +140,90 @@ def passage_agent(db, client, fiches: list[dict], log) -> tuple[int, float]:
     return len(changees), cout
 
 
+CONSIGNE_CORRECTION = """Tu corriges des titres de NovaSTEM (application d'avancées scientifiques et technologiques pour le grand public).
+
+Pour chaque fiche, on te donne le titre D'ORIGINE, sa version SIMPLIFIÉE (écrite pour être comprise par quelqu'un qui ne connaît pas le sujet) et le résumé. La version simplifiée a parfois été trop loin :
+- elle a retiré des mots que tout le monde connaît (ordinateur quantique, IA, ADN, ARN, gène, vaccin, virus, robot, satellite, astéroïde, trou noir, Einstein…) : remets-les (« Ordinateurs quantiques » et non « Ordinateurs ») ;
+- elle est devenue vague et a perdu le résultat concret (chiffre, record, ce qui a été vu ou fait) : rends-le.
+Garde la simplification quand elle est bonne (nom propre inconnu remplacé par ce que c'est, jargon remplacé).
+
+Donne pour chaque fiche le TITRE FINAL : forme « Thème : phrase », 12 mots au plus, sans point final, exact (n'invente rien). Si la version simplifiée est déjà la meilleure, renvoie-la telle quelle.
+Réponds uniquement avec le JSON demandé, une entrée par fiche, avec le même numéro « n »."""
+
+SCHEMA_CORRECTION = {
+    "type": "object",
+    "properties": {"titres": {"type": "array", "items": {
+        "type": "object", "properties": {"n": {"type": "integer"}, "titre": {"type": "string"}},
+        "required": ["n", "titre"], "additionalProperties": False}}},
+    "required": ["titres"], "additionalProperties": False,
+}
+
+
+def corriger(db, client, log) -> int:
+    """Reprend les titres listés dans titres_reecrits.md (avant → après) : remet les mots
+    connus de tous et la précision perdue. Retraduit les titres modifiés."""
+    import traduction
+    paires = []
+    for ligne in open("titres_reecrits.md", encoding="utf-8"):
+        morceaux = [m.strip() for m in ligne.strip().strip("|").split("|")]
+        if len(morceaux) == 2 and " : " in morceaux[1] and morceaux[0] != "Avant":
+            paires.append(tuple(morceaux))
+    r = requests.get(db.base, headers=db.headers, timeout=60, params={
+        "select": "id,title,summary,avant,decouverte,apres,mots,traductions", "limit": "5000"})
+    r.raise_for_status()
+    par_titre = {f["title"]: f for f in r.json()}
+    fiches = []
+    for avant, apres in paires:
+        f = par_titre.get(apres)
+        if f:
+            f["_origine"] = avant
+            fiches.append(f)
+    log(f"▶ {len(fiches)} titre(s) réécrit(s) à vérifier (sur {len(paires)} dans la liste)")
+    changees, t_in, t_out = [], 0, 0
+    for d in range(0, len(fiches), PAQUET):
+        paquet = fiches[d:d + PAQUET]
+        lignes = [{"n": i, "origine": f["_origine"], "simplifie": f["title"], "resume": _resume(f)}
+                  for i, f in enumerate(paquet)]
+        rep = client.messages.create(
+            model=MODELE, max_tokens=6000, system=CONSIGNE_CORRECTION,
+            messages=[{"role": "user", "content": json.dumps({"fiches": lignes}, ensure_ascii=False)}],
+            output_config={"format": {"type": "json_schema", "schema": SCHEMA_CORRECTION}},
+        )
+        t_in += rep.usage.input_tokens or 0
+        t_out += rep.usage.output_tokens or 0
+        for x in _json("".join(b.text for b in rep.content if getattr(b, "type", "") == "text")).get("titres") or []:
+            try:
+                n = int(x.get("n"))
+            except (TypeError, ValueError):
+                continue
+            nouveau = " ".join(str(x.get("titre", "")).split()).rstrip(".")
+            if 0 <= n < len(paquet) and _valide(nouveau) and nouveau != paquet[n]["title"]:
+                f = paquet[n]
+                f["_ancien_titre"], f["title"] = f["title"], nouveau
+                changees.append(f)
+    lignes_md = ["# Titres corrigés (mots connus remis, précision rendue)", "",
+                 "| Origine | Simplifié | Final |", "|---|---|---|"]
+    for f in changees:
+        f.setdefault("traductions", {}).pop("en", None)
+        r = requests.patch(db.base, headers=dict(db.headers, Prefer="return=minimal"), timeout=30,
+                           params={"id": f"eq.{f['id']}"}, json={"title": f["title"], "traductions": f["traductions"]})
+        if r.status_code < 300:
+            lignes_md.append(f"| {f['_origine']} | {f['_ancien_titre']} | {f['title']} |")
+            log(f"  ✎ « {f['_ancien_titre']} » → « {f['title']} »")
+            if os.environ.get("GITHUB_ACTIONS"):
+                print(f"::notice title=Titre corrigé::{f['_ancien_titre']} → {f['title']}", flush=True)
+    n_trad, cout_trad = traduction.traduire(client, changees, log,
+                                            sauver=lambda f: traduction.enregistrer(db, f), fils=4) if changees else (0, 0.0)
+    cout = (t_in * PRIX[0] + t_out * PRIX[1]) / 1e6 + cout_trad
+    lignes_md.insert(2, f"{len(changees)} titre(s) corrigé(s) sur {len(fiches)}, {n_trad} retraduit(s), coût {cout:.4f} $.")
+    lignes_md.insert(3, "")
+    open("titres_corriges.md", "w", encoding="utf-8").write("\n".join(lignes_md) + "\n")
+    log(f"✔ {len(changees)} titre(s) corrigé(s), {n_trad} retraduit(s), coût {cout:.4f} $")
+    if os.environ.get("GITHUB_ACTIONS"):
+        print(f"::notice title=Titres corrigés::{len(changees)} sur {len(fiches)}, coût {cout:.4f} $", flush=True)
+    return 0
+
+
 def main() -> int:
     """Workflow « Réécrire les titres » : toutes les fiches déjà publiées."""
     from anthropic import Anthropic
@@ -154,6 +238,8 @@ def main() -> int:
             log(f"❌ Secret manquant : {var}")
             return 1
     db = Supabase(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SECRET_KEY"])
+    if os.environ.get("MODE") == "corriger":
+        return corriger(db, Anthropic(), log)
     avec_trad = True
     r = requests.get(db.base, headers=db.headers, timeout=60, params={
         "select": "id,title,summary,avant,decouverte,apres,mots,traductions", "order": "created_at.desc",

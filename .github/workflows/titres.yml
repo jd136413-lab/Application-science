@@ -41,13 +41,14 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          # Branche « titres/corriger… » : reprend les titres déjà réécrits (titres_reecrits.md)
+          MODE: ${{ contains(github.ref_name, 'corriger') && 'corriger' || '' }}
         run: python titres.py
       - name: Enregistrer la liste des titres réécrits
         if: always()
         run: |
-          [ -f agent/titres_reecrits.md ] || exit 0
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add agent/titres_reecrits.md
+          for f in agent/titres_reecrits.md agent/titres_corriges.md; do [ -f "$f" ] && git add "$f"; done
           git commit -m "Titres réécrits (test du passant) [skip ci]" || exit 0
           for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
