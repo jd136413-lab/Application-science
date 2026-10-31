@@ -17,7 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Agent (Python)
-        run: python3 -m py_compile agent/*.py && echo "Agent : aucun problème de syntaxe."
+        run: |
+          python3 -m py_compile agent/*.py
+          echo "Agent (Python) : aucun problème de syntaxe."
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
