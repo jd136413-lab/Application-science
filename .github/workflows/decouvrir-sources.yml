@@ -3,6 +3,9 @@
 name: Découvrir des sources
 
 on:
+  # Claude peut aussi la lancer en poussant une branche « sources/… » (série CANDIDATS3 par défaut)
+  push:
+    branches: ["sources/**"]
   workflow_dispatch:
     inputs:
       serie:
@@ -22,9 +25,9 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install feedparser requests
-      - run: python .github/scripts/decouvrir_sources.py agent/decouverte_${{ inputs.serie }}.md agent/decouverte_${{ inputs.serie }}.json
+      - run: python .github/scripts/decouvrir_sources.py agent/decouverte_${{ inputs.serie || 'CANDIDATS3' }}.md agent/decouverte_${{ inputs.serie || 'CANDIDATS3' }}.json
         env:
-          SERIE: ${{ inputs.serie }}
+          SERIE: ${{ inputs.serie || 'CANDIDATS3' }}
       - name: Enregistrer le résultat
         run: |
           git config user.name "github-actions[bot]"
