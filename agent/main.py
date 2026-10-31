@@ -246,6 +246,13 @@ class Supabase:
                   "fiche enregistrée avec son résumé d'un seul tenant.", flush=True)
             r = requests.post(self.base, headers=h, timeout=30, params={"select": "id,family"},
                               json={k: v for k, v in ligne.items() if k not in COLONNES_005})
+        if r.status_code == 400 and "advances_theme_check" in r.text and ligne.get("theme") in THEME_DE_SECOURS:
+            # Migration 007 pas encore lancée : thème d'avant l'élargissement des familles.
+            print("⚠ Nouveaux thèmes refusés par la base (lancer database/migration_007_familles_elargies.sql) : "
+                  f"{ligne['theme']} → {THEME_DE_SECOURS[ligne['theme']]}", flush=True)
+            ligne["theme"] = THEME_DE_SECOURS[ligne["theme"]]
+            r = requests.post(self.base, headers=h, timeout=30, params={"select": "id,family"},
+                              json=ligne)
         if r.status_code == 409:
             return "doublon"
         if r.status_code >= 300:
@@ -438,24 +445,30 @@ FAMILLES_THEMES = {
     "physics": ("physics", "quantum", "chemistry", "materials", "mathematics"),
     "life": ("biology", "genetics"),
     "earth": ("geology", "paleontology", "archaeology"),
-    "other": ("other",),
-    "mobile": ("smartphones", "wearables", "gadgets"),
+    "other": ("psychology", "society", "other"),
+    "mobile": ("smartphones", "wearables", "gadgets", "cameras"),
     "computing": ("computers", "chips"),
     "ai_software": ("ai_products", "software", "cybersecurity"),
-    "mobility": ("cars", "drones"),
-    "aerospace": ("rockets", "aircraft", "satellites"),
-    "energy_home": ("batteries", "solar", "smart_home"),
+    "mobility": ("cars", "drones", "trains", "ships"),
+    "aerospace": ("rockets", "aircraft", "satellites", "defense"),
+    "energy_home": ("batteries", "solar", "nuclear", "smart_home"),
     "gaming": ("consoles", "video_games", "vr"),
-    "tech_other": ("tech_other",),
+    "tech_other": ("manufacturing", "construction", "agritech", "tech_other"),
 }
 FAMILLE_DU_THEME = {t: f for f, ts in FAMILLES_THEMES.items() for t in ts}
+# Thèmes ajoutés le 31/10 (migration 007) → thème d'avant, si la base ne les connaît pas encore.
+THEME_DE_SECOURS = {"psychology": "other", "society": "other", "cameras": "gadgets", "trains": "cars",
+                    "ships": "cars", "defense": "aircraft", "nuclear": "solar", "manufacturing": "tech_other",
+                    "construction": "tech_other", "agritech": "tech_other"}
 FAMILLES_TEXTE = ("Sciences : space (espace, astronomie), environment (environnement, climat, océans, "
                   "agriculture), health (santé, médecine, cerveau), technology (technologie, IA, robots, énergie), "
                   "physics (physique, chimie, matériaux, maths), life (biologie, génétique, animaux, plantes), "
-                  "earth (géologie, fossiles, archéologie), other. Technologies : mobile (smartphones, objets), "
+                  "earth (géologie, fossiles, archéologie), other (psychologie, comportement, société, éducation). "
+                  "Technologies : mobile (smartphones, objets, appareils photo), "
                   "computing (ordinateurs, puces), ai_software (IA, logiciels, cybersécurité), mobility (voitures, "
-                  "drones), aerospace (fusées, avions, satellites), energy_home (batteries, solaire, maison), "
-                  "gaming (jeux vidéo, consoles, VR), tech_other.")
+                  "drones, trains, bateaux), aerospace (fusées, avions, satellites, défense), energy_home (batteries, "
+                  "solaire, nucléaire, maison), gaming (jeux vidéo, consoles, VR), tech_other (impression 3D, usines, "
+                  "bâtiment, agriculture et alimentation de demain).")
 
 
 class Equilibre:
