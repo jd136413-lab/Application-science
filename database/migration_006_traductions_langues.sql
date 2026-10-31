@@ -25,6 +25,17 @@ alter table public.stats add constraint stats_evenement_check check (evenement i
   'masquee','source_masquee','partage','notif_ouverte','notif_formule','avis_demande',
   'signalement','avis','hors_ligne','memoire_videe','actif_jour','actif_mois'));
 
+-- Réglages privés des statistiques (date de réinitialisation) : créés ici aussi
+-- au cas où le script migration_005_stats_reinitialiser.sql n'a pas été lancé.
+create table if not exists public.stats_reglages (
+  id        int primary key default 1 check (id = 1),
+  depuis    timestamptz,
+  code_hash text
+);
+insert into public.stats_reglages (id) values (1) on conflict (id) do nothing;
+alter table public.stats_reglages enable row level security;
+revoke all on public.stats_reglages from anon, authenticated;
+
 -- Utilisateurs par langue (tableau de bord, partie « Langues »).
 -- Pour chaque langue : utilisateurs aujourd'hui, moyenne et maximum par jour sur
 -- la période choisie, utilisateurs de ce mois-ci et du mois dernier, ouvertures.
