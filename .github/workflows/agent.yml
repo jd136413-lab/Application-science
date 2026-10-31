@@ -59,8 +59,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: agent/memoire_tri.json
-          key: memoire-tri-v2-${{ github.run_id }}
-          restore-keys: memoire-tri-v2-
+          key: memoire-tri-v3-${{ github.run_id }}
+          restore-keys: memoire-tri-v3-
       - name: Lancer l'agent
         working-directory: agent
         env:
