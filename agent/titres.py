@@ -37,6 +37,9 @@ Il ÉCHOUE s'il contient :
 - un mot technique, un sigle ou une unité savante (qubit, CRISPR, Gbps, amygdale, supraconducteur, sursaut gamma, colite…), y compris dans le thème ;
 - une formulation qui ne dit pas de quoi il s'agit ou à quoi ça sert (« un comprimé fait mieux qu'un placebo » : pour quelle maladie ?).
 
+Mots connus de tous, À GARDER (ce n'est pas du jargon) : ordinateur quantique, intelligence artificielle (IA), ADN, ARN, gène, vaccin, virus, bactérie, cellule, robot, satellite, fusée, astéroïde, galaxie, trou noir, cancer, diabète, batterie, électrique, laser, Einstein…
+Ne rends JAMAIS un titre plus vague qu'avant : le résultat concret (chiffre, record, ce qui a été vu ou fait) doit rester. Dans le doute, garde le titre (ok = true).
+
 Si le titre réussit le test : "ok" = true et "titre" = "".
 S'il échoue : "ok" = false et "titre" = le titre réécrit, même forme, 12 mots au plus, mots de tous les jours. Remplace le nom inconnu par CE QUE C'EST (« un nouveau médicament », « une IA de Google », « des fossiles chinois », « un télescope spatial »), le jargon par des mots simples ou une comparaison parlante. Le thème aussi doit être simple (« Intestin » plutôt que « Colite », « Espace » plutôt que « Sursauts gamma »).
 Reste EXACT : n'invente rien, n'exagère rien, garde les nuances (« chez la souris », « possible »). Appuie-toi sur le résumé fourni.

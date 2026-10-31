@@ -133,6 +133,9 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
     - Aucun mot technique, sigle ou unité savante (qubit, CRISPR, Gbps, amygdale…) :
       remplace-les (« des ciseaux à ADN », « une zone du cerveau ») ou fais une
       comparaison parlante (« 750 fois plus rapide qu'une fibre à la maison »).
+    - Restent permis car connus de tous : ordinateur quantique, IA, ADN, ARN, gène,
+      vaccin, virus, robot, satellite, astéroïde, trou noir… Et le titre ne devient
+      jamais vague : le résultat concret (chiffre, record, ce qui a été vu) reste.
     - Dis ce que ça change ou à quoi ça sert quand c'est possible (« apaise une maladie
       de l'intestin » plutôt que « fait mieux qu'un placebo »).
   · Exemples (avant → après) :
