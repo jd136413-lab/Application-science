@@ -85,6 +85,17 @@ class EtatApp extends ChangeNotifier {
         }
         rubriques = lues;
       }
+      // 01/11 (choix de Maxime) : les domaines choisis au premier lancement sont
+      // aussi « suivis » et la rubrique « Mes domaines suivis » s'affiche. Fait une fois.
+      if (p.getBool('suivis_depuis_choix') != true) {
+        domainesSuivis = {...domainesSuivis, ...domaines};
+        if (domainesSuivis.isNotEmpty) {
+          rubriques = [for (final (c, on) in rubriques) (c, c == 'suivis' ? true : on)];
+        }
+        p.setBool('suivis_depuis_choix', true);
+        p.setStringList('domaines_suivis', domainesSuivis.toList());
+        p.setStringList('rubriques_accueil', [for (final (c, on) in rubriques) '$c:${on ? 1 : 0}']);
+      }
       notifPropositionApres = DateTime.tryParse(p.getString('notif_proposition_apres') ?? '');
       premierLancementLe = DateTime.tryParse(p.getString('premier_lancement_le') ?? '');
       notifFil = p.getString('notif_fil') ?? 'both';
@@ -178,6 +189,9 @@ class EtatApp extends ChangeNotifier {
   // ---- Premier lancement / domaines ----
   void terminerPremierLancement(Set<String> choix) {
     domaines = {...choix};
+    // Les domaines choisis sont aussi « suivis » : rubrique « Mes domaines suivis » affichée.
+    domainesSuivis = {...choix};
+    if (choix.isNotEmpty) rubriques = [for (final (c, on) in rubriques) (c, c == 'suivis' ? true : on)];
     premierLancementFait = true;
     premierLancementLe = DateTime.now();
     stat('installation', valeur: choix.isEmpty ? 'tout' : (choix.toList()..sort()).join(','));
@@ -186,6 +200,8 @@ class EtatApp extends ChangeNotifier {
   }
 
   void changerDomaines(Set<String> choix) {
+    // Domaines suivis : un domaine retiré n'est plus suivi, un domaine ajouté l'est.
+    domainesSuivis = {...domainesSuivis.intersection(choix), ...choix.difference(domaines)};
     domaines = {...choix};
     _enregistrer();
     notifyListeners();
