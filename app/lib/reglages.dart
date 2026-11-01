@@ -186,6 +186,16 @@ const List<(String, int)> periodes = [
 ];
 const int periodeParDefaut = 1; // 0 = Nouveautés, 1 = Cette semaine…
 
+/// Rubriques de l'accueil magazine (maquette 64), dans l'ordre par défaut, et si elles
+/// sont affichées. L'ordre et l'affichage se changent dans « Personnaliser l'accueil ».
+const List<(String, bool)> rubriquesParDefaut = [
+  ('une', true), // À la une : la plus grande avancée du jour
+  ('nouveau', true), // Nouveau pour vous
+  ('top', true), // Le top de la semaine
+  ('domaines', true), // Ce mois-ci par domaine
+  ('suivis', false), // Mes domaines suivis
+];
+
 /// Une avancée reste « Nouveau » pendant ce délai après son ajout, tant qu'elle n'a pas été ouverte.
 const Duration dureeNouveaute = Duration(days: 3);
 const String texteTriRecent = 'Plus récent';

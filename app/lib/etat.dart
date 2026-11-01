@@ -37,6 +37,13 @@ class EtatApp extends ChangeNotifier {
 
   // Notifications (Réglages → Notifications)
   bool notifActives = false;
+  /// Présentation de l'onglet Actualités : accueil « magazine » (maquette 64, 01/11/2026)
+  /// ou liste classique (onglets de période). Réglages → Présentation de l'accueil.
+  bool accueilMagazine = true;
+  /// Rubriques de l'accueil magazine, dans l'ordre, avec leur état (affichée ou non).
+  List<(String, bool)> rubriques = List.of(rubriquesParDefaut);
+  /// Domaines suivis (bouton « Suivre » de la page d'un domaine).
+  Set<String> domainesSuivis = {};
   /// Proposition d'activer les notifications (maquette 50) : nombre de « Plus tard »
   /// (3 = on ne propose plus), date avant laquelle on ne repropose pas, et date du
   /// premier lancement (null = app installée avant cette version → carte D).
@@ -60,6 +67,20 @@ class EtatApp extends ChangeNotifier {
       langueChoisie = languesDisponibles.containsKey(l) ? l : null;
       notifActives = p.getBool('notif_actives') ?? false;
       notifPropositions = p.getInt('notif_propositions') ?? 0;
+      accueilMagazine = p.getBool('accueil_magazine') ?? true;
+      domainesSuivis = (p.getStringList('domaines_suivis') ?? []).toSet();
+      final rub = p.getStringList('rubriques_accueil');
+      if (rub != null) {
+        final lues = <(String, bool)>[
+          for (final x in rub)
+            if (rubriquesParDefaut.any((r) => r.$1 == x.split(':').first)) (x.split(':').first, x.endsWith(':1')),
+        ];
+        // Rubrique ajoutée dans une version plus récente : à la fin, avec son état par défaut.
+        for (final r in rubriquesParDefaut) {
+          if (!lues.any((x) => x.$1 == r.$1)) lues.add(r);
+        }
+        rubriques = lues;
+      }
       notifPropositionApres = DateTime.tryParse(p.getString('notif_proposition_apres') ?? '');
       premierLancementLe = DateTime.tryParse(p.getString('premier_lancement_le') ?? '');
       notifFil = p.getString('notif_fil') ?? 'both';
@@ -131,6 +152,9 @@ class EtatApp extends ChangeNotifier {
     p.setString('vocabulaire', jsonEncode([for (final m in vocabulaire) m.versJson()]));
     p.setBool('notif_actives', notifActives);
     p.setInt('notif_propositions', notifPropositions);
+    p.setBool('accueil_magazine', accueilMagazine);
+    p.setStringList('domaines_suivis', domainesSuivis.toList());
+    p.setStringList('rubriques_accueil', [for (final (c, on) in rubriques) '$c:${on ? 1 : 0}']);
     if (notifPropositionApres != null) p.setString('notif_proposition_apres', notifPropositionApres!.toIso8601String());
     if (premierLancementLe != null) p.setString('premier_lancement_le', premierLancementLe!.toIso8601String());
     p.setString('notif_fil', notifFil);
@@ -211,6 +235,28 @@ class EtatApp extends ChangeNotifier {
     _enregistrer();
     notifyListeners();
     synchroniserSujets(sujetsNotif);
+  }
+
+  // ---- Accueil magazine ----
+  void changerAccueil(bool magazine) {
+    accueilMagazine = magazine;
+    _enregistrer();
+    notifyListeners();
+  }
+
+  void changerRubriques(List<(String, bool)> nouvelles) {
+    rubriques = List.of(nouvelles);
+    _enregistrer();
+    notifyListeners();
+  }
+
+  bool rubriqueActive(String code) => rubriques.any((r) => r.$1 == code && r.$2);
+
+  void basculerSuivi(String famille) {
+    domainesSuivis.contains(famille) ? domainesSuivis.remove(famille) : domainesSuivis.add(famille);
+    domainesSuivis = {...domainesSuivis};
+    _enregistrer();
+    notifyListeners();
   }
 
   /// Proposition de notifications : « Plus tard » → reproposée dans 7 jours, puis
