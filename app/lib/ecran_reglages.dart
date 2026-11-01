@@ -78,34 +78,6 @@ class EcranReglages extends StatelessWidget {
                   ),
               ]),
             ),
-            titreSection('Présentation de l’accueil'),
-            Container(
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(color: p.pastille, borderRadius: BorderRadius.circular(16)),
-              child: Row(children: [
-                for (final (magazine, texte) in [(true, 'Magazine'), (false, 'Liste classique')])
-                  Expanded(
-                    child: Material(
-                      color: etat.accueilMagazine == magazine ? p.carte : Colors.transparent,
-                      borderRadius: BorderRadius.circular(12),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(12),
-                        onTap: () => etat.changerAccueil(magazine),
-                        child: SizedBox(
-                          height: 42,
-                          child: Center(
-                            child: Text(tr(texte),
-                                style: police(policeTexte,
-                                    taille: 14,
-                                    graisse: FontWeight.w700,
-                                    couleur: etat.accueilMagazine == magazine ? p.texte : p.texteDiscret)),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-              ]),
-            ),
             titreSection('Notifications'),
             bloc(
               onTap: () => Navigator.of(context).push(

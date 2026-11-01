@@ -65,6 +65,7 @@ class _AppNovaStemState extends State<AppNovaStem> {
     if (!languesTraduitesParAgent.contains(etat.langue)) unawaited(preparerTraduction(etat.langue));
     await initializeDateFormatting(); // dates dans toutes les langues
     await initialiserSupabase().timeout(const Duration(seconds: 15));
+    await detecterAppareilDeTest(); // robots de Google : pas de statistiques
     // Notifications : jamais bloquant (Firebase absent, pas de réseau…).
     stat('ouverture', valeur: etat.langue); // statistiques anonymes
     unawaited(statsActivite()); // utilisateurs par langue (une fois par jour et par mois)
