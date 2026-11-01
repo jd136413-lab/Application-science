@@ -311,7 +311,10 @@ class _EcranMagazineState extends State<EcranMagazine> {
           onAction: () => _pousser(context, EcranDomaineMag(fil: _fil, famille: f)),
         ),
         Builder(builder: (context) {
-          final l = tout.where((a) => a.famille == f).take(10).toList();
+          // Même tri que le bouton de la page du domaine (« Tout voir »).
+          var l = tout.where((a) => a.famille == f).toList()..sort((a, b) => b.publieLe.compareTo(a.publieLe));
+          if (etat.triDomainesImportance) l = parImportance(l);
+          l = l.take(10).toList();
           return l.isEmpty
               ? Text(tr('Pas encore d’avancée ce mois-ci.'),
                   style: police(policeTexte, taille: 14, couleur: p.texteDiscret))
@@ -875,7 +878,6 @@ class EcranDomaineMag extends StatefulWidget {
 
 class _EcranDomaineMagState extends State<EcranDomaineMag> {
   int _jours = 31;
-  static bool _importance = false; // tri gardé d'un domaine à l'autre : false = plus récent
 
   @override
   Widget build(BuildContext context) => ListenableBuilder(
@@ -887,7 +889,7 @@ class _EcranDomaineMagState extends State<EcranDomaineMag> {
               .where((a) => a.famille == widget.famille && !etat.estMasquee(a))
               .toList();
           var l = surPeriode(toutes, _jours)..sort((a, b) => b.publieLe.compareTo(a.publieLe));
-          if (_importance) l = parImportance(l);
+          if (etat.triDomainesImportance) l = parImportance(l);
           final importantes = l.where((a) => a.importance >= 3).length;
           final suivi = etat.domainesSuivis.contains(widget.famille);
           return Scaffold(
@@ -950,9 +952,9 @@ class _EcranDomaineMagState extends State<EcranDomaineMag> {
                               backgroundColor: f.icone.withValues(alpha: 0.2),
                               shape: const StadiumBorder(),
                             ),
-                            onPressed: () => setState(() => _importance = !_importance),
-                            icon: Icon(_importance ? Icons.star_rounded : Icons.schedule_rounded, size: 18, color: f.icone),
-                            label: Text(tr(_importance ? texteTriImportant : texteTriRecent),
+                            onPressed: etat.basculerTriDomaines,
+                            icon: Icon(etat.triDomainesImportance ? Icons.star_rounded : Icons.schedule_rounded, size: 18, color: f.icone),
+                            label: Text(tr(etat.triDomainesImportance ? texteTriImportant : texteTriRecent),
                                 style: police(policeTexte, taille: 13, graisse: FontWeight.w800, couleur: f.icone)),
                           ),
                         ]),

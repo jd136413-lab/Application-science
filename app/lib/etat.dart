@@ -40,6 +40,7 @@ class EtatApp extends ChangeNotifier {
   /// Présentation de l'onglet Actualités : accueil « magazine » (maquette 64, 01/11/2026)
   /// ou liste classique (onglets de période). Réglages → Présentation de l'accueil.
   bool accueilMagazine = true;
+  bool triDomainesImportance = false; // page d'un domaine et « Mes domaines suivis » : false = plus récent
   /// Rubriques de l'accueil magazine, dans l'ordre, avec leur état (affichée ou non).
   List<(String, bool)> rubriques = List.of(rubriquesParDefaut);
   /// Domaines suivis (bouton « Suivre » de la page d'un domaine).
@@ -68,6 +69,7 @@ class EtatApp extends ChangeNotifier {
       notifActives = p.getBool('notif_actives') ?? false;
       notifPropositions = p.getInt('notif_propositions') ?? 0;
       accueilMagazine = p.getBool('accueil_magazine') ?? true;
+      triDomainesImportance = p.getBool('tri_domaines_importance') ?? false;
       domainesSuivis = (p.getStringList('domaines_suivis') ?? []).toSet();
       final rub = p.getStringList('rubriques_accueil');
       if (rub != null) {
@@ -153,6 +155,7 @@ class EtatApp extends ChangeNotifier {
     p.setBool('notif_actives', notifActives);
     p.setInt('notif_propositions', notifPropositions);
     p.setBool('accueil_magazine', accueilMagazine);
+    p.setBool('tri_domaines_importance', triDomainesImportance);
     p.setStringList('domaines_suivis', domainesSuivis.toList());
     p.setStringList('rubriques_accueil', [for (final (c, on) in rubriques) '$c:${on ? 1 : 0}']);
     if (notifPropositionApres != null) p.setString('notif_proposition_apres', notifPropositionApres!.toIso8601String());
@@ -238,6 +241,13 @@ class EtatApp extends ChangeNotifier {
   }
 
   // ---- Accueil magazine ----
+  /// Bouton « Plus récent / Plus important » de la page d'un domaine (gardé sur le téléphone).
+  void basculerTriDomaines() {
+    triDomainesImportance = !triDomainesImportance;
+    _enregistrer();
+    notifyListeners();
+  }
+
   void changerAccueil(bool magazine) {
     accueilMagazine = magazine;
     _enregistrer();
