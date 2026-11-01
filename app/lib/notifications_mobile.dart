@@ -27,6 +27,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_mlkit_translation/google_mlkit_translation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timezone/data/latest_all.dart' as tz_donnees;
+import 'package:timezone/timezone.dart' as tz;
 
 import 'langues.dart' show languesDisponibles;
 import 'navigation.dart';
@@ -360,4 +362,56 @@ Future<void> _afficherUne(Map<String, dynamic> data) async {
     details,
     payload: 'grp|$fil|${vedette['id']}|$nb',
   );
+}
+
+
+// ------------------------------------------------------------------ rappels « À venir »
+
+bool _fuseauxPrets = false;
+
+/// Programme une notification sur le téléphone (onglet « À venir », « Me le rappeler »).
+/// Rien n'est envoyé par internet : c'est le téléphone qui se réveille à l'heure dite.
+Future<bool> programmerRappel({
+  required int id,
+  required DateTime quandUtc,
+  required String titre,
+  required String texte,
+  required String payload,
+}) async {
+  if (!notificationsPossibles) return false;
+  try {
+    if (!_fuseauxPrets) {
+      tz_donnees.initializeTimeZones();
+      _fuseauxPrets = true;
+    }
+    final langue = _langue(await SharedPreferences.getInstance());
+    await _local.zonedSchedule(
+      id,
+      titre,
+      texte,
+      tz.TZDateTime.from(quandUtc.toUtc(), tz.UTC),
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+          'rappels_a_venir',
+          _tr('Rappels « À venir »', langue),
+          importance: Importance.high,
+          priority: Priority.high,
+          color: logoEncreRose,
+        ),
+        iOS: const DarwinNotificationDetails(),
+      ),
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      payload: payload,
+    );
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+Future<void> annulerRappel(int id) async {
+  if (!notificationsPossibles) return;
+  try {
+    await _local.cancel(id);
+  } catch (_) {}
 }

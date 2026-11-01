@@ -40,6 +40,7 @@ class EtatApp extends ChangeNotifier {
   /// Présentation de l'onglet Actualités : accueil « magazine » (maquette 64, 01/11/2026)
   /// ou liste classique (onglets de période). Réglages → Présentation de l'accueil.
   bool accueilMagazine = true;
+  Set<String> rappels = {}; // onglet « À venir » : événements avec « Me le rappeler »
   bool triDomainesImportance = false; // page d'un domaine et « Mes domaines suivis » : false = plus récent
   /// Rubriques de l'accueil magazine, dans l'ordre, avec leur état (affichée ou non).
   List<(String, bool)> rubriques = List.of(rubriquesParDefaut);
@@ -70,6 +71,7 @@ class EtatApp extends ChangeNotifier {
       notifPropositions = p.getInt('notif_propositions') ?? 0;
       accueilMagazine = p.getBool('accueil_magazine') ?? true;
       triDomainesImportance = p.getBool('tri_domaines_importance') ?? false;
+      rappels = (p.getStringList('rappels_a_venir') ?? const []).toSet();
       domainesSuivis = (p.getStringList('domaines_suivis') ?? []).toSet();
       final rub = p.getStringList('rubriques_accueil');
       if (rub != null) {
@@ -156,6 +158,7 @@ class EtatApp extends ChangeNotifier {
     p.setInt('notif_propositions', notifPropositions);
     p.setBool('accueil_magazine', accueilMagazine);
     p.setBool('tri_domaines_importance', triDomainesImportance);
+    p.setStringList('rappels_a_venir', rappels.toList());
     p.setStringList('domaines_suivis', domainesSuivis.toList());
     p.setStringList('rubriques_accueil', [for (final (c, on) in rubriques) '$c:${on ? 1 : 0}']);
     if (notifPropositionApres != null) p.setString('notif_proposition_apres', notifPropositionApres!.toIso8601String());
@@ -241,6 +244,20 @@ class EtatApp extends ChangeNotifier {
   }
 
   // ---- Accueil magazine ----
+  void ajouterRappel(String id) {
+    if (rappels.add(id)) {
+      _enregistrer();
+      notifyListeners();
+    }
+  }
+
+  void retirerRappel(String id) {
+    if (rappels.remove(id)) {
+      _enregistrer();
+      notifyListeners();
+    }
+  }
+
   /// Bouton « Plus récent / Plus important » de la page d'un domaine (gardé sur le téléphone).
   void basculerTriDomaines() {
     triDomainesImportance = !triDomainesImportance;

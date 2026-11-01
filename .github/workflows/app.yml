@@ -72,6 +72,16 @@ jobs:
           # Moteur « Impeller » désactivé : écrans noirs connus sur certains Xiaomi/POCO
           if "EnableImpeller" not in s:
               s = re.sub(r"(<application[^>]*>)", r'\1\n        <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false" />', s, count=1)
+          # Rappels « À venir » programmés sur le téléphone (flutter_local_notifications) :
+          # récepteurs qui réveillent l'app à l'heure dite, et après un redémarrage.
+          if "ScheduledNotificationReceiver" not in s:
+              s = s.replace("<application", '<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>\n    <application', 1)
+              recepteurs = ('<receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />'
+                            '<receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">'
+                            '<intent-filter><action android:name="android.intent.action.BOOT_COMPLETED"/>'
+                            '<action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>'
+                            '<action android:name="android.intent.action.QUICKBOOT_POWERON"/></intent-filter></receiver>')
+              s = s.replace("</application>", recepteurs + "\n    </application>", 1)
           open(p, "w", encoding="utf-8").write(s)
           PY
           # Détection des téléphones-robots de Google (rapport de pré-lancement, Firebase Test Lab) :

@@ -77,6 +77,7 @@ import notifications
 import traduction
 import titres
 import bilan_sources
+import a_venir
 from anthropic import Anthropic
 
 from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
@@ -752,7 +753,9 @@ Pour chaque article gardé : "i" (son numéro), "note" de 1 à 5, "sujet" (4 à 
 
 """ + BAREME_COURT + """
 
-Garde au plus 30 articles (les plus prometteurs)."""
+Garde au plus 30 articles (les plus prometteurs).
+
+À PART, dans "a_venir" (liste séparée, au plus 5 numéros, souvent vide) : les titres qui annoncent un ÉVÉNEMENT DATÉ À VENIR d'intérêt général, même si ce n'est pas une avancée : lancement d'une fusée ou d'une mission, sortie d'un produit très attendu (console, smartphone phare, voiture, jeu très attendu), résultats scientifiques attendus, événement dans le ciel (éclipse, pluie d'étoiles filantes, comète), grand sommet ou grande conférence scientifique. Pas les promotions, rumeurs ni événements commerciaux ordinaires."""
 
 CONSIGNE_REGROUPEMENT = """Tu prépares la sélection d'une application qui présente les vraies avancées scientifiques et technologiques du moment.
 
@@ -770,8 +773,9 @@ SCHEMA_TRI = {
         "type": "object",
         "properties": {"i": {"type": "integer"}, "note": {"type": "integer"}, "sujet": {"type": "string"},
                        "famille": {"type": "string", "enum": list(FAMILLES_THEMES)}},
-        "required": ["i", "note", "sujet", "famille"], "additionalProperties": False}}},
-    "required": ["articles"], "additionalProperties": False,
+        "required": ["i", "note", "sujet", "famille"], "additionalProperties": False}},
+        "a_venir": {"type": "array", "items": {"type": "integer"}}},
+    "required": ["articles", "a_venir"], "additionalProperties": False,
 }
 SCHEMA_REGROUPEMENT = {
     "type": "object",
@@ -839,6 +843,9 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
                 if isinstance(i, int) and i in paquet:
                     fam = x.get("famille") if x.get("famille") in FAMILLES_THEMES else None
                     notes[i] = (max(1, min(5, int(x.get("note") or 1))), str(x.get("sujet", ""))[:100], fam)
+            for i in rep.get("a_venir", [])[:5]:   # onglet « À venir » (a_venir.py)
+                if isinstance(i, int) and i in paquet:
+                    a_venir.CANDIDATS.append(pool[i])
             for i in paquet:                 # mémoire : note, ou 0 = pas une avancée
                 memoire[pool[i]["url"]] = [notes[i][0], notes[i][1], MAINTENANT.isoformat(), notes[i][2]] if i in notes \
                     else [0, "", MAINTENANT.isoformat()]
@@ -1295,10 +1302,15 @@ def main() -> int:
     # --- Traductions (anglais…) : nouvelles fiches + rattrapage d'anciennes (traduction.py) ---
     trad_nouv, trad_anc, cout_trad = traduction.passage_agent(db, client, ajoutes, log)
 
+    # --- Onglet « À venir » : événements datés repérés au tri + « C'est arrivé » (a_venir.py) ---
+    familles_tech = {"mobile", "computing", "ai_software", "mobility", "aerospace", "energy_home", "gaming", "tech_other"}
+    cout_avenir = a_venir.passage_agent(db, client, modele["id"], ajoutes, log, sans_et_apres, modele["prix"],
+                                        set(FAMILLES_THEMES) - familles_tech, familles_tech, lire_debut_page)
+
     # --- Coût (cache : écriture = 1,25 × le prix d'entrée, lecture = 0,1 ×) ---
     p_in, p_out = modele["prix"]
     cout = (conso["in"] * p_in + conso["cache_w"] * p_in * 1.25
-            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad + cout_titres
+            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad + cout_titres + cout_avenir
 
     log("\n" + "=" * 60)
     log(f"RÉSUMÉ : {nb_articles} article(s) retenu(s) → {len(ajoutes)} fiche(s) "

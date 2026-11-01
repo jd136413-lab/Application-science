@@ -11,6 +11,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'a_venir.dart';
 import 'carte.dart';
 import 'detail.dart';
 import 'etat.dart';
@@ -79,6 +80,7 @@ class _EcranMagazineState extends State<EcranMagazine> {
     super.initState();
     filsAvancees.demarrer('science');
     filsAvancees.demarrer('tech');
+    evenementsAVenir.demarrer(); // onglet « À venir » (pastille, rappels)
     demandeFilAujourdhui.addListener(_allerNouveautes);
     demandeHautDuFil.addListener(_remonter);
     _minuteurNotif = Timer.periodic(const Duration(seconds: 15), (_) => _verifierPropositionNotif());
@@ -136,7 +138,9 @@ class _EcranMagazineState extends State<EcranMagazine> {
       builder: (context, _) {
         final chargee = filsAvancees.fils.containsKey(_fil);
         Widget corps;
-        if (!chargee && filsAvancees.erreurs.containsKey(_fil)) {
+        if (_fil == 'avenir') {
+          corps = const VueAVenir();
+        } else if (!chargee && filsAvancees.erreurs.containsKey(_fil)) {
           corps = MessageCentre(
             icone: Icons.wifi_off_rounded,
             titre: tr(texteErreur),
@@ -190,6 +194,8 @@ class _EcranMagazineState extends State<EcranMagazine> {
         'top' => _rubriqueTop(context, tout),
         'domaines' => _rubriqueDomaines(context, tout),
         'suivis' => _rubriqueSuivis(context, tout),
+        'avenir' => rubriqueAVenir(context, _fil, () => setState(() => _fil = 'avenir'),
+            (t, action, onAction) => _TitreRubrique(titre: t, action: action, onAction: onAction)),
         _ => null,
       };
       if (w != null) res.add(Padding(padding: const EdgeInsets.only(bottom: 22), child: w));
@@ -337,7 +343,7 @@ class _EnTete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
-    Widget onglet(String code, String texte) {
+    Widget onglet(String code, String texte, [int badge = 0]) {
       final actif = code == fil;
       return InkWell(
         onTap: () => onFil(code),
@@ -346,9 +352,19 @@ class _EnTete extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 6, top: 4),
           decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: actif ? p.texte : Colors.transparent, width: 3))),
-          child: Text(tr(texte),
-              style: police(policeTexte,
-                  taille: 17, graisse: FontWeight.w800, couleur: actif ? p.texte : p.texteDiscret)),
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
+            Text(tr(texte),
+                style: police(policeTexte,
+                    taille: 17, graisse: FontWeight.w800, couleur: actif ? p.texte : p.texteDiscret)),
+            if (badge > 0) ...[
+              const SizedBox(width: 5),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                decoration: BoxDecoration(color: const Color(0xFFFF5A8A), borderRadius: BorderRadius.circular(8)),
+                child: Text('$badge', style: police(policeTexte, taille: 11, graisse: FontWeight.w800, couleur: Colors.white)),
+              ),
+            ],
+          ]),
         ),
       );
     }
@@ -380,6 +396,12 @@ class _EnTete extends StatelessWidget {
           onglet('science', texteSciences),
           const SizedBox(width: 22),
           onglet('tech', texteTechnologies),
+          const SizedBox(width: 22),
+          // 3e onglet « À venir » (maquette 70) ; pastille = événements des 7 prochains jours
+          ListenableBuilder(
+            listenable: evenementsAVenir,
+            builder: (context, _) => onglet('avenir', 'À venir', evenementsAVenir.cetteSemaine),
+          ),
         ]),
       ]),
     );
@@ -1206,6 +1228,7 @@ const Map<String, (String, String)> _nomsRubriques = {
   'top': ('Le top de la semaine', 'Les 3 plus importantes'),
   'domaines': ('Ce mois-ci par domaine', 'Les tuiles de couleur'),
   'suivis': ('Mes domaines suivis', 'Une rubrique par domaine suivi'),
+  'avenir': ('À venir', 'Les prochains rendez-vous, avec compte à rebours'),
 };
 
 /// « Personnaliser l'accueil » : afficher ou masquer chaque rubrique, et changer leur ordre.

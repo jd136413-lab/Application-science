@@ -6806,3 +6806,845 @@ ja フォロー中
 ko 팔로잉
 id Diikuti
 vi Đang theo dõi
+
+# Onglet « À venir » (01/11/2026)
+
+@ À venir
+en Coming up
+es Próximamente
+pt Em breve
+de Demnächst
+it In arrivo
+nl Binnenkort
+pl Wkrótce
+ru Скоро
+uk Незабаром
+tr Yakında
+ar قريبًا
+hi आगामी
+bn আসন্ন
+ur آنے والا
+zh 即将到来
+ja 近日予定
+ko 예정
+id Segera
+vi Sắp tới
+
+@ AUJ.
+en TODAY
+es HOY
+pt HOJE
+de HEUTE
+it OGGI
+nl VANDAAG
+pl DZIŚ
+ru СЕГОДНЯ
+uk СЬОГОДНІ
+tr BUGÜN
+ar اليوم
+hi आज
+bn আজ
+ur آج
+zh 今天
+ja 今日
+ko 오늘
+id HARI INI
+vi HÔM NAY
+
+@ DEMAIN
+en TOMORROW
+es MAÑANA
+pt AMANHÃ
+de MORGEN
+it DOMANI
+nl MORGEN
+pl JUTRO
+ru ЗАВТРА
+uk ЗАВТРА
+tr YARIN
+ar غدًا
+hi कल
+bn আগামীকাল
+ur کل
+zh 明天
+ja 明日
+ko 내일
+id BESOK
+vi NGÀY MAI
+
+@ Demain
+en Tomorrow
+es Mañana
+pt Amanhã
+de Morgen
+it Domani
+nl Morgen
+pl Jutro
+ru Завтра
+uk Завтра
+tr Yarın
+ar غدًا
+hi कल
+bn আগামীকাল
+ur کل
+zh 明天
+ja 明日
+ko 내일
+id Besok
+vi Ngày mai
+
+@ Dans {n} jours
+en In {n} days
+es En {n} días
+pt Em {n} dias
+de In {n} Tagen
+it Tra {n} giorni
+nl Over {n} dagen
+pl Za {n} dni
+ru Через {n} дн.
+uk Через {n} дн.
+tr {n} gün sonra
+ar بعد {n} يومًا
+hi {n} दिनों में
+bn {n} দিন পরে
+ur {n} دن میں
+zh {n} 天后
+ja あと{n}日
+ko {n}일 후
+id {n} hari lagi
+vi Còn {n} ngày
+
+@ Ajouter à mon agenda
+en Add to my calendar
+es Añadir a mi calendario
+pt Adicionar à minha agenda
+de Zu meinem Kalender hinzufügen
+it Aggiungi al mio calendario
+nl Toevoegen aan mijn agenda
+pl Dodaj do kalendarza
+ru Добавить в календарь
+uk Додати в календар
+tr Takvimime ekle
+ar أضف إلى تقويمي
+hi मेरे कैलेंडर में जोड़ें
+bn আমার ক্যালেন্ডারে যোগ করুন
+ur میرے کیلنڈر میں شامل کریں
+zh 添加到我的日历
+ja カレンダーに追加
+ko 내 캘린더에 추가
+id Tambahkan ke kalender
+vi Thêm vào lịch
+
+@ Me le rappeler
+en Remind me
+es Recordármelo
+pt Lembrar-me
+de Erinnere mich
+it Ricordamelo
+nl Herinner mij
+pl Przypomnij mi
+ru Напомнить
+uk Нагадати
+tr Bana hatırlat
+ar ذكّرني
+hi मुझे याद दिलाएँ
+bn আমাকে মনে করিয়ে দিন
+ur مجھے یاد دلائیں
+zh 提醒我
+ja リマインド
+ko 알림 받기
+id Ingatkan saya
+vi Nhắc tôi
+
+@ Rappel activé
+en Reminder on
+es Recordatorio activado
+pt Lembrete ativado
+de Erinnerung aktiv
+it Promemoria attivo
+nl Herinnering aan
+pl Przypomnienie włączone
+ru Напоминание включено
+uk Нагадування увімкнено
+tr Hatırlatıcı açık
+ar التذكير مفعّل
+hi रिमाइंडर चालू
+bn রিমাইন্ডার চালু
+ur یاد دہانی آن
+zh 已设提醒
+ja リマインド設定済み
+ko 알림 설정됨
+id Pengingat aktif
+vi Đã bật nhắc
+
+@ Rappel annulé
+en Reminder cancelled
+es Recordatorio cancelado
+pt Lembrete cancelado
+de Erinnerung gelöscht
+it Promemoria annullato
+nl Herinnering geannuleerd
+pl Przypomnienie anulowane
+ru Напоминание отменено
+uk Нагадування скасовано
+tr Hatırlatıcı iptal edildi
+ar أُلغي التذكير
+hi रिमाइंडर रद्द
+bn রিমাইন্ডার বাতিল
+ur یاد دہانی منسوخ
+zh 提醒已取消
+ja リマインドを取り消しました
+ko 알림 취소됨
+id Pengingat dibatalkan
+vi Đã hủy nhắc
+
+@ Rappel prévu
+en Reminder set
+es Recordatorio programado
+pt Lembrete agendado
+de Erinnerung geplant
+it Promemoria impostato
+nl Herinnering ingesteld
+pl Przypomnienie ustawione
+ru Напоминание запланировано
+uk Нагадування заплановано
+tr Hatırlatıcı kuruldu
+ar تم ضبط التذكير
+hi रिमाइंडर तय
+bn রিমাইন্ডার সেট
+ur یاد دہانی مقرر
+zh 已设定提醒
+ja リマインドを設定しました
+ko 알림 예약됨
+id Pengingat dijadwalkan
+vi Đã đặt nhắc
+
+@ Rappels « À venir »
+en “Coming up” reminders
+es Recordatorios «Próximamente»
+pt Lembretes «Em breve»
+de „Demnächst“-Erinnerungen
+it Promemoria «In arrivo»
+nl Herinneringen ‘Binnenkort’
+pl Przypomnienia „Wkrótce”
+ru Напоминания «Скоро»
+uk Нагадування «Незабаром»
+tr “Yakında” hatırlatıcıları
+ar تذكيرات «قريبًا»
+hi “आगामी” रिमाइंडर
+bn “আসন্ন” রিমাইন্ডার
+ur “آنے والا” یاد دہانیاں
+zh “即将到来”提醒
+ja 「近日予定」のリマインド
+ko ‘예정’ 알림
+id Pengingat “Segera”
+vi Nhắc “Sắp tới”
+
+@ Autorisez les notifications pour recevoir le rappel.
+en Allow notifications to get the reminder.
+es Permite las notificaciones para recibir el recordatorio.
+pt Permita as notificações para receber o lembrete.
+de Erlauben Sie Benachrichtigungen, um die Erinnerung zu erhalten.
+it Consenti le notifiche per ricevere il promemoria.
+nl Sta meldingen toe om de herinnering te krijgen.
+pl Zezwól na powiadomienia, aby otrzymać przypomnienie.
+ru Разрешите уведомления, чтобы получить напоминание.
+uk Дозвольте сповіщення, щоб отримати нагадування.
+tr Hatırlatıcıyı almak için bildirimlere izin verin.
+ar اسمح بالإشعارات لتلقي التذكير.
+hi रिमाइंडर पाने के लिए सूचनाओं की अनुमति दें।
+bn রিমাইন্ডার পেতে নোটিফিকেশনের অনুমতি দিন।
+ur یاد دہانی پانے کے لیے اطلاعات کی اجازت دیں۔
+zh 请允许通知以接收提醒。
+ja リマインドを受け取るには通知を許可してください。
+ko 알림을 받으려면 알림을 허용하세요.
+id Izinkan notifikasi untuk menerima pengingat.
+vi Hãy cho phép thông báo để nhận lời nhắc.
+
+@ Impossible de programmer le rappel.
+en Couldn’t set the reminder.
+es No se pudo programar el recordatorio.
+pt Não foi possível agendar o lembrete.
+de Erinnerung konnte nicht geplant werden.
+it Impossibile impostare il promemoria.
+nl Herinnering kon niet worden ingesteld.
+pl Nie udało się ustawić przypomnienia.
+ru Не удалось запланировать напоминание.
+uk Не вдалося запланувати нагадування.
+tr Hatırlatıcı kurulamadı.
+ar تعذّر ضبط التذكير.
+hi रिमाइंडर तय नहीं हो सका।
+bn রিমাইন্ডার সেট করা যায়নি।
+ur یاد دہانی مقرر نہیں ہو سکی۔
+zh 无法设定提醒。
+ja リマインドを設定できませんでした。
+ko 알림을 예약할 수 없습니다.
+id Pengingat tidak dapat dijadwalkan.
+vi Không thể đặt nhắc.
+
+@ Les rappels marchent dans l’app sur téléphone.
+en Reminders work in the phone app.
+es Los recordatorios funcionan en la app del móvil.
+pt Os lembretes funcionam no app do celular.
+de Erinnerungen funktionieren in der Handy-App.
+it I promemoria funzionano nell’app sul telefono.
+nl Herinneringen werken in de app op de telefoon.
+pl Przypomnienia działają w aplikacji na telefonie.
+ru Напоминания работают в приложении на телефоне.
+uk Нагадування працюють у застосунку на телефоні.
+tr Hatırlatıcılar telefondaki uygulamada çalışır.
+ar تعمل التذكيرات في تطبيق الهاتف.
+hi रिमाइंडर फ़ोन ऐप में काम करते हैं।
+bn রিমাইন্ডার ফোনের অ্যাপে কাজ করে।
+ur یاد دہانیاں فون ایپ میں کام کرتی ہیں۔
+zh 提醒仅在手机应用中可用。
+ja リマインドはスマホのアプリで使えます。
+ko 알림은 휴대폰 앱에서 작동합니다.
+id Pengingat berfungsi di aplikasi ponsel.
+vi Nhắc chỉ hoạt động trong ứng dụng điện thoại.
+
+@ Ce qui est prévu
+en What’s planned
+es Lo previsto
+pt O que está previsto
+de Was geplant ist
+it Cosa è previsto
+nl Wat er gepland is
+pl Co jest zaplanowane
+ru Что запланировано
+uk Що заплановано
+tr Planlanan
+ar ما هو مخطط
+hi क्या तय है
+bn কী পরিকল্পিত
+ur کیا طے ہے
+zh 计划内容
+ja 予定されていること
+ko 예정된 내용
+id Yang direncanakan
+vi Dự kiến
+
+@ Pourquoi c’est important
+en Why it matters
+es Por qué importa
+pt Por que é importante
+de Warum es wichtig ist
+it Perché è importante
+nl Waarom het belangrijk is
+pl Dlaczego to ważne
+ru Почему это важно
+uk Чому це важливо
+tr Neden önemli
+ar لماذا هو مهم
+hi यह क्यों मायने रखता है
+bn কেন গুরুত্বপূর্ণ
+ur یہ کیوں اہم ہے
+zh 为何重要
+ja なぜ重要か
+ko 왜 중요한가
+id Mengapa penting
+vi Vì sao quan trọng
+
+@ C’est arrivé
+en It happened
+es Ya ocurrió
+pt Aconteceu
+de Es ist passiert
+it È successo
+nl Het is gebeurd
+pl Stało się
+ru Это случилось
+uk Це сталося
+tr Gerçekleşti
+ar لقد حدث
+hi यह हो गया
+bn এটা ঘটেছে
+ur یہ ہو گیا
+zh 已经发生
+ja 実現しました
+ko 이루어졌어요
+id Sudah terjadi
+vi Đã diễn ra
+
+@ C’est aujourd’hui
+en It’s today
+es Es hoy
+pt É hoje
+de Es ist heute
+it È oggi
+nl Het is vandaag
+pl To dziś
+ru Это сегодня
+uk Це сьогодні
+tr Bugün
+ar إنه اليوم
+hi आज है
+bn আজই
+ur آج ہے
+zh 就在今天
+ja 今日です
+ko 오늘이에요
+id Hari ini
+vi Là hôm nay
+
+@ C’est aujourd’hui !
+en It’s today!
+es ¡Es hoy!
+pt É hoje!
+de Es ist heute!
+it È oggi!
+nl Het is vandaag!
+pl To dziś!
+ru Это сегодня!
+uk Це сьогодні!
+tr Bugün!
+ar إنه اليوم!
+hi आज है!
+bn আজই!
+ur آج ہے!
+zh 就在今天！
+ja 今日です！
+ko 오늘이에요!
+id Hari ini!
+vi Là hôm nay!
+
+@ C’est ce mois-ci
+en It’s this month
+es Es este mes
+pt É este mês
+de Es ist diesen Monat
+it È questo mese
+nl Het is deze maand
+pl To w tym miesiącu
+ru Это в этом месяце
+uk Це цього місяця
+tr Bu ay
+ar إنه هذا الشهر
+hi इसी महीने
+bn এই মাসেই
+ur اسی مہینے
+zh 就在本月
+ja 今月です
+ko 이번 달이에요
+id Bulan ini
+vi Là tháng này
+
+@ Dans le ciel
+en In the sky
+es En el cielo
+pt No céu
+de Am Himmel
+it Nel cielo
+nl Aan de hemel
+pl Na niebie
+ru На небе
+uk На небі
+tr Gökyüzünde
+ar في السماء
+hi आसमान में
+bn আকাশে
+ur آسمان میں
+zh 天象
+ja 夜空
+ko 하늘에서
+id Di langit
+vi Trên bầu trời
+
+@ Lancement
+en Launch
+es Lanzamiento
+pt Lançamento
+de Start
+it Lancio
+nl Lancering
+pl Start
+ru Запуск
+uk Запуск
+tr Fırlatma
+ar إطلاق
+hi प्रक्षेपण
+bn উৎক্ষেপণ
+ur لانچ
+zh 发射
+ja 打ち上げ
+ko 발사
+id Peluncuran
+vi Phóng
+
+@ Sortie
+en Release
+es Lanzamiento
+pt Lançamento
+de Erscheinen
+it Uscita
+nl Release
+pl Premiera
+ru Выход
+uk Вихід
+tr Çıkış
+ar إصدار
+hi रिलीज़
+bn মুক্তি
+ur ریلیز
+zh 上市
+ja 発売
+ko 출시
+id Rilis
+vi Ra mắt
+
+@ Résultats
+en Results
+es Resultados
+pt Resultados
+de Ergebnisse
+it Risultati
+nl Resultaten
+pl Wyniki
+ru Результаты
+uk Результати
+tr Sonuçlar
+ar النتائج
+hi परिणाम
+bn ফলাফল
+ur نتائج
+zh 结果
+ja 結果
+ko 결과
+id Hasil
+vi Kết quả
+
+@ Événement
+en Event
+es Evento
+pt Evento
+de Ereignis
+it Evento
+nl Evenement
+pl Wydarzenie
+ru Событие
+uk Подія
+tr Etkinlik
+ar حدث
+hi कार्यक्रम
+bn ইভেন্ট
+ur تقریب
+zh 活动
+ja イベント
+ko 행사
+id Acara
+vi Sự kiện
+
+@ Annonce
+en Announcement
+es Anuncio
+pt Anúncio
+de Ankündigung
+it Annuncio
+nl Aankondiging
+pl Zapowiedź
+ru Анонс
+uk Анонс
+tr Duyuru
+ar إعلان
+hi घोषणा
+bn ঘোষণা
+ur اعلان
+zh 发布会
+ja 発表
+ko 발표
+id Pengumuman
+vi Công bố
+
+@ Jours
+en Days
+es Días
+pt Dias
+de Tage
+it Giorni
+nl Dagen
+pl Dni
+ru Дней
+uk Днів
+tr Gün
+ar أيام
+hi दिन
+bn দিন
+ur دن
+zh 天
+ja 日
+ko 일
+id Hari
+vi Ngày
+
+@ Heures
+en Hours
+es Horas
+pt Horas
+de Stunden
+it Ore
+nl Uur
+pl Godz.
+ru Часов
+uk Годин
+tr Saat
+ar ساعات
+hi घंटे
+bn ঘণ্টা
+ur گھنٹے
+zh 小时
+ja 時間
+ko 시간
+id Jam
+vi Giờ
+
+@ Min
+en Min
+es Min
+pt Min
+de Min
+it Min
+nl Min
+pl Min
+ru Мин
+uk Хв
+tr Dk
+ar دقيقة
+hi मिनट
+bn মিনিট
+ur منٹ
+zh 分
+ja 分
+ko 분
+id Mnt
+vi Phút
+
+@ Date changée
+en Date changed
+es Fecha cambiada
+pt Data alterada
+de Datum geändert
+it Data cambiata
+nl Datum gewijzigd
+pl Zmiana daty
+ru Дата изменена
+uk Дату змінено
+tr Tarih değişti
+ar تغيّر الموعد
+hi तारीख बदली
+bn তারিখ বদলেছে
+ur تاریخ بدل گئی
+zh 日期已变更
+ja 日程変更
+ko 날짜 변경
+id Tanggal berubah
+vi Đã đổi ngày
+
+@ prévu d’abord le
+en first planned for
+es previsto primero el
+pt previsto inicialmente para
+de ursprünglich geplant am
+it previsto inizialmente il
+nl eerst gepland op
+pl najpierw planowano na
+ru сначала планировалось на
+uk спочатку планувалося на
+tr ilk planlanan tarih
+ar كان مقررًا أولًا في
+hi पहले तय था
+bn প্রথমে নির্ধারিত ছিল
+ur پہلے طے تھا
+zh 原定于
+ja 当初の予定
+ko 처음 예정일
+id semula dijadwalkan
+vi dự kiến ban đầu
+
+@ date donnée par la source
+en date given by the source
+es fecha dada por la fuente
+pt data dada pela fonte
+de Datum laut Quelle
+it data indicata dalla fonte
+nl datum volgens de bron
+pl data podana przez źródło
+ru дата по данным источника
+uk дата за даними джерела
+tr tarih kaynağa göre
+ar الموعد بحسب المصدر
+hi तारीख स्रोत के अनुसार
+bn তারিখ উৎস অনুযায়ী
+ur تاریخ ماخذ کے مطابق
+zh 日期由来源提供
+ja 日付は情報源による
+ko 날짜는 출처 기준
+id tanggal menurut sumber
+vi ngày theo nguồn tin
+
+@ heure de Paris
+en Paris time
+es hora de París
+pt horário de Paris
+de Pariser Zeit
+it ora di Parigi
+nl Parijse tijd
+pl czasu paryskiego
+ru по парижскому времени
+uk за паризьким часом
+tr Paris saati
+ar بتوقيت باريس
+hi पेरिस समय
+bn প্যারিস সময়
+ur پیرس وقت
+zh 巴黎时间
+ja パリ時間
+ko 파리 시간
+id waktu Paris
+vi giờ Paris
+
+@ la date peut changer (météo, retard)
+en the date may change (weather, delays)
+es la fecha puede cambiar (clima, retrasos)
+pt a data pode mudar (clima, atrasos)
+de das Datum kann sich ändern (Wetter, Verzögerung)
+it la data può cambiare (meteo, ritardi)
+nl de datum kan veranderen (weer, vertraging)
+pl data może się zmienić (pogoda, opóźnienia)
+ru дата может измениться (погода, задержки)
+uk дата може змінитися (погода, затримки)
+tr tarih değişebilir (hava, gecikme)
+ar قد يتغيّر الموعد (الطقس، التأخير)
+hi तारीख बदल सकती है (मौसम, देरी)
+bn তারিখ বদলাতে পারে (আবহাওয়া, বিলম্ব)
+ur تاریخ بدل سکتی ہے (موسم، تاخیر)
+zh 日期可能变化（天气、延误）
+ja 日程は変わる可能性があります（天候・延期）
+ko 날짜는 바뀔 수 있어요 (날씨, 지연)
+id tanggal bisa berubah (cuaca, penundaan)
+vi ngày có thể thay đổi (thời tiết, trì hoãn)
+
+@ vers
+en around
+es hacia las
+pt por volta das
+de gegen
+it verso le
+nl rond
+pl około
+ru около
+uk близько
+tr yaklaşık
+ar نحو
+hi लगभग
+bn প্রায়
+ur تقریباً
+zh 约
+ja 頃
+ko 약
+id sekitar
+vi khoảng
+
+@ Source
+en Source
+es Fuente
+pt Fonte
+de Quelle
+it Fonte
+nl Bron
+pl Źródło
+ru Источник
+uk Джерело
+tr Kaynak
+ar المصدر
+hi स्रोत
+bn উৎস
+ur ماخذ
+zh 来源
+ja 情報源
+ko 출처
+id Sumber
+vi Nguồn
+
+@ Lire l’avancée
+en Read the advance
+es Leer el avance
+pt Ler o avanço
+de Fortschritt lesen
+it Leggi il progresso
+nl Lees de doorbraak
+pl Czytaj o odkryciu
+ru Читать об открытии
+uk Читати про відкриття
+tr Gelişmeyi oku
+ar اقرأ التقدّم
+hi खोज पढ़ें
+bn অগ্রগতি পড়ুন
+ur پیش رفت پڑھیں
+zh 阅读进展
+ja 発見を読む
+ko 발견 읽기
+id Baca kemajuan
+vi Đọc tiến bộ
+
+@ Rien d’annoncé pour l’instant
+en Nothing announced yet
+es Nada anunciado por ahora
+pt Nada anunciado por enquanto
+de Noch nichts angekündigt
+it Ancora niente di annunciato
+nl Nog niets aangekondigd
+pl Na razie nic nie zapowiedziano
+ru Пока ничего не объявлено
+uk Поки нічого не оголошено
+tr Şimdilik duyurulan bir şey yok
+ar لا شيء معلن حاليًا
+hi अभी कुछ घोषित नहीं
+bn এখনও কিছু ঘোষণা হয়নি
+ur ابھی کچھ اعلان نہیں ہوا
+zh 暂无公告
+ja まだ発表はありません
+ko 아직 발표된 것이 없어요
+id Belum ada yang diumumkan
+vi Chưa có gì được công bố
+
+@ Les lancements, sorties et grands rendez-vous apparaîtront ici dès qu’une source les annonce.
+en Launches, releases and big events will appear here as soon as a source announces them.
+es Los lanzamientos, estrenos y grandes citas aparecerán aquí en cuanto una fuente los anuncie.
+pt Lançamentos, estreias e grandes eventos aparecerão aqui assim que uma fonte os anunciar.
+de Starts, Neuerscheinungen und große Termine erscheinen hier, sobald eine Quelle sie ankündigt.
+it Lanci, uscite e grandi appuntamenti appariranno qui non appena una fonte li annuncia.
+nl Lanceringen, releases en grote evenementen verschijnen hier zodra een bron ze aankondigt.
+pl Starty, premiery i ważne wydarzenia pojawią się tu, gdy tylko źródło je zapowie.
+ru Запуски, премьеры и важные события появятся здесь, как только источник о них сообщит.
+uk Запуски, прем’єри та важливі події з’являться тут, щойно джерело про них повідомить.
+tr Fırlatmalar, çıkışlar ve büyük etkinlikler bir kaynak duyurur duyurmaz burada görünecek.
+ar ستظهر هنا عمليات الإطلاق والإصدارات والمواعيد الكبرى فور إعلان مصدر عنها.
+hi प्रक्षेपण, रिलीज़ और बड़े आयोजन किसी स्रोत के घोषित करते ही यहाँ दिखेंगे।
+bn উৎক্ষেপণ, মুক্তি ও বড় আয়োজন কোনো উৎস ঘোষণা করলেই এখানে দেখা যাবে।
+ur لانچ، ریلیز اور بڑے مواقع کسی ماخذ کے اعلان کرتے ہی یہاں نظر آئیں گے۔
+zh 一旦有来源宣布，发射、上市和重大活动都会显示在这里。
+ja 打ち上げや発売、大きなイベントは、情報源が発表しだいここに表示されます。
+ko 발사, 출시, 주요 행사가 출처에서 발표되는 즉시 여기에 표시됩니다.
+id Peluncuran, rilis, dan acara besar akan muncul di sini begitu sumber mengumumkannya.
+vi Các vụ phóng, ra mắt và sự kiện lớn sẽ xuất hiện ở đây ngay khi có nguồn công bố.
+
+@ Les prochains rendez-vous, avec compte à rebours
+en Upcoming events, with a countdown
+es Próximas citas, con cuenta atrás
+pt Próximos eventos, com contagem regressiva
+de Kommende Termine mit Countdown
+it Prossimi appuntamenti, con conto alla rovescia
+nl Komende evenementen, met aftelling
+pl Nadchodzące wydarzenia z odliczaniem
+ru Ближайшие события с обратным отсчётом
+uk Найближчі події зі зворотним відліком
+tr Geri sayımlı yaklaşan etkinlikler
+ar المواعيد القادمة مع عدّ تنازلي
+hi आने वाले आयोजन, उलटी गिनती के साथ
+bn আসন্ন আয়োজন, কাউন্টডাউনসহ
+ur آنے والے مواقع، الٹی گنتی کے ساتھ
+zh 即将到来的活动，附倒计时
+ja カウントダウン付きの近日予定
+ko 카운트다운과 함께 보는 예정 행사
+id Acara mendatang, dengan hitung mundur
+vi Sự kiện sắp tới, kèm đếm ngược

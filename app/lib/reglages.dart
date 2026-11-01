@@ -190,6 +190,7 @@ const int periodeParDefaut = 1; // 0 = Nouveautés, 1 = Cette semaine…
 /// sont affichées. L'ordre et l'affichage se changent dans « Personnaliser l'accueil ».
 const List<(String, bool)> rubriquesParDefaut = [
   ('une', true), // À la une : la plus grande avancée du jour
+  ('avenir', false), // À venir : comptes à rebours (désactivée par défaut, choix de Maxime 01/11)
   ('nouveau', true), // Nouveau pour vous
   ('top', true), // Le top de la semaine
   ('domaines', true), // Ce mois-ci par domaine
