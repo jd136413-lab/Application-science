@@ -23,6 +23,7 @@ import 'detail.dart';
 import 'donnees.dart';
 import 'etat.dart';
 import 'langues.dart';
+import 'modele.dart' show enTeteMois;
 import 'notifications.dart';
 import 'reglages.dart';
 import 'texte_article.dart';
@@ -552,10 +553,15 @@ class _VueAVenirState extends State<VueAVenir> {
                   style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)
                       .copyWith(letterSpacing: 0.8)),
             );
+        // Plus loin qu'un mois : un en-tête par mois (« Janvier », « Août 2027 »…).
+        final plusTard = <String, List<Evenement>>{};
+        for (final e in prochains.where((e) => e.jours > 31)) {
+          plusTard.putIfAbsent(enTeteMois(DateTime(e.date.year, e.date.month)), () => []).add(e);
+        }
         final groupes = <(String, List<Evenement>)>[
           ('Cette semaine', prochains.where((e) => e.jours <= 7).toList()),
           ('Ce mois-ci', prochains.where((e) => e.jours > 7 && e.jours <= 31).toList()),
-          ('Plus tard', prochains.where((e) => e.jours > 31).toList()),
+          for (final m in plusTard.entries) (m.key, m.value),
         ];
         Widget choix(String? fil, String texte) {
           final actif = fil == _fil;

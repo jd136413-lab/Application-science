@@ -755,7 +755,7 @@ Pour chaque article gardé : "i" (son numéro), "note" de 1 à 5, "sujet" (4 à 
 
 Garde au plus 30 articles (les plus prometteurs).
 
-À PART, dans "a_venir" (liste séparée, au plus 5 numéros, souvent vide) : les titres qui annoncent un ÉVÉNEMENT DATÉ À VENIR d'intérêt général, même si ce n'est pas une avancée : lancement d'une fusée ou d'une mission, sortie d'un produit très attendu (console, smartphone phare, voiture, jeu très attendu), résultats scientifiques attendus, événement dans le ciel (éclipse, pluie d'étoiles filantes, comète), grand sommet ou grande conférence scientifique. Pas les promotions, rumeurs ni événements commerciaux ordinaires."""
+À PART, dans "a_venir" (liste séparée, au plus 8 numéros, souvent vide) : les titres qui annoncent un ÉVÉNEMENT DATÉ À VENIR d'intérêt général, même si ce n'est pas une avancée : lancement d'une fusée ou d'une mission, sortie d'un produit très attendu (console, smartphone phare, voiture, jeu très attendu), résultats scientifiques attendus, événement dans le ciel (éclipse, pluie d'étoiles filantes, comète), grand sommet ou grande conférence scientifique. Pas les promotions, rumeurs ni événements commerciaux ordinaires."""
 
 CONSIGNE_REGROUPEMENT = """Tu prépares la sélection d'une application qui présente les vraies avancées scientifiques et technologiques du moment.
 
@@ -843,7 +843,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
                 if isinstance(i, int) and i in paquet:
                     fam = x.get("famille") if x.get("famille") in FAMILLES_THEMES else None
                     notes[i] = (max(1, min(5, int(x.get("note") or 1))), str(x.get("sujet", ""))[:100], fam)
-            for i in rep.get("a_venir", [])[:5]:   # onglet « À venir » (a_venir.py)
+            for i in rep.get("a_venir", [])[:8]:   # onglet « À venir » (a_venir.py)
                 if isinstance(i, int) and i in paquet:
                     a_venir.CANDIDATS.append(pool[i])
             for i in paquet:                 # mémoire : note, ou 0 = pas une avancée
