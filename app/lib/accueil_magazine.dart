@@ -264,8 +264,10 @@ class _EcranMagazineState extends State<EcranMagazine> {
   }
 
   Widget? _rubriqueDomaines(BuildContext context, List<Avancee> tout) {
-    final mois = surPeriode(tout, 31);
-    final compte = <String, int>{};
+    // Tous les domaines du fil, même ceux qui n'ont pas été choisis (choix de Maxime, 01/11).
+    final mois = surPeriode(
+        (filsAvancees.fils[_fil] ?? const <Avancee>[]).where((a) => !etat.estMasquee(a)).toList(), 31);
+    final compte = <String, int>{for (final f in famillesDuFil(_fil)) f: 0};
     for (final a in mois) {
       compte[a.famille] = (compte[a.famille] ?? 0) + 1;
     }
