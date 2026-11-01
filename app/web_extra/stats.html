@@ -32,9 +32,24 @@ header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content:
 .periodes button { border: 0; background: transparent; color: var(--discret); font: 600 14px var(--corps); padding: 8px 12px; border-radius: 10px; cursor: pointer; min-height: 40px; }
 .periodes button[aria-pressed="true"] { background: var(--carte); color: var(--texte); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
 .periodes button:focus-visible { outline: 2px solid var(--bleu); }
+/* Navigation jour par jour (01/11/2026) */
+.jour-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 4px; background: var(--pastille); border-radius: 14px; }
+.jour-nav button { border: 0; background: transparent; color: var(--texte); font: 700 14px var(--corps); padding: 8px 12px; border-radius: 10px; cursor: pointer; min-height: 40px; }
+.jour-nav button:hover:not(:disabled) { background: var(--carte); }
+.jour-nav button:disabled { color: var(--bord); cursor: default; }
+.jour-nav input { font: 700 14px var(--corps); color: var(--texte); background: var(--carte); border: 0; border-radius: 10px; padding: 8px 10px; min-height: 40px; }
+.jour-nav button:focus-visible, .jour-nav input:focus-visible { outline: 2px solid var(--bleu); }
+.jour-titre { font-family: var(--titres); font-size: 22px; font-weight: 800; }
+.entete-section { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+tr.cliquable { cursor: pointer; }
+tr.cliquable:hover td { background: var(--pastille); }
+tr.choisi td { background: color-mix(in srgb, var(--bleu) 14%, transparent); font-weight: 700; }
+tr.total td { font-weight: 700; border-top: 2px solid var(--bord); }
+td.zero { color: var(--bord); }
+#jours td:first-child { white-space: nowrap; }
 .bandeau { background: var(--carte); border-radius: 14px; padding: 10px 14px; font-size: 14px; color: var(--discret); }
 .bandeau.alerte { color: var(--texte); border: 1.5px solid var(--or); }
-.tuiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.tuiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
 .tuile { background: var(--carte); border-radius: 18px; padding: 16px 18px; display: flex; flex-direction: column; gap: 2px; }
 .tuile .n { font-family: var(--titres); font-size: 34px; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
 .tuile .l { font-weight: 700; font-size: 14px; }
@@ -87,18 +102,29 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
       <h1>Statistiques NovaSTEM</h1>
       <p class="sous" id="etat">Chargement…</p>
     </div>
-    <div class="periodes" role="group" aria-label="Période">
-      <button data-j="1">24 h</button><button data-j="7" aria-pressed="true">7 jours</button><button data-j="30">30 jours</button><button data-j="365">1 an</button>
+    <div class="jour-nav" role="group" aria-label="Choisir le jour">
+      <button id="j-prec" type="button" aria-label="Jour précédent">◀</button>
+      <input id="j-date" type="date" aria-label="Jour affiché">
+      <button id="j-suiv" type="button" aria-label="Jour suivant">▶</button>
+      <button id="j-auj" type="button">Aujourd’hui</button>
     </div>
   </header>
+  <p class="jour-titre" id="jour-titre"></p>
   <p class="bandeau" id="bandeau" hidden></p>
 
   <div class="tuiles" id="tuiles"></div>
 
   <section>
-    <h2>Évolution jour par jour</h2>
-    <div class="legende"><span style="--c:var(--bleu)">ouvertures de l’app</span><span style="--c:var(--rose)">avancées vues</span><span style="--c:var(--or)">favoris</span></div>
+    <div class="entete-section">
+      <h2>Jour par jour</h2>
+      <div class="periodes" role="group" aria-label="Nombre de jours du tableau">
+        <button data-n="14">14 jours</button><button data-n="30" aria-pressed="true">30 jours</button><button data-n="90">90 jours</button>
+      </div>
+    </div>
+    <p class="sous">Clique sur un jour (ligne ou point de la courbe) pour voir tout son détail. Utilisateurs = téléphones différents qui ont ouvert l’app ce jour-là.</p>
+    <div class="legende"><span style="--c:var(--vert)">utilisateurs</span><span style="--c:var(--bleu)">ouvertures de l’app</span><span style="--c:var(--rose)">avancées vues</span><span style="--c:var(--or)">favoris</span></div>
     <div id="courbe"></div>
+    <div class="defile" id="jours"></div>
   </section>
 
   <section>
@@ -153,7 +179,7 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
   <section>
     <h2>Langues</h2>
     <div id="langues"></div>
-    <p class="note">Nombre de téléphones qui ont ouvert l’app, par langue de l’app. Chaque téléphone est compté une fois par jour et une fois par mois, sans aucun identifiant. « Moyenne / jour » : sur les jours de la période où l’app a servi. Compté à partir de la version qui suit le 31/10/2026.</p>
+    <p class="note">Nombre de téléphones qui ont ouvert l’app ce jour-là, par langue de l’app (chaque téléphone compté une fois par jour, sans aucun identifiant). Compté à partir de la version 1.0.42.</p>
   </section>
 
   <section>
@@ -208,10 +234,16 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
   function jauge(v, max, txt) { return '<div class="jauge"><div class="b"><span style="width:' + (max ? Math.max(0, 100 * v / max) : 0).toFixed(1) + '%"></span></div><span class="v">' + txt + "</span></div>"; }
   function vide(id) { document.getElementById(id).innerHTML = '<p class="vide">Pas encore de données sur cette période.</p>'; }
 
+  // --- Jours (heure de Paris), au format AAAA-MM-JJ
+  function aujourdhui() { return new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Paris" }); }
+  function decaler(j, n) { return new Date(Date.parse(j + "T12:00:00Z") + n * 864e5).toISOString().slice(0, 10); }
+  function joli(j, options) { return new Date(j + "T12:00:00Z").toLocaleDateString("fr-FR", Object.assign({ timeZone: "UTC" }, options)); }
+
   function tuiles(d) {
-    var t = d.totaux || {}, ouv = nb(t.ouverture), vues = nb(t.lecture);
+    var t = d.totaux || {}, ouv = nb(t.ouverture), vues = nb(t.lecture), u = nb(d.utilisateurs != null ? d.utilisateurs : t.actif_jour);
     var items = [
-      [fmt(ouv), "ouvertures de l’app", fmt(t.installation) + " nouvelles installations"],
+      [fmt(u), "utilisateurs", fmt(t.installation) + " nouvelles installations"],
+      [fmt(ouv), "ouvertures de l’app", u ? dec(ratio(ouv, u)) + " par utilisateur" : "–"],
       [fmt(vues), "avancées vues", dec(ratio(vues, ouv)) + " par ouverture en moyenne"],
       [pct(nb(t.article), vues), "lisent l’article source", fmt(t.article) + " articles ouverts"],
       [fmt(nb(t.favori) + nb(t.partage)), "favoris et partages", fmt(t.favori) + " favoris · " + fmt(t.partage) + " partages"]
@@ -221,32 +253,69 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
     }).join("");
   }
 
-  function courbe(pj, jours) {
-    if (!(pj || []).length) return vide("courbe");
-    // Tous les jours de la période, même sans données
-    var parJour = {}; pj.forEach(function (x) { parJour[x.jour] = x; });
-    var liste = [], n = Math.max(2, Math.min(jours, 120));
-    for (var i = n - 1; i >= 0; i--) {
-      var k = new Date(Date.now() - i * 864e5).toLocaleDateString("sv-SE", { timeZone: "Europe/Paris" });
-      liste.push({ jour: k, x: parJour[k] || {} });
-    }
-    var series = [["ouvertures", "var(--bleu)"], ["lectures", "var(--rose)"], ["favoris", "var(--or)"]];
+  // Tous les jours du tableau (du plus ancien au plus récent), même sans données
+  function tousLesJours(lignes) {
+    var parJour = {}; (lignes || []).forEach(function (x) { parJour[x.jour] = x; });
+    var liste = [], fin = aujourdhui();
+    for (var i = nbJours - 1; i >= 0; i--) { var k = decaler(fin, -i); liste.push({ jour: k, x: parJour[k] || {} }); }
+    return liste;
+  }
+
+  function courbe(lignes) {
+    var liste = tousLesJours(lignes);
+    var series = [["utilisateurs", "var(--vert)"], ["ouvertures", "var(--bleu)"], ["lectures", "var(--rose)"], ["favoris", "var(--or)"]];
     var max = 1; liste.forEach(function (l) { series.forEach(function (s) { max = Math.max(max, nb(l.x[s[0]])); }); });
-    var W = 1000, H = 220, g = 34, b = 26, w = W - g - 10, h = H - b - 10;
+    var W = 1000, H = 230, g = 34, b = 26, w = W - g - 10, h = H - b - 10, bande = w / (liste.length - 1);
     var X = function (i) { return g + i * w / (liste.length - 1); };
     var Y = function (v) { return 10 + h - h * v / max; };
-    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Ouvertures, vues et favoris par jour">';
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Utilisateurs, ouvertures, vues et favoris par jour">';
     [0, .5, 1].forEach(function (f) { var v = Math.round(max * f), y = Y(v);
       svg += '<line x1="' + g + '" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="var(--bord)"/><text x="' + (g - 6) + '" y="' + (y + 4) + '" text-anchor="end">' + v + "</text>"; });
+    var ic = -1; liste.forEach(function (l, i) { if (l.jour === jourChoisi) ic = i; });
+    if (ic >= 0) svg += '<rect x="' + (X(ic) - bande / 2) + '" y="6" width="' + bande + '" height="' + (h + 6) + '" rx="4" fill="var(--pastille)"/>' +
+      '<line x1="' + X(ic) + '" x2="' + X(ic) + '" y1="6" y2="' + (10 + h) + '" stroke="var(--discret)" stroke-dasharray="3 3"/>';
     series.forEach(function (s) {
       var pts = liste.map(function (l, i) { return X(i).toFixed(1) + "," + Y(nb(l.x[s[0]])).toFixed(1); }).join(" ");
       svg += '<polyline fill="none" stroke="' + s[1] + '" stroke-width="2.5" stroke-linejoin="round" points="' + pts + '"/>';
-      svg += '<circle cx="' + X(liste.length - 1) + '" cy="' + Y(nb(liste[liste.length - 1].x[s[0]])) + '" r="4" fill="' + s[1] + '"/>';
+      if (ic >= 0) svg += '<circle cx="' + X(ic) + '" cy="' + Y(nb(liste[ic].x[s[0]])) + '" r="4.5" fill="' + s[1] + '"/>';
     });
     var pas = Math.max(1, Math.ceil(liste.length / 8));
-    liste.forEach(function (l, i) { if (i % pas === 0 || i === liste.length - 1) {
+    liste.forEach(function (l, i) { if ((i % pas === 0 && liste.length - 1 - i >= pas / 2) || i === liste.length - 1) {
       var p = l.jour.split("-"); svg += '<text x="' + X(i) + '" y="' + (H - 6) + '" text-anchor="' + (i === liste.length - 1 ? "end" : i === 0 ? "start" : "middle") + '">' + p[2] + "/" + p[1] + "</text>"; } });
-    document.getElementById("courbe").innerHTML = svg + "</svg>";
+    // Zones cliquables : une par jour
+    liste.forEach(function (l, i) {
+      svg += '<rect class="zone-jour" data-jour="' + l.jour + '" x="' + (X(i) - bande / 2) + '" y="0" width="' + bande + '" height="' + H +
+        '" fill="transparent" style="cursor:pointer"><title>' + joli(l.jour, { weekday: "short", day: "numeric", month: "short" }) + " : " +
+        fmt(l.x.utilisateurs) + " utilisateurs, " + fmt(l.x.ouvertures) + " ouvertures, " + fmt(l.x.lectures) + " vues, " + fmt(l.x.favoris) + " favoris</title></rect>";
+    });
+    var z = document.getElementById("courbe");
+    z.innerHTML = svg + "</svg>";
+    z.querySelectorAll(".zone-jour").forEach(function (r) { r.addEventListener("click", function () { choisir(r.getAttribute("data-jour")); }); });
+  }
+
+  var COLONNES = [["utilisateurs", "Utilisateurs"], ["ouvertures", "Ouvertures"], ["installations", "Installations"], ["lectures", "Vues"],
+    ["articles", "Articles"], ["favoris", "Favoris"], ["partages", "Partages"], ["notifs", "Notifs touchées"], ["masquees", "Masquées"], ["fiches", "Fiches publiées"]];
+  function tableJours(lignes) {
+    var liste = tousLesJours(lignes).reverse();
+    var somme = {}; COLONNES.forEach(function (c) { somme[c[0]] = 0; });
+    liste.forEach(function (l) { COLONNES.forEach(function (c) { somme[c[0]] += nb(l.x[c[0]]); }); });
+    function cellule(v) { return '<td class="n' + (v ? "" : " zero") + '">' + fmt(v) + "</td>"; }
+    var html = "<table><thead><tr><th>Jour</th>" + COLONNES.map(function (c) { return "<th class=n>" + c[1] + "</th>"; }).join("") + "</tr></thead><tbody>" +
+      liste.map(function (l) {
+        return '<tr class="cliquable' + (l.jour === jourChoisi ? " choisi" : "") + '" data-jour="' + l.jour + '" tabindex="0"><td>' +
+          joli(l.jour, { weekday: "short", day: "numeric", month: "short" }) + "</td>" +
+          COLONNES.map(function (c) { return cellule(nb(l.x[c[0]])); }).join("") + "</tr>";
+      }).join("") +
+      '<tr class="total"><td>Moyenne / jour</td>' + COLONNES.map(function (c) { return '<td class="n">' + dec(somme[c[0]] / liste.length) + "</td>"; }).join("") + "</tr>" +
+      '<tr class="total"><td>Total ' + liste.length + " jours</td>" + COLONNES.map(function (c) {
+        return '<td class="n">' + fmt(somme[c[0]]) + (c[0] === "utilisateurs" ? "*" : "") + "</td>"; }).join("") + "</tr>" +
+      "</tbody></table>" + '<p class="note">* Somme des utilisateurs de chaque jour : un même téléphone compte une fois par jour où il ouvre l’app.</p>';
+    var z = document.getElementById("jours");
+    z.innerHTML = html;
+    z.querySelectorAll("tr.cliquable").forEach(function (tr) {
+      tr.addEventListener("click", function () { choisir(tr.getAttribute("data-jour")); });
+      tr.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); choisir(tr.getAttribute("data-jour")); } });
+    });
   }
 
   function top(lignes) {
@@ -330,7 +399,7 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
 
   function afficher(d) {
     var t = d.totaux || {}, o = d.origine_lectures || {};
-    tuiles(d); courbe(d.par_jour, d.jours); top(d.top_avancees);
+    tuiles(d); top(d.top_avancees);
     familles(d.familles); importance(d.importance); sources(d.sources);
     versions(d.par_version); heures(d.par_heure);
     puces("usage", [
@@ -339,13 +408,13 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
       [fmt(t.notif_ouverte), "notifications touchées"],
       [fmt(t.hors_ligne), "ouvertures sans réseau"],
       [fmt(t.masquee), "avancées masquées"],
-      [fmt(d.fiches_publiees), "fiches publiées sur la période"]
+      [fmt(d.fiches_publiees), "fiches publiées ce jour-là"]
     ]);
     puces("retours", [[fmt(t.signalement), "erreurs signalées"], [fmt(t.avis), "avis envoyés"],
       [fmt(t.avis_demande), "demandes de note Google Play"], [fmt(t.memoire_videe), "mémoires vidées"]]);
     var s = d.signalements || [];
     document.getElementById("signalements").innerHTML = s.length ? petiteTable("Motifs des signalements", s, function (l) { return l.motif; }) : "";
-    langues(d.utilisateurs_langues, d.langues || []);
+    langues(d.utilisateurs_langues);
     document.getElementById("formules").innerHTML = petiteTable("Formules de notifications choisies", d.formules_notif || [], function (l) { return FORMULES[l.formule] || l.formule; });
   }
 
@@ -354,31 +423,30 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
     ur: "Ourdou", zh: "Chinois", ja: "Japonais", ko: "Coréen", id: "Indonésien", vi: "Vietnamien" };
   function nomLangue(c) { return (NOMS_LANGUES[c] || c) + " (" + c + ")"; }
 
-  // Utilisateurs par langue (fonction stats_langues, migration 006).
-  // Sans elle : l'ancien tableau (ouvertures par langue) et un rappel.
-  function langues(u, anciennes) {
+  // Utilisateurs par langue pour le jour choisi (stats_periode, migration 008).
+  function langues(u) {
     var z = document.getElementById("langues");
-    if (!u) {
-      z.innerHTML = '<p class="vide">Pour voir le nombre d’utilisateurs par langue, lance le script database/migration_006_traductions_langues.sql dans Supabase (SQL Editor). En attendant : nombre d’ouvertures par langue.</p>' +
-        petiteTable("Ouvertures par langue", anciennes, function (l) { return nomLangue(l.langue); });
-      return;
-    }
-    if (!u.length) { z.innerHTML = '<p class="vide">Pas encore de données (il faut la nouvelle version de l’app).</p>'; return; }
-    z.innerHTML = "<table><thead><tr><th>Langue</th><th class=n>Aujourd’hui</th><th class=n>Moyenne / jour</th><th class=n>Max / jour</th><th class=n>Ce mois-ci</th><th class=n>Mois dernier</th><th class=n>Ouvertures</th></tr></thead><tbody>" +
+    if (!u || !u.length) { z.innerHTML = '<p class="vide">Pas de données ce jour-là.</p>'; return; }
+    var max = Math.max.apply(null, u.map(function (l) { return nb(l.utilisateurs); }).concat([1]));
+    z.innerHTML = "<table><thead><tr><th>Langue</th><th>Utilisateurs</th><th class=n>Ouvertures</th></tr></thead><tbody>" +
       u.map(function (l) {
-        return "<tr><td>" + esc(nomLangue(l.langue)) + '</td><td class="n">' + fmt(l.aujourdhui) + '</td><td class="n">' + dec(nb(l.moyenne_jour)) +
-          '</td><td class="n">' + fmt(l.max_jour) + '</td><td class="n"><b>' + fmt(l.ce_mois) + '</b></td><td class="n">' + fmt(l.mois_dernier) +
+        return "<tr><td>" + esc(nomLangue(l.langue)) + "</td><td>" + jauge(nb(l.utilisateurs), max, fmt(l.utilisateurs)) +
           '</td><td class="n">' + fmt(l.ouvertures) + "</td></tr>";
       }).join("") + "</tbody></table>";
   }
 
   // Données d'EXEMPLE, seulement pour voir la page hors de GitHub Pages
-  function exemple(jours) {
-    var pj = [], n = Math.min(jours, 30);
-    for (var i = n - 1; i >= 0; i--) { var k = new Date(Date.now() - i * 864e5).toLocaleDateString("sv-SE", { timeZone: "Europe/Paris" });
-      var o = 6 + Math.round(10 * (n - i) / n) + (i % 3); pj.push({ jour: k, ouvertures: o, lectures: Math.round(o * 2.4), favoris: Math.round(o / 4) }); }
+  function exempleJours() {
+    var l = [], f = aujourdhui();
+    for (var i = 0; i < nbJours; i++) { var o = 4 + Math.round(9 * (nbJours - i) / nbJours) + (i % 4), u = Math.max(1, Math.round(o * 0.6));
+      l.push({ jour: decaler(f, -i), utilisateurs: u, ouvertures: o, installations: i % 5 === 0 ? 2 : 0, lectures: Math.round(o * 2.4), articles: Math.round(o * 0.6),
+        favoris: Math.round(o / 4), partages: i % 6 === 0 ? 1 : 0, notifs: Math.round(o / 3), masquees: i % 4 === 0 ? 1 : 0, fiches: 8 + (i % 5) }); }
+    return l;
+  }
+  function exemple() {
+    var pj = [];
     var hs = [7, 8, 9, 12, 13, 18, 19, 20, 21, 22], ns = [9, 31, 22, 14, 17, 12, 40, 27, 19, 8];
-    return { jours: jours, fiches_publiees: 70,
+    return { jours: 1, fiches_publiees: 9, utilisateurs: 11,
       totaux: { ouverture: 312, lecture: 748, article: 196, favori: 64, partage: 11, installation: 14, masquee: 23, notif_ouverte: 58, hors_ligne: 7, signalement: 5, avis: 3, avis_demande: 2, memoire_videe: 1 },
       par_jour: pj,
       par_heure: hs.map(function (h, i) { return { heure: h, n: ns[i] }; }),
@@ -399,59 +467,84 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
       origine_lectures: { fil: 590, glisse: 158 },
       signalements: [{ motif: "Mauvaise note", n: 3 }, { motif: "Doublon", n: 2 }],
       langues: [{ langue: "fr", n: 290 }, { langue: "en", n: 22 }],
-      utilisateurs_langues: [{ langue: "fr", aujourdhui: 11, moyenne_jour: 9.4, max_jour: 14, ce_mois: 17, mois_dernier: 12, ouvertures: 290 },
-        { langue: "en", aujourdhui: 1, moyenne_jour: 0.8, max_jour: 2, ce_mois: 3, mois_dernier: 0, ouvertures: 22 }],
+      utilisateurs_langues: [{ langue: "fr", utilisateurs: 10, ouvertures: 17 }, { langue: "en", utilisateurs: 1, ouvertures: 2 }],
       formules_notif: [{ formule: "essentiel", n: 9 }, { formule: "courant", n: 4 }] };
   }
 
-  function charger(jours) {
-    var etat = document.getElementById("etat"), band = document.getElementById("bandeau");
-    if (DEMO) {
-      band.hidden = false; band.className = "bandeau alerte";
-      band.textContent = "Aperçu avec des données d’EXEMPLE : les vrais chiffres s’affichent sur la page publiée par GitHub.";
-      etat.textContent = "Exemple";
-      afficher(exemple(jours)); return;
-    }
-    etat.textContent = "Chargement…";
-    fetch(URL_SB + "/rest/v1/rpc/stats_resume", { method: "POST",
+  var jourChoisi = aujourdhui(), nbJours = 30, dernieresLignes = null;
+  var champ = document.getElementById("j-date");
+  function appelRpc(nom, args) {
+    return fetch(URL_SB + "/rest/v1/rpc/" + nom, { method: "POST",
       headers: { apikey: CLE, Authorization: "Bearer " + CLE, "Content-Type": "application/json" },
-      body: JSON.stringify({ jours: jours }) })
-      .then(function (r) { if (!r.ok) throw r.status; return r.json(); })
+      body: JSON.stringify(args) }).then(function (r) { if (!r.ok) throw r.status; return r.json(); });
+  }
+  function majNavigation() {
+    var auj = aujourdhui();
+    champ.value = jourChoisi; champ.max = auj;
+    document.getElementById("j-suiv").disabled = jourChoisi >= auj;
+    document.getElementById("j-auj").disabled = jourChoisi === auj;
+    var t = joli(jourChoisi, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    t = t.charAt(0).toUpperCase() + t.slice(1);
+    document.getElementById("jour-titre").textContent = t + (jourChoisi === auj ? " · aujourd’hui (en cours)" : jourChoisi === decaler(auj, -1) ? " · hier" : "");
+    try { history.replaceState(null, "", "#" + jourChoisi); } catch (e) {}
+  }
+  function choisir(j) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(j || "")) return;
+    var auj = aujourdhui(); jourChoisi = j > auj ? auj : j;
+    majNavigation(); chargerJour();
+    if (dernieresLignes) { courbe(dernieresLignes); tableJours(dernieresLignes); }
+  }
+  function erreurMigration(e) {
+    var band = document.getElementById("bandeau");
+    band.hidden = false; band.className = "bandeau alerte";
+    band.textContent = e === 404
+      ? "Il manque les statistiques jour par jour dans Supabase : lance le script database/migration_008_stats_jour_par_jour.sql (SQL Editor → New query → New blank query → coller → Run), puis recharge la page."
+      : "Impossible de charger les statistiques (" + e + "). Vérifie ta connexion et recharge la page.";
+  }
+  function chargerJour() {
+    var etat = document.getElementById("etat");
+    if (DEMO) { afficher(exemple()); return; }
+    etat.textContent = "Chargement…";
+    var demande = jourChoisi;
+    appelRpc("stats_periode", { du: jourChoisi, au: jourChoisi })
       .then(function (d) {
-        // Utilisateurs par langue : fonction à part (migration 006) ; si elle manque, l'ancien tableau.
-        return fetch(URL_SB + "/rest/v1/rpc/stats_langues", { method: "POST",
-          headers: { apikey: CLE, Authorization: "Bearer " + CLE, "Content-Type": "application/json" },
-          body: JSON.stringify({ jours: jours }) })
-          .then(function (r) { return r.ok ? r.json() : null; })
-          .catch(function () { return null; })
-          .then(function (u) { d.utilisateurs_langues = u; return d; });
-      })
-      .then(function (d) {
+        if (demande !== jourChoisi) return;  // un autre jour a été choisi entre-temps
         etat.textContent = "Mis à jour le " + new Date().toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" }) +
           (d.depuis ? " · comptés depuis la réinitialisation du " + new Date(d.depuis).toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" }) : "");
         document.getElementById("b-annuler").hidden = !d.depuis;
-        if (!("par_version" in d)) {
-          band.hidden = false; band.className = "bandeau alerte";
-          band.textContent = "Il manque la mise à jour des statistiques dans Supabase : lance le script database/migration_004_stats_v2.sql (SQL Editor). En attendant, certaines parties restent vides.";
-        } else band.hidden = true;
         afficher(d);
       })
-      .catch(function (e) {
-        etat.textContent = e === 404
-          ? "La fonction stats_resume n’existe pas : lance les scripts database/migration_003_stats.sql puis migration_004_stats_v2.sql dans Supabase."
-          : "Impossible de charger les statistiques (" + e + "). Vérifie ta connexion et recharge la page.";
-      });
+      .catch(function (e) { etat.textContent = "Erreur de chargement"; erreurMigration(e); });
   }
+  function chargerJours() {
+    if (DEMO) { dernieresLignes = exempleJours(); courbe(dernieresLignes); tableJours(dernieresLignes); return; }
+    var auj = aujourdhui();
+    appelRpc("stats_par_jour", { du: decaler(auj, -(nbJours - 1)), au: auj })
+      .then(function (l) { dernieresLignes = l; courbe(l); tableJours(l); })
+      .catch(function (e) { erreurMigration(e); });
+  }
+  function charger() {
+    var band = document.getElementById("bandeau");
+    if (DEMO) {
+      band.hidden = false; band.className = "bandeau alerte";
+      band.textContent = "Aperçu avec des données d’EXEMPLE : les vrais chiffres s’affichent sur la page publiée par GitHub.";
+      document.getElementById("etat").textContent = "Exemple";
+    } else band.hidden = true;
+    majNavigation(); chargerJour(); chargerJours();
+  }
+  document.getElementById("j-prec").addEventListener("click", function () { choisir(decaler(jourChoisi, -1)); });
+  document.getElementById("j-suiv").addEventListener("click", function () { choisir(decaler(jourChoisi, 1)); });
+  document.getElementById("j-auj").addEventListener("click", function () { choisir(aujourdhui()); });
+  champ.addEventListener("change", function () { choisir(champ.value); });
   var boutons = document.querySelectorAll(".periodes button");
   boutons.forEach(function (b) {
     b.addEventListener("click", function () {
       boutons.forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
-      b.setAttribute("aria-pressed", "true"); charger(+b.dataset.j);
+      b.setAttribute("aria-pressed", "true"); nbJours = +b.dataset.n; chargerJours();
     });
   });
+  if (/^#\d{4}-\d{2}-\d{2}$/.test(location.hash)) jourChoisi = location.hash.slice(1) > aujourdhui() ? aujourdhui() : location.hash.slice(1);
   // Réinitialisation (protégée par le code secret, réversible)
-  var periode = 7;
-  boutons.forEach(function (b) { b.addEventListener("click", function () { periode = +b.dataset.j; }); });
   var msg = document.getElementById("msg-reinit"), e1 = document.getElementById("etape1"), e2 = document.getElementById("etape2");
   function appel(annuler) {
     var code = document.getElementById("code").value;
@@ -468,7 +561,7 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
           document.getElementById("code").value = "";
           msg.className = "message ok";
           msg.textContent = annuler ? "Réinitialisation annulée : toutes les statistiques sont de nouveau comptées." : "C’est fait : les compteurs repartent de zéro.";
-          charger(periode);
+          charger();
         } else {
           msg.className = "message ko";
           msg.textContent = r.raison === "pas_de_code"
@@ -486,7 +579,7 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
   document.getElementById("b-non").addEventListener("click", function () { e2.hidden = true; e1.hidden = false; msg.textContent = ""; });
   document.getElementById("b-oui").addEventListener("click", function () { appel(false); });
   document.getElementById("b-annuler").addEventListener("click", function () { appel(true); });
-  charger(7);
+  charger();
 })();
 </script>
 </body>
