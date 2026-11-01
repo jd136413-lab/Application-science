@@ -202,13 +202,14 @@ class EvenementsAVenir extends ChangeNotifier {
     }
   }
 
-  /// Événements à montrer : domaines choisis, à venir (ou aujourd'hui).
+  /// Événements à montrer : seulement les domaines choisis au premier lancement / dans les Réglages.
   List<Evenement> visibles({String? fil}) {
     final l = liste ?? const <Evenement>[];
     return l
         .where((e) =>
             (fil == null || e.fil == fil) &&
-            (e.famille == null || etat.famillesVisibles(e.fil).contains(e.famille)))
+            // Seulement les domaines choisis (tous si aucun n'a été choisi).
+            (etat.domaines.isEmpty || etat.domaines.contains(e.famille)))
         .toList();
   }
 
