@@ -14,12 +14,24 @@
 # Table Supabase : upcoming_events (database/migration_009_a_venir.sql).
 # =====================================================================
 
-MAX_PAR_PASSAGE = 4        # cartes rédigées au plus par passage de l'agent
+MAX_PAR_PASSAGE = 6        # cartes rédigées au plus par passage de l'agent (articles)
 HORIZON_JOURS = 540        # on ignore ce qui est prévu à plus de 18 mois
+PART_MAX_FAMILLE = 0.25    # comme les fils : un domaine ≤ 25 % des événements à venir, sauf ★★★ et plus
+MIN_PAR_FAMILLE = 2        # au début (peu d'événements), chaque domaine a droit à 2 événements
+LANCEMENTS_MAX = 3         # lancements spatiaux ajoutés au plus par passage
+LANCEMENTS_JOURS = 120     # on regarde les lancements des 4 prochains mois
+FICHIER_CALENDRIER = "calendrier_a_venir.json"   # événements connus longtemps à l'avance
 
 import json
+import os
 import re
 from datetime import date, datetime, timedelta, timezone
+
+try:
+    from zoneinfo import ZoneInfo
+    PARIS = ZoneInfo("Europe/Paris")
+except Exception:                      # pragma: no cover
+    PARIS = timezone(timedelta(hours=1))
 
 import requests
 
@@ -31,7 +43,7 @@ CONSIGNE = """Tu rédiges les cartes de l'onglet « À venir » de NovaSTEM, une
 
 On te donne un article, la date d'aujourd'hui, et la liste des événements DÉJÀ dans l'onglet (numérotés).
 
-1. "garder" : true seulement si l'article annonce un ÉVÉNEMENT À VENIR, d'intérêt général, avec une DATE PRÉCISE donnée par l'article (un jour, ou au moins un mois et une année) et située dans le futur. Exemples : lancement d'une fusée ou d'une mission, sortie d'un produit très attendu (console, smartphone phare, voiture, jeu très attendu), résultats scientifiques attendus à une date, événement dans le ciel (éclipse, pluie d'étoiles filantes, comète visible), grand sommet ou grande conférence scientifique. Sinon false (date vague comme « bientôt » ou « dans les prochaines années », événement passé, sujet commercial sans intérêt technique, rumeur).
+1. "garder" : true seulement si l'article annonce un ÉVÉNEMENT À VENIR parmi les PLUS NOTABLES de son domaine (l'onglet couvre tous les domaines : espace, santé, climat, énergie, transports, technologie, IA, jeux vidéo…), d'intérêt général, avec une DATE PRÉCISE donnée par l'article (un jour, ou au moins un mois et une année) et située dans le futur. Exemples : lancement d'une fusée ou d'une mission marquante, résultats attendus d'un grand essai de vaccin ou de traitement, décision très attendue sur un médicament important, mise en service d'une centrale ou d'un train, premier vol d'un avion, présentation officielle d'un produit phare (console, smartphone phare, voiture), sortie d'une grande IA, sortie des plus gros jeux vidéo, résultats scientifiques attendus à une date, événement dans le ciel (éclipse, pluie d'étoiles filantes, comète visible), grand sommet ou grande conférence scientifique. Sinon false (date vague comme « bientôt » ou « dans les prochaines années », événement passé, sujet commercial sans intérêt technique, rumeur).
 2. "meme_que" : si c'est le MÊME événement qu'un de la liste (même formulé autrement), son numéro ; sinon -1. Dans ce cas, donne quand même la date annoncée par CET article (elle a peut-être changé).
 3. "date" : AAAA-MM-JJ (si seul le mois est connu, mets le 1er du mois et "precision" = "mois", sinon "jour"). "heure" : HH:MM à l'heure de Paris si l'article la donne, sinon "".
 4. "type" : lancement, sortie, resultats, ciel, evenement ou annonce (une présentation officielle à une date connue).
@@ -92,12 +104,161 @@ def _url(db) -> str:
 def _lire(db, depuis: date) -> list[dict] | None:
     """Événements à partir de `depuis`. None si la table n'existe pas encore."""
     r = requests.get(_url(db), headers=db.headers, timeout=30, params={
-        "select": "id,title,event_date,source_url,advance_id,feed",
+        "select": "id,title,event_date,source_url,advance_id,feed,family",
         "event_date": f"gte.{depuis.isoformat()}", "order": "event_date.asc", "limit": "300"})
     if r.status_code == 404 or (r.status_code >= 400 and "upcoming_events" in r.text):
         return None
     r.raise_for_status()
     return r.json()
+
+
+CONSIGNE_LANCEMENTS = """Tu choisis des lancements spatiaux pour l'onglet « À venir » de NovaSTEM (application gratuite d'avancées scientifiques et technologiques pour le grand public, en français).
+
+On te donne les prochains lancements (numérotés) et les événements déjà dans l'onglet. Garde AU PLUS {n} lancements qui intéressent le grand public : vol avec des astronautes, mission vers la Lune, Mars ou une autre planète, grand télescope ou sonde scientifique, premier vol d'une nouvelle fusée, fusée européenne (Ariane 6, Vega), retour ou atterrissage d'une fusée jamais tenté. JAMAIS : lancements de séries de satellites de communication (Starlink, Kuiper, OneWeb, Qianfan…), satellites commerciaux ou militaires ordinaires, vols de routine. Ne reprends pas un lancement déjà dans l'onglet. Liste vide si rien d'intéressant.
+
+Pour chacun : "i" (son numéro), "titre" (« Sujet : phrase », 12 mots au plus, compréhensible par quelqu'un qui n'y connaît rien, sans nom de code inconnu ; ex. « Fusées : l'Europe lance son télescope chasseur de planètes »), "prevu" (1 à 2 phrases simples : qui lance quoi, d'où, pour faire quoi), "pourquoi" (1 phrase), "famille" ("space" pour une mission scientifique, "aerospace" pour une fusée ou un vol habité), "importance" (1 à 5, exigeant : 2 en général, 3 pour un vol très suivi, 4 pour un moment historique)."""
+
+SCHEMA_LANCEMENTS = {
+    "type": "object",
+    "properties": {"lancements": {"type": "array", "items": {
+        "type": "object",
+        "properties": {"i": {"type": "integer"}, "titre": {"type": "string"}, "prevu": {"type": "string"},
+                       "pourquoi": {"type": "string"}, "famille": {"type": "string", "enum": ["space", "aerospace"]},
+                       "importance": {"type": "integer"}},
+        "required": ["i", "titre", "prevu", "pourquoi", "famille", "importance"], "additionalProperties": False}}},
+    "required": ["lancements"], "additionalProperties": False,
+}
+
+
+def _inserer(db, ligne: dict) -> dict | None:
+    p = requests.post(_url(db), headers=dict(db.headers, Prefer="return=representation,resolution=ignore-duplicates"),
+                      json=ligne, timeout=30, params={"select": "id,title,event_date,source_url,advance_id,feed,family",
+                                                      "on_conflict": "source_url"})
+    p.raise_for_status()
+    return p.json()[0] if p.json() else None
+
+
+def _changer_date(db, e: dict, d: str) -> None:
+    requests.patch(_url(db), headers=dict(db.headers, Prefer="return=minimal"), timeout=30,
+                   params={"id": f"eq.{e['id']}"},
+                   json={"event_date": d, "previous_date": e["event_date"],
+                         "updated_at": datetime.now(timezone.utc).isoformat()}).raise_for_status()
+    e["event_date"] = d
+
+
+def place_libre(futurs: list[dict], famille: str | None, importance: int) -> bool:
+    """Plafond par domaine (choix de Maxime, 01/11) : un domaine ne dépasse pas 25 % des
+    événements à venir, sauf pour les événements ★★★ et plus (toujours acceptés)."""
+    if importance >= 3 or not famille:
+        return True
+    n = sum(1 for e in futurs if e.get("family") == famille) + 1
+    return n <= max(MIN_PAR_FAMILLE, PART_MAX_FAMILLE * (len(futurs) + 1))
+
+
+def calendrier(db, existants: list[dict], futurs: list[dict], aujourd_hui: date, log) -> int:
+    """Événements connus longtemps à l'avance (calendrier_a_venir.json) : ajoutés une fois."""
+    try:
+        chemin = os.path.join(os.path.dirname(os.path.abspath(__file__)), FICHIER_CALENDRIER)
+        liste = json.load(open(chemin, encoding="utf-8")).get("evenements", [])
+    except Exception as ex:
+        log(f"  ⚠ À venir : calendrier illisible ({str(ex)[:80]})")
+        return 0
+    connus = {e["source_url"] for e in existants}
+    n = 0
+    for ev in liste:
+        if ev.get("source_url") in connus or ev.get("event_date", "") < aujourd_hui.isoformat():
+            continue
+        if not place_libre(futurs, ev.get("family"), int(ev.get("importance") or 2)):
+            continue                       # domaine déjà bien servi : réessayé au prochain passage
+        try:
+            cree = _inserer(db, {k: v for k, v in ev.items() if not k.startswith("_")})
+            if cree:
+                futurs.append(cree)
+                connus.add(ev["source_url"])
+                n += 1
+        except Exception as ex:
+            log(f"  ⚠ À venir : « {ev.get('title', '?')[:50]} » non ajouté ({str(ex)[:80]})")
+    if n:
+        log(f"  📅 À venir : {n} événement(s) du calendrier ajouté(s)")
+    return n
+
+
+def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict], aujourd_hui: date,
+               conso: dict, log) -> tuple[int, int]:
+    """Prochains lancements spatiaux (Launch Library 2, gratuit, sans clé) : Claude garde
+    les plus intéressants ; les dates des lancements déjà dans l'onglet sont mises à jour."""
+    try:
+        r = requests.get("https://ll.thespacedevs.com/2.2.0/launch/upcoming/", timeout=30,
+                         params={"limit": "60", "mode": "normal"}, headers={"User-Agent": "NovaSTEM/1.0"})
+        if r.status_code == 429:
+            log("  ℹ À venir : liste des lancements momentanément limitée (réessai au prochain passage)")
+            return 0, 0
+        r.raise_for_status()
+        res = r.json().get("results", [])
+    except Exception as ex:
+        log(f"  ⚠ À venir : lancements illisibles ({str(ex)[:80]})")
+        return 0, 0
+    limite = aujourd_hui + timedelta(days=LANCEMENTS_JOURS)
+    par_url = {e["source_url"]: e for e in existants}
+    candidats, maj = [], 0
+    for l in res:
+        try:
+            net = datetime.fromisoformat(str(l.get("net", "")).replace("Z", "+00:00")).astimezone(PARIS)
+        except Exception:
+            continue
+        if not (aujourd_hui <= net.date() <= limite):
+            continue
+        url = f"https://ll.thespacedevs.com/2.2.0/launch/{l.get('id')}/"
+        if url in par_url:                      # déjà dans l'onglet : la date a-t-elle bougé ?
+            e = par_url[url]
+            if e["event_date"] != net.date().isoformat() and e["event_date"] >= aujourd_hui.isoformat():
+                try:
+                    _changer_date(db, e, net.date().isoformat())
+                    maj += 1
+                    log(f"  ⏱ À venir : lancement décalé « {e['title'][:60]} » → {net.date()}")
+                except Exception:
+                    pass
+            continue
+        candidats.append((l, net, url))
+    if not candidats:
+        return 0, maj
+    lignes = []
+    for k, (l, net, _) in enumerate(candidats):
+        m = l.get("mission") or {}
+        lignes.append(f"{k}. {l.get('name', '')} — {net:%Y-%m-%d} — {(l.get('launch_service_provider') or {}).get('name', '')}"
+                      f" — {(m.get('description') or '')[:220]}")
+    deja = "\n".join(f"- {e['title']} ({e['event_date']})" for e in futurs) or "(aucun)"
+    rep = _appel(client, modele_id, CONSIGNE_LANCEMENTS.replace("{n}", str(LANCEMENTS_MAX)),
+                 f"Déjà dans l'onglet :\n{deja}\n\nProchains lancements :\n" + "\n".join(lignes),
+                 SCHEMA_LANCEMENTS, conso, 2500)
+    n = 0
+    for x in (rep.get("lancements") or [])[:LANCEMENTS_MAX]:
+        k = x.get("i")
+        if not isinstance(k, int) or not 0 <= k < len(candidats):
+            continue
+        l, net, url = candidats[k]
+        precis = (l.get("net_precision") or {}).get("abbrev", "") in ("SEC", "MIN", "HR", "")
+        ligne = {
+            "title": str(x.get("titre", "")).strip().rstrip(".")[:200],
+            "prevu": " ".join(str(x.get("prevu", "")).split()) or None,
+            "pourquoi": " ".join(str(x.get("pourquoi", "")).split()) or None,
+            "type": "lancement", "family": x.get("famille") if x.get("famille") in ("space", "aerospace") else "aerospace",
+            "feed": "science" if x.get("famille") == "space" else "tech",
+            "event_date": net.date().isoformat(), "event_time": f"{net:%H:%M}" if precis else None,
+            "precision": "jour", "importance": max(1, min(5, int(x.get("importance") or 2))),
+            "source_url": url, "source_name": (l.get("launch_service_provider") or {}).get("name") or "The Space Devs",
+        }
+        if not ligne["title"] or not place_libre(futurs, ligne["family"], ligne["importance"]):
+            continue
+        try:
+            cree = _inserer(db, ligne)
+            if cree:
+                futurs.append(cree)
+                n += 1
+                log(f"  🚀 À venir : {net.date()} — {ligne['title']}")
+        except Exception as ex:
+            log(f"  ⚠ À venir : lancement non ajouté ({str(ex)[:80]})")
+    return n, maj
 
 
 def _date_valide(texte: str, aujourd_hui: date) -> date | None:
@@ -114,7 +275,7 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
                   familles_science: set[str], familles_tech: set[str], lire_debut_page) -> float:
     """Appelé par main.py à la fin du passage. Jamais bloquant. Renvoie le coût ($)."""
     conso = {"in": 0, "out": 0}
-    aujourd_hui = datetime.now(timezone(timedelta(hours=1))).date()
+    aujourd_hui = datetime.now(PARIS).date()
     try:
         existants = _lire(db, aujourd_hui - timedelta(days=5))
     except Exception as ex:
@@ -126,9 +287,24 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
     nouveaux = maj = arrives = 0
     urls = {e["source_url"] for e in existants}
     futurs = [e for e in existants if e["event_date"] >= aujourd_hui.isoformat()]
+    # --- 0) Événements connus à l'avance + prochains lancements spatiaux ---
+    nouveaux += calendrier(db, existants, futurs, aujourd_hui, log)
+    try:
+        n, m = lancements(db, client, modele_id, existants, futurs, aujourd_hui, conso, log)
+        nouveaux += n
+        maj += m
+    except Exception as ex:
+        log(f"  ⚠ À venir : lancements ignorés ({ex.__class__.__name__})")
+    urls |= {e["source_url"] for e in futurs}
     # --- 1) Nouvelles cartes (ou date mise à jour) ---
     familles = sorted(familles_science | familles_tech)
-    for art in [a for a in CANDIDATS if a["url"] not in urls][:MAX_PAR_PASSAGE]:
+    # Variété (choix de Maxime) : d'abord les domaines qui ont le moins d'événements à venir ;
+    # plafond de 25 % par domaine, sauf ★★★ et plus (place_libre).
+    def nb_famille(f):
+        horizon = (aujourd_hui + timedelta(days=90)).isoformat()
+        return sum(1 for e in futurs if e.get("family") == f and e["event_date"] <= horizon)
+    choix = sorted((a for a in CANDIDATS if a["url"] not in urls), key=lambda a: nb_famille(a.get("_famille_avenir")))
+    for art in choix[:MAX_PAR_PASSAGE]:
         try:
             lire_debut_page(art)
             liste = "\n".join(f"{k}. {e['title']} ({e['event_date']})" for k, e in enumerate(futurs)) or "(aucun)"
@@ -145,12 +321,9 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
             if isinstance(k, int) and 0 <= k < len(futurs):
                 e = futurs[k]
                 if e["event_date"] != d.isoformat():
-                    requests.patch(_url(db), headers=dict(db.headers, Prefer="return=minimal"), timeout=30,
-                                   params={"id": f"eq.{e['id']}"},
-                                   json={"event_date": d.isoformat(), "previous_date": e["event_date"],
-                                         "updated_at": datetime.now(timezone.utc).isoformat()}).raise_for_status()
-                    log(f"  ⏱ À venir : date changée « {e['title'][:60]} » {e['event_date']} → {d}")
-                    e["event_date"] = d.isoformat()
+                    ancienne = e["event_date"]
+                    _changer_date(db, e, d.isoformat())
+                    log(f"  ⏱ À venir : date changée « {e['title'][:60]} » {ancienne} → {d}")
                     maj += 1
                 continue
             fam = r.get("famille") if r.get("famille") in familles else None
@@ -169,12 +342,12 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
             }
             if not ligne["title"]:
                 continue
-            p = requests.post(_url(db), headers=dict(db.headers, Prefer="return=representation,resolution=ignore-duplicates"),
-                              json=ligne, timeout=30, params={"select": "id,title,event_date,source_url,advance_id,feed",
-                                                               "on_conflict": "source_url"})
-            p.raise_for_status()
-            if p.json():
-                futurs.append(p.json()[0])
+            if not place_libre(futurs, fam, ligne["importance"]):
+                log(f"  · À venir : « {ligne['title'][:60]} » écarté (domaine déjà à 25 %)")
+                continue
+            cree = _inserer(db, ligne)
+            if cree:
+                futurs.append(cree)
             urls.add(art["url"])
             nouveaux += 1
             log(f"  📅 À venir : {d} {ligne['type']} — {ligne['title']}")
