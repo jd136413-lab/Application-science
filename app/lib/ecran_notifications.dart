@@ -108,7 +108,7 @@ class EcranNotifications extends StatefulWidget {
 
 class _EcranNotificationsState extends State<EcranNotifications> {
   bool _refusee = false;
-  bool _surMesure = true; // ouvert à l'arrivée sur l'écran (maquette 31)
+  bool _surMesure = false; // fermé à l'arrivée sur l'écran (choix de Maxime, 01/11)
 
   /// Message de confirmation en bas de l'écran.
   void _confirmer(String texte) {
