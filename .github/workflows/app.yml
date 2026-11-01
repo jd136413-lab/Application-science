@@ -74,6 +74,29 @@ jobs:
               s = re.sub(r"(<application[^>]*>)", r'\1\n        <meta-data android:name="io.flutter.embedding.android.EnableImpeller" android:value="false" />', s, count=1)
           open(p, "w", encoding="utf-8").write(s)
           PY
+          # Détection des téléphones-robots de Google (rapport de pré-lancement, Firebase Test Lab) :
+          # l'app ne les compte pas dans les statistiques (installations fantômes à chaque envoi).
+          mkdir -p android/app/src/main/kotlin/fr/novum/novum
+          cat > android/app/src/main/kotlin/fr/novum/novum/MainActivity.kt <<'KT'
+          package fr.novum.novum
+
+          import android.provider.Settings
+          import io.flutter.embedding.android.FlutterActivity
+          import io.flutter.embedding.engine.FlutterEngine
+          import io.flutter.plugin.common.MethodChannel
+
+          class MainActivity : FlutterActivity() {
+              override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+                  super.configureFlutterEngine(flutterEngine)
+                  MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "novastem/appareil").setMethodCallHandler { appel, resultat ->
+                      if (appel.method == "estAppareilDeTest") {
+                          val v = try { Settings.System.getString(contentResolver, "firebase.test.lab") } catch (e: Exception) { null }
+                          resultat.success(v == "true")
+                      } else resultat.notImplemented()
+                  }
+              }
+          }
+          KT
           # Règles pour le « nettoyeur » de code Android (R8) : il allège l'app mais ne doit
           # jamais supprimer le code appelé par les bibliothèques (sinon NoSuchMethodError,
           # ClassNotFoundException kotlin/Result au démarrage, vus le 19/10).

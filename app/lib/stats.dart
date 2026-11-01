@@ -7,6 +7,7 @@
 // Rien n'est bloquant : sans réseau, l'événement est simplement perdu.
 
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/services.dart' show MethodChannel;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -18,10 +19,22 @@ import 'reglages.dart';
 /// Mettre à false pour couper toutes les statistiques.
 const bool statistiquesActives = true;
 
+/// Téléphone-robot de Google (« rapport de pré-lancement » de la Play Console) :
+/// à chaque envoi d'une version, Google installe l'app sur des téléphones de test
+/// qui passent le premier lancement tout seuls. Ils ne doivent pas compter.
+bool appareilDeTest = false;
+
+Future<void> detecterAppareilDeTest() async {
+  if (kIsWeb) return;
+  try {
+    appareilDeTest = await const MethodChannel('novastem/appareil').invokeMethod<bool>('estAppareilDeTest') ?? false;
+  } catch (_) {}
+}
+
 void stat(String evenement, {Avancee? a, String? valeur}) {
   // Pas de statistiques depuis la version web (aperçu GitHub Pages) :
   // seuls les vrais téléphones sont comptés.
-  if (!statistiquesActives || !configurationPresente || kIsWeb || etat.statsExclues) return;
+  if (!statistiquesActives || !configurationPresente || kIsWeb || etat.statsExclues || appareilDeTest) return;
   try {
     Supabase.instance.client.from('stats').insert({
       'evenement': evenement,
@@ -42,7 +55,7 @@ void stat(String evenement, {Avancee? a, String? valeur}) {
 /// par langue, toujours sans aucun identifiant. Si l'envoi échoue (pas de
 /// réseau), on réessaiera à la prochaine ouverture.
 Future<void> statsActivite() async {
-  if (!statistiquesActives || !configurationPresente || kIsWeb || etat.statsExclues) return;
+  if (!statistiquesActives || !configurationPresente || kIsWeb || etat.statsExclues || appareilDeTest) return;
   try {
     final p = await SharedPreferences.getInstance();
     final langue = etat.langue;
