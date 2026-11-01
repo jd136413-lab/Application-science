@@ -5985,3 +5985,824 @@ ja 設定 → 通知 でいつでもオンにできます。
 ko 설정 → 알림에서 언제든 켤 수 있어요.
 id Anda bisa mengaktifkannya kapan saja di Pengaturan → Notifikasi.
 vi Bạn có thể bật bất cứ lúc nào trong Cài đặt → Thông báo.
+
+# Accueil magazine (01/11/2026)
+
+@ 1 avancée
+en 1 advance
+es 1 avance
+pt 1 avanço
+de 1 Fortschritt
+it 1 progresso
+nl 1 doorbraak
+pl 1 odkrycie
+ru 1 открытие
+uk 1 відкриття
+tr 1 gelişme
+ar تقدّم واحد
+hi 1 खोज
+bn ১টি অগ্রগতি
+ur 1 پیش رفت
+zh 1 项进展
+ja 1件
+ko 1개의 발견
+id 1 kemajuan
+vi 1 tiến bộ
+
+@ {n} avancées
+en {n} advances
+es {n} avances
+pt {n} avanços
+de {n} Fortschritte
+it {n} progressi
+nl {n} doorbraken
+pl Odkrycia: {n}
+ru Открытий: {n}
+uk Відкриттів: {n}
+tr {n} gelişme
+ar {n} تقدّمات
+hi {n} खोजें
+bn {n}টি অগ্রগতি
+ur {n} پیش رفتیں
+zh {n} 项进展
+ja {n}件
+ko {n}개의 발견
+id {n} kemajuan
+vi {n} tiến bộ
+
+@ Année
+en Year
+es Año
+pt Ano
+de Jahr
+it Anno
+nl Jaar
+pl Rok
+ru Год
+uk Рік
+tr Yıl
+ar سنة
+hi वर्ष
+bn বছর
+ur سال
+zh 年
+ja 年
+ko 연도
+id Tahun
+vi Năm
+
+@ Mois
+en Month
+es Mes
+pt Mês
+de Monat
+it Mese
+nl Maand
+pl Miesiąc
+ru Месяц
+uk Місяць
+tr Ay
+ar شهر
+hi महीना
+bn মাস
+ur مہینہ
+zh 月
+ja 月
+ko 월
+id Bulan
+vi Tháng
+
+@ Semaine
+en Week
+es Semana
+pt Semana
+de Woche
+it Settimana
+nl Week
+pl Tydzień
+ru Неделя
+uk Тиждень
+tr Hafta
+ar أسبوع
+hi सप्ताह
+bn সপ্তাহ
+ur ہفتہ
+zh 周
+ja 週
+ko 주
+id Minggu
+vi Tuần
+
+@ Nouveau
+en New
+es Nuevo
+pt Novo
+de Neu
+it Nuovo
+nl Nieuw
+pl Nowe
+ru Новое
+uk Нове
+tr Yeni
+ar جديد
+hi नया
+bn নতুন
+ur نیا
+zh 新
+ja 新着
+ko 새 소식
+id Baru
+vi Mới
+
+@ Aucune avancée trouvée
+en No advances found
+es No se encontraron avances
+pt Nenhum avanço encontrado
+de Keine Fortschritte gefunden
+it Nessun progresso trovato
+nl Geen doorbraken gevonden
+pl Nie znaleziono odkryć
+ru Ничего не найдено
+uk Нічого не знайдено
+tr Gelişme bulunamadı
+ar لم يُعثر على أي تقدّم
+hi कोई खोज नहीं मिली
+bn কোনো অগ্রগতি পাওয়া যায়নি
+ur کوئی پیش رفت نہیں ملی
+zh 未找到进展
+ja 見つかりませんでした
+ko 찾은 결과가 없습니다
+id Tidak ada kemajuan ditemukan
+vi Không tìm thấy tiến bộ nào
+
+@ Ce domaine apparaîtra dans « Mes domaines suivis ».
+en This field will appear in “My followed fields”.
+es Este campo aparecerá en «Mis campos seguidos».
+pt Esta área aparecerá em «Minhas áreas seguidas».
+de Dieses Gebiet erscheint unter „Meine Gebiete“.
+it Questo campo apparirà in «I miei campi seguiti».
+nl Dit domein verschijnt bij ‘Mijn gevolgde domeinen’.
+pl Ta dziedzina pojawi się w „Obserwowane dziedziny”.
+ru Эта область появится в разделе «Мои области».
+uk Ця галузь з’явиться в розділі «Мої галузі».
+tr Bu alan “Takip ettiğim alanlar” bölümünde görünecek.
+ar سيظهر هذا المجال في «مجالاتي المتابَعة».
+hi यह क्षेत्र “मेरे फ़ॉलो किए क्षेत्र” में दिखेगा।
+bn এই ক্ষেত্রটি “আমার অনুসৃত ক্ষেত্র”-এ দেখা যাবে।
+ur یہ شعبہ “میرے فالو کیے گئے شعبے” میں نظر آئے گا۔
+zh 该领域将显示在“我关注的领域”中。
+ja この分野は「フォロー中の分野」に表示されます。
+ko 이 분야가 ‘팔로우한 분야’에 표시됩니다.
+id Bidang ini akan muncul di “Bidang yang saya ikuti”.
+vi Lĩnh vực này sẽ xuất hiện trong “Lĩnh vực đang theo dõi”.
+
+@ Ce mois-ci par domaine
+en This month by field
+es Este mes por campo
+pt Este mês por área
+de Diesen Monat nach Gebiet
+it Questo mese per campo
+nl Deze maand per domein
+pl Ten miesiąc według dziedzin
+ru В этом месяце по областям
+uk Цього місяця за галузями
+tr Bu ay alanlara göre
+ar هذا الشهر حسب المجال
+hi इस महीने क्षेत्र के अनुसार
+bn এই মাসে ক্ষেত্র অনুযায়ী
+ur اس مہینے شعبے کے لحاظ سے
+zh 本月各领域
+ja 今月の分野別
+ko 이번 달 분야별
+id Bulan ini per bidang
+vi Tháng này theo lĩnh vực
+
+@ Ce que vous n’avez pas encore lu
+en What you haven’t read yet
+es Lo que aún no has leído
+pt O que você ainda não leu
+de Was Sie noch nicht gelesen haben
+it Ciò che non hai ancora letto
+nl Wat je nog niet hebt gelezen
+pl Czego jeszcze nie przeczytałeś
+ru То, что вы ещё не прочитали
+uk Те, що ви ще не прочитали
+tr Henüz okumadıklarınız
+ar ما لم تقرأه بعد
+hi जो आपने अभी तक नहीं पढ़ा
+bn যা আপনি এখনও পড়েননি
+ur جو آپ نے ابھی تک نہیں پڑھا
+zh 你还没读过的内容
+ja まだ読んでいないもの
+ko 아직 읽지 않은 소식
+id Yang belum Anda baca
+vi Những gì bạn chưa đọc
+
+@ Glisser ≡ pour changer l’ordre des rubriques.
+en Drag ≡ to reorder the sections.
+es Arrastra ≡ para cambiar el orden de las secciones.
+pt Arraste ≡ para mudar a ordem das seções.
+de ≡ ziehen, um die Rubriken neu zu ordnen.
+it Trascina ≡ per cambiare l’ordine delle sezioni.
+nl Sleep ≡ om de volgorde van de rubrieken te wijzigen.
+pl Przeciągnij ≡, aby zmienić kolejność sekcji.
+ru Перетащите ≡, чтобы изменить порядок разделов.
+uk Перетягніть ≡, щоб змінити порядок розділів.
+tr Bölümlerin sırasını değiştirmek için ≡ simgesini sürükleyin.
+ar اسحب ≡ لتغيير ترتيب الأقسام.
+hi अनुभागों का क्रम बदलने के लिए ≡ खींचें।
+bn বিভাগের ক্রম বদলাতে ≡ টেনে আনুন।
+ur حصوں کی ترتیب بدلنے کے لیے ≡ کو گھسیٹیں۔
+zh 拖动 ≡ 可调整栏目顺序。
+ja ≡ をドラッグして並べ替えます。
+ko ≡ 를 끌어 섹션 순서를 바꾸세요.
+id Seret ≡ untuk mengubah urutan rubrik.
+vi Kéo ≡ để đổi thứ tự các mục.
+
+@ La plus grande avancée du jour
+en The biggest advance of the day
+es El mayor avance del día
+pt O maior avanço do dia
+de Der größte Fortschritt des Tages
+it Il più grande progresso del giorno
+nl De grootste doorbraak van de dag
+pl Największe odkrycie dnia
+ru Главное открытие дня
+uk Головне відкриття дня
+tr Günün en büyük gelişmesi
+ar أكبر تقدّم في اليوم
+hi दिन की सबसे बड़ी खोज
+bn দিনের সবচেয়ে বড় অগ্রগতি
+ur دن کی سب سے بڑی پیش رفت
+zh 今日最大进展
+ja 今日いちばんの発見
+ko 오늘의 가장 큰 발견
+id Kemajuan terbesar hari ini
+vi Tiến bộ lớn nhất trong ngày
+
+@ Le top
+en Top
+es Lo mejor
+pt Os destaques
+de Die Top-Meldungen
+it Il meglio
+nl De top
+pl Najważniejsze
+ru Лучшее
+uk Найкраще
+tr En iyiler
+ar الأبرز
+hi टॉप
+bn সেরা
+ur سرفہرست
+zh 热门
+ja トップ
+ko 톱
+id Teratas
+vi Nổi bật
+
+@ Le top de la semaine
+en Top of the week
+es Lo mejor de la semana
+pt Destaques da semana
+de Top der Woche
+it Il meglio della settimana
+nl Top van de week
+pl Najważniejsze w tym tygodniu
+ru Лучшее за неделю
+uk Найкраще за тиждень
+tr Haftanın en iyileri
+ar الأبرز هذا الأسبوع
+hi इस सप्ताह के टॉप
+bn সপ্তাহের সেরা
+ur ہفتے کی سرفہرست
+zh 本周热门
+ja 今週のトップ
+ko 이번 주 톱
+id Teratas minggu ini
+vi Nổi bật trong tuần
+
+@ Les 3 plus importantes
+en The 3 most important
+es Los 3 más importantes
+pt Os 3 mais importantes
+de Die 3 wichtigsten
+it I 3 più importanti
+nl De 3 belangrijkste
+pl 3 najważniejsze
+ru 3 самых важных
+uk 3 найважливіші
+tr En önemli 3 tanesi
+ar الثلاثة الأهم
+hi 3 सबसे महत्वपूर्ण
+bn ৩টি সবচেয়ে গুরুত্বপূর্ণ
+ur 3 سب سے اہم
+zh 最重要的 3 项
+ja 重要度トップ3
+ko 가장 중요한 3개
+id 3 yang terpenting
+vi 3 tin quan trọng nhất
+
+@ Les tuiles de couleur
+en The colored tiles
+es Los mosaicos de colores
+pt Os blocos coloridos
+de Die farbigen Kacheln
+it Le tessere colorate
+nl De gekleurde tegels
+pl Kolorowe kafelki
+ru Цветные плитки
+uk Кольорові плитки
+tr Renkli kutucuklar
+ar المربعات الملوّنة
+hi रंगीन टाइलें
+bn রঙিন টাইল
+ur رنگین خانے
+zh 彩色方块
+ja カラータイル
+ko 색깔 타일
+id Kotak berwarna
+vi Các ô màu
+
+@ L’avancée du mois
+en Advance of the month
+es El avance del mes
+pt O avanço do mês
+de Fortschritt des Monats
+it Il progresso del mese
+nl Doorbraak van de maand
+pl Odkrycie miesiąca
+ru Открытие месяца
+uk Відкриття місяця
+tr Ayın gelişmesi
+ar تقدّم الشهر
+hi महीने की खोज
+bn মাসের অগ্রগতি
+ur مہینے کی پیش رفت
+zh 本月进展
+ja 今月の発見
+ko 이달의 발견
+id Kemajuan bulan ini
+vi Tiến bộ của tháng
+
+@ Mes domaines suivis
+en My followed fields
+es Mis campos seguidos
+pt Minhas áreas seguidas
+de Meine Gebiete
+it I miei campi seguiti
+nl Mijn gevolgde domeinen
+pl Obserwowane dziedziny
+ru Мои области
+uk Мої галузі
+tr Takip ettiğim alanlar
+ar مجالاتي المتابَعة
+hi मेरे फ़ॉलो किए क्षेत्र
+bn আমার অনুসৃত ক্ষেত্র
+ur میرے فالو کیے گئے شعبے
+zh 我关注的领域
+ja フォロー中の分野
+ko 팔로우한 분야
+id Bidang yang saya ikuti
+vi Lĩnh vực đang theo dõi
+
+@ Nouveau pour vous
+en New for you
+es Nuevo para ti
+pt Novo para você
+de Neu für Sie
+it Nuovo per te
+nl Nieuw voor jou
+pl Nowe dla ciebie
+ru Новое для вас
+uk Нове для вас
+tr Sizin için yeni
+ar جديد لك
+hi आपके लिए नया
+bn আপনার জন্য নতুন
+ur آپ کے لیے نیا
+zh 为你推荐的新内容
+ja あなたへの新着
+ko 새로운 소식
+id Baru untuk Anda
+vi Mới cho bạn
+
+@ Pas encore d’avancée ce mois-ci.
+en No advances this month yet.
+es Aún no hay avances este mes.
+pt Ainda não há avanços este mês.
+de Diesen Monat noch keine Fortschritte.
+it Ancora nessun progresso questo mese.
+nl Nog geen doorbraken deze maand.
+pl W tym miesiącu jeszcze brak odkryć.
+ru В этом месяце пока нет открытий.
+uk Цього місяця ще немає відкриттів.
+tr Bu ay henüz gelişme yok.
+ar لا يوجد تقدّم هذا الشهر بعد.
+hi इस महीने अभी कोई खोज नहीं।
+bn এই মাসে এখনও কোনো অগ্রগতি নেই।
+ur اس مہینے ابھی کوئی پیش رفت نہیں۔
+zh 本月暂无进展。
+ja 今月はまだありません。
+ko 이번 달에는 아직 없습니다.
+id Belum ada kemajuan bulan ini.
+vi Tháng này chưa có tiến bộ nào.
+
+@ Personnaliser l’accueil
+en Customize the home page
+es Personalizar el inicio
+pt Personalizar o início
+de Startseite anpassen
+it Personalizza la home
+nl Startpagina aanpassen
+pl Dostosuj stronę główną
+ru Настроить главную
+uk Налаштувати головну
+tr Ana sayfayı özelleştir
+ar تخصيص الصفحة الرئيسية
+hi होम पेज बदलें
+bn হোম পেজ সাজান
+ur ہوم پیج حسب منشا بنائیں
+zh 自定义首页
+ja ホームをカスタマイズ
+ko 홈 화면 맞춤 설정
+id Sesuaikan beranda
+vi Tùy chỉnh trang chủ
+
+@ Rechercher
+en Search
+es Buscar
+pt Pesquisar
+de Suchen
+it Cerca
+nl Zoeken
+pl Szukaj
+ru Поиск
+uk Пошук
+tr Ara
+ar بحث
+hi खोजें
+bn খুঁজুন
+ur تلاش کریں
+zh 搜索
+ja 検索
+ko 검색
+id Cari
+vi Tìm kiếm
+
+@ Rechercher une avancée
+en Search for an advance
+es Buscar un avance
+pt Pesquisar um avanço
+de Einen Fortschritt suchen
+it Cerca un progresso
+nl Een doorbraak zoeken
+pl Szukaj odkrycia
+ru Найти открытие
+uk Знайти відкриття
+tr Bir gelişme ara
+ar ابحث عن تقدّم
+hi कोई खोज ढूँढें
+bn একটি অগ্রগতি খুঁজুন
+ur کوئی پیش رفت تلاش کریں
+zh 搜索进展
+ja 発見を検索
+ko 발견 검색
+id Cari kemajuan
+vi Tìm một tiến bộ
+
+@ Rien à afficher
+en Nothing to show
+es Nada que mostrar
+pt Nada para mostrar
+de Nichts anzuzeigen
+it Niente da mostrare
+nl Niets om te tonen
+pl Nic do wyświetlenia
+ru Нечего показать
+uk Нічого показати
+tr Gösterilecek bir şey yok
+ar لا شيء لعرضه
+hi दिखाने के लिए कुछ नहीं
+bn দেখানোর মতো কিছু নেই
+ur دکھانے کے لیے کچھ نہیں
+zh 暂无内容
+ja 表示するものはありません
+ko 표시할 내용이 없습니다
+id Tidak ada yang ditampilkan
+vi Không có gì để hiển thị
+
+@ Terminé
+en Done
+es Listo
+pt Concluído
+de Fertig
+it Fatto
+nl Klaar
+pl Gotowe
+ru Готово
+uk Готово
+tr Bitti
+ar تم
+hi हो गया
+bn সম্পন্ন
+ur ہو گیا
+zh 完成
+ja 完了
+ko 완료
+id Selesai
+vi Xong
+
+@ Touchez « Suivre » sur la page d’un domaine pour le retrouver ici.
+en Tap “Follow” on a field’s page to see it here.
+es Toca «Seguir» en la página de un campo para verlo aquí.
+pt Toque em «Seguir» na página de uma área para vê-la aqui.
+de Tippen Sie auf der Seite eines Gebiets auf „Folgen“, um es hier zu sehen.
+it Tocca «Segui» nella pagina di un campo per vederlo qui.
+nl Tik op ‘Volgen’ op de pagina van een domein om het hier te zien.
+pl Dotknij „Obserwuj” na stronie dziedziny, aby widzieć ją tutaj.
+ru Нажмите «Следить» на странице области, чтобы видеть её здесь.
+uk Натисніть «Стежити» на сторінці галузі, щоб бачити її тут.
+tr Burada görmek için bir alanın sayfasında “Takip et”e dokunun.
+ar اضغط «متابعة» في صفحة أحد المجالات لتجده هنا.
+hi किसी क्षेत्र के पेज पर “फ़ॉलो करें” दबाएँ, वह यहाँ दिखेगा।
+bn কোনো ক্ষেত্রের পাতায় “অনুসরণ করুন” চাপুন, সেটি এখানে দেখা যাবে।
+ur کسی شعبے کے صفحے پر “فالو کریں” دبائیں، وہ یہاں نظر آئے گا۔
+zh 在领域页面点按“关注”，即可在此看到。
+ja 分野のページで「フォロー」をタップすると、ここに表示されます。
+ko 분야 페이지에서 ‘팔로우’를 누르면 여기에 표시됩니다.
+id Ketuk “Ikuti” di halaman bidang untuk melihatnya di sini.
+vi Nhấn “Theo dõi” trên trang lĩnh vực để thấy nó ở đây.
+
+@ Tout marquer lu
+en Mark all as read
+es Marcar todo como leído
+pt Marcar tudo como lido
+de Alle als gelesen markieren
+it Segna tutto come letto
+nl Alles als gelezen markeren
+pl Oznacz wszystko jako przeczytane
+ru Отметить всё прочитанным
+uk Позначити все прочитаним
+tr Tümünü okundu say
+ar تحديد الكل كمقروء
+hi सभी को पढ़ा हुआ मानें
+bn সব পড়া হয়েছে চিহ্নিত করুন
+ur سب کو پڑھا ہوا نشان زد کریں
+zh 全部标为已读
+ja すべて既読にする
+ko 모두 읽음으로 표시
+id Tandai semua sudah dibaca
+vi Đánh dấu tất cả đã đọc
+
+@ Toute l’année
+en The whole year
+es Todo el año
+pt O ano todo
+de Das ganze Jahr
+it Tutto l’anno
+nl Het hele jaar
+pl Cały rok
+ru Весь год
+uk Увесь рік
+tr Tüm yıl
+ar السنة كاملة
+hi पूरा वर्ष
+bn সারা বছর
+ur پورا سال
+zh 全年
+ja 今年すべて
+ko 올해 전체
+id Sepanjang tahun
+vi Cả năm
+
+@ Toutes les rubriques sont masquées.
+en All sections are hidden.
+es Todas las secciones están ocultas.
+pt Todas as seções estão ocultas.
+de Alle Rubriken sind ausgeblendet.
+it Tutte le sezioni sono nascoste.
+nl Alle rubrieken zijn verborgen.
+pl Wszystkie sekcje są ukryte.
+ru Все разделы скрыты.
+uk Усі розділи приховано.
+tr Tüm bölümler gizli.
+ar جميع الأقسام مخفية.
+hi सभी अनुभाग छिपे हुए हैं।
+bn সব বিভাগ লুকানো আছে।
+ur تمام حصے چھپے ہوئے ہیں۔
+zh 所有栏目均已隐藏。
+ja すべてのセクションが非表示です。
+ko 모든 섹션이 숨겨져 있습니다.
+id Semua rubrik disembunyikan.
+vi Tất cả các mục đang bị ẩn.
+
+@ Une rubrique par domaine suivi
+en One section per followed field
+es Una sección por campo seguido
+pt Uma seção por área seguida
+de Eine Rubrik pro gefolgtem Gebiet
+it Una sezione per ogni campo seguito
+nl Eén rubriek per gevolgd domein
+pl Jedna sekcja na obserwowaną dziedzinę
+ru Один раздел на каждую область
+uk Один розділ на кожну галузь
+tr Takip edilen her alan için bir bölüm
+ar قسم لكل مجال متابَع
+hi हर फ़ॉलो किए क्षेत्र का एक अनुभाग
+bn প্রতিটি অনুসৃত ক্ষেত্রের জন্য একটি বিভাগ
+ur ہر فالو کیے گئے شعبے کا ایک حصہ
+zh 每个关注领域一个栏目
+ja フォロー中の分野ごとに1セクション
+ko 팔로우한 분야마다 섹션 하나
+id Satu rubrik per bidang yang diikuti
+vi Mỗi lĩnh vực theo dõi một mục
+
+@ Voir le mois
+en See the month
+es Ver el mes
+pt Ver o mês
+de Monat ansehen
+it Vedi il mese
+nl Bekijk de maand
+pl Zobacz miesiąc
+ru Смотреть месяц
+uk Переглянути місяць
+tr Ayı gör
+ar عرض الشهر
+hi महीना देखें
+bn মাস দেখুন
+ur مہینہ دیکھیں
+zh 查看本月
+ja この月を見る
+ko 이 달 보기
+id Lihat bulan ini
+vi Xem tháng
+
+@ À la une
+en Top story
+es Destacado
+pt Destaque
+de Topmeldung
+it In primo piano
+nl Uitgelicht
+pl Na pierwszej stronie
+ru Главное
+uk Головне
+tr Manşet
+ar الأبرز
+hi मुख्य खबर
+bn প্রধান খবর
+ur اہم خبر
+zh 头条
+ja トップニュース
+ko 헤드라인
+id Utama
+vi Tiêu điểm
+
+@ À la une · aujourd’hui
+en Top story · today
+es Destacado · hoy
+pt Destaque · hoje
+de Topmeldung · heute
+it In primo piano · oggi
+nl Uitgelicht · vandaag
+pl Na pierwszej stronie · dziś
+ru Главное · сегодня
+uk Головне · сьогодні
+tr Manşet · bugün
+ar الأبرز · اليوم
+hi मुख्य खबर · आज
+bn প্রধান খবর · আজ
+ur اہم خبر · آج
+zh 头条 · 今天
+ja トップニュース · 今日
+ko 헤드라인 · 오늘
+id Utama · hari ini
+vi Tiêu điểm · hôm nay
+
+@ À la une · ces derniers jours
+en Top story · last few days
+es Destacado · últimos días
+pt Destaque · últimos dias
+de Topmeldung · letzte Tage
+it In primo piano · ultimi giorni
+nl Uitgelicht · afgelopen dagen
+pl Na pierwszej stronie · ostatnie dni
+ru Главное · за последние дни
+uk Головне · за останні дні
+tr Manşet · son günler
+ar الأبرز · الأيام الأخيرة
+hi मुख्य खबर · पिछले कुछ दिन
+bn প্রধান খবর · গত কয়েক দিন
+ur اہم خبر · پچھلے چند دن
+zh 头条 · 最近几天
+ja トップニュース · ここ数日
+ko 헤드라인 · 최근 며칠
+id Utama · beberapa hari terakhir
+vi Tiêu điểm · vài ngày qua
+
+@ Présentation de l’accueil
+en Home page layout
+es Diseño del inicio
+pt Layout do início
+de Darstellung der Startseite
+it Layout della home
+nl Indeling startpagina
+pl Układ strony głównej
+ru Вид главной
+uk Вигляд головної
+tr Ana sayfa düzeni
+ar تصميم الصفحة الرئيسية
+hi होम पेज का रूप
+bn হোম পেজের বিন্যাস
+ur ہوم پیج کی ترتیب
+zh 首页样式
+ja ホームの表示
+ko 홈 화면 형식
+id Tampilan beranda
+vi Bố cục trang chủ
+
+@ Magazine
+en Magazine
+es Revista
+pt Revista
+de Magazin
+it Rivista
+nl Magazine
+pl Magazyn
+ru Журнал
+uk Журнал
+tr Dergi
+ar مجلة
+hi पत्रिका
+bn ম্যাগাজিন
+ur میگزین
+zh 杂志
+ja マガジン
+ko 매거진
+id Majalah
+vi Tạp chí
+
+@ Liste classique
+en Classic list
+es Lista clásica
+pt Lista clássica
+de Klassische Liste
+it Elenco classico
+nl Klassieke lijst
+pl Klasyczna lista
+ru Обычный список
+uk Звичайний список
+tr Klasik liste
+ar قائمة كلاسيكية
+hi क्लासिक सूची
+bn ক্লাসিক তালিকা
+ur کلاسیکی فہرست
+zh 经典列表
+ja クラシックリスト
+ko 기본 목록
+id Daftar klasik
+vi Danh sách cổ điển
+
+@ Suivre
+en Follow
+es Seguir
+pt Seguir
+de Folgen
+it Segui
+nl Volgen
+pl Obserwuj
+ru Следить
+uk Стежити
+tr Takip et
+ar متابعة
+hi फ़ॉलो करें
+bn অনুসরণ করুন
+ur فالو کریں
+zh 关注
+ja フォロー
+ko 팔로우
+id Ikuti
+vi Theo dõi
+
+@ Suivi
+en Following
+es Siguiendo
+pt Seguindo
+de Gefolgt
+it Seguito
+nl Gevolgd
+pl Obserwujesz
+ru Вы следите
+uk Ви стежите
+tr Takipte
+ar متابَع
+hi फ़ॉलो किया
+bn অনুসরণ করছেন
+ur فالو کیا
+zh 已关注
+ja フォロー中
+ko 팔로잉
+id Diikuti
+vi Đang theo dõi

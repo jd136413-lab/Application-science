@@ -22,7 +22,9 @@ class TexteArticle extends StatefulWidget {
   final TextStyle style;
   final bool original; // true = toujours le texte français
   final TextAlign? textAlign;
-  const TexteArticle(this.texte, {super.key, required this.style, this.original = false, this.textAlign});
+  final int? maxLines; // null = sans limite ; sinon « … » à la fin
+  const TexteArticle(this.texte,
+      {super.key, required this.style, this.original = false, this.textAlign, this.maxLines});
 
   @override
   State<TexteArticle> createState() => _TexteArticleState();
@@ -115,7 +117,11 @@ class _TexteArticleState extends State<TexteArticle> {
 
   @override
   Widget build(BuildContext context) {
-    Text texte(String t) => Text(t, style: widget.style, textAlign: widget.textAlign);
+    Text texte(String t) => Text(t,
+        style: widget.style,
+        textAlign: widget.textAlign,
+        maxLines: widget.maxLines,
+        overflow: widget.maxLines == null ? null : TextOverflow.ellipsis);
     if (widget.original || etat.langue == 'fr') return texte(widget.texte);
     final deja = traductionImmediate(widget.texte);
     if (deja != null) return texte(deja); // déjà traduit : tout de suite, sans saut
