@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import 'a_venir.dart';
 import 'coquille.dart';
 import 'detail.dart';
 import 'donnees.dart';
@@ -88,6 +89,14 @@ class _AppNovaStemState extends State<AppNovaStem> {
     final nav = navigateur.currentState;
     if (nav == null || !etat.premierLancementFait) return;
     nav.popUntil((r) => r.isFirst);
+    if (contenu.startsWith('avenir:')) {
+      // Rappel « Me le rappeler » de l'onglet « À venir »
+      final id = contenu.substring(7);
+      if (evenementsAVenir.liste == null) await evenementsAVenir.charger();
+      final e = (evenementsAVenir.liste ?? const <Evenement>[]).where((x) => x.id == id).firstOrNull;
+      if (e != null) nav.push(MaterialPageRoute(builder: (_) => EcranEvenement(evenement: e)));
+      return;
+    }
     if (contenu == payloadFil || contenu.startsWith('$payloadFil:')) {
       filDemande = contenu.contains(':') ? contenu.split(':').last : null;
       stat('notif_ouverte', valeur: filDemande ?? 'fil');
