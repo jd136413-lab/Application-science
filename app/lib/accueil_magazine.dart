@@ -1,4 +1,5 @@
 // Accueil « façon magazine » (maquette 64, choix de Maxime du 01/11/2026).
+// Version 1.0.42 (01/11/2026) : accueil magazine.
 //
 // L'onglet Actualités devient une page d'accueil : À la une, Nouveau pour vous,
 // Le top de la semaine, Ce mois-ci par domaine (et Mes domaines suivis). Chaque
