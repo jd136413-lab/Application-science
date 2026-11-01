@@ -16,6 +16,8 @@
 
 MAX_PAR_PASSAGE = 6        # cartes rédigées au plus par passage de l'agent (articles)
 HORIZON_JOURS = 540        # on ignore ce qui est prévu à plus de 18 mois
+PART_MAX_FAMILLE = 0.25    # comme les fils : un domaine ≤ 25 % des événements à venir, sauf ★★★ et plus
+MIN_PAR_FAMILLE = 2        # au début (peu d'événements), chaque domaine a droit à 2 événements
 LANCEMENTS_MAX = 3         # lancements spatiaux ajoutés au plus par passage
 LANCEMENTS_JOURS = 120     # on regarde les lancements des 4 prochains mois
 FICHIER_CALENDRIER = "calendrier_a_venir.json"   # événements connus longtemps à l'avance
@@ -41,7 +43,7 @@ CONSIGNE = """Tu rédiges les cartes de l'onglet « À venir » de NovaSTEM, une
 
 On te donne un article, la date d'aujourd'hui, et la liste des événements DÉJÀ dans l'onglet (numérotés).
 
-1. "garder" : true seulement si l'article annonce un ÉVÉNEMENT À VENIR, d'intérêt général, avec une DATE PRÉCISE donnée par l'article (un jour, ou au moins un mois et une année) et située dans le futur. Exemples : lancement d'une fusée ou d'une mission, sortie d'un produit très attendu (console, smartphone phare, voiture, jeu très attendu), résultats scientifiques attendus à une date, événement dans le ciel (éclipse, pluie d'étoiles filantes, comète visible), grand sommet ou grande conférence scientifique. Sinon false (date vague comme « bientôt » ou « dans les prochaines années », événement passé, sujet commercial sans intérêt technique, rumeur).
+1. "garder" : true seulement si l'article annonce un ÉVÉNEMENT À VENIR parmi les PLUS NOTABLES de son domaine (l'onglet couvre tous les domaines : espace, santé, climat, énergie, transports, technologie, IA, jeux vidéo…), d'intérêt général, avec une DATE PRÉCISE donnée par l'article (un jour, ou au moins un mois et une année) et située dans le futur. Exemples : lancement d'une fusée ou d'une mission marquante, résultats attendus d'un grand essai de vaccin ou de traitement, décision très attendue sur un médicament important, mise en service d'une centrale ou d'un train, premier vol d'un avion, présentation officielle d'un produit phare (console, smartphone phare, voiture), sortie d'une grande IA, sortie des plus gros jeux vidéo, résultats scientifiques attendus à une date, événement dans le ciel (éclipse, pluie d'étoiles filantes, comète visible), grand sommet ou grande conférence scientifique. Sinon false (date vague comme « bientôt » ou « dans les prochaines années », événement passé, sujet commercial sans intérêt technique, rumeur).
 2. "meme_que" : si c'est le MÊME événement qu'un de la liste (même formulé autrement), son numéro ; sinon -1. Dans ce cas, donne quand même la date annoncée par CET article (elle a peut-être changé).
 3. "date" : AAAA-MM-JJ (si seul le mois est connu, mets le 1er du mois et "precision" = "mois", sinon "jour"). "heure" : HH:MM à l'heure de Paris si l'article la donne, sinon "".
 4. "type" : lancement, sortie, resultats, ciel, evenement ou annonce (une présentation officielle à une date connue).
@@ -102,7 +104,7 @@ def _url(db) -> str:
 def _lire(db, depuis: date) -> list[dict] | None:
     """Événements à partir de `depuis`. None si la table n'existe pas encore."""
     r = requests.get(_url(db), headers=db.headers, timeout=30, params={
-        "select": "id,title,event_date,source_url,advance_id,feed",
+        "select": "id,title,event_date,source_url,advance_id,feed,family",
         "event_date": f"gte.{depuis.isoformat()}", "order": "event_date.asc", "limit": "300"})
     if r.status_code == 404 or (r.status_code >= 400 and "upcoming_events" in r.text):
         return None
@@ -130,7 +132,7 @@ SCHEMA_LANCEMENTS = {
 
 def _inserer(db, ligne: dict) -> dict | None:
     p = requests.post(_url(db), headers=dict(db.headers, Prefer="return=representation,resolution=ignore-duplicates"),
-                      json=ligne, timeout=30, params={"select": "id,title,event_date,source_url,advance_id,feed",
+                      json=ligne, timeout=30, params={"select": "id,title,event_date,source_url,advance_id,feed,family",
                                                       "on_conflict": "source_url"})
     p.raise_for_status()
     return p.json()[0] if p.json() else None
@@ -142,6 +144,15 @@ def _changer_date(db, e: dict, d: str) -> None:
                    json={"event_date": d, "previous_date": e["event_date"],
                          "updated_at": datetime.now(timezone.utc).isoformat()}).raise_for_status()
     e["event_date"] = d
+
+
+def place_libre(futurs: list[dict], famille: str | None, importance: int) -> bool:
+    """Plafond par domaine (choix de Maxime, 01/11) : un domaine ne dépasse pas 25 % des
+    événements à venir, sauf pour les événements ★★★ et plus (toujours acceptés)."""
+    if importance >= 3 or not famille:
+        return True
+    n = sum(1 for e in futurs if e.get("family") == famille) + 1
+    return n <= max(MIN_PAR_FAMILLE, PART_MAX_FAMILLE * (len(futurs) + 1))
 
 
 def calendrier(db, existants: list[dict], futurs: list[dict], aujourd_hui: date, log) -> int:
@@ -157,6 +168,8 @@ def calendrier(db, existants: list[dict], futurs: list[dict], aujourd_hui: date,
     for ev in liste:
         if ev.get("source_url") in connus or ev.get("event_date", "") < aujourd_hui.isoformat():
             continue
+        if not place_libre(futurs, ev.get("family"), int(ev.get("importance") or 2)):
+            continue                       # domaine déjà bien servi : réessayé au prochain passage
         try:
             cree = _inserer(db, {k: v for k, v in ev.items() if not k.startswith("_")})
             if cree:
@@ -235,7 +248,7 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
             "precision": "jour", "importance": max(1, min(5, int(x.get("importance") or 2))),
             "source_url": url, "source_name": (l.get("launch_service_provider") or {}).get("name") or "The Space Devs",
         }
-        if not ligne["title"]:
+        if not ligne["title"] or not place_libre(futurs, ligne["family"], ligne["importance"]):
             continue
         try:
             cree = _inserer(db, ligne)
@@ -285,7 +298,13 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
     urls |= {e["source_url"] for e in futurs}
     # --- 1) Nouvelles cartes (ou date mise à jour) ---
     familles = sorted(familles_science | familles_tech)
-    for art in [a for a in CANDIDATS if a["url"] not in urls][:MAX_PAR_PASSAGE]:
+    # Variété (choix de Maxime) : d'abord les domaines qui ont le moins d'événements à venir ;
+    # plafond de 25 % par domaine, sauf ★★★ et plus (place_libre).
+    def nb_famille(f):
+        horizon = (aujourd_hui + timedelta(days=90)).isoformat()
+        return sum(1 for e in futurs if e.get("family") == f and e["event_date"] <= horizon)
+    choix = sorted((a for a in CANDIDATS if a["url"] not in urls), key=lambda a: nb_famille(a.get("_famille_avenir")))
+    for art in choix[:MAX_PAR_PASSAGE]:
         try:
             lire_debut_page(art)
             liste = "\n".join(f"{k}. {e['title']} ({e['event_date']})" for k, e in enumerate(futurs)) or "(aucun)"
@@ -322,6 +341,9 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
                 "source_url": art["url"], "source_name": art["source_name"],
             }
             if not ligne["title"]:
+                continue
+            if not place_libre(futurs, fam, ligne["importance"]):
+                log(f"  · À venir : « {ligne['title'][:60]} » écarté (domaine déjà à 25 %)")
                 continue
             cree = _inserer(db, ligne)
             if cree:
