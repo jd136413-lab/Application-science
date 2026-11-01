@@ -4,10 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'accueil.dart';
 import 'accueil_magazine.dart';
 import 'ecran_reglages.dart';
-import 'etat.dart';
 import 'favoris.dart';
 import 'langues.dart';
 import 'navigation.dart';
@@ -86,15 +84,13 @@ class _CoquilleState extends State<Coquille> {
       body: SafeArea(
         bottom: false,
         // IndexedStack garde chaque onglet en mémoire (position, filtres…).
-        // Accueil magazine (01/11) ou ancien fil : Réglages → Présentation de l’accueil.
-        child: IndexedStack(index: _onglet, children: [
-          ListenableBuilder(
-            listenable: etat,
-            builder: (context, _) => etat.accueilMagazine ? const EcranMagazine() : const EcranAccueil(),
-          ),
-          const EcranFavoris(),
-          const EcranVocabulaire(),
-          const EcranReglages(),
+        // Accueil magazine pour tout le monde (01/11). L'ancien fil (accueil.dart) reste
+        // dans le code et dans la branche sauvegarde/accueil-classique-v41.
+        child: IndexedStack(index: _onglet, children: const [
+          EcranMagazine(),
+          EcranFavoris(),
+          EcranVocabulaire(),
+          EcranReglages(),
           EcranFavoris(),
           EcranVocabulaire(),
           EcranReglages(),
