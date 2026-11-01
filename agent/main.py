@@ -840,7 +840,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
     for paquet in paquets:
         lignes = [f"{i}. {pool[i]['title'][:150]} [{pool[i]['source_name']}]" for i in paquet]
         try:
-            rep = _appel_json(client, modele_id, CONSIGNE_TRI, "\n".join(lignes), SCHEMA_TRI, conso)
+            rep = _appel_json(client, modele_id, CONSIGNE_TRI, a_venir.texte_attendus() + "\n".join(lignes), SCHEMA_TRI, conso)
             for x in rep.get("articles", []):
                 i = x.get("i")
                 if isinstance(i, int) and i in paquet:
@@ -894,7 +894,8 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
                 a = pool[i]
                 debut_txt = " ".join(a["text"].split()[:22])
                 lignes.append(f"{k}. [{notes[i][0]}] {notes[i][1]} — {a['title'][:120]} [{a['source_name']}] — {debut_txt}")
-            contenu = "Déjà publié ces derniers jours :\n" + deja_txt + "\n\nArticles candidats :\n" + "\n".join(lignes)
+            contenu = (a_venir.texte_attendus() + "Déjà publié ces derniers jours :\n" + deja_txt
+                       + "\n\nArticles candidats :\n" + "\n".join(lignes))
             consigne = CONSIGNE_REGROUPEMENT.replace("{k}", str(k_max))
             rep = _appel_json(client, modele_id, consigne, contenu, SCHEMA_REGROUPEMENT, conso, 16000)
             if not rep.get("groupes"):
@@ -1172,6 +1173,7 @@ def main() -> int:
     ignores, doublons, erreurs = [], [], []
     conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
     appels = 0
+    a_venir.preparer_attendus(db, log)      # événements du moment : articles prioritaires
     if PRESELECTION:
         candidats, c = preselection_complete(client, modele["id"], candidats,
                                              sujets["science"] + sujets["tech"])

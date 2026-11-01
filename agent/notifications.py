@@ -94,3 +94,36 @@ def envoyer(fiches: list[dict], log) -> tuple[int, int]:
             log(f"  ⚠ notification non envoyée ({f['title'][:50]}) : {str(ex)[:160]}")
     log(f"🔔 Notifications : {envoyees} envoyée(s), {echecs} échec(s).")
     return envoyees, echecs
+
+
+def envoyer_arrive(evenement: dict, fiche: dict, log) -> bool:
+    """Onglet « À venir » (maquette 72) : la fiche d'un événement suivi vient d'être publiée.
+    Seuls les téléphones qui avaient touché « Me le rappeler » sont abonnés au sujet
+    evt_<id de l'événement> (aucun identifiant de téléphone)."""
+    brut = (os.environ.get("FIREBASE_SERVICE_ACCOUNT") or "").strip()
+    if not brut or not evenement.get("id") or not fiche.get("id"):
+        return False
+    try:
+        compte = json.loads(brut)
+        jeton = _jeton(compte)
+        url = f"https://fcm.googleapis.com/v1/projects/{compte['project_id']}/messages:send"
+        message = {"message": {
+            "topic": f"evt_{evenement['id']}",
+            "data": {
+                "type": "arrive", "evt": str(evenement["id"]), "id": str(fiche["id"]),
+                "titre": fiche.get("title", ""), "importance": str(int(fiche.get("importance") or 1)),
+                **{f"titre_{code}": t.get("title") for code, t in (fiche.get("traductions") or {}).items()
+                   if isinstance(t, dict) and t.get("title")},
+            },
+            "android": {"priority": "high", "ttl": "172800s"},
+            "apns": {"headers": {"apns-priority": "5"}, "payload": {"aps": {"content-available": 1}}},
+        }}
+        r = requests.post(url, headers={"Authorization": f"Bearer {jeton}", "Content-Type": "application/json"},
+                          json=message, timeout=30)
+        if r.status_code >= 300:
+            raise RuntimeError(f"{r.status_code} {r.text[:120]}")
+        log(f"  🔔 « C'est arrivé » envoyé aux téléphones qui suivaient « {evenement.get('title', '')[:50]} »")
+        return True
+    except Exception as ex:
+        log(f"  ⚠ « C'est arrivé » non envoyé ({str(ex)[:120]})")
+        return False

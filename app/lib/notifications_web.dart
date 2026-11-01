@@ -20,3 +20,9 @@ Future<bool> programmerRappel({
     false;
 
 Future<void> annulerRappel(int id) async {}
+
+int idRappelEvenement(String id) => 0;
+
+Future<void> abonnerEvenement(String id) async {}
+
+Future<void> desabonnerEvenement(String id) async {}

@@ -7648,3 +7648,152 @@ ja カウントダウン付きの近日予定
 ko 카운트다운과 함께 보는 예정 행사
 id Acara mendatang, dengan hitung mundur
 vi Sự kiện sắp tới, kèm đếm ngược
+
+# Rappels « À venir », version 2 (01/11/2026)
+
+@ Ce soir
+en Tonight
+es Esta noche
+pt Hoje à noite
+de Heute Abend
+it Stasera
+nl Vanavond
+pl Dziś wieczorem
+ru Сегодня вечером
+uk Сьогодні ввечері
+tr Bu akşam
+ar الليلة
+hi आज रात
+bn আজ রাতে
+ur آج رات
+zh 今晚
+ja 今夜
+ko 오늘 밤
+id Malam ini
+vi Tối nay
+
+@ Pas encore de nouvelles
+en No news yet
+es Aún sin noticias
+pt Ainda sem novidades
+de Noch keine Neuigkeiten
+it Ancora nessuna notizia
+nl Nog geen nieuws
+pl Jeszcze brak wiadomości
+ru Пока нет новостей
+uk Поки немає новин
+tr Henüz haber yok
+ar لا أخبار بعد
+hi अभी कोई खबर नहीं
+bn এখনও কোনো খবর নেই
+ur ابھی کوئی خبر نہیں
+zh 暂无消息
+ja まだ続報はありません
+ko 아직 소식이 없어요
+id Belum ada kabar
+vi Chưa có tin mới
+
+@ Lire ce qu’il apporte vraiment
+en Read what it really brings
+es Lee lo que aporta de verdad
+pt Leia o que ele traz de fato
+de Lesen, was es wirklich bringt
+it Leggi cosa porta davvero
+nl Lees wat het echt brengt
+pl Przeczytaj, co naprawdę wnosi
+ru Узнайте, что это даёт на самом деле
+uk Дізнайтеся, що це дає насправді
+tr Gerçekte ne getirdiğini okuyun
+ar اقرأ ما يقدّمه فعلًا
+hi पढ़ें यह असल में क्या लाता है
+bn পড়ুন এটি আসলে কী আনে
+ur پڑھیں یہ اصل میں کیا لاتا ہے
+zh 看看它真正带来了什么
+ja 実際に何が変わるのかを読む
+ko 실제로 무엇이 달라지는지 읽어보세요
+id Baca apa yang sebenarnya dibawa
+vi Đọc xem nó thực sự mang lại gì
+
+@ Regardez le ciel, loin des lumières.
+en Look at the sky, away from city lights.
+es Mira al cielo, lejos de las luces.
+pt Olhe para o céu, longe das luzes.
+de Schauen Sie in den Himmel, fern von Lichtern.
+it Guarda il cielo, lontano dalle luci.
+nl Kijk naar de hemel, ver van de lichten.
+pl Spójrz w niebo, z dala od świateł.
+ru Смотрите на небо вдали от огней.
+uk Дивіться на небо подалі від вогнів.
+tr Işıklardan uzakta gökyüzüne bakın.
+ar انظر إلى السماء بعيدًا عن الأضواء.
+hi रोशनी से दूर आसमान देखें।
+bn আলো থেকে দূরে আকাশের দিকে তাকান।
+ur روشنیوں سے دور آسمان دیکھیں۔
+zh 远离灯光，抬头看天空。
+ja 明かりの少ない場所で空を見上げましょう。
+ko 불빛이 적은 곳에서 하늘을 보세요.
+id Lihatlah langit, jauh dari cahaya lampu.
+vi Hãy ngắm bầu trời, tránh xa ánh đèn.
+
+@ La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.
+en The date may have changed. We’ll let you know as soon as there’s news.
+es Puede que la fecha haya cambiado. Te avisaremos en cuanto haya novedades.
+pt A data pode ter mudado. Avisaremos assim que houver novidades.
+de Das Datum hat sich vielleicht geändert. Wir melden uns, sobald es Neuigkeiten gibt.
+it La data potrebbe essere cambiata. Ti avviseremo appena ci sono novità.
+nl De datum is misschien veranderd. We laten het weten zodra er nieuws is.
+pl Data mogła się zmienić. Damy znać, gdy pojawią się wieści.
+ru Возможно, дата изменилась. Мы сообщим, как только появятся новости.
+uk Можливо, дату змінено. Ми повідомимо, щойно з’являться новини.
+tr Tarih değişmiş olabilir. Haber olur olmaz size bildireceğiz.
+ar ربما تغيّر الموعد. سنخبرك فور وجود جديد.
+hi शायद तारीख बदल गई है। कोई खबर आते ही हम बताएँगे।
+bn তারিখ হয়তো বদলেছে। খবর এলেই জানাব।
+ur شاید تاریخ بدل گئی ہے۔ خبر آتے ہی ہم بتائیں گے۔
+zh 日期可能已变更，有消息时我们会立即通知你。
+ja 日程が変わったかもしれません。続報があればすぐにお知らせします。
+ko 날짜가 바뀌었을 수 있어요. 소식이 생기면 바로 알려드릴게요.
+id Tanggalnya mungkin berubah. Kami kabari begitu ada berita.
+vi Có thể ngày đã thay đổi. Chúng tôi sẽ báo ngay khi có tin mới.
+
+@ Vous serez prévenu dès que l’article sera publié.
+en You’ll be notified as soon as the article is published.
+es Te avisaremos en cuanto se publique el artículo.
+pt Você será avisado assim que o artigo for publicado.
+de Sie werden benachrichtigt, sobald der Artikel erscheint.
+it Riceverai un avviso appena l’articolo sarà pubblicato.
+nl Je krijgt een melding zodra het artikel verschijnt.
+pl Powiadomimy cię, gdy tylko artykuł się ukaże.
+ru Мы сообщим, как только статья будет опубликована.
+uk Ми повідомимо, щойно статтю буде опубліковано.
+tr Makale yayımlanır yayımlanmaz bildirim alacaksınız.
+ar سنُعلمك فور نشر المقال.
+hi लेख प्रकाशित होते ही आपको सूचना मिलेगी।
+bn লেখাটি প্রকাশিত হলেই আপনাকে জানানো হবে।
+ur مضمون شائع ہوتے ہی آپ کو اطلاع ملے گی۔
+zh 文章一发布就会通知你。
+ja 記事が公開されたらすぐにお知らせします。
+ko 기사가 게시되면 바로 알려드릴게요.
+id Anda akan diberi tahu begitu artikelnya terbit.
+vi Bạn sẽ được báo ngay khi bài viết được đăng.
+
+@ Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.
+en No article has reported it yet. The date may have changed: we’ll let you know as soon as there’s news.
+es Ningún artículo lo ha anunciado todavía. Puede que la fecha haya cambiado: te avisaremos en cuanto haya novedades.
+pt Nenhum artigo anunciou ainda. A data pode ter mudado: avisaremos assim que houver novidades.
+de Noch kein Artikel hat darüber berichtet. Das Datum hat sich vielleicht geändert: Wir melden uns, sobald es Neuigkeiten gibt.
+it Nessun articolo l’ha ancora annunciato. La data potrebbe essere cambiata: ti avviseremo appena ci sono novità.
+nl Nog geen enkel artikel heeft het gemeld. De datum is misschien veranderd: we laten het weten zodra er nieuws is.
+pl Żaden artykuł jeszcze o tym nie napisał. Data mogła się zmienić: damy znać, gdy pojawią się wieści.
+ru Ни одна статья пока об этом не сообщила. Возможно, дата изменилась: мы сообщим, как только появятся новости.
+uk Жодна стаття ще про це не повідомила. Можливо, дату змінено: ми повідомимо, щойно з’являться новини.
+tr Henüz hiçbir makale bunu duyurmadı. Tarih değişmiş olabilir: haber olur olmaz bildireceğiz.
+ar لم يعلن أي مقال عنه بعد. ربما تغيّر الموعد: سنخبرك فور وجود جديد.
+hi अभी तक किसी लेख ने इसकी घोषणा नहीं की। शायद तारीख बदल गई है: खबर आते ही हम बताएँगे।
+bn এখনও কোনো লেখায় এটি জানানো হয়নি। তারিখ হয়তো বদলেছে: খবর এলেই জানাব।
+ur ابھی تک کسی مضمون نے اس کا اعلان نہیں کیا۔ شاید تاریخ بدل گئی ہے: خبر آتے ہی ہم بتائیں گے۔
+zh 目前还没有文章报道。日期可能已变更：有消息时我们会立即通知你。
+ja まだ記事で報じられていません。日程が変わったかもしれません。続報があればすぐにお知らせします。
+ko 아직 이를 다룬 기사가 없어요. 날짜가 바뀌었을 수 있어요. 소식이 생기면 바로 알려드릴게요.
+id Belum ada artikel yang memberitakannya. Tanggalnya mungkin berubah: kami kabari begitu ada berita.
+vi Chưa có bài viết nào đưa tin. Có thể ngày đã thay đổi: chúng tôi sẽ báo ngay khi có tin mới.

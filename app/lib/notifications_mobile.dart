@@ -242,7 +242,9 @@ Future<Uint8List?> _photo(String adresse) async {
 Future<void> _file = Future.value();
 
 Future<void> _afficher(Map<String, dynamic> data) {
-  _file = _file.then((_) => _afficherUne(data)).catchError((_) {});
+  _file = _file
+      .then((_) => data['type'] == 'arrive' ? _afficherArrive(data) : _afficherUne(data))
+      .catchError((_) {});
   return _file;
 }
 
@@ -413,5 +415,64 @@ Future<void> annulerRappel(int id) async {
   if (!notificationsPossibles) return;
   try {
     await _local.cancel(id);
+  } catch (_) {}
+}
+
+
+// ------------------------------------------------------------------ « C'est arrivé » (À venir, maquette 72)
+
+/// Numéro stable de la notification de rappel d'un événement (même calcul que a_venir.dart).
+int idRappelEvenement(String id) {
+  final hex = id.replaceAll('-', '');
+  return 900000 + ((int.tryParse(hex.length >= 5 ? hex.substring(0, 5) : hex, radix: 16) ?? 0) & 0x7ffff);
+}
+
+/// L'agent a publié la fiche d'un événement suivi : on prévient, on annule le message de secours.
+Future<void> _afficherArrive(Map<String, dynamic> data) async {
+  final id = data['id']?.toString() ?? '';
+  final evt = data['evt']?.toString() ?? '';
+  if (id.isEmpty) return;
+  final prefs = await SharedPreferences.getInstance();
+  final langue = _langue(prefs);
+  final traduit = data['titre_$langue']?.toString() ?? '';
+  final titre = langue != 'fr' && traduit.isNotEmpty ? traduit : (data['titre']?.toString() ?? '');
+  final imp = (int.tryParse(data['importance']?.toString() ?? '') ?? 1).clamp(1, 5);
+  if (evt.isNotEmpty) {
+    try {
+      await _local.cancel(idRappelEvenement(evt));
+    } catch (_) {}
+  }
+  final texte = '$titre\n${'★' * imp} ${_tr(motsImportance[imp], langue)} · ${_tr('Lire ce qu’il apporte vraiment', langue)}';
+  await _local.show(
+    idRappelEvenement(evt.isEmpty ? id : evt) + 1,
+    _tr('C’est arrivé', langue),
+    texte,
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        'rappels_a_venir',
+        _tr('Rappels « À venir »', langue),
+        importance: Importance.high,
+        priority: Priority.high,
+        color: logoEncreRose,
+        styleInformation: BigTextStyleInformation(texte),
+      ),
+      iOS: const DarwinNotificationDetails(),
+    ),
+    payload: id, // ouvre la fiche de l'avancée
+  );
+}
+
+/// « Me le rappeler » : le téléphone s'abonne au sujet de cet événement (sans identifiant).
+Future<void> abonnerEvenement(String id) async {
+  if (!notificationsPossibles) return;
+  try {
+    await FirebaseMessaging.instance.subscribeToTopic('evt_$id');
+  } catch (_) {}
+}
+
+Future<void> desabonnerEvenement(String id) async {
+  if (!notificationsPossibles) return;
+  try {
+    await FirebaseMessaging.instance.unsubscribeFromTopic('evt_$id');
   } catch (_) {}
 }
