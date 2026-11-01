@@ -1,5 +1,5 @@
 // Accueil « façon magazine » (maquette 64, choix de Maxime du 01/11/2026).
-// Version 1.0.43 (01/11/2026) : tri par domaine, accueil magazine pour tous.
+// Version 1.0.44 (01/11/2026) : jamais « Et après ? » au début du 3e paragraphe.
 //
 // L'onglet Actualités devient une page d'accueil : À la une, Nouveau pour vous,
 // Le top de la semaine, Ce mois-ci par domaine (et Mes domaines suivis). Chaque
