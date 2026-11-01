@@ -23,8 +23,9 @@ class TexteArticle extends StatefulWidget {
   final bool original; // true = toujours le texte français
   final TextAlign? textAlign;
   final int? maxLines; // null = sans limite ; sinon « … » à la fin
+  final String Function(String)? nettoyer; // retouche le texte affiché (après traduction)
   const TexteArticle(this.texte,
-      {super.key, required this.style, this.original = false, this.textAlign, this.maxLines});
+      {super.key, required this.style, this.original = false, this.textAlign, this.maxLines, this.nettoyer});
 
   @override
   State<TexteArticle> createState() => _TexteArticleState();
@@ -117,7 +118,7 @@ class _TexteArticleState extends State<TexteArticle> {
 
   @override
   Widget build(BuildContext context) {
-    Text texte(String t) => Text(t,
+    Text texte(String t) => Text(widget.nettoyer == null ? t : widget.nettoyer!(t),
         style: widget.style,
         textAlign: widget.textAlign,
         maxLines: widget.maxLines,
@@ -132,4 +133,19 @@ class _TexteArticleState extends State<TexteArticle> {
       builder: (context, snap) => texte(snap.data ?? widget.texte),
     );
   }
+}
+
+/// « Et après ? » est déjà le titre du paragraphe : on retire ces mots s'ils
+/// ouvrent aussi le texte (« Et après ? Les chercheurs… » → « Les chercheurs… »),
+/// en français comme dans les traductions.
+final RegExp _debutEtApres = RegExp(
+    r'^[\s«»"“”]*(et\s+apr[eè]s|and\s+next|and\s+after(?:wards)?|what\W?s\s+next|y\s+despu[eé]s|e\s+depois|und\s+danach|e\s+poi|en\s+daarna|a\s+potem|и\s+что\s+дальше|а\s+що\s+далі)[\s«»"“”?？!:：.…,;—–-]*',
+    caseSensitive: false,
+    unicode: true);
+
+String sansEtApres(String t) {
+  final m = _debutEtApres.firstMatch(t);
+  if (m == null || m.end >= t.length) return t;
+  final reste = t.substring(m.end);
+  return reste[0].toUpperCase() + reste.substring(1);
 }

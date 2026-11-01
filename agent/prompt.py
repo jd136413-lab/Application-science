@@ -162,6 +162,9 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
 - apres : 1 à 2 phrases (« Et après ? »). Ce que ça peut changer, et ce qu'il reste à
   prouver : limites (étude chez l'animal, simulation, petit échantillon…), stade
   (prototype, démonstration, en vente), date ou prix si l'article les donne.
+  « Et après ? » est déjà le titre de ce paragraphe dans l'app : ne commence JAMAIS
+  le texte par « Et après », « Et ensuite » ou une question. Entre directement dans le
+  sujet (ex. « Les chercheurs veulent maintenant… », « La voiture sort en 2027… »).
 - mots : 0 à 2 « mots à connaître », seulement pour des mots vraiment difficiles utilisés
   dans la fiche (avant, decouverte ou apres). Pour chacun : "mot" (avec une majuscule
   initiale, au singulier) et "definition" (une phrase simple de 25 mots au plus, sans
