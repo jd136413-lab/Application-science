@@ -35,7 +35,10 @@ except Exception:                      # pragma: no cover
 
 import requests
 
+import notifications
+
 CANDIDATS: list[dict] = []   # rempli par main.py pendant le tri des titres
+ATTENDUS: list[str] = []     # événements du moment (veille → lendemain) : leurs articles passent en priorité
 
 TYPES = ["lancement", "sortie", "resultats", "ciel", "evenement", "annonce"]
 
@@ -261,6 +264,28 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
     return n, maj
 
 
+def preparer_attendus(db, log) -> None:
+    """Au début du passage : les événements d'avant-hier à demain, pas encore arrivés.
+    main.py les montre au tri et au regroupement pour que leurs articles soient écrits vite."""
+    try:
+        aujourd_hui = datetime.now(PARIS).date()
+        l = _lire(db, aujourd_hui - timedelta(days=2)) or []
+        ATTENDUS[:] = [e["title"] for e in l if not e.get("advance_id")
+                       and e["event_date"] <= (aujourd_hui + timedelta(days=1)).isoformat()]
+        if ATTENDUS:
+            log(f"À venir : {len(ATTENDUS)} événement(s) attendu(s) en ce moment, leurs articles passent en priorité.")
+    except Exception:
+        ATTENDUS[:] = []
+
+
+def texte_attendus() -> str:
+    if not ATTENDUS:
+        return ""
+    return ("ÉVÉNEMENTS ATTENDUS EN CE MOMENT (onglet « À venir ») : un article qui raconte que l'un d'eux "
+            "a eu lieu (sortie effective, lancement réalisé, résultats publiés…) est PRIORITAIRE : garde-le, "
+            "en tête, avec au moins sa note réelle.\n" + "\n".join(f"- {t}" for t in ATTENDUS) + "\n\n")
+
+
 def _date_valide(texte: str, aujourd_hui: date) -> date | None:
     try:
         d = date.fromisoformat(texte.strip()[:10])
@@ -355,7 +380,7 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
             log(f"  ⚠ À venir : article ignoré ({ex.__class__.__name__}: {str(ex)[:80]})")
     # --- 2) « C'est arrivé » : relier les avancées du jour aux événements attendus ---
     attendus = [e for e in existants if not e.get("advance_id")
-                and (aujourd_hui - timedelta(days=4)).isoformat() <= e["event_date"] <= (aujourd_hui + timedelta(days=1)).isoformat()]
+                and (aujourd_hui - timedelta(days=7)).isoformat() <= e["event_date"] <= (aujourd_hui + timedelta(days=1)).isoformat()]
     publies = [a for a in ajoutes if a.get("id")]
     if attendus and publies:
         try:
@@ -369,6 +394,7 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
                                    params={"id": f"eq.{attendus[e]['id']}"},
                                    json={"advance_id": publies[a]["id"]}).raise_for_status()
                     arrives += 1
+                    notifications.envoyer_arrive(attendus[e], publies[a], log)
                     log(f"  ✅ C'est arrivé : « {attendus[e]['title'][:60]} » → « {publies[a]['title'][:60]} »")
         except Exception as ex:
             log(f"  ⚠ À venir : liens impossibles ({str(ex)[:80]})")

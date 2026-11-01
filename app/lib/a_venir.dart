@@ -222,32 +222,50 @@ final evenementsAVenir = EvenementsAVenir();
 
 // ------------------------------------------------------------------ rappels
 
-int idRappel(Evenement e) => 900000 + (e.id.hashCode & 0x7ffff);
+int idRappel(Evenement e) => idRappelEvenement(e.id);
 
-/// Quand prévenir : le jour J à 8 h 30 (heure de Paris) ; si l'événement a lieu tôt
-/// (avant 9 h 30), une heure avant. Null si c'est trop tard.
+String _heureTexte(String hhmm) => '${tr('vers')} ${hhmm.replaceFirst(':', ' h ').replaceAll(' h 00', ' h')}';
+
+/// Quand le téléphone se manifeste lui-même (maquette 72, choix de Maxime) :
+/// - « dans le ciel » : le soir même à 21 h 30 (ou une heure avant l'heure connue, ex. éclipse) ;
+/// - les autres : PAS de rappel le jour J (rien à lire) ; l'agent prévient quand la fiche
+///   est publiée (« C'est arrivé », notification par internet). Ici, seulement le message de
+///   secours, le lendemain à midi, si rien n'est paru.
+/// Null si le moment est passé.
 DateTime? momentRappel(Evenement e) {
-  final maintenant = DateTime.now().toUtc();
-  var quand = parisVersUtc(e.date.year, e.date.month, e.date.day, 8, 30);
-  final debut = e.instant;
-  if (e.heure != null && debut.isBefore(quand.add(const Duration(hours: 1)))) {
-    quand = debut.subtract(const Duration(hours: 1));
+  final maintenant = DateTime.now().toUtc().add(const Duration(minutes: 1));
+  DateTime quand;
+  if (e.type == 'ciel') {
+    quand = e.heure != null
+        ? e.instant.subtract(const Duration(hours: 1))
+        : parisVersUtc(e.date.year, e.date.month, e.date.day, 21, 30);
+  } else {
+    final lendemain = e.precision == 'mois'
+        ? DateTime.utc(e.date.year, e.date.month + 1, 1)
+        : e.date.add(const Duration(days: 1));
+    quand = parisVersUtc(lendemain.year, lendemain.month, lendemain.day, 12, 0);
   }
-  if (quand.isAfter(maintenant.add(const Duration(minutes: 1)))) return quand;
-  final avant = debut.subtract(const Duration(minutes: 30));
-  if (e.heure != null && avant.isAfter(maintenant.add(const Duration(minutes: 1)))) return avant;
-  return null;
+  return quand.isAfter(maintenant) ? quand : null;
 }
 
 Future<bool> _programmer(Evenement e) async {
   final quand = momentRappel(e);
   if (quand == null) return false;
-  final heure = e.heure == null ? '' : ' · ${tr('vers')} ${e.heure!.replaceFirst(':', ' h ').replaceAll(' h 00', ' h')}';
+  final titre = texteDansLaLangue(e.titre);
+  if (e.type == 'ciel') {
+    return programmerRappel(
+      id: idRappel(e),
+      quandUtc: quand,
+      titre: e.heure != null ? '${tr('C’est aujourd’hui')} · ${_heureTexte(e.heure!)}' : tr('Ce soir'),
+      texte: '$titre · ${tr('Regardez le ciel, loin des lumières.')}',
+      payload: 'avenir:${e.id}',
+    );
+  }
   return programmerRappel(
     id: idRappel(e),
     quandUtc: quand,
-    titre: e.precision == 'mois' ? tr('C’est ce mois-ci') : tr('C’est aujourd’hui'),
-    texte: '${texteDansLaLangue(e.titre)}$heure',
+    titre: tr('Pas encore de nouvelles'),
+    texte: '$titre · ${tr('La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.')}',
     payload: 'avenir:${e.id}',
   );
 }
@@ -255,6 +273,7 @@ Future<bool> _programmer(Evenement e) async {
 Future<void> basculerRappel(BuildContext context, Evenement e) async {
   if (etat.rappels.contains(e.id)) {
     await annulerRappel(idRappel(e));
+    await desabonnerEvenement(e.id);
     etat.retirerRappel(e.id);
     if (context.mounted) afficherMessage(context, tr('Rappel annulé'), icone: Icons.notifications_off_outlined);
     return;
@@ -263,7 +282,7 @@ Future<void> basculerRappel(BuildContext context, Evenement e) async {
     afficherMessage(context, tr('Les rappels marchent dans l’app sur téléphone.'), icone: Icons.info_outline_rounded);
     return;
   }
-  if (momentRappel(e) == null) {
+  if (e.type == 'ciel' && momentRappel(e) == null) {
     afficherMessage(context, tr('C’est aujourd’hui !'), icone: Icons.today_rounded);
     return;
   }
@@ -274,28 +293,42 @@ Future<void> basculerRappel(BuildContext context, Evenement e) async {
         icone: Icons.notifications_off_outlined);
     return;
   }
-  if (await _programmer(e)) {
-    etat.ajouterRappel(e.id);
+  final programme = await _programmer(e);
+  if (e.type == 'ciel' && !programme) {
     if (context.mounted) {
-      afficherMessage(context, '${tr('Rappel prévu')} · ${dateEvenement(e)}', icone: Icons.notifications_active_outlined);
+      afficherMessage(context, tr('Impossible de programmer le rappel.'), icone: Icons.error_outline_rounded);
     }
-  } else if (context.mounted) {
-    afficherMessage(context, tr('Impossible de programmer le rappel.'), icone: Icons.error_outline_rounded);
+    return;
+  }
+  if (e.type != 'ciel') await abonnerEvenement(e.id);
+  etat.ajouterRappel(e.id);
+  if (!context.mounted) return;
+  if (e.type == 'ciel') {
+    final h = e.heure != null ? _heureTexte(e.heure!) : '${tr('vers')} 21 h 30';
+    afficherMessage(context, '${tr('Rappel prévu')} · ${dateEvenement(e)} $h', icone: Icons.notifications_active_outlined);
+  } else {
+    afficherMessage(context, tr('Vous serez prévenu dès que l’article sera publié.'),
+        icone: Icons.notifications_active_outlined);
   }
 }
 
-/// Dates changées par l'agent (retard…) : les rappels suivent. Rappels d'événements passés : oubliés.
+/// À l'ouverture : dates changées par l'agent (les rappels suivent), événements arrivés
+/// (plus rien à attendre) et événements passés (oubliés).
 Future<void> reprogrammerRappels() async {
   if (!notificationsPossibles || etat.rappels.isEmpty) return;
   final l = evenementsAVenir.liste ?? const <Evenement>[];
   for (final id in etat.rappels.toList()) {
     final e = l.where((x) => x.id == id).firstOrNull;
-    if (e == null || e.jours < 0) {
+    final fini = e == null || e.arrive || (e.type == 'ciel' ? e.jours < 0 : e.jours < -7);
+    if (fini) {
+      if (e != null) await annulerRappel(idRappel(e));
+      await desabonnerEvenement(id);
       etat.retirerRappel(id);
       continue;
     }
     await annulerRappel(idRappel(e));
-    if (!await _programmer(e)) etat.retirerRappel(id);
+    await _programmer(e);
+    if (e.type != 'ciel') await abonnerEvenement(id);
   }
 }
 
@@ -667,7 +700,7 @@ class _EcranEvenementState extends State<EcranEvenement> {
       compteur = Text(dateEvenement(e),
           style: police(policeTitres, taille: 32, graisse: FontWeight.w800, couleur: f.icone));
     } else if (reste.isNegative || e.jours <= 0) {
-      compteur = Text(tr(e.arrive ? 'C’est arrivé' : 'C’est aujourd’hui !'),
+      compteur = Text(tr(e.arrive ? 'C’est arrivé' : (e.jours < 0 ? 'Pas encore de nouvelles' : 'C’est aujourd’hui !')),
           style: police(policeTitres, taille: 32, graisse: FontWeight.w800, couleur: f.icone));
     } else {
       compteur = Row(children: [
@@ -749,6 +782,21 @@ class _EcranEvenementState extends State<EcranEvenement> {
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 if (e.arrive)
                   Padding(padding: const EdgeInsets.only(bottom: 16), child: CarteArrivee(e)),
+                if (!e.arrive && e.jours < 0 && e.type != 'ciel')
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                        color: estSombre(context) ? const Color(0xFF3A2E12) : const Color(0xFFFFF1D6),
+                        borderRadius: BorderRadius.circular(18)),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(tr('Pas encore de nouvelles'),
+                          style: police(policeTexte, taille: 14, graisse: FontWeight.w800, couleur: p.texte)),
+                      const SizedBox(height: 4),
+                      Text(tr('Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.'),
+                          style: police(policeTexte, taille: 13.5, couleur: p.texte, hauteur: 1.45)),
+                    ]),
+                  ),
                 bloc('Ce qui est prévu', e.prevu),
                 bloc('Pourquoi c’est important', e.pourquoi),
                 InkWell(
@@ -760,7 +808,7 @@ class _EcranEvenementState extends State<EcranEvenement> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                if (!e.arrive && e.jours >= 0) ...[
+                if (!e.arrive && (e.jours >= 0 || (rappel && e.type != 'ciel'))) ...[
                   SizedBox(
                     height: 52,
                     child: FilledButton.icon(
