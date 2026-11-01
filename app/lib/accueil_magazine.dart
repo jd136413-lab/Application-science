@@ -299,9 +299,11 @@ class _EcranMagazineState extends State<EcranMagazine> {
     ]);
   }
 
-  Widget _rubriqueSuivis(BuildContext context, List<Avancee> tout) {
+  Widget? _rubriqueSuivis(BuildContext context, List<Avancee> tout) {
     final p = palette(context);
     final suivis = famillesDuFil(_fil).where(etat.domainesSuivis.contains).toList();
+    // Domaines suivis seulement dans l'autre fil : rien ici.
+    if (suivis.isEmpty && etat.domainesSuivis.isNotEmpty) return null;
     if (suivis.isEmpty) {
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         _TitreRubrique(titre: tr('Mes domaines suivis')),
