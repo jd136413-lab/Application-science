@@ -259,7 +259,9 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
                     style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
                 const SizedBox(height: 4),
                 TexteArticle(texte,
-                    original: _original, style: police(policeTexte, taille: 16, couleur: p.texte, hauteur: 1.55)),
+                    original: _original,
+                    nettoyer: titre == texteEtApres ? sansEtApres : null,
+                    style: police(policeTexte, taille: 16, couleur: p.texte, hauteur: 1.55)),
               ]),
             ),
         if (a.mots.isNotEmpty)

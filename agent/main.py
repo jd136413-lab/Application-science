@@ -1019,12 +1019,26 @@ FIL_NOM = {"science": "Sciences", "tech": "Technologies"}
 THEMES_PAR_FIL = {"science": (THEMES, "other"), "tech": (TECH_THEMES, "tech_other")}
 
 
+# « Et après ? » est déjà le titre du 3e paragraphe dans l'app : jamais au début du texte.
+_DEBUT_ET_APRES = re.compile(
+    r"^[\s«»\"“”]*(et\s+apr[eè]s|and\s+next|and\s+after(?:wards)?|what\W?s\s+next)[\s«»\"“”?？!:：.…,;—–-]*",
+    re.IGNORECASE)
+
+
+def sans_et_apres(t: str) -> str:
+    m = _DEBUT_ET_APRES.match(t or "")
+    if not m or m.end() >= len(t):
+        return t
+    reste = t[m.end():]
+    return reste[0].upper() + reste[1:]
+
+
 def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     """Vérifie et nettoie une fiche renvoyée par Claude pour un fil."""
     titre = str(fiche.get("title", "")).strip().rstrip(".")
     avant = " ".join(str(fiche.get("avant", "")).split())
     decouverte = " ".join(str(fiche.get("decouverte", "")).split())
-    apres = " ".join(str(fiche.get("apres", "")).split())
+    apres = sans_et_apres(" ".join(str(fiche.get("apres", "")).split()))
     # Résumé d'un seul tenant, gardé pour les anciennes versions de l'app et la page de partage.
     resume = " ".join(x for x in (avant, decouverte, apres) if x) or str(fiche.get("summary", "")).strip()
     if not titre or not resume:
