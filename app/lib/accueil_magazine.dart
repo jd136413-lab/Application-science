@@ -1,5 +1,5 @@
 // Accueil « façon magazine » (maquette 64, choix de Maxime du 01/11/2026).
-// Version 1.0.45 (01/11/2026) : onglet « À venir », domaines du premier lancement suivis.
+// Version 1.0.46 (01/11/2026) : rappels « À venir » v2, domaines.
 //
 // L'onglet Actualités devient une page d'accueil : À la une, Nouveau pour vous,
 // Le top de la semaine, Ce mois-ci par domaine (et Mes domaines suivis). Chaque
