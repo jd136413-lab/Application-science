@@ -927,6 +927,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
                 a["famille_pre"] = notes[sous[ch]][2]
                 a["autres_sources_det"] = autres_sources_de(a, [pool[sous[k]] for k in membres])
                 a["autres_sources"] = [x for x in sources if x != a["source_name"]]
+                a["_membres"] = [pool[sous[k]] for k in membres]   # versions de secours (02/11)
                 choisis.append(a)
         choisis.sort(key=lambda a: -a["note_pre"])   # tri stable : l'ordre de chaque fil est gardé
         STATS["groupes"] = nb_groupes
@@ -960,6 +961,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
             a["famille_pre"] = notes[i][2]
             a["autres_sources_det"] = autres_sources_de(a, [pool[k] for k in g["membres"]])
             a["autres_sources"] = [x for x in sources if x != a["source_name"]]
+            a["_membres"] = [pool[k] for k in g["membres"]]
             choisis.append(a)
         STATS["groupes"] = f"{len(groupes_loc)} (secours)"
     STATS["choisis"] = len(choisis)
@@ -1014,6 +1016,57 @@ def lire_page(art: dict, n: int = 6000) -> None:
     if len(texte) > len(art.get("text", "")):
         art["text"] = texte
         art["page_lue"] = True
+
+
+# Sites qui refusent les robots (403) : on préfère une autre version du même sujet.
+HOTES_BLOQUES = {"phys.org", "medicalxpress.com", "techxplore.com"}
+_CHAMPS_SUJET = ("note_pre", "nb_sources", "famille_pre", "note_tri", "fil_source")
+
+
+def _hote(url: str) -> str:
+    try:
+        return urlsplit(url).netloc.lower().removeprefix("www.")
+    except Exception:
+        return ""
+
+
+def lire_meilleure_version(art: dict, db=None) -> None:
+    """Amélioration 1 (02/11, gratuite) : on lit l'article choisi ; si sa page est bloquée
+    ou trop courte, on prend un autre article du MÊME sujet dont la page est lisible
+    (souvent le communiqué de l'université ou un autre média). La fiche cite alors
+    l'article réellement lu, et l'ancien rejoint les « autres sources »."""
+    membres = [m for m in art.get("_membres") or [] if m.get("url") and m["url"] != art["url"]]
+    if _hote(art["url"]) not in HOTES_BLOQUES:
+        lire_page(art)
+        if art.get("page_lue") or not membres:
+            return
+    elif not membres:
+        lire_page(art)
+        return
+    # Ordre d'essai : pages qui ne sont pas connues pour bloquer, puis texte le plus long
+    for m in sorted(membres, key=lambda m: (_hote(m["url"]) in HOTES_BLOQUES, -len(m.get("text", "")))):
+        if _hote(m["url"]) in HOTES_BLOQUES:
+            continue
+        essai = {k: v for k, v in m.items() if not k.startswith("_")}
+        lire_page(essai)
+        if not essai.get("page_lue"):
+            continue
+        ancien_url, ancien_nom = art["url"], art["source_name"]
+        garde = {k: art[k] for k in _CHAMPS_SUJET if k in art}
+        tous = art.get("_membres") or []
+        for k in ("page_lue", "statut_page", "image_url", "image_credit", "photo"):
+            art.pop(k, None)
+        art.update({k: v for k, v in essai.items() if k not in _CHAMPS_SUJET})
+        art.update(garde)
+        art["autres_sources_det"] = autres_sources_de(art, tous)
+        art["autres_sources"] = sorted({x["source_name"] for x in tous} - {art["source_name"]})
+        art["_version_de"] = ancien_nom
+        if db is not None:
+            db.marquer_ecarte(ancien_url, "autre_version")
+        log(f"  ⇄ version lisible : {ancien_nom} → {art['source_name']}")
+        return
+    if not art.get("page_lue") and not art.get("statut_page"):
+        lire_page(art)
 
 
 def lire_debut_page(art: dict) -> None:
@@ -1082,6 +1135,55 @@ def sans_publication(t: str) -> str:
     if t2 and t2[0].islower():
         t2 = t2[0].upper() + t2[1:]
     return t2
+
+
+_CREUX = re.compile(r"ouvre (?:la|de nouvelles) (?:voie|perspectives)|pourrait révolutionner|"
+                    r"avancée majeure|pas important|change la donne|nouvelle ère|"
+                    r"reste à confirmer\s*[.!]|publi[ée]e?s? dans|selon la revue", re.I)
+_NOMBRE = re.compile(r"\d+(?:[.,]\d+)?")
+
+
+def _nombres(texte: str) -> set[str]:
+    """Nombres d'un texte, écrits de façon comparable (1,795 ou 1 795 → 1795 ; 0,5 → 0.5)."""
+    t = re.sub(r"(?<=\d)[ \u00a0\u202f](?=\d{3}\b)", "", texte or "")
+    t = re.sub(r"(?<=\d),(?=\d{3}\b)", "", t)
+    return {n.replace(",", ".") for n in _NOMBRE.findall(t)}
+
+
+def controle_qualite(ligne: dict, art: dict) -> list[str]:
+    """Améliorations 2 et 3 (02/11, gratuites, sans appel à Claude) : signale dans le
+    journal les fiches à surveiller. Rien n'est bloqué : ce sont des alertes."""
+    pbs = []
+    textes = {"avant": ligne.get("avant") or "", "decouverte": ligne.get("decouverte") or "",
+              "apres": ligne.get("apres") or ""}
+    if not textes["decouverte"]:
+        return pbs
+    # 2) chaque nombre du résumé doit venir de l'article lu (on ignore 0 à 10)
+    source = _nombres(art.get("text", "") + " " + art.get("title", ""))
+    inventes = sorted({n for t in textes.values() for n in _nombres(t)
+                       if n not in source and not (n.isdigit() and int(n) <= 10)})
+    if inventes:
+        pbs.append(f"nombres absents de l'article : {', '.join(inventes[:5])}")
+    # 3) forme
+    for champ, maxi in (("avant", 50), ("decouverte", 95), ("apres", 60)):
+        n = len(textes[champ].split())
+        if n > maxi:
+            pbs.append(f"{champ} trop long ({n} mots)")
+        elif n < 8:
+            pbs.append(f"{champ} trop court ({n} mots)")
+    creux = sorted({m.group(0).lower() for t in textes.values() for m in _CREUX.finditer(t)})
+    if creux:
+        pbs.append(f"formules à éviter : {', '.join(creux)}")
+    mots_titre = {w for w in re.findall(r"\w{5,}", _sans_accents(ligne.get("title", "").split(":", 1)[-1]))}
+    if len(mots_titre) >= 3:
+        communs = mots_titre & set(re.findall(r"\w{5,}", _sans_accents(textes["avant"])))
+        if len(communs) >= 0.7 * len(mots_titre):
+            pbs.append("« Avant » répète le titre")
+    if not re.search(r"\d", textes["decouverte"]) and not re.search(r"(?<![.!?] )(?<!^)\b[A-Z][a-zà-ÿ]{2,}", textes["decouverte"][1:]):
+        pbs.append("découverte sans fait précis (ni chiffre ni nom)")
+    if not art.get("page_lue"):
+        pbs.append("écrite à partir du seul extrait du flux")
+    return pbs
 
 
 def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
@@ -1301,7 +1403,7 @@ def main() -> int:
         deja_juge = art.pop("_reponse", None)   # jugé au 1er tour mais son fil était plein
         if deja_juge is None:
             appels += 1
-            lire_page(art)                          # article entier (qualité des résumés, 02/11)
+            lire_meilleure_version(art, db)         # article entier, version lisible (02/11)
         try:
             if deja_juge is not None:
                 rep, diag = deja_juge, ""
@@ -1366,6 +1468,9 @@ def main() -> int:
                     par_fil[f] = par_fil.get(f, 0) + 1
                 for ligne in enregistrees:
                     ligne["explication"] = explication
+                    ligne["_qualite"] = controle_qualite(ligne, art)
+                    if ligne["_qualite"]:
+                        log(f"  ⚠ qualité : {' ; '.join(ligne['_qualite'])}")
                     ajoutes.append(ligne)
                     log(f"  ✔ {FIL_NOM[ligne['feed']]:<12} [{ligne['importance']}★ {ligne['theme']}"
                         f"{' 📷' if ligne['image_url'] else ''}] : {ligne['title']}")
@@ -1428,6 +1533,10 @@ def main() -> int:
               f"avec image : {sum(1 for a in ajoutes if a.get('image_url'))}", flush=True)
         for a in ajoutes[:8]:
             print(f"::notice title={a['importance']}★ {FIL_NOM[a['feed']]}::{a['title']} ({a['source_name']})", flush=True)
+        # Contrôle qualité gratuit (02/11) : une ligne par fiche à surveiller
+        signalees = [a for a in ajoutes if a.get("_qualite")]
+        print(f"::notice title=Contrôle qualité::{len(ajoutes) - len(signalees)} fiche(s) sans remarque sur {len(ajoutes)}"
+              + "".join(f"  ||  {a['title'][:60]} → {' ; '.join(a['_qualite'])}" for a in signalees), flush=True)
         # Pourquoi des articles ont été écartés (pour régler l'agent sans ouvrir les journaux)
         if ignores:
             from collections import Counter

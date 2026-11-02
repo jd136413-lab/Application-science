@@ -203,6 +203,64 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
     mais en général seulement s'il est refroidi très fort. »
     Mauvais : « Matériau supraconducteur » (reprend le mot) ; « Concept physique
     important » (vague) ; « Propriété décrite dans l'étude » (ne dit rien).
+- FICHES MODÈLES (02/11) : elles montrent la FORME attendue — faits précis, phrases
+  courtes, rien sur la publication, mots à connaître bien choisis. N'en reprends JAMAIS les
+  faits : chaque fait de ta fiche vient de l'article reçu.
+
+  Modèle 1 (Sciences, type_etude "observation", importance 3)
+  title : « Espace : le télescope Webb détecte du gaz carbonique sur une planète lointaine »
+  avant : « On sait repérer des planètes autour d'autres étoiles, mais lire la composition
+  de leur air reste très difficile : la lumière qui le traverse est infime. »
+  decouverte : « En observant WASP-39b, une planète géante et brûlante située à environ
+  700 années-lumière, le télescope spatial James Webb a repéré du gaz carbonique dans son
+  atmosphère. C'est la première fois qu'on détecte ce gaz aussi nettement sur une
+  exoplanète. L'équipe a analysé la lumière de l'étoile filtrée par cette atmosphère
+  pendant que la planète passait devant elle. »
+  apres : « Cette planète ne peut pas abriter la vie, mais la méthode servira à étudier
+  des planètes rocheuses plus petites, plus proches de la Terre. »
+  mots : Exoplanète → « Planète qui tourne autour d'une autre étoile que le Soleil ; on en
+  connaît aujourd'hui plusieurs milliers. » ; Année-lumière → « Distance parcourue par la
+  lumière en un an, environ 9 500 milliards de kilomètres. »
+
+  Modèle 2 (Sciences, type_etude "essai_clinique", importance 4)
+  title : « Alzheimer : un traitement ralentit d'un quart le déclin de la mémoire »
+  avant : « Contre la maladie d'Alzheimer, aucun traitement n'avait encore prouvé
+  clairement qu'il freinait la maladie : les médicaments soulageaient surtout les
+  symptômes. »
+  decouverte : « Le lécanémab, un anticorps monoclonal donné en perfusion toutes les deux
+  semaines, a été testé sur 1 795 personnes au début de la maladie. Après 18 mois, leur
+  déclin était 27 % plus lent qu'avec un faux traitement. Il agit en éliminant les plaques
+  amyloïdes qui s'accumulent dans le cerveau. »
+  apres : « L'effet reste modeste et certains patients ont eu de petits gonflements ou
+  saignements dans le cerveau, à surveiller par IRM. Le traitement ne concerne que les
+  premiers stades de la maladie. »
+  mots : Anticorps monoclonal → « Protéine fabriquée en laboratoire pour s'accrocher à une
+  cible précise dans le corps, comme une clé faite pour une seule serrure. » ;
+  Plaque amyloïde → « Amas de protéines collantes qui se forme entre les neurones et les
+  abîme dans la maladie d'Alzheimer. »
+
+  Modèle 3 (Technologies, type_etude "demonstration", importance 3)
+  title : « Ordinateurs quantiques : la puce de Google fait moins d'erreurs en grandissant »
+  avant : « Les ordinateurs quantiques se trompent souvent : plus on ajoute de qubits, plus
+  les erreurs s'accumulent, ce qui empêche de construire de grosses machines utiles. »
+  decouverte : « Google a présenté Willow, une puce de 105 qubits. Pour la première fois, la
+  correction d'erreurs fonctionne mieux quand on regroupe plus de qubits : le taux
+  d'erreur baisse au lieu d'augmenter. Sur un calcul de test, Willow a mis moins de cinq
+  minutes, là où le meilleur superordinateur mettrait bien plus longtemps que l'âge de
+  l'Univers. »
+  apres : « Ce calcul de test n'a pas d'usage pratique : il faudra encore des années et
+  bien plus de qubits pour concevoir, par exemple, des médicaments ou des matériaux. »
+  mots : Qubit → « Unité de base d'un ordinateur quantique ; contrairement au bit classique,
+  elle peut combiner 0 et 1 en même temps. » ; Correction d'erreurs → « Technique qui
+  répartit une même information sur plusieurs qubits pour repérer et réparer les fautes
+  au fil du calcul. »
+
+  À ÉVITER (mauvais exemples) :
+  avant : « Des chercheurs ont fait une découverte importante dans le domaine de la
+  physique. » (vague, aucun fait) ; decouverte : « Cette avancée, publiée dans Nature,
+  ouvre la voie à de nombreuses applications. » (parle de la publication, formule creuse) ;
+  mots : Cellule (mot courant), Willow (nom propre), « Matériau supraconducteur » pour
+  Supraconducteur (la définition répète le mot).
 - type_etude : la nature de la preuve, UNE valeur.
   · Fiche Sciences : "essai_clinique" (traitement testé sur des volontaires), "humain"
     (autre étude chez l'humain), "animal", "cellules", "simulation" (modèle, calcul),
