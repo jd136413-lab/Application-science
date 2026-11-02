@@ -290,3 +290,8 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
   4. Trois fiches modèles (Webb / WASP-39b, lécanémab / Alzheimer, Google Willow) + mauvais exemples dans les consignes en cache (≈ 0 $).
 - 02/11 21 h 10 — Accueil magazine (choix de Maxime) : cartes ★★★★ en cuivre et ★★★★★ en doré aussi dans les carrousels (Nouveau pour vous, Ce mois-ci…) et dans « Le top de la semaine » (ligne teintée, numéro cuivre ou doré) ; « À la une » garde la couleur du domaine. Style commun : `decorationEnValeur` dans carte.dart. Poussé sans compiler.
 - 02/11 21 h 15 — Mes domaines (Réglages et premier lancement) : le bouton « Tout sélectionner » devient « Tout désélectionner » quand tous les domaines sont cochés, et inversement (demande de Maxime). 19 langues. Poussé sans compiler.
+- 02/11 21 h 40 — **Réexpliquer l'importance** (choix de Maxime : A, C, E, maquettes 76-77) :
+  - A : dans la fiche d'une avancée, toucher les étoiles ouvre une feuille sombre avec la légende de la présentation, le niveau de l'avancée encadré et sa fréquence. Pas d'étiquette « Les étoiles ? », pas sur les cartes du fil (pas de clic par erreur).
+  - C : Réglages → nouvelle section « Comprendre NovaSTEM » (après Centres d'intérêt, avant Stockage) : « Comment on note les avancées » (légende + critères) et « Revoir la présentation ».
+  - E : bulle sous les étoiles la 1re fois qu'on ouvre une avancée d'un niveau jamais vu (5 fois au plus, une par niveau ; mémoire `niveaux_vus`), avec « Voir les 5 niveaux » et « Compris ».
+  - Légende commune : `echelle_importance.dart` (`niveauxImportance`, aussi utilisée par la présentation). 17 nouveaux textes, 19 langues. Poussé sans compiler.
