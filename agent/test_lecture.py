@@ -14,7 +14,8 @@ FLUX = {
     "ScienceDaily": "https://www.sciencedaily.com/rss/all.xml",
     "Medical Xpress": "https://medicalxpress.com/rss-feed/",
     "Tech Xplore": "https://techxplore.com/rss-feed/",
-    "Futura Sciences": "https://www.futura-sciences.com/rss/sciences/actualites.xml",
+    "MIT News": "https://news.mit.edu/rss/research",
+    "Live Science": "https://www.livescience.com/feeds/all",
 }
 
 total = avec_revue = avec_doi = 0
@@ -33,7 +34,7 @@ for nom, url in FLUX.items():
         avec_revue += bool(art.get("revue_detectee"))
         avec_doi += bool(art.get("doi"))
         print(f"::notice title={nom}::{avant} → {len(art['text'])} caractères ; "
-              f"revue : {art.get('revue_detectee') or '—'} ; DOI : {art.get('doi') or '—'} ; "
+              f"page : {art.get('statut_page')} ; revue : {art.get('revue_detectee') or '—'} ; DOI : {art.get('doi') or '—'} ; "
               f"{e.get('title', '')[:70]}")
 print(f"::notice title=Lecture des articles::{total} articles, {avec_revue} avec revue, {avec_doi} avec DOI")
 sys.exit(0)

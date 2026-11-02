@@ -1013,10 +1013,12 @@ def lire_page(art: dict, n: int = 6000) -> None:
     Coût : environ 1 000 mots de plus à lire par article examiné (≈ 0,001 $ par passage)."""
     try:
         r = requests.get(art["url"], timeout=20, headers={"User-Agent": USER_AGENT})
+        art["statut_page"] = r.status_code
         if not r.ok or "html" not in r.headers.get("content-type", ""):
             return
         page = r.text[:1500000]
-    except Exception:
+    except Exception as ex:
+        art["statut_page"] = ex.__class__.__name__
         return
     # Revue et DOI (métadonnées des pages d'éditeurs et de nombreux sites d'actualité)
     revue = _meta(page, "citation_journal_title", "prism.publicationName", "dc.source", "citation_conference_title")
@@ -1045,6 +1047,14 @@ def lire_page(art: dict, n: int = 6000) -> None:
     if len(texte) > len(art.get("text", "")):
         art["text"] = texte
         art["page_lue"] = True
+    if not revue:
+        # Encadrés des sites d'actualité : « Journal information: Physical Review Letters »
+        # (Phys.org, Medical Xpress, Tech Xplore) ou « Journal Reference: … <i>Nature</i> » (ScienceDaily)
+        m = (re.search(r"(?is)Journal information:\s*(?:<[^>]+>\s*)*([^<]{3,100})", corps)
+             or re.search(r"(?is)Journal Reference[s]?:.{0,600}?<i>([^<]{3,100})</i>", corps)
+             or re.search(r"(?is)More information:.{0,500}?<i>([^<]{3,100})</i>", corps))
+        if m:
+            revue = " ".join(html.unescape(m.group(1)).split()).rstrip(" .,;")
     if not revue:
         m = _REVUE_TEXTE.search(nettoyer_texte(corps, 400000)) or _REVUE_TEXTE_FR.search(nettoyer_texte(corps, 400000))
         if m:
