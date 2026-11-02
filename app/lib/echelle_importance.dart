@@ -218,40 +218,47 @@ class _Bulle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Thème clair : bulle sombre. Thème sombre : bulle claire, sinon elle se fond dans la page.
+    final sombre = estSombre(context);
+    final fond = sombre ? const Color(0xFFF2F1F6) : _fond;
+    final texte = sombre ? _fond : Colors.white;
+    final detail = sombre ? const Color(0xFF3B3A47) : const Color(0xFFDDDBE5);
+    final lien = sombre ? const Color(0xFF5E5C6B) : _gris;
+    final vide = sombre ? const Color(0xFFC9C7D3) : _etoileVide;
     return Stack(clipBehavior: Clip.none, children: [
       Container(
         constraints: const BoxConstraints(maxWidth: 360),
         padding: const EdgeInsets.fromLTRB(14, 12, 14, 10),
         decoration: BoxDecoration(
-          color: _fond,
+          color: fond,
           borderRadius: BorderRadius.circular(16),
-          boxShadow: const [BoxShadow(color: Color(0x4717161F), blurRadius: 24, offset: Offset(0, 10))],
+          boxShadow: [BoxShadow(color: sombre ? const Color(0x66000000) : const Color(0x4717161F), blurRadius: 24, offset: const Offset(0, 10))],
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
           Row(children: [
             for (var i = 1; i <= 5; i++)
-              Icon(Icons.star_rounded, size: 16, color: i <= note ? couleurEtoiles : _etoileVide),
+              Icon(Icons.star_rounded, size: 16, color: i <= note ? couleurEtoiles : vide),
             const SizedBox(width: 8),
             Text(tr(motsImportance[note]),
-                style: police(policeTexte, taille: 15, graisse: FontWeight.w800, couleur: Colors.white)),
+                style: police(policeTexte, taille: 15, graisse: FontWeight.w800, couleur: texte)),
           ]),
           const SizedBox(height: 6),
           Text('${_phraseNiveau(note)}. ${tr(frequencesImportance[note])}',
-              style: police(policeTexte, taille: 13, couleur: const Color(0xFFDDDBE5), hauteur: 1.45)),
+              style: police(policeTexte, taille: 13, couleur: detail, hauteur: 1.45)),
           const SizedBox(height: 4),
           Row(children: [
             TextButton(
               style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(0, 40)),
               onPressed: onEchelle,
               child: Text(tr('Voir les 5 niveaux'),
-                  style: police(policeTexte, taille: 12.5, graisse: FontWeight.w700, couleur: _gris)
-                      .copyWith(decoration: TextDecoration.underline, decorationColor: _gris)),
+                  style: police(policeTexte, taille: 12.5, graisse: FontWeight.w700, couleur: lien)
+                      .copyWith(decoration: TextDecoration.underline, decorationColor: lien)),
             ),
             const Spacer(),
             FilledButton(
               style: FilledButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: _fond,
+                backgroundColor: texte,
+                foregroundColor: fond,
                 shape: const StadiumBorder(),
                 minimumSize: const Size(0, 36),
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -266,7 +273,7 @@ class _Bulle extends StatelessWidget {
       Positioned(
         top: -6,
         left: 26,
-        child: Transform.rotate(angle: 0.785398, child: Container(width: 13, height: 13, color: _fond)),
+        child: Transform.rotate(angle: 0.785398, child: Container(width: 13, height: 13, color: fond)),
       ),
     ]);
   }
