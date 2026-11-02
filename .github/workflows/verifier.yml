@@ -20,6 +20,11 @@ jobs:
         run: |
           python3 -m py_compile agent/*.py
           echo "Agent (Python) : aucun problème de syntaxe."
+      - name: Agent — lecture d'articles (test gratuit, sans Claude)
+        working-directory: agent
+        run: |
+          pip install -q -r requirements.txt
+          python3 test_lecture.py || true
       - uses: subosito/flutter-action@v2
         with:
           channel: stable

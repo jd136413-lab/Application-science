@@ -153,7 +153,29 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
   jours, aucun sigle sans explication, des comparaisons concrètes. On simplifie les mots,
   jamais le résultat : les faits restent exacts. Ne présente jamais une promesse ou une
   hypothèse comme un résultat établi.
-- avant : 1 à 2 phrases. Ce qu'on savait ou ce qui existait jusque-là (le contexte).
+- QUALITÉ DES TROIS PARAGRAPHES (02/11, priorité) — tu reçois maintenant l'article entier :
+  · Sers-toi des FAITS PRÉCIS de l'article : chiffres clés (combien de patients, de
+    kilomètres, quel gain en %, quelle durée), qui a fait le travail (« des chercheurs de
+    l'université de Kyoto », « l'agence spatiale européenne », « Samsung »), où et comment.
+    Une fiche sans aucun fait précis est une mauvaise fiche.
+  · N'invente RIEN : chaque chiffre, nom ou affirmation doit venir de l'article. Si
+    l'article ne le dit pas, ne le dis pas.
+  · Chaque phrase apporte une information nouvelle : pas de répétition du titre, pas de
+    remplissage. Interdits : « ouvre la voie », « ouvre de nouvelles perspectives »,
+    « pourrait révolutionner », « une avancée majeure », « représente un pas important »,
+    « les chercheurs espèrent que » sans dire quoi précisément, « reste à confirmer » sans
+    dire quoi.
+  · Explique le POURQUOI simplement : pourquoi c'était difficile, ce que ça change
+    concrètement (pour qui, combien, quand).
+  · MÉDIA ET REVUE : ne nomme jamais le média qui publie l'article (Phys.org,
+    ScienceDaily, Futura…) ni la revue scientifique (Physical Review Letters, Nature…)
+    dans les trois paragraphes : l'app affiche la source et la revue à part. Parle des
+    auteurs (« des physiciens du MIT ») et non de la publication.
+- revue : la revue scientifique où l'étude est publiée si l'article la nomme
+  (ex. "Physical Review Letters", "Nature Medicine", "The Lancet"), sinon "".
+  Jamais le nom du média, jamais une conférence de presse ni un communiqué.
+- avant : 1 à 2 phrases. Ce qu'on savait ou ce qui existait jusque-là (le contexte), et
+  pourquoi c'était un problème ou une question ouverte.
 - decouverte : 2 à 3 phrases.
   · Fiche Sciences (« La découverte ») : la CONNAISSANCE nouvelle et comment on l'a établie.
   · Fiche Technologies (« La nouveauté ») : la CAPACITÉ nouvelle, ses principales
@@ -165,10 +187,25 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
   « Et après ? » est déjà le titre de ce paragraphe dans l'app : ne commence JAMAIS
   le texte par « Et après », « Et ensuite » ou une question. Entre directement dans le
   sujet (ex. « Les chercheurs veulent maintenant… », « La voiture sort en 2027… »).
-- mots : 0 à 2 « mots à connaître », seulement pour des mots vraiment difficiles utilisés
-  dans la fiche (avant, decouverte ou apres). Pour chacun : "mot" (avec une majuscule
-  initiale, au singulier) et "definition" (une phrase simple de 25 mots au plus, sans
-  reprendre le mot lui-même). Liste vide si aucun mot n'est difficile.
+- mots : 0 à 2 « mots à connaître » (ils alimentent l'onglet Vocabulaire, où l'on
+  révise avec des cartes). Choisis-les bien :
+  · Le mot est ÉCRIT TEL QUEL dans tes trois paragraphes (même orthographe), au singulier,
+    avec une majuscule initiale. Sinon le lecteur ne le retrouve pas.
+  · C'est le terme CLÉ pour comprendre l'avancée, qu'un lycéen curieux ne connaît pas
+    mais qu'il est utile de savoir (on le recroisera dans d'autres actualités) :
+    « Supraconducteur », « Exoplanète », « Essai clinique », « Photon »,
+    « Semi-conducteur », « Biomarqueur », « Lidar », « Anticorps monoclonal ».
+  · JAMAIS : un mot courant (cellule, gène, virus, planète, cancer, robot, batterie,
+    satellite, cerveau, algorithme, IA…), un nom propre (une mission, une entreprise,
+    un médicament, un modèle de téléphone), un sigle seul, ni un mot que tu as évité en le
+    remplaçant par des mots simples.
+  · S'il n'y a pas de vrai mot utile, renvoie une liste VIDE : mieux vaut 0 que 1 mauvais.
+  · "definition" : une phrase de 12 à 25 mots, sans reprendre le mot, qui dit CE QUE
+    C'EST puis À QUOI ÇA SERT ou comment le reconnaître, avec une image concrète.
+    Bon : Supraconducteur → « Matériau qui laisse passer l'électricité sans aucune perte,
+    mais en général seulement s'il est refroidi très fort. »
+    Mauvais : « Matériau supraconducteur » (reprend le mot) ; « Concept physique
+    important » (vague) ; « Propriété décrite dans l'étude » (ne dit rien).
 - type_etude : la nature de la preuve, UNE valeur.
   · Fiche Sciences : "essai_clinique" (traitement testé sur des volontaires), "humain"
     (autre étude chez l'humain), "animal", "cellules", "simulation" (modèle, calcul),
@@ -205,10 +242,10 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
 - duplicate_of : titre déjà publié concerné, sinon ""
 - explanation : UNE phrase courte en français qui justifie la décision
 - science : la fiche Sciences si decision vaut "science" ou "both" ; sinon
-  title="", avant="", decouverte="", apres="", mots=[], type_etude="donnees",
+  title="", avant="", decouverte="", apres="", mots=[], type_etude="donnees", revue="",
   theme="other", importance=1
 - tech : la fiche Technologies si decision vaut "tech" ou "both" ; sinon
-  title="", avant="", decouverte="", apres="", mots=[], type_etude="mise_a_jour",
+  title="", avant="", decouverte="", apres="", mots=[], type_etude="mise_a_jour", revue="",
   theme="tech_other", importance=1
 """
 
@@ -227,17 +264,26 @@ def _reprise(article: dict) -> str:
     return f"Même sujet aussi repris par {len(autres)} autre(s) source(s) : {', '.join(autres[:8])}\n"
 
 
-def build_user_message(article: dict, sujets_science: list[str], sujets_tech: list[str]) -> str:
-    """Construit le message envoyé à Claude pour un article."""
-    return f"""Déjà publié — fil Sciences (sujets récents) :
+def build_user_message(article: dict, sujets_science: list[str], sujets_tech: list[str]) -> list[dict]:
+    """Construit le message envoyé à Claude pour un article.
+    Les listes « déjà publié » sont identiques d'un article à l'autre pendant un passage :
+    elles sont mises en cache (lues environ 10 fois moins cher), ce qui compense la
+    lecture de l'article entier (02/11)."""
+    deja = f"""Déjà publié — fil Sciences (sujets récents) :
 {_liste(sujets_science)}
 
 Déjà publié — fil Technologies (sujets récents) :
 {_liste(sujets_tech)}
-
-Nouvel article :
-Source : {article['source_name']}
+"""
+    revue = f"Revue repérée sur la page : {article['revue_detectee']}\n" if article.get("revue_detectee") else ""
+    nouvel = f"""Nouvel article :
+Source (média) : {article['source_name']}
 Titre d'origine : {article['title']}
 Date : {article['published_at'].strftime('%Y-%m-%d')}
-{_reprise(article)}Extrait : {article['text']}
+{revue}{_reprise(article)}Texte de l'article{" (page lue)" if article.get("page_lue") else " (extrait du flux)"} :
+{article['text']}
 """
+    return [
+        {"type": "text", "text": deja, "cache_control": {"type": "ephemeral"}},
+        {"type": "text", "text": nouvel},
+    ]

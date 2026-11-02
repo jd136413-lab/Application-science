@@ -281,6 +281,10 @@ class Supabase:
                 # Migration 007 pas encore lancée : fiche enregistrée sans ses autres sources.
                 print("⚠ Colonne autres_sources absente (lancer database/migration_007_familles_elargies.sql).", flush=True)
                 envoi.pop("autres_sources")
+            elif "column" in r.text and any(c in r.text for c in COLONNES_010 if c in envoi):
+                print("⚠ Colonnes revue / doi absentes (lancer database/migration_010_revue.sql) : "
+                      "fiche enregistrée sans la revue.", flush=True)
+                envoi = {k: v for k, v in envoi.items() if k not in COLONNES_010}
             elif "column" in r.text and any(c in r.text for c in COLONNES_005 if c in envoi):
                 # Migration 005 pas encore lancée : on enregistre sans les nouvelles colonnes.
                 print("⚠ Colonnes du nouveau résumé absentes (lancer database/migration_005_resume.sql) : "
@@ -612,10 +616,11 @@ def _fiche(themes: list[str]) -> dict:
                 },
             },
             "type_etude": {"type": "string", "enum": TYPES_ETUDE["science"] + TYPES_ETUDE["tech"]},
+            "revue": {"type": "string"},
             "theme": {"type": "string", "enum": themes},
             "importance": {"type": "integer", "enum": [1, 2, 3, 4, 5]},
         },
-        "required": ["title", "avant", "decouverte", "apres", "mots", "type_etude", "theme", "importance"],
+        "required": ["title", "avant", "decouverte", "apres", "mots", "type_etude", "revue", "theme", "importance"],
         "additionalProperties": False,
     }
 
@@ -973,36 +978,86 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
     return choisis, conso
 
 
-def lire_debut_page(art: dict, n: int = 1800) -> None:
-    """Amélioration 6 : si le flux ne donne qu'un court extrait, on lit le début de la
-    page de l'article (chapeau et premiers paragraphes) pour que Claude puisse juger."""
-    if len(art.get("text", "")) >= 700:
-        return
+# Revues scientifiques reconnues : sert à repérer « publié dans … » dans le texte
+# quand la page ne donne pas la revue dans ses métadonnées.
+_REVUE_TEXTE = re.compile(
+    r"(?i:(?:published|appear(?:s|ed)?|reported|described)\s+(?:today\s+|online\s+|this\s+week\s+)?in\s+"
+    r"(?:the\s+)?(?:journal\s+)?)((?:Physical Review [A-Z][A-Za-z]*|Nature(?: [A-Z][a-z]+){0,2}|Science(?: [A-Z][a-z]+){0,2}"
+    r"|Cell(?: [A-Z][a-z]+){0,2}|The Lancet(?: [A-Z][a-z]+){0,2}|PNAS|Proceedings of the National Academy of Sciences"
+    r"|JAMA(?: [A-Z][a-z]+){0,2}|New England Journal of Medicine|NEJM|The BMJ|BMJ|PLOS [A-Z][a-z]+(?: [A-Z][a-z]+)?"
+    r"|Astrophysical Journal(?: Letters)?|Astronomy & Astrophysics|Monthly Notices of the Royal Astronomical Society"
+    r"|Nature Communications|Communications [A-Z][a-z]+|Scientific Reports|eLife|Current Biology|Neuron|Joule"
+    r"|Advanced Materials|Angewandte Chemie|Journal of the American Chemical Society|ACS [A-Z][A-Za-z ]{2,30}?"
+    r"|Geophysical Research Letters|Science Advances|Lancet [A-Z][a-z]+|Optica|Light: Science & Applications))")
+_REVUE_TEXTE_FR = re.compile(
+    r"(?i:(?:publi[ée]e?s?|parue?s?)\s+(?:ce\s+\w+\s+|aujourd'hui\s+)?dans\s+(?:la\s+revue\s+|le\s+journal\s+)?)"
+    r"((?:Physical Review [A-Z][A-Za-z]*|Nature(?: [A-Z][a-z]+){0,2}|Science(?: [A-Z][a-z]+){0,2}|Cell|The Lancet"
+    r"|PNAS|JAMA|PLOS [A-Z][a-z]+|Nature Communications|Science Advances|Astronomy & Astrophysics))")
+
+
+def _meta(page: str, *noms: str) -> str:
+    for nom in noms:
+        m = (re.search(r'<meta[^>]+(?:property|name)=["\']' + re.escape(nom) + r'["\'][^>]+content=["\']([^"\']{2,300})', page, re.I)
+             or re.search(r'<meta[^>]+content=["\']([^"\']{2,300})["\'][^>]+(?:property|name)=["\']' + re.escape(nom) + r'["\']', page, re.I))
+        if m:
+            return " ".join(html.unescape(m.group(1)).split())
+    return ""
+
+
+def lire_page(art: dict, n: int = 6000) -> None:
+    """Qualité des résumés (02/11) : on lit l'article lui-même (chapeau et paragraphes,
+    6 000 caractères au plus) au lieu du seul extrait du flux, pour que Claude ait les
+    chiffres, la méthode et les limites. On repère aussi la revue scientifique où
+    l'étude est publiée (Physical Review Letters, Nature…) et son DOI, pour que l'app
+    les affiche à part au lieu de les mélanger avec le média qui en parle.
+    Coût : environ 1 000 mots de plus à lire par article examiné (≈ 0,001 $ par passage)."""
     try:
         r = requests.get(art["url"], timeout=20, headers={"User-Agent": USER_AGENT})
         if not r.ok or "html" not in r.headers.get("content-type", ""):
             return
-        page = r.text[:800000]
+        page = r.text[:1500000]
     except Exception:
         return
+    # Revue et DOI (métadonnées des pages d'éditeurs et de nombreux sites d'actualité)
+    revue = _meta(page, "citation_journal_title", "prism.publicationName", "dc.source", "citation_conference_title")
+    doi = _meta(page, "citation_doi", "dc.identifier", "prism.doi")
+    if not doi:
+        m = re.search(r"https?://(?:dx\.)?doi\.org/(10\.\d{4,9}/[^\s\"'<>]+)", page)
+        doi = m.group(1) if m else ""
+    doi = re.sub(r"^(?:doi:|https?://(?:dx\.)?doi\.org/)", "", doi.strip(), flags=re.I).rstrip(".,;)")
+    if doi and re.match(r"^10\.\d{4,9}/\S+$", doi):
+        art["doi"] = doi[:200]
     morceaux = []
-    for nom in ("og:description", "description", "dc.description", "citation_abstract"):
-        m = (re.search(r'<meta[^>]+(?:property|name)=["\']' + re.escape(nom) + r'["\'][^>]+content=["\']([^"\']{40,})', page, re.I)
-             or re.search(r'<meta[^>]+content=["\']([^"\']{40,})["\'][^>]+(?:property|name)=["\']' + re.escape(nom) + r'["\']', page, re.I))
-        if m:
-            morceaux.append(html.unescape(m.group(1)))
-            break
-    corps = re.sub(r"(?is)<(script|style|nav|header|footer|aside)[^>]*>.*?</\1>", " ", page)
-    for p in re.findall(r"(?is)<p[^>]*>(.*?)</p>", corps):
-        t = nettoyer_texte(p, 2000)
-        if len(t) >= 80 and not re.search(r"cookie|subscribe|newsletter|copyright|all rights reserved", t, re.I):
-            morceaux.append(t)
+    desc = _meta(page, "og:description", "description", "dc.description", "citation_abstract")
+    if len(desc) >= 40:
+        morceaux.append(desc)
+    corps = re.sub(r"(?is)<(script|style|nav|header|footer|aside|figure|form)[^>]*>.*?</\1>", " ", page)
+    for para in re.findall(r"(?is)<p[^>]*>(.*?)</p>", corps):
+        t = nettoyer_texte(para, 3000)
+        if len(t) >= 80 and not re.search(
+                r"cookie|subscribe|newsletter|copyright|all rights reserved|sign up|inscri|abonn|"
+                r"this article (?:is|was) republished|more information:|provided by|explore further", t, re.I):
+            if t not in morceaux:
+                morceaux.append(t)
         if sum(len(x) for x in morceaux) > n:
             break
     texte = nettoyer_texte(" ".join(morceaux), n)
     if len(texte) > len(art.get("text", "")):
         art["text"] = texte
         art["page_lue"] = True
+    if not revue:
+        m = _REVUE_TEXTE.search(nettoyer_texte(corps, 400000)) or _REVUE_TEXTE_FR.search(nettoyer_texte(corps, 400000))
+        if m:
+            revue = m.group(1).strip()
+    # La revue ne doit pas être le média lui-même (ex. une page de Nature News)
+    if revue and revue.lower() not in art.get("source_name", "").lower():
+        art["revue_detectee"] = revue[:120]
+
+
+def lire_debut_page(art: dict) -> None:
+    """Ancienne lecture courte, gardée pour « À venir » (même coût qu'avant)."""
+    if len(art.get("text", "")) < 700:
+        lire_page(art, 1800)
 
 
 def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, dict, str]:
@@ -1011,7 +1066,7 @@ def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, 
         max_tokens=8000,   # le modèle peut réfléchir avant la fiche
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
-            article, sujets["science"], sujets["tech"])}],
+            article, sujets["science"], sujets["tech"])}],   # listes « déjà publié » en cache
         output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}},
     )
     u = rep.usage
@@ -1056,12 +1111,8 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     resume = " ".join(x for x in (avant, decouverte, apres) if x) or str(fiche.get("summary", "")).strip()
     if not titre or not resume:
         raise ValueError(f"fiche {FIL_NOM[feed]} sans titre ou sans résumé")
-    mots = []
-    for m in fiche.get("mots") or []:
-        if isinstance(m, dict):
-            mot, definition = str(m.get("mot", "")).strip(), str(m.get("definition", "")).strip()
-            if mot and definition and len(mots) < 2:
-                mots.append({"mot": mot[:60], "definition": definition[:300]})
+    mots = mots_valides(fiche.get("mots") or [], " ".join((titre, avant, decouverte, apres)))
+    revue = nettoyer_revue(str(fiche.get("revue", "")), art)
     type_etude = str(fiche.get("type_etude", "")).strip()
     if type_etude not in TYPES_ETUDE[feed]:
         type_etude = None
@@ -1085,12 +1136,68 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
         # Nouveau résumé (maquette 33) : colonnes de la migration 005.
         "avant": avant or None, "decouverte": decouverte or None, "apres": apres or None,
         "mots": mots, "type_etude": type_etude,
+        # Revue scientifique de l'étude et DOI (migration 010) : affichés à part du média
+        "revue": revue or None, "doi": art.get("doi") or None,
         # Autres médias qui parlent de la même avancée (migration 007, maquette 49 B1)
         "autres_sources": art.get("autres_sources_det") or [],
     }
 
 
 COLONNES_005 = ("avant", "decouverte", "apres", "mots", "type_etude")
+COLONNES_010 = ("revue", "doi")
+
+
+def _sans_accents(t: str) -> str:
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", t.lower()) if unicodedata.category(c) != "Mn")
+
+
+def mots_valides(mots: list, texte_fiche: str) -> list[dict]:
+    """Contrôle gratuit des « mots à connaître » (02/11) : le mot doit apparaître dans la
+    fiche (à l'accord près), la définition ne doit pas le répéter ni dépasser 30 mots,
+    et on écarte les mots que tout le monde connaît. 2 mots au plus."""
+    texte = _sans_accents(texte_fiche)
+    trop_simples = {"cellule", "gene", "virus", "bacterie", "planete", "etoile", "galaxie", "atome",
+                    "molecule", "energie", "robot", "intelligence artificielle", "ia", "ordinateur",
+                    "batterie", "satellite", "telescope", "cancer", "vaccin", "adn", "climat", "ocean",
+                    "proteine", "cerveau", "neurone", "medicament", "laser", "fusee", "algorithme"}
+    gardes = []
+    for m in mots:
+        if not isinstance(m, dict):
+            continue
+        mot = " ".join(str(m.get("mot", "")).split()).strip(" .,:;«»\"")
+        definition = " ".join(str(m.get("definition", "")).split())
+        if not mot or not definition or len(definition.split()) > 30:
+            continue
+        cle = _sans_accents(mot)
+        if cle in trop_simples or cle in {_sans_accents(g["mot"]) for g in gardes}:
+            continue
+        # présent dans la fiche (racine de chaque mot : accord et pluriel tolérés)
+        racines = [w[:max(4, len(w) - 2)] for w in re.findall(r"\w+", cle)]
+        if not racines or not all(re.search(r"\b" + re.escape(r), texte) for r in racines):
+            continue
+        # la définition ne reprend pas le mot lui-même
+        if all(re.search(r"\b" + re.escape(r), _sans_accents(definition)) for r in racines):
+            continue
+        gardes.append({"mot": mot[:60], "definition": definition[:300]})
+        if len(gardes) == 2:
+            break
+    return gardes
+
+
+def nettoyer_revue(revue: str, art: dict) -> str:
+    """Revue scientifique de l'étude : celle repérée sur la page passe d'abord, sinon celle
+    donnée par Claude. Jamais le média lui-même, jamais une phrase."""
+    for r in (art.get("revue_detectee") or "", revue):
+        r = " ".join(r.split()).strip(" .,;:«»\"'")
+        if not r or len(r) > 120 or len(r.split()) > 12:
+            continue
+        if r.lower() in art.get("source_name", "").lower() or art.get("source_name", "").lower() in r.lower():
+            continue
+        if r.lower() in {"aucune", "none", "inconnue", "unknown", "n/a"}:
+            continue
+        return r
+    return ""
 
 
 def melanger(listes: list[list[dict]]) -> list[dict]:
@@ -1229,7 +1336,7 @@ def main() -> int:
         deja_juge = art.pop("_reponse", None)   # jugé au 1er tour mais son fil était plein
         if deja_juge is None:
             appels += 1
-            lire_debut_page(art)                    # amélioration 6
+            lire_page(art)                          # article entier (qualité des résumés, 02/11)
         try:
             if deja_juge is not None:
                 rep, diag = deja_juge, ""
