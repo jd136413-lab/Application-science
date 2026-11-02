@@ -4,6 +4,9 @@
 
 import 'dart:ui' show PlatformDispatcher;
 
+import 'etat.dart';
+import 'pays_noms.dart';
+
 const Map<String, String> _regionDuPays = {
   // Europe (Russie et Turquie comprises)
   'FR': 'europe', 'BE': 'europe', 'CH': 'europe', 'LU': 'europe', 'MC': 'europe', 'AD': 'europe',
@@ -69,6 +72,19 @@ const Map<String, String> _regionDuPays = {
   'GY': 'amerique_sud', 'SR': 'amerique_sud', 'GF': 'amerique_sud',
 };
 
+/// Pays choisi dans Réglages → Pays, sinon celui du téléphone.
+String? paysActuel() => etat.paysChoisi ?? paysDuTelephone();
+
+/// Tous les pays proposés dans Réglages → Pays.
+Iterable<String> get tousLesPays => _regionDuPays.keys;
+
+/// Nom du pays dans la langue de l'app.
+String nomPays(String code) => nomsPays[etat.langue]?[code] ?? nomsPays['en']?[code] ?? code;
+
+/// Drapeau (émoji) d'un code pays.
+String drapeau(String code) =>
+    code.length == 2 ? String.fromCharCodes(code.toUpperCase().codeUnits.map((c) => 0x1F1E6 + c - 65)) : '';
+
 /// Pays du téléphone (code à 2 lettres, ex. « FR »), ou null s'il n'est pas réglé.
 String? paysDuTelephone() {
   try {
@@ -82,7 +98,7 @@ String? paysDuTelephone() {
 
 /// Région du monde du téléphone (null si inconnue).
 String? regionDuTelephone() {
-  final p = paysDuTelephone();
+  final p = paysActuel();
   return p == null ? null : _regionDuPays[p];
 }
 

@@ -21,6 +21,7 @@ class EtatApp extends ChangeNotifier {
   Set<String> domaines = {}; // codes de familles choisis (vide = tout)
   ThemeMode theme = ThemeMode.system;
   String? langueChoisie; // null = suivre la langue du téléphone
+  String? paysChoisi; // null = pays du téléphone (Réglages → Pays, visibilité des événements du ciel)
   final Map<String, Map<String, dynamic>> _favoris = {}; // id → données
   int ouvertures = 0; // nombre de lancements de l'app (pour la demande d'avis)
   int favorisAjoutes = 0;
@@ -69,6 +70,8 @@ class EtatApp extends ChangeNotifier {
       theme = ThemeMode.values.firstWhere((t) => t.name == p.getString('theme'), orElse: () => ThemeMode.system);
       final l = p.getString('langue');
       langueChoisie = languesDisponibles.containsKey(l) ? l : null;
+      final pc = p.getString('pays') ?? '';
+      paysChoisi = pc.length == 2 ? pc : null;
       notifActives = p.getBool('notif_actives') ?? false;
       notifPropositions = p.getInt('notif_propositions') ?? 0;
       accueilMagazine = p.getBool('accueil_magazine') ?? true;
@@ -160,6 +163,7 @@ class EtatApp extends ChangeNotifier {
     p.setStringList('domaines', domaines.toList());
     p.setString('theme', theme.name);
     p.setString('langue', langueChoisie ?? '');
+    p.setString('pays', paysChoisi ?? '');
     p.setString('favoris', jsonEncode(_favoris.values.toList()));
     p.setStringList('masquees', masquees);
     p.setStringList('lues', lues);
@@ -181,6 +185,13 @@ class EtatApp extends ChangeNotifier {
     p.setString('notif_fil', notifFil);
     p.setInt('notif_min', notifMin);
     p.setStringList('notif_par_famille', [for (final e in notifParFamille.entries) '${e.key}:${e.value}']);
+  }
+
+  /// Réglages → Pays (null = automatique).
+  void changerPays(String? code) {
+    paysChoisi = code;
+    _enregistrer();
+    notifyListeners();
   }
 
   /// Retient qu'un niveau d'importance a été expliqué (bulle de la fiche).

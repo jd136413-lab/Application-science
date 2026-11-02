@@ -9,6 +9,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'memoire.dart';
 import 'premier_lancement.dart';
+import 'regions_monde.dart';
 import 'presentation.dart';
 import 'reglages.dart';
 import 'retours.dart';
@@ -112,6 +113,24 @@ class EcranReglages extends StatelessWidget {
                         etat.langueChoisie == null
                             ? '${tr('Automatique')} · ${languesDisponibles[etat.langue]}'
                             : languesDisponibles[etat.langue]!,
+                        style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                  ]),
+                ),
+                Icon(Icons.chevron_right_rounded, color: p.texte),
+              ]),
+            ),
+            const SizedBox(height: 10),
+            bloc(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const EcranPays())),
+              child: Row(children: [
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(tr('Pays'), style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+                    const SizedBox(height: 2),
+                    Text(
+                        etat.paysChoisi == null
+                            ? '${tr('Automatique')}${paysDuTelephone() != null ? ' · ${drapeau(paysDuTelephone()!)} ${nomPays(paysDuTelephone()!)}' : ''}'
+                            : '${drapeau(etat.paysChoisi!)} ${nomPays(etat.paysChoisi!)}',
                         style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
                   ]),
                 ),
@@ -316,6 +335,93 @@ class EcranLangue extends StatelessWidget {
   }
 }
 
+
+/// Réglages → Pays (demande de Maxime, 02/11) : sert à dire si un événement du ciel
+/// (éclipse, étoiles filantes…) est visible chez vous. Automatique = pays du téléphone.
+class EcranPays extends StatefulWidget {
+  const EcranPays({super.key});
+
+  @override
+  State<EcranPays> createState() => _EcranPaysState();
+}
+
+class _EcranPaysState extends State<EcranPays> {
+  String _recherche = '';
+
+  static String _simple(String t) => t
+      .toLowerCase()
+      .replaceAll(RegExp('[àâä]'), 'a')
+      .replaceAll(RegExp('[éèêë]'), 'e')
+      .replaceAll(RegExp('[îï]'), 'i')
+      .replaceAll(RegExp('[ôö]'), 'o')
+      .replaceAll(RegExp('[ùûü]'), 'u')
+      .replaceAll('ç', 'c');
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return ListenableBuilder(
+      listenable: etat,
+      builder: (context, _) {
+        final liste = tousLesPays.toList()..sort((a, b) => _simple(nomPays(a)).compareTo(_simple(nomPays(b))));
+        final filtre = _recherche.isEmpty
+            ? liste
+            : liste.where((c) => _simple(nomPays(c)).contains(_simple(_recherche)) || c.toLowerCase() == _recherche.toLowerCase()).toList();
+        final tel = paysDuTelephone();
+        Widget ligne(String? code, String nom, {String? detail}) {
+          final choisi = etat.paysChoisi == code;
+          return ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+            title: Text(nom, style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+            subtitle: detail == null ? null : Text(detail, style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+            trailing: choisi ? Icon(Icons.check_rounded, color: p.texte) : null,
+            onTap: () {
+              etat.changerPays(code);
+              Navigator.of(context).pop();
+            },
+          );
+        }
+
+        return Scaffold(
+          backgroundColor: p.fond,
+          appBar: AppBar(
+            backgroundColor: p.fond,
+            foregroundColor: p.texte,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            title: Text(tr('Pays'), style: police(policeTitres, taille: 20, graisse: FontWeight.w800, couleur: p.texte)),
+          ),
+          body: ListView(children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 4, 20, 10),
+              child: Text(tr('Sert à vous dire si une éclipse ou une pluie d’étoiles filantes est visible chez vous. Les heures suivent toujours l’horloge du téléphone.'),
+                  style: police(policeTexte, taille: 14, couleur: p.texteDiscret, hauteur: 1.45)),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: TextField(
+                onChanged: (t) => setState(() => _recherche = t.trim()),
+                style: police(policeTexte, taille: 15, couleur: p.texte),
+                decoration: InputDecoration(
+                  hintText: tr('Rechercher un pays'),
+                  prefixIcon: Icon(Icons.search_rounded, color: p.texteDiscret),
+                  filled: true,
+                  fillColor: p.carte,
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide.none),
+                ),
+              ),
+            ),
+            if (_recherche.isEmpty) ...[
+              ligne(null, tr('Automatique (pays du téléphone)'), detail: tel == null ? null : '${drapeau(tel)} ${nomPays(tel)}'),
+              Divider(color: p.bordure, height: 1),
+            ],
+            for (final c in filtre) ligne(c, '${drapeau(c)}  ${nomPays(c)}'),
+          ]),
+        );
+      },
+    );
+  }
+}
 
 /// Feuille « Contenu masqué » : réafficher les avancées masquées et les sources.
 void _ouvrirMasques(BuildContext context) {

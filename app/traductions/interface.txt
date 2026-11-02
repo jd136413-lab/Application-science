@@ -8890,3 +8890,87 @@ ja 日付が決まりました
 ko 날짜가 정해졌어요
 id Tanggalnya sudah pasti
 vi Đã có ngày chính xác
+
+@ Pays
+en Country
+es País
+pt País
+de Land
+it Paese
+nl Land
+pl Kraj
+ru Страна
+uk Країна
+tr Ülke
+ar البلد
+hi देश
+bn দেশ
+ur ملک
+zh 国家/地区
+ja 国・地域
+ko 국가
+id Negara
+vi Quốc gia
+
+@ Rechercher un pays
+en Search for a country
+es Buscar un país
+pt Pesquisar um país
+de Land suchen
+it Cerca un paese
+nl Zoek een land
+pl Szukaj kraju
+ru Найти страну
+uk Знайти країну
+tr Ülke ara
+ar ابحث عن بلد
+hi देश खोजें
+bn দেশ খুঁজুন
+ur ملک تلاش کریں
+zh 搜索国家/地区
+ja 国・地域を検索
+ko 국가 검색
+id Cari negara
+vi Tìm quốc gia
+
+@ Automatique (pays du téléphone)
+en Automatic (phone's country)
+es Automático (país del teléfono)
+pt Automático (país do telefone)
+de Automatisch (Land des Telefons)
+it Automatico (paese del telefono)
+nl Automatisch (land van de telefoon)
+pl Automatycznie (kraj telefonu)
+ru Автоматически (страна телефона)
+uk Автоматично (країна телефона)
+tr Otomatik (telefonun ülkesi)
+ar تلقائي (بلد الهاتف)
+hi अपने-आप (फ़ोन का देश)
+bn স্বয়ংক্রিয় (ফোনের দেশ)
+ur خودکار (فون کا ملک)
+zh 自动（手机所在国家/地区）
+ja 自動（端末の国・地域）
+ko 자동(휴대폰 국가)
+id Otomatis (negara ponsel)
+vi Tự động (quốc gia của điện thoại)
+
+@ Sert à vous dire si une éclipse ou une pluie d’étoiles filantes est visible chez vous. Les heures suivent toujours l’horloge du téléphone.
+en Used to tell you whether an eclipse or a meteor shower is visible where you are. Times always follow your phone's clock.
+es Sirve para decirte si un eclipse o una lluvia de estrellas es visible donde estás. Las horas siguen siempre el reloj del teléfono.
+pt Serve para dizer se um eclipse ou uma chuva de meteoros é visível onde você está. Os horários seguem sempre o relógio do telefone.
+de Damit wir Ihnen sagen können, ob eine Finsternis oder ein Sternschnuppenstrom bei Ihnen sichtbar ist. Uhrzeiten folgen immer der Uhr des Telefons.
+it Serve a dirti se un'eclissi o una pioggia di stelle cadenti è visibile da te. Gli orari seguono sempre l'orologio del telefono.
+nl Hiermee vertellen we of een eclips of meteorenregen bij u zichtbaar is. Tijden volgen altijd de klok van de telefoon.
+pl Pozwala powiedzieć, czy zaćmienie lub rój meteorów będzie u Ciebie widoczny. Godziny zawsze są według zegara telefonu.
+ru Нужно, чтобы сказать, видно ли у вас затмение или звездопад. Время всегда по часам телефона.
+uk Потрібно, щоб сказати, чи видно у вас затемнення або зорепад. Час завжди за годинником телефона.
+tr Bir tutulmanın veya meteor yağmurunun bulunduğunuz yerden görünüp görünmediğini söylemek için. Saatler her zaman telefonun saatine göredir.
+ar يُستخدم لإخبارك إن كان الكسوف أو زخّة الشهب مرئيًا من مكانك. تتبع الأوقات دائمًا ساعة الهاتف.
+hi इससे हम बताते हैं कि ग्रहण या उल्का वर्षा आपके यहाँ से दिखेगी या नहीं। समय हमेशा फ़ोन की घड़ी के अनुसार होता है।
+bn গ্রহণ বা উল্কাবৃষ্টি আপনার এলাকা থেকে দেখা যাবে কিনা জানাতে এটি লাগে। সময় সবসময় ফোনের ঘড়ি অনুযায়ী।
+ur اس سے ہم بتاتے ہیں کہ گرہن یا شہابیوں کی بارش آپ کے ہاں نظر آئے گی یا نہیں۔ وقت ہمیشہ فون کی گھڑی کے مطابق ہوتا ہے۔
+zh 用于告诉您日食或流星雨在您所在地是否可见。时间始终以手机时钟为准。
+ja 日食や流星群がお住まいの地域で見えるかをお知らせするために使います。時刻は常に端末の時計に従います。
+ko 일식이나 유성우가 계신 곳에서 보이는지 알려 드리는 데 쓰여요. 시간은 항상 휴대폰 시계를 따릅니다.
+id Dipakai untuk memberi tahu apakah gerhana atau hujan meteor terlihat dari tempat Anda. Jam selalu mengikuti jam ponsel.
+vi Dùng để cho bạn biết nhật thực hay mưa sao băng có thấy được ở nơi bạn không. Giờ luôn theo đồng hồ điện thoại.
