@@ -1051,8 +1051,9 @@ def lire_page(art: dict, n: int = 6000) -> None:
         # Encadrés des sites d'actualité : « Journal information: Physical Review Letters »
         # (Phys.org, Medical Xpress, Tech Xplore) ou « Journal Reference: … <i>Nature</i> » (ScienceDaily)
         m = (re.search(r"(?is)Journal information:\s*(?:<[^>]+>\s*)*([^<]{3,100})", corps)
-             or re.search(r"(?is)Journal Reference[s]?:.{0,600}?<i>([^<]{3,100})</i>", corps)
-             or re.search(r"(?is)More information:.{0,500}?<i>([^<]{3,100})</i>", corps))
+             or re.search(r"(?is)Journal Reference[s]?:.{0,800}?<(?:i|em)>([^<]{3,100})</(?:i|em)>", corps)
+             or re.search(r"(?is)id=[\"']journal_references[\"'].{0,800}?<(?:i|em)>([^<]{3,100})</(?:i|em)>", page)
+             or re.search(r"(?is)More information:.{0,500}?<(?:i|em)>([^<]{3,100})</(?:i|em)>", corps))
         if m:
             revue = " ".join(html.unescape(m.group(1)).split()).rstrip(" .,;")
     if not revue:
