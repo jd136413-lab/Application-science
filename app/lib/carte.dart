@@ -34,26 +34,8 @@ class CarteAvancee extends StatelessWidget {
     final majeur = avancee.importance == 4;
     final sombre = estSombre(context);
     final texte = lue ? p.texteDiscret : p.texte;
-    // Cartes mises en valeur : fond teinté léger + bordure + lueur (maquette 22, version 2).
-    // « Rupture » (5 étoiles) en doré ; « Majeur » (4 étoiles) en cuivre (maquette 41, choix 6).
-    BoxDecoration enValeur(Color fondClair, Color fondSombre, Color bordClair, Color bordSombre, Color lueur) =>
-        BoxDecoration(
-          borderRadius: BorderRadius.circular(arrondiCarte),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: const [0, 0.7],
-            colors: [sombre ? fondSombre : fondClair, p.carte],
-          ),
-          border: Border.all(color: sombre ? bordSombre : bordClair, width: 1.5),
-          boxShadow: [BoxShadow(color: lueur.withValues(alpha: 0.30), blurRadius: 22, offset: const Offset(0, 6))],
-        );
-    final decoration = rupture
-        ? enValeur(const Color(0xFFFFF6D6), const Color(0xFF3A3012), const Color(0xFFF2D27A), const Color(0xFF6B5A1A),
-            couleurEtoiles)
-        : majeur
-        ? enValeur(const Color(0xFFFDEBDD), const Color(0xFF33231A), const Color(0xFFE9B68F), const Color(0xFF7A4C2C),
-            const Color(0xFFC86E32))
+    final decoration = (rupture || majeur)
+        ? decorationEnValeur(context, avancee.importance, arrondiCarte)!
         : BoxDecoration(
             color: lue ? (sombre ? const Color(0xFF15151B) : const Color(0xFFECEBF1)) : p.carte,
             borderRadius: BorderRadius.circular(arrondiCarte),
@@ -347,3 +329,36 @@ class _SqueletteCarteState extends State<SqueletteCarte> with SingleTickerProvid
     );
   }
 }
+
+
+/// Cartes mises en valeur : fond teinté léger + bordure + lueur (maquette 22, version 2).
+/// « Rupture » (5 étoiles) en doré ; « Majeur » (4 étoiles) en cuivre (maquette 41, choix 6).
+/// Utilisée par la carte du fil et par l'accueil magazine (sauf « À la une »). Null sous 4 étoiles.
+BoxDecoration? decorationEnValeur(BuildContext context, int importance, double rayon) {
+  if (importance < 4) return null;
+  final p = palette(context);
+  final sombre = estSombre(context);
+  final rupture = importance >= 5;
+  final fond = rupture
+      ? (sombre ? const Color(0xFF3A3012) : const Color(0xFFFFF6D6))
+      : (sombre ? const Color(0xFF33231A) : const Color(0xFFFDEBDD));
+  final bord = rupture
+      ? (sombre ? const Color(0xFF6B5A1A) : const Color(0xFFF2D27A))
+      : (sombre ? const Color(0xFF7A4C2C) : const Color(0xFFE9B68F));
+  final lueur = rupture ? couleurEtoiles : const Color(0xFFC86E32);
+  return BoxDecoration(
+    borderRadius: BorderRadius.circular(rayon),
+    gradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      stops: const [0, 0.7],
+      colors: [fond, p.carte],
+    ),
+    border: Border.all(color: bord, width: 1.5),
+    boxShadow: [BoxShadow(color: lueur.withValues(alpha: 0.30), blurRadius: 22, offset: const Offset(0, 6))],
+  );
+}
+
+/// Couleur du rang dans « Le top de la semaine » : cuivre (4★), doré (5★), sinon null.
+Color? couleurRangEnValeur(int importance) =>
+    importance >= 5 ? couleurEtoiles : importance == 4 ? const Color(0xFFC86E32) : null;

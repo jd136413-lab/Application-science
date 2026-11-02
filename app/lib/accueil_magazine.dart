@@ -567,10 +567,14 @@ class _Carrousel extends StatelessWidget {
         itemBuilder: (context, i) {
           final a = liste[i];
           final nouvelle = etat.estNouvelle(a);
+          // Majeur (4★) en cuivre, Rupture (5★) en doré, comme dans les listes (choix de Maxime, 02/11)
+          final enValeur = decorationEnValeur(context, a.importance, 18);
           return SizedBox(
             width: 172,
-            child: Material(
-              color: p.carte,
+            child: DecoratedBox(
+              decoration: enValeur ?? const BoxDecoration(),
+              child: Material(
+              color: enValeur == null ? p.carte : Colors.transparent,
               borderRadius: BorderRadius.circular(18),
               clipBehavior: Clip.antiAlias,
               child: InkWell(
@@ -601,6 +605,7 @@ class _Carrousel extends StatelessWidget {
                 ),
               ),
             ),
+            ),
           );
         },
       ),
@@ -618,17 +623,22 @@ class _LigneTop extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = palette(context);
     final f = familleDe(avancee.famille);
+    // Majeur (4★) en cuivre, Rupture (5★) en doré (choix de Maxime, 02/11)
+    final enValeur = decorationEnValeur(context, avancee.importance, 14);
+    final couleurRang = couleurRangEnValeur(avancee.importance);
     return InkWell(
       onTap: onTap,
       onLongPress: () => ouvrirMenuCarte(context, avancee),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 11),
-        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: p.bordure))),
+        padding: EdgeInsets.symmetric(vertical: 11, horizontal: enValeur == null ? 0 : 10),
+        margin: EdgeInsets.symmetric(vertical: enValeur == null ? 0 : 6),
+        decoration: enValeur ?? BoxDecoration(border: Border(bottom: BorderSide(color: p.bordure))),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
             width: 34,
             child: Text('$rang',
-                style: police(policeTitres, taille: 34, graisse: FontWeight.w800, couleur: p.bordure, hauteur: 0.95)),
+                style: police(policeTitres,
+                    taille: 34, graisse: FontWeight.w800, couleur: couleurRang ?? p.bordure, hauteur: 0.95)),
           ),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

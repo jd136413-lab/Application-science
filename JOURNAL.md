@@ -288,3 +288,4 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
   2. Vérification des chiffres : chaque nombre du résumé (sauf 0 à 10) doit figurer dans l'article lu, sinon alerte.
   3. Contrôles de forme : longueur de chaque paragraphe, formules creuses, « Avant » qui répète le titre, découverte sans fait précis, fiche écrite sur le seul extrait. Alertes dans l'annotation « Contrôle qualité » de chaque passage (rien n'est bloqué).
   4. Trois fiches modèles (Webb / WASP-39b, lécanémab / Alzheimer, Google Willow) + mauvais exemples dans les consignes en cache (≈ 0 $).
+- 02/11 21 h 10 — Accueil magazine (choix de Maxime) : cartes ★★★★ en cuivre et ★★★★★ en doré aussi dans les carrousels (Nouveau pour vous, Ce mois-ci…) et dans « Le top de la semaine » (ligne teintée, numéro cuivre ou doré) ; « À la une » garde la couleur du domaine. Style commun : `decorationEnValeur` dans carte.dart. Poussé sans compiler.
