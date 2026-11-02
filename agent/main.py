@@ -1488,8 +1488,12 @@ def main() -> int:
 
     # --- Onglet « À venir » : événements datés repérés au tri + « C'est arrivé » (a_venir.py) ---
     familles_tech = {"mobile", "computing", "ai_software", "mobility", "aerospace", "energy_home", "gaming", "tech_other"}
-    cout_avenir = a_venir.passage_agent(db, client, modele["id"], ajoutes, log, sans_et_apres, modele["prix"],
-                                        set(FAMILLES_THEMES) - familles_tech, familles_tech, lire_debut_page)
+    try:
+        cout_avenir = a_venir.passage_agent(db, client, modele["id"], ajoutes, log, sans_et_apres, modele["prix"],
+                                            set(FAMILLES_THEMES) - familles_tech, familles_tech, lire_debut_page)
+    except Exception as ex:                      # l'onglet « À venir » ne doit jamais bloquer le passage
+        log(f"⚠ À venir : passage interrompu ({ex.__class__.__name__}: {str(ex)[:120]})")
+        cout_avenir = 0.0
 
     # --- Coût (cache : écriture = 1,25 × le prix d'entrée, lecture = 0,1 ×) ---
     p_in, p_out = modele["prix"]
