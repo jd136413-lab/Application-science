@@ -8198,26 +8198,26 @@ ko 취소됨
 id Dibatalkan
 vi Đã hủy
 
-@ Arrivée d’une sonde
-en Probe arrival
-es Llegada de una sonda
-pt Chegada de uma sonda
-de Ankunft einer Sonde
-it Arrivo di una sonda
-nl Aankomst van een sonde
-pl Przybycie sondy
-ru Прибытие зонда
-uk Прибуття зонда
-tr Sondanın varışı
-ar وصول مسبار
-hi यान का पहुँचना
-bn মহাকাশযানের পৌঁছানো
-ur خلائی جہاز کی آمد
-zh 探测器抵达
-ja 探査機の到着
-ko 탐사선 도착
-id Kedatangan wahana
-vi Tàu thăm dò đến nơi
+@ Sonde spatiale
+en Space probe
+es Sonda espacial
+pt Sonda espacial
+de Raumsonde
+it Sonda spaziale
+nl Ruimtesonde
+pl Sonda kosmiczna
+ru Космический зонд
+uk Космічний зонд
+tr Uzay sondası
+ar مسبار فضائي
+hi अंतरिक्ष यान
+bn মহাকাশযান
+ur خلائی جہاز
+zh 太空探测器
+ja 宇宙探査機
+ko 우주 탐사선
+id Wahana antariksa
+vi Tàu thăm dò không gian
 
 @ Date précise pas encore annoncée. On la met dès qu’elle paraît.
 en Exact date not announced yet. We'll add it as soon as it's out.

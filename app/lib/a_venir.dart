@@ -183,7 +183,7 @@ class Evenement {
 
 const Map<String, String> nomsTypes = {
   'lancement': 'Lancement',
-  'arrivee': 'Arrivée d’une sonde',
+  'arrivee': 'Sonde spatiale',
   'ciel': 'Dans le ciel',
   'sortie': 'Sortie',
   'presentation': 'Présentation',

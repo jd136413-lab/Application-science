@@ -107,6 +107,10 @@ enum Visibilite { totale, partielle, aucune, inconnue }
 /// Ce que le téléphone peut voir d'un événement du ciel.
 Visibilite visibiliteIci(List<String> totale, List<String> partielle) {
   if (totale.isEmpty && partielle.isEmpty) return Visibilite.inconnue;
+  // Les listes peuvent contenir des pays (« ES ») pour être plus précises que les régions.
+  final pays = paysActuel();
+  if (pays != null && totale.contains(pays)) return Visibilite.totale;
+  if (pays != null && partielle.contains(pays)) return Visibilite.partielle;
   final r = regionDuTelephone();
   if (r == null) return Visibilite.inconnue;
   if (totale.contains(r)) return Visibilite.totale;

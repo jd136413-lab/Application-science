@@ -207,7 +207,15 @@ def _lire(db, depuis: date) -> list[dict] | None:
 
 
 def _sans_colonnes_nouvelles(ligne: dict) -> dict:
-    return {k: v for k, v in ligne.items() if k not in COLONNES_PRATIQUES}
+    """Avant la migration 011 : on retire les nouvelles colonnes et on ramène les nouveaux
+    types et la précision « avant » à ce que l'ancienne table accepte."""
+    l = {k: v for k, v in ligne.items() if k not in COLONNES_PRATIQUES}
+    if l.get("type") and l["type"] not in ("lancement", "sortie", "resultats", "ciel", "evenement", "annonce"):
+        l["type"] = "evenement"
+    if l.get("precision") == "avant":
+        l["precision"] = "mois"
+    l.pop("event_end", None)
+    return l
 
 
 def _inserer(db, ligne: dict) -> dict | None:
@@ -335,7 +343,9 @@ def _changement(db, e: dict, nouveau: dict, statut: str, raison: str, log) -> bo
     _modifier(db, e, champs)
     log(f"  ⏱ À venir : « {e['title'][:60]} » {ancienne} → {nouveau['event_date']}"
         f"{' ' + str(nouveau.get('event_time')) if nouveau.get('event_time') else ''} ({nouveau['precision']})")
-    if precision_avant != "jour" and plus_precis and not report:
+    if precision_avant == "jour" and nouveau["precision"] != "jour":
+        pass                                                      # date moins précise (correction) : pas d'alerte
+    elif precision_avant != "jour" and plus_precis and not report:
         notifications.envoyer_changement(e, "precise", log)       # « d'ici fin … » → date exacte
     elif date_change or heure_change:
         notifications.envoyer_changement(e, "reporte" if report else "avance", log)
@@ -381,8 +391,7 @@ def calendrier(db, existants: list[dict], futurs: list[dict], aujourd_hui: date,
             continue
         if ev.get("event_end", ev.get("event_date", "")) < aujourd_hui.isoformat():
             continue
-        if not place_libre(futurs, ev.get("family"), int(ev.get("importance") or 2)):
-            continue                       # domaine déjà bien servi : réessayé au prochain passage
+        # Pas de plafond par domaine ici : ce fichier est choisi à la main, déjà varié.
         try:
             cree = _inserer(db, ev)
             if cree:

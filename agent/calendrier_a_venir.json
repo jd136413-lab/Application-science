@@ -1,22 +1,36 @@
 {
-  "_lisez_moi": "Événements connus longtemps à l'avance pour l'onglet « À venir » (ajoutés par l'agent s'ils ne sont pas encore dans la base, et seulement s'ils sont à venir). Dates vérifiées le 01/11/2026 sur les sources indiquées. Pour en ajouter : copier un bloc, changer les valeurs, garder une adresse source_url différente pour chaque événement.",
+  "_lisez_moi": "Événements connus longtemps à l'avance pour l'onglet « À venir ». L'agent les ajoute s'ils ne sont pas encore dans la base, et met à jour ceux qui y sont quand ce fichier change (date, heure, infos pratiques). Dates vérifiées le 02/11/2026 sur les sources indiquées. Champs : event_utc = heure exacte en heure universelle (affichée à l'heure du téléphone) ; event_end = dernier jour ; precision = jour, mois ou avant (« d'ici fin … ») ; pratique = lignes « En pratique » (k = icône parmi lieu, heure, direction, voir, lune, direct, duree, repere, appareil, qui, prix, info) ; visible_regions / visible_partiel (ciel) = régions (europe, afrique_nord…) ou codes pays (FR, ES…). Garder une adresse source_url différente pour chaque événement.",
   "evenements": [
     {
       "title": "Climat : le grand sommet mondial de l'ONU s'ouvre en Turquie",
-      "prevu": "Les pays du monde se retrouvent à Antalya du 9 au 20 novembre pour la COP31, la conférence de l'ONU sur le climat.",
+      "prevu": "Les pays du monde se retrouvent à Antalya pour la COP31, la conférence de l'ONU sur le climat.",
       "pourquoi": "C'est là que se décident les efforts de chaque pays pour limiter le réchauffement.",
-      "type": "evenement",
+      "type": "sommet",
       "family": "environment",
       "feed": "science",
       "event_date": "2026-11-09",
+      "event_end": "2026-11-20",
       "precision": "jour",
       "importance": 3,
       "source_url": "https://unfccc.int/cop31",
-      "source_name": "ONU Climat (UNFCCC)"
+      "source_name": "ONU Climat (UNFCCC)",
+      "lieu": "Antalya, en Turquie",
+      "pratique": [
+        {
+          "k": "qui",
+          "t": "Qui",
+          "v": "Les délégations de près de 200 pays"
+        },
+        {
+          "k": "repere",
+          "t": "Moment clé",
+          "v": "L'accord final, attendu le dernier jour (souvent avec un ou deux jours de retard)"
+        }
+      ]
     },
     {
       "title": "Ciel : la pluie d'étoiles filantes des Léonides",
-      "prevu": "Autour de la nuit du 16 au 17 novembre, une dizaine d'étoiles filantes par heure, très rapides, surtout après minuit.",
+      "prevu": "Une dizaine d'étoiles filantes par heure, parmi les plus rapides de l'année, nées des poussières de la comète Tempel-Tuttle.",
       "pourquoi": "Un spectacle gratuit, visible à l'œil nu loin des lumières de la ville.",
       "type": "ciel",
       "family": "space",
@@ -25,12 +39,50 @@
       "precision": "jour",
       "importance": 2,
       "source_url": "https://www.amsmeteors.org/meteor-showers/meteor-shower-calendar/#leonides-2026",
-      "source_name": "American Meteor Society"
+      "source_name": "American Meteor Society",
+      "visible_regions": [
+        "europe",
+        "afrique_nord",
+        "afrique_ouest",
+        "afrique_centre_est",
+        "moyen_orient",
+        "asie_centrale_sud",
+        "asie_est",
+        "asie_sud_est",
+        "amerique_nord",
+        "amerique_centrale",
+        "afrique_australe",
+        "oceanie",
+        "amerique_sud"
+      ],
+      "visible_texte": "Partout dans le monde, mieux depuis l'hémisphère nord",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Quand regarder",
+          "v": "Nuit du 16 au 17 novembre, après minuit jusqu'à l'aube, heure de chez vous"
+        },
+        {
+          "k": "direction",
+          "t": "Où regarder",
+          "v": "N'importe où dans le ciel ; elles semblent venir de l'est"
+        },
+        {
+          "k": "voir",
+          "t": "Comment",
+          "v": "À l'œil nu, loin des lumières, 20 minutes pour habituer les yeux"
+        },
+        {
+          "k": "lune",
+          "t": "Conditions",
+          "v": "Un fin croissant de Lune couché tôt : ciel noir après minuit"
+        }
+      ]
     },
     {
       "title": "Jeux vidéo : GTA 6 sort sur consoles",
-      "prevu": "Le jeu le plus attendu de la décennie sort le 19 novembre sur PlayStation 5 et Xbox Series.",
-      "pourquoi": "Un monde ouvert d'une taille et d'un réalisme jamais vus, attendu par des dizaines de millions de joueurs.",
+      "prevu": "Le jeu le plus attendu de la décennie sort sur PlayStation 5 et Xbox Series.",
+      "pourquoi": "Rockstar a déjà repoussé deux fois ce jeu, attendu par des dizaines de millions de joueurs.",
       "type": "sortie",
       "family": "gaming",
       "feed": "tech",
@@ -38,38 +90,133 @@
       "precision": "jour",
       "importance": 2,
       "source_url": "https://www.rockstargames.com/VI",
-      "source_name": "Rockstar Games"
+      "source_name": "Rockstar Games",
+      "lieu": "Dans le monde entier",
+      "pratique": [
+        {
+          "k": "appareil",
+          "t": "Sur quoi",
+          "v": "PlayStation 5 et Xbox Series (pas de version PC annoncée)"
+        },
+        {
+          "k": "info",
+          "t": "Pour qui",
+          "v": "Classé pour adultes, comme les épisodes précédents"
+        }
+      ]
     },
     {
       "title": "Espace : une sonde européenne et japonaise se met en orbite autour de Mercure",
-      "prevu": "Après huit ans de voyage, la mission BepiColombo entre en orbite autour de Mercure le 21 novembre, puis ses deux sondes se séparent en décembre.",
-      "pourquoi": "Mercure est la planète la moins explorée : deux sondes vont l'étudier en même temps pour la première fois.",
-      "type": "evenement",
+      "prevu": "Après huit ans de voyage, la mission BepiColombo se laisse capturer par Mercure le 21 novembre ; ses deux sondes se séparent le 10 décembre.",
+      "pourquoi": "Seules deux sondes ont déjà visité Mercure, la planète la plus proche du Soleil et la moins explorée.",
+      "type": "arrivee",
       "family": "space",
       "feed": "science",
       "event_date": "2026-11-21",
       "precision": "jour",
       "importance": 3,
       "source_url": "https://www.esa.int/Science_Exploration/Space_Science/BepiColombo/Latest_updates_BepiColombo_s_arrival_at_Mercury",
-      "source_name": "ESA"
+      "source_name": "ESA",
+      "lieu": "En orbite autour de Mercure",
+      "pratique": [
+        {
+          "k": "repere",
+          "t": "Étapes",
+          "v": "21 novembre : mise en orbite · 10 décembre : les deux sondes se séparent · début 2027 : début des observations"
+        },
+        {
+          "k": "voir",
+          "t": "Ce qu'on verra",
+          "v": "Les premières images, publiées par l'ESA et l'agence japonaise (JAXA)"
+        }
+      ]
+    },
+    {
+      "title": "Espace : la sonde Hera arrive aux astéroïdes déviés par la NASA",
+      "prevu": "La sonde européenne Hera rejoint l'astéroïde Didymos et sa petite lune Dimorphos, qu'une sonde de la NASA a percutée en 2022 pour dévier sa course.",
+      "pourquoi": "Elle va mesurer l'effet du choc : c'est le premier test grandeur nature pour protéger la Terre d'un astéroïde.",
+      "type": "arrivee",
+      "family": "space",
+      "feed": "science",
+      "event_date": "2026-11-30",
+      "precision": "avant",
+      "importance": 3,
+      "source_url": "https://www.esa.int/Space_Safety/Hera/ESA_s_Hera_targets_early_arrival_at_Didymos_asteroids",
+      "source_name": "ESA",
+      "lieu": "Près des astéroïdes Didymos et Dimorphos",
+      "pratique": [
+        {
+          "k": "voir",
+          "t": "Ce qu'on verra",
+          "v": "Les premières images rapprochées du cratère laissé par le choc de 2022"
+        },
+        {
+          "k": "info",
+          "t": "À savoir",
+          "v": "Arrivée avancée d'un mois sur le calendrier prévu"
+        }
+      ]
+    },
+    {
+      "title": "Espace : la sonde Europa Clipper frôle la Terre pour filer vers Jupiter",
+      "prevu": "La sonde de la NASA repasse près de la Terre le 3 décembre pour prendre de la vitesse grâce à sa gravité, direction Jupiter et sa lune Europe.",
+      "pourquoi": "Europe cache sous sa glace un océan d'eau liquide : un des meilleurs endroits pour chercher la vie ailleurs.",
+      "type": "arrivee",
+      "family": "space",
+      "feed": "science",
+      "event_date": "2026-12-03",
+      "precision": "jour",
+      "event_utc": "2026-12-03T21:15:00+00:00",
+      "event_time": "22:15",
+      "importance": 2,
+      "source_url": "https://en.wikipedia.org/wiki/Europa_Clipper#europa-clipper-terre-2026",
+      "source_name": "NASA (via Wikipédia)",
+      "lieu": "Au-dessus de la Terre",
+      "pratique": [
+        {
+          "k": "repere",
+          "t": "Moment clé",
+          "v": "Le passage au plus près de la Terre (heure ci-dessus)"
+        },
+        {
+          "k": "info",
+          "t": "Ensuite",
+          "v": "Arrivée autour de Jupiter prévue en 2030"
+        }
+      ]
     },
     {
       "title": "Jeux vidéo : la grande soirée des Game Awards récompense les jeux de l'année",
-      "prevu": "Le 10 décembre à Los Angeles (dans la nuit du 10 au 11 en France), les meilleurs jeux de l'année sont récompensés et de nouveaux jeux sont dévoilés.",
-      "pourquoi": "C'est le rendez-vous où les studios annoncent leurs plus gros jeux à venir.",
-      "type": "evenement",
+      "prevu": "Les meilleurs jeux de l'année sont récompensés, et de nombreux nouveaux jeux sont dévoilés pendant la soirée.",
+      "pourquoi": "C'est la soirée où les grands studios annoncent leurs prochains jeux.",
+      "type": "prix",
       "family": "gaming",
       "feed": "tech",
       "event_date": "2026-12-10",
       "precision": "jour",
       "importance": 2,
       "source_url": "https://thegameawards.com/",
-      "source_name": "The Game Awards"
+      "source_name": "The Game Awards",
+      "lieu": "Los Angeles, aux États-Unis",
+      "lien_direct": "https://thegameawards.com/",
+      "lien_direct_nom": "Site des Game Awards",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Quand",
+          "v": "Le soir à Los Angeles, soit dans la nuit du 10 au 11 décembre en Europe"
+        },
+        {
+          "k": "repere",
+          "t": "À regarder",
+          "v": "Le jeu de l'année et les annonces surprises"
+        }
+      ]
     },
     {
       "title": "Ciel : les Géminides, la plus belle pluie d'étoiles filantes de l'année",
-      "prevu": "Dans la nuit du 13 au 14 décembre, jusqu'à une centaine d'étoiles filantes par heure dans un ciel bien noir.",
-      "pourquoi": "Cette année, la Lune sera presque absente : les conditions sont excellentes.",
+      "prevu": "Jusqu'à une centaine d'étoiles filantes par heure sous un ciel bien noir.",
+      "pourquoi": "C'est la pluie d'étoiles filantes la plus riche de l'année, visible dès le soir.",
       "type": "ciel",
       "family": "space",
       "feed": "science",
@@ -77,104 +224,385 @@
       "precision": "jour",
       "importance": 2,
       "source_url": "https://www.amsmeteors.org/meteor-showers/meteor-shower-calendar/#geminides-2026",
-      "source_name": "American Meteor Society"
+      "source_name": "American Meteor Society",
+      "visible_regions": [
+        "europe",
+        "afrique_nord",
+        "afrique_ouest",
+        "afrique_centre_est",
+        "moyen_orient",
+        "asie_centrale_sud",
+        "asie_est",
+        "asie_sud_est",
+        "amerique_nord",
+        "amerique_centrale"
+      ],
+      "visible_partiel": [
+        "afrique_australe",
+        "oceanie",
+        "amerique_sud"
+      ],
+      "visible_texte": "Surtout depuis l'hémisphère nord ; moins nombreuses dans l'hémisphère sud",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Quand regarder",
+          "v": "Nuit du 13 au 14 décembre, dès 22 h, heure de chez vous, jusqu'à l'aube"
+        },
+        {
+          "k": "direction",
+          "t": "Où regarder",
+          "v": "Haut dans le ciel ; elles semblent venir de la constellation des Gémeaux"
+        },
+        {
+          "k": "voir",
+          "t": "Comment",
+          "v": "À l'œil nu, bien couvert, loin des lumières"
+        },
+        {
+          "k": "lune",
+          "t": "Conditions",
+          "v": "Fin croissant de Lune : très bonnes conditions"
+        }
+      ]
     },
     {
       "title": "Ciel : les Quadrantides ouvrent l'année avec des étoiles filantes",
-      "prevu": "Dans la nuit du 3 au 4 janvier, un pic court mais intense, surtout avant l'aube.",
-      "pourquoi": "Une des pluies les plus fortes de l'année, avec peu de lumière de la Lune en 2027.",
+      "prevu": "Environ 25 étoiles filantes par heure sous un ciel noir, pendant un pic court de quelques heures.",
+      "pourquoi": "Le pic tombe en pleine nuit pour l'Europe cette année.",
       "type": "ciel",
       "family": "space",
       "feed": "science",
       "event_date": "2027-01-03",
       "precision": "jour",
-      "importance": 2,
+      "importance": 1,
       "source_url": "https://www.amsmeteors.org/meteor-showers/meteor-shower-calendar/#quadrantides-2027",
-      "source_name": "American Meteor Society"
+      "source_name": "American Meteor Society",
+      "visible_regions": [
+        "europe",
+        "afrique_nord",
+        "moyen_orient",
+        "asie_centrale_sud"
+      ],
+      "visible_partiel": [
+        "amerique_nord",
+        "asie_est",
+        "afrique_ouest"
+      ],
+      "visible_texte": "Hémisphère nord ; pic idéal pour l'Europe et l'ouest de l'Asie",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Quand regarder",
+          "v": "Fin de nuit du 3 au 4 janvier, avant l'aube (pic vers 4 h 30 en France)"
+        },
+        {
+          "k": "direction",
+          "t": "Où regarder",
+          "v": "Vers le nord-est, haut dans le ciel"
+        },
+        {
+          "k": "lune",
+          "t": "Conditions",
+          "v": "Fin croissant de Lune : ciel bien noir"
+        }
+      ]
     },
     {
       "title": "Salons : le CES de Las Vegas dévoile les nouveautés tech de l'année",
-      "prevu": "Du 6 au 9 janvier, le plus grand salon de l'électronique du monde présente téléviseurs, ordinateurs, voitures et robots.",
-      "pourquoi": "Beaucoup des appareils qui arriveront dans nos maisons sont montrés là pour la première fois.",
-      "type": "evenement",
+      "prevu": "Le plus grand salon de l'électronique du monde présente téléviseurs, ordinateurs, voitures et robots.",
+      "pourquoi": "Beaucoup de produits de l'année y sont montrés pour la première fois.",
+      "type": "salon",
       "family": "mobile",
       "feed": "tech",
       "event_date": "2027-01-06",
+      "event_end": "2027-01-09",
       "precision": "jour",
       "importance": 2,
       "source_url": "https://www.ces.tech/",
-      "source_name": "CES (Consumer Technology Association)"
+      "source_name": "CES (Consumer Technology Association)",
+      "lieu": "Las Vegas, aux États-Unis",
+      "pratique": [
+        {
+          "k": "repere",
+          "t": "Moments clés",
+          "v": "Les grandes annonces des marques ont lieu les deux jours d'avant, réservés à la presse"
+        },
+        {
+          "k": "qui",
+          "t": "Qui",
+          "v": "Plus de 4 000 exposants"
+        }
+      ]
     },
     {
-      "title": "Ciel : une éclipse annulaire de Soleil au-dessus de l'Amérique du Sud",
-      "prevu": "Le 6 février, la Lune passe devant le Soleil et laisse un anneau de feu, visible au Chili, en Argentine et dans l'ouest de l'Afrique.",
-      "pourquoi": "Pas visible depuis la France, mais suivie en direct par les observatoires du monde entier.",
+      "title": "Ciel : Jupiter au plus près et au plus brillant de l'année",
+      "prevu": "Jupiter se trouve à l'opposé du Soleil : elle se lève au coucher du Soleil et brille toute la nuit.",
+      "pourquoi": "C'est le meilleur moment de l'année pour voir ses quatre grandes lunes avec de simples jumelles.",
+      "type": "ciel",
+      "family": "space",
+      "feed": "science",
+      "event_date": "2027-02-11",
+      "precision": "jour",
+      "importance": 1,
+      "source_url": "https://eco.mtk.nao.ac.jp/cgi-bin/koyomi/cande/phenomena_en.cgi?year=2027#jupiter",
+      "source_name": "Observatoire astronomique national du Japon",
+      "visible_regions": [
+        "europe",
+        "afrique_nord",
+        "afrique_ouest",
+        "afrique_centre_est",
+        "moyen_orient",
+        "asie_centrale_sud",
+        "asie_est",
+        "asie_sud_est",
+        "amerique_nord",
+        "amerique_centrale",
+        "afrique_australe",
+        "oceanie",
+        "amerique_sud"
+      ],
+      "visible_texte": "Partout dans le monde",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Quand regarder",
+          "v": "Toute la nuit, heure de chez vous ; au plus haut vers minuit"
+        },
+        {
+          "k": "direction",
+          "t": "Où regarder",
+          "v": "À l'est au coucher du Soleil, au sud vers minuit (au nord depuis l'hémisphère sud)"
+        },
+        {
+          "k": "voir",
+          "t": "Comment",
+          "v": "À l'œil nu : l'« étoile » la plus brillante ; aux jumelles, ses lunes"
+        }
+      ]
+    },
+    {
+      "title": "Ciel : une éclipse annulaire de Soleil en Amérique du Sud et en Afrique",
+      "prevu": "La Lune passe devant le Soleil sans le cacher en entier : il reste un anneau de feu.",
+      "pourquoi": "Un phénomène rare : l'anneau n'est visible que sur une bande étroite de la Terre.",
       "type": "ciel",
       "family": "space",
       "feed": "science",
       "event_date": "2027-02-06",
       "precision": "jour",
-      "importance": 1,
+      "event_utc": "2027-02-06T15:59:00+00:00",
+      "event_time": "16:59",
+      "importance": 2,
       "source_url": "https://eclipse.gsfc.nasa.gov/OH/OH2027.html#annulaire-2027-02-06",
-      "source_name": "NASA"
+      "source_name": "NASA",
+      "visible_regions": [
+        "CL",
+        "AR",
+        "UY",
+        "CI",
+        "GH",
+        "TG",
+        "BJ",
+        "NG"
+      ],
+      "visible_partiel": [
+        "amerique_sud",
+        "afrique_ouest",
+        "afrique_centre_est",
+        "afrique_australe"
+      ],
+      "visible_texte": "Anneau au Chili, en Argentine, en Uruguay et du Ghana au Nigeria ; éclipse partielle dans une grande partie de l'Amérique du Sud et de l'ouest de l'Afrique",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Moment",
+          "v": "Maximum de l'éclipse à l'heure indiquée ; elle dure environ deux heures autour"
+        },
+        {
+          "k": "voir",
+          "t": "Attention",
+          "v": "Jamais à l'œil nu : lunettes d'éclipse obligatoires"
+        }
+      ]
+    },
+    {
+      "title": "Ciel : Mars au plus près et au plus brillant",
+      "prevu": "Mars se trouve à l'opposé du Soleil : la planète rouge brille toute la nuit, orangée, plus que les étoiles.",
+      "pourquoi": "Cela n'arrive qu'une fois tous les deux ans environ.",
+      "type": "ciel",
+      "family": "space",
+      "feed": "science",
+      "event_date": "2027-02-19",
+      "precision": "jour",
+      "importance": 2,
+      "source_url": "https://eco.mtk.nao.ac.jp/cgi-bin/koyomi/cande/phenomena_en.cgi?year=2027#mars",
+      "source_name": "Observatoire astronomique national du Japon",
+      "visible_regions": [
+        "europe",
+        "afrique_nord",
+        "afrique_ouest",
+        "afrique_centre_est",
+        "moyen_orient",
+        "asie_centrale_sud",
+        "asie_est",
+        "asie_sud_est",
+        "amerique_nord",
+        "amerique_centrale",
+        "afrique_australe",
+        "oceanie",
+        "amerique_sud"
+      ],
+      "visible_texte": "Partout dans le monde",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Quand regarder",
+          "v": "Toute la nuit, heure de chez vous"
+        },
+        {
+          "k": "direction",
+          "t": "Où regarder",
+          "v": "À l'est au coucher du Soleil, au sud vers minuit (au nord depuis l'hémisphère sud)"
+        },
+        {
+          "k": "voir",
+          "t": "Comment",
+          "v": "À l'œil nu : un point orangé très brillant, qui ne scintille pas"
+        }
+      ]
     },
     {
       "title": "Salons : le MWC de Barcelone présente les téléphones de demain",
-      "prevu": "Du 1er au 4 mars, le grand salon mondial du téléphone et des réseaux mobiles se tient à Barcelone.",
-      "pourquoi": "Les marques y dévoilent leurs nouveaux smartphones et les réseaux qui les feront fonctionner.",
-      "type": "evenement",
+      "prevu": "Le grand salon mondial du téléphone et des réseaux mobiles se tient à Barcelone.",
+      "pourquoi": "Les fabricants y montrent leurs nouveaux téléphones et l'avenir des réseaux.",
+      "type": "salon",
       "family": "mobile",
       "feed": "tech",
       "event_date": "2027-03-01",
+      "event_end": "2027-03-04",
       "precision": "jour",
       "importance": 2,
       "source_url": "https://www.mwcbarcelona.com/",
-      "source_name": "GSMA"
+      "source_name": "GSMA",
+      "lieu": "Barcelone, en Espagne",
+      "pratique": [
+        {
+          "k": "repere",
+          "t": "Moments clés",
+          "v": "Plusieurs marques présentent leurs téléphones la veille de l'ouverture"
+        },
+        {
+          "k": "qui",
+          "t": "Qui",
+          "v": "Fabricants de téléphones, opérateurs et équipementiers du monde entier"
+        }
+      ]
     },
     {
       "title": "Avions : le Salon du Bourget montre les avions et fusées de demain",
-      "prevu": "Du 14 au 20 juin près de Paris, le plus grand salon de l'aéronautique du monde, avec des démonstrations en vol (ouvert au public les derniers jours).",
-      "pourquoi": "Les constructeurs y dévoilent leurs nouveaux avions, drones et engins spatiaux.",
-      "type": "evenement",
+      "prevu": "Le plus grand salon de l'aéronautique du monde, avec des démonstrations en vol.",
+      "pourquoi": "Les grandes commandes d'avions et les nouveaux appareils y sont annoncés.",
+      "type": "salon",
       "family": "aerospace",
       "feed": "tech",
       "event_date": "2027-06-14",
+      "event_end": "2027-06-20",
       "precision": "jour",
       "importance": 2,
       "source_url": "https://www.siae.fr/",
-      "source_name": "Salon du Bourget (SIAE)"
+      "source_name": "Salon du Bourget (SIAE)",
+      "lieu": "Le Bourget, près de Paris",
+      "pratique": [
+        {
+          "k": "info",
+          "t": "Pour le public",
+          "v": "Ouvert au public les derniers jours, les premiers sont réservés aux professionnels"
+        },
+        {
+          "k": "voir",
+          "t": "Ce qu'on verra",
+          "v": "Des démonstrations en vol chaque après-midi"
+        }
+      ]
     },
     {
       "title": "IA : VivaTech, le grand salon de la tech à Paris",
-      "prevu": "Du 16 au 19 juin à Paris, des milliers de start-up et de grandes entreprises présentent leurs nouveautés, surtout en intelligence artificielle.",
-      "pourquoi": "Le plus grand rendez-vous tech d'Europe, avec de nombreuses annonces françaises.",
-      "type": "evenement",
+      "prevu": "Pendant quatre jours, des milliers de start-up et de grandes entreprises présentent leurs nouveautés, surtout en intelligence artificielle.",
+      "pourquoi": "Les grands patrons de la tech y font souvent des annonces.",
+      "type": "salon",
       "family": "ai_software",
       "feed": "tech",
-      "event_date": "2027-06-16",
-      "precision": "jour",
+      "event_date": "2027-06-01",
+      "precision": "mois",
       "importance": 2,
       "source_url": "https://vivatech.com/",
-      "source_name": "VivaTech"
+      "source_name": "VivaTech",
+      "lieu": "Paris Expo Porte de Versailles, à Paris",
+      "pratique": [
+        {
+          "k": "duree",
+          "t": "Durée",
+          "v": "4 jours (dates exactes pas encore annoncées)"
+        },
+        {
+          "k": "info",
+          "t": "Pour le public",
+          "v": "Le dernier jour est en général ouvert au grand public"
+        }
+      ]
     },
     {
       "title": "Ciel : la grande éclipse totale de Soleil du siècle",
-      "prevu": "Le 2 août vers midi, la Lune cache entièrement le Soleil jusqu'à 6 minutes, du sud de l'Espagne au Maroc et jusqu'à l'Égypte. En France, le Soleil sera en partie caché.",
-      "pourquoi": "L'une des plus longues éclipses totales du siècle, et très proche de la France.",
+      "prevu": "La Lune cache entièrement le Soleil jusqu'à 6 minutes et 22 secondes, du sud de l'Espagne au Maroc et jusqu'en Égypte.",
+      "pourquoi": "Une des plus longues éclipses totales du siècle, visible depuis des régions très peuplées.",
       "type": "ciel",
       "family": "space",
       "feed": "science",
       "event_date": "2027-08-02",
-      "event_time": "12:00",
       "precision": "jour",
+      "event_utc": "2027-08-02T10:07:00+00:00",
+      "event_time": "12:07",
       "importance": 4,
       "source_url": "https://eclipse.gsfc.nasa.gov/OH/OH2027.html",
-      "source_name": "NASA"
+      "source_name": "NASA",
+      "visible_regions": [
+        "ES",
+        "GI",
+        "MA",
+        "DZ",
+        "TN",
+        "LY",
+        "EG",
+        "SA",
+        "YE",
+        "SO"
+      ],
+      "visible_partiel": [
+        "europe",
+        "afrique_nord",
+        "afrique_ouest",
+        "afrique_centre_est",
+        "moyen_orient",
+        "asie_centrale_sud"
+      ],
+      "visible_texte": "Totale dans le sud de l'Espagne, au Maroc, en Algérie, en Tunisie, en Libye, en Égypte, en Arabie saoudite, au Yémen et en Somalie ; partielle dans presque toute l'Europe, l'Afrique et le Moyen-Orient",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Moment",
+          "v": "Maximum en Égypte à l'heure indiquée ; ailleurs, quelques minutes avant ou après"
+        },
+        {
+          "k": "voir",
+          "t": "Attention",
+          "v": "Lunettes d'éclipse obligatoires, sauf pendant les quelques minutes où le Soleil est entièrement caché"
+        }
+      ]
     },
     {
       "title": "Ciel : les Perséides, les étoiles filantes de l'été",
-      "prevu": "Dans la nuit du 12 au 13 août, jusqu'à une centaine d'étoiles filantes par heure en pleine campagne.",
-      "pourquoi": "La pluie d'étoiles filantes la plus populaire, par des nuits d'été douces.",
+      "prevu": "Entre 30 et 50 étoiles filantes par heure en pleine campagne au moment du pic.",
+      "pourquoi": "La pluie d'étoiles filantes la plus connue, par des nuits douces d'été.",
       "type": "ciel",
       "family": "space",
       "feed": "science",
@@ -182,25 +610,97 @@
       "precision": "jour",
       "importance": 2,
       "source_url": "https://www.amsmeteors.org/meteor-showers/meteor-shower-calendar/#perseides-2027",
-      "source_name": "American Meteor Society"
+      "source_name": "American Meteor Society",
+      "visible_regions": [
+        "europe",
+        "afrique_nord",
+        "afrique_ouest",
+        "afrique_centre_est",
+        "moyen_orient",
+        "asie_centrale_sud",
+        "asie_est",
+        "asie_sud_est",
+        "amerique_nord",
+        "amerique_centrale"
+      ],
+      "visible_texte": "Hémisphère nord",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Quand regarder",
+          "v": "Nuit du 12 au 13 août, en fin de nuit après le coucher de la Lune"
+        },
+        {
+          "k": "direction",
+          "t": "Où regarder",
+          "v": "Vers le nord-est, haut dans le ciel"
+        },
+        {
+          "k": "lune",
+          "t": "Conditions",
+          "v": "Lune presque pleine le soir : attendre qu'elle se couche"
+        }
+      ]
+    },
+    {
+      "title": "Jeux vidéo : la Gamescom de Cologne ouvre ses portes",
+      "prevu": "Le plus grand salon du jeu vidéo au monde accueille le public à Cologne, en Allemagne.",
+      "pourquoi": "Les éditeurs y montrent les jeux de la fin d'année, souvent jouables pour la première fois.",
+      "type": "salon",
+      "family": "gaming",
+      "feed": "tech",
+      "event_date": "2027-08-26",
+      "event_end": "2027-08-29",
+      "precision": "jour",
+      "importance": 2,
+      "source_url": "https://www.gamescom.global/",
+      "source_name": "Gamescom",
+      "lieu": "Cologne, en Allemagne",
+      "pratique": [
+        {
+          "k": "info",
+          "t": "Pour le public",
+          "v": "Ouvert au public du jeudi au dimanche ; la veille est réservée aux professionnels"
+        },
+        {
+          "k": "repere",
+          "t": "À regarder",
+          "v": "La soirée d'ouverture, avec les grandes annonces de jeux"
+        }
+      ]
     },
     {
       "title": "Nobel : les prix de médecine, physique et chimie sont annoncés",
-      "prevu": "Début octobre, les prix Nobel récompensent chaque jour une découverte : médecine, puis physique, puis chimie.",
-      "pourquoi": "Les plus grandes récompenses scientifiques, qui mettent en lumière des découvertes qui ont changé le monde.",
-      "type": "annonce",
+      "prevu": "Les prix Nobel récompensent chaque jour une découverte : médecine, puis physique, puis chimie.",
+      "pourquoi": "Le prix le plus connu de la science, qui met en lumière des découvertes qui ont changé nos vies.",
+      "type": "prix",
       "family": "physics",
       "feed": "science",
       "event_date": "2027-10-01",
       "precision": "mois",
       "importance": 3,
       "source_url": "https://www.nobelprize.org/prizes/about/prize-announcement-dates/",
-      "source_name": "Nobel Prize"
+      "source_name": "Nobel Prize",
+      "lieu": "Stockholm, en Suède",
+      "lien_direct": "https://www.nobelprize.org/",
+      "lien_direct_nom": "Site du prix Nobel",
+      "pratique": [
+        {
+          "k": "duree",
+          "t": "Programme",
+          "v": "Médecine le lundi, physique le mardi, chimie le mercredi (dates exactes annoncées plus tard)"
+        },
+        {
+          "k": "heure",
+          "t": "Heure",
+          "v": "Fin de matinée, heure de Stockholm"
+        }
+      ]
     },
     {
       "title": "Ciel : les Géminides reviennent pour finir l'année",
-      "prevu": "Dans la nuit du 13 au 14 décembre, la pluie d'étoiles filantes la plus riche de l'année.",
-      "pourquoi": "Un rendez-vous fiable chaque mois de décembre, visible de partout en France.",
+      "prevu": "La pluie d'étoiles filantes la plus riche de l'année, jusqu'à une centaine par heure sous un ciel noir.",
+      "pourquoi": "Visible dès le soir, sans veiller toute la nuit.",
       "type": "ciel",
       "family": "space",
       "feed": "science",
@@ -208,7 +708,37 @@
       "precision": "jour",
       "importance": 2,
       "source_url": "https://www.amsmeteors.org/meteor-showers/meteor-shower-calendar/#geminides-2027",
-      "source_name": "American Meteor Society"
+      "source_name": "American Meteor Society",
+      "visible_regions": [
+        "europe",
+        "afrique_nord",
+        "afrique_ouest",
+        "afrique_centre_est",
+        "moyen_orient",
+        "asie_centrale_sud",
+        "asie_est",
+        "asie_sud_est",
+        "amerique_nord",
+        "amerique_centrale"
+      ],
+      "visible_partiel": [
+        "afrique_australe",
+        "oceanie",
+        "amerique_sud"
+      ],
+      "visible_texte": "Surtout depuis l'hémisphère nord",
+      "pratique": [
+        {
+          "k": "heure",
+          "t": "Quand regarder",
+          "v": "Nuit du 13 au 14 décembre, dès 22 h, heure de chez vous"
+        },
+        {
+          "k": "direction",
+          "t": "Où regarder",
+          "v": "Haut dans le ciel, vers la constellation des Gémeaux"
+        }
+      ]
     }
   ]
 }
