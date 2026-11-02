@@ -303,4 +303,4 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
   - Réglages → Pays (demande de Maxime) : 199 pays avec recherche, noms dans les 20 langues ; « Automatique » = pays du téléphone. Sert à la visibilité des événements du ciel.
   - Calendrier : 21 événements vérifiés le 02/11 (ajout : Hera, Europa Clipper, Jupiter et Mars au plus près, Gamescom ; éclipses avec les pays exacts). Pas de plafond par domaine pour ce fichier choisi à la main.
   - Poussé sans compiler.
-- 02/11 22 h 30 — **Compilation demandée par Maxime** (« compile ») : v1.0.47 (aide sur les étoiles A/C/E, cartes cuivre et or dans le magazine, « Tout désélectionner », plus de pastille sur « À venir », infos pratiques « À venir » et Réglages → Pays).
+- 02/11 22 h 30 — **Compilation demandée par Maxime** (« compile ») : v1.0.47 puis v1.0.48 envoyée en tests internes Google Play (aide sur les étoiles A/C/E, cartes cuivre et or dans le magazine, « Tout désélectionner », plus de pastille sur « À venir », infos pratiques « À venir » et Réglages → Pays).
