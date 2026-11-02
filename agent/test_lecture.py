@@ -1,6 +1,6 @@
 """Test gratuit (sans Claude) de la lecture des articles (02/11) : lit quelques
 articles récents de sources variées et affiche, pour chacun, la longueur du texte
-obtenu, la revue scientifique et le DOI repérés. Lancé par « Vérifier le code »."""
+obtenu. Lancé par « Vérifier le code »."""
 import os
 import sys
 
@@ -18,7 +18,7 @@ FLUX = {
     "Live Science": "https://www.livescience.com/feeds/all",
 }
 
-total = avec_revue = avec_doi = 0
+total = 0
 for nom, url in FLUX.items():
     try:
         flux = feedparser.parse(url, agent=main.USER_AGENT)
@@ -31,10 +31,8 @@ for nom, url in FLUX.items():
         avant = len(art["text"])
         main.lire_page(art)
         total += 1
-        avec_revue += bool(art.get("revue_detectee"))
-        avec_doi += bool(art.get("doi"))
         print(f"::notice title={nom}::{avant} → {len(art['text'])} caractères ; "
-              f"page : {art.get('statut_page')} ; revue : {art.get('revue_detectee') or '—'} ; DOI : {art.get('doi') or '—'} ; "
+              f"page : {art.get('statut_page')} ; "
               f"{e.get('title', '')[:70]}")
-print(f"::notice title=Lecture des articles::{total} articles, {avec_revue} avec revue, {avec_doi} avec DOI")
+print(f"::notice title=Lecture des articles::{total} articles")
 sys.exit(0)

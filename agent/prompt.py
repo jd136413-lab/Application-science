@@ -167,13 +167,10 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
     dire quoi.
   · Explique le POURQUOI simplement : pourquoi c'était difficile, ce que ça change
     concrètement (pour qui, combien, quand).
-  · MÉDIA ET REVUE : ne nomme jamais le média qui publie l'article (Phys.org,
-    ScienceDaily, Futura…) ni la revue scientifique (Physical Review Letters, Nature…)
-    dans les trois paragraphes : l'app affiche la source et la revue à part. Parle des
-    auteurs (« des physiciens du MIT ») et non de la publication.
-- revue : la revue scientifique où l'étude est publiée si l'article la nomme
-  (ex. "Physical Review Letters", "Nature Medicine", "The Lancet"), sinon "".
-  Jamais le nom du média, jamais une conférence de presse ni un communiqué.
+  · PARLE DE L'AVANCÉE, PAS DE LA PUBLICATION (choix de Maxime) : jamais « publié dans
+    … », « selon la revue … », « d'après un article de … ». Ne nomme ni le média
+    (Phys.org, ScienceDaily…) ni la revue scientifique (Physical Review Letters, Nature…).
+    Parle des auteurs (« des physiciens du MIT ») et de ce qu'ils ont trouvé.
 - avant : 1 à 2 phrases. Ce qu'on savait ou ce qui existait jusque-là (le contexte), et
   pourquoi c'était un problème ou une question ouverte.
 - decouverte : 2 à 3 phrases.
@@ -242,10 +239,10 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
 - duplicate_of : titre déjà publié concerné, sinon ""
 - explanation : UNE phrase courte en français qui justifie la décision
 - science : la fiche Sciences si decision vaut "science" ou "both" ; sinon
-  title="", avant="", decouverte="", apres="", mots=[], type_etude="donnees", revue="",
+  title="", avant="", decouverte="", apres="", mots=[], type_etude="donnees",
   theme="other", importance=1
 - tech : la fiche Technologies si decision vaut "tech" ou "both" ; sinon
-  title="", avant="", decouverte="", apres="", mots=[], type_etude="mise_a_jour", revue="",
+  title="", avant="", decouverte="", apres="", mots=[], type_etude="mise_a_jour",
   theme="tech_other", importance=1
 """
 
@@ -275,12 +272,11 @@ def build_user_message(article: dict, sujets_science: list[str], sujets_tech: li
 Déjà publié — fil Technologies (sujets récents) :
 {_liste(sujets_tech)}
 """
-    revue = f"Revue repérée sur la page : {article['revue_detectee']}\n" if article.get("revue_detectee") else ""
     nouvel = f"""Nouvel article :
 Source (média) : {article['source_name']}
 Titre d'origine : {article['title']}
 Date : {article['published_at'].strftime('%Y-%m-%d')}
-{revue}{_reprise(article)}Texte de l'article{" (page lue)" if article.get("page_lue") else " (extrait du flux)"} :
+{_reprise(article)}Texte de l'article{" (page lue)" if article.get("page_lue") else " (extrait du flux)"} :
 {article['text']}
 """
     return [
