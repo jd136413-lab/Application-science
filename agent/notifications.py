@@ -127,3 +127,36 @@ def envoyer_arrive(evenement: dict, fiche: dict, log) -> bool:
     except Exception as ex:
         log(f"  ⚠ « C'est arrivé » non envoyé ({str(ex)[:120]})")
         return False
+
+
+def envoyer_changement(evenement: dict, nature: str, log) -> bool:
+    """Onglet « À venir » (maquette 79) : un événement suivi est reporté, avancé, annulé ou
+    enfin daté précisément. Envoyé aux seuls téléphones qui avaient touché « Me le rappeler »
+    (sujet evt_<id>). Le téléphone affiche la notification et déplace son rappel."""
+    brut = (os.environ.get("FIREBASE_SERVICE_ACCOUNT") or "").strip()
+    if not brut or not evenement.get("id"):
+        return False
+    try:
+        compte = json.loads(brut)
+        jeton = _jeton(compte)
+        url = f"https://fcm.googleapis.com/v1/projects/{compte['project_id']}/messages:send"
+        donnees = {
+            "type": "changement", "nature": nature, "evt": str(evenement["id"]),
+            "titre": evenement.get("title", ""), "date": str(evenement.get("event_date") or ""),
+            "utc": str(evenement.get("event_utc") or ""), "precision": str(evenement.get("precision") or "jour"),
+        }
+        message = {"message": {
+            "topic": f"evt_{evenement['id']}",
+            "data": donnees,
+            "android": {"priority": "high", "ttl": "172800s"},
+            "apns": {"headers": {"apns-priority": "5"}, "payload": {"aps": {"content-available": 1}}},
+        }}
+        r = requests.post(url, headers={"Authorization": f"Bearer {jeton}", "Content-Type": "application/json"},
+                          json=message, timeout=30)
+        if r.status_code >= 300:
+            raise RuntimeError(f"{r.status_code} {r.text[:120]}")
+        log(f"  🔔 « {nature} » envoyé aux téléphones qui suivaient « {evenement.get('title', '')[:50]} »")
+        return True
+    except Exception as ex:
+        log(f"  ⚠ Changement non envoyé ({str(ex)[:120]})")
+        return False

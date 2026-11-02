@@ -51,3 +51,10 @@ String tr(String francais, {int? n}) {
   final texte = langue == 'fr' ? francais : (textesTraduits[langue]?[francais] ?? francais);
   return n == null ? texte : texte.replaceAll('{n}', '$n');
 }
+
+/// Comme tr, avec des valeurs nommées : trv('Du {debut} au {fin}', {'debut': …, 'fin': …}).
+String trv(String francais, Map<String, String> valeurs) {
+  var t = tr(francais);
+  valeurs.forEach((k, v) => t = t.replaceAll('{$k}', v));
+  return t;
+}

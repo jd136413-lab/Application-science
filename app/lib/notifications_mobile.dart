@@ -243,7 +243,11 @@ Future<void> _file = Future.value();
 
 Future<void> _afficher(Map<String, dynamic> data) {
   _file = _file
-      .then((_) => data['type'] == 'arrive' ? _afficherArrive(data) : _afficherUne(data))
+      .then((_) => data['type'] == 'arrive'
+          ? _afficherArrive(data)
+          : data['type'] == 'changement'
+              ? _afficherChangement(data)
+              : _afficherUne(data))
       .catchError((_) {});
   return _file;
 }
@@ -459,6 +463,55 @@ Future<void> _afficherArrive(Map<String, dynamic> data) async {
       iOS: const DarwinNotificationDetails(),
     ),
     payload: id, // ouvre la fiche de l'avancée
+  );
+}
+
+/// Un événement suivi est reporté, avancé, annulé ou enfin daté (maquette 79) : on prévient,
+/// et on retire l'ancien rappel ; l'app le reprogrammera à la bonne date à la prochaine ouverture.
+Future<void> _afficherChangement(Map<String, dynamic> data) async {
+  final evt = data['evt']?.toString() ?? '';
+  if (evt.isEmpty) return;
+  final prefs = await SharedPreferences.getInstance();
+  final langue = _langue(prefs);
+  final nature = data['nature']?.toString() ?? '';
+  try {
+    await _local.cancel(idRappelEvenement(evt));
+  } catch (_) {}
+  String quand = '';
+  final utc = DateTime.tryParse(data['utc']?.toString() ?? '');
+  final jour = DateTime.tryParse(data['date']?.toString() ?? '');
+  String deux(int x) => x.toString().padLeft(2, '0');
+  if (utc != null) {
+    final l = utc.toLocal();
+    quand = '${deux(l.day)}/${deux(l.month)} · ${deux(l.hour)}:${deux(l.minute)}';
+  } else if (jour != null) {
+    quand = data['precision'] == 'jour' ? '${deux(jour.day)}/${deux(jour.month)}/${jour.year}' : '${deux(jour.month)}/${jour.year}';
+  }
+  final titreNotif = _tr(
+      switch (nature) {
+        'annule' => 'Annulé',
+        'avance' => 'Date avancée',
+        'precise' => 'La date est connue',
+        _ => 'Reporté',
+      },
+      langue);
+  final texte = '${data['titre'] ?? ''}${nature != 'annule' && quand.isNotEmpty ? '\n→ $quand' : ''}';
+  await _local.show(
+    idRappelEvenement(evt) + 2,
+    titreNotif,
+    texte,
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        'rappels_a_venir',
+        _tr('Rappels « À venir »', langue),
+        importance: Importance.high,
+        priority: Priority.high,
+        color: logoEncreRose,
+        styleInformation: BigTextStyleInformation(texte),
+      ),
+      iOS: const DarwinNotificationDetails(),
+    ),
+    payload: 'avenir:$evt',
   );
 }
 

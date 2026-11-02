@@ -25,6 +25,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart' show enTeteMois;
 import 'notifications.dart';
+import 'regions_monde.dart';
 import 'reglages.dart';
 import 'texte_article.dart';
 import 'widgets.dart';
@@ -60,11 +61,20 @@ DateTime aujourdhuiParis() {
 
 // ------------------------------------------------------------------ modèle
 
+/// Une ligne du bloc « En pratique » (écrite par l'agent).
+class LignePratique {
+  final String icone, titre, texte;
+  const LignePratique(this.icone, this.titre, this.texte);
+}
+
 class Evenement {
-  final String id, titre, type, fil, sourceUrl, sourceNom, precision;
+  final String id, titre, type, fil, sourceUrl, sourceNom, precision, statut;
   final String? prevu, pourquoi, famille, heure, avanceeId;
+  final String? lieu, lienDirect, lienDirectNom, visibleTexte, statutRaison;
   final DateTime date; // jour seul (UTC)
-  final DateTime? datePrecedente;
+  final DateTime? datePrecedente, fin, instantExact;
+  final List<LignePratique> pratique;
+  final List<String> visibleRegions, visiblePartiel;
   final int importance;
   const Evenement({
     required this.id,
@@ -82,7 +92,36 @@ class Evenement {
     this.heure,
     this.avanceeId,
     this.datePrecedente,
+    this.statut = 'prevu',
+    this.statutRaison,
+    this.lieu,
+    this.lienDirect,
+    this.lienDirectNom,
+    this.visibleTexte,
+    this.fin,
+    this.instantExact,
+    this.pratique = const [],
+    this.visibleRegions = const [],
+    this.visiblePartiel = const [],
   });
+
+  static List<String> _liste(Object? v) => v is List ? [for (final x in v) '$x'] : const [];
+
+  static List<LignePratique> _pratique(Object? v) {
+    if (v is String) {
+      try {
+        v = jsonDecode(v);
+      } catch (_) {
+        return const [];
+      }
+    }
+    if (v is! List) return const [];
+    return [
+      for (final x in v)
+        if (x is Map && '${x['t'] ?? ''}'.isNotEmpty && '${x['v'] ?? ''}'.isNotEmpty)
+          LignePratique('${x['k'] ?? 'info'}', '${x['t']}', '${x['v']}'),
+    ];
+  }
 
   static DateTime? _jour(Object? v) {
     final d = DateTime.tryParse('${v ?? ''}');
@@ -99,12 +138,23 @@ class Evenement {
         fil: j['feed'] == 'tech' ? 'tech' : 'science',
         date: _jour(j['event_date']) ?? aujourdhuiParis(),
         heure: j['event_time'] as String?,
-        precision: j['precision'] == 'mois' ? 'mois' : 'jour',
+        precision: j['precision'] == 'mois' || j['precision'] == 'avant' ? '${j['precision']}' : 'jour',
         importance: (j['importance'] as num?)?.toInt() ?? 2,
         sourceUrl: '${j['source_url'] ?? ''}',
         sourceNom: '${j['source_name'] ?? ''}',
         datePrecedente: _jour(j['previous_date']),
         avanceeId: j['advance_id'] as String?,
+        statut: '${j['statut'] ?? 'prevu'}',
+        statutRaison: j['statut_raison'] as String?,
+        lieu: j['lieu'] as String?,
+        lienDirect: j['lien_direct'] as String?,
+        lienDirectNom: j['lien_direct_nom'] as String?,
+        visibleTexte: j['visible_texte'] as String?,
+        fin: _jour(j['event_end']),
+        instantExact: DateTime.tryParse('${j['event_utc'] ?? ''}')?.toUtc(),
+        pratique: _pratique(j['pratique']),
+        visibleRegions: _liste(j['visible_regions']),
+        visiblePartiel: _liste(j['visible_partiel']),
       );
 
   Famille get fam => familleDe(famille ?? (fil == 'tech' ? 'tech_other' : 'other'));
@@ -113,8 +163,17 @@ class Evenement {
   /// Jours avant l'événement (0 = aujourd'hui, négatif = passé).
   int get jours => date.difference(aujourdhuiParis()).inDays;
 
+  /// Jours avant le dernier jour (salon, sommet…) ; = jours pour un événement d'un jour.
+  int get joursFin => (fin ?? date).difference(aujourdhuiParis()).inDays;
+
+  bool get annule => statut == 'annule';
+  bool get reporte => statut == 'reporte' && datePrecedente != null;
+  bool get dateFloue => precision != 'jour';
+  bool get enCours => jours < 0 && joursFin >= 0;
+
   /// Instant de l'événement (début de journée si l'heure n'est pas connue).
   DateTime get instant {
+    if (instantExact != null) return instantExact!;
     final hm = (heure ?? '').split(':');
     final h = hm.length == 2 ? int.tryParse(hm[0]) : null;
     final m = hm.length == 2 ? int.tryParse(hm[1]) : null;
@@ -124,24 +183,61 @@ class Evenement {
 
 const Map<String, String> nomsTypes = {
   'lancement': 'Lancement',
-  'sortie': 'Sortie',
-  'resultats': 'Résultats',
+  'arrivee': 'Arrivée d’une sonde',
   'ciel': 'Dans le ciel',
+  'sortie': 'Sortie',
+  'presentation': 'Présentation',
+  'salon': 'Salon',
+  'sommet': 'Sommet',
+  'resultats': 'Résultats attendus',
+  'decision': 'Décision',
+  'prix': 'Prix',
+  'mise_en_service': 'Mise en service',
+  'essai': 'Premier vol, essai',
   'evenement': 'Événement',
   'annonce': 'Annonce',
 };
 
+/// Jour de l'événement sur le téléphone (l'heure exacte peut tomber un autre jour qu'à Paris).
+DateTime jourLocal(Evenement e) {
+  if (e.instantExact != null) {
+    final l = e.instantExact!.toLocal();
+    return DateTime(l.year, l.month, l.day);
+  }
+  return DateTime(e.date.year, e.date.month, e.date.day);
+}
+
+/// « 14 h 00 » en français, « 2:00 PM » en anglais… à l'heure du téléphone.
+String heureLocale(DateTime utc) {
+  final l = utc.toLocal();
+  if (etat.langue == 'fr') return '${l.hour} h ${l.minute.toString().padLeft(2, '0')}';
+  return DateFormat.jm(etat.langue).format(l);
+}
+
+String _mois(DateTime d, {bool court = false}) => DateFormat(court ? 'MMM' : 'MMMM', etat.langue).format(d);
+
 String dateEvenement(Evenement e, {bool longue = false}) {
-  final d = DateTime(e.date.year, e.date.month, e.date.day);
+  final d = jourLocal(e);
   if (e.precision == 'mois') return DateFormat('LLLL y', etat.langue).format(d);
+  if (e.precision == 'avant') {
+    final annee = d.year != DateTime.now().year ? ' ${d.year}' : '';
+    return trv('D’ici fin {mois}', {'mois': '${_mois(d)}$annee'});
+  }
+  if (e.fin != null && e.fin!.isAfter(e.date)) {
+    final f = DateTime(e.fin!.year, e.fin!.month, e.fin!.day);
+    final debut = d.month == f.month ? DateFormat('d', etat.langue).format(d) : DateFormat('d MMM', etat.langue).format(d);
+    return trv('Du {debut} au {fin}', {'debut': debut, 'fin': DateFormat(longue ? 'd MMMM' : 'd MMM', etat.langue).format(f)});
+  }
   return DateFormat(longue ? 'EEEE d MMMM' : 'EEE d MMM', etat.langue).format(d);
 }
 
 String etiquetteJours(Evenement e) {
-  if (e.precision == 'mois' && e.jours > 1) {
-    return DateFormat('MMM', etat.langue).format(DateTime(e.date.year, e.date.month)).toUpperCase();
+  if (e.precision != 'jour' && e.jours > 1) {
+    final m = _mois(jourLocal(e), court: true).toUpperCase();
+    return e.precision == 'avant' ? '≤ $m' : m;
   }
   final n = e.jours;
+  if (e.enCours) return tr('EN COURS');
   if (n <= 0) return tr('AUJ.');
   if (n == 1) return tr('DEMAIN');
   return 'J-$n';
@@ -214,7 +310,7 @@ class EvenementsAVenir extends ChangeNotifier {
   }
 
   List<Evenement> prochains({String? fil}) =>
-      visibles(fil: fil).where((e) => !e.arrive && e.jours >= 0).toList()..sort((a, b) => a.date.compareTo(b.date));
+      visibles(fil: fil).where((e) => !e.arrive && e.joursFin >= 0).toList()..sort((a, b) => a.date.compareTo(b.date));
 
   int get cetteSemaine => prochains().where((e) => e.jours <= 7).length;
 }
@@ -236,15 +332,19 @@ String _heureTexte(String hhmm) => '${tr('vers')} ${hhmm.replaceFirst(':', ' h '
 DateTime? momentRappel(Evenement e) {
   final maintenant = DateTime.now().toUtc().add(const Duration(minutes: 1));
   DateTime quand;
+  if (e.annule) return null;
   if (e.type == 'ciel') {
-    quand = e.heure != null
+    // À l'heure du téléphone : une heure avant l'heure exacte, sinon le soir même à 21 h 30.
+    final j = jourLocal(e);
+    quand = e.instantExact != null || e.heure != null
         ? e.instant.subtract(const Duration(hours: 1))
-        : parisVersUtc(e.date.year, e.date.month, e.date.day, 21, 30);
+        : DateTime(j.year, j.month, j.day, 21, 30).toUtc();
   } else {
+    final dernier = e.fin ?? e.date;
     final lendemain = e.precision == 'mois'
         ? DateTime.utc(e.date.year, e.date.month + 1, 1)
-        : e.date.add(const Duration(days: 1));
-    quand = parisVersUtc(lendemain.year, lendemain.month, lendemain.day, 12, 0);
+        : dernier.add(const Duration(days: 1));
+    quand = DateTime(lendemain.year, lendemain.month, lendemain.day, 12, 0).toUtc();
   }
   return quand.isAfter(maintenant) ? quand : null;
 }
@@ -257,7 +357,11 @@ Future<bool> _programmer(Evenement e) async {
     return programmerRappel(
       id: idRappel(e),
       quandUtc: quand,
-      titre: e.heure != null ? '${tr('C’est aujourd’hui')} · ${_heureTexte(e.heure!)}' : tr('Ce soir'),
+      titre: e.instantExact != null
+          ? '${tr('C’est aujourd’hui')} · ${heureLocale(e.instantExact!)}'
+          : e.heure != null
+              ? '${tr('C’est aujourd’hui')} · ${_heureTexte(e.heure!)}'
+              : tr('Ce soir'),
       texte: '$titre · ${tr('Regardez le ciel, loin des lumières.')}',
       payload: 'avenir:${e.id}',
     );
@@ -283,6 +387,10 @@ Future<void> basculerRappel(BuildContext context, Evenement e) async {
     afficherMessage(context, tr('Les rappels marchent dans l’app sur téléphone.'), icone: Icons.info_outline_rounded);
     return;
   }
+  if (e.annule) {
+    afficherMessage(context, tr('Annulé'), icone: Icons.event_busy_rounded);
+    return;
+  }
   if (e.type == 'ciel' && momentRappel(e) == null) {
     afficherMessage(context, tr('C’est aujourd’hui !'), icone: Icons.today_rounded);
     return;
@@ -301,11 +409,15 @@ Future<void> basculerRappel(BuildContext context, Evenement e) async {
     }
     return;
   }
-  if (e.type != 'ciel') await abonnerEvenement(e.id);
+  await abonnerEvenement(e.id); // reports et annulations (et « C'est arrivé »)
   etat.ajouterRappel(e.id);
   if (!context.mounted) return;
   if (e.type == 'ciel') {
-    final h = e.heure != null ? _heureTexte(e.heure!) : '${tr('vers')} 21 h 30';
+    final h = e.instantExact != null
+        ? heureLocale(e.instantExact!)
+        : e.heure != null
+            ? _heureTexte(e.heure!)
+            : '${tr('vers')} 21 h 30';
     afficherMessage(context, '${tr('Rappel prévu')} · ${dateEvenement(e)} $h', icone: Icons.notifications_active_outlined);
   } else {
     afficherMessage(context, tr('Vous serez prévenu dès que l’article sera publié.'),
@@ -320,7 +432,7 @@ Future<void> reprogrammerRappels() async {
   final l = evenementsAVenir.liste ?? const <Evenement>[];
   for (final id in etat.rappels.toList()) {
     final e = l.where((x) => x.id == id).firstOrNull;
-    final fini = e == null || e.arrive || (e.type == 'ciel' ? e.jours < 0 : e.jours < -7);
+    final fini = e == null || e.arrive || e.annule || (e.type == 'ciel' ? e.joursFin < 0 : e.joursFin < -7);
     if (fini) {
       if (e != null) await annulerRappel(idRappel(e));
       await desabonnerEvenement(id);
@@ -329,23 +441,24 @@ Future<void> reprogrammerRappels() async {
     }
     await annulerRappel(idRappel(e));
     await _programmer(e);
-    if (e.type != 'ciel') await abonnerEvenement(id);
+    await abonnerEvenement(id);
   }
 }
 
 Future<void> ajouterAgenda(Evenement e) async {
   String f(DateTime d) => DateFormat('yyyyMMdd').format(d);
   String dates;
-  if (e.heure != null && e.precision == 'jour') {
+  if ((e.instantExact != null || e.heure != null) && e.precision == 'jour') {
     final d = e.instant;
     String u(DateTime x) => '${DateFormat('yyyyMMdd').format(x)}T${DateFormat('HHmmss').format(x)}Z';
     dates = '${u(d)}/${u(d.add(const Duration(hours: 1)))}';
   } else {
-    dates = '${f(e.date)}/${f(e.date.add(const Duration(days: 1)))}';
+    dates = '${f(e.date)}/${f((e.fin ?? e.date).add(const Duration(days: 1)))}';
   }
   final details = [
     if ((e.prevu ?? '').isNotEmpty) e.prevu!,
     if ((e.pourquoi ?? '').isNotEmpty) e.pourquoi!,
+    if ((e.lienDirect ?? '').isNotEmpty) '${tr('En direct')} : ${e.lienDirect}',
     '${tr('Source')} : ${e.sourceNom} ${e.sourceUrl}',
     'NovaSTEM',
   ].join('\n\n');
@@ -354,7 +467,7 @@ Future<void> ajouterAgenda(Evenement e) async {
     'text': e.titre,
     'dates': dates,
     'details': details,
-    'ctz': 'Europe/Paris',
+    if ((e.lieu ?? '').isNotEmpty) 'location': e.lieu!,
   });
   try {
     await launchUrl(uri, mode: LaunchMode.externalApplication);
@@ -427,7 +540,9 @@ class LigneEvenement extends StatelessWidget {
                     style: police(policeTexte, taille: 11.5, graisse: FontWeight.w800, couleur: encre)),
                 const SizedBox(height: 3),
                 TexteArticle(e.titre,
-                    style: police(policeTitres, taille: 15, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.2)),
+                    style: police(policeTitres, taille: 15, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.2)
+                        .copyWith(decoration: e.annule ? TextDecoration.lineThrough : null)),
+                ...ligneCarte(context, e),
               ]),
             ),
             IconButton(
@@ -546,6 +661,204 @@ Widget? rubriqueAVenir(BuildContext context, String fil, VoidCallback toutVoir, 
       ),
     ),
   ]);
+}
+
+// ------------------------------------------------------------------ infos pratiques (maquettes 78-79)
+
+const Map<String, IconData> iconesPratique = {
+  'lieu': Icons.place_outlined,
+  'heure': Icons.schedule_rounded,
+  'direction': Icons.explore_outlined,
+  'voir': Icons.visibility_outlined,
+  'lune': Icons.dark_mode_outlined,
+  'direct': Icons.live_tv_rounded,
+  'duree': Icons.date_range_rounded,
+  'repere': Icons.flag_outlined,
+  'appareil': Icons.devices_other_rounded,
+  'qui': Icons.groups_outlined,
+  'prix': Icons.sell_outlined,
+  'info': Icons.info_outline_rounded,
+};
+
+const _vertFond = Color(0xFFDDF5EA), _vertTexte = Color(0xFF0B6B4F);
+const _orangeFond = Color(0xFFFFF1D6), _orangeTexte = Color(0xFF7A4B00);
+const _rougeFond = Color(0xFFFDE2E2), _rougeTexte = Color(0xFF8E1F24);
+const _bleuFond = Color(0xFFEEF0FA), _bleuTexte = Color(0xFF2F3E66);
+
+/// Couleurs des bandeaux, lisibles en thème clair comme en sombre.
+(Color, Color) _couleurs(BuildContext context, Color fond, Color texte) =>
+    estSombre(context) ? (Color.lerp(texte, Colors.black, 0.55)!, Color.lerp(fond, Colors.white, 0.3)!) : (fond, texte);
+
+/// Ligne pratique sous le titre d'une carte de la liste : visibilité (ciel), statut, heure ou lieu.
+List<Widget> ligneCarte(BuildContext context, Evenement e) {
+  final p = palette(context);
+  String? texte;
+  Color couleur = p.texteDiscret;
+  var gras = false;
+  if (e.annule) {
+    texte = tr('Annulé');
+    couleur = estSombre(context) ? const Color(0xFFFF8A8F) : _rougeTexte;
+    gras = true;
+  } else if (e.reporte) {
+    texte = '${tr('Reporté')} · ${tr('prévu d’abord le')} ${DateFormat('d MMM', etat.langue).format(e.datePrecedente!)}';
+    couleur = estSombre(context) ? const Color(0xFFFFC56B) : _orangeTexte;
+    gras = true;
+  } else if (e.type == 'ciel') {
+    switch (visibiliteIci(e.visibleRegions, e.visiblePartiel)) {
+      case Visibilite.totale:
+        texte = '✓ ${tr('Visible chez vous')}';
+        couleur = estSombre(context) ? const Color(0xFF6EE2BE) : _vertTexte;
+        gras = true;
+      case Visibilite.partielle:
+        texte = '◐ ${tr('En partie visible chez vous')}';
+        couleur = estSombre(context) ? const Color(0xFF6EE2BE) : _vertTexte;
+        gras = true;
+      case Visibilite.aucune:
+        texte = '✕ ${tr('Pas visible chez vous')}';
+        couleur = estSombre(context) ? const Color(0xFFFFC56B) : _orangeTexte;
+        gras = true;
+      case Visibilite.inconnue:
+        texte = e.visibleTexte;
+    }
+  } else {
+    texte = [
+      if (e.instantExact != null) heureLocale(e.instantExact!),
+      if ((e.lieu ?? '').isNotEmpty) e.lieu!,
+    ].join(' · ');
+  }
+  if ((texte ?? '').isEmpty) return const [];
+  return [
+    const SizedBox(height: 3),
+    TexteArticle(texte!,
+        maxLines: 1,
+        style: police(policeTexte, taille: 12, graisse: gras ? FontWeight.w800 : FontWeight.w500, couleur: couleur)),
+  ];
+}
+
+Widget _bandeau(BuildContext context, Color fond, Color texte, IconData icone, String titre, String? detail) {
+  final (f, t) = _couleurs(context, fond, texte);
+  return Container(
+    padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+    decoration: BoxDecoration(color: f, borderRadius: BorderRadius.circular(16)),
+    child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Icon(icone, color: t, size: 22),
+      const SizedBox(width: 10),
+      Expanded(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(titre, style: police(policeTexte, taille: 14.5, graisse: FontWeight.w800, couleur: t)),
+          if ((detail ?? '').isNotEmpty) ...[
+            const SizedBox(height: 2),
+            TexteArticle(detail!, style: police(policeTexte, taille: 13, couleur: t, hauteur: 1.4)),
+          ],
+        ]),
+      ),
+    ]),
+  );
+}
+
+/// Bandeaux en haut de la fiche : annulé, reporté, date floue, visibilité (ciel).
+List<Widget> bandeauxEvenement(BuildContext context, Evenement e) {
+  final l = <Widget>[];
+  final raison = (e.statutRaison ?? '').isNotEmpty ? '${tr('Raison')} : ${e.statutRaison}. ' : '';
+  if (e.annule) {
+    l.add(_bandeau(context, _rougeFond, _rougeTexte, Icons.event_busy_rounded, tr('Annulé'),
+        '$raison${tr('L’organisateur a annulé l’événement.')}'));
+  } else if (e.reporte) {
+    l.add(_bandeau(
+        context,
+        _orangeFond,
+        _orangeTexte,
+        Icons.update_rounded,
+        trv('Reporté au {date}', {'date': dateEvenement(e, longue: true)}),
+        '${tr('prévu d’abord le')} ${DateFormat('d MMMM', etat.langue).format(e.datePrecedente!)}. $raison'
+            '${etat.rappels.contains(e.id) ? tr('Votre rappel a été déplacé.') : ''}'.trim()));
+  } else if (e.precision == 'avant') {
+    l.add(_bandeau(context, _bleuFond, _bleuTexte, Icons.event_note_rounded, dateEvenement(e),
+        tr('Date précise pas encore annoncée. On la met dès qu’elle paraît.')));
+  }
+  if (e.type == 'ciel' && !e.annule) {
+    final zone = e.visibleTexte;
+    switch (visibiliteIci(e.visibleRegions, e.visiblePartiel)) {
+      case Visibilite.totale:
+        l.add(_bandeau(context, _vertFond, _vertTexte, Icons.check_circle_rounded, tr('Visible chez vous'), zone));
+      case Visibilite.partielle:
+        l.add(_bandeau(context, _vertFond, _vertTexte, Icons.contrast_rounded, tr('En partie visible chez vous'), zone));
+      case Visibilite.aucune:
+        l.add(_bandeau(context, _orangeFond, _orangeTexte, Icons.cancel_rounded, tr('Pas visible chez vous'),
+            '${zone ?? ''}${(e.lienDirect ?? '').isNotEmpty ? ' · ${tr('À suivre en direct sur Internet.')}' : ''}'));
+      case Visibilite.inconnue:
+        if ((zone ?? '').isNotEmpty) {
+          l.add(_bandeau(context, _bleuFond, _bleuTexte, Icons.public_rounded, tr('Où le voir'), zone));
+        }
+    }
+  }
+  return l;
+}
+
+/// Bloc « En pratique » : lieu et heure (calculés ici, à l'heure du téléphone) puis les lignes de l'agent.
+Widget? blocPratique(BuildContext context, Evenement e) {
+  final p = palette(context);
+  final lignes = <(String, String, String)>[
+    if ((e.lieu ?? '').isNotEmpty) ('lieu', tr(e.type == 'lancement' ? 'D’où' : 'Où'), e.lieu!),
+    if (e.instantExact != null)
+      ('heure', tr('Heure de chez vous'), '${DateFormat('EEEE d MMMM', etat.langue).format(e.instantExact!.toLocal())} · ${heureLocale(e.instantExact!)}'),
+    if (e.fin != null && e.fin!.isAfter(e.date))
+      ('duree', tr('Durée'), '${dateEvenement(e, longue: true)} · ${tr('{n} jours', n: e.fin!.difference(e.date).inDays + 1)}'),
+    for (final x in e.pratique) (x.icone, x.titre, x.texte),
+  ];
+  if (lignes.isEmpty) return null;
+  return Container(
+    padding: const EdgeInsets.fromLTRB(14, 10, 14, 4),
+    decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(18)),
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(tr('En pratique').toUpperCase(),
+          style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+      for (var i = 0; i < lignes.length; i++)
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(border: i == 0 ? null : Border(top: BorderSide(color: p.bordure))),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              width: 34,
+              height: 34,
+              decoration: BoxDecoration(color: p.pastille, borderRadius: BorderRadius.circular(11)),
+              child: Icon(iconesPratique[lignes[i].$1] ?? Icons.info_outline_rounded, size: 19, color: p.texte),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                TexteArticle(lignes[i].$2,
+                    style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: p.texteDiscret)),
+                const SizedBox(height: 2),
+                TexteArticle(lignes[i].$3,
+                    style: police(policeTexte, taille: 15, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.35)),
+              ]),
+            ),
+          ]),
+        ),
+    ]),
+  );
+}
+
+/// Bouton rouge « Regarder en direct » (seulement si l'agent a un lien officiel).
+Widget? boutonDirect(BuildContext context, Evenement e) {
+  final lien = Uri.tryParse(e.lienDirect ?? '');
+  if (lien == null || !lien.hasScheme || e.annule || e.arrive) return null;
+  return SizedBox(
+    height: 48,
+    child: FilledButton.icon(
+      style: FilledButton.styleFrom(
+        backgroundColor: const Color(0xFFE5484D),
+        foregroundColor: Colors.white,
+        shape: const StadiumBorder(),
+        textStyle: police(policeTexte, taille: 15, graisse: FontWeight.w800),
+      ),
+      onPressed: () => launchUrl(lien, mode: LaunchMode.externalApplication),
+      icon: const Icon(Icons.live_tv_rounded),
+      label: Text((e.lienDirectNom ?? '').isNotEmpty ? '${tr('En direct')} · ${e.lienDirectNom} ↗' : '${tr('Regarder en direct')} ↗',
+          maxLines: 1, overflow: TextOverflow.ellipsis),
+    ),
+  );
 }
 
 // ------------------------------------------------------------------ l'onglet
@@ -700,6 +1013,12 @@ class _EcranEvenementState extends State<EcranEvenement> {
     if (e.precision == 'mois' && e.jours > 1) {
       compteur = Text(dateEvenement(e),
           style: police(policeTitres, taille: 32, graisse: FontWeight.w800, couleur: f.icone));
+    } else if (e.annule) {
+      compteur = Text(tr('Annulé'), style: police(policeTitres, taille: 32, graisse: FontWeight.w800, couleur: f.icone));
+    } else if (e.precision == 'avant' && e.jours > 1) {
+      compteur = Text(dateEvenement(e), style: police(policeTitres, taille: 30, graisse: FontWeight.w800, couleur: f.icone));
+    } else if (e.enCours) {
+      compteur = Text(tr('En ce moment'), style: police(policeTitres, taille: 32, graisse: FontWeight.w800, couleur: f.icone));
     } else if (reste.isNegative || e.jours <= 0) {
       compteur = Text(tr(e.arrive ? 'C’est arrivé' : (e.jours < 0 ? 'Pas encore de nouvelles' : 'C’est aujourd’hui !')),
           style: police(policeTitres, taille: 32, graisse: FontWeight.w800, couleur: f.icone));
@@ -710,8 +1029,12 @@ class _EcranEvenementState extends State<EcranEvenement> {
         chiffre((reste.inMinutes % 60).toString().padLeft(2, '0'), 'Min'),
       ]);
     }
-    final heure = e.heure == null ? '' : ', ${tr('vers')} ${e.heure!.replaceFirst(':', ' h ').replaceAll(' h 00', ' h')} (${tr('heure de Paris')})';
-    final dateTexte = e.precision == 'mois' ? dateEvenement(e) : dateEvenement(e, longue: true);
+    final heure = e.instantExact != null
+        ? ', ${heureLocale(e.instantExact!)} (${tr('heure de chez vous')})'
+        : e.heure == null
+            ? ''
+            : ', ${tr('vers')} ${e.heure!.replaceFirst(':', ' h ').replaceAll(' h 00', ' h')} (${tr('heure de Paris')})';
+    final dateTexte = e.precision != 'jour' ? dateEvenement(e) : dateEvenement(e, longue: true);
     Widget bloc(String titre, String? texte) => (texte ?? '').isEmpty
         ? const SizedBox.shrink()
         : Padding(
@@ -765,7 +1088,7 @@ class _EcranEvenementState extends State<EcranEvenement> {
                         const SizedBox(height: 12),
                         Text('${dateTexte[0].toUpperCase()}${dateTexte.substring(1)}$heure · ${tr('date donnée par la source')}',
                             style: police(policeTexte, taille: 13.5, couleur: f.icone.withValues(alpha: 0.92), hauteur: 1.4)),
-                        if (e.datePrecedente != null)
+                        if (e.datePrecedente != null && !e.reporte)
                           Padding(
                             padding: const EdgeInsets.only(top: 6),
                             child: Text(
@@ -783,7 +1106,10 @@ class _EcranEvenementState extends State<EcranEvenement> {
               child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 if (e.arrive)
                   Padding(padding: const EdgeInsets.only(bottom: 16), child: CarteArrivee(e)),
-                if (!e.arrive && e.jours < 0 && e.type != 'ciel')
+                for (final b in bandeauxEvenement(context, e)) Padding(padding: const EdgeInsets.only(bottom: 10), child: b),
+                if (boutonDirect(context, e) case final b?) Padding(padding: const EdgeInsets.only(bottom: 10), child: b),
+                if (blocPratique(context, e) case final b?) Padding(padding: const EdgeInsets.only(bottom: 16), child: b),
+                if (!e.arrive && !e.annule && e.joursFin < 0 && e.type != 'ciel')
                   Container(
                     margin: const EdgeInsets.only(bottom: 16),
                     padding: const EdgeInsets.all(14),
@@ -809,7 +1135,7 @@ class _EcranEvenementState extends State<EcranEvenement> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                if (!e.arrive && (e.jours >= 0 || (rappel && e.type != 'ciel'))) ...[
+                if (!e.arrive && !e.annule && (e.joursFin >= 0 || (rappel && e.type != 'ciel'))) ...[
                   SizedBox(
                     height: 52,
                     child: FilledButton.icon(

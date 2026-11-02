@@ -8175,3 +8175,718 @@ ja 本当の新しさ、影響を受ける人の数、証拠の確かさを見�
 ko 실제 새로움, 영향을 받는 사람의 수, 증거의 확실성을 봅니다. 사람 대상 시험은 동물 연구보다 더 높이 평가돼요.
 id Kami melihat kebaruan yang nyata, jumlah orang yang terdampak, dan kekuatan bukti: uji pada manusia lebih berbobot daripada studi pada hewan.
 vi Chúng tôi xét độ mới thực sự, số người được ảnh hưởng và độ vững chắc của bằng chứng: thử nghiệm trên người có giá trị hơn nghiên cứu trên động vật.
+
+
+@ Annulé
+en Cancelled
+es Cancelado
+pt Cancelado
+de Abgesagt
+it Annullato
+nl Geannuleerd
+pl Odwołane
+ru Отменено
+uk Скасовано
+tr İptal edildi
+ar أُلغي
+hi रद्द
+bn বাতিল
+ur منسوخ
+zh 已取消
+ja 中止
+ko 취소됨
+id Dibatalkan
+vi Đã hủy
+
+@ Arrivée d’une sonde
+en Probe arrival
+es Llegada de una sonda
+pt Chegada de uma sonda
+de Ankunft einer Sonde
+it Arrivo di una sonda
+nl Aankomst van een sonde
+pl Przybycie sondy
+ru Прибытие зонда
+uk Прибуття зонда
+tr Sondanın varışı
+ar وصول مسبار
+hi यान का पहुँचना
+bn মহাকাশযানের পৌঁছানো
+ur خلائی جہاز کی آمد
+zh 探测器抵达
+ja 探査機の到着
+ko 탐사선 도착
+id Kedatangan wahana
+vi Tàu thăm dò đến nơi
+
+@ Date précise pas encore annoncée. On la met dès qu’elle paraît.
+en Exact date not announced yet. We'll add it as soon as it's out.
+es Fecha exacta aún sin anunciar. La pondremos en cuanto se publique.
+pt Data exata ainda não anunciada. Vamos colocá-la assim que sair.
+de Genaues Datum noch nicht bekannt. Wir tragen es ein, sobald es feststeht.
+it Data esatta non ancora annunciata. La aggiungeremo appena uscirà.
+nl Exacte datum nog niet bekend. We zetten hem erbij zodra hij bekend is.
+pl Dokładna data nie jest jeszcze znana. Dodamy ją, gdy tylko się pojawi.
+ru Точная дата ещё не объявлена. Добавим её, как только она появится.
+uk Точну дату ще не оголошено. Додамо її, щойно вона з'явиться.
+tr Kesin tarih henüz açıklanmadı. Açıklanır açıklanmaz ekleyeceğiz.
+ar لم يُعلن التاريخ الدقيق بعد. سنضيفه فور صدوره.
+hi सटीक तारीख अभी घोषित नहीं हुई। आते ही हम जोड़ देंगे।
+bn সঠিক তারিখ এখনও ঘোষণা হয়নি। প্রকাশ হলেই আমরা যোগ করব।
+ur درست تاریخ ابھی اعلان نہیں ہوئی۔ آتے ہی ہم شامل کر دیں گے۔
+zh 确切日期尚未公布，一公布我们就会更新。
+ja 正確な日付はまだ発表されていません。発表され次第追加します。
+ko 정확한 날짜는 아직 발표되지 않았어요. 나오는 대로 추가할게요.
+id Tanggal pasti belum diumumkan. Kami tambahkan begitu keluar.
+vi Chưa công bố ngày chính xác. Chúng tôi sẽ cập nhật ngay khi có.
+
+@ Du {debut} au {fin}
+en {debut} to {fin}
+es Del {debut} al {fin}
+pt De {debut} a {fin}
+de {debut} bis {fin}
+it Dal {debut} al {fin}
+nl {debut} tot {fin}
+pl Od {debut} do {fin}
+ru С {debut} по {fin}
+uk З {debut} по {fin}
+tr {debut} – {fin}
+ar من {debut} إلى {fin}
+hi {debut} से {fin} तक
+bn {debut} থেকে {fin}
+ur {debut} سے {fin} تک
+zh {debut}至{fin}
+ja {debut}〜{fin}
+ko {debut}~{fin}
+id {debut} sampai {fin}
+vi Từ {debut} đến {fin}
+
+@ Durée
+en Duration
+es Duración
+pt Duração
+de Dauer
+it Durata
+nl Duur
+pl Czas trwania
+ru Продолжительность
+uk Тривалість
+tr Süre
+ar المدة
+hi अवधि
+bn সময়কাল
+ur دورانیہ
+zh 时长
+ja 期間
+ko 기간
+id Durasi
+vi Thời lượng
+
+@ Décision
+en Decision
+es Decisión
+pt Decisão
+de Entscheidung
+it Decisione
+nl Besluit
+pl Decyzja
+ru Решение
+uk Рішення
+tr Karar
+ar قرار
+hi निर्णय
+bn সিদ্ধান্ত
+ur فیصلہ
+zh 决定
+ja 決定
+ko 결정
+id Keputusan
+vi Quyết định
+
+@ D’ici fin {mois}
+en By the end of {mois}
+es Antes de finales de {mois}
+pt Até o fim de {mois}
+de Bis Ende {mois}
+it Entro fine {mois}
+nl Uiterlijk eind {mois}
+pl Do końca {mois}
+ru До конца: {mois}
+uk До кінця: {mois}
+tr {mois} sonuna kadar
+ar قبل نهاية {mois}
+hi {mois} के अंत तक
+bn {mois}-এর শেষের মধ্যে
+ur {mois} کے آخر تک
+zh {mois}底之前
+ja {mois}末までに
+ko {mois} 말까지
+id Paling lambat akhir {mois}
+vi Trước cuối {mois}
+
+@ EN COURS
+en NOW ON
+es EN CURSO
+pt EM CURSO
+de LÄUFT
+it IN CORSO
+nl BEZIG
+pl TRWA
+ru ИДЁТ
+uk ТРИВАЄ
+tr SÜRÜYOR
+ar جارٍ
+hi जारी
+bn চলছে
+ur جاری
+zh 进行中
+ja 開催中
+ko 진행 중
+id BERLANGSUNG
+vi ĐANG DIỄN RA
+
+@ En ce moment
+en Happening now
+es Ahora mismo
+pt Acontecendo agora
+de Gerade jetzt
+it In questo momento
+nl Nu bezig
+pl Właśnie trwa
+ru Прямо сейчас
+uk Просто зараз
+tr Şu anda
+ar يجري الآن
+hi अभी चल रहा है
+bn এখন চলছে
+ur ابھی جاری ہے
+zh 正在进行
+ja ただいま開催中
+ko 지금 진행 중
+id Sedang berlangsung
+vi Đang diễn ra
+
+@ En direct
+en Live
+es En directo
+pt Ao vivo
+de Live
+it In diretta
+nl Live
+pl Na żywo
+ru Прямой эфир
+uk Наживо
+tr Canlı
+ar مباشر
+hi लाइव
+bn সরাসরি
+ur براہِ راست
+zh 直播
+ja ライブ
+ko 생중계
+id Siaran langsung
+vi Trực tiếp
+
+@ En partie visible chez vous
+en Partly visible where you are
+es Visible en parte donde estás
+pt Parcialmente visível onde você está
+de Bei Ihnen teilweise sichtbar
+it Visibile in parte da te
+nl Bij u gedeeltelijk zichtbaar
+pl U Ciebie widoczne częściowo
+ru У вас видно частично
+uk У вас видно частково
+tr Bulunduğunuz yerden kısmen görünür
+ar مرئي جزئيًا من مكانك
+hi आपके यहाँ से आंशिक रूप से दिखेगा
+bn আপনার এলাকা থেকে আংশিক দেখা যাবে
+ur آپ کے ہاں جزوی طور پر نظر آئے گا
+zh 您所在地可部分看到
+ja お住まいの地域では部分的に見えます
+ko 계신 곳에서 일부 보여요
+id Sebagian terlihat dari tempat Anda
+vi Nơi bạn ở thấy được một phần
+
+@ En pratique
+en Practical info
+es En la práctica
+pt Na prática
+de Praktisches
+it In pratica
+nl Praktisch
+pl W praktyce
+ru На практике
+uk На практиці
+tr Pratik bilgiler
+ar معلومات عملية
+hi काम की जानकारी
+bn কাজের তথ্য
+ur عملی معلومات
+zh 实用信息
+ja 実用情報
+ko 실용 정보
+id Info praktis
+vi Thông tin thực tế
+
+@ Heure de chez vous
+en Your local time
+es Tu hora local
+pt Seu horário local
+de Ihre Ortszeit
+it La tua ora locale
+nl Uw lokale tijd
+pl Twój czas lokalny
+ru Ваше местное время
+uk Ваш місцевий час
+tr Yerel saatiniz
+ar توقيتك المحلي
+hi आपका स्थानीय समय
+bn আপনার স্থানীয় সময়
+ur آپ کا مقامی وقت
+zh 您的当地时间
+ja あなたの現地時間
+ko 현지 시간
+id Waktu setempat Anda
+vi Giờ địa phương của bạn
+
+@ L’organisateur a annulé l’événement.
+en The organiser has cancelled the event.
+es El organizador ha cancelado el evento.
+pt O organizador cancelou o evento.
+de Der Veranstalter hat das Ereignis abgesagt.
+it L'organizzatore ha annullato l'evento.
+nl De organisator heeft het evenement geannuleerd.
+pl Organizator odwołał wydarzenie.
+ru Организатор отменил событие.
+uk Організатор скасував подію.
+tr Düzenleyen etkinliği iptal etti.
+ar ألغى المنظّم الحدث.
+hi आयोजक ने कार्यक्रम रद्द कर दिया है।
+bn আয়োজক অনুষ্ঠানটি বাতিল করেছেন।
+ur منتظم نے تقریب منسوخ کر دی ہے۔
+zh 主办方已取消此活动。
+ja 主催者がイベントを中止しました。
+ko 주최 측이 행사를 취소했어요.
+id Penyelenggara membatalkan acara ini.
+vi Ban tổ chức đã hủy sự kiện.
+
+@ Mise en service
+en Switch-on
+es Puesta en marcha
+pt Entrada em operação
+de Inbetriebnahme
+it Entrata in servizio
+nl Ingebruikname
+pl Uruchomienie
+ru Ввод в эксплуатацию
+uk Введення в дію
+tr Hizmete giriş
+ar بدء التشغيل
+hi शुरुआत
+bn চালু হওয়া
+ur آغاز
+zh 投入使用
+ja 運用開始
+ko 가동 시작
+id Mulai beroperasi
+vi Đưa vào hoạt động
+
+@ Où le voir
+en Where to see it
+es Dónde verlo
+pt Onde ver
+de Wo man es sieht
+it Dove vederlo
+nl Waar te zien
+pl Gdzie zobaczyć
+ru Где увидеть
+uk Де побачити
+tr Nereden görülür
+ar أين تراه
+hi कहाँ से दिखेगा
+bn কোথা থেকে দেখা যাবে
+ur کہاں سے نظر آئے گا
+zh 在哪里能看到
+ja 見られる場所
+ko 볼 수 있는 곳
+id Tempat melihatnya
+vi Xem ở đâu
+
+@ Pas visible chez vous
+en Not visible where you are
+es No visible donde estás
+pt Não visível onde você está
+de Bei Ihnen nicht sichtbar
+it Non visibile da te
+nl Bij u niet zichtbaar
+pl U Ciebie niewidoczne
+ru У вас не видно
+uk У вас не видно
+tr Bulunduğunuz yerden görünmez
+ar غير مرئي من مكانك
+hi आपके यहाँ से नहीं दिखेगा
+bn আপনার এলাকা থেকে দেখা যাবে না
+ur آپ کے ہاں نظر نہیں آئے گا
+zh 您所在地看不到
+ja お住まいの地域では見えません
+ko 계신 곳에서는 안 보여요
+id Tidak terlihat dari tempat Anda
+vi Nơi bạn ở không thấy được
+
+@ Premier vol, essai
+en First flight, test
+es Primer vuelo, prueba
+pt Primeiro voo, teste
+de Erstflug, Test
+it Primo volo, test
+nl Eerste vlucht, test
+pl Pierwszy lot, test
+ru Первый полёт, испытание
+uk Перший політ, випробування
+tr İlk uçuş, test
+ar أول رحلة، تجربة
+hi पहली उड़ान, परीक्षण
+bn প্রথম উড়ান, পরীক্ষা
+ur پہلی پرواز، آزمائش
+zh 首飞、测试
+ja 初飛行・試験
+ko 첫 비행·시험
+id Penerbangan perdana, uji
+vi Chuyến bay đầu, thử nghiệm
+
+@ Prix
+en Award
+es Premio
+pt Prêmio
+de Preis
+it Premio
+nl Prijs
+pl Nagroda
+ru Премия
+uk Премія
+tr Ödül
+ar جائزة
+hi पुरस्कार
+bn পুরস্কার
+ur انعام
+zh 奖项
+ja 賞
+ko 상
+id Penghargaan
+vi Giải thưởng
+
+@ Présentation
+en Unveiling
+es Presentación
+pt Apresentação
+de Vorstellung
+it Presentazione
+nl Presentatie
+pl Prezentacja
+ru Презентация
+uk Презентація
+tr Tanıtım
+ar عرض تقديمي
+hi प्रस्तुति
+bn উন্মোচন
+ur رونمائی
+zh 发布会
+ja 発表会
+ko 공개 행사
+id Peluncuran
+vi Ra mắt
+
+@ Raison
+en Reason
+es Motivo
+pt Motivo
+de Grund
+it Motivo
+nl Reden
+pl Powód
+ru Причина
+uk Причина
+tr Neden
+ar السبب
+hi कारण
+bn কারণ
+ur وجہ
+zh 原因
+ja 理由
+ko 이유
+id Alasan
+vi Lý do
+
+@ Regarder en direct
+en Watch live
+es Ver en directo
+pt Assistir ao vivo
+de Live ansehen
+it Guarda in diretta
+nl Live kijken
+pl Oglądaj na żywo
+ru Смотреть трансляцию
+uk Дивитися наживо
+tr Canlı izle
+ar شاهد مباشرة
+hi लाइव देखें
+bn সরাসরি দেখুন
+ur براہِ راست دیکھیں
+zh 观看直播
+ja ライブで見る
+ko 생중계 보기
+id Tonton langsung
+vi Xem trực tiếp
+
+@ Reporté
+en Postponed
+es Aplazado
+pt Adiado
+de Verschoben
+it Rinviato
+nl Uitgesteld
+pl Przełożone
+ru Перенесено
+uk Перенесено
+tr Ertelendi
+ar أُجّل
+hi स्थगित
+bn পিছিয়েছে
+ur ملتوی
+zh 已推迟
+ja 延期
+ko 연기됨
+id Ditunda
+vi Đã hoãn
+
+@ Reporté au {date}
+en Postponed to {date}
+es Aplazado al {date}
+pt Adiado para {date}
+de Verschoben auf {date}
+it Rinviato al {date}
+nl Uitgesteld tot {date}
+pl Przełożone na {date}
+ru Перенесено на {date}
+uk Перенесено на {date}
+tr {date} tarihine ertelendi
+ar أُجّل إلى {date}
+hi {date} तक स्थगित
+bn {date}-এ পিছিয়েছে
+ur {date} تک ملتوی
+zh 推迟至{date}
+ja {date}に延期
+ko {date}(으)로 연기
+id Ditunda ke {date}
+vi Hoãn đến {date}
+
+@ Résultats attendus
+en Expected results
+es Resultados esperados
+pt Resultados esperados
+de Erwartete Ergebnisse
+it Risultati attesi
+nl Verwachte resultaten
+pl Oczekiwane wyniki
+ru Ожидаемые результаты
+uk Очікувані результати
+tr Beklenen sonuçlar
+ar نتائج منتظرة
+hi अपेक्षित नतीजे
+bn প্রত্যাশিত ফলাফল
+ur متوقع نتائج
+zh 待公布结果
+ja 結果発表予定
+ko 결과 발표 예정
+id Hasil yang dinanti
+vi Kết quả được chờ đợi
+
+@ Salon
+en Trade show
+es Feria
+pt Feira
+de Messe
+it Fiera
+nl Beurs
+pl Targi
+ru Выставка
+uk Виставка
+tr Fuar
+ar معرض
+hi प्रदर्शनी
+bn প্রদর্শনী
+ur نمائش
+zh 展会
+ja 見本市
+ko 박람회
+id Pameran
+vi Triển lãm
+
+@ Sommet
+en Summit
+es Cumbre
+pt Cúpula
+de Gipfel
+it Vertice
+nl Top
+pl Szczyt
+ru Саммит
+uk Саміт
+tr Zirve
+ar قمة
+hi शिखर सम्मेलन
+bn শীর্ষ সম্মেলন
+ur سربراہی اجلاس
+zh 峰会
+ja サミット
+ko 정상회의
+id KTT
+vi Hội nghị thượng đỉnh
+
+@ Visible chez vous
+en Visible where you are
+es Visible donde estás
+pt Visível onde você está
+de Bei Ihnen sichtbar
+it Visibile da te
+nl Bij u zichtbaar
+pl U Ciebie widoczne
+ru У вас видно
+uk У вас видно
+tr Bulunduğunuz yerden görünür
+ar مرئي من مكانك
+hi आपके यहाँ से दिखेगा
+bn আপনার এলাকা থেকে দেখা যাবে
+ur آپ کے ہاں نظر آئے گا
+zh 您所在地可以看到
+ja お住まいの地域で見えます
+ko 계신 곳에서 보여요
+id Terlihat dari tempat Anda
+vi Nơi bạn ở thấy được
+
+@ Votre rappel a été déplacé.
+en Your reminder has been moved.
+es Tu recordatorio se ha movido.
+pt Seu lembrete foi remarcado.
+de Ihre Erinnerung wurde verschoben.
+it Il tuo promemoria è stato spostato.
+nl Je herinnering is verplaatst.
+pl Twoje przypomnienie zostało przesunięte.
+ru Ваше напоминание перенесено.
+uk Ваше нагадування перенесено.
+tr Hatırlatıcınız taşındı.
+ar تم نقل تذكيرك.
+hi आपका रिमाइंडर खिसका दिया गया है।
+bn আপনার রিমাইন্ডার সরানো হয়েছে।
+ur آپ کی یاد دہانی منتقل کر دی گئی ہے۔
+zh 您的提醒已调整。
+ja リマインダーを移動しました。
+ko 알림 시간이 옮겨졌어요.
+id Pengingat Anda sudah dipindahkan.
+vi Lời nhắc của bạn đã được dời lại.
+
+@ heure de chez vous
+en your local time
+es tu hora local
+pt seu horário local
+de Ihre Ortszeit
+it tua ora locale
+nl uw lokale tijd
+pl Twój czas lokalny
+ru ваше местное время
+uk ваш місцевий час
+tr yerel saatiniz
+ar توقيتك المحلي
+hi आपका स्थानीय समय
+bn আপনার স্থানীয় সময়
+ur آپ کا مقامی وقت
+zh 您的当地时间
+ja 現地時間
+ko 현지 시간
+id waktu setempat
+vi giờ địa phương
+
+@ {n} jours
+en {n} days
+es {n} días
+pt {n} dias
+de {n} Tage
+it {n} giorni
+nl {n} dagen
+pl {n} dni
+ru {n} дн.
+uk {n} дн.
+tr {n} gün
+ar {n} أيام
+hi {n} दिन
+bn {n} দিন
+ur {n} دن
+zh {n} 天
+ja {n} 日間
+ko {n}일
+id {n} hari
+vi {n} ngày
+
+@ À suivre en direct sur Internet.
+en Watch it live online.
+es Para seguir en directo por Internet.
+pt Para acompanhar ao vivo pela internet.
+de Live im Internet zu verfolgen.
+it Da seguire in diretta su Internet.
+nl Live te volgen op internet.
+pl Do obejrzenia na żywo w internecie.
+ru Можно смотреть в прямом эфире в интернете.
+uk Можна дивитися наживо в інтернеті.
+tr İnternetten canlı izlenebilir.
+ar يمكن متابعته مباشرة عبر الإنترنت.
+hi इंटरनेट पर लाइव देखा जा सकता है।
+bn ইন্টারনেটে সরাসরি দেখা যাবে।
+ur انٹرنیٹ پر براہِ راست دیکھا جا سکتا ہے۔
+zh 可在网上观看直播。
+ja ネットでライブ中継を見られます。
+ko 인터넷 생중계로 볼 수 있어요.
+id Bisa ditonton langsung di internet.
+vi Có thể xem trực tiếp trên mạng.
+
+@ Date avancée
+en Date brought forward
+es Fecha adelantada
+pt Data antecipada
+de Termin vorgezogen
+it Data anticipata
+nl Datum vervroegd
+pl Termin przyspieszony
+ru Дата перенесена на более ранний срок
+uk Дату перенесено на раніше
+tr Tarih öne alındı
+ar تم تقديم الموعد
+hi तारीख पहले कर दी गई
+bn তারিখ এগিয়ে আনা হয়েছে
+ur تاریخ پہلے کر دی گئی
+zh 日期提前
+ja 日程が早まりました
+ko 일정이 앞당겨졌어요
+id Tanggal dimajukan
+vi Ngày được dời sớm hơn
+
+@ La date est connue
+en The date is set
+es Ya hay fecha
+pt A data foi definida
+de Das Datum steht fest
+it La data è fissata
+nl De datum is bekend
+pl Data jest już znana
+ru Дата известна
+uk Дата відома
+tr Tarih belli oldu
+ar تحدد الموعد
+hi तारीख तय हो गई
+bn তারিখ ঠিক হয়েছে
+ur تاریخ طے ہو گئی
+zh 日期已确定
+ja 日付が決まりました
+ko 날짜가 정해졌어요
+id Tanggalnya sudah pasti
+vi Đã có ngày chính xác
