@@ -93,11 +93,16 @@ class _EcranDomainesState extends State<EcranDomaines> {
                     : (widget.premierLancement ? tr('C’est parti ({n})', n: n) : tr('Enregistrer ({n})', n: n))),
               ),
             ),
-            TextButton(
-              onPressed: () => setState(() => _choix = {...famillesSciences, ...famillesTech}),
-              child: Text(tr('Tout sélectionner'),
+            // Bascule : « Tout sélectionner » ↔ « Tout désélectionner » (demande de Maxime, 02/11)
+            Builder(builder: (context) {
+              final toutes = {...famillesSciences, ...famillesTech};
+              final toutChoisi = _choix.containsAll(toutes);
+              return TextButton(
+              onPressed: () => setState(() => _choix = toutChoisi ? <String>{} : toutes),
+              child: Text(tr(toutChoisi ? 'Tout désélectionner' : 'Tout sélectionner'),
                   style: police(policeTexte, taille: 14, graisse: FontWeight.w600, couleur: p.texteDiscret)),
-            ),
+              );
+            }),
           ]),
         ),
       ),

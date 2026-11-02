@@ -373,6 +373,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'The date may have changed. We’ll let you know as soon as there’s news.',
     'Vous serez prévenu dès que l’article sera publié.': 'You’ll be notified as soon as the article is published.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'No article has reported it yet. The date may have changed: we’ll let you know as soon as there’s news.',
+    'Tout désélectionner': 'Deselect all',
   },
   'es': {
     'Sciences': 'Ciencia',
@@ -745,6 +746,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'Puede que la fecha haya cambiado. Te avisaremos en cuanto haya novedades.',
     'Vous serez prévenu dès que l’article sera publié.': 'Te avisaremos en cuanto se publique el artículo.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Ningún artículo lo ha anunciado todavía. Puede que la fecha haya cambiado: te avisaremos en cuanto haya novedades.',
+    'Tout désélectionner': 'Deseleccionar todo',
   },
   'pt': {
     'Sciences': 'Ciência',
@@ -1117,6 +1119,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'A data pode ter mudado. Avisaremos assim que houver novidades.',
     'Vous serez prévenu dès que l’article sera publié.': 'Você será avisado assim que o artigo for publicado.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Nenhum artigo anunciou ainda. A data pode ter mudado: avisaremos assim que houver novidades.',
+    'Tout désélectionner': 'Desmarcar tudo',
   },
   'de': {
     'Sciences': 'Wissenschaft',
@@ -1489,6 +1492,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'Das Datum hat sich vielleicht geändert. Wir melden uns, sobald es Neuigkeiten gibt.',
     'Vous serez prévenu dès que l’article sera publié.': 'Sie werden benachrichtigt, sobald der Artikel erscheint.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Noch kein Artikel hat darüber berichtet. Das Datum hat sich vielleicht geändert: Wir melden uns, sobald es Neuigkeiten gibt.',
+    'Tout désélectionner': 'Alle abwählen',
   },
   'it': {
     'Sciences': 'Scienza',
@@ -1861,6 +1865,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'La data potrebbe essere cambiata. Ti avviseremo appena ci sono novità.',
     'Vous serez prévenu dès que l’article sera publié.': 'Riceverai un avviso appena l’articolo sarà pubblicato.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Nessun articolo l’ha ancora annunciato. La data potrebbe essere cambiata: ti avviseremo appena ci sono novità.',
+    'Tout désélectionner': 'Deseleziona tutto',
   },
   'nl': {
     'Sciences': 'Wetenschap',
@@ -2233,6 +2238,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'De datum is misschien veranderd. We laten het weten zodra er nieuws is.',
     'Vous serez prévenu dès que l’article sera publié.': 'Je krijgt een melding zodra het artikel verschijnt.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Nog geen enkel artikel heeft het gemeld. De datum is misschien veranderd: we laten het weten zodra er nieuws is.',
+    'Tout désélectionner': 'Alles deselecteren',
   },
   'pl': {
     'Sciences': 'Nauka',
@@ -2605,6 +2611,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'Data mogła się zmienić. Damy znać, gdy pojawią się wieści.',
     'Vous serez prévenu dès que l’article sera publié.': 'Powiadomimy cię, gdy tylko artykuł się ukaże.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Żaden artykuł jeszcze o tym nie napisał. Data mogła się zmienić: damy znać, gdy pojawią się wieści.',
+    'Tout désélectionner': 'Odznacz wszystko',
   },
   'ru': {
     'Sciences': 'Наука',
@@ -2977,6 +2984,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'Возможно, дата изменилась. Мы сообщим, как только появятся новости.',
     'Vous serez prévenu dès que l’article sera publié.': 'Мы сообщим, как только статья будет опубликована.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Ни одна статья пока об этом не сообщила. Возможно, дата изменилась: мы сообщим, как только появятся новости.',
+    'Tout désélectionner': 'Снять выбор со всех',
   },
   'uk': {
     'Sciences': 'Наука',
@@ -3349,6 +3357,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'Можливо, дату змінено. Ми повідомимо, щойно з’являться новини.',
     'Vous serez prévenu dès que l’article sera publié.': 'Ми повідомимо, щойно статтю буде опубліковано.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Жодна стаття ще про це не повідомила. Можливо, дату змінено: ми повідомимо, щойно з’являться новини.',
+    'Tout désélectionner': 'Зняти вибір з усіх',
   },
   'tr': {
     'Sciences': 'Bilim',
@@ -3721,6 +3730,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'Tarih değişmiş olabilir. Haber olur olmaz size bildireceğiz.',
     'Vous serez prévenu dès que l’article sera publié.': 'Makale yayımlanır yayımlanmaz bildirim alacaksınız.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Henüz hiçbir makale bunu duyurmadı. Tarih değişmiş olabilir: haber olur olmaz bildireceğiz.',
+    'Tout désélectionner': 'Tümünün seçimini kaldır',
   },
   'ar': {
     'Sciences': 'العلوم',
@@ -4093,6 +4103,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'ربما تغيّر الموعد. سنخبرك فور وجود جديد.',
     'Vous serez prévenu dès que l’article sera publié.': 'سنُعلمك فور نشر المقال.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'لم يعلن أي مقال عنه بعد. ربما تغيّر الموعد: سنخبرك فور وجود جديد.',
+    'Tout désélectionner': 'إلغاء تحديد الكل',
   },
   'hi': {
     'Sciences': 'विज्ञान',
@@ -4465,6 +4476,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'शायद तारीख बदल गई है। कोई खबर आते ही हम बताएँगे।',
     'Vous serez prévenu dès que l’article sera publié.': 'लेख प्रकाशित होते ही आपको सूचना मिलेगी।',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'अभी तक किसी लेख ने इसकी घोषणा नहीं की। शायद तारीख बदल गई है: खबर आते ही हम बताएँगे।',
+    'Tout désélectionner': 'सभी का चयन हटाएँ',
   },
   'bn': {
     'Sciences': 'বিজ্ঞান',
@@ -4837,6 +4849,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'তারিখ হয়তো বদলেছে। খবর এলেই জানাব।',
     'Vous serez prévenu dès que l’article sera publié.': 'লেখাটি প্রকাশিত হলেই আপনাকে জানানো হবে।',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'এখনও কোনো লেখায় এটি জানানো হয়নি। তারিখ হয়তো বদলেছে: খবর এলেই জানাব।',
+    'Tout désélectionner': 'সব নির্বাচন বাতিল করুন',
   },
   'ur': {
     'Sciences': 'سائنس',
@@ -5209,6 +5222,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'شاید تاریخ بدل گئی ہے۔ خبر آتے ہی ہم بتائیں گے۔',
     'Vous serez prévenu dès que l’article sera publié.': 'مضمون شائع ہوتے ہی آپ کو اطلاع ملے گی۔',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'ابھی تک کسی مضمون نے اس کا اعلان نہیں کیا۔ شاید تاریخ بدل گئی ہے: خبر آتے ہی ہم بتائیں گے۔',
+    'Tout désélectionner': 'سب کا انتخاب ختم کریں',
   },
   'zh': {
     'Sciences': '科学',
@@ -5581,6 +5595,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': '日期可能已变更，有消息时我们会立即通知你。',
     'Vous serez prévenu dès que l’article sera publié.': '文章一发布就会通知你。',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': '目前还没有文章报道。日期可能已变更：有消息时我们会立即通知你。',
+    'Tout désélectionner': '全部取消选择',
   },
   'ja': {
     'Sciences': '科学',
@@ -5953,6 +5968,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': '日程が変わったかもしれません。続報があればすぐにお知らせします。',
     'Vous serez prévenu dès que l’article sera publié.': '記事が公開されたらすぐにお知らせします。',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'まだ記事で報じられていません。日程が変わったかもしれません。続報があればすぐにお知らせします。',
+    'Tout désélectionner': 'すべて選択解除',
   },
   'ko': {
     'Sciences': '과학',
@@ -6325,6 +6341,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': '날짜가 바뀌었을 수 있어요. 소식이 생기면 바로 알려드릴게요.',
     'Vous serez prévenu dès que l’article sera publié.': '기사가 게시되면 바로 알려드릴게요.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': '아직 이를 다룬 기사가 없어요. 날짜가 바뀌었을 수 있어요. 소식이 생기면 바로 알려드릴게요.',
+    'Tout désélectionner': '모두 선택 해제',
   },
   'id': {
     'Sciences': 'Sains',
@@ -6697,6 +6714,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'Tanggalnya mungkin berubah. Kami kabari begitu ada berita.',
     'Vous serez prévenu dès que l’article sera publié.': 'Anda akan diberi tahu begitu artikelnya terbit.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Belum ada artikel yang memberitakannya. Tanggalnya mungkin berubah: kami kabari begitu ada berita.',
+    'Tout désélectionner': 'Batalkan semua pilihan',
   },
   'vi': {
     'Sciences': 'Khoa học',
@@ -7069,5 +7087,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'La date a peut-être changé. On vous prévient dès qu’il y a du nouveau.': 'Có thể ngày đã thay đổi. Chúng tôi sẽ báo ngay khi có tin mới.',
     'Vous serez prévenu dès que l’article sera publié.': 'Bạn sẽ được báo ngay khi bài viết được đăng.',
     'Aucun article ne l’a encore annoncé. La date a peut-être changé : on vous prévient dès qu’il y a du nouveau.': 'Chưa có bài viết nào đưa tin. Có thể ngày đã thay đổi: chúng tôi sẽ báo ngay khi có tin mới.',
+    'Tout désélectionner': 'Bỏ chọn tất cả',
   },
 };

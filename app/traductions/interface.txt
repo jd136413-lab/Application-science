@@ -7797,3 +7797,24 @@ ja まだ記事で報じられていません。日程が変わったかもし�
 ko 아직 이를 다룬 기사가 없어요. 날짜가 바뀌었을 수 있어요. 소식이 생기면 바로 알려드릴게요.
 id Belum ada artikel yang memberitakannya. Tanggalnya mungkin berubah: kami kabari begitu ada berita.
 vi Chưa có bài viết nào đưa tin. Có thể ngày đã thay đổi: chúng tôi sẽ báo ngay khi có tin mới.
+
+@ Tout désélectionner
+en Deselect all
+es Deseleccionar todo
+pt Desmarcar tudo
+de Alle abwählen
+it Deseleziona tutto
+nl Alles deselecteren
+pl Odznacz wszystko
+ru Снять выбор со всех
+uk Зняти вибір з усіх
+tr Tümünün seçimini kaldır
+ar إلغاء تحديد الكل
+hi सभी का चयन हटाएँ
+bn সব নির্বাচন বাতিল করুন
+ur سب کا انتخاب ختم کریں
+zh 全部取消选择
+ja すべて選択解除
+ko 모두 선택 해제
+id Batalkan semua pilihan
+vi Bỏ chọn tất cả
