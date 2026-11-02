@@ -3,11 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'echelle_importance.dart';
 import 'ecran_notifications.dart';
 import 'etat.dart';
 import 'langues.dart';
 import 'memoire.dart';
 import 'premier_lancement.dart';
+import 'presentation.dart';
 import 'reglages.dart';
 import 'retours.dart';
 import 'stats.dart';
@@ -171,6 +173,35 @@ class EcranReglages extends StatelessWidget {
                 ]),
               ),
             ],
+            titreSection('Comprendre NovaSTEM'),
+            bloc(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const EcranCommentOnNote())),
+              child: Row(children: [
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(tr('Comment on note les avancées'),
+                        style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+                    const SizedBox(height: 4),
+                    Text(tr('Ce que veulent dire les 1 à 5 étoiles'), style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                  ]),
+                ),
+                Icon(Icons.chevron_right_rounded, color: p.texte),
+              ]),
+            ),
+            bloc(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => EcranPresentation(onSuivant: () => Navigator.of(context).pop()))),
+              child: Row(children: [
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(tr('Revoir la présentation'),
+                        style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+                    const SizedBox(height: 4),
+                    Text(tr('Les écrans du premier lancement'), style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                  ]),
+                ),
+                Icon(Icons.chevron_right_rounded, color: p.texte),
+              ]),
+            ),
             titreSection('Stockage'),
             const _BlocStockage(),
             titreSection('À propos'),

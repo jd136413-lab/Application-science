@@ -27,6 +27,8 @@ class EtatApp extends ChangeNotifier {
   bool avisDemande = false;
   /// Appareil exclu des statistiques (téléphone de Maxime) : 7 appuis sur la version dans Réglages.
   bool statsExclues = false;
+  /// Niveaux d'importance (1 à 5) déjà expliqués par la bulle de la fiche.
+  Set<int> niveauxVus = {};
   List<String> lues = []; // avancées déjà ouvertes (cartes grisées)
   /// Moment de la visite précédente : ce qui a été ajouté depuis est « Nouveau ».
   DateTime? visitePrecedente;
@@ -124,6 +126,7 @@ class EtatApp extends ChangeNotifier {
       favorisAjoutes = p.getInt('favoris_ajoutes') ?? 0;
       avisDemande = p.getBool('avis_demande') ?? false;
       statsExclues = p.getBool('stats_exclues') ?? false;
+      niveauxVus = (p.getStringList('niveaux_vus') ?? <String>[]).map(int.tryParse).whereType<int>().toSet();
       p.setInt('ouvertures', ouvertures);
       lues = p.getStringList('lues') ?? [];
       final v = p.getString('derniere_visite');
@@ -163,6 +166,7 @@ class EtatApp extends ChangeNotifier {
     p.setInt('favoris_ajoutes', favorisAjoutes);
     p.setBool('avis_demande', avisDemande);
     p.setBool('stats_exclues', statsExclues);
+    p.setStringList('niveaux_vus', [for (final n in niveauxVus) '$n']);
     p.setStringList('sources_masquees', sourcesMasquees.toList());
     p.setString('vocabulaire', jsonEncode([for (final m in vocabulaire) m.versJson()]));
     p.setBool('notif_actives', notifActives);
@@ -177,6 +181,11 @@ class EtatApp extends ChangeNotifier {
     p.setString('notif_fil', notifFil);
     p.setInt('notif_min', notifMin);
     p.setStringList('notif_par_famille', [for (final e in notifParFamille.entries) '${e.key}:${e.value}']);
+  }
+
+  /// Retient qu'un niveau d'importance a été expliqué (bulle de la fiche).
+  void marquerNiveauVu(int n) {
+    if (niveauxVus.add(n)) _enregistrer();
   }
 
   /// Exclut (ou réintègre) ce téléphone dans les statistiques.

@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'echelle_importance.dart';
 import 'langues.dart';
 import 'premier_lancement.dart';
 import 'reglages.dart';
@@ -40,14 +41,6 @@ class EcranPresentation extends StatelessWidget {
   static const _ligne = Color(0xFF2A2935);
   static const _etoileVide = Color(0xFF45434F);
 
-  // Les 5 niveaux, du plus rare au plus courant.
-  static const _niveaux = [
-    (5, 'historique, quelques fois par an'),
-    (4, 'une première, qui touchera beaucoup de monde'),
-    (3, 'change la donne dans son domaine'),
-    (2, 'solide et remarqué par les spécialistes'),
-    (1, 'un pas de plus, utile à connaître'),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +99,7 @@ class EcranPresentation extends StatelessWidget {
                         const SizedBox(height: 16),
                         Container(
                           decoration: const BoxDecoration(border: Border(top: BorderSide(color: _ligne))),
-                          child: Column(children: [for (final (n, d) in _niveaux) ligneNiveau(n, d)]),
+                          child: Column(children: [for (final (n, d) in niveauxImportance) ligneNiveau(n, d)]),
                         ),
                         const SizedBox(height: 16),
                         Text('●  ${tr('Des nouvelles avancées sont ajoutées 2 fois par jour')}',

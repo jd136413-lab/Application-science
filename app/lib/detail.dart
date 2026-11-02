@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'carte.dart';
+import 'echelle_importance.dart';
 import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart';
@@ -238,9 +239,10 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
           style: police(policeTitres, taille: 27, graisse: FontWeight.w800, couleur: p.texte, hauteur: 1.12)),
       const SizedBox(height: 14),
       Wrap(spacing: 12, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
-        Etoiles(note: a.importance, taille: 18),
+        EtoilesExpliquees(note: a.importance, taille: 18),
         if (a.typeEtude != null && badgesEtude.containsKey(a.typeEtude)) BadgeEtude(code: a.typeEtude!),
       ]),
+      BulleNiveau(note: a.importance),
       const SizedBox(height: 16),
       if (!a.nouveauResume)
         TexteArticle(a.resume,
