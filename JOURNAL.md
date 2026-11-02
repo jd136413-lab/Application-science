@@ -306,3 +306,4 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
 - 02/11 22 h 30 — **Compilation demandée par Maxime** (« compile ») : v1.0.47 puis v1.0.48 envoyée en tests internes Google Play (aide sur les étoiles A/C/E, cartes cuivre et or dans le magazine, « Tout désélectionner », plus de pastille sur « À venir », infos pratiques « À venir » et Réglages → Pays).
 - 02/11 23 h — Réglages : ligne « Revoir la présentation » retirée (demande de Maxime) ; « Comprendre NovaSTEM » garde « Comment on note les avancées ». Poussé sans compiler.
 - 02/11 23 h 05 — Bulle « niveau jamais vu » (E) : claire en thème sombre (elle se confondait avec la page), sombre en thème clair. Poussé sans compiler.
+- 02/11 23 h 20 — **Compilation demandée par Maxime** (« compile ») : v1.0.49 envoyée en tests internes Google Play (« Revoir la présentation » retiré, bulle des étoiles lisible en thème sombre).
