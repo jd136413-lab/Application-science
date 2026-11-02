@@ -295,3 +295,4 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
   - C : Réglages → nouvelle section « Comprendre NovaSTEM » (après Centres d'intérêt, avant Stockage) : « Comment on note les avancées » (légende + critères) et « Revoir la présentation ».
   - E : bulle sous les étoiles la 1re fois qu'on ouvre une avancée d'un niveau jamais vu (5 fois au plus, une par niveau ; mémoire `niveaux_vus`), avec « Voir les 5 niveaux » et « Compris ».
   - Légende commune : `echelle_importance.dart` (`niveauxImportance`, aussi utilisée par la présentation). 17 nouveaux textes, 19 langues. Poussé sans compiler.
+- 02/11 22 h — Onglet « À venir » : plus de pastille sur l'onglet (elle comptait les événements des 7 prochains jours et ressemblait à « 1 nouveauté » introuvable ; demande de Maxime). Maquette 78 : infos pratiques (où, quand à l'heure de chez vous, comment voir ou suivre), fiche A/B/C, en attente de son choix. Poussé sans compiler.

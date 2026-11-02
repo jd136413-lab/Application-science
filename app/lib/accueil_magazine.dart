@@ -401,11 +401,9 @@ class _EnTete extends StatelessWidget {
           const SizedBox(width: 22),
           onglet('tech', texteTechnologies),
           const SizedBox(width: 22),
-          // 3e onglet « À venir » (maquette 70) ; pastille = événements des 7 prochains jours
-          ListenableBuilder(
-            listenable: evenementsAVenir,
-            builder: (context, _) => onglet('avenir', 'À venir', evenementsAVenir.cetteSemaine),
-          ),
+          // 3e onglet « À venir » (maquette 70). Pas de pastille (choix de Maxime du 02/11 :
+          // on ne savait pas quelle carte était « nouvelle »).
+          onglet('avenir', 'À venir'),
         ]),
       ]),
     );
