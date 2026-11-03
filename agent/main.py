@@ -70,6 +70,11 @@ PLAFOND_REDACTION = 0.05     # $ par passage
 # réécrite ensuite : on le fait réfléchir un peu moins pour compenser le coût de la réécriture.
 # Valeurs possibles : "low", "medium", "high" (= comme avant). Sans effet si REDACTION = False.
 EFFORT_PREMIER_JET = "medium"
+# Décision de Maxime (03/11) : pas de fiche sur un article illisible ou trop court (moins de
+# TEXTE_MIN caractères lus) : ces fiches plafonnaient à 6-7/10. L'article n'est pas envoyé
+# à Claude (aucun coût) : s'il est prometteur, il attend 3 jours qu'une source lisible
+# parle du même sujet ; sinon il est écarté.
+TEXTE_MIN = 1500
 # ---------------------------------------------------------------------
 
 import html
@@ -1518,6 +1523,20 @@ def main() -> int:
             elif not art.get("page_lue") and art["url"] in ATTENTE:
                 log(f"  ⏳ toujours en attente d'une version lisible : {art['title'][:70]}")
                 continue                            # pas d'appel à Claude : rien de neuf à lire
+            longueur = len(art.get("text", "")) if art.get("page_lue") else 0
+            if longueur < TEXTE_MIN:
+                raison = (f"article trop court ({longueur} caractères)" if art.get("page_lue")
+                          else f"page illisible ({art.get('statut_page', '?')})")
+                if art.get("note_pre", 0) >= 2:
+                    if art["url"] not in ATTENTE:
+                        mettre_en_attente(art, raison)
+                    else:
+                        log(f"  ⏳ toujours en attente ({raison}) : {art['title'][:70]}")
+                else:
+                    db.marquer_ecarte(art["url"], "illisible" if not art.get("page_lue") else "trop_court")
+                    log(f"  – écarté ({raison}) : {art['title'][:70]}")
+                STATS["trop_courts"] = STATS.get("trop_courts", 0) + 1
+                continue                            # aucun appel à Claude
             appels += 1
         try:
             if deja_juge is not None:
@@ -1640,6 +1659,8 @@ def main() -> int:
     log(f"Appels à Claude : {appels} — tokens : {conso['in']} entrée, {conso['cache_w']} mis en cache, "
         f"{conso['cache_r']} lus en cache, {conso['out']} sortie")
     log(f"Rédaction en deux temps (réécriture + relecture) : {cout_red:.4f} $")
+    log(f"Articles illisibles ou de moins de {TEXTE_MIN} caractères, sans fiche (ni appel à Claude) : "
+        f"{STATS.get('trop_courts', 0)}")
     log(f"Titres simplifiés à la relecture (test du passant) : {nb_titres} sur {len(ajoutes)}, {cout_titres:.4f} $")
     log(f"Sources ajoutées à des fiches déjà publiées (même avancée, autre média) : {sources_ajoutees} ; "
         f"fiches publiées avec plusieurs sources : {sum(1 for a in ajoutes if a.get('autres_sources'))}")
