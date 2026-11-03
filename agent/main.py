@@ -272,7 +272,7 @@ class Supabase:
         `ligne` son identifiant et sa famille (calculée par la base), utiles
         pour les notifications."""
         h = dict(self.headers, Prefer="return=representation")
-        envoi = dict(ligne)
+        envoi = {k: v for k, v in ligne.items() if not k.startswith("_")}   # _qualite… : pas pour la base
         for _ in range(4):
             r = requests.post(self.base, headers=h, json=envoi, timeout=30, params={"select": "id,family"})
             if r.status_code != 400:
@@ -827,6 +827,8 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
     a_trier = []
     for i, a in enumerate(pool):
         m = memoire.get(a["url"])
+        if not isinstance(m, (list, type(None))):
+            m = None
         if m is None:
             a_trier.append(i)
         elif m[0] > 0:                       # déjà jugé prometteur : on le garde
@@ -858,7 +860,8 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
             log(f"⚠ Tri d'un paquet impossible ({ex.__class__.__name__})")
     # On oublie ce qui a plus de 8 jours, puis on enregistre la mémoire
     seuil = (MAINTENANT - timedelta(days=8)).isoformat()
-    memoire = {u: m for u, m in memoire.items() if m[2] >= seuil}
+    memoire = {u: m for u, m in memoire.items() if u != "_attente" and isinstance(m, list) and m[2] >= seuil}
+    memoire["_attente"] = ATTENTE
     try:
         json.dump(memoire, open(FICHIER_MEMOIRE_TRI, "w", encoding="utf-8"))
     except Exception:
@@ -1140,6 +1143,9 @@ def sans_publication(t: str) -> str:
 _CREUX = re.compile(r"ouvre (?:la|de nouvelles) (?:voie|perspectives)|pourrait révolutionner|"
                     r"avancée majeure|pas important|change la donne|nouvelle ère|"
                     r"reste à confirmer\s*[.!]|publi[ée]e?s? dans|selon la revue", re.I)
+# Parler de l'article au lieu de l'avancée (03/11) : « l'article ne précise pas… »
+_META = re.compile(r"\b(?:l'|cet |l’)(?:article|étude publiée|communiqué) (?:ne |n'|n’)|selon l'article|"
+                   r"\b(?:l'|l’)article (?:indique|précise|mentionne|dit)|le texte ne (?:dit|précise)", re.I)
 _NOMBRE = re.compile(r"\d+(?:[.,]\d+)?")
 
 
@@ -1181,9 +1187,54 @@ def controle_qualite(ligne: dict, art: dict) -> list[str]:
             pbs.append("« Avant » répète le titre")
     if not re.search(r"\d", textes["decouverte"]) and not re.search(r"(?<![.!?] )(?<!^)\b[A-Z][a-zà-ÿ]{2,}", textes["decouverte"][1:]):
         pbs.append("découverte sans fait précis (ni chiffre ni nom)")
+    meta = sorted({m.group(0).lower() for t in textes.values() for m in _META.finditer(t)})
+    if meta:
+        pbs.append(f"parle de l'article au lieu de l'avancée : {', '.join(meta)}")
     if not art.get("page_lue"):
         pbs.append("écrite à partir du seul extrait du flux")
     return pbs
+
+
+def trop_pauvre(pbs: list[str], art: dict) -> bool:
+    """Point 2 (03/11) : une fiche écrite sur le seul extrait du flux n'est publiée que si
+    l'extrait est riche et qu'aucun autre défaut n'est signalé. Sinon : en attente."""
+    if art.get("page_lue"):
+        return False
+    autres = [p for p in pbs if p != "écrite à partir du seul extrait du flux"]
+    return bool(autres) or len(art.get("text", "")) < 1500
+
+
+# ---------- Point 3 (03/11) : sujets en attente d'une version lisible ----------
+# Un sujet prometteur dont le site bloque la lecture (Medical Xpress…) n'est plus écarté :
+# il attend qu'une source lisible en parle (le regroupement par sujet la trouve alors).
+# Tant qu'aucune version lisible n'existe, il n'est pas renvoyé à Claude (aucun coût).
+ATTENTE_JOURS = 3
+ATTENTE: dict[str, str] = {}          # url → date de mise en attente (gardée dans memoire_tri.json)
+
+
+def charger_attente() -> None:
+    try:
+        m = json.load(open(FICHIER_MEMOIRE_TRI, encoding="utf-8")).get("_attente") or {}
+        ATTENTE.update({u: d for u, d in m.items() if isinstance(d, str)})
+    except Exception:
+        pass
+
+
+def enregistrer_attente() -> None:
+    try:
+        try:
+            m = json.load(open(FICHIER_MEMOIRE_TRI, encoding="utf-8"))
+        except Exception:
+            m = {}
+        m["_attente"] = ATTENTE
+        json.dump(m, open(FICHIER_MEMOIRE_TRI, "w", encoding="utf-8"))
+    except Exception:
+        pass
+
+
+def mettre_en_attente(art: dict, raison: str) -> None:
+    ATTENTE.setdefault(art["url"], MAINTENANT.isoformat())
+    log(f"  ⏳ en attente d'une version lisible ({raison}) : {art['title'][:70]}")
 
 
 def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
@@ -1261,6 +1312,10 @@ def mots_valides(mots: list, texte_fiche: str) -> list[dict]:
         # la définition ne reprend pas le mot lui-même
         if all(re.search(r"\b" + re.escape(r), _sans_accents(definition)) for r in racines):
             continue
+        # déjà expliqué dans le texte (« l'heme, la partie du sang… », « un aerogel, un materiau… »)
+        if re.search(r"\b" + re.escape(racines[-1]) + r"\w*\s*(?:,|\(|:|—|-)\s*(?:c'est |soit |autrement dit )?"
+                     r"(?:un|une|le|la|les|des|l'|l’|c'est)\b", texte):
+            continue
         gardes.append({"mot": mot[:60], "definition": definition[:300]})
         if len(gardes) == 2:
             break
@@ -1328,6 +1383,11 @@ def main() -> int:
             log(f"Crédits d'image corrigés : {n}")
     except Exception:
         pass
+    charger_attente()
+    for u, d in list(ATTENTE.items()):          # trop vieux : abandonné
+        if d < (MAINTENANT - timedelta(days=ATTENTE_JOURS)).isoformat():
+            db.marquer_ecarte(u, "illisible")
+            ATTENTE.pop(u, None)
     log(f"Base : {nb_base} articles publiés, {nb_ecartes} liens déjà écartés, "
         f"{len(sujets['science'])} + {len(sujets['tech'])} sujets récents.\n")
 
@@ -1402,8 +1462,14 @@ def main() -> int:
         examines.add(art["url"])
         deja_juge = art.pop("_reponse", None)   # jugé au 1er tour mais son fil était plein
         if deja_juge is None:
-            appels += 1
+            url_avant = art["url"]
             lire_meilleure_version(art, db)         # article entier, version lisible (02/11)
+            if art["url"] != url_avant:
+                ATTENTE.pop(url_avant, None)        # une version lisible est arrivée
+            elif not art.get("page_lue") and art["url"] in ATTENTE:
+                log(f"  ⏳ toujours en attente d'une version lisible : {art['title'][:70]}")
+                continue                            # pas d'appel à Claude : rien de neuf à lire
+            appels += 1
         try:
             if deja_juge is not None:
                 rep, diag = deja_juge, ""
@@ -1426,6 +1492,9 @@ def main() -> int:
                     log(f"  + source ajoutée à « {fiche['title'][:60]} » : {art['source_name']}")
                 doublons.append((art, rep.get("duplicate_of", "")))
                 log(f"  ↺ doublon   : {art['title'][:80]}")
+                continue
+            if decision == "undetermined" and not art.get("page_lue") and art.get("note_pre", 0) >= 2:
+                mettre_en_attente(art, "page bloquée, trop peu d'informations")
                 continue
             if decision not in ("science", "tech", "both"):
                 db.marquer_ecarte(art["url"], str(decision or "skip"))
@@ -1451,6 +1520,12 @@ def main() -> int:
                 log(f"  ⚖ famille au plafond ({FAMILLE_DU_THEME.get(lignes[0]['theme'])}) : {art['title'][:70]}")
                 continue
             lignes = gardees
+            for l in lignes:
+                l["_qualite"] = controle_qualite(l, art)
+            if any(trop_pauvre(l["_qualite"], art) for l in lignes):
+                mettre_en_attente(art, "fiche trop pauvre : " + " ; ".join(lignes[0]["_qualite"]))
+                continue
+            ATTENTE.pop(art["url"], None)
             completer_image(art)
             enregistrees = []
             for ligne in lignes:
@@ -1468,7 +1543,6 @@ def main() -> int:
                     par_fil[f] = par_fil.get(f, 0) + 1
                 for ligne in enregistrees:
                     ligne["explication"] = explication
-                    ligne["_qualite"] = controle_qualite(ligne, art)
                     if ligne["_qualite"]:
                         log(f"  ⚠ qualité : {' ; '.join(ligne['_qualite'])}")
                     ajoutes.append(ligne)
@@ -1500,6 +1574,9 @@ def main() -> int:
     cout = (conso["in"] * p_in + conso["cache_w"] * p_in * 1.25
             + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad + cout_titres + cout_avenir
 
+    enregistrer_attente()
+    if ATTENTE:
+        log(f"Sujets en attente d'une version lisible : {len(ATTENTE)}")
     log("\n" + "=" * 60)
     log(f"RÉSUMÉ : {nb_articles} article(s) retenu(s) → {len(ajoutes)} fiche(s) "
         f"(sciences {decisions['science']}, tech {decisions['tech']}, les deux {decisions['both']}) ; "

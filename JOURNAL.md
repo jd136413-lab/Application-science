@@ -307,3 +307,9 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
 - 02/11 23 h — Réglages : ligne « Revoir la présentation » retirée (demande de Maxime) ; « Comprendre NovaSTEM » garde « Comment on note les avancées ». Poussé sans compiler.
 - 02/11 23 h 05 — Bulle « niveau jamais vu » (E) : claire en thème sombre (elle se confondait avec la page), sombre en thème clair. Poussé sans compiler.
 - 02/11 23 h 20 — **Compilation demandée par Maxime** (« compile ») : v1.0.49 envoyée en tests internes Google Play (« Revoir la présentation » retiré, bulle des étoiles lisible en thème sombre).
+- 03/11 9 h 45 — **Qualité des fiches, 5 corrections** (avis sur le passage du 03/11 8 h 20, note 7/10 ; choix de Maxime : les 5) :
+  1. Relecture des titres : ne change jamais le sens (« courant continu » ≠ « courant stable » ; liste de mots exacts compris de tous à garder).
+  2. Fiche écrite sur le seul extrait du flux : publiée seulement si l'extrait est riche (≥ 1 500 caractères) et sans autre défaut ; sinon mise en attente. Interdit dans le prompt et contrôlé : parler de l'article (« l'article ne précise pas… »), répéter un chiffre.
+  3. Sujets en attente d'une version lisible (`ATTENTE`, gardée dans memoire_tri.json, 3 jours) : un sujet ★★ ou plus jugé « informations insuffisantes » parce que le site bloque la lecture n'est plus écarté ; il est repris dès qu'une source lisible en parle, sans appel à Claude entre-temps. Cas du 03/11 : maladie héréditaire du poumon et du foie (Medical Xpress), perdue.
+  4. Mots à connaître : écarté si déjà expliqué dans le texte (« l'hème, la partie du sang… »).
+  5. À venir : les anciens lancements sont complétés avec les données déjà reçues de la base des lancements (plus de lieu brut en anglais, au plus 2 demandes en plus) ; une carte sans lignes « En pratique » est complétée même si elle a un lieu.

@@ -39,6 +39,8 @@ Il ÉCHOUE s'il contient :
 
 Mots connus de tous, À GARDER (ce n'est pas du jargon) : ordinateur quantique, intelligence artificielle (IA), ADN, ARN, gène, vaccin, virus, bactérie, cellule, robot, satellite, fusée, astéroïde, galaxie, trou noir, cancer, diabète, batterie, électrique, laser, Einstein…
 Ne rends JAMAIS un titre plus vague qu'avant : le résultat concret (chiffre, record, ce qui a été vu ou fait) doit rester. Dans le doute, garde le titre (ok = true).
+NE CHANGE JAMAIS LE SENS (règle de Maxime, 03/11) : un mot simplifié doit dire EXACTEMENT la même chose. Si le seul mot « simple » possible est faux ou approximatif, garde le mot exact (ok = true). Mots exacts compris de tous, À GARDER : courant continu, courant alternatif, tension électrique, panneau solaire, éolienne, hydrogène, nucléaire, fusion, carbone, CO2, oxygène, protéine, antibiotique, chimiothérapie, greffe, puce, processeur, serveur, centre de données…
+Exemple FAUX à ne jamais faire : « … fonctionne désormais en courant continu » → « … avec un courant stable » (continu ne veut pas dire stable).
 
 Si le titre réussit le test : "ok" = true et "titre" = "".
 S'il échoue : "ok" = false et "titre" = le titre réécrit, même forme, 12 mots au plus, mots de tous les jours. Remplace le nom inconnu par CE QUE C'EST (« un nouveau médicament », « une IA de Google », « des fossiles chinois », « un télescope spatial »), le jargon par des mots simples ou une comparaison parlante. Le thème aussi doit être simple (« Intestin » plutôt que « Colite », « Espace » plutôt que « Sursauts gamma »).
@@ -153,6 +155,8 @@ Exemples :
 « Diabète : le retatrutide fait mieux que l'Ozempic » → « Diabète : un nouveau médicament fait mieux que le traitement de référence »
 « Mémoire : des neurones de l'amygdale annoncent les souvenirs qui restent » → « Mémoire : une zone du cerveau annonce les souvenirs qui resteront »
 « Muscles : un traitement CRISPR modifie le gène dans les muscles humains » → « Muscles : des ciseaux à ADN modifient un gène dans des muscles humains »
+
+3. NE CHANGE JAMAIS LE SENS : un mot simplifié doit dire exactement la même chose ; sinon garde le mot exact (courant continu, panneau solaire, hydrogène, protéine, processeur… sont compris de tous). Jamais « courant stable » pour « courant continu ».
 
 Forme : « Thème : phrase » (thème en mots simples), 12 mots au plus, sans point final, exact (n'invente rien, appuie-toi sur le résumé).
 Réponds uniquement avec le JSON demandé, une entrée par fiche, avec le même numéro « n »."""

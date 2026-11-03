@@ -417,6 +417,7 @@ def place_libre(futurs: list[dict], famille: str | None, importance: int) -> boo
 # ------------------------------------------------------------------ lancements (Launch Library 2)
 
 LL2 = "https://ll.thespacedevs.com/2.2.0/launch/"
+_LL2_CACHE: dict[str, dict] = {}   # lancements déjà reçus pendant ce passage (la base limite à 15 demandes par heure)
 
 CONSIGNE_LANCEMENTS = """Tu choisis des lancements spatiaux pour l'onglet « À venir » de NovaSTEM (application gratuite d'avancées scientifiques et technologiques pour le grand public du monde entier, en français).
 
@@ -489,6 +490,7 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
         log(f"  ⚠ À venir : lancements illisibles ({str(ex)[:80]})")
         return 0, 0
     par_id = {f"{LL2}{l.get('id')}/": l for l in res}
+    _LL2_CACHE.update(par_id)
     # --- 1) Revérifier les lancements suivis (pas encore arrivés) ---
     maj = 0
     suivis = [e for e in existants if str(e.get("source_url", "")).startswith(LL2) and not e.get("advance_id")
@@ -496,13 +498,14 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
     hors_liste = 0
     for e in suivis:
         l = par_id.get(e["source_url"])
-        if l is None and hors_liste < 5:               # repoussé loin, ou déjà parti : on le lit seul
+        if l is None and hors_liste < 3:               # repoussé loin, ou déjà parti : on le lit seul
             hors_liste += 1
             try:
                 rr = requests.get(e["source_url"], timeout=30, params={"mode": "detailed"},
                                   headers={"User-Agent": "NovaSTEM/1.0"})
                 if rr.status_code == 200:
                     l = rr.json()
+                    _LL2_CACHE[e["source_url"]] = l
             except Exception:
                 l = None
         if l is None:
@@ -518,10 +521,6 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
             video, video_nom = _video(l)
             if video and video != e.get("lien_direct"):
                 _modifier(db, e, {"lien_direct": video, "lien_direct_nom": video_nom})
-            if not e.get("lieu"):
-                loc = ((l.get("pad") or {}).get("location") or {}).get("name")
-                if loc:
-                    _modifier(db, e, {"lieu": loc})
             if _changement(db, e, nouveau, _statut_ll2(l), "", log):
                 maj += 1
         except Exception as ex:
@@ -616,17 +615,22 @@ def completer(db, client, modele_id, futurs: list[dict], lire_debut_page, conso:
         du_calendrier = {ev.get("source_url") for ev in json.load(open(chemin, encoding="utf-8")).get("evenements", [])}
     except Exception:
         du_calendrier = set()
+    # Sans lignes « En pratique » (le lieu seul ne suffit pas : il peut être brut, en anglais).
     a_faire = [e for e in futurs if e.get("source_url") not in du_calendrier and e.get("statut") != "annule"
-               and not e.get("pratique") and not _complet(e, e.get("type") or "")]
+               and not e.get("pratique")]
     n = 0
+    demandes_ll2 = 0
     for e in a_faire[:COMPLETER_PAR_PASSAGE]:
         try:
             source = ""
             if str(e["source_url"]).startswith(LL2):
-                rr = requests.get(e["source_url"], timeout=30, params={"mode": "detailed"},
-                                  headers={"User-Agent": "NovaSTEM/1.0"})
-                if rr.status_code == 200:
-                    l = rr.json()
+                l = _LL2_CACHE.get(e["source_url"])     # déjà reçu : aucune nouvelle demande
+                if l is None and demandes_ll2 < 2:
+                    demandes_ll2 += 1
+                    rr = requests.get(e["source_url"], timeout=30, params={"mode": "detailed"},
+                                      headers={"User-Agent": "NovaSTEM/1.0"})
+                    l = rr.json() if rr.status_code == 200 else None
+                if l:
                     source = (f"Lancement : {l.get('name', '')}\nPas de tir : {((l.get('pad') or {}).get('location') or {}).get('name', '')}"
                               f" ({(l.get('pad') or {}).get('name', '')})\nMission : {((l.get('mission') or {}).get('description') or '')[:600]}")
                     video, nom = _video(l)
@@ -637,6 +641,7 @@ def completer(db, client, modele_id, futurs: list[dict], lire_debut_page, conso:
                 lire_debut_page(art)
                 source = art.get("text", "")[:3500]
             if len(source) < 80:
+                log(f"  · À venir : « {e['title'][:50]} » pas complété (source illisible pour l'instant)")
                 continue
             carte = (f"Titre : {e['title']}\nType : {e.get('type')}\nDate : {e['event_date']}\n"
                      f"Ce qui est prévu : {e.get('prevu') or ''}\n\nSource ({e.get('source_name') or ''}) :\n{source}")

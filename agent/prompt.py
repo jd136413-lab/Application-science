@@ -171,6 +171,9 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
     … », « selon la revue … », « d'après un article de … ». Ne nomme ni le média
     (Phys.org, ScienceDaily…) ni la revue scientifique (Physical Review Letters, Nature…).
     Parle des auteurs (« des physiciens du MIT ») et de ce qu'ils ont trouvé.
+  · NE PARLE JAMAIS DE L'ARTICLE LUI-MÊME (03/11) : jamais « l'article ne précise pas… »,
+    « selon l'article », « le texte ne dit pas ». S'il manque une information, n'en parle
+    pas. Ne répète pas le même chiffre dans deux paragraphes.
 - avant : 1 à 2 phrases. Ce qu'on savait ou ce qui existait jusque-là (le contexte), et
   pourquoi c'était un problème ou une question ouverte.
 - decouverte : 2 à 3 phrases.
@@ -196,6 +199,9 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
     satellite, cerveau, algorithme, IA…), un nom propre (une mission, une entreprise,
     un médicament, un modèle de téléphone), un sigle seul, ni un mot que tu as évité en le
     remplaçant par des mots simples.
+  · JAMAIS un mot que tu expliques déjà dans le texte (« l'hème, la partie du sang qui… »,
+    « un aérogel, un matériau très léger… ») : le lecteur a déjà la définition. Dans ce
+    cas, choisis un autre mot ou renvoie une liste vide.
   · S'il n'y a pas de vrai mot utile, renvoie une liste VIDE : mieux vaut 0 que 1 mauvais.
   · "definition" : une phrase de 12 à 25 mots, sans reprendre le mot, qui dit CE QUE
     C'EST puis À QUOI ÇA SERT ou comment le reconnaître, avec une image concrète.
