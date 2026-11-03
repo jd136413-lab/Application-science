@@ -40,8 +40,10 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           MODELES: ${{ inputs.modeles || vars.TEST_MODELES || 'haiku' }}
-          NB: ${{ inputs.nb || '8' }}
-          TITRES: "phénomène prévu par la théorie|lettres » de l'ADN|cellules du patient font reculer|alcool de bois"
+          NB: ${{ inputs.nb || '12' }}
+          # Test 6 : fiches JAMAIS vues pendant la mise au point (plus anciennes)
+          TITRES: ""
+          DECALAGE: "14"
           PLAFOND: "1.0"
         run: python tester_redaction.py
       - name: Enregistrer le rapport sur la branche

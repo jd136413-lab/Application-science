@@ -66,6 +66,7 @@ def main() -> int:
     out = [f"# Test de la rédaction — {time.strftime('%d/%m/%Y %H:%M')} UTC\n",
            f"Modèles : {', '.join(noms)} · {len(liste)} fiches\n"]
     cout = 0.0
+    jetons = {"in": 0, "out": 0, "cache_r": 0, "cache_w": 0, "fiches": 0}
     for i, f in enumerate(liste, 1):
         art = {"url": f["source_url"], "source_name": f["source_name"], "title": f["title"], "text": ""}
         agent.lire_page(art)
@@ -82,11 +83,14 @@ def main() -> int:
                 break
             modele, prix = MODELES[nom]
             d, c = redaction.rediger(client, modele, art, f["feed"], f)
+            jetons["fiches"] += 1
             cout += ((c["in"] + c["cache_w"] * 1.25 + c["cache_r"] * 0.1) * prix[0] + c["out"] * prix[1]) / 1e6
             if not d:
                 out.append(f"**{nom}** : échec de la réécriture ({c.get('diag')})\n")
                 continue
             r, c2 = redaction.relire(client, modele, art, f["feed"], d)
+            for k in ("in", "out", "cache_r", "cache_w"):
+                jetons[k] += c.get(k, 0) + c2.get(k, 0)
             cout += ((c2["in"] + c2["cache_w"] * 1.25 + c2["cache_r"] * 0.1) * prix[0] + c2["out"] * prix[1]) / 1e6
             if r:
                 pbs = r.get("problemes") or []
@@ -103,7 +107,10 @@ def main() -> int:
                        f"- _Contrôle_ : {json.dumps(d.get('controle'), ensure_ascii=False)}\n"
                        f"- _Alertes automatiques_ : {' ; '.join(redaction.alertes(d)) or 'aucune'}\n")
         print(f"  {i}/{len(liste)} · coût cumulé {cout:.4f} $", flush=True)
-    out.append(f"\n---\n\nCoût total du test : {cout:.4f} $\n")
+    n = max(1, jetons["fiches"])
+    out.append(f"\n---\n\nCoût total du test : {cout:.4f} $ · par fiche : {cout / n:.4f} $ · tokens moyens par fiche "
+               f"(rédaction + relecture) : entrée {jetons['in'] // n}, cache lu {jetons['cache_r'] // n}, "
+               f"cache écrit {jetons['cache_w'] // n}, sortie {jetons['out'] // n}\n")
     with open("tests_redaction.md", "w", encoding="utf-8") as fh:
         fh.write("\n".join(out))
     print(f"Coût total : {cout:.4f} $", flush=True)

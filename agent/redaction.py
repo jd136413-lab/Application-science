@@ -32,7 +32,7 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 1. "faits" : 4 à 8 faits précis tirés de l'article (qui, quoi, combien, où, comment, limites), chacun en une ligne courte. Seulement ce que l'article dit.
 2. "nouveaute" : en une phrase, ce qui est VRAIMENT nouveau selon l'article, et ce qui existait déjà avant. Si l'article dit « premier », « jamais », « record », note-le ici avec ses mots exacts ; sinon écris « l'article ne revendique pas de première ».
 3. "jargon" : les mots techniques que tu risques d'employer, et pour chacun ce que tu en fais : « remplacé par … », « expliqué en quelques mots » ou « mot à connaître ».
-4. La fiche : "title", "avant", "decouverte", "apres", "mots", "type_etude".
+4. "titres_candidats" : 3 titres différents qui respectent la formule du titre ; puis la fiche : "title" (le MEILLEUR des trois : le plus concret, le plus clair pour un passant, le plus exact), "avant", "decouverte", "apres", "mots", "type_etude".
 5. "controle" : relis ta fiche avec la liste de contrôle ci-dessous et réponds honnêtement à chaque question. Si une réponse est mauvaise, CORRIGE la fiche avant de répondre (le contrôle décrit la fiche finale).
 
 # Règles d'exactitude (les plus importantes)
@@ -73,7 +73,7 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 # Les trois paragraphes
 
 - "avant" (1 à 2 phrases, 45 mots au plus) : le contexte et le PROBLÈME qui restait, vu du domaine : jamais l'historique ou les intentions d'une entreprise, jamais un détail qui contredit la nouveauté (« 6 000 exemplaires déjà en circulation » dans une fiche sur un lancement). Ce qu'on savait déjà ou ce qui existait, puis ce qui manquait.
-  · Si l'article cite des résultats ou des produits antérieurs (autre étude, autre mission, autre météorite, modèle précédent), l'« avant » les mentionne en quelques mots pour situer EXACTEMENT ce qui est nouveau. Exemple : « Des météorites et des échantillons de l'astéroïde Bennu en contenaient déjà ; dans Ryugu, on n'en avait trouvé qu'une sur cinq. » Ne jamais écrire « on cherchait encore à savoir si… » quand l'article montre que c'était déjà connu ailleurs.
+  · Si l'article cite des résultats ou des produits antérieurs (autre étude, autre mission, autre météorite, modèle précédent), l'« avant » mentionne en quelques mots le plus utile d'entre eux pour situer EXACTEMENT ce qui est nouveau (un ou deux, pas une liste). Exemple : « Des météorites et des échantillons de l'astéroïde Bennu en contenaient déjà ; dans Ryugu, on n'en avait trouvé qu'une sur cinq. » Ne jamais écrire « on cherchait encore à savoir si… » quand l'article montre que c'était déjà connu ailleurs.
   · Pas d'affirmation absolue non soutenue par l'article (voir exactitude).
 - "decouverte" (2 à 3 phrases, 85 mots au plus) — « La découverte » (Sciences) ou « La nouveauté » (Technologies) : QUI (« des chercheurs de l'université de Kyoto », « Samsung »), QUOI exactement, COMMENT, avec les 2 ou 3 chiffres clés. La 1re phrase se suffit à elle-même (elle sert aux notifications). Ton factuel, jamais publicitaire.
 - "apres" (1 à 2 phrases, 50 mots au plus) — titre « Et après ? » déjà affiché, donc ne commence ni par « Et après » ni par une question. Il dit (a) CE QUE ÇA PEUT CHANGER concrètement et pour qui, et (b) la LIMITE principale ou la prochaine étape (petit essai, chez l'animal, prototype, prix, date de sortie, résultat pas encore relu). Une liste de prix seule n'est PAS un « Et après ».
@@ -131,6 +131,7 @@ def schema(fil: str) -> dict:
             "faits": {"type": "array", "items": {"type": "string"}},
             "nouveaute": {"type": "string"},
             "jargon": {"type": "array", "items": {"type": "string"}},
+            "titres_candidats": {"type": "array", "items": {"type": "string"}},
             "title": {"type": "string"},
             "avant": {"type": "string"},
             "decouverte": {"type": "string"},
@@ -160,7 +161,7 @@ def schema(fil: str) -> dict:
                 "additionalProperties": False,
             },
         },
-        "required": ["faits", "nouveaute", "jargon", "title", "avant", "decouverte", "apres", "mots",
+        "required": ["faits", "nouveaute", "jargon", "titres_candidats", "title", "avant", "decouverte", "apres", "mots",
                      "type_etude", "controle"],
         "additionalProperties": False,
     }
@@ -234,9 +235,10 @@ Sois sévère mais juste : ne signale pas une préférence de style, seulement u
 Ce qui est PERMIS (ne le signale pas, ne le retire pas) :
 - l'équivalent approximatif en euros d'un prix donné dans une autre monnaie (« 76 800 yuans, environ 9 000 € ») : c'est une règle de l'application ;
 - dans la définition d'un mot à connaître, une connaissance générale exacte (« le mélanome est le cancer de la peau le plus dangereux ») ;
-- une reformulation simple d'un terme technique, si elle reste exacte.
+- une reformulation simple d'un terme technique, si elle reste exacte ;
+- les mots connus de tous, qui ne sont PAS du jargon : ADN, ARN, gène, cellule, virus, vaccin, cancer, IA, robot, satellite, astéroïde, galaxie, trou noir, ordinateur quantique, batterie, électricité, protéine, molécule, neurone, laser, oxygène, carbone, volt.
 
-Quand tu corriges le titre, le nouveau titre doit être PLUS concret que l'ancien (résultat chiffré, chose vue ou à quoi ça sert), jamais plus vague. Si tu ne trouves pas mieux, garde l'ancien.
+Pour un titre vague, ne remplace pas un mot vague par un autre (« attendus » → « prévus par la théorie » ne change rien) : dis ce qui a été vu ou à quoi ça sert (« une piste vers des calculs sans erreurs se confirme »). Quand tu corriges le titre, le nouveau titre doit être PLUS concret que l'ancien (résultat chiffré, chose vue ou à quoi ça sert), jamais plus vague. Si tu ne trouves pas mieux, garde l'ancien.
 
 Puis donne la fiche corrigée : reprends la fiche telle quelle et corrige SEULEMENT les défauts trouvés, sans rien inventer (chaque correction s'appuie sur l'article). Règles de forme à garder : titre « Thème : phrase au présent », 12 mots au plus, sans point final ; avant 1-2 phrases ; decouverte 2-3 phrases ; apres 1-2 phrases, sans commencer par « Et après » ; noms communs en minuscule dans les phrases ; aucune mention de la publication, de la revue ou du média ; mots à connaître : 0 à 2, avec majuscule initiale, définition de 12 à 25 mots sans reprendre le mot. S'il n'y a aucun défaut, "problemes" est vide et la fiche corrigée est identique.
 
@@ -321,6 +323,8 @@ def alertes(fiche: dict) -> list[str]:
         debut = textes[max(0, m.start() - 40):m.start()].lower()
         if "selon" not in debut and "d'après" not in debut:
             a.append(f"affirmation absolue : « {m.group(0)} »")
+    if re.search(r"[\u0400-\u04ff\u0590-\u06ff\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]", textes):
+        a.append("caractères non latins (erreur de génération)")
     if re.search(r"\b(?:yuans?|dollars?|livres sterling|yens?|wons?)\b", textes, re.I) and "€" not in textes:
         a.append("prix sans équivalent en euros")
     c = fiche.get("controle") or {}
