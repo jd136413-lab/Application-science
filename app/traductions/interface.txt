@@ -8974,3 +8974,255 @@ ja 日食や流星群がお住まいの地域で見えるかをお知らせす�
 ko 일식이나 유성우가 계신 곳에서 보이는지 알려 드리는 데 쓰여요. 시간은 항상 휴대폰 시계를 따릅니다.
 id Dipakai untuk memberi tahu apakah gerhana atau hujan meteor terlihat dari tempat Anda. Jam selalu mengikuti jam ponsel.
 vi Dùng để cho bạn biết nhật thực hay mưa sao băng có thấy được ở nơi bạn không. Giờ luôn theo đồng hồ điện thoại.
+
+@ Qu’est-ce qui ne va pas avec cet événement ?
+en What’s wrong with this event?
+es ¿Qué falla en este evento?
+pt O que há de errado com este evento?
+de Was stimmt mit diesem Ereignis nicht?
+it Cosa non va in questo evento?
+nl Wat klopt er niet aan dit evenement?
+pl Co jest nie tak z tym wydarzeniem?
+ru Что не так с этим событием?
+uk Що не так із цією подією?
+tr Bu etkinlikte yanlış olan ne?
+ar ما المشكلة في هذا الحدث؟
+hi इस कार्यक्रम में क्या गड़बड़ है?
+bn এই ইভেন্টে কী সমস্যা?
+ur اس ایونٹ میں کیا غلط ہے؟
+zh 这个事件有什么问题？
+ja このイベントのどこが間違っていますか？
+ko 이 일정에 어떤 문제가 있나요?
+id Apa yang salah dengan acara ini?
+vi Sự kiện này có vấn đề gì?
+
+@ Mauvaise date ou heure
+en Wrong date or time
+es Fecha u hora incorrecta
+pt Data ou hora errada
+de Falsches Datum oder falsche Uhrzeit
+it Data o ora sbagliata
+nl Verkeerde datum of tijd
+pl Zła data lub godzina
+ru Неверная дата или время
+uk Неправильна дата або час
+tr Yanlış tarih veya saat
+ar تاريخ أو وقت خاطئ
+hi गलत तारीख या समय
+bn ভুল তারিখ বা সময়
+ur غلط تاریخ یا وقت
+zh 日期或时间错误
+ja 日付または時刻が違う
+ko 날짜 또는 시간이 틀림
+id Tanggal atau waktu salah
+vi Sai ngày hoặc giờ
+
+@ Le jour, l’heure ou le fuseau horaire
+en The day, the time or the time zone
+es El día, la hora o la zona horaria
+pt O dia, a hora ou o fuso horário
+de Der Tag, die Uhrzeit oder die Zeitzone
+it Il giorno, l’ora o il fuso orario
+nl De dag, het tijdstip of de tijdzone
+pl Dzień, godzina lub strefa czasowa
+ru День, время или часовой пояс
+uk День, час або часовий пояс
+tr Gün, saat veya saat dilimi
+ar اليوم أو الساعة أو المنطقة الزمنية
+hi दिन, समय या समय क्षेत्र
+bn দিন, সময় বা টাইম জোন
+ur دن، وقت یا ٹائم زون
+zh 日期、时间或时区
+ja 日にち、時刻、またはタイムゾーン
+ko 날짜, 시간 또는 시간대
+id Hari, jam, atau zona waktu
+vi Ngày, giờ hoặc múi giờ
+
+@ Annulé ou reporté
+en Cancelled or postponed
+es Cancelado o aplazado
+pt Cancelado ou adiado
+de Abgesagt oder verschoben
+it Annullato o rinviato
+nl Geannuleerd of uitgesteld
+pl Odwołane lub przełożone
+ru Отменено или перенесено
+uk Скасовано або перенесено
+tr İptal edildi veya ertelendi
+ar أُلغي أو أُجّل
+hi रद्द या स्थगित
+bn বাতিল বা স্থগিত
+ur منسوخ یا ملتوی
+zh 已取消或推迟
+ja 中止または延期
+ko 취소 또는 연기됨
+id Dibatalkan atau ditunda
+vi Bị hủy hoặc hoãn
+
+@ L’événement a changé de date ou n’aura pas lieu
+en The event has a new date or won’t happen
+es El evento cambió de fecha o no se celebrará
+pt O evento mudou de data ou não vai acontecer
+de Das Ereignis hat ein neues Datum oder findet nicht statt
+it L’evento ha cambiato data o non si terrà
+nl Het evenement heeft een nieuwe datum of gaat niet door
+pl Wydarzenie ma nową datę lub się nie odbędzie
+ru Дата события изменилась или его не будет
+uk Подія має нову дату або не відбудеться
+tr Etkinliğin tarihi değişti veya gerçekleşmeyecek
+ar تغيّر موعد الحدث أو لن يُقام
+hi कार्यक्रम की तारीख बदली या यह नहीं होगा
+bn ইভেন্টের তারিখ বদলেছে বা এটি হবে না
+ur ایونٹ کی تاریخ بدل گئی یا یہ نہیں ہوگا
+zh 事件改期或不会举行
+ja 日程が変わった、または開催されない
+ko 일정이 바뀌었거나 열리지 않음
+id Acara berganti tanggal atau batal digelar
+vi Sự kiện đổi ngày hoặc sẽ không diễn ra
+
+@ Infos pratiques fausses
+en Wrong practical info
+es Información práctica incorrecta
+pt Informações práticas erradas
+de Falsche praktische Infos
+it Informazioni pratiche sbagliate
+nl Verkeerde praktische info
+pl Błędne informacje praktyczne
+ru Неверная практическая информация
+uk Неправильна практична інформація
+tr Yanlış pratik bilgiler
+ar معلومات عملية خاطئة
+hi गलत व्यावहारिक जानकारी
+bn ভুল ব্যবহারিক তথ্য
+ur غلط عملی معلومات
+zh 实用信息有误
+ja 実用情報が間違っている
+ko 실용 정보가 틀림
+id Info praktis salah
+vi Thông tin thực tế sai
+
+@ Lieu, visibilité, lien du direct…
+en Place, visibility, livestream link…
+es Lugar, visibilidad, enlace del directo…
+pt Local, visibilidade, link da transmissão…
+de Ort, Sichtbarkeit, Livestream-Link…
+it Luogo, visibilità, link della diretta…
+nl Plaats, zichtbaarheid, livestreamlink…
+pl Miejsce, widoczność, link do transmisji…
+ru Место, видимость, ссылка на трансляцию…
+uk Місце, видимість, посилання на трансляцію…
+tr Yer, görünürlük, canlı yayın bağlantısı…
+ar المكان، الرؤية، رابط البث المباشر…
+hi स्थान, दृश्यता, लाइव लिंक…
+bn স্থান, দৃশ্যমানতা, লাইভ লিংক…
+ur جگہ، نظر آنا، لائیو لنک…
+zh 地点、可见范围、直播链接…
+ja 場所、見える地域、ライブ配信のリンク…
+ko 장소, 관측 가능 지역, 생중계 링크…
+id Lokasi, visibilitas, tautan siaran langsung…
+vi Địa điểm, khả năng quan sát, link phát trực tiếp…
+
+@ Pas un vrai événement
+en Not a real event
+es No es un evento real
+pt Não é um evento real
+de Kein echtes Ereignis
+it Non è un vero evento
+nl Geen echt evenement
+pl To nie jest prawdziwe wydarzenie
+ru Это не настоящее событие
+uk Це не справжня подія
+tr Gerçek bir etkinlik değil
+ar ليس حدثًا حقيقيًا
+hi यह असली कार्यक्रम नहीं है
+bn এটি আসল ইভেন্ট নয়
+ur یہ اصل ایونٹ نہیں ہے
+zh 不是真正的事件
+ja 本当のイベントではない
+ko 실제 일정이 아님
+id Bukan acara sungguhan
+vi Không phải sự kiện thật
+
+@ Rumeur, publicité, simple annonce…
+en Rumour, advert, mere announcement…
+es Rumor, publicidad, simple anuncio…
+pt Boato, publicidade, simples anúncio…
+de Gerücht, Werbung, bloße Ankündigung…
+it Voce, pubblicità, semplice annuncio…
+nl Gerucht, reclame, louter een aankondiging…
+pl Plotka, reklama, zwykła zapowiedź…
+ru Слух, реклама, просто анонс…
+uk Чутка, реклама, просто анонс…
+tr Söylenti, reklam, sadece duyuru…
+ar شائعة، إعلان، مجرد تصريح…
+hi अफवाह, विज्ञापन, केवल घोषणा…
+bn গুজব, বিজ্ঞাপন, শুধু ঘোষণা…
+ur افواہ، اشتہار، محض اعلان…
+zh 传闻、广告、单纯的公告…
+ja うわさ、広告、ただの告知…
+ko 소문, 광고, 단순 발표…
+id Rumor, iklan, sekadar pengumuman…
+vi Tin đồn, quảng cáo, chỉ là thông báo…
+
+@ Déjà présent dans À venir
+en Already in Coming up
+es Ya está en Próximamente
+pt Já está em Em breve
+de Schon unter Demnächst
+it Già presente in In arrivo
+nl Staat al bij Binnenkort
+pl Już jest w Wkrótce
+ru Уже есть в разделе «Скоро»
+uk Уже є в розділі «Незабаром»
+tr Zaten Yakında bölümünde var
+ar موجود بالفعل في «قريبًا»
+hi पहले से «जल्द आ रहा» में है
+bn ইতিমধ্যে «শীঘ্রই আসছে»-তে আছে
+ur پہلے سے «جلد آ رہا ہے» میں موجود
+zh 已在“即将到来”中
+ja すでに「近日」にある
+ko 이미 '다가오는 일정'에 있음
+id Sudah ada di Segera hadir
+vi Đã có trong Sắp diễn ra
+
+@ Lien cassé
+en Broken link
+es Enlace roto
+pt Link quebrado
+de Defekter Link
+it Link non funzionante
+nl Kapotte link
+pl Niedziałający link
+ru Ссылка не работает
+uk Посилання не працює
+tr Bozuk bağlantı
+ar رابط معطّل
+hi टूटा हुआ लिंक
+bn ভাঙা লিংক
+ur ٹوٹا ہوا لنک
+zh 链接失效
+ja リンク切れ
+ko 깨진 링크
+id Tautan rusak
+vi Liên kết hỏng
+
+@ L’article ne s’ouvre pas
+en The article won’t open
+es El artículo no se abre
+pt O artigo não abre
+de Der Artikel lässt sich nicht öffnen
+it L’articolo non si apre
+nl Het artikel opent niet
+pl Artykuł się nie otwiera
+ru Статья не открывается
+uk Стаття не відкривається
+tr Makale açılmıyor
+ar المقال لا يُفتح
+hi लेख नहीं खुलता
+bn নিবন্ধটি খুলছে না
+ur مضمون نہیں کھلتا
+zh 文章打不开
+ja 記事が開かない
+ko 기사가 열리지 않음
+id Artikel tidak bisa dibuka
+vi Bài viết không mở được

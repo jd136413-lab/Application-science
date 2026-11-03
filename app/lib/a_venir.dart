@@ -27,6 +27,7 @@ import 'modele.dart' show enTeteMois, SourceAvancee;
 import 'notifications.dart';
 import 'regions_monde.dart';
 import 'reglages.dart';
+import 'retours.dart';
 import 'texte_article.dart';
 import 'widgets.dart';
 
@@ -1160,6 +1161,19 @@ class _EcranEvenementState extends State<EcranEvenement> {
                 const SizedBox(height: 4),
                 Text(tr(texteMentionResume),
                     textAlign: TextAlign.center, style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
+                Center(
+                  child: TextButton.icon(
+                    onPressed: () => signalerErreurEvenement(context,
+                        id: e.id, titre: e.titre, date: dateTexte, source: e.sourceNom, lien: e.sourceUrl),
+                    style: TextButton.styleFrom(
+                        foregroundColor: p.texte,
+                        visualDensity: VisualDensity.compact,
+                        padding: const EdgeInsets.symmetric(horizontal: 10)),
+                    icon: const Icon(Icons.flag_outlined, size: 16),
+                    label: Text(tr('Signaler une erreur'),
+                        style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: p.texte)),
+                  ),
+                ),
               ]),
             ),
           ]),
