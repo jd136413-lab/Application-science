@@ -56,7 +56,9 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 
 - Phrases courtes (25 mots au plus), une idée par phrase, mots de tous les jours.
 - Chaque mot technique est soit REMPLACÉ par des mots simples, soit EXPLIQUÉ tout de suite en quelques mots (« un isolant topologique, un matériau isolant à l'intérieur mais conducteur en surface »), soit donné en « mot à connaître ». Au plus deux mots techniques dans toute la fiche. Si le sujet est très technique (physique quantique, chimie…), décris CE QU'ON A VU et À QUOI ÇA SERT plutôt que l'appareillage : un lecteur n'a pas besoin du nom de chaque composant.
-- Les sigles sont écrits en entier ou expliqués à la première apparition.
+- Les sigles sont écrits en entier ou expliqués à la première apparition. Mieux encore, supprime le nom d'une expérience, d'un instrument, d'un navire, d'une station ou d'un appareil inconnu du public (STAR, RHIC, LHC, RV Merlin, station Qomolangma) et dis ce que c'est : « un accélérateur de particules américain », « un navire de la marine », « une station de recherche à 4 300 mètres ».
+- « avant » se comprend SEUL, sans avoir lu le titre : jamais « cette matière », « ce signal », « le même effet », « cette version » pour désigner une chose pas encore présentée. Nomme-la.
+- Logique : n'écris « car », « donc », « ce qui » que si l'article établit ce lien de cause. « Elles pourraient être menacées, car elles n'avaient pas été décrites » est absurde.
 - Pas de formule chimique (La3Ni2O7, CO2 est permis), pas de nom latin d'espèce ou de genre (Plasmodium malariae, Acropora, Porites) sauf s'il est indispensable, pas d'unité savante ou étrangère : convertis (80 K → -193 °C ; 491 mph → 790 km/h ; 5 GW → 5 milliards de watts, la consommation de plusieurs millions de foyers seulement si l'article le dit). Dis plutôt ce que c'est : « un matériau à base de nickel », « des coraux à croissance lente ».
 - Le nom d'un chercheur n'est utile que s'il dirige l'équipe dont on parle ; pour une autre équipe, dis ce qu'elle est (« une équipe de la NASA »), pas « Steve Howell ».
 - Noms communs en minuscule au milieu d'une phrase (« les nucléobases », jamais « les Nucléobases »), même si c'est un mot à connaître.
@@ -145,6 +147,9 @@ MAUVAIS → POURQUOI
 « Avant » qui raconte un autre projet sans rapport direct (un concurrent, l'histoire de l'entreprise) → le lecteur veut le problème que cette avancée règle.
 « Le record appartient à Niels Herbrich. Le projet Kingchaser n'a atteint que 440 km/h. » → noms inconnus et détails sans intérêt. Mieux : « Faire voler très vite un petit avion télécommandé est difficile : il faut un moteur puissant dans un appareil léger et une longue piste pour accélérer. » (si l'article le dit).
 « Les titres de plus de 12 mots » → compte les mots avant de répondre ; un titre trop long sera refusé.
+« 11 de leurs 16 formes reconnues » puis « 11 des 13 espèces » → trois chiffres proches sur la même chose, sans lien : le lecteur s'y perd. Garde un seul compte, ou explique la différence.
+« Batteries : des doigts de gel donnent 8 fois plus d'électricité par volume » → 8 fois plus QUE QUOI ? Écrire « … 8 fois plus qu'une électrode plate ».
+Un « Et après » réduit à un espoir (« Cela pourrait donner des pistes pour les greffes. ») → il manque la limite : « il s'agit d'observations dans un seul lac » (si l'article le dit ou si c'est le cadre de l'étude).
 « Ce sont des outils de base : l'étude ne porte ni sur un traitement, ni sur un test. » → BON réflexe : dire clairement ce que l'étude n'est PAS quand le lecteur pourrait le croire.
 
 Réponds uniquement avec le JSON demandé."""
@@ -269,6 +274,9 @@ Ce qui est PERMIS (ne le signale pas, ne le retire pas) :
 - une reformulation simple d'un terme technique, si elle reste exacte ;
 - les mots connus de tous, qui ne sont PAS du jargon : ADN, ARN, gène, cellule, virus, vaccin, cancer, IA, robot, satellite, astéroïde, galaxie, trou noir, ordinateur quantique, batterie, électricité, protéine, molécule, neurone, laser, oxygène, carbone, volt.
 
+Si tu retires de « apres » une limite non soutenue, remplace-la par une limite VRAIE tirée du cadre de l'étude (« chez la souris », « sur un seul site », « en laboratoire », « sur une seule année », « une démonstration, pas un produit ») : « apres » sans limite est un défaut.
+Signale en "forme" un lien logique faux (« car », « donc » que l'article n'établit pas) et un « avant » qui désigne par « ce », « cette », « le même » une chose pas encore présentée.
+
 Pour un titre vague, ne remplace pas un mot vague par un autre (« attendus » → « prévus par la théorie » ne change rien) : dis ce qui a été vu ou à quoi ça sert (« une piste vers des calculs sans erreurs se confirme »). Quand tu corriges le titre, le nouveau titre doit être PLUS concret que l'ancien (résultat chiffré, chose vue ou à quoi ça sert), jamais plus vague. Si tu ne trouves pas mieux, garde l'ancien.
 
 Puis donne la fiche corrigée. CHAQUE défaut que tu as listé doit être corrigé dans la fiche corrigée (relis-la avant de répondre : un défaut listé mais encore présent est une faute grave). Donne la fiche corrigée : reprends la fiche telle quelle et corrige SEULEMENT les défauts trouvés, sans rien inventer (chaque correction s'appuie sur l'article). Règles de forme à garder : titre « Thème : phrase au présent », 12 mots au plus, sans point final ; avant 1-2 phrases ; decouverte 2-3 phrases ; apres 1-2 phrases, sans commencer par « Et après » ; noms communs en minuscule dans les phrases ; aucune mention de la publication, de la revue ou du média ; mots à connaître : 0 à 2, avec majuscule initiale, définition de 12 à 25 mots sans reprendre le mot. S'il n'y a aucun défaut, "problemes" est vide et la fiche corrigée est identique.
@@ -307,8 +315,11 @@ def relire(client, modele_id: str, art: dict, fil: str, fiche: dict, essais: int
     import time
     conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0, "diag": ""}
     a_relire = {k: fiche.get(k) for k in ("title", "avant", "decouverte", "apres", "mots")}
+    mesures = verifications(fiche)
+    mesures_txt = ("Défauts MESURÉS automatiquement (certains : liste-les et corrige-les tous) :\n- "
+                   + "\n- ".join(mesures) + "\n\n") if mesures else ""
     contenu = (f"Fil : {'Sciences' if fil == 'science' else 'Technologies'}\n\n"
-               f"Fiche à relire :\n{json.dumps(a_relire, ensure_ascii=False)}\n\n"
+               f"Fiche à relire :\n{json.dumps(a_relire, ensure_ascii=False)}\n\n{mesures_txt}"
                f"Article source — {art.get('source_name', '')} — titre d'origine : {art.get('title', '')}\n"
                f"{art.get('text', '')}")
     for essai in range(essais):
@@ -368,6 +379,57 @@ def choisir_titre(fiche: dict, candidats: list[str]) -> None:
             return
 
 
+_SIGLES_CONNUS = {"ADN", "ARN", "IA", "GPS", "NASA", "ESA", "CNRS", "UE", "ONU", "OMS", "CO2", "USB", "PC",
+                  "TV", "SMS", "IRM", "VIH", "SIDA", "ARNm", "LED", "OK", "XXe", "XXIe", "km", "Wi-Fi", "5G", "4G",
+                  "UV", "PDG", "CERN", "JO", "FBI", "BMW", "IBM", "AMD", "OLED", "SNCF", "EDF", "USA", "II", "III", "IV"}
+_LIMITE = re.compile(r"\b(?:mais|reste|restent|encore|seulement|pour l'instant|pour le moment|uniquement|limite|"
+                     r"prochaine étape|à vérifier|à confirmer|à tester|à mesurer|ne \w+ que|n'\w+ que|pas encore|"
+                     r"chez la souris|chez l'animal|en laboratoire|une seule|un seul|démonstration|prototype)\b", re.I)
+
+
+def _phrases(t: str) -> list[str]:
+    return [p for p in re.split(r"(?<=[.!?])\s+(?=[A-ZÀ-Ý«])", (t or "").strip()) if p]
+
+
+def verifications(fiche: dict) -> list[str]:
+    """Défauts MESURABLES (gratuits, sans IA) : envoyés au relecteur pour qu'il les corrige
+    à coup sûr, puis repris dans les alertes. Chaque entrée est une phrase d'instruction."""
+    v = []
+    titre = str(fiche.get("title", ""))
+    if mots_titre(titre) > 12:
+        v.append(f"titre de {mots_titre(titre)} mots : 12 au plus")
+    if re.search(r"\bfois (?:plus|moins)\b", titre) and not re.search(r"\bqu(?:e|')", titre.split(":", 1)[-1]):
+        v.append("titre : « fois plus/moins » sans dire QUE quoi")
+    for champ, maxi in (("avant", 2), ("decouverte", 3), ("apres", 2)):
+        ph = _phrases(str(fiche.get(champ, "")))
+        if len(ph) > maxi:
+            v.append(f"« {champ} » a {len(ph)} phrases : {maxi} au plus")
+        for p in ph:
+            if len(p.split()) > 28:
+                v.append(f"phrase de {len(p.split())} mots dans « {champ} », à couper : « {p[:90]}… »")
+    avant = str(fiche.get("avant", ""))
+    m = re.match(r"\s*(?:\S+\s+){0,6}?(cette|ce|ces|cet|le même|la même|les mêmes)\s+(\w+)", avant, re.I)
+    if m and _phrases(avant) and m.end() <= len(_phrases(avant)[0]):
+        v.append(f"« avant » commence par « {m.group(1)} {m.group(2)} » : nomme la chose, l'avant doit se comprendre seul")
+    textes = " ".join(str(fiche.get(k, "")) for k in ("title", "avant", "decouverte", "apres"))
+    sigles = sorted({x for x in re.findall(r"\b[A-Z][A-Z0-9]{1,}[a-z]?\b", textes)
+                     if not re.fullmatch(r"[IVXL]+", x)} - _SIGLES_CONNUS)
+    if sigles:
+        v.append("sigles ou noms codés inconnus du public : " + ", ".join(sigles)
+                 + " → écris ce que c'est (ou supprime le nom s'il n'aide pas)")
+    nb = len(re.findall(r"\d+(?:[ ,.]\d+)*", str(fiche.get("decouverte", ""))))
+    if nb > 3:
+        v.append(f"{nb} chiffres dans « decouverte » : garde les 3 plus parlants")
+    apres = str(fiche.get("apres", ""))
+    if apres and not _LIMITE.search(apres):
+        v.append("« apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)")
+    for m in fiche.get("mots") or []:
+        d = str((m or {}).get("definition", ""))
+        if len(d.split()) > 25:
+            v.append(f"définition de « {m.get('mot')} » trop longue ({len(d.split())} mots, 25 au plus)")
+    return v
+
+
 def alertes(fiche: dict) -> list[str]:
     textes = " ".join(str(fiche.get(k, "")) for k in ("title", "avant", "decouverte", "apres"))
     a = []
@@ -379,6 +441,7 @@ def alertes(fiche: dict) -> list[str]:
         a.append("caractères non latins (erreur de génération)")
     if re.search(r"\b(?:yuans?|dollars?|livres sterling|yens?|wons?)\b", textes, re.I) and "€" not in textes:
         a.append("prix sans équivalent en euros")
+    a += verifications(fiche)
     c = fiche.get("controle") or {}
     if c.get("note") is not None and c.get("note") < 8:
         a.append(f"note du rédacteur : {c.get('note')}/10")
