@@ -40,6 +40,8 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 - Chaque fait, chiffre, nom ou date vient de l'article. Rien d'inventé, rien de « connu par ailleurs ».
 - JAMAIS d'affirmation absolue sur le passé que l'article ne fait pas lui-même : « personne n'avait jamais », « aucun … ne pouvait », « on ignorait », « pour la première fois », « une première mondiale », « jusqu'ici impossible ». Ces phrases sont souvent fausses (une étude plus ancienne avait déjà trouvé la même chose, un autre produit existait déjà). Si l'article ne le dit pas clairement, décris plutôt la limite connue : « on cherchait encore à confirmer… », « ces carburants restaient peu utilisés… », « les preuves étaient encore rares… ». Si l'article le dit, attribue-le : « selon les chercheurs, c'est la première fois… », « selon le constructeur… ».
 - Les promesses d'une entreprise restent des promesses : « annoncé », « selon le constructeur ».
+- Les bénéfices et les usages futurs (« pourrait permettre de… », « éviterait… ») viennent eux aussi de l'article. N'en déduis pas de nouveaux : un avantage que l'article ne cite pas est une invention.
+- Toute comparaison dit par rapport à quoi : « 4 fois plus net que le signal de 2024 », jamais « 90 fois plus abondante » tout seul.
 - Deux chiffres sur la même chose doivent être expliqués l'un par rapport à l'autre (« 37 patients en tout, dont 15 à la dose retenue »).
 - Les nuances restent : « chez la souris », « sur 15 patients », « en laboratoire », « pas encore relu par d'autres chercheurs ».
 - Prix et sommes : donne aussi l'équivalent approximatif en euros, arrondi (1 $ ≈ 0,85 € ; 1 £ ≈ 1,15 € ; 1 yuan ≈ 0,12 € ; 100 yens ≈ 0,60 € ; 1 000 wons ≈ 0,60 € ; 1 franc suisse ≈ 1,05 €), par exemple « 76 800 yuans (environ 9 000 €) ».
@@ -189,7 +191,7 @@ def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict,
     for essai in range(essais):
         try:
             rep = client.messages.create(
-                model=modele_id, max_tokens=8000,
+                model=modele_id, max_tokens=16000,
                 system=[{"type": "text", "text": CONSIGNE, "cache_control": {"type": "ephemeral"}}],
                 messages=[{"role": "user", "content": message(art, fil, brouillon)}],
                 output_config={"format": {"type": "json_schema", "schema": schema(fil)}},
@@ -209,6 +211,90 @@ def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict,
             d["title"] = " ".join(str(d["title"]).split()).rstrip(".")
             return d, conso
         conso["diag"] = f"arrêt={rep.stop_reason}, {len(texte)} caractères, début=« {texte[:120]} »"
+    return None, conso
+
+
+CONSIGNE_RELECTURE = """Tu es le relecteur le plus exigeant de NovaSTEM, une application qui explique les avancées scientifiques et technologiques à des lecteurs non spécialistes. Un rédacteur a écrit une fiche ; tu NE l'as PAS écrite et tu ne lui fais pas confiance. Compare-la phrase par phrase à l'article source, seule base de faits autorisée.
+
+Cherche UNIQUEMENT ces défauts précis (un défaut = une ligne dans "problemes") :
+1. "non_soutenu" : un fait, un chiffre, un bénéfice, un usage futur ou une comparaison qui n'est PAS dans l'article, ou qui le déforme (ex. « les malades pourraient éviter une opération » alors que la méthode demande toujours d'opérer).
+2. "absolu" : « pour la première fois », « jamais », « aucun… ne pouvait », « on ignorait », « personne n'avait » que l'article ne dit pas, ou un contexte qui laisse croire que c'était inconnu alors que l'article cite des résultats antérieurs.
+3. "titre" : titre vague (« un phénomène », « une nouvelle alimentation », « des états »…), qui ne dit pas concrètement ce qui a été vu, fait ou lancé ; ou qui contient un nom propre inconnu du grand public (nom d'astéroïde, de mission, de produit, de molécule) ou un mot technique ; ou plus de 12 mots ; ou un thème (avant les deux-points) mal choisi.
+4. "jargon" : un mot technique ou un sigle ni remplacé par des mots simples, ni expliqué juste après, ni donné en mot à connaître.
+5. "comparaison" : un chiffre ou une comparaison incompréhensible sans référence (« 90 fois plus abondante » : que quoi ?), ou deux chiffres sur la même chose dont le lien n'est pas expliqué.
+6. "apres" : le paragraphe « Et après » ne dit pas ce que ça peut changer, OU ne dit pas la limite principale ou la prochaine étape, OU n'est qu'une liste de prix.
+7. "forme" : phrase de plus de 30 mots, tournure maladroite ou traduite de l'anglais, date relative (« mardi », « hier »), majuscule fautive, « avant » de plus de 2 phrases, « decouverte » de plus de 3, « apres » de plus de 2.
+8. "mot" : mot à connaître mal choisi (mot courant, nom propre, sigle, absent du texte, déjà expliqué dans le texte) ou définition qui reprend le mot ou reste vague.
+
+Sois sévère mais juste : ne signale pas une préférence de style, seulement un vrai défaut de la liste.
+
+Puis donne la fiche corrigée : reprends la fiche telle quelle et corrige SEULEMENT les défauts trouvés, sans rien inventer (chaque correction s'appuie sur l'article). Règles de forme à garder : titre « Thème : phrase au présent », 12 mots au plus, sans point final ; avant 1-2 phrases ; decouverte 2-3 phrases ; apres 1-2 phrases, sans commencer par « Et après » ; noms communs en minuscule dans les phrases ; aucune mention de la publication, de la revue ou du média ; mots à connaître : 0 à 2, avec majuscule initiale, définition de 12 à 25 mots sans reprendre le mot. S'il n'y a aucun défaut, "problemes" est vide et la fiche corrigée est identique.
+
+Réponds uniquement avec le JSON demandé."""
+
+SCHEMA_RELECTURE = {
+    "type": "object",
+    "properties": {
+        "problemes": {"type": "array", "items": {
+            "type": "object",
+            "properties": {
+                "type": {"type": "string", "enum": ["non_soutenu", "absolu", "titre", "jargon", "comparaison",
+                                                     "apres", "forme", "mot"]},
+                "extrait": {"type": "string"},
+                "explication": {"type": "string"},
+            },
+            "required": ["type", "extrait", "explication"], "additionalProperties": False}},
+        "title": {"type": "string"},
+        "avant": {"type": "string"},
+        "decouverte": {"type": "string"},
+        "apres": {"type": "string"},
+        "mots": {"type": "array", "items": {
+            "type": "object",
+            "properties": {"mot": {"type": "string"}, "definition": {"type": "string"}},
+            "required": ["mot", "definition"], "additionalProperties": False}},
+    },
+    "required": ["problemes", "title", "avant", "decouverte", "apres", "mots"],
+    "additionalProperties": False,
+}
+
+
+def relire(client, modele_id: str, art: dict, fil: str, fiche: dict, essais: int = 3) -> tuple[dict | None, dict]:
+    """Relecture critique par un second appel (03/11). Renvoie (fiche corrigée avec la
+    liste « problemes », conso). En cas d'échec : (None, conso) et l'appelant garde la fiche."""
+    import time
+    conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0, "diag": ""}
+    a_relire = {k: fiche.get(k) for k in ("title", "avant", "decouverte", "apres", "mots")}
+    contenu = (f"Fil : {'Sciences' if fil == 'science' else 'Technologies'}\n\n"
+               f"Fiche à relire :\n{json.dumps(a_relire, ensure_ascii=False)}\n\n"
+               f"Article source — {art.get('source_name', '')} — titre d'origine : {art.get('title', '')}\n"
+               f"{art.get('text', '')}")
+    for essai in range(essais):
+        try:
+            rep = client.messages.create(
+                model=modele_id, max_tokens=16000,
+                system=[{"type": "text", "text": CONSIGNE_RELECTURE, "cache_control": {"type": "ephemeral"}}],
+                messages=[{"role": "user", "content": contenu}],
+                output_config={"format": {"type": "json_schema", "schema": SCHEMA_RELECTURE}},
+            )
+        except Exception as ex:
+            conso["diag"] = f"{ex.__class__.__name__}: {str(ex)[:300]}"
+            time.sleep(10 * (essai + 1))
+            continue
+        u = rep.usage
+        conso["in"] += u.input_tokens or 0
+        conso["out"] += u.output_tokens or 0
+        conso["cache_w"] += getattr(u, "cache_creation_input_tokens", 0) or 0
+        conso["cache_r"] += getattr(u, "cache_read_input_tokens", 0) or 0
+        texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
+        d = _json(texte)
+        if d.get("title") and d.get("decouverte"):
+            d["title"] = " ".join(str(d["title"]).split()).rstrip(".")
+            corrigee = dict(fiche)
+            for k in ("title", "avant", "decouverte", "apres", "mots"):
+                corrigee[k] = d.get(k, fiche.get(k))
+            corrigee["problemes"] = d.get("problemes") or []
+            return corrigee, conso
+        conso["diag"] = f"arrêt={rep.stop_reason}, {len(texte)} caractères"
     return None, conso
 
 

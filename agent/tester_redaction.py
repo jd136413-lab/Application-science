@@ -25,7 +25,7 @@ import redaction
 MODELES = {"haiku": ("claude-haiku-5-5", (0.10, 0.50)), "sonnet": ("claude-sonnet-5-5", (2.00, 10.00))}
 
 
-def fiches(base: str, cle: str, nb: int, titres: list[str]) -> list[dict]:
+def fiches(base: str, cle: str, nb: int, titres: list[str], decalage: int = 0) -> list[dict]:
     h = {"apikey": cle, "Authorization": f"Bearer {cle}"}
     champs = "id,title,feed,importance,theme,source_url,source_name,avant,decouverte,apres,mots,type_etude,created_at"
     res, vus = [], set()
@@ -36,7 +36,8 @@ def fiches(base: str, cle: str, nb: int, titres: list[str]) -> list[dict]:
             if f["id"] not in vus:
                 vus.add(f["id"]), res.append(f)
     r = requests.get(base, headers=h, timeout=30, params={"select": champs, "avant": "not.is.null",
-                                                          "order": "created_at.desc", "limit": str(nb * 2)})
+                                                          "order": "created_at.desc", "limit": str(nb * 2),
+                                                          "offset": str(decalage)})
     for f in r.json() if r.ok else []:
         if len(res) >= nb + len(titres):
             break
@@ -60,7 +61,7 @@ def main() -> int:
     nb = int(os.environ.get("NB") or 8)
     titres = [t.strip() for t in (os.environ.get("TITRES") or "").split("|") if t.strip()]
     plafond = float(os.environ.get("PLAFOND") or 1.0)
-    liste = fiches(base, cle, nb, titres)
+    liste = fiches(base, cle, nb, titres, int(os.environ.get("DECALAGE") or 0))
     print(f"{len(liste)} fiche(s) à tester avec {', '.join(noms)}", flush=True)
     out = [f"# Test de la rédaction — {time.strftime('%d/%m/%Y %H:%M')} UTC\n",
            f"Modèles : {', '.join(noms)} · {len(liste)} fiches\n"]
@@ -85,7 +86,17 @@ def main() -> int:
             if not d:
                 out.append(f"**{nom}** : échec de la réécriture ({c.get('diag')})\n")
                 continue
-            out.append(bloc(f"Nouveau ({nom})", d))
+            r, c2 = redaction.relire(client, modele, art, f["feed"], d)
+            cout += ((c2["in"] + c2["cache_w"] * 1.25 + c2["cache_r"] * 0.1) * prix[0] + c2["out"] * prix[1]) / 1e6
+            if r:
+                pbs = r.get("problemes") or []
+                out.append(bloc(f"Final après relecture ({nom})", r))
+                out.append("- _Défauts trouvés par le relecteur_ : "
+                           + (" | ".join(f"[{p.get('type')}] « {p.get('extrait')} » → {p.get('explication')}" for p in pbs)
+                              or "aucun") + "\n")
+            else:
+                out.append(f"_Relecture impossible ({c2.get('diag')})_\n")
+            out.append(bloc(f"Version du rédacteur ({nom})", d))
             out.append(f"- _Faits relevés_ : {' | '.join(d.get('faits') or [])}\n"
                        f"- _Nouveauté selon l'article_ : {d.get('nouveaute')}\n"
                        f"- _Jargon_ : {' | '.join(d.get('jargon') or [])}\n"
