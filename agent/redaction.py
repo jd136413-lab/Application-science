@@ -150,6 +150,9 @@ MAUVAIS → POURQUOI
 « 11 de leurs 16 formes reconnues » puis « 11 des 13 espèces » → trois chiffres proches sur la même chose, sans lien : le lecteur s'y perd. Garde un seul compte, ou explique la différence.
 « Batteries : des doigts de gel donnent 8 fois plus d'électricité par volume » → 8 fois plus QUE QUOI ? Écrire « … 8 fois plus qu'une électrode plate ».
 Un « Et après » réduit à un espoir (« Cela pourrait donner des pistes pour les greffes. ») → il manque la limite : « il s'agit d'observations dans un seul lac » (si l'article le dit ou si c'est le cadre de l'étude).
+« La série Pura 90 comptait déjà deux modèles ; un modèle intermédiaire manquait. » → l'avant d'un produit ne raconte pas la gamme du fabricant : dis le besoin ou la limite des produits actuels (si l'article en parle), sinon une seule phrase de contexte utile.
+« Et après » d'un produit = ce que ça change pour l'utilisateur + ce qui reste à prouver (annonce du fabricant, tests indépendants, disponibilité) ; les prix vont dans « decouverte ».
+« un trillion de paramètres » → faux ami : 1 trillion anglais = mille milliards ; 1 billion anglais = 1 milliard.
 « Des outils de pierre montrent que des humains fabriquaient des outils » → phrase qui tourne en rond : dis ce que le site a d'intéressant.
 « Si cette hypothèse se confirme… » dans « apres » alors qu'aucune hypothèse n'a été présentée → nomme l'idée : « Selon les chercheurs, cette sphère protégerait les bactéries de l'oxygène. »
 « Ce sont des outils de base : l'étude ne porte ni sur un traitement, ni sur un test. » → BON réflexe : dire clairement ce que l'étude n'est PAS quand le lecteur pourrait le croire.
@@ -387,7 +390,8 @@ _SIGLES_CONNUS = {"ADN", "ARN", "IA", "GPS", "NASA", "ESA", "CNRS", "UE", "ONU",
                   "UV", "PDG", "CERN", "JO", "FBI", "BMW", "IBM", "AMD", "OLED", "SNCF", "EDF", "USA", "II", "III", "IV"}
 _LIMITE = re.compile(r"\b(?:mais|reste|restent|encore|seulement|pour l'instant|pour le moment|uniquement|limite|"
                      r"prochaine étape|à vérifier|à confirmer|à tester|à mesurer|ne \w+ que|n'\w+ que|pas encore|"
-                     r"chez la souris|chez l'animal|en laboratoire|une seule|un seul|démonstration|prototype)\b", re.I)
+                     r"chez la souris|chez l'animal|en laboratoire|une seule|un seul|démonstration|prototype|"
+                     r"annonce du|annoncé par|selon le fabricant|selon l'entreprise|non vérifié|indépendant)", re.I)
 
 
 def _phrases(t: str) -> list[str]:
@@ -423,6 +427,15 @@ def verifications(fiche: dict) -> list[str]:
     nb = len(re.findall(r"\d+(?:[ ,.]\d+)*", str(fiche.get("decouverte", ""))))
     if nb > 3:
         v.append(f"{nb} chiffres dans « decouverte » : garde les 3 plus parlants")
+    if re.search(r"\b(?:trillions?|billions?)\b", textes, re.I):
+        v.append("« trillion » ou « billion » : faux ami (anglais billion = milliard, trillion = mille milliards)")
+    dec = re.findall(r"\w+", str(fiche.get("decouverte", "")).lower())
+    apr = " ".join(re.findall(r"\w+", str(fiche.get("apres", "")).lower()))
+    for i in range(len(dec) - 3):
+        g = " ".join(dec[i:i + 4])
+        if len(g) > 18 and g in apr:
+            v.append(f"répétition entre « decouverte » et « apres » : « {g} » (dis-le une seule fois)")
+            break
     for m in _ABSOLU.finditer(textes):
         debut = textes[max(0, m.start() - 60):m.start()].lower()
         if m.group(0).lower() != "pour la première fois" and "selon" not in debut and "d'après" not in debut:
