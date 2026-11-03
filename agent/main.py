@@ -1288,32 +1288,16 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
 
 
 def ameliorer_fiche(client, modele: dict, art: dict, ligne: dict) -> float:
-    """Rédaction en deux temps (redaction.py) : réécriture puis relecture critique.
+    """Rédaction en deux temps (redaction.rediger_complet) : réécriture puis relecture critique
+    (une 2e relecture seulement si des défauts mesurables restent).
     Modifie `ligne` sur place (titre, paragraphes, mots, type d'étude). Renvoie le coût ($).
     Ne lève jamais d'erreur : en cas de souci, la fiche garde le premier jet."""
-    p_in, p_out = modele["prix"]
-
-    def cout(c: dict) -> float:
-        return ((c.get("in", 0) + c.get("cache_w", 0) * 1.25 + c.get("cache_r", 0) * 0.1) * p_in
-                + c.get("out", 0) * p_out) / 1e6
-
     fil = ligne["feed"]
-    d, c1 = redaction.rediger(client, modele["id"], art, fil, ligne)
-    total = cout(c1)
-    if not d:
-        log(f"  ✎ réécriture impossible ({c1.get('diag', '')[:80]}) : premier jet gardé")
-        return total
-    r, c2 = redaction.relire(client, modele["id"], art, fil, d)
-    total += cout(c2)
-    finale = r or d
-    redaction.choisir_titre(finale, d.get("titres_candidats") or [])
-    # Garde-fous gratuits : caractères étrangers → on garde la version propre la plus récente
-    for version in (finale, d):
-        if not any("non latins" in a for a in redaction.alertes(version)):
-            finale = version
-            break
-    else:
-        log("  ✎ réécriture écartée (caractères non latins) : premier jet gardé")
+    res = redaction.rediger_complet(client, modele["id"], modele["prix"], art, fil, ligne)
+    total = res["cout"]
+    finale, d = res["finale"], res["redacteur"]
+    if not finale:
+        log(f"  ✎ réécriture impossible ({res['diag'][:80]}) : premier jet gardé")
         return total
     titre = " ".join(str(finale.get("title", "")).split()).rstrip(".")
     avant = sans_publication(" ".join(str(finale.get("avant", "")).split()))
@@ -1329,8 +1313,8 @@ def ameliorer_fiche(client, modele: dict, art: dict, ligne: dict) -> float:
     })
     if d.get("type_etude") in TYPES_ETUDE[fil]:
         ligne["type_etude"] = d["type_etude"]
-    pbs = (r or {}).get("problemes") or []
-    log(f"  ✎ réécrite{' et relue' if r else ''} ({len(pbs)} défaut(s) corrigé(s)) : « {ancien[:50]} » → « {titre[:60]} »")
+    log(f"  ✎ réécrite, {res['relectures']} relecture(s), {len(res['problemes'])} défaut(s) corrigé(s)"
+        f"{', reste : ' + ' ; '.join(res['restants'])[:120] if res['restants'] else ''} : « {ancien[:50]} » → « {titre[:60]} »")
     return total
 
 

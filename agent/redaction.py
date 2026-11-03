@@ -65,7 +65,7 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 - Ne parle jamais de la publication ni de l'article (« publié dans… », « selon la revue… », « l'article ne précise pas… ») : parle des chercheurs et de ce qu'ils ont fait. Ne nomme ni le média ni la revue.
 - Formules creuses interdites : « ouvre la voie », « ouvre de nouvelles perspectives », « pourrait révolutionner », « avancée majeure », « pas important », « change la donne », « nouvelle ère », « reste à confirmer » sans dire quoi.
 - Ne répète pas le même chiffre ou la même idée dans deux paragraphes. Au plus 3 chiffres dans « decouverte » : garde les plus parlants.
-- Pas de date relative (« mardi », « hier », « cette semaine », « récemment ») : la fiche sera lue plus tard. Donne la date (« le 3 novembre ») ou rien.
+- Pas de date relative (« mardi », « hier », « cette semaine », « récemment ») ni de jour de la semaine, même avec la date : écris « le 28 octobre », jamais « jeudi 28 octobre ».
 - Un français naturel, comme dans un bon journal : relis chaque phrase et corrige les tournures maladroites ou les traductions mot à mot de l'anglais.
 - RESPECTE les longueurs : « avant » 2 phrases au plus, « decouverte » 3 phrases au plus, « apres » 2 phrases au plus. Si c'est trop long, coupe le détail le moins utile.
 
@@ -150,6 +150,8 @@ MAUVAIS → POURQUOI
 « 11 de leurs 16 formes reconnues » puis « 11 des 13 espèces » → trois chiffres proches sur la même chose, sans lien : le lecteur s'y perd. Garde un seul compte, ou explique la différence.
 « Batteries : des doigts de gel donnent 8 fois plus d'électricité par volume » → 8 fois plus QUE QUOI ? Écrire « … 8 fois plus qu'une électrode plate ».
 Un « Et après » réduit à un espoir (« Cela pourrait donner des pistes pour les greffes. ») → il manque la limite : « il s'agit d'observations dans un seul lac » (si l'article le dit ou si c'est le cadre de l'étude).
+« Des outils de pierre montrent que des humains fabriquaient des outils » → phrase qui tourne en rond : dis ce que le site a d'intéressant.
+« Si cette hypothèse se confirme… » dans « apres » alors qu'aucune hypothèse n'a été présentée → nomme l'idée : « Selon les chercheurs, cette sphère protégerait les bactéries de l'oxygène. »
 « Ce sont des outils de base : l'étude ne porte ni sur un traitement, ni sur un test. » → BON réflexe : dire clairement ce que l'étude n'est PAS quand le lecteur pourrait le croire.
 
 Réponds uniquement avec le JSON demandé."""
@@ -272,7 +274,8 @@ Ce qui est PERMIS (ne le signale pas, ne le retire pas) :
 - l'équivalent approximatif en euros d'un prix donné dans une autre monnaie (« 76 800 yuans, environ 9 000 € ») : c'est une règle de l'application ;
 - dans la définition d'un mot à connaître, une connaissance générale exacte (« le mélanome est le cancer de la peau le plus dangereux ») ;
 - une reformulation simple d'un terme technique, si elle reste exacte ;
-- les mots connus de tous, qui ne sont PAS du jargon : ADN, ARN, gène, cellule, virus, vaccin, cancer, IA, robot, satellite, astéroïde, galaxie, trou noir, ordinateur quantique, batterie, électricité, protéine, molécule, neurone, laser, oxygène, carbone, volt.
+- l'attribution « selon les chercheurs », « selon les auteurs », « selon l'entreprise » : elle est OBLIGATOIRE devant une affirmation forte (première, jamais vu…) ; ce n'est pas « parler de la source » ;
+- les mots connus de tous, qui ne sont PAS du jargon (défense d'éléphant, molaire, réacteur, puce…) : ADN, ARN, gène, cellule, virus, vaccin, cancer, IA, robot, satellite, astéroïde, galaxie, trou noir, ordinateur quantique, batterie, électricité, protéine, molécule, neurone, laser, oxygène, carbone, volt.
 
 Si tu retires de « apres » une limite non soutenue, remplace-la par une limite VRAIE tirée du cadre de l'étude (« chez la souris », « sur un seul site », « en laboratoire », « sur une seule année », « une démonstration, pas un produit ») : « apres » sans limite est un défaut.
 Signale en "forme" un lien logique faux (« car », « donc » que l'article n'établit pas) et un « avant » qui désigne par « ce », « cette », « le même » une chose pas encore présentée.
@@ -420,6 +423,15 @@ def verifications(fiche: dict) -> list[str]:
     nb = len(re.findall(r"\d+(?:[ ,.]\d+)*", str(fiche.get("decouverte", ""))))
     if nb > 3:
         v.append(f"{nb} chiffres dans « decouverte » : garde les 3 plus parlants")
+    for m in _ABSOLU.finditer(textes):
+        debut = textes[max(0, m.start() - 60):m.start()].lower()
+        if m.group(0).lower() != "pour la première fois" and "selon" not in debut and "d'après" not in debut:
+            v.append(f"affirmation absolue « {m.group(0)} » : supprime-la ou attribue-la (« selon les chercheurs ») si l'article la fait")
+    j = re.search(r"\b(?:lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)\b", textes, re.I)
+    if j:
+        v.append(f"jour de la semaine « {j.group(0)} » : écris seulement la date (« le 28 octobre ») ou rien")
+    if re.search(r"\b(?:yuans?|dollars?|livres sterling|yens?|wons?)\b", textes, re.I) and "€" not in textes:
+        v.append("prix sans équivalent approximatif en euros : ajoute-le (1 $ ≈ 0,85 €)")
     apres = str(fiche.get("apres", ""))
     if apres and not _LIMITE.search(apres):
         v.append("« apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)")
@@ -427,22 +439,66 @@ def verifications(fiche: dict) -> list[str]:
         d = str((m or {}).get("definition", ""))
         if len(d.split()) > 25:
             v.append(f"définition de « {m.get('mot')} » trop longue ({len(d.split())} mots, 25 au plus)")
+        racine = str((m or {}).get("mot", "")).lower()[:5]
+        if racine and racine not in textes.lower():
+            v.append(f"mot à connaître « {m.get('mot')} » absent du texte de la fiche : choisis un mot du texte ou aucun")
     return v
 
 
 def alertes(fiche: dict) -> list[str]:
     textes = " ".join(str(fiche.get(k, "")) for k in ("title", "avant", "decouverte", "apres"))
     a = []
-    for m in _ABSOLU.finditer(textes):
-        debut = textes[max(0, m.start() - 40):m.start()].lower()
-        if "selon" not in debut and "d'après" not in debut:
-            a.append(f"affirmation absolue : « {m.group(0)} »")
     if re.search(r"[\u0400-\u04ff\u0590-\u06ff\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]", textes):
         a.append("caractères non latins (erreur de génération)")
-    if re.search(r"\b(?:yuans?|dollars?|livres sterling|yens?|wons?)\b", textes, re.I) and "€" not in textes:
-        a.append("prix sans équivalent en euros")
     a += verifications(fiche)
     c = fiche.get("controle") or {}
     if c.get("note") is not None and c.get("note") < 8:
         a.append(f"note du rédacteur : {c.get('note')}/10")
     return a
+
+
+def rediger_complet(client, modele_id: str, prix: tuple, art: dict, fil: str, brouillon: dict) -> dict:
+    """Chaîne complète, identique en test et dans l'agent (03/11) :
+    1. réécriture ; 2. relecture critique (avec les défauts mesurés) ;
+    3. si des défauts MESURABLES restent, une 2e relecture (seulement dans ce cas) ;
+    4. titre de secours et garde-fou anti-caractères étrangers.
+    Renvoie {"finale", "redacteur", "problemes", "restants", "relectures", "cout", "jetons", "diag"} ;
+    "finale" vaut None si la réécriture a échoué (on garde alors le premier jet)."""
+    jetons = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
+
+    def compter(c):
+        for k in jetons:
+            jetons[k] += c.get(k, 0)
+
+    res = {"finale": None, "redacteur": None, "problemes": [], "restants": [], "relectures": 0, "diag": ""}
+    d, c = rediger(client, modele_id, art, fil, brouillon)
+    compter(c)
+    if d:
+        res["redacteur"] = d
+        candidats = d.get("titres_candidats") or []
+        finale = d
+        for _ in range(2):
+            avant_rel = verifications(finale)
+            if res["relectures"] and not avant_rel:
+                break
+            r, c = relire(client, modele_id, art, fil, finale)
+            compter(c)
+            if not r:
+                res["diag"] = c.get("diag", "")
+                break
+            res["relectures"] += 1
+            res["problemes"] += r.get("problemes") or []
+            choisir_titre(r, candidats)
+            # on garde la version relue sauf si elle a PLUS de défauts mesurables
+            if res["relectures"] == 1 or len(verifications(r)) <= len(avant_rel):
+                finale = r
+        if any("non latins" in a for a in alertes(finale)):
+            finale = d if not any("non latins" in a for a in alertes(d)) else None
+        res["finale"] = finale
+        res["restants"] = verifications(finale) if finale else []
+    else:
+        res["diag"] = c.get("diag", "")
+    res["jetons"] = jetons
+    res["cout"] = ((jetons["in"] + jetons["cache_w"] * 1.25 + jetons["cache_r"] * 0.1) * prix[0]
+                   + jetons["out"] * prix[1]) / 1e6
+    return res

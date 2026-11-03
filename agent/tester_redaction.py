@@ -82,25 +82,24 @@ def main() -> int:
                 out.append(f"_Plafond de coût atteint ({plafond} $)._\n")
                 break
             modele, prix = MODELES[nom]
-            d, c = redaction.rediger(client, modele, art, f["feed"], f)
+            res = redaction.rediger_complet(client, modele, prix, art, f["feed"], f)
             jetons["fiches"] += 1
-            cout += ((c["in"] + c["cache_w"] * 1.25 + c["cache_r"] * 0.1) * prix[0] + c["out"] * prix[1]) / 1e6
-            if not d:
-                out.append(f"**{nom}** : échec de la réécriture ({c.get('diag')})\n")
-                continue
-            r, c2 = redaction.relire(client, modele, art, f["feed"], d)
             for k in ("in", "out", "cache_r", "cache_w"):
-                jetons[k] += c.get(k, 0) + c2.get(k, 0)
-            cout += ((c2["in"] + c2["cache_w"] * 1.25 + c2["cache_r"] * 0.1) * prix[0] + c2["out"] * prix[1]) / 1e6
+                jetons[k] += res["jetons"][k]
+            cout += res["cout"]
+            d, r = res["redacteur"], res["finale"]
+            if not d:
+                out.append(f"**{nom}** : échec de la réécriture ({res['diag']})\n")
+                continue
             if r:
-                redaction.choisir_titre(r, d.get("titres_candidats") or [])
-                pbs = r.get("problemes") or []
-                out.append(bloc(f"Final après relecture ({nom})", r))
+                pbs = res["problemes"]
+                out.append(bloc(f"Final après {res['relectures']} relecture(s) ({nom})", r))
                 out.append("- _Défauts trouvés par le relecteur_ : "
                            + (" | ".join(f"[{p.get('type')}] « {p.get('extrait')} » → {p.get('explication')}" for p in pbs)
                               or "aucun") + "\n")
+                out.append(f"- _Défauts mesurés restants_ : {' ; '.join(res['restants']) or 'aucun'} · coût {res['cout']:.4f} $\n")
             else:
-                out.append(f"_Relecture impossible ({c2.get('diag')})_\n")
+                out.append(f"_Relecture impossible ({res['diag']})_\n")
             out.append(bloc(f"Version du rédacteur ({nom})", d))
             out.append(f"- _Faits relevés_ : {' | '.join(d.get('faits') or [])}\n"
                        f"- _Nouveauté selon l'article_ : {d.get('nouveaute')}\n"
