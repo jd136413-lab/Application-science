@@ -39,7 +39,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-          MODELES: ${{ inputs.modeles || vars.TEST_MODELES || 'haiku,sonnet' }}
+          MODELES: ${{ inputs.modeles || vars.TEST_MODELES || 'haiku' }}
           NB: ${{ inputs.nb || '8' }}
           TITRES: "phénomène prévu par la théorie|lettres » de l'ADN|cellules du patient font reculer|alcool de bois"
           PLAFOND: "1.0"

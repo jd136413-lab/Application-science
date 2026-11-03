@@ -83,7 +83,7 @@ def main() -> int:
             d, c = redaction.rediger(client, modele, art, f["feed"], f)
             cout += ((c["in"] + c["cache_w"] * 1.25 + c["cache_r"] * 0.1) * prix[0] + c["out"] * prix[1]) / 1e6
             if not d:
-                out.append(f"**{nom}** : échec de la réécriture\n")
+                out.append(f"**{nom}** : échec de la réécriture ({c.get('diag')})\n")
                 continue
             out.append(bloc(f"Nouveau ({nom})", d))
             out.append(f"- _Faits relevés_ : {' | '.join(d.get('faits') or [])}\n"

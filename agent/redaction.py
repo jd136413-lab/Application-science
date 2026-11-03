@@ -57,7 +57,8 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 # Le titre
 
 - Forme : « Thème : phrase ». Thème = 1 à 3 mots que tout le monde connaît, avec majuscule (Cancer, Espace, Climat, Voitures, Smartphones, Ordinateurs quantiques…). Puis « : » avec une espace avant et après. Puis une vraie phrase au présent : sujet + verbe conjugué + complément. 12 mots au plus en tout, sans point final.
-- Il dit CONCRÈTEMENT ce qui a été vu, fait ou lancé. Interdits car vides : « un phénomène », « une découverte », « une avancée », « un résultat », « quelque chose », « prévu par la théorie », « une nouvelle méthode » sans dire laquelle.
+- Il dit CONCRÈTEMENT ce qui a été vu, fait ou lancé, et si possible à quoi ça sert. Interdits car vides : « un phénomène », « une découverte », « une avancée », « un résultat », « quelque chose », « prévu par la théorie », « une nouvelle méthode » sans dire laquelle, et les adjectifs creux « prometteur », « innovant », « étonnant », « inédit ».
+- Quand le sujet est très technique, le titre dit à quoi sert la recherche plutôt que le nom de l'objet étudié. Exemple : « Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie » (vide) → « Ordinateurs quantiques : une piste vers des calculs sans erreurs se confirme en laboratoire ».
 - Test du passant : quelqu'un qui n'a jamais entendu parler du sujet comprend. Pas de nom propre inconnu du grand public (dis ce que c'est : « un nouveau médicament », « une IA de Google », « un constructeur chinois »), pas de jargon ni de sigle. Connus de tous et permis : Apple, Google, NASA, SpaceX, Mars, la Lune, Alzheimer, Covid, ordinateur quantique, IA, ADN, ARN, gène, vaccin, virus, robot, satellite, astéroïde, trou noir…
 - Exact : pas de « guérit » pour un traitement qui fait reculer une tumeur, pas de « révolutionne ».
 
@@ -168,28 +169,37 @@ def message(art: dict, fil: str, brouillon: dict) -> str:
             f"{art.get('text', '')}")
 
 
-def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict) -> tuple[dict | None, dict]:
+def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict,
+            essais: int = 3) -> tuple[dict | None, dict]:
     """Réécrit une fiche. Renvoie (fiche réécrite ou None, consommation de tokens).
-    Ne lève jamais d'erreur : en cas de souci, l'appelant garde le premier jet."""
-    conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
-    try:
-        rep = client.messages.create(
-            model=modele_id, max_tokens=6000,
-            system=[{"type": "text", "text": CONSIGNE, "cache_control": {"type": "ephemeral"}}],
-            messages=[{"role": "user", "content": message(art, fil, brouillon)}],
-            output_config={"format": {"type": "json_schema", "schema": schema(fil)}},
-        )
+    Ne lève jamais d'erreur : en cas de souci, l'appelant garde le premier jet.
+    La raison d'un échec est dans conso["diag"]."""
+    import time
+    conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0, "diag": ""}
+    for essai in range(essais):
+        try:
+            rep = client.messages.create(
+                model=modele_id, max_tokens=8000,
+                system=[{"type": "text", "text": CONSIGNE, "cache_control": {"type": "ephemeral"}}],
+                messages=[{"role": "user", "content": message(art, fil, brouillon)}],
+                output_config={"format": {"type": "json_schema", "schema": schema(fil)}},
+            )
+        except Exception as ex:
+            conso["diag"] = f"{ex.__class__.__name__}: {str(ex)[:300]}"
+            time.sleep(10 * (essai + 1))
+            continue
         u = rep.usage
-        conso = {"in": u.input_tokens or 0, "out": u.output_tokens or 0,
-                 "cache_w": getattr(u, "cache_creation_input_tokens", 0) or 0,
-                 "cache_r": getattr(u, "cache_read_input_tokens", 0) or 0}
-        d = _json("".join(b.text for b in rep.content if getattr(b, "type", "") == "text"))
-    except Exception:
-        return None, conso
-    if not d.get("title") or not d.get("decouverte"):
-        return None, conso
-    d["title"] = " ".join(str(d["title"]).split()).rstrip(".")
-    return d, conso
+        conso["in"] += u.input_tokens or 0
+        conso["out"] += u.output_tokens or 0
+        conso["cache_w"] += getattr(u, "cache_creation_input_tokens", 0) or 0
+        conso["cache_r"] += getattr(u, "cache_read_input_tokens", 0) or 0
+        texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
+        d = _json(texte)
+        if d.get("title") and d.get("decouverte"):
+            d["title"] = " ".join(str(d["title"]).split()).rstrip(".")
+            return d, conso
+        conso["diag"] = f"arrêt={rep.stop_reason}, {len(texte)} caractères, début=« {texte[:120]} »"
+    return None, conso
 
 
 # Filet de sécurité gratuit, après la réécriture : affirmations absolues restantes.
