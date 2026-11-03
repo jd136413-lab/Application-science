@@ -56,6 +56,7 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 - Phrases courtes (25 mots au plus), une idée par phrase, mots de tous les jours.
 - Chaque mot technique est soit REMPLACÉ par des mots simples, soit EXPLIQUÉ tout de suite en quelques mots (« un isolant topologique, un matériau isolant à l'intérieur mais conducteur en surface »), soit donné en « mot à connaître ». Au plus deux mots techniques dans toute la fiche. Si le sujet est très technique (physique quantique, chimie…), décris CE QU'ON A VU et À QUOI ÇA SERT plutôt que l'appareillage : un lecteur n'a pas besoin du nom de chaque composant.
 - Les sigles sont écrits en entier ou expliqués à la première apparition.
+- Pas de formule chimique (La3Ni2O7, CO2 est permis), pas de nom latin d'espèce ou de genre (Plasmodium malariae, Acropora, Porites) sauf s'il est indispensable, pas d'unité savante ou étrangère : convertis (80 K → -193 °C ; 491 mph → 790 km/h ; 5 GW → 5 milliards de watts, la consommation de plusieurs millions de foyers seulement si l'article le dit). Dis plutôt ce que c'est : « un matériau à base de nickel », « des coraux à croissance lente ».
 - Le nom d'un chercheur n'est utile que s'il dirige l'équipe dont on parle ; pour une autre équipe, dis ce qu'elle est (« une équipe de la NASA »), pas « Steve Howell ».
 - Noms communs en minuscule au milieu d'une phrase (« les nucléobases », jamais « les Nucléobases »), même si c'est un mot à connaître.
 - Ne parle jamais de la publication ni de l'article (« publié dans… », « selon la revue… », « l'article ne précise pas… ») : parle des chercheurs et de ce qu'ils ont fait. Ne nomme ni le média ni la revue.
@@ -117,6 +118,22 @@ apres : « Cette méthode pourrait éviter les traitements les plus toxiques aux
 mots : Mélanome → « Cancer qui naît dans les cellules qui colorent la peau ; c'est le cancer de la peau le plus dangereux. » ; Immunothérapie → « Traitement qui aide le système de défense du corps à reconnaître et détruire les cellules cancéreuses. »
 type_etude : essai_clinique
 
+BON (Sciences, sujet très technique : on décrit ce qu'on a vu et à quoi ça sert, pas l'appareillage)
+title : « Ordinateurs quantiques : une piste pour des calculs sans erreurs passe un premier test »
+avant : « Les ordinateurs quantiques se trompent souvent, car leurs données sont très fragiles. Depuis 2008, des théoriciens proposent de les protéger grâce à des états particuliers de la matière, encore mal observés dans un vrai circuit. »
+decouverte : « Des physiciens de l'université de Cologne ont fabriqué un petit circuit où le courant passe sans perte à travers un matériau qui ne conduit l'électricité qu'en surface. En le mesurant, ils ont vu apparaître les états prévus par la théorie, au bon endroit et de la bonne manière, y compris sous l'effet d'un aimant. »
+apres : « Si ces états protègent vraiment l'information, ils pourraient servir à construire des ordinateurs quantiques plus fiables. Il manque encore la preuve décisive, un changement d'énergie précis que l'équipe veut mesurer avec des instruments plus fins. »
+mots : Supraconducteur → « Matériau qui conduit l'électricité sans aucune perte, en général seulement s'il est refroidi très fort. »
+type_etude : laboratoire
+
+BON (Technologies, produit mis en vente : faits du constructeur attribués, limite concrète, prix en euros)
+title : « Voitures : une berline chinoise roule avec n'importe quel mélange de méthanol et d'essence »
+avant : « Le méthanol, un alcool qui peut servir de carburant, reste rare dans les voitures des particuliers : il faut un moteur adapté et des stations pour faire le plein. »
+decouverte : « Le constructeur chinois Geely a mis en vente la Xingyao 6 EF, une berline hybride qui roule au méthanol, à l'essence ou à l'électricité, avec n'importe quel mélange des deux carburants dans le même réservoir. Un capteur mesure ce mélange en temps réel pour régler le moteur. Selon Geely, ce moteur transforme 48 % de l'énergie du carburant en mouvement, un record pour un moteur au méthanol de série. »
+apres : « Elle vise surtout les régions froides et les longs trajets, où les voitures électriques sont moins pratiques. Mais il faut trouver du méthanol : la Chine compte un peu plus de 1 400 stations, et le prix de départ, 76 800 yuans (environ 9 200 €), n'est qu'une promotion. »
+mots : Méthanol → « Alcool liquide qui peut remplacer l'essence, seul ou mélangé à elle, dans un moteur prévu pour. »
+type_etude : en_vente
+
 MAUVAIS → POURQUOI
 « Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie » → titre vide (quel phénomène ?).
 « On ignorait encore si ces molécules existaient dans l'espace. » → affirmation absolue que l'article ne fait pas (et souvent fausse).
@@ -124,6 +141,8 @@ MAUVAIS → POURQUOI
 « Ils ont observé des états d'Andreev répartis comme prévu. » → jargon non expliqué.
 « Les prix vont de 76 800 à 96 800 yuans. » comme seul « Et après » → ne dit pas ce que ça change, et pas d'équivalent en euros.
 « Les Nucléobases forment… » → majuscule fautive au milieu d'une phrase.
+« Avant » qui raconte un autre projet sans rapport direct (un concurrent, l'histoire de l'entreprise) → le lecteur veut le problème que cette avancée règle.
+« Ce sont des outils de base : l'étude ne porte ni sur un traitement, ni sur un test. » → BON réflexe : dire clairement ce que l'étude n'est PAS quand le lecteur pourrait le croire.
 
 Réponds uniquement avec le JSON demandé."""
 
@@ -183,9 +202,13 @@ def _json(texte: str) -> dict:
 
 def message(art: dict, fil: str, brouillon: dict) -> str:
     jet = {k: brouillon.get(k) for k in ("title", "avant", "decouverte", "apres", "mots", "type_etude")}
+    if os.environ.get("SANS_BROUILLON"):
+        jet_txt = f"Premier jet : aucun (écris à partir de l'article). Titre d'un collègue, pour info : {brouillon.get('title', '')}\n\n"
+    else:
+        jet_txt = f"Premier jet (à améliorer, pas à recopier) :\n{json.dumps(jet, ensure_ascii=False)}\n\n"
     return (f"Fil : {'Sciences' if fil == 'science' else 'Technologies'}\n"
             f"Importance décidée (ne pas changer) : {brouillon.get('importance', 1)}/5\n\n"
-            f"Premier jet (à améliorer, pas à recopier) :\n{json.dumps(jet, ensure_ascii=False)}\n\n"
+            f"{jet_txt}"
             f"Article source — {art.get('source_name', '')} — titre d'origine : {art.get('title', '')}\n"
             f"{art.get('text', '')}")
 
@@ -229,7 +252,7 @@ Cherche UNIQUEMENT ces défauts précis (un défaut = une ligne dans "problemes"
 1. "non_soutenu" : un fait, un chiffre, un bénéfice, un usage futur ou une comparaison qui n'est PAS dans l'article, ou qui le déforme (ex. « les malades pourraient éviter une opération » alors que la méthode demande toujours d'opérer).
 2. "absolu" : « pour la première fois », « jamais », « aucun… ne pouvait », « on ignorait », « personne n'avait » que l'article ne dit pas, ou un contexte qui laisse croire que c'était inconnu alors que l'article cite des résultats antérieurs.
 3. "titre" : titre vague (« un phénomène », « une nouvelle alimentation », « un nouveau système », « des états », « attendus »…), qui ne dit pas concrètement ce qui a été vu, fait ou lancé ; ou qui contient un nom propre inconnu du grand public (nom d'astéroïde, de mission, de produit, de molécule) ou un mot technique ; ou plus de 12 mots ; ou un thème (avant les deux-points) mal choisi.
-4. "jargon" : un mot technique ou un sigle ni remplacé par des mots simples, ni expliqué juste après, ni donné en mot à connaître.
+4. "jargon" : une formule chimique, un nom latin d'espèce, une unité savante ou étrangère (K, mph, GW…) non convertie, ou un mot technique ou un sigle ni remplacé par des mots simples, ni expliqué juste après, ni donné en mot à connaître.
 5. "comparaison" : un chiffre ou une comparaison incompréhensible sans référence (« 90 fois plus abondante » : que quoi ?), ou deux chiffres sur la même chose dont le lien n'est pas expliqué.
 6. "apres" : le paragraphe « Et après » ne dit pas ce que ça peut changer, OU ne dit pas la limite principale ou la prochaine étape, OU n'est qu'une liste de prix.
 7. "forme" : phrase qui parle de l'article, de la source ou de la publication (« l'article ne dit pas… », « selon la revue… ») au lieu des faits ; nom de personne inutile ou non présenté (« selon Travis Beals » sans dire qui c'est : écrire « selon un responsable du projet ») ; « avant » qui raconte l'histoire d'une entreprise au lieu du problème, phrase de plus de 30 mots, tournure maladroite ou traduite de l'anglais, date relative (« mardi », « hier »), majuscule fautive, « avant » de plus de 2 phrases, « decouverte » de plus de 3, « apres » de plus de 2.
@@ -245,7 +268,7 @@ Ce qui est PERMIS (ne le signale pas, ne le retire pas) :
 
 Pour un titre vague, ne remplace pas un mot vague par un autre (« attendus » → « prévus par la théorie » ne change rien) : dis ce qui a été vu ou à quoi ça sert (« une piste vers des calculs sans erreurs se confirme »). Quand tu corriges le titre, le nouveau titre doit être PLUS concret que l'ancien (résultat chiffré, chose vue ou à quoi ça sert), jamais plus vague. Si tu ne trouves pas mieux, garde l'ancien.
 
-Puis donne la fiche corrigée : reprends la fiche telle quelle et corrige SEULEMENT les défauts trouvés, sans rien inventer (chaque correction s'appuie sur l'article). Règles de forme à garder : titre « Thème : phrase au présent », 12 mots au plus, sans point final ; avant 1-2 phrases ; decouverte 2-3 phrases ; apres 1-2 phrases, sans commencer par « Et après » ; noms communs en minuscule dans les phrases ; aucune mention de la publication, de la revue ou du média ; mots à connaître : 0 à 2, avec majuscule initiale, définition de 12 à 25 mots sans reprendre le mot. S'il n'y a aucun défaut, "problemes" est vide et la fiche corrigée est identique.
+Puis donne la fiche corrigée. CHAQUE défaut que tu as listé doit être corrigé dans la fiche corrigée (relis-la avant de répondre : un défaut listé mais encore présent est une faute grave). Donne la fiche corrigée : reprends la fiche telle quelle et corrige SEULEMENT les défauts trouvés, sans rien inventer (chaque correction s'appuie sur l'article). Règles de forme à garder : titre « Thème : phrase au présent », 12 mots au plus, sans point final ; avant 1-2 phrases ; decouverte 2-3 phrases ; apres 1-2 phrases, sans commencer par « Et après » ; noms communs en minuscule dans les phrases ; aucune mention de la publication, de la revue ou du média ; mots à connaître : 0 à 2, avec majuscule initiale, définition de 12 à 25 mots sans reprendre le mot. S'il n'y a aucun défaut, "problemes" est vide et la fiche corrigée est identique.
 
 Réponds uniquement avec le JSON demandé."""
 
