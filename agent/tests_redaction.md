@@ -1,488 +1,536 @@
-# Test de la rédaction — 03/11/2026 19:24 UTC
+# Test de la rédaction — 03/11/2026 19:34 UTC
 
 Modèles : haiku · 12 fiches
 
 
 ---
 
-## 1. Antimatière : une seule particule reste piégée pendant des mois
+## 1. Mars : une météorite formée il y a plus de 4,1 milliards d'années
 
-Fil : science · 2★ · source : Techno-Science.net · page lue : oui (2785 caractères) · https://www.techno-science.net/fr/actualites/positron-antimatiere-piege-physique-quantique-29626
+Fil : science · 2★ · source : NASA JPL · page lue : oui (6000 caractères) · https://www.jpl.nasa.gov/news/nasa-funded-study-details-one-of-oldest-mars-meteorites-ever-found
 
 **Actuel (publié)**
 
-- **Titre** : Antimatière : une seule particule reste piégée pendant des mois
-- **Avant** : Garder une particule d'antimatière était très difficile : au contact de la matière ordinaire, elle disparaît aussitôt en libérant de l'énergie.
-- **Découverte** : Des physiciens de l'université Northwestern, aux États-Unis, ont produit des positrons à partir d'une substance radioactive, puis en ont ralenti un et l'ont maintenu en suspension dans un espace presque vide, à environ −273 °C, grâce à des champs électriques et magnétiques. En envoyant des micro-ondes soigneusement réglées, ils ont fait passer cette particule d'un état d'énergie à un autre et ont mesuré ces changements, conformes à la physique quantique.
-- **Et après** : Le résultat permet d'étudier l'antimatière avec une grande précision, alors qu'elle reste mal connue. Il ne concerne pour l'instant qu'une seule particule dans un dispositif de laboratoire très particulier, et son intérêt pratique reste à démontrer.
-- **Mots** : **Positron** → Particule d'antimatière, presque identique à l'électron, mais dont la charge électrique est positive.
+- **Titre** : Mars : une météorite formée il y a plus de 4,1 milliards d'années
+- **Avant** : On connaît environ 435 météorites venues de Mars, mais peu sont aussi anciennes. Les morceaux de la croûte primitive de la planète restent rares.
+- **Découverte** : Trouvée dans le Sahara en 2022, cette roche rose a été datée par des chercheurs de la NASA : elle s'est formée il y a plus de 4,1 milliards d'années sur Mars. Son minéral et sa composition chimique ont été analysés en détail.
+- **Et après** : Les études à venir pourraient montrer comment l'eau et les roches ont interagi sur la Mars ancienne. Ce n'est encore qu'une première analyse d'un seul échantillon.
+- **Mots** : (aucun)
+- **Type** : donnees
+
+**Final après 1 relecture(s) (haiku)**
+
+- **Titre** : Mars : une météorite trouvée au Sahara garde la trace d'une eau ancienne
+- **Avant** : Environ 435 météorites venues de Mars sont connues, mais peu sont aussi anciennes. Une autre, de même âge, est déjà connue ; les morceaux de la vieille croûte de la planète restent rares.
+- **Découverte** : Une roche rose de 800 grammes, trouvée au Sahara en 2022, s'est formée il y a plus de 4,1 milliards d'années sur Mars. Des chercheurs financés par la NASA, dont Yang Liu de la NASA en Californie, l'ont datée à partir de ses minéraux. Elle a ensuite été modifiée par de l'eau souterraine, vers la même époque, ce qui suggère une eau très active sur la planète ancienne.
+- **Et après** : Les chercheurs ont repéré 13 régions possibles de Mars où les roches ressemblent à cette météorite, ce qui aide à savoir d'où elle vient. Ce n'est qu'une première analyse d'un seul échantillon ; d'autres études doivent encore préciser comment l'eau a agi sur la planète.
+- **Mots** : (aucun)
+- **Type** : laboratoire
+
+- _Défauts trouvés par le relecteur_ : [jargon] « Une autre, ALH84001, a un âge comparable » → Le sigle ALH84001 est un nom de code inconnu du public, ni expliqué ni remplacé par des mots simples. | [forme] « Une roche rose de 800 grammes, trouvée au Sahara en 2022 dans une plaine de sel du Mali, s'est formée il y a plus de 4,1 milliards d'années sur Mars. » → Phrase de 30 mots à couper, et la fiche donne 4 chiffres dans « decouverte » alors que 3 suffisent. | [jargon] « dont Yang Liu du Jet Propulsion Laboratory » → Le nom du laboratoire est un nom propre inconnu du grand public, non expliqué.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0069 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Mars : une météorite trouvée au Sahara garde la trace d'une eau ancienne
+- **Avant** : Environ 435 météorites venues de Mars sont connues, mais peu sont aussi anciennes. Une autre, ALH84001, a un âge comparable, et les morceaux de la vieille croûte de la planète restent rares.
+- **Découverte** : Une roche rose de 800 grammes, trouvée au Sahara en 2022 dans une plaine de sel du Mali, s'est formée il y a plus de 4,1 milliards d'années sur Mars. Des chercheurs financés par la NASA, dont Yang Liu du Jet Propulsion Laboratory, l'ont datée à partir de ses minéraux. Elle a ensuite été modifiée par de l'eau souterraine, vers 4,1 milliards d'années, ce qui suggère une eau très active sur la planète ancienne.
+- **Et après** : Les chercheurs ont repéré 13 régions possibles de Mars où les roches ressemblent à cette météorite, ce qui aide à savoir d'où elle vient. Ce n'est qu'une première analyse d'un seul échantillon ; d'autres études doivent encore préciser comment l'eau a agi sur la planète.
+- **Mots** : (aucun)
+- **Type** : laboratoire
+
+- _Faits relevés_ : Une roche rose d'environ 800 grammes, nommée Teghaza 001, a été trouvée dans le désert du Sahara en 2022. | Elle est nommée d'après une plaine de sel du Mali, où elle a été découverte. | Des chercheurs financés par la NASA ont daté ses minéraux : elle s'est formée il y a plus de 4,1 milliards d'années sur Mars. | Sur environ 435 météorites venues de Mars connues, c'est l'une des trois plus anciennes trouvées sur Terre. | Elle contient des minéraux volcaniques, et l'eau souterraine a modifié une partie de la roche après son refroidissement. | Les chercheurs ont identifié 13 régions possibles de Mars dont les roches ressemblent à cette météorite, sans savoir exactement d'où elle vient. | Une datation réalisée sur un fragment plus petit qu'un ongle a été décrite comme une première pour une météorite aussi ancienne, selon l'équipe du Caltech. | Il s'agit d'une première analyse d'un seul échantillon, publiée dans Science.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première absolue : il dit que la météorite est l'une des plus anciennes connues, et selon une chercheuse elle est la première pièce de croûte martienne venue d'une région de Mars jamais échantillonnée.
+- _Jargon_ : minéraux : remplacé par « roches et cristaux » | datation : expliquée en quelques mots (« datée à partir de ses minéraux ») | magma : remplacé par « roche fondue »
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : phrase de 30 mots dans « decouverte », à couper : « Une roche rose de 800 grammes, trouvée au Sahara en 2022 dans une plaine de sel du Mali, s… » ; sigles ou noms codés inconnus du public : ALH84001 → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 4 chiffres dans « decouverte » : garde les 3 plus parlants
+
+
+---
+
+## 2. IA : Mistral publie les poids de son modèle géant
+
+Fil : tech · 1★ · source : TechCrunch · page lue : oui (4650 caractères) · https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/
+
+**Actuel (publié)**
+
+- **Titre** : IA : Mistral publie les poids de son modèle géant
+- **Avant** : Les modèles d'IA les plus puissants restaient surtout accessibles par des services fermés, contrôlés par leurs fabricants. Les entreprises devaient donc passer par ces fournisseurs externes.
+- **Découverte** : Mistral a rendu téléchargeables les poids de Mistral Large 4, un modèle d'IA d'environ mille milliards de paramètres. Les entreprises et les gouvernements peuvent l'installer sur leurs propres machines, en particulier pour la cybersécurité.
+- **Et après** : L'entreprise affirme que le modèle égale un concurrent chinois pour un coût de calcul bien moindre, mais ces résultats n'ont pas encore été vérifiés par des tiers.
+- **Mots** : (aucun)
+- **Type** : en_vente
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Cybersécurité : Mistral rend téléchargeable son modèle géant pour défendre entreprises et États
+- **Avant** : Certaines entreprises d'IA, comme OpenAI ou Anthropic, gardent leurs modèles fermés. Les organisations dépendent alors de ces entreprises, sans contrôle total sur leurs données et leurs systèmes.
+- **Découverte** : Mistral a publié les réglages numériques de Mistral Large 4, un modèle d'IA d'un trillion de paramètres surnommé « Le Chonk ». Entreprises et gouvernements peuvent le télécharger et l'installer sur leurs propres machines, pour détecter et contrer les cyberattaques. Selon la société, il rivalise avec un modèle chinois ouvert parmi les meilleurs, tout en traitant 47 % de morceaux de texte en moins par tâche.
+- **Et après** : Les organisations pourraient se défendre sans dépendre d'un fournisseur extérieur, qui pourrait leur couper l'accès. Ces résultats viennent de Mistral et restent à vérifier par des tests indépendants.
+- **Mots** : **Modèle ouvert** → Intelligence artificielle dont les réglages sont publiés, ce qui permet à chacun de la télécharger et de la faire tourner chez soi.
+- **Type** : en_vente
+
+- _Défauts trouvés par le relecteur_ : [jargon] « les poids de Mistral Large 4 » → Le mot « poids » n'est pas expliqué alors qu'il est technique. L'article le définit comme les réglages numériques issus de l'entraînement. | [jargon] « 47 % de jetons en moins par tâche » → Le mot « jetons » n'est ni expliqué ni remplacé par des mots simples. | [jargon] « le modèle chinois ouvert GLM-5.3 » → Le sigle GLM-5.3 est un nom codé inconnu du public et n'aide pas à comprendre. Le nom est supprimé et remplacé par la description de l'article. | [non_soutenu] « Les modèles d'IA les plus avancés viennent souvent de services fermés, comme ceux d'OpenAI ou d'Anthropic. » → L'article ne dit pas que les modèles les plus avancés viennent souvent de services fermés. Il dit seulement que les fournisseurs fermés, comme OpenAI et Anthropic, sont en concurrence avec les modèles ouverts. | [forme] « Selon la société, il atteint des performances comparables à celles d'un autre modèle chinois ouvert, considéré comme l'un des meilleurs, en utilisant 47 % de morceaux de texte traités en moins par tâche. » → Phrase de 33 mots, au-dessus de la limite de 30. Elle doit être coupée en deux phrases courtes.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0082 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Cybersécurité : Mistral rend téléchargeable son modèle géant pour défendre entreprises et États
+- **Avant** : Les modèles d'IA les plus avancés viennent souvent de services fermés, comme ceux d'OpenAI ou d'Anthropic. Les organisations doivent alors passer par ces fournisseurs, sans contrôle total sur leurs données et leurs systèmes.
+- **Découverte** : Mistral a publié les poids de Mistral Large 4, un modèle d'IA d'un trillion de paramètres surnommé « Le Chonk ». Entreprises et gouvernements peuvent le télécharger et l'installer sur leurs propres machines, pour détecter et contrer les cyberattaques. Selon la société, il rivalise avec le modèle chinois ouvert GLM-5.3 en utilisant 47 % de jetons en moins par tâche.
+- **Et après** : Les organisations pourraient se défendre sans dépendre d'un fournisseur extérieur, qui pourrait leur couper l'accès. Ces résultats viennent de Mistral et restent à vérifier par des tests indépendants.
+- **Mots** : **Modèle ouvert** → Modèle d'IA dont les réglages sont publiés, ce qui permet à quiconque de le télécharger et de le faire tourner chez soi.
+- **Type** : en_vente
+
+- _Faits relevés_ : Mistral, entreprise française d'IA, a publié les poids de Mistral Large 4 (ML4), un modèle d'un trillion de paramètres, soit mille milliards. | Les poids sont les réglages numériques issus de l'entraînement ; entreprises et gouvernements peuvent les télécharger et installer eux-mêmes. | Le modèle, surnommé « Le Chonk », avait été présenté plus tôt dans le mois. | Mistral vise la cybersécurité : détecter, analyser et répondre aux menaces sur le code et l'infrastructure informatique. | Selon Mistral, ses performances sont comparables à celles de GLM-5.3, un modèle chinois ouvert, avec 47 % de jetons en moins par tâche. | Selon Mistral, il dépasse les autres modèles ouverts sur les tâches de programmation par agents, d'après un classement d'Artificial Analysis. | Selon Pierre Stock, de Mistral, l'accès à ce modèle ne peut pas être coupé, et il peut être installé sur les propres serveurs des organisations.
+- _Nouveauté selon l'article_ : Selon l'article, la nouveauté est la mise à disposition des poids d'un très grand modèle, que chacun peut installer ; l'article ne revendique pas de première.
+- _Jargon_ : poids : expliqué dans les faits (réglages numériques issus de l'entraînement) | paramètres : remplacé par « réglages » ou expliqué en passant | jetons : expliqué comme morceaux de texte traités par le modèle | modèle ouvert : mot à connaître
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : sigles ou noms codés inconnus du public : GLM → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+
+
+---
+
+## 3. Fusées : la capsule Starfall récupère du fret pour l'armée américaine
+
+Fil : tech · 2★ · source : Space.com · page lue : oui (4262 caractères) · https://www.space.com/space-exploration/launches-spacecraft/spacexs-starfall-capsule-delivers-cargo-for-us-air-force-in-landmark-point-to-point-space-mission
+
+**Actuel (publié)**
+
+- **Titre** : Fusées : la capsule Starfall récupère du fret pour l'armée américaine
+- **Avant** : Les fusées servent surtout à placer des satellites ou des équipages en orbite. Livrer rapidement une charge d'un point à un autre de la planète restait à démontrer.
+- **Découverte** : La capsule Starfall de SpaceX a été lancée avec une charge expérimentale, puis l'armée de l'air américaine a récupéré cette charge. Il s'agit d'un test réussi de livraison d'un point à un autre sur Terre.
+- **Et après** : Il reste à vérifier si ce type de livraison peut devenir fiable et rapide à grande échelle. L'article ne donne ni calendrier ni prix.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+**Final après 1 relecture(s) (haiku)**
+
+- **Titre** : Espace : une capsule SpaceX ramène en mer des caisses de matériel militaire
+- **Avant** : Les fusées servent surtout à placer des satellites ou des équipages en orbite. Transporter vite une charge d'un point de la Terre à un autre par fusée restait à tester.
+- **Découverte** : L'armée de l'air américaine a testé la livraison de fret par fusée d'un point à un autre de la Terre. La capsule Starfall, développée par SpaceX, a été lancée le 20 octobre avec des caisses de matériel militaire, puis récupérée dans le Pacifique après son retour. Les caisses contenaient du matériel médical, des rations alimentaires et des capteurs de température et de chocs.
+- **Et après** : Ce type de transport pourrait un jour apporter vite du matériel dans des zones difficiles d'accès. Mais Starfall ne ramène qu'environ une tonne, loin des dizaines de tonnes visées, et le site d'essais reste à trouver.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : aucun
+
+- _Défauts mesurés restants_ : aucun · coût 0.0026 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : une capsule SpaceX ramène en mer des caisses de matériel militaire
+- **Avant** : Les fusées servent surtout à placer des satellites ou des équipages en orbite. Transporter vite une charge d'un point de la Terre à un autre par fusée restait à tester.
+- **Découverte** : L'armée de l'air américaine a testé la livraison de fret par fusée d'un point à un autre de la Terre. La capsule Starfall, développée par SpaceX, a été lancée le 20 octobre avec des caisses de matériel militaire, puis récupérée dans le Pacifique après son retour. Les caisses contenaient du matériel médical, des rations alimentaires et des capteurs de température et de chocs.
+- **Et après** : Ce type de transport pourrait un jour apporter vite du matériel dans des zones difficiles d'accès. Mais Starfall ne ramène qu'environ une tonne, loin des dizaines de tonnes visées, et le site d'essais reste à trouver.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Faits relevés_ : L'AFRL, le laboratoire de recherche de l'armée de l'air américaine, a testé la livraison de fret par fusée d'un point à un autre de la Terre. | La capsule Starfall, développée par SpaceX, a été lancée le 20 octobre sur une fusée Falcon 9. | Les caisses (pods) de l'AFRL ont été récupérées dans l'océan Pacifique après leur retour. | Les caisses contenaient du matériel médical, des rations alimentaires et des équipements de survie militaires. | Chaque caisse avait des capteurs de température, de chocs et de vibrations. | Selon une évaluation environnementale de la FAA, Starfall peut ramener jusqu'à 1 000 kg de fret depuis l'orbite. | L'armée vise à terme des dizaines de tonnes de fret par lancement, ce qui dépasserait la capacité de Starfall. | Les plans d'essais sur l'atoll de Johnston ont été suspendus en juillet 2025 pour des raisons environnementales.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il décrit un test réussi de livraison par fusée, présenté comme une étape importante du programme de l'armée, qui en est encore à l'évaluation.
+- _Jargon_ : Fret : remplacé par « charge » ou « matériel » dans le texte | Orbite : mot courant, gardé tel quel avec une explication simple (autour de la Terre) | Capsule de rentrée : expliquée comme une capsule qui revient sur Terre depuis l'espace
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 4. Alzheimer : un médicament candidat atteint le cerveau humain
+
+Fil : science · 1★ · source : Nature Medicine · page lue : oui (1888 caractères) · https://www.nature.com/articles/d41591-026-00055-x
+
+**Actuel (publié)**
+
+- **Titre** : Alzheimer : un médicament candidat atteint le cerveau humain
+- **Avant** : Les traitements contre Alzheimer visent surtout l'amyloïde, une protéine qui s'accumule dans le cerveau. Les tentatives pour activer le récepteur TREM2, qui aide les cellules immunitaires du cerveau, avaient échoué chez l'humain avec des anticorps.
+- **Découverte** : Une molécule candidate, VG-3927, active le récepteur TREM2 et traverse la barrière qui protège le cerveau. Chez des volontaires, un essai de phase 1 montre qu'elle atteint le cerveau, agit sur sa cible et est bien tolérée.
+- **Et après** : Ce premier essai teste surtout la sécurité, pas l'effet sur la maladie. Il faudra des essais plus longs, sur des malades, pour savoir si elle ralentit Alzheimer.
+- **Mots** : **Phase 1** → Première étape d'un essai clinique, menée sur un petit nombre de volontaires pour tester la sécurité du médicament.
+- **Type** : essai_clinique
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Alzheimer : un médicament candidat atteint le cerveau humain
+- **Avant** : Les traitements contre Alzheimer visent surtout l'amyloïde, une protéine qui s'accumule dans le cerveau. Activer le récepteur TREM2, qui aide les cellules immunitaires du cerveau à réagir aux protéines anormales, était une piste, mais les anticorps testés atteignaient mal le cerveau.
+- **Découverte** : Des chercheurs ont testé une molécule qui active le récepteur TREM2 et traverse la barrière qui protège le cerveau. Lors d'un premier essai chez des volontaires, elle a atteint le cerveau, agi sur sa cible et été bien tolérée.
+- **Et après** : Ce premier essai évaluait surtout la sécurité, pas l'effet sur la maladie. Il ne s'agit donc que d'une démonstration, pas d'un traitement ; il faudra des essais plus longs, chez des malades, pour savoir si elle ralentit Alzheimer.
+- **Mots** : (aucun)
+- **Type** : essai_clinique
+
+- _Défauts trouvés par le relecteur_ : [titre] « Alzheimer : une molécule candidate atteint le cerveau humain et agit sur sa cible » → Le titre fait 13 mots, au-delà de 12, et « sa cible » reste vague. Le titre d'origine de l'article, plus concret, est repris. | [jargon] « VG-3927 » → Nom de code de la molécule, inconnu du public. Il n'aide pas le lecteur et est supprimé. | [jargon] « Activer le récepteur TREM2 des cellules immunitaires du cerveau était une piste » → Le sigle TREM2 n'est expliqué nulle part. L'article dit que ce récepteur aide les cellules immunitaires du cerveau à réagir aux protéines anormales ; cette explication est ajoutée. | [mot] « Phase 1 » → Ce mot n'apparaît pas dans le texte de la fiche. Aucun mot à connaître n'est donc retenu. | [apres] « Ce premier essai évaluait surtout la sécurité, pas l'effet sur la maladie. » → Le paragraphe ne dit pas la limite principale. Il est ajouté que c'est une démonstration sur un premier essai, et non un traitement. | [jargon] « Activer le récepteur TREM2, qui aide les cellules immunitaires du cerveau à réagir aux protéines anormales » → TREM2 est un nom codé inconnu du public et n'est pas expliqué dans le texte.
+
+- _Défauts mesurés restants_ : sigles ou noms codés inconnus du public : TREM2 → écris ce que c'est (ou supprime le nom s'il n'aide pas) · coût 0.0029 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Alzheimer : une molécule candidate atteint le cerveau humain et agit sur sa cible
+- **Avant** : Les traitements contre Alzheimer visent surtout l'amyloïde, une protéine qui s'accumule dans le cerveau. Activer le récepteur TREM2 des cellules immunitaires du cerveau était une piste, mais les anticorps testés atteignaient mal le cerveau.
+- **Découverte** : Des chercheurs ont testé VG-3927, une molécule qui active le récepteur TREM2 et traverse la barrière qui protège le cerveau. Lors d'un premier essai chez des volontaires, elle a atteint le cerveau, agi sur sa cible et été bien tolérée.
+- **Et après** : Ce premier essai évaluait surtout la sécurité, pas l'effet sur la maladie. Il faudra des essais plus longs, chez des malades, pour savoir si elle ralentit Alzheimer.
+- **Mots** : **Phase 1** → Première étape d'un essai clinique, menée sur un petit nombre de volontaires pour tester surtout la sécurité d'un médicament.
+- **Type** : essai_clinique
+
+- _Faits relevés_ : La molécule candidate VG-3927 active le récepteur TREM2, qui régule certaines fonctions des cellules immunitaires du cerveau (la microglie). | Les anticorps déjà testés pour activer TREM2 avaient une pénétration cérébrale limitée et n'ont pas montré de bénéfice dans les premiers essais cliniques. | L'article présente une analyse préclinique et un essai de phase 1 chez l'humain. | Selon l'article, VG-3927 pénètre le système nerveux central, atteint sa cible et est bien tolérée. | L'article ne mesure pas d'effet sur la maladie d'Alzheimer elle-même. | Il faudra d'autres essais, plus longs et sur des malades, pour évaluer un effet clinique.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il décrit une molécule qui atteint le cerveau là où les anticorps testés avant avaient une pénétration limitée.
+- _Jargon_ : TREM2 : remplacé par « un récepteur des cellules immunitaires du cerveau » | Phase 1 : mot à connaître | Barrière hémato-encéphalique : remplacé par « la barrière qui protège le cerveau »
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; sigles ou noms codés inconnus du public : TREM2, VG → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…) ; mot à connaître « Phase 1 » absent du texte de la fiche : choisis un mot du texte ou aucun
+
+
+---
+
+## 5. Magnétisme : une propriété unique révèle un possible troisième magnétisme
+
+Fil : science · 2★ · source : SLAC · page lue : oui (6000 caractères) · https://www6.slac.stanford.edu/news/2026-10-29-slac-researchers-find-proof-altermagnetism-new-magnetic-phase
+
+**Actuel (publié)**
+
+- **Titre** : Magnétisme : une propriété unique révèle un possible troisième magnétisme
+- **Avant** : On connaissait deux grands types de magnétisme : le ferromagnétisme, qui crée un champ magnétique visible, et l'antiferromagnétisme, dont les effets s'annulent. Un troisième type, l'altermagnétisme, a été proposé en 2022.
+- **Découverte** : Une équipe dirigée par le SLAC a observé directement une propriété unique dans un matériau candidat à l'altermagnétisme. Selon l'article, cette propriété est impossible à expliquer sans ce nouveau type de magnétisme.
+- **Et après** : Et après ? Ce matériau n'est encore qu'un candidat, et d'autres travaux devront confirmer ce résultat. Ces matériaux pourraient servir à concevoir des électroniques avancées, notamment pour les technologies quantiques.
+- **Mots** : **Altermagnétisme** → Troisième type de magnétisme, proposé en 2022, qui combine certaines propriétés du ferromagnétisme et de l'antiferromagnétisme.
 - **Type** : observation
 
-**Final après relecture (haiku)**
+**Final après 2 relecture(s) (haiku)**
 
-- **Titre** : Antimatière : une particule gardée à l'écart de la matière pendant des mois
-- **Avant** : L'antimatière disparaît dès qu'elle touche la matière ordinaire, en libérant de l'énergie. Pour l'étudier, il faut donc l'empêcher de toucher la matière autour d'elle.
-- **Découverte** : Des physiciens de l'université Northwestern, aux États-Unis, ont maintenu un seul positron pendant plusieurs mois. Ils l'ont ralenti et placé dans un espace presque vide d'air, à environ −273 °C, retenu par des champs électriques et magnétiques. Des micro-ondes réglées ont fait changer son niveau d'énergie, et ces changements suivent les règles de la physique quantique, qui décrit les particules les plus petites.
-- **Et après** : Cette expérience pourrait permettre de comparer l'électron et le positron avec une grande précision, pour mieux comprendre pourquoi l'Univers contient surtout de la matière. Les mesures décisives ne sont pas encore faites, et l'expérience ne porte que sur une seule particule.
-- **Mots** : **Positron** → Particule d'antimatière presque identique à l'électron, mais dont la charge électrique est positive au lieu de négative.
+- **Titre** : Magnétisme : des physiciens voient une structure en spirale dans un matériau candidat
+- **Avant** : Pendant près de 90 ans, on ne connaissait que deux grands types de magnétisme : celui des aimants classiques et un autre où les effets s'annulent. En 2022, un troisième type, l'altermagnétisme, a été proposé, mais sa preuve expérimentale manquait encore.
+- **Découverte** : Une équipe de chercheurs américains a observé directement une chiralité dans un composé de manganèse et de tellure. C'est une structure magnétique asymétrique, en forme de spirale, que ne devrait pas avoir un aimant classique où les effets s'annulent. Pour la voir, ils ont envoyé des rayons X dans une installation européenne en France, puis comparé la réponse selon le sens de rotation de la lumière.
+- **Et après** : Selon les chercheurs, ces matériaux pourraient servir à fabriquer une électronique plus avancée, pour les mémoires, les centres de données ou les technologies quantiques. Mais ce composé n'est encore qu'un matériau candidat, et l'étude ne porte que sur lui.
+- **Mots** : **Altermagnétisme** → Troisième type de magnétisme, qui combine des propriétés des aimants classiques et d'un autre type où les effets s'annulent, proposé en 2022. ; **Chiralité** → Propriété d'un objet qui ne se superpose pas à son image miroir, comme une main gauche et une main droite.
 - **Type** : laboratoire
 
-- _Défauts trouvés par le relecteur_ : [jargon] « et ces changements suivent les lois de la physique quantique » → « Physique quantique » est un terme technique non expliqué dans la fiche et absent de la liste des mots à connaître. L'article donne l'explication : cette physique décrit les particules les plus petites.
+- _Défauts trouvés par le relecteur_ : [jargon] « laboratoire SLAC » → Le sigle SLAC n'est pas expliqué. Le texte source indique qu'il s'agit du laboratoire national d'accélérateurs SLAC, financé par le ministère américain de l'énergie. | [jargon] « l'ESRF, en France » → Le sigle ESRF n'est pas expliqué. Il faut indiquer qu'il s'agit de l'installation européenne de rayonnement synchrotron. | [jargon] « un antiferromagnétique classique » → Le mot technique antiferromagnétique n'est ni expliqué ni remplacé par des mots simples dans cette phrase. | [non_soutenu] « d'autres travaux devront confirmer ce résultat » → L'article ne dit pas que d'autres travaux devront confirmer le résultat. Il indique seulement que l'expérience a été refaite en 2025 et que le matériau reste un candidat. | [forme] « Les chercheurs l'ont mise en évidence en envoyant des rayons X à l'ESRF (installation européenne de rayonnement synchrotron), en France, et en comparant la réponse selon le sens de rotation de la lumière. » → Phrase de 33 mots, trop longue pour la fiche (plus de 30 mots). | [jargon] « du laboratoire américain SLAC » → Sigle inconnu du grand public, non expliqué dans la fiche ; il n'aide pas à comprendre. | [jargon] « un composé de manganèse et de tellure, le MnTe » → La formule chimique MnTe est un code savant non expliqué ; elle est reprise ensuite dans « apres ». | [jargon] « l'ESRF (installation européenne de rayonnement synchrotron) » → Sigle non expliqué à la première mention, et « rayonnement synchrotron » est un terme technique non expliqué. | [jargon] « Mais le MnTe n'est encore qu'un matériau candidat » → Reprise de la formule chimique MnTe, incompréhensible pour le lecteur ; il faut dire « ce composé ».
+
+- _Défauts mesurés restants_ : aucun · coût 0.0066 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Antimatière : une particule gardée à l'écart de la matière pendant des mois
-- **Avant** : L'antimatière disparaît dès qu'elle touche la matière ordinaire, en libérant de l'énergie. Pour l'étudier, il faut donc l'empêcher de toucher la matière autour d'elle.
-- **Découverte** : Des physiciens de l'université Northwestern, aux États-Unis, ont maintenu un seul positron pendant plusieurs mois. Ils l'ont ralenti et placé dans un espace presque vide d'air, à environ −273 °C, retenu par des champs électriques et magnétiques. Des micro-ondes réglées ont fait changer son niveau d'énergie, et ces changements suivent les lois de la physique quantique.
-- **Et après** : Cette expérience pourrait permettre de comparer l'électron et le positron avec une grande précision, pour mieux comprendre pourquoi l'Univers contient surtout de la matière. Les mesures décisives ne sont pas encore faites, et l'expérience ne porte que sur une seule particule.
-- **Mots** : **Positron** → Particule d'antimatière presque identique à l'électron, mais dont la charge électrique est positive au lieu de négative.
+- **Titre** : Magnétisme : des physiciens voient une structure en spirale dans un matériau candidat
+- **Avant** : Pendant près de 90 ans, on ne connaissait que deux grands types de magnétisme : celui des aimants classiques et un autre où les effets s'annulent. En 2022, un troisième type, l'altermagnétisme, a été proposé, mais sa preuve expérimentale manquait encore.
+- **Découverte** : Une équipe du laboratoire SLAC a observé directement une chiralité dans un composé de manganèse et de tellure, le MnTe. C'est une structure magnétique asymétrique, en forme de spirale, que ne devrait pas avoir un antiferromagnétique classique. Les chercheurs l'ont mise en évidence en envoyant des rayons X à l'ESRF, en France, et en comparant la réponse selon le sens de rotation de la lumière.
+- **Et après** : Selon les chercheurs, ces matériaux pourraient servir à fabriquer une électronique plus avancée, pour les mémoires, les centres de données ou les technologies quantiques. Mais le MnTe n'est encore qu'un matériau candidat, et d'autres travaux devront confirmer ce résultat.
+- **Mots** : **Altermagnétisme** → Troisième type de magnétisme, qui combine des propriétés des aimants classiques et d'un autre type où les effets s'annulent, proposé en 2022. ; **Chiralité** → Propriété d'un objet qui ne se superpose pas à son image miroir, comme une main gauche et une main droite.
 - **Type** : laboratoire
 
-- _Faits relevés_ : Un seul positron, une particule d'antimatière, a été maintenu dans un piège pendant plusieurs mois. | Le positron a été produit à partir d'une substance radioactive, puis l'un d'eux a été ralenti. | Il est retenu par des champs électriques et magnétiques, sans toucher les parois, dans un espace presque vide d'air. | Le dispositif est à environ −273 °C, proche du zéro absolu. | Des micro-ondes soigneusement réglées ont fait passer la particule d'un niveau d'énergie à un autre. | Les changements mesurés suivent les règles de la physique quantique. | Les physiciens veulent comparer l'électron et le positron très précisément. | Les mesures décisives ne sont pas encore faites ; aucune différence inattendue n'a été trouvée à ce stade.
-- _Nouveauté selon l'article_ : Selon l'article, la nouveauté est d'avoir gardé un positron isolé, très froid et bien contrôlé ; l'article ne revendique pas de première.
-- _Jargon_ : Positron : mot à connaître, expliqué dans la liste des mots. | Antimatière : expliquée en une phrase (matière dont la charge est opposée à la matière ordinaire). | Physique quantique : remplacée par « les lois qui décrivent les particules les plus petites ». | Zéro absolu : remplacé par « environ −273 °C ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : aucune
+- _Faits relevés_ : Une équipe dirigée par le laboratoire SLAC, aux États-Unis, a travaillé sur un matériau composé de manganèse et de tellure, le MnTe. | Ce matériau était considéré comme antiferromagnétique pendant des décennies, avant d'être soupçonné d'être un altermagnétique. | Les chercheurs ont observé une structure magnétique asymétrique, en spirale, appelée chiralité. | L'expérience a été menée à l'Installation européenne de rayonnement synchrotron (ESRF), en France, avec des rayons X. | L'expérience a été achevée en 2024 et répétée début 2025, avec les mêmes résultats. | Selon l'article, la chiralité ne devrait pas exister dans un antiferromagnétique classique. | Les matériaux de ce type pourraient servir à l'électronique avancée, comme les mémoires ou les technologies quantiques. | Selon les chercheurs, le MnTe reste un matériau candidat : d'autres travaux devront confirmer ce résultat.
+- _Nouveauté selon l'article_ : Selon l'article, c'est la première fois qu'une propriété appelée chiralité est observée directement dans un matériau candidat à l'altermagnétisme, un type de magnétisme proposé en 2022.
+- _Jargon_ : altermagnétisme : mot à connaître | chiralité : mot à connaître | antiferromagnétisme : remplacé par « un type où les effets s'annulent » | ferromagnétisme : remplacé par « aimants classiques »
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : sigles ou noms codés inconnus du public : ESRF, SLAC → écris ce que c'est (ou supprime le nom s'il n'aide pas)
 
 
 ---
 
-## 2. Défense : un drone discret décolle et se pose sur un navire chinois
+## 6. Batteries : Svolt lance une batterie qui ajoute 500 km en 12 minutes
 
-Fil : tech · 2★ · source : CGTN Sci-Tech · page lue : oui (1468 caractères) · https://news.cgtn.com/news/2026-10-31/China-s-GJ-21-drone-completes-first-takeoff-landing-on-assault-ship-1RGhYtY2R2w/p.html?UTM_Source=cgtn&UTM_Medium=rss&UTM_Campaign=Tech&Sci
+Fil : tech · 2★ · source : Les Numériques · page lue : oui (3190 caractères) · https://www.lesnumeriques.com/voiture-electrique/voiture-electrique-cette-nouvelle-batterie-semi-solide-recupere-500-km-en-12-minutes-et-entre-deja-en-production-n263955.html
 
 **Actuel (publié)**
 
-- **Titre** : Défense : un drone discret décolle et se pose sur un navire chinois
-- **Avant** : Jusqu'ici, la marine chinoise ne pouvait pas faire décoller ni atterrir un drone furtif à voilure fixe depuis un grand navire de combat.
-- **Découverte** : Un drone furtif chinois a réalisé son premier décollage et atterrissage depuis un navire d'assaut. Selon une source de la marine, cela prouve que ce type de drone peut opérer depuis une grande plateforme maritime.
-- **Et après** : Et après ? Le navire fait des essais en mer depuis novembre 2025, mais les performances du drone ne sont pas détaillées par la source.
-- **Mots** : **Furtif** → Conçu pour être difficile à détecter par les radars et les capteurs ennemis.
-- **Type** : demonstration
+- **Titre** : Batteries : Svolt lance une batterie qui ajoute 500 km en 12 minutes
+- **Avant** : Les batteries des voitures électriques se rechargent en général beaucoup plus lentement. Les batteries semi-solides, mêlant électrolyte liquide et partie solide, restaient surtout au stade de promesse.
+- **Découverte** : Le fabricant chinois Svolt a lancé la production en série de sa batterie « Dragon Armor » de 100 kWh. Elle fonctionne sous 900 volts et accepte une recharge à 6C, ce qui permet d'ajouter 500 km d'autonomie en 12 minutes, selon la source.
+- **Et après** : Les conditions exactes de mesure n'ont pas encore été publiées, donc cette performance reste à vérifier en conditions réelles. Svolt vise un prix proche de celui des batteries lithium-ion classiques.
+- **Mots** : **Semi-solide** → Batterie qui garde une partie d'électrolyte liquide, en plus d'une partie solide.
+- **Type** : annonce
 
-**Final après relecture (haiku)**
+**Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Défense : un drone furtif chinois décolle et atterrit sur un navire d'assaut
-- **Avant** : La marine chinoise devait encore prouver qu'elle pouvait faire opérer un drone furtif à ailes fixes depuis un grand navire de combat. Un tel drone est conçu pour être difficile à repérer par les radars.
-- **Découverte** : Selon une source de la marine, un drone furtif a réalisé son premier décollage et atterrissage à bord du Sichuan, un navire d'assaut de plus de 40 000 tonnes. Le drone a des ailes fixes comme un avion, ce qui montre que la marine peut le faire voler depuis un grand navire.
-- **Et après** : Le navire peut ainsi lancer des drones de reconnaissance et de frappe depuis la mer. Il est encore en essais depuis novembre 2025, et ses performances ne sont pas encore connues.
-- **Mots** : (aucun)
-- **Type** : demonstration
+- **Titre** : Batteries : une batterie chinoise promet 500 km d'autonomie en 12 minutes
+- **Avant** : Les batteries totalement solides, très prometteuses, ne sont pas encore prêtes pour une production de masse à coût abordable.
+- **Découverte** : Le fabricant chinois Svolt lance la production en série de sa batterie semi-solide « Dragon Armor », fabriquée à Changzhou. Elle fonctionne sous 900 volts et accepte une recharge très rapide. Selon Svolt, elle ajoute 500 km d'autonomie en 12 minutes, mais les conditions exactes de mesure n'ont pas été communiquées.
+- **Et après** : Si cette performance se confirme, les conducteurs passeraient bien moins de temps aux bornes de recharge. Mais aucun modèle de voiture n'est encore officialisé, et les résultats doivent encore être vérifiés en conditions réelles.
+- **Mots** : **Semi-solide** → Batterie qui garde une partie liquide en plus d'une partie solide, plus rapide à fabriquer en série que les batteries totalement solides.
+- **Type** : annonce
 
-- _Défauts trouvés par le relecteur_ : [forme] « Selon une source de la marine, le drone GJ-21 a réalisé son premier décollage et atterrissage à bord du Sichuan, un navire d'assaut amphibie de type 076 de plus de 40 000 tonnes. » → Phrase de 33 mots, trop longue ; elle doit être coupée. | [jargon] « le drone GJ-21 » → Nom de code inconnu du public, non expliqué ; il n'aide pas à comprendre, on le supprime. | [jargon] « un navire d'assaut amphibie de type 076 » → « Type 076 » est une désignation de classe sans explication ; elle est supprimée. | [forme] « la source ne détaille pas les performances du drone » → Phrase qui parle de la source au lieu des faits ; elle doit dire directement ce qui est connu.
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Les voitures électriques se rechargent en général bien plus lentement qu'on ne fait le plein d'essence. » → Cette comparaison générale ne figure pas dans l'article source. Elle est retirée de l'introduction. | [forme] « Le fabricant chinois Svolt lance la production en série de sa batterie semi-solide « Dragon Armor », de 100 kWh, sortie de son usine de Changzhou le 26 octobre 2026. » → Phrase de 30 mots, trop longue pour la rubrique « decouverte ». Elle est coupée en deux phrases plus courtes. | [jargon] « Elle fonctionne sous 900 volts et accepte une recharge très rapide, dite 6C. » → L'unité « 6C » n'est ni convertie ni expliquée. Elle est remplacée par « une recharge très rapide ». | [comparaison] « de 100 kWh, sortie de son usine de Changzhou le 26 octobre 2026. Elle fonctionne sous 900 volts et accepte une recharge très rapide, dite 6C. » → Sept chiffres dans la rubrique « decouverte ». Seuls les trois plus parlants sont gardés : 900 volts, 500 km et 12 minutes. Le 100 kWh, la date et le 6C sont retirés.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0046 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Défense : un drone furtif chinois décolle et atterrit sur un navire d'assaut
-- **Avant** : La marine chinoise devait encore prouver qu'elle pouvait faire opérer un drone furtif à ailes fixes depuis un grand navire de combat. Un tel drone est conçu pour être difficile à repérer par les radars.
-- **Découverte** : Selon une source de la marine, le drone GJ-21 a réalisé son premier décollage et atterrissage à bord du Sichuan, un navire d'assaut amphibie de type 076 de plus de 40 000 tonnes. Le drone est à voilure fixe, c'est-à-dire qu'il a des ailes fixes comme un avion. Cela montre que la marine peut faire voler ce type de drone depuis une grande plateforme maritime.
-- **Et après** : Le navire peut ainsi lancer des drones de reconnaissance et de frappe depuis la mer. Il est encore en essais depuis novembre 2025, et la source ne détaille pas les performances du drone.
-- **Mots** : (aucun)
-- **Type** : demonstration
+- **Titre** : Batteries : une batterie chinoise promet 500 km d'autonomie en 12 minutes
+- **Avant** : Les voitures électriques se rechargent en général bien plus lentement qu'on ne fait le plein d'essence. Les batteries totalement solides, très prometteuses, ne sont pas encore prêtes pour une production de masse à coût abordable.
+- **Découverte** : Le fabricant chinois Svolt lance la production en série de sa batterie semi-solide « Dragon Armor », de 100 kWh, sortie de son usine de Changzhou le 26 octobre 2026. Elle fonctionne sous 900 volts et accepte une recharge très rapide, dite 6C. Selon Svolt, elle ajoute 500 km d'autonomie en 12 minutes, mais les conditions exactes de mesure n'ont pas été communiquées.
+- **Et après** : Si cette performance se confirme, les conducteurs passeraient bien moins de temps aux bornes de recharge. Mais aucun modèle de voiture n'est encore officialisé, et les résultats doivent encore être vérifiés en conditions réelles.
+- **Mots** : **Semi-solide** → Batterie qui garde une partie liquide en plus d'une partie solide, plus rapide à fabriquer en série que les batteries totalement solides.
+- **Type** : annonce
 
-- _Faits relevés_ : Le drone GJ-21, un appareil furtif à voilure fixe, a réalisé son premier décollage et atterrissage à bord du Sichuan. | Le Sichuan est le premier navire d'assaut amphibie de type 076 conçu et construit de manière indépendante par la Chine. | Le navire porte le numéro de coque 51 et a été lancé le 27 décembre 2024. | Il déplace plus de 40 000 tonnes à pleine charge et possède un pont d'envol sur toute sa longueur. | Il est équipé d'un système automatisé de guidage à l'atterrissage et de catapultes et brins d'arrêt électromagnétiques. | Il peut transporter des drones à voilure fixe, des hélicoptères et des engins amphibies. | Ses essais en mer ont commencé en novembre 2025 et se poursuivent selon le programme. | Selon une source de la marine, la capacité à faire opérer des drones furtifs depuis un grand navire est désormais acquise.
-- _Nouveauté selon l'article_ : Selon une source de la marine, c'est le premier décollage et atterrissage d'un drone furtif de ce type depuis ce navire ; l'article ne revendique pas d'autre première.
-- _Jargon_ : Furtif : remplacé par « difficile à repérer par les radars ». | Voilure fixe : expliqué dans le texte (des ailes fixes, comme un avion). | Navire d'assaut amphibie : expliqué dans le texte (un navire qui transporte des troupes et des engins pour débarquer sur une côte).
+- _Faits relevés_ : Le fabricant chinois Svolt lance la production en série d'une batterie semi-solide baptisée « Dragon Armor ». | La batterie a une capacité de 100 kWh et fonctionne sous 900 volts. | Elle accepte une recharge dite 6C, très rapide, et ajoute 500 km d'autonomie en 12 minutes. | Les conditions exactes de mesure n'ont pas encore été communiquées. | Elle garde une partie de liquide en plus d'une partie solide, un compromis pour limiter les coûts. | Svolt revendique plus de 3 000 cycles de charge, soit une durée de vie théorique dépassant le million de kilomètres. | Aucun modèle de voiture n'est encore officialisé ; le Wey V8X est cité comme favori. | Svolt fournit déjà les batteries de la Citroën ë-C3 et vise un prix proche des batteries classiques.
+- _Nouveauté selon l'article_ : Selon l'article, Svolt lance la production en série d'une batterie semi-solide de 100 kWh, alors que les batteries totalement solides restent au stade de promesse ; l'article ne revendique pas de première.
+- _Jargon_ : Semi-solide : mot à connaître, expliqué dans la fiche | 900 volts : expliqué comme tension de fonctionnement de la batterie | 6C : remplacé par « recharge dite très rapide » | Électrolyte : remplacé par « liquide » | NMC : supprimé | Lithium-ion : remplacé par « batteries classiques »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : phrase de 33 mots dans « decouverte », à couper : « Selon une source de la marine, le drone GJ-21 a réalisé son premier décollage et atterriss… » ; sigles ou noms codés inconnus du public : GJ → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Alertes automatiques_ : phrase de 30 mots dans « decouverte », à couper : « Le fabricant chinois Svolt lance la production en série de sa batterie semi-solide « Drago… » ; 7 chiffres dans « decouverte » : garde les 3 plus parlants
 
 
 ---
 
-## 3. Climat : le réchauffement de la Terre accélère depuis 2015
+## 7. Cybersécurité : Claude enchaîne des failles pour pirater navigateurs
 
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261027231200.htm
-
-**Actuel (publié)**
-
-- **Titre** : Climat : le réchauffement de la Terre accélère depuis 2015
-- **Avant** : On savait que la Terre se réchauffait depuis 1880, à un rythme moyen d'environ 0,2 °C par décennie entre 1970 et 2015. Les variations naturelles du climat rendaient difficile la détection d'un changement de ce rythme.
-- **Découverte** : Des chercheurs de l'Institut de Potsdam ont retiré les effets des phénomènes naturels, comme El Niño, qui font temporairement monter ou baisser les températures. Ils montrent que le rythme est passé à environ 0,35 °C par décennie depuis 2015, avec une confiance statistique supérieure à 98 %. Ce rythme est presque deux fois plus rapide que la moyenne de 1970 à 2015.
-- **Et après** : Ce résultat dépend du jeu de données de température utilisé, et il reste à suivre sur plusieurs années pour confirmer la tendance. Il montre que la hausse des températures s'accélère, et pas seulement qu'elle continue.
-- **Mots** : (aucun)
-- **Type** : donnees
-
-**Final après relecture (haiku)**
-
-- **Titre** : Climat : le réchauffement s'accélère, 0,35 °C par décennie depuis 2015
-- **Avant** : Depuis 1970 jusqu'à 2015, la Terre se réchauffait à un peu moins de 0,2 °C par décennie. Les phénomènes naturels comme El Niño ou les éruptions volcaniques font monter ou baisser les températures d'une année à l'autre et masquent une éventuelle accélération.
-- **Découverte** : Des chercheurs de l'Institut de Potsdam pour la recherche sur les impacts climatiques ont retiré des températures l'effet d'El Niño, des éruptions volcaniques et de l'activité du Soleil. Ces dernières années, la Terre s'est réchauffée d'environ 0,35 °C par décennie, presque deux fois plus vite que la moyenne de 1970 à 2015. Le résultat tient dans toutes les séries de mesures utilisées, avec une certitude statistique supérieure à 98 %.
-- **Et après** : Ce résultat montre que la hausse des températures s'accélère, et pas seulement qu'elle continue. Les modèles climatiques actuels peuvent reproduire cette accélération, mais l'étude ne dit pas quelles causes sont en jeu et le rythme exact varie selon la série de mesures.
-- **Mots** : (aucun)
-- **Type** : donnees
-
-- _Défauts trouvés par le relecteur_ : [titre] « Climat : le réchauffement s'accélère, près de deux fois plus vite depuis 2015 » → « Près de deux fois plus vite » ne dit pas que par rapport à quoi. L'article compare le rythme actuel à la moyenne de 1970 à 2015 (un peu moins de 0,2 °C par décennie), mais le titre ne le précise pas. | [forme] « cinq grandes séries de mesures » → Quatre chiffres dans « decouverte » (0,35, dix, 1970-2015, 98) alourdissent le paragraphe. Le nombre de séries n'apporte rien au lecteur ; on garde les chiffres les plus parlants. | [apres] « Ce résultat montre que la hausse des températures s'accélère, et pas seulement qu'elle continue. Mais le rythme exact varie selon la série de mesures, et l'étude ne dit pas quelles causes sont en jeu. » → Le paragraphe ne dit pas ce que ce résultat peut changer. L'article indique que l'accélération observée est compatible avec ce que produisent les modèles climatiques actuels, ce qui est la conséquence utile à donner.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Climat : le réchauffement s'accélère, près de deux fois plus vite depuis 2015
-- **Avant** : Depuis 1970 jusqu'à 2015, la Terre se réchauffait à un peu moins de 0,2 °C par décennie. Les phénomènes naturels comme El Niño ou les éruptions volcaniques font monter ou baisser les températures d'une année à l'autre et masquent une éventuelle accélération.
-- **Découverte** : Des chercheurs de l'Institut de Potsdam pour la recherche sur les impacts climatiques ont retiré des températures l'effet d'El Niño, des éruptions volcaniques et de l'activité du Soleil. Sur les dix dernières années, la Terre s'est réchauffée d'environ 0,35 °C par décennie, presque deux fois plus vite que la moyenne de 1970 à 2015. Le résultat tient dans cinq grandes séries de mesures, avec une certitude statistique supérieure à 98 %.
-- **Et après** : Ce résultat montre que la hausse des températures s'accélère, et pas seulement qu'elle continue. Mais le rythme exact varie selon la série de mesures, et l'étude ne dit pas quelles causes sont en jeu.
-- **Mots** : (aucun)
-- **Type** : donnees
-
-- _Faits relevés_ : Selon l'étude, la Terre s'est réchauffée d'environ 0,35 °C par décennie ces dix dernières années. | Entre 1970 et 2015, le rythme moyen était d'un peu moins de 0,2 °C par décennie. | Les chercheurs ont retiré l'effet d'El Niño, des éruptions volcaniques et de l'activité du Soleil. | Le résultat vient de cinq grandes séries de mesures : NASA, NOAA, HadCRUT, Berkeley Earth et ERA5. | La certitude statistique dépasse 98 %, selon les chercheurs. | Le chiffre exact varie selon la série de mesures utilisée. | Des signes d'accélération apparaissaient déjà en 2013 ou 2014 dans les cinq séries. | 2023 et 2024 restent les années les plus chaudes depuis le début des mesures, même après correction.
-- _Nouveauté selon l'article_ : Selon les chercheurs, c'est la première preuve statistiquement solide d'une accélération du réchauffement depuis environ 2015, même après retrait des facteurs naturels ; le réchauffement lui-même existait déjà depuis 1880.
-- _Jargon_ : El Niño — expliqué en quelques mots dans la fiche | série de températures — remplacé par « série de mesures » | tendance statistique — remplacé par « tendance »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : titre : « fois plus/moins » sans dire QUE quoi ; 4 chiffres dans « decouverte » : garde les 3 plus parlants
-
-
----
-
-## 4. Fonds marins : un mollusque cache des bactéries dans un organite inédit
-
-Fil : science · 2★ · source : Nature Communications · page lue : oui (5572 caractères) · https://www.nature.com/articles/s41467-026-78965-0
+Fil : tech · 2★ · source : Clubic · page lue : oui (5161 caractères) · https://www.clubic.com/actualite-636592-claude-a-reussi-a-pirater-chrome-safari-et-android-en-combinant-plusieurs-failles-pour-le-meilleur-et-pour-le-pire.html
 
 **Actuel (publié)**
 
-- **Titre** : Fonds marins : un mollusque cache des bactéries dans un organite inédit
-- **Avant** : Chez les animaux des fonds marins, les associations avec des bactéries qui tirent leur énergie de substances chimiques sont connues. Aucun organite dédié à cette association n'avait pourtant été identifié.
-- **Découverte** : Chez Chaetoderma shenloong, un petit mollusque vivant dans les suintements froids, les chercheurs décrivent un compartiment sphérique d'environ 12 micromètres, entouré de nombreuses membranes, où vivent des bactéries qui oxydent le soufre. Ce compartiment, baptisé dracosphera, se trouve dans une glande digestive très développée, alors que l'animal a presque perdu son intestin.
-- **Et après** : Ce compartiment pourrait limiter l'arrivée d'oxygène vers des bactéries qui n'en supportent que de très faibles quantités, selon une hypothèse à confirmer. Il faudra vérifier si d'autres espèces possèdent un organite similaire.
-- **Mots** : **Suintement froid** → Zone du fond marin d'où s'échappent lentement des fluides riches en substances chimiques, sans chaleur volcanique. ; **Organite** → Petite structure spécialisée à l'intérieur d'une cellule, qui remplit une fonction précise.
-- **Type** : animal
+- **Titre** : Cybersécurité : Claude enchaîne des failles pour pirater navigateurs
+- **Avant** : Pour attaquer un système, il fallait jusqu'ici une équipe de spécialistes capables de repérer plusieurs failles et de les exploiter dans le bon ordre.
+- **Découverte** : Une IA expérimentale d'Anthropic découvre seule des failles et les combine pour attaquer des navigateurs et des systèmes. Ces attaques ont fonctionné contre Chrome, Safari, Android, Windows et Linux, selon un rapport publié par l'entreprise.
+- **Et après** : Ce modèle n'est pas commercialisé, et les résultats viennent de l'entreprise elle-même. Ils pourraient aider les défenseurs, mais aussi les pirates.
+- **Mots** : (aucun)
+- **Type** : annonce
 
-**Final après relecture (haiku)**
+**Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Fonds marins : un mollusque abrite des bactéries dans de petites sphères
-- **Avant** : Chez de nombreux animaux des fonds marins, des symbioses lient l'animal à des bactéries qui tirent leur énergie de substances chimiques. Pourtant, aucune structure dédiée à cette association n'avait été identifiée jusqu'ici.
-- **Découverte** : Des chercheurs chinois, japonais et de Hong Kong ont décrit cette structure chez un petit mollusque en forme de ver. Dans ses tissus, des bactéries qui tirent leur énergie du soufre vivent dans des compartiments sphériques d'environ 12 millièmes de millimètre, entourés de nombreuses membranes. Ce compartiment, nommé dracosphera, se trouve dans une glande digestive très développée, alors que l'animal a presque perdu son intestin.
-- **Et après** : Si cette hypothèse se confirme, le dracosphera pourrait limiter l'arrivée d'oxygène vers les bactéries, qui n'en supportent que de faibles quantités. Il reste à vérifier si d'autres espèces possèdent une structure semblable, et l'idée n'est encore qu'une hypothèse.
-- **Mots** : **Symbiose** → Relation durable entre deux êtres vivants d'espèces différentes, qui en tirent souvent tous les deux un avantage.
-- **Type** : animal
-
-- _Défauts trouvés par le relecteur_ : [titre] « Fonds marins : un mollusque héberge des bactéries dans une petite structure nouvelle » → « Structure nouvelle » est vague et ne dit pas ce qui a été vu. La fiche doit dire la forme observée, ici de petites sphères contenant des bactéries. | [forme] « aucun organite dédié à cette association n'avait été identifié, selon les auteurs » → La mention « selon les auteurs » parle de la source au lieu des faits. | [jargon] « organite » → Mot technique non expliqué et absent du mot à connaître. Il est remplacé par « structure ».
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Fonds marins : un mollusque héberge des bactéries dans une petite structure nouvelle
-- **Avant** : Chez de nombreux animaux des fonds marins, des symbioses lient l'animal à des bactéries qui tirent leur énergie de substances chimiques. Pourtant, aucun organite dédié à cette association n'avait été identifié, selon les auteurs.
-- **Découverte** : Des chercheurs chinois, japonais et de Hong Kong ont décrit cette structure chez un petit mollusque en forme de ver. Dans ses tissus, des bactéries qui tirent leur énergie du soufre vivent dans des compartiments sphériques d'environ 12 millièmes de millimètre, entourés de nombreuses membranes. Ce compartiment, nommé dracosphera, se trouve dans une glande digestive très développée, alors que l'animal a presque perdu son intestin.
-- **Et après** : Si cette hypothèse se confirme, le dracosphera pourrait limiter l'arrivée d'oxygène vers les bactéries, qui n'en supportent que de faibles quantités. Il reste à vérifier si d'autres espèces possèdent une structure semblable, et l'idée n'est encore qu'une hypothèse.
-- **Mots** : **Symbiose** → Relation durable entre deux êtres vivants d'espèces différentes, qui en tirent souvent tous les deux un avantage.
-- **Type** : animal
-
-- _Faits relevés_ : Le mollusque étudié est un petit animal en forme de ver, qui vit au fond de la mer. | Il vit dans des sédiments où l'oxygène manque, à plusieurs dizaines de centimètres sous la surface. | Des bactéries qui tirent leur énergie du soufre sont cultivées dans des compartiments sphériques d'environ 12 micromètres. | Ces compartiments, nommés dracosphera, sont entourés de nombreuses membranes superposées. | Ils se trouvent dans une glande digestive très développée, alors que l'animal a presque perdu son intestin. | Les bactéries ne supportent que de très faibles quantités d'oxygène. | Les auteurs pensent que le dracosphera limite l'arrivée d'oxygène ; cette idée est appuyée par des analyses génétiques et de l'activité des gènes.
-- _Nouveauté selon l'article_ : Selon l'article, le dracosphera est un organite nouveau, dédié à cette association chimique ; les auteurs disent qu'aucun organite de ce type n'avait été identifié.
-- _Jargon_ : symbiose : expliquée dans le mot à connaître | chimiosynthèse : remplacée par « tirent leur énergie de substances chimiques » | organite : expliqué en quelques mots dans le texte | micro-aérobie : remplacée par « ne supportent que de très faibles quantités d'oxygène » | hypertrophiée : remplacée par « très développée » | micromètre : remplacé par « millièmes de millimètre » en pratique, sans unité savante dans la fiche
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 5. Télescopes : une puce de verre relie deux télescopes
-
-Fil : tech · 1★ · source : Phys.org · page lue : NON (0 caractères) · https://phys.org/news/2026-10-tiny-photonic-chip-links-telescopes.html
-
-**Actuel (publié)**
-
-- **Titre** : Télescopes : une puce de verre relie deux télescopes
-- **Avant** : Pour voir plus finement le ciel, les astronomes associent parfois plusieurs télescopes. Jusqu'ici, ce couplage demandait des montages encombrants et délicats.
-- **Découverte** : Une puce de verre minuscule relie deux télescopes pour qu'ils travaillent comme un seul instrument plus puissant. Le dispositif a été développé par des chercheurs de l'université Heriot-Watt. Les auteurs y voient une étape vers une nouvelle génération d'instruments astronomiques.
-- **Et après** : Et après ? Il reste à confirmer le fonctionnement de la puce sur des observations réelles et à mesurer ses performances. L'extrait ne donne pas de chiffres précis sur la finesse des images obtenues.
+- **Titre** : Cybersécurité : une IA expérimentale enchaîne des failles pour pirater Chrome et Safari
+- **Avant** : Attaquer un système demandait jusqu'ici une équipe de spécialistes capables de repérer plusieurs failles complémentaires et de les exploiter dans le bon ordre. Ce travail restait longtemps réservé à des chercheurs très expérimentés.
+- **Découverte** : Des chercheurs de l'entreprise Anthropic, qui développe l'assistant Claude, ont testé une version expérimentale de cette IA. Elle a trouvé plusieurs failles et les a enchaînées pour attaquer Chrome, Safari, Android, Windows et Linux, en laboratoire. L'entreprise affirme n'avoir eu besoin que de peu d'interventions humaines, sans détailler le rôle exact de ses chercheurs.
+- **Et après** : Ces découvertes peuvent aider les éditeurs à corriger en priorité les failles les plus graves, comme Google l'a fait pour Chrome. Mais ce modèle n'est pas accessible au public, et si des capacités comparables le devenaient, des groupes malveillants pourraient en profiter.
 - **Mots** : (aucun)
 - **Type** : prototype
 
-_Article illisible : pas de réécriture._
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Elle a trouvé seule plusieurs failles » → L'article indique que l'IA a obtenu ses résultats après quelques instructions initiales et peu d'interventions humaines, et qu'il ne détaille pas la contribution exacte des chercheurs. Le mot « seule » affirme donc plus que la source.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0033 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Cybersécurité : une IA expérimentale enchaîne des failles pour pirater Chrome et Safari
+- **Avant** : Attaquer un système demandait jusqu'ici une équipe de spécialistes capables de repérer plusieurs failles complémentaires et de les exploiter dans le bon ordre. Ce travail restait longtemps réservé à des chercheurs très expérimentés.
+- **Découverte** : Des chercheurs de l'entreprise Anthropic, qui développe l'assistant Claude, ont testé une version expérimentale de cette IA. Elle a trouvé seule plusieurs failles et les a enchaînées pour attaquer Chrome, Safari, Android, Windows et Linux, en laboratoire. L'entreprise affirme n'avoir eu besoin que de peu d'interventions humaines, sans détailler le rôle exact de ses chercheurs.
+- **Et après** : Ces découvertes peuvent aider les éditeurs à corriger en priorité les failles les plus graves, comme Google l'a fait pour Chrome. Mais ce modèle n'est pas accessible au public, et si des capacités comparables le devenaient, des groupes malveillants pourraient en profiter.
+- **Mots** : (aucun)
+- **Type** : prototype
+
+- _Faits relevés_ : Une version expérimentale de Claude, l'IA de l'entreprise Anthropic, a trouvé et combiné plusieurs failles. | Les attaques ont fonctionné contre Chrome, Safari, Android, Windows et Linux, en laboratoire. | Sur Chrome, une chaîne de quatre failles a permis de lancer la Calculatrice sur un Mac, quelques secondes après l'ouverture d'une page piégée. | Contre Safari et Android, les attaques ont donné accès à des données normalement protégées. | Sur Windows, une faille a fait planter un serveur à distance ; sur Linux, une attaque a permis d'exécuter des commandes avec les droits d'administrateur sur un serveur vulnérable. | Anthropic a signalé 62 vulnérabilités à Google dans Chrome, dont 13 permettant de sortir de l'isolation du navigateur ; elles sont corrigées dans Chrome 156. | L'entreprise affirme avoir obtenu ces résultats avec peu d'interventions humaines, sans détailler le rôle exact des chercheurs. | Le modèle n'est pas accessible au public, et aucune exploitation malveillante de ces attaques n'a été signalée.
+- _Nouveauté selon l'article_ : Selon l'article, une IA a trouvé seule des failles et les a enchaînées pour attaquer des systèmes, alors que ce travail demandait jusqu'ici des équipes très spécialisées ; l'article ne revendique pas de première.
+- _Jargon_ : Sandbox : remplacé par « isolation du navigateur ». | Exploit : remplacé par « attaque ». | Rétro-ingénierie : non expliqué, car non nécessaire à la compréhension.
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : aucune
 
 
 ---
 
-## 6. Physique : des atomes froids simulent un mini-univers sans horloge
+## 8. Volcans : le magma stocke un réservoir d'oxygène caché
 
-Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261028234703.htm
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261027063702.htm
 
 **Actuel (publié)**
 
-- **Titre** : Physique : des atomes froids simulent un mini-univers sans horloge
-- **Avant** : Le temps est une notion centrale de la physique, mais on ignore encore s'il est fondamental. Certaines théories quantiques suggèrent qu'il pourrait émerger des changements de l'univers, sans qu'aucune preuve expérimentale n'existe.
-- **Découverte** : Un physicien de l'université de Birmingham a utilisé environ 24 000 atomes refroidis presque au zéro absolu. Ces atomes forment un système quantique isolé qui se dilate et se contracte à plusieurs reprises, comme un Big Bang suivi d'un possible Big Crunch. Les chercheurs ont montré qu'on peut mesurer le passage du temps à partir des seuls changements internes du système, sans horloge extérieure. Les résultats sont publiés dans Physical Review Research.
-- **Et après** : Il s'agit d'une simulation en laboratoire, pas de l'univers réel : elle ne prouve pas que le temps n'est pas fondamental. Elle offre cependant un moyen concret de tester des idées théoriques sur la gravité quantique.
-- **Mots** : **Atome ultrafroid** → Atome refroidi à une température très proche du zéro absolu, donc presque immobile.
+- **Titre** : Volcans : le magma stocke un réservoir d'oxygène caché
+- **Avant** : Les scientifiques pensaient qu'un magma ne pouvait contenir qu'une quantité précise d'oxygène. Cet oxygène profond était donc considéré comme peu susceptible d'influencer l'atmosphère.
+- **Découverte** : Des expériences à très haute pression, combinées à des simulations informatiques, montrent que le magma peut absorber davantage d'oxygène que ce que sa composition chimique exige. Cette réserve cachée pourrait relier l'intérieur de la Terre, l'activité volcanique et la formation d'une atmosphère riche en oxygène.
+- **Et après** : Et après ? Les chercheurs suggèrent que des éruptions anciennes auraient pu libérer cet oxygène et contribuer à transformer l'atmosphère il y a des milliards d'années. Il reste à le prouver, car il s'agit surtout d'expériences de laboratoire et de modèles informatiques.
+- **Mots** : **Magma** → Roche chaude et fondue située en profondeur, qui alimente les volcans.
 - **Type** : simulation
 
-**Final après relecture (haiku)**
+**Final après 2 relecture(s) (haiku)**
 
-- **Titre** : Physique : des atomes très froids mesurent le temps sans horloge extérieure
-- **Avant** : Le temps reste une notion centrale de la physique, mais on se demande s'il est fondamental. Certaines théories suggèrent qu'il pourrait naître des changements de l'univers, sans preuve expérimentale à ce jour.
-- **Découverte** : Le physicien Giovanni Barontini a créé en laboratoire un mini-univers de 24 000 atomes refroidis à quelques milliardièmes de degré au-dessus du zéro absolu. Deux faisceaux laser le divisent en une zone observée et une zone non observée, entre lesquelles les atomes circulent. La zone observée se dilate puis se contracte comme un Big Bang suivi d'un effondrement, et le temps se mesure à partir de l'entropie.
-- **Et après** : Cette méthode offre un moyen de tester en laboratoire des idées de la gravité quantique, théorie qui tente de concilier physique quantique et gravitation. Il ne s'agit toutefois que d'une simulation réduite, qui ne prouve pas que le temps n'est pas fondamental dans l'univers réel.
-- **Mots** : **Entropie** → Mesure du désordre ou de la répartition des particules dans un système ; elle tend à augmenter avec le temps.
+- **Titre** : Volcans : sous forte pression, le magma stocke davantage d'oxygène qu'on ne pensait
+- **Avant** : On pensait que le magma ne pouvait contenir qu'une quantité d'oxygène fixée par sa composition chimique. Cet oxygène profond semblait donc sans rôle sur l'atmosphère.
+- **Découverte** : Des chercheurs d'un centre chinois de recherche sur les hautes pressions et de partenaires ont chauffé un basalte synthétique à 7 gigapascals, soit environ 69 000 fois la pression au sol. Le verre obtenu contenait plus de 5 % d'oxygène en excès, contre très peu sans l'ajout d'oxyde de platine. Des calculs informatiques reproduisent cette tendance, avec des valeurs plus basses que l'expérience.
+- **Et après** : Selon les chercheurs, des éruptions anciennes auraient pu libérer cet oxygène et contribuer à changer l'atmosphère il y a des milliards d'années. Il reste à le prouver : il s'agit d'expériences en laboratoire et de simulations, et les concentrations réelles du magma pourraient être plus élevées.
+- **Mots** : **Magma** → Roche chaude et fondue située en profondeur, qui alimente les volcans et peut libérer des gaz en remontant.
 - **Type** : laboratoire
 
-- _Défauts trouvés par le relecteur_ : [forme] « Le physicien Giovanni Barontini, de l'université de Birmingham, a créé en laboratoire un mini-univers avec environ 24 000 atomes refroidis à quelques milliardièmes de degré au-dessus du zéro absolu. » → Phrase de 29 mots, au-delà de la limite de 30 mots tolérée pour une phrase, et trop chargée pour un lecteur non spécialiste ; à couper. | [forme] « La zone observée se dilate puis se contracte à plusieurs reprises, par analogie avec le Big Bang suivi d'un Big Crunch, et le temps se mesure à partir de l'entropie, une mesure de la répartition des particules. » → Phrase de 37 mots, trop longue ; elle mélange deux idées (l'expansion et la mesure du temps) qu'il faut séparer. | [jargon] « par analogie avec le Big Bang suivi d'un Big Crunch » → Le terme « Big Crunch » n'est pas expliqué ; il faut le remplacer par des mots simples (effondrement) plutôt que de le laisser tel quel.
+- _Défauts trouvés par le relecteur_ : [jargon] « l'Académie chinoise HPSTAR » → Le sigle HPSTAR n'est pas compréhensible par le public ; il est remplacé par la description de l'organisme. | [forme] « contre 0,2 à 0,5 % sans l'ajout d'oxyde de platine » → Trop de chiffres dans le paragraphe « decouverte » ; on garde les plus parlants et on décrit la comparaison sans les deux valeurs. | [non_soutenu] « Cet oxygène profond semblait donc sans rôle sur l'atmosphère. » → L'article ne dit pas que cet oxygène était considéré comme sans rôle sur l'atmosphère. Il dit seulement que l'oxygène n'était pas traité comme une substance volatile séparée, et le « donc » établit un lien que l'article ne fait pas. | [forme] « Des chercheurs d'un centre chinois de recherche sur les hautes pressions et de partenaires ont chauffé un basalte synthétique à 7 gigapascals, soit environ 69 000 fois la pression au sol. » → Phrase de 31 mots, signalée par le contrôle automatique. Elle doit être coupée. | [comparaison] « contre très peu sans l'ajout d'oxyde de platine » → La comparaison est imprécise. L'article donne 0,2 à 0,5 % en poids sans composé de platine à pressions et températures voisines, et « très peu » ne permet pas de comparer.
+
+- _Défauts mesurés restants_ : phrase de 31 mots dans « decouverte », à couper : « Des chercheurs d'un centre chinois de recherche sur les hautes pressions et de partenaires… » · coût 0.0044 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Physique : des atomes très froids mesurent le temps sans horloge extérieure
-- **Avant** : Le temps reste une notion centrale de la physique, mais on se demande s'il est fondamental. Certaines théories suggèrent qu'il pourrait naître des changements de l'univers, sans preuve expérimentale à ce jour.
-- **Découverte** : Le physicien Giovanni Barontini, de l'université de Birmingham, a créé en laboratoire un mini-univers avec environ 24 000 atomes refroidis à quelques milliardièmes de degré au-dessus du zéro absolu. Deux faisceaux laser séparent le système en une zone observée et une zone non observée, entre lesquelles les atomes circulent. La zone observée se dilate puis se contracte à plusieurs reprises, par analogie avec le Big Bang suivi d'un Big Crunch, et le temps se mesure à partir de l'entropie, une mesure de la répartition des particules.
-- **Et après** : Cette méthode offre un moyen de tester en laboratoire des idées de la gravité quantique, théorie qui tente de concilier physique quantique et gravitation. Il ne s'agit toutefois que d'une simulation réduite, qui ne prouve pas que le temps n'est pas fondamental dans l'univers réel.
-- **Mots** : **Entropie** → Mesure du désordre ou de la répartition des particules dans un système ; elle tend à augmenter avec le temps.
+- **Titre** : Volcans : sous forte pression, le magma stocke davantage d'oxygène qu'on ne pensait
+- **Avant** : On pensait que le magma ne pouvait contenir qu'une quantité d'oxygène fixée par sa composition chimique. Cet oxygène profond semblait donc sans rôle sur l'atmosphère.
+- **Découverte** : Des chercheurs de l'Académie chinoise HPSTAR et de partenaires ont chauffé un basalte synthétique à 7 gigapascals, soit environ 69 000 fois la pression au sol. Le verre obtenu contenait plus de 5 % d'oxygène en excès, contre 0,2 à 0,5 % sans l'ajout d'oxyde de platine. Des calculs informatiques reproduisent cette tendance, avec des valeurs plus basses que l'expérience.
+- **Et après** : Selon les chercheurs, des éruptions anciennes auraient pu libérer cet oxygène et contribuer à changer l'atmosphère il y a des milliards d'années. Il reste à le prouver : il s'agit d'expériences en laboratoire et de simulations, et les concentrations réelles du magma pourraient être plus élevées.
+- **Mots** : **Magma** → Roche chaude et fondue située en profondeur, qui alimente les volcans et peut libérer des gaz en remontant.
 - **Type** : laboratoire
 
-- _Faits relevés_ : Le physicien Giovanni Barontini, de l'université de Birmingham, a créé un mini-univers en laboratoire. | Le système contient environ 24 000 atomes refroidis à quelques milliardièmes de degré au-dessus du zéro absolu. | Deux faisceaux laser séparent le système en une zone observée et une zone non observée, entre lesquelles les atomes circulent. | La zone observée se dilate puis se contracte à plusieurs reprises, par analogie avec le Big Bang et le Big Crunch. | Le temps est mesuré à partir des changements de répartition des atomes, sans horloge extérieure. | Ce temps interne avance toujours dans le même sens et peut accélérer ou ralentir. | L'expérience ne reproduit pas les événements cosmiques réels, c'est un modèle simplifié. | Selon le chercheur, l'étude apporte une preuve expérimentale contrôlée de cette idée théorique.
-- _Nouveauté selon l'article_ : Selon le chercheur, l'étude apporte « la première preuve expérimentale contrôlée » qu'un temps peut être défini par les changements internes d'un système ; l'article ne revendique pas d'autre première.
-- _Jargon_ : Atomes ultrafroids : remplacé par « atomes très froids ». | Gravité quantique : expliqué en quelques mots dans l'« Et après ». | Big Bang et Big Crunch : expliqués comme événements cosmiques par analogie. | Entropie : mot à connaître.
+- _Faits relevés_ : Des chercheurs ont chauffé un basalte synthétique, une roche volcanique de dorsale océanique, à des pressions allant jusqu'à 7 gigapascals, soit environ 69 000 fois la pression atmosphérique. | Avec de l'oxyde de platine ajouté, le verre obtenu contenait plus de 5 % d'oxygène en excès en poids à 7 gigapascals. | Sans oxyde de platine, les expériences à pressions similaires donnaient seulement 0,2 % à 0,5 % d'oxygène en excès. | À pression atmosphérique, le verre contenait presque pas d'oxygène en excès. | La spectroscopie Raman n'a détecté aucune trace d'oxygène gazeux : l'oxygène supplémentaire fait partie de la structure du verre, pas de bulles. | Les concentrations mesurées pourraient être sous-estimées, car de l'oxygène a pu s'échapper pendant le refroidissement. | Des simulations informatiques utilisant des réseaux de neurones reproduisent la même tendance : plus la pression augmente, plus le magma retient d'oxygène, mais avec des valeurs plus basses que l'expérience. | Les simulations montrent aussi que certains atomes d'oxygène forment des liaisons de type peroxyde, où des atomes d'oxygène se lient entre eux.
+- _Nouveauté selon l'article_ : Selon l'article, les chercheurs montrent que le magma peut stocker de l'oxygène en plus de ce que sa composition chimique demande, une idée qui contredit l'hypothèse habituelle ; l'article ne revendique pas de première.
+- _Jargon_ : Basalte de dorsale : remplacé par « roche volcanique formée où les plaques tectoniques s'écartent sous les océans ». | Oxyde de platine : remplacé par « un ajout chimique qui crée un environnement riche en oxygène ». | Spectroscopie Raman : expliqué en quelques mots (une technique qui identifie une substance par sa réaction à la lumière). | Simulations par réseaux de neurones : remplacé par « calculs informatiques ». | Liaisons de type peroxyde : remplacé par « liaisons où des atomes d'oxygène se lient entre eux ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : phrase de 29 mots dans « decouverte », à couper : « Le physicien Giovanni Barontini, de l'université de Birmingham, a créé en laboratoire un m… » ; phrase de 37 mots dans « decouverte », à couper : « La zone observée se dilate puis se contracte à plusieurs reprises, par analogie avec le Bi… »
+- _Alertes automatiques_ : sigles ou noms codés inconnus du public : HPSTAR → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 5 chiffres dans « decouverte » : garde les 3 plus parlants
 
 
 ---
 
-## 7. Satellites : le premier centre de données de Google tourne dans l'espace
+## 9. Embryon : une carte suit la famille d'un million de cellules
 
-Fil : tech · 2★ · source : TechCrunch · page lue : oui (4806 caractères) · https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/
+Fil : science · 2★ · source : MIT News · page lue : oui (6000 caractères) · https://news.mit.edu/2026/capturing-complete-process-of-embryonic-development-1028
 
 **Actuel (publié)**
 
-- **Titre** : Satellites : le premier centre de données de Google tourne dans l'espace
-- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont jusqu'ici installés sur Terre. L'idée de les placer en orbite, où l'énergie solaire est abondante, reste au stade de projet.
-- **Découverte** : Le satellite prototype Suncatcher, lancé en octobre avec plus de cent autres engins, transporte quatre puces TPU de Google et produit jusqu'à 1 kW d'électricité. Il est en ligne, communique avec le sol et fait tourner le modèle Gemma 4, qui a par exemple écrit un haïku sur l'espace. Mais les puces ne peuvent fonctionner qu'environ 20 minutes à la fois.
-- **Et après** : Il reste à vérifier comment les puces résistent à la chaleur et aux radiations de l'espace, que les tests sur Terre ne reproduisent pas tout à fait. Google veut à terme relier plusieurs satellites proches pour former de grands calculateurs en orbite.
-- **Mots** : **TPU** → Puce conçue par Google pour accélérer les calculs des intelligences artificielles.
-- **Type** : prototype
+- **Titre** : Embryon : une carte suit la famille d'un million de cellules
+- **Avant** : Jusqu'ici, les chercheurs observaient surtout des instantanés du développement d'un embryon, à des moments précis. On ne voyait pas comment chaque cellule naissait et se transformait au fil du temps.
+- **Découverte** : Des chercheurs du MIT et de l'Institut Whitehead ont suivi plus d'un million de cellules dans un embryon de souris. Ils ont dressé une carte des divisions cellulaires et du destin de chaque cellule, comme un arbre généalogique.
+- **Et après** : Cette carte peut aider à comprendre les malformations congénitales et certains cancers. Ces pistes restent à vérifier, car l'étude porte sur la souris et non sur l'humain.
+- **Mots** : **Lignée** → Ensemble des cellules descendant d'une même cellule d'origine, un peu comme une famille.
+- **Type** : animal
 
-**Final après relecture (haiku)**
+**Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Satellites : un prototype de Google fait tourner une IA en orbite
-- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont aujourd'hui installés sur Terre. Google veut tester des calculs en orbite, mais ses puces doivent encore prouver qu'elles tiennent l'espace.
-- **Découverte** : Google a mis en orbite Suncatcher, un prototype de centre de données lancé en octobre par une fusée de SpaceX avec plus de cent autres satellites. Il porte quatre puces de calcul de Google, mais une seule peut tourner à la fois, environ 20 minutes d'affilée. Après des vérifications, il fait tourner une IA de Google qui a écrit un haïku sur l'espace.
-- **Et après** : Si les puces résistent à la chaleur et aux radiations, deux autres satellites suivront en 2027 pour tester des liaisons entre eux. Google vise des infrastructures rentables dans les années 2030, mais ce n'est encore qu'une démonstration, pas un produit.
-- **Mots** : (aucun)
-- **Type** : prototype
+- **Titre** : Embryon : une carte suit la famille d'un million de cellules de souris
+- **Avant** : Les chercheurs savaient observer le développement d'un embryon à certains moments précis. Mais on ne voyait pas comment chaque cellule naissait et se transformait au fil du temps.
+- **Découverte** : Des chercheurs de l'Institut de technologie du Massachusetts et de l'Institut Whitehead ont suivi plus de 1 million de cellules dans des embryons de souris. Ils ont construit une carte qui retrace la famille de chaque cellule et le rôle qu'elle joue ensuite. Pour cela, ils utilisent une méthode qui marque l'ADN à chaque division, puis reconstituent les lignées à partir de ces marques.
+- **Et après** : Cette carte pourrait aider à mieux comprendre certaines malformations à la naissance et le cancer. Mais l'étude porte sur des souris, et ces pistes restent à vérifier chez l'humain.
+- **Mots** : **Lignée** → Ensemble des cellules descendant d'une même cellule d'origine, un peu comme les membres d'une même famille.
+- **Type** : animal
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « mais tout dépend de la suite des tests » → L'article dit que l'objectif économique « peut dépendre » de la réponse de l'entreprise aux pressions de l'IA sur ses activités actuelles, pas seulement des tests. La fiche déforme cette condition.
+- _Défauts trouvés par le relecteur_ : [jargon] « Des chercheurs du MIT et de l'Institut Whitehead » → Le sigle MIT n'est pas expliqué. Il faut écrire ce que c'est (Institut de technologie du Massachusetts) ou supprimer le nom.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0020 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Satellites : un prototype de Google fait tourner une IA en orbite
-- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont aujourd'hui installés sur Terre. Google veut tester des calculs en orbite, mais ses puces doivent encore prouver qu'elles tiennent l'espace.
-- **Découverte** : Google a mis en orbite Suncatcher, un prototype de centre de données lancé en octobre par une fusée de SpaceX avec plus de cent autres satellites. Il porte quatre puces de calcul de Google, mais une seule peut tourner à la fois, environ 20 minutes d'affilée. Après des vérifications, il fait tourner une IA de Google qui a écrit un haïku sur l'espace.
-- **Et après** : Si les puces résistent à la chaleur et aux radiations, deux autres satellites suivront en 2027 pour tester des liaisons entre eux. Google vise des infrastructures rentables dans les années 2030, mais tout dépend de la suite des tests.
-- **Mots** : (aucun)
-- **Type** : prototype
+- **Titre** : Embryon : une carte suit la famille d'un million de cellules de souris
+- **Avant** : Les chercheurs savaient observer le développement d'un embryon à certains moments précis. Mais on ne voyait pas comment chaque cellule naissait et se transformait au fil du temps.
+- **Découverte** : Des chercheurs du MIT et de l'Institut Whitehead ont suivi plus de 1 million de cellules dans des embryons de souris. Ils ont construit une carte qui retrace la famille de chaque cellule et le rôle qu'elle joue ensuite. Pour cela, ils utilisent une méthode qui marque l'ADN à chaque division, puis reconstituent les lignées à partir de ces marques.
+- **Et après** : Cette carte pourrait aider à mieux comprendre certaines malformations à la naissance et le cancer. Mais l'étude porte sur des souris, et ces pistes restent à vérifier chez l'humain.
+- **Mots** : **Lignée** → Ensemble des cellules descendant d'une même cellule d'origine, un peu comme les membres d'une même famille.
+- **Type** : animal
 
-- _Faits relevés_ : Le prototype Suncatcher de Google, un centre de données en orbite, est en ligne et communique avec le sol. | Il a été lancé en octobre avec plus de 100 autres engins sur une fusée Falcon 9 de SpaceX. | Il porte quatre puces TPU de Google et produit jusqu'à 1 kW d'électricité. | Les puces consomment tant d'énergie qu'une seule peut tourner à la fois, environ 20 minutes d'affilée. | Après environ trois semaines de vérifications, il a fait tourner Gemma 4, un modèle d'IA de Google DeepMind, qui a écrit un haïku sur l'espace. | Les tests en cours doivent voir comment les puces supportent la chaleur et les radiations spatiales, que les tests sur Terre ne reproduisent pas entièrement. | Deux autres satellites équipés de puces plus avancées sont prévus en 2027, pour tester des liaisons optiques entre satellites. | Google vise des infrastructures rentables dans les années 2030, selon l'article.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première mondiale ; il parle du « premier » satellite-centre de données de Google, déjà en orbite, alors que l'idée de centres de données en orbite existait déjà comme projet.
-- _Jargon_ : TPU : remplacé par « puce de calcul de Google ». | Radiations et chaleur spatiales : expliquées par « ce que l'espace fait aux puces ». | Inférence et bits : non utilisés dans la fiche.
+- _Faits relevés_ : Des chercheurs du MIT et de l'Institut Whitehead ont suivi plus de 1 million de cellules dans des embryons de souris. | La carte retrace la famille de chaque cellule : quelles cellules viennent de quelles ancêtres, et où elles finissent. | Les chercheurs ont aussi noté quels gènes étaient activés dans chaque cellule et où elle se trouvait dans l'embryon. | Les cellules ont été suivies à plusieurs stades du développement, avec plusieurs embryons à chaque stade. | La méthode utilise PEtracer, qui crée de petites modifications de l'ADN transmises lors des divisions cellulaires. | Une étude de l'université de Washington, publiée en même temps, utilise une approche voisine appelée DNA Typewriter. | L'étude porte sur des embryons de souris, pas sur des humains. | Les résultats ont été publiés dans la revue Cell, avec la collaboration de l'université Yale et de l'Institut Max Planck.
+- _Nouveauté selon l'article_ : Selon l'article, l'étude suit en détail des cellules d'un embryon de mammifère, et pas seulement des instantanés ; l'article ne revendique pas de première, et il note qu'une étude parallèle de Washington apporte aussi une vue complète.
+- _Jargon_ : Lignée : mot à connaître, expliqué dans la liste des mots. | Cellules souches : remplacé par « cellules capables de devenir plusieurs types de cellules ». | Cancer et malformations congénitales : remplacés par « malformations à la naissance ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
+- _Alertes automatiques_ : sigles ou noms codés inconnus du public : MIT → écris ce que c'est (ou supprime le nom s'il n'aide pas)
 
 
 ---
 
-## 8. Archéologie : une dent d'éléphant révèle un paysage humide ancien
+## 10. Planètes : Vera Rubin repère un gros corps glacé au-delà de Neptune
 
-Fil : science · 1★ · source : ScienceDaily · page lue : oui (5453 caractères) · https://www.sciencedaily.com/releases/2026/10/261028232709.htm
-
-**Actuel (publié)**
-
-- **Titre** : Archéologie : une dent d'éléphant révèle un paysage humide ancien
-- **Avant** : Les outils de pierre trouvés à Gesher Benot Ya'aqov, dans le nord d'Israël, prouvaient que des humains fabriquaient des haches il y a des centaines de milliers d'années. On savait peu de chose sur le paysage dans lequel ils vivaient.
-- **Découverte** : Une molaire d'éléphant d'environ 700 000 ans et des fragments de défense, trouvés sur ce site, ont été étudiés par une équipe de l'université de Haïfa. Ils ont permis de reconstruire un paysage riche, avec forêts, rivières, zones humides et végétation abondante.
-- **Et après** : Et après ? Ce paysage suggère que l'accès à l'eau et aux ressources a pu aider nos lointains ancêtres à survivre et à se déplacer entre les continents. Ces conclusions reposent sur une seule dent et devront être confirmées par d'autres fossiles du même site.
-- **Mots** : **Molaire** → Grosse dent située au fond de la bouche, qui sert à broyer les aliments.
-- **Type** : terrain
-
-**Final après relecture (haiku)**
-
-- **Titre** : Archéologie : une dent d'éléphant révèle des forêts et rivières au nord d'Israël
-- **Avant** : À Gesher Benot Ya'aqov, dans le nord d'Israël, des outils de pierre montrent que des humains fabriquaient des outils il y a des centaines de milliers d'années. Il restait à savoir à quoi ressemblait le paysage où ils vivaient.
-- **Découverte** : Des chercheurs de l'université de Haïfa ont étudié une molaire d'éléphant vieille d'environ 700 000 ans, avec des fragments de défenses, c'est-à-dire de longues dents, trouvés sur ce site. Ces restes ont permis de reconstruire des forêts, des prairies, des marais et des rivières. Des mesures chimiques et l'étude de pollens, ces grains produits par les plantes, suggèrent une eau disponible de façon régulière.
-- **Et après** : Ce paysage suggère que l'eau et les ressources ont pu aider les premiers humains de la région à survivre et à se déplacer entre l'Afrique et l'Eurasie. Ces conclusions reposent sur une seule molaire et quelques fragments de longues dents.
-- **Mots** : **Molaire** → Grosse dent située au fond de la bouche, qui sert à broyer les aliments et à mâcher les végétaux.
-- **Type** : terrain
-
-- _Défauts trouvés par le relecteur_ : [forme] « Des outils de pierre trouvés à Gesher Benot Ya'aqov, dans le nord d'Israël, montraient que des humains y fabriquaient des outils il y a des centaines de milliers d'années. » → Phrase de 29 mots signalée à couper ; elle est trop longue pour un lecteur non spécialiste. | [jargon] « avec des fragments de défense trouvés sur ce site » → « défense » est un terme savant pour dire « défense d'éléphant », c'est-à-dire la longue dent (défenses) ; il doit être remplacé par des mots simples. | [jargon] « quelques fragments de défense » → Même terme savant dans « apres », à remplacer par des mots simples.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Archéologie : une dent d'éléphant révèle des forêts et rivières au nord d'Israël
-- **Avant** : Des outils de pierre trouvés à Gesher Benot Ya'aqov, dans le nord d'Israël, montraient que des humains y fabriquaient des outils il y a des centaines de milliers d'années. Il restait à savoir à quoi ressemblait le paysage où ils vivaient.
-- **Découverte** : Des chercheurs de l'université de Haïfa ont étudié une molaire d'éléphant vieille d'environ 700 000 ans, avec des fragments de défense trouvés sur ce site. Ces restes ont permis de reconstruire des forêts, des prairies, des marais et des rivières. Des mesures chimiques et l'étude de pollens, ces grains produits par les plantes, suggèrent une eau disponible de façon régulière.
-- **Et après** : Ce paysage suggère que l'eau et les ressources ont pu aider les premiers humains de la région à survivre et à se déplacer entre l'Afrique et l'Eurasie. Ces conclusions reposent sur une seule molaire et quelques fragments de défense.
-- **Mots** : **Molaire** → Grosse dent située au fond de la bouche, qui sert à broyer les aliments et à mâcher les végétaux.
-- **Type** : terrain
-
-- _Faits relevés_ : Une molaire d'éléphant vieille d'environ 700 000 ans a été trouvée dans le nord d'Israël, sur le site de Gesher Benot Ya'aqov. | Des fragments de défense (longues dents) de la même espèce ont aussi été étudiés. | Le site contient des haches et des outils tranchants en basalte, une roche volcanique, fabriqués par des humains. | L'éléphant était un éléphant à défenses droites, l'un des plus grands mammifères terrestres de son époque. | Les chercheurs ont combiné scanner, reconstruction 3D, usure microscopique de la dent, mesures chimiques et analyse de pollens. | Les résultats montrent des forêts, des prairies, des marais, des rivières et des points d'eau peu profonds. | Les mesures chimiques suggèrent que l'éléphant avait accès à une eau fiable. | Les conclusions reposent sur une seule molaire et quelques fragments de défense.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il reconstitue le paysage autour d'un site connu pour ses outils de pierre.
-- _Jargon_ : Isotopes : remplacé par « mesures chimiques ». | Pollens : expliqué en quelques mots (grains produits par les plantes). | Acheuléen : remplacé par « outils de pierre ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : phrase de 29 mots dans « avant », à couper : « Des outils de pierre trouvés à Gesher Benot Ya'aqov, dans le nord d'Israël, montraient que… »
-
-
----
-
-## 9. Planètes : Webb repère des nuages inattendus sur une planète de lave
-
-Fil : science · 1★ · source : Futura Sciences · page lue : oui (4882 caractères) · https://www.futura-sciences.com/sciences/actualites/exoplanete-james-webb-revele-planete-lave-brille-comme-miroir-ce-passe-son-atmosphere-jamais-vu-138922/#xtor%3DRSS-8
+Fil : science · 2★ · source : Ciel & Espace · page lue : oui (1373 caractères) · https://www.cieletespace.fr/article/une-nouvelle-planete-naine-decouvert-au-dela-de-neptune
 
 **Actuel (publié)**
 
-- **Titre** : Planètes : Webb repère des nuages inattendus sur une planète de lave
-- **Avant** : Les astronomes ne pensaient pas que ce type de nuages puisse exister sur une planète aussi chaude. TOI-561 b tourne autour d'une étoile de la Voie lactée âgée de 10 milliards d'années.
-- **Découverte** : Grâce au télescope spatial James-Webb, des chercheurs ont détecté des nuages insolites dans l'atmosphère de TOI-561 b. Les observations ont été faites dans l'infrarouge avec le spectrographe NIRSpec.
-- **Et après** : Il faudra vérifier ces nuages et comprendre de quoi ils sont faits. Cette découverte montre la diversité des mondes situés hors du Système solaire.
-- **Mots** : **Exoplanète** → Planète qui tourne autour d'une étoile autre que le Soleil. ; **Spectrographe** → Instrument qui décompose la lumière d'un astre pour révéler les substances qui le composent.
+- **Titre** : Planètes : Vera Rubin repère un gros corps glacé au-delà de Neptune
+- **Avant** : Les astronomes connaissent déjà de nombreux petits corps glacés au-delà de Neptune, dans la région appelée ceinture de Kuiper. Les plus gros restent rares, et beaucoup d'autres mondes y sont encore cachés.
+- **Découverte** : Une équipe dirigée par Mario Juric a repéré un corps glacé d'environ 1000 km de diamètre, provisoirement nommé 2026 ED138. Le télescope de 8 m de l'observatoire Vera Rubin, au Chili, l'a photographié à dix reprises entre mars et juillet 2026, à près de 6,45 milliards de kilomètres du Soleil. Ce n'est pas la neuvième planète encore recherchée, mais un témoin du passé agité du Système solaire.
+- **Et après** : Il reste à confirmer sa taille et sa nature, car l'objet est très loin et peu lumineux. Ces observations aideront à mieux comprendre l'histoire et la diversité des mondes lointains du Système solaire.
+- **Mots** : **Ceinture de Kuiper** → Région glacée du Système solaire, au-delà de Neptune, peuplée de petits corps comme Pluton.
 - **Type** : observation
 
-**Final après relecture (haiku)**
+**Final après 2 relecture(s) (haiku)**
 
-- **Titre** : Planètes : Webb repère des nuages inattendus sur une planète de lave
-- **Avant** : On ignorait qu'une planète aussi chaude qu'une roche en fusion puisse avoir des nuages. TOI-561 b, nom d'une planète repérée par le satellite Tess de la Nasa, se trouve à 1,6 million de kilomètres de son étoile et reste à mieux comprendre.
-- **Découverte** : Des chercheurs de l'université de Waterloo, au Canada, ont analysé les données du télescope spatial James-Webb sur cette planète. Elle semble renvoyer environ 75 % de la lumière de son étoile. Des simulations suggèrent que des nuages de silicates, des substances minérales, pourraient expliquer cette forte réflexion.
-- **Et après** : Si ces nuages sont confirmés, ils montreraient que les planètes rocheuses peuvent avoir des atmosphères très différentes de celles de la Terre. Il faut encore de nouvelles observations du télescope pour le vérifier.
-- **Mots** : **Exoplanète** → Planète qui tourne autour d'une étoile autre que le Soleil. On en connaît désormais des milliers.
+- **Titre** : Planètes : un corps glacé de 1000 km repéré au-delà de Neptune
+- **Avant** : Il reste encore des mondes à découvrir au-delà de Neptune, et une neuvième planète, encore hypothétique, est théorisée.
+- **Découverte** : Une équipe de chercheurs a repéré un corps glacé d'environ 1000 km de diamètre. Le télescope Vera Rubin, au Chili, l'a photographié plusieurs fois de mars à juillet. Cet objet gravite en moyenne à 6,45 milliards de km du Soleil : ce n'est pas la neuvième planète théorisée, mais un vestige du passé tumultueux du Système solaire.
+- **Et après** : Ce type d'objet aide à comprendre le passé tumultueux du Système solaire. Mais il n'a été observé que de mars à juillet, car le télescope a dû fermer à cause de mauvaises conditions météo liées au phénomène climatique El Niño.
+- **Mots** : (aucun)
 - **Type** : observation
 
-- _Défauts trouvés par le relecteur_ : [titre] « Planètes : le télescope Webb suggère des nuages de roche sur une planète de lave » → Le titre fait 14 mots, au-delà de la limite de 12, et « suggère » reste vague alors que l'article décrit une observation avec des nuages de silicates. | [forme] « Une planète aussi chaude qu'une roche en fusion ne devait pas avoir ce type de nuages. » → « ce type de nuages » désigne une chose qui n'est pas encore présentée dans la fiche. | [jargon] « TOI-561 b, située à 1,6 million de kilomètres de son étoile, reste à mieux comprendre. » → Le sigle TOI n'est pas expliqué au lecteur, alors qu'il apparaît dès le premier paragraphe.
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Les objets glacés de cette zone éloignée restent difficiles à observer. » → L'article ne dit pas que ces objets sont difficiles à observer. Cette affirmation n'est pas dans la source. | [non_soutenu] « une neuvième planète, encore hypothétique, est recherchée » → L'article dit que la neuvième planète est « théorisée », pas qu'elle est recherchée. La formulation déforme la source. | [jargon] « provisoirement nommé 2026 ED138 » → Le nom codé « 2026 ED138 » n'est ni expliqué ni remplacé. Il n'aide pas le lecteur. | [non_soutenu] « Cette observation pourrait aider à comprendre l'histoire agitée du Système solaire lointain. » → L'article ne décrit pas d'usage futur de cette observation. La phrase ajoute un bénéfice non présent dans la source. | [forme] « Le télescope de 8 m de l'observatoire Vera Rubin, au Chili, l'a photographié plusieurs fois entre le 4 mars et le 11 juillet 2026, alors qu'il gravite en moyenne à 6,45 milliards de kilomètres du Soleil. » → Phrase de 36 mots, trop longue, qui mélange plusieurs faits. | [comparaison] « 8 chiffres dans « decouverte » » → Trop de chiffres dans le paragraphe découverte. Il faut en garder seulement les plus parlants. | [forme] « Une équipe dirigée par Mario Juric » → Nom de personne inutile et non présenté : le lecteur ne sait pas qui il est. On dit simplement « une équipe de chercheurs ». | [forme] « provisoirement nommé 2026 ED138 » → Nom codé inconnu du public, qui n'aide pas à comprendre l'objet. Il est supprimé. | [forme] « Le télescope de 8 m de l'observatoire Vera Rubin, au Chili, l'a photographié plusieurs fois de mars à juillet 2026. » → Phrase trop longue (29 mots) et six chiffres dans le paragraphe. On garde les chiffres les plus parlants (1000 km, 6,45 milliards de km) et on coupe la phrase. | [jargon] « El Niño » → Nom d'un phénomène climatique non expliqué. Il faut dire ce que c'est en quelques mots, tiré de l'article. | [apres] « Cet objet est un témoin du passé tumultueux du Système solaire. » → Répète la découverte sans dire ce que ça change pour la compréhension du Système solaire. Le paragraphe doit aussi reprendre la limite réelle : une observation sur quelques mois seulement.
+
+- _Défauts mesurés restants_ : phrase de 29 mots dans « decouverte », à couper : « Cet objet gravite en moyenne à 6,45 milliards de km du Soleil : ce n'est pas la neuvième p… » · coût 0.0048 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Planètes : le télescope Webb suggère des nuages de roche sur une planète de lave
-- **Avant** : Une planète aussi chaude qu'une roche en fusion ne devait pas avoir ce type de nuages. TOI-561 b, située à 1,6 million de kilomètres de son étoile, reste à mieux comprendre.
-- **Découverte** : Des chercheurs de l'université de Waterloo, au Canada, ont analysé les données du télescope spatial James-Webb sur TOI-561 b. Elle semble renvoyer environ 75 % de la lumière de son étoile. Des simulations suggèrent que des nuages de silicates, des substances minérales, pourraient expliquer cette forte réflexion.
-- **Et après** : Si ces nuages sont confirmés, ils montreraient que les planètes rocheuses peuvent avoir des atmosphères très différentes de celles de la Terre. Il faut encore de nouvelles observations du télescope pour le vérifier.
-- **Mots** : **Exoplanète** → Planète qui tourne autour d'une étoile autre que le Soleil. On en connaît désormais des milliers.
+- **Titre** : Planètes : un corps glacé de 1000 km repéré au-delà de Neptune
+- **Avant** : Il reste encore des mondes à découvrir au-delà de Neptune, et une neuvième planète, encore hypothétique, est recherchée. Les objets glacés de cette zone éloignée restent difficiles à observer.
+- **Découverte** : Une équipe dirigée par Mario Juric a repéré un corps glacé d'environ 1000 km de diamètre, provisoirement nommé 2026 ED138. Le télescope de 8 m de l'observatoire Vera Rubin, au Chili, l'a photographié plusieurs fois entre le 4 mars et le 11 juillet 2026, alors qu'il gravite en moyenne à 6,45 milliards de kilomètres du Soleil. Ce n'est pas la neuvième planète recherchée, mais un vestige du passé agité du Système solaire.
+- **Et après** : Cette observation pourrait aider à comprendre l'histoire agitée du Système solaire lointain. Mais l'objet n'a été suivi que de mars à juillet 2026, et l'observatoire a dû fermer à cause des conditions météo liées à El Niño.
+- **Mots** : (aucun)
 - **Type** : observation
 
-- _Faits relevés_ : TOI-561 b est une exoplanète rocheuse qui tourne autour d'une étoile de type G, comme le Soleil, dans la Voie lactée. | L'étoile TOI-561 est âgée de 10 milliards d'années. | L'exoplanète se trouve à 1,6 million de kilomètres de son étoile, soit un quarantième de la distance entre Mercure et le Soleil. | Elle présente toujours la même face à son étoile, comme la Lune face à la Terre. | Les observations du télescope James-Webb, avec son spectrographe NIRSpec dans l'infrarouge, suggèrent que sa face éclairée est recouverte d'un océan de magma. | TOI-561 b semble réfléchir environ 75 % du rayonnement de son étoile. | Des simulations climatiques suggèrent que ce rayonnement renvoyé pourrait venir de nuages de silicates, dans son atmosphère. | Ces nuages restent à confirmer par de nouvelles observations spectroscopiques du télescope James-Webb. | Les résultats ont été rendus publics par Lisa Dang, professeure à l'université de Waterloo, et ses collaborateurs.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; la nouveauté est une forte réflexion de la lumière, attribuée à des nuages de silicates, dont on ignorait qu'ils pouvaient exister sur cette planète.
-- _Jargon_ : Exoplanète : mot à connaître, défini ci-dessous. | Spectrographe : remplacé par « un instrument du télescope qui analyse la lumière ». | Silicates : remplacé par « substances minérales à base de silicium, comme dans les roches ». | Rotation synchrone : remplacé par « elle présente toujours la même face à son étoile ».
+- _Faits relevés_ : Le corps glacé est provisoirement nommé 2026 ED138 et mesure environ 1000 km de diamètre. | Une équipe dirigée par Mario Juric l'a repéré dans les premières données du télescope de 8 m de l'observatoire Vera Rubin, au Chili. | En moyenne, il gravite à 6,45 milliards de kilomètres du Soleil. | Il a été photographié à plusieurs reprises entre le 4 mars et le 11 juillet 2026. | L'observatoire a dû fermer en raison de mauvaises conditions météorologiques liées au phénomène El Niño. | Ce n'est pas la neuvième planète dont l'existence est théorisée aux confins du Système solaire. | Selon l'article, l'objet est un vestige du passé tumultueux du Système solaire.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il annonce la découverte d'un gros corps glacé au-delà de Neptune, repéré dans les premières données du télescope Vera Rubin.
+- _Jargon_ : Système solaire : mot courant, gardé tel quel. | El Niño : expliqué en quelques mots comme un phénomène climatique.
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : titre de 14 mots : 12 au plus ; sigles ou noms codés inconnus du public : TOI → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Alertes automatiques_ : phrase de 36 mots dans « decouverte », à couper : « Le télescope de 8 m de l'observatoire Vera Rubin, au Chili, l'a photographié plusieurs foi… » ; sigles ou noms codés inconnus du public : ED138 → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 8 chiffres dans « decouverte » : garde les 3 plus parlants
 
 
 ---
 
-## 10. Diabète : un régime et du sport mettent la maladie en rémission
+## 11. Smartphones : Huawei lance un téléphone avec un capteur photo 1 pouce
 
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261029072129.htm
+Fil : tech · 1★ · source : GSMArena · page lue : oui (2150 caractères) · https://www.gsmarena.com/huawei_pura_90_plus_launched_with_kirin_9025_and_1inch_type_main_sensor_with_variable_aperture_-news-75242.php
 
 **Actuel (publié)**
 
-- **Titre** : Diabète : un régime et du sport mettent la maladie en rémission
-- **Avant** : Chez les moins de 45 ans, le diabète de type 2 évolue souvent plus vite et provoque des complications plus tôt. Des régimes très pauvres en calories peuvent déjà faire rémission chez certaines personnes, sans médicament.
-- **Découverte** : Dans un essai clinique, des adultes de moins de 45 ans ont suivi un programme intensif de régime et d'exercice, puis ont été comparés à des personnes recevant les soins habituels. Après six mois, 54 % du premier groupe étaient en rémission, contre 4 % du second.
-- **Et après** : Ces résultats, publiés dans The Lancet Regional Health Americas, doivent être confirmés par des essais plus larges et plus longs. Il faudra aussi vérifier si la rémission dure dans le temps.
-- **Mots** : **Rémission** → Situation où la glycémie, le taux de sucre dans le sang, repasse sous le seuil du diabète sans traitement médicamenteux.
-- **Type** : essai_clinique
+- **Titre** : Smartphones : Huawei lance un téléphone avec un capteur photo 1 pouce
+- **Avant** : La série Pura 90 comptait déjà deux modèles en Chine : le Pura 90 et le Pura 90 Pro.
+- **Découverte** : Huawei ajoute le Pura 90 Plus, placé entre ces deux modèles. Il a un capteur photo principal de type 1 pouce dont l'ouverture varie de f/1.4 à f/4.0, et un processeur Kirin 9025 que Huawei annonce 20 % plus rapide que celui de la série Pura 80. Il possède 12 Go de mémoire vive et un écran OLED de 6,8 pouces.
+- **Et après** : Les ventes en Chine commencent le 31 octobre, à partir de 5 499 yuans (environ 825 dollars). Le gain de 20 % de performance est celui annoncé par Huawei et n'a pas encore été vérifié indépendamment.
+- **Mots** : (aucun)
+- **Type** : annonce
 
-**Final après relecture (haiku)**
+**Final après 2 relecture(s) (haiku)**
 
-- **Titre** : Diabète : régime et sport mettent 27 jeunes adultes sur 50 en rémission
-- **Avant** : Le diabète de type 2 touche souvent plus tôt les moins de 45 ans, et leur maladie évolue plus vite avec des complications précoces. Un régime très pauvre en calories peut faire passer certains patients en rémission, mais on ne savait pas si ajouter du sport aidait davantage.
-- **Découverte** : Des chercheurs des universités McGill, au Canada, et de Leicester, en Angleterre, ont mené un essai auprès de jeunes adultes. Le groupe intensif suivait un régime très pauvre en calories pendant trois mois, avec du sport encadré, puis un régime de maintien. Après six mois, 27 participants sur 50 étaient en rémission, contre seulement 2 dans le groupe suivi par les soins habituels.
-- **Et après** : Selon les chercheurs, après ajustement statistique, le groupe intensif avait 21 fois plus de chances d'atteindre la rémission que le groupe témoin. Mais l'essai reste petit, les patients et les médecins savaient qui suivait quel traitement, et une rémission ne signifie pas forcément une guérison définitive.
-- **Mots** : **Rémission** → Situation où le taux de sucre dans le sang reste sous le seuil du diabète, sans médicament pour le faire baisser.
-- **Type** : essai_clinique
+- **Titre** : Smartphones : Huawei lance un téléphone au capteur photo de 1 pouce
+- **Avant** : La série Pura 90 comptait déjà deux modèles en Chine, le Pura 90 et le Pura 90 Pro. Un modèle intermédiaire manquait entre les deux.
+- **Découverte** : Huawei lance en Chine le Pura 90 Plus, avec un grand capteur photo principal de type 1 pouce et un processeur Kirin récent. Huawei annonce un gain de performance de 20 % par rapport à la puce de la série précédente.
+- **Et après** : Le téléphone sera vendu en Chine à partir du 31 octobre, de 5 499 yuans (environ 700 €) à 6 999 yuans (environ 890 €) selon le stockage. Le gain de 20 % est une annonce du fabricant.
+- **Mots** : (aucun)
+- **Type** : annonce
 
-- _Défauts trouvés par le relecteur_ : [forme] « Le groupe intensif a suivi 800 à 900 calories par jour pendant 12 semaines, avec du sport supervisé deux fois par semaine, puis un régime de maintien avec du sport autonome. » → Phrase de 31 mots, trop longue pour être lue facilement. Elle est coupée en deux phrases plus courtes. | [forme] « « decouverte » contient 12 chiffres (96, 18, 45, 800, 900, 12, 24, 27, 50, 2, 46, 4 %). » → Trop de chiffres pour un paragraphe court. Seuls les trois plus parlants sont gardés (27 sur 50 et 2 témoins) ; les autres sont remplacés par des mots. | [jargon] « il n'était pas à double insu » → Terme technique non expliqué. Il est remplacé par une explication simple : les patients et les médecins savaient quel traitement chacun recevait, ce qui est vrai selon l'article. | [comparaison] « le groupe intensif avait 21 fois plus de chances d'atteindre la rémission que le groupe témoin » → Ce chiffre de 21 ne se comprend pas à côté de 54 % et 4 %, qui donnent un rapport d'environ 13. L'article précise qu'il s'agit d'un calcul après ajustement statistique ; cela est ajouté pour expliquer le lien.
+- _Défauts trouvés par le relecteur_ : [titre] « Smartphones : Huawei ajoute un Pura 90 Plus au grand capteur photo de 1 pouce » → Le titre compte 14 mots, au-delà de la limite de 12. | [forme] « Huawei lance en Chine le Pura 90 Plus, avec un capteur photo principal de 50 mégapixels de type 1 pouce, un zoom optique 4x et un processeur Kirin 9025. » → La phrase de « decouverte » compte 29 mots et la fiche contient 11 chiffres ; l'ensemble est trop chargé. | [jargon] « une batterie de 5 700 mAh » → L'unité mAh n'est ni convertie ni expliquée pour un lecteur non spécialiste. | [forme] « Le téléphone sera vendu en Chine à partir du 31 octobre, de 5 499 yuans (environ 825 dollars) à 6 999 yuans (environ 1 050 dollars) selon le stockage. » → La phrase compte 29 mots et les prix n'ont pas d'équivalent approximatif en euros. | [forme] « avec un capteur photo principal de 50 mégapixels de type 1 pouce et un processeur Kirin 9025 » → Le paragraphe « Découverte » contient six chiffres (90, 50, 1, 9025, 20, 80), ce qui le surcharge. Trois suffisent : le type 1 pouce, le gain de 20 % et le nom de la série. | [non_soutenu] « pas encore vérifié par des tests indépendants » → L'article ne dit pas que le gain de 20 % n'a pas été vérifié par des tests indépendants. Il dit seulement que c'est un chiffre annoncé par Huawei. | [apres] « Le gain de 20 % est un chiffre annoncé par Huawei, pas encore vérifié par des tests indépendants. » → Le paragraphe « Et après » ne dit pas ce que ça peut changer. Il ne contient que des prix et une précaution non soutenue par l'article.
+
+- _Défauts mesurés restants_ : « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…) · coût 0.0048 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Diabète : régime et sport mettent 27 jeunes adultes sur 50 en rémission
-- **Avant** : Le diabète de type 2 touche souvent plus tôt les moins de 45 ans, et leur maladie évolue plus vite avec des complications précoces. Un régime très pauvre en calories peut faire passer certains patients en rémission, mais on ne savait pas si ajouter du sport aidait davantage.
-- **Découverte** : Des chercheurs des universités McGill, au Canada, et de Leicester, en Angleterre, ont mené un essai sur 96 adultes de 18 à 45 ans. Le groupe intensif a suivi 800 à 900 calories par jour pendant 12 semaines, avec du sport supervisé deux fois par semaine, puis un régime de maintien avec du sport autonome. Après 24 semaines, 27 des 50 participants étaient en rémission, contre 2 des 46 suivis par les soins habituels, soit environ 4 %.
-- **Et après** : Selon les chercheurs, le groupe intensif avait 21 fois plus de chances d'atteindre la rémission que le groupe témoin. Mais l'essai reste petit, il n'était pas à double insu, et une rémission ne signifie pas forcément une guérison définitive.
-- **Mots** : **Rémission** → Situation où le taux de sucre dans le sang reste sous le seuil du diabète, sans médicament pour le faire baisser.
-- **Type** : essai_clinique
+- **Titre** : Smartphones : Huawei ajoute un Pura 90 Plus au grand capteur photo de 1 pouce
+- **Avant** : La série Pura 90 comptait déjà deux modèles en Chine, le Pura 90 et le Pura 90 Pro. Un modèle intermédiaire manquait entre les deux.
+- **Découverte** : Huawei lance en Chine le Pura 90 Plus, avec un capteur photo principal de 50 mégapixels de type 1 pouce, un zoom optique 4x et un processeur Kirin 9025. Huawei annonce un gain de performance de 20 % par rapport au Kirin 9020 de la série Pura 80. Le téléphone a 12 Go de mémoire vive, un écran de 6,8 pouces et une batterie de 5 700 mAh.
+- **Et après** : Le téléphone sera vendu en Chine à partir du 31 octobre, de 5 499 yuans (environ 825 dollars) à 6 999 yuans (environ 1 050 dollars) selon le stockage. Le gain de 20 % est un chiffre annoncé par Huawei, pas encore vérifié par des tests indépendants.
+- **Mots** : (aucun)
+- **Type** : annonce
 
-- _Faits relevés_ : Essai randomisé mené dans trois centres de recherche en Angleterre et au Canada. | 96 adultes de 18 à 45 ans, avec un diabète de type 2 précoce et de l'obésité, sans insuline. | Groupe intensif : 800 à 900 calories par jour, plus du sport supervisé deux fois par semaine pendant 12 semaines. | Puis un régime de maintien du poids et du sport à faire seul, jusqu'à la semaine 24. | Groupe témoin : soins habituels. | Rémission définie par un taux de sucre sous le seuil du diabète, sans médicament pour le faire baisser, pendant au moins 12 semaines. | Après 24 semaines : 27 patients sur 50 en rémission dans le groupe intensif, contre 2 sur 46 dans le groupe témoin. | Essai ouvert : participants et chercheurs savaient quel traitement était suivi, mais l'évaluation principale était faite à l'aveugle.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il ajoute du sport structuré à un régime très pauvre en calories, déjà connu pour provoquer parfois une rémission, afin de voir si l'effet est plus fort.
-- _Jargon_ : Diabète de type 2 : expliqué en quelques mots dans l'« avant ». | Rémission : mot à connaître, défini dans la liste « mots ». | HbA1c : remplacé par « mesure du sucre moyen dans le sang sur environ trois mois ». | Régime très pauvre en calories : remplacé par « régime à 800 à 900 calories par jour ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : phrase de 31 mots dans « decouverte », à couper : « Le groupe intensif a suivi 800 à 900 calories par jour pendant 12 semaines, avec du sport … » ; 12 chiffres dans « decouverte » : garde les 3 plus parlants
+- _Faits relevés_ : Huawei lance en Chine le Pura 90 Plus, placé entre le Pura 90 et le Pura 90 Pro. | Il a un capteur photo principal de 50 mégapixels, de type 1 pouce, avec une ouverture variable de f/1.4 à f/4.0. | Il a une caméra téléobjectif de 48 mégapixels avec un zoom optique jusqu'à 4x, et une caméra ultra grand angle de 40 mégapixels. | Il a un écran OLED de 6,8 pouces, un processeur Kirin 9025, 12 Go de mémoire vive et 256, 512 Go ou 1 To de stockage. | Huawei annonce un gain de performance de 20 % par rapport au Kirin 9020 du Pura 80. | La batterie fait 5 700 mAh, avec charge filaire de 100 W et sans fil de 80 W. | Le prix démarre à 5 499 yuans (environ 825 dollars) en version 256 Go, et monte à 6 999 yuans (environ 1 050 dollars) en version 1 To. | Les ventes en Chine commencent le 31 octobre. | Le téléphone a une connectivité satellite et une protection IP68/69.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : le Pura 90 Plus est un nouveau modèle, placé entre deux modèles existants de la série Pura 90.
+- _Jargon_ : capteur de type 1 pouce : expliqué en quelques mots (capteur photo plus grand que la moyenne des téléphones) | processeur Kirin 9025 : remplacé par « processeur » | OLED : remplacé par « écran »
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : titre de 14 mots : 12 au plus ; phrase de 29 mots dans « decouverte », à couper : « Huawei lance en Chine le Pura 90 Plus, avec un capteur photo principal de 50 mégapixels de… » ; phrase de 29 mots dans « apres », à couper : « Le téléphone sera vendu en Chine à partir du 31 octobre, de 5 499 yuans (environ 825 dolla… » ; 11 chiffres dans « decouverte » : garde les 3 plus parlants ; prix sans équivalent approximatif en euros : ajoute-le (1 $ ≈ 0,85 €)
 
 
 ---
 
-## 11. Internet : un test envoie plus de 750 Gbps de Kobe à Chiba
+## 12. Médicaments : un outil crée des molécules qui se fixent à leur cible
 
-Fil : tech · 1★ · source : RIKEN (Japon) · page lue : oui (555 caractères) · https://www.riken.jp/pr/news/2026/20261030_1/index.html
+Fil : tech · 1★ · source : Pandaily (Chine) · page lue : oui (184 caractères) · https://pandaily.com/moleculemind-mmdesign-technical-report-18-of-19-projects-confirmed-binders-six-gpcr-targets-nk3r
 
 **Actuel (publié)**
 
-- **Titre** : Internet : un test envoie plus de 750 Gbps de Kobe à Chiba
-- **Avant** : Transférer de très grandes quantités de données entre deux sites éloignés peut prendre beaucoup de temps, même sur des liaisons rapides. Le réseau IOWN, qui utilise la lumière pour transporter les données, était encore en phase d'essai.
-- **Découverte** : Une ligne optique de 800 Gbps relie le centre de calcul RIKEN à Kobe et un campus de l'Université de Tokyo à Kashiwa, dans la région de Chiba. Deux applications courantes, utilisées en même temps, ont transféré plus de 750 Gbps, une vitesse très élevée sur une longue distance.
-- **Et après** : Les gros volumes de données pourraient circuler entre sites éloignés sans logiciels spécialement conçus pour cela. Il s'agit d'une démonstration de recherche, et non d'un service grand public.
-- **Mots** : **IOWN** → Projet japonais de réseau de communication très rapide, qui utilise la lumière pour transporter les données.
-- **Type** : demonstration
-
-**Final après relecture (haiku)**
-
-- **Titre** : Réseaux : deux logiciels courants transfèrent 750 milliards de bits par seconde
-- **Avant** : Des centres de calcul et des universités échangent de très gros volumes de données entre sites éloignés. Un projet japonais de communication très rapide était encore en cours d'évaluation.
-- **Découverte** : Le centre de calcul de l'institut de recherche RIKEN, à Kobe, est relié à un campus de l'université de Tokyo, à Kashiwa, près de Chiba. Une liaison optique de 800 milliards de bits par seconde, fournie par l'opérateur de télécommunications NTT, les relie. Deux logiciels courants, utilisés en même temps, ont transféré leurs données à plus de 750 milliards de bits par seconde, et selon les chercheurs, ces logiciels existants savent exploiter une liaison de 800 milliards de bits par seconde sur une longue distance.
-- **Et après** : Ces logiciels existants pourraient faire circuler de gros volumes de données entre sites éloignés. Il s'agit d'une démonstration de recherche, pas d'un service grand public, et le test ne porte que sur ces deux applications.
+- **Titre** : Médicaments : un outil crée des molécules qui se fixent à leur cible
+- **Avant** : Pour créer une protéine sur mesure, les chercheurs partaient souvent d'une protéine naturelle existante ou procédaient par essais successifs.
+- **Découverte** : L'outil MMDesign a conçu de nouvelles molécules capables de se fixer sur leur cible dans 18 projets sur 19. Les tests en laboratoire ont confirmé ces liaisons, y compris pour six cibles de la famille des récepteurs GPCR, très difficiles à atteindre.
+- **Et après** : Ces résultats viennent d'un rapport publié par l'entreprise, sans vérification par une équipe indépendante. Il reste à voir si ces molécules deviendront utiles comme médicaments ou outils de recherche.
 - **Mots** : (aucun)
 - **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : [titre] « Réseaux : deux applications courantes atteignent 750 Gbps sur une liaison optique » → Le titre utilise l'unité Gbps sans la convertir en mots simples. | [jargon] « Le réseau IOWN, un projet japonais de communication très rapide » → Le sigle IOWN n'aide pas le lecteur et n'est pas expliqué ; il est supprimé. | [jargon] « une liaison optique de 800 Gbps fournie par NTT » → Gbps n'est pas converti et NTT, nom d'opérateur, n'est pas expliqué. | [forme] « Le centre de calcul RIKEN, à Kobe, et un campus de l'université de Tokyo, à Kashiwa près de Chiba, sont reliés par une liaison optique de 800 Gbps fournie par NTT. » → Phrase de 31 mots, trop longue, qui mêle plusieurs noms propres ; elle est coupée en deux. | [non_soutenu] « pourraient faire circuler de gros volumes de données entre sites éloignés sans être modifiés » → L'article ne dit pas que ces logiciels n'ont besoin d'aucune modification ; seule leur capacité à exploiter la liaison est indiquée.
+**Final après 1 relecture(s) (haiku)**
+
+- **Titre** : Médicaments : un outil crée des molécules qui se fixent à leur cible
+- **Avant** : Pour traiter une maladie, il faut parfois une molécule qui s'accroche à une cible précise dans la cellule. Concevoir cette molécule à partir de rien est le défi visé ici.
+- **Découverte** : Selon le rapport technique de l'entreprise MoleculeMind, son outil MMDesign a conçu de zéro des molécules qui se fixent à leur cible dans 18 projets sur 19. Il s'agit de petits anticorps et de petits peptides en boucle. Les liaisons ont été confirmées en laboratoire, y compris pour les six cibles testées, des récepteurs, c'est-à-dire des protéines de surface des cellules.
+- **Et après** : Ces résultats viennent d'un rapport de l'entreprise, pas encore vérifié par d'autres équipes. Il reste à voir si ces molécules agissent dans un organisme vivant, car les tests décrits se font en laboratoire.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : [jargon] « les six cibles testées de la famille des récepteurs GPCR » → Le sigle GPCR n'est pas expliqué et ne sert pas au lecteur non spécialiste ; il faut le remplacer par des mots simples.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0028 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Réseaux : deux applications courantes atteignent 750 Gbps sur une liaison optique
-- **Avant** : Des centres de calcul et des universités échangent de très gros volumes de données entre sites éloignés. Le réseau IOWN, un projet japonais de communication très rapide, était encore en cours d'évaluation.
-- **Découverte** : Le centre de calcul RIKEN, à Kobe, et un campus de l'université de Tokyo, à Kashiwa près de Chiba, sont reliés par une liaison optique de 800 Gbps fournie par NTT. Deux applications courantes, utilisées en même temps, ont transféré leurs données de stockage à plus de 750 milliards de bits par seconde (750 Gbps). Selon les chercheurs, ces applications existantes savent exploiter une liaison de 800 Gbps sur une longue distance.
-- **Et après** : Ces logiciels existants pourraient faire circuler de gros volumes de données entre sites éloignés sans être modifiés. Il s'agit d'une démonstration de recherche, pas d'un service grand public, et le test ne porte que sur ces deux applications.
+- **Titre** : Médicaments : un outil crée des molécules qui se fixent à leur cible
+- **Avant** : Pour traiter une maladie, il faut parfois une molécule qui s'accroche à une cible précise dans la cellule. Concevoir cette molécule à partir de rien est le défi visé ici.
+- **Découverte** : Selon le rapport technique de l'entreprise MoleculeMind, son outil MMDesign a conçu de zéro des molécules qui se fixent à leur cible dans 18 projets sur 19. Il s'agit de petits anticorps et de petits peptides en boucle. Les liaisons ont été confirmées en laboratoire, y compris pour les six cibles testées de la famille des récepteurs GPCR, des protéines de surface des cellules.
+- **Et après** : Ces résultats viennent d'un rapport de l'entreprise, pas encore vérifié par d'autres équipes. Il reste à voir si ces molécules agissent dans un organisme vivant, car les tests décrits se font en laboratoire.
 - **Mots** : (aucun)
 - **Type** : demonstration
 
-- _Faits relevés_ : Le centre de calcul RIKEN, à Kobe (Hyogo), et un campus de l'université de Tokyo, à Kashiwa (Chiba), ont été reliés | La liaison est une ligne optique dédiée de 800 Gbps fournie par NTT Est et NTT Ouest | Deux applications courantes, utilisées en même temps, ont transféré des données de stockage à plus de 750 Gbps | Le test a porté sur des transferts entre sites de stockage, sur une longue distance | Le test s'inscrit dans une recherche commune entre le NII, RIKEN, l'université de Tokyo et NTT | Le contrat de recherche commun a été signé en décembre 2025 | L'article ne parle que de ce test, sans chiffre sur un usage réel
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; ce qui est nouveau, c'est la démonstration que deux applications existantes peuvent remplir une liaison de 800 Gbps sur une longue distance.
-- _Jargon_ : IOWN : expliqué en quelques mots (projet japonais de communication très rapide) | All-Photonics Connect : remplacé par « liaison optique dédiée » | Gbps : expliqué comme « milliards de bits par seconde »
+- _Faits relevés_ : L'entreprise MoleculeMind présente son outil MMDesign dans un rapport technique. | MMDesign a conçu de zéro des molécules dans 19 projets. | Dans 18 de ces 19 projets, les molécules se fixaient à leur cible, confirmé en laboratoire. | Les molécules conçues étaient des petits anticorps (nanobodies) et des petits peptides en boucle (macrocycliques). | Les six cibles de la famille des récepteurs GPCR essayées ont toutes donné une liaison confirmée. | Les résultats viennent du rapport de l'entreprise, qui n'est pas mentionné comme vérifié par d'autres équipes.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il présente les résultats de l'outil MMDesign selon un rapport technique de l'entreprise.
+- _Jargon_ : Nanobody : remplacé par « petit anticorps ». | Peptide macrocyclique : remplacé par « petit peptide en boucle ». | De novo : remplacé par « conçues de zéro ». | GPCR : expliqué en quelques mots comme « récepteurs, protéines de surface des cellules ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : phrase de 31 mots dans « decouverte », à couper : « Le centre de calcul RIKEN, à Kobe, et un campus de l'université de Tokyo, à Kashiwa près d… » ; sigles ou noms codés inconnus du public : IOWN, NTT, RIKEN → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 4 chiffres dans « decouverte » : garde les 3 plus parlants
+- _Alertes automatiques_ : sigles ou noms codés inconnus du public : GPCR → écris ce que c'est (ou supprime le nom s'il n'aide pas)
 
 
 ---
 
-## 12. Fusées : le nouvel avion spatial Apeiron s'élève pour la première fois
-
-Fil : tech · 1★ · source : Space.com · page lue : oui (3865 caractères) · https://www.space.com/space-exploration/private-spaceflight/watch-virgin-galactics-new-delta-class-space-plane-take-to-the-skies-for-the-1st-time-video
-
-**Actuel (publié)**
-
-- **Titre** : Fusées : le nouvel avion spatial Apeiron s'élève pour la première fois
-- **Avant** : Virgin Galactic envoyait jusqu'ici ses passagers au bord de l'espace avec des avions spatiaux de générations précédentes.
-- **Découverte** : Le premier avion spatial de classe Delta, baptisé Apeiron, a été soulevé pour la première fois jeudi 29 octobre. Il était accroché sous les ailes de son avion porteur, qui l'a emporté dans le ciel. Il s'agit d'un essai en vol, sans lancement vers l'espace.
-- **Et après** : Et après ? Ce premier vol sert à vérifier le comportement du véhicule avant d'autres essais. L'article ne donne pas de date pour un premier vol libre ni pour un envol vers l'espace.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-**Final après relecture (haiku)**
-
-- **Titre** : Tourisme spatial : un avion de Virgin Galactic décolle pour la première fois
-- **Avant** : Virgin Galactic a déjà envoyé des passagers au bord de l'espace avec son avion Unity, retiré en 2024. Le prochain engin devait être plus robuste pour enchaîner beaucoup plus de vols.
-- **Découverte** : Le nouvel avion spatial Apeiron, de la classe Delta, a décollé pour la première fois jeudi 28 octobre. Accroché sous les ailes de l'avion Eve, qui le transporte en altitude, il a volé de l'usine de l'Arizona jusqu'au site de lancement du Nouveau-Mexique. Il n'a pas encore été lâché en vol pour rejoindre l'espace.
-- **Et après** : Les passagers pourraient voir la Terre depuis l'espace dès le printemps 2027, si les contrôles réussissent. Il reste des tests au sol et des vols d'essai à faire, et le prix d'un billet atteint déjà 750 000 dollars.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [titre] « Tourisme spatial : l'avion Apeiron de Virgin Galactic quitte le sol pour la première fois » → Le titre fait 14 mots, au-delà de 12, et il contient le nom Apeiron, inconnu du grand public. | [jargon] « Accroché sous les ailes de l'avion porteur VMS Eve » → Le sigle VMS n'est pas expliqué et « avion porteur » est un terme technique non expliqué.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Tourisme spatial : l'avion Apeiron de Virgin Galactic quitte le sol pour la première fois
-- **Avant** : Virgin Galactic a déjà envoyé des passagers au bord de l'espace avec son avion Unity, retiré en 2024. Le prochain engin devait être plus robuste pour enchaîner beaucoup plus de vols.
-- **Découverte** : Le nouvel avion spatial Apeiron, de la classe Delta, a décollé pour la première fois jeudi 28 octobre. Accroché sous les ailes de l'avion porteur VMS Eve, il a volé de l'usine de l'Arizona jusqu'au site de lancement du Nouveau-Mexique. Il n'a pas encore été lâché en vol pour rejoindre l'espace.
-- **Et après** : Les passagers pourraient voir la Terre depuis l'espace dès le printemps 2027, si les contrôles réussissent. Il reste des tests au sol et des vols d'essai à faire, et le prix d'un billet atteint déjà 750 000 dollars.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Faits relevés_ : Le nouvel avion spatial Apeiron, de la classe Delta, a décollé pour la première fois jeudi 28 octobre. | Il était accroché sous les ailes de l'avion porteur VMS Eve, de la société Virgin Galactic. | Il a volé de l'usine de Mesa, en Arizona, jusqu'au site de lancement, Spaceport America, au Nouveau-Mexique. | Après des contrôles, le service commercial est prévu au printemps 2027. | En vol commercial, l'avion porteur l'emporte à environ 13 700 mètres, puis le lâche ; sa fusée le mène dans l'espace suborbital. | Il transporte six passagers et deux pilotes ; les passagers voient quelques minutes d'apesanteur, puis atterrissent sur une piste. | Le constructeur prévoit des vols deux fois par semaine et plus de 500 missions par engin. | Le deuxième vaisseau Delta est en construction, avec une mise en service prévue à la mi-2027. | Près de 700 personnes ont déjà réservé ; le dernier lot de places à 750 000 dollars s'est vendu entièrement. | Blue Origin, le concurrent de Jeff Bezos, est actuellement à l'arrêt.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première au-delà du premier décollage d'Apeiron ; l'avion spatial Unity de Virgin Galactic avait déjà effectué sept vols commerciaux entre 2023 et 2024.
-- _Jargon_ : Classe Delta : remplacé par « nouvelle génération de vaisseaux ». | Suborbital : expliqué en quelques mots, « vol jusqu'au bord de l'espace, sans rester en orbite ». | Apesanteur : remplacé par « quelques minutes sans poids ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : affirmation absolue : « pour la première fois » ; affirmation absolue : « pour la première fois » ; prix sans équivalent en euros ; titre de 14 mots : 12 au plus ; sigles ou noms codés inconnus du public : VMS → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-
-
----
-
-Coût total du test : 0.0466 $ · par fiche : 0.0042 $ · tokens moyens par fiche (rédaction + relecture) : entrée 4035, cache lu 10150, cache écrit 1947, sortie 6975
+Coût total du test : 0.0537 $ · par fiche : 0.0045 $ · tokens moyens par fiche (rédaction + relecture) : entrée 4678, cache lu 11972, cache écrit 1819, sortie 7312
