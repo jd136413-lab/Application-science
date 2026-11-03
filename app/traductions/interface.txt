@@ -4109,6 +4109,27 @@ ko 세포 연구
 id Studi pada sel
 vi Nghiên cứu trên tế bào
 
+@ Expérience en labo
+en Lab experiment
+es Experimento de laboratorio
+pt Experiência em laboratório
+de Laborexperiment
+it Esperimento di laboratorio
+nl Laboratoriumexperiment
+pl Eksperyment laboratoryjny
+ru Лабораторный эксперимент
+uk Лабораторний експеримент
+tr Laboratuvar deneyi
+ar تجربة مخبرية
+hi प्रयोगशाला प्रयोग
+bn ল্যাবরেটরি পরীক্ষা
+ur لیبارٹری تجربہ
+zh 实验室实验
+ja 実験室での実験
+ko 실험실 실험
+id Eksperimen laboratorium
+vi Thí nghiệm trong phòng thí nghiệm
+
 @ Simulation / modèle
 en Simulation / model
 es Simulación / modelo
