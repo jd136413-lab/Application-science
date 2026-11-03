@@ -197,7 +197,7 @@ class EcranDetail extends StatelessWidget {
               ]),
             ),
           ),
-          // Barre collée compacte (maquette 81 · C) : seulement « ↗ Source »,
+          // Barre collée compacte (maquette 81 · C) : seulement « ↗ Lire l'article »,
           // pour laisser la place au futur bandeau publicitaire.
           Container(
             decoration: BoxDecoration(border: Border(top: BorderSide(color: p.bordure.withValues(alpha: 0.5)))),
@@ -205,17 +205,16 @@ class EcranDetail extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               height: 46,
-              // Même bouton « ↗ Source » que dans une fiche À venir.
-              child: OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: p.texte,
-                  side: BorderSide(color: p.bordure, width: 1.5),
+              child: FilledButton.icon(
+                style: FilledButton.styleFrom(
+                  backgroundColor: p.encre,
+                  foregroundColor: p.surEncre,
                   shape: const StadiumBorder(),
-                  textStyle: police(policeTexte, taille: 14, graisse: FontWeight.w800),
+                  textStyle: police(policeTexte, taille: 15, graisse: FontWeight.w700),
                 ),
                 onPressed: () => _ouvrir(context),
-                icon: const Icon(Icons.north_east_rounded, size: 18),
-                label: Text(tr('Source')),
+                icon: const Icon(Icons.north_east_rounded, size: 20),
+                label: Text(tr(texteLireArticle)),
               ),
             ),
           ),
