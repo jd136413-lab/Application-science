@@ -444,6 +444,17 @@ def verifications(fiche: dict) -> list[str]:
         debut = textes[max(0, m.start() - 60):m.start()].lower()
         if m.group(0).lower() != "pour la première fois" and "selon" not in debut and "d'après" not in debut:
             v.append(f"affirmation absolue « {m.group(0)} » : supprime-la ou attribue-la (« selon les chercheurs ») si l'article la fait")
+    rel = re.search(r"\b(?:cette (?:année|semaine)|ce mois-ci|plus tôt cette année|l'an dernier|l'année dernière|"
+                    r"hier|récemment|le mois dernier)\b", textes, re.I)
+    if rel:
+        v.append(f"date relative « {rel.group(0)} » : la fiche sera lue plus tard, donne l'année ou rien")
+    src = re.search(r"\bselon (?:la source|l'article|la publication|la revue|le média)\b", textes, re.I)
+    if src:
+        v.append(f"« {src.group(0)} » parle de la source : écris « selon les chercheurs » ou « selon l'entreprise »")
+    for champ in ("avant", "decouverte", "apres"):
+        for p in _phrases(str(fiche.get(champ, ""))):
+            if len(p.split()) < 6:
+                v.append(f"phrase vide ou incomplète dans « {champ} » : « {p} »")
     j = re.search(r"\b(?:lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)\b", textes, re.I)
     if j:
         v.append(f"jour de la semaine « {j.group(0)} » : écris seulement la date (« le 28 octobre ») ou rien")
@@ -451,7 +462,7 @@ def verifications(fiche: dict) -> list[str]:
         v.append("prix sans équivalent approximatif en euros : ajoute-le (1 $ ≈ 0,85 €)")
     apres = str(fiche.get("apres", ""))
     b = re.search(r"\b(?:marché|croissance du|chiffre d'affaires|investisseurs|en bourse|place de choix|"
-                  r"moteurs? de croissance|parts? de marché|rentabilité)\b", apres, re.I)
+                  r"moteurs? de croissance|parts? de marché|rentabilité|brevet|médicament phare)\b", apres, re.I)
     if b:
         v.append(f"« apres » parle de l'intérêt de l'entreprise (« {b.group(0)} ») : dis plutôt ce que ça change "
                  "pour les malades, les utilisateurs ou la science")
