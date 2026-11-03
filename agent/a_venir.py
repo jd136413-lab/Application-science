@@ -32,6 +32,7 @@ FICHIER_CALENDRIER = "calendrier_a_venir.json"   # événements connus longtemps
 import json
 import os
 import re
+import sys
 from datetime import date, datetime, timedelta, timezone
 
 try:
@@ -62,6 +63,8 @@ ICONES = ["lieu", "heure", "direction", "voir", "lune", "direct", "duree", "repe
 COLONNES_PRATIQUES = ("event_utc", "event_end", "lieu", "pratique", "lien_direct", "lien_direct_nom",
                       "visible_regions", "visible_partiel", "visible_texte", "statut", "statut_raison", "verifie_le")
 NOUVELLES_COLONNES = True    # passe à False si la migration 011 n'est pas encore faite
+AUTRES_SOURCES = True        # passe à False si la migration 012 (autres_sources) n'est pas encore faite
+MAX_AUTRES_SOURCES = 6
 
 LIGNES_PAR_TYPE = """Lignes « pratique » à écrire selon le type (2 à 4 lignes, chacune : "k" = icône, "t" = titre court, "v" = texte court) :
 - lancement : "repere" À regarder (le moment fort) ; "info" la mission en une ligne si utile.
@@ -193,13 +196,22 @@ _SELECT_BASE = "id,title,prevu,pourquoi,type,event_date,event_time,precision,pre
 def _lire(db, depuis: date) -> list[dict] | None:
     """Événements à partir de `depuis`. None si la table n'existe pas encore."""
     global NOUVELLES_COLONNES
-    for select in ([_SELECT_BASE + "," + ",".join(COLONNES_PRATIQUES)] if NOUVELLES_COLONNES else []) + [_SELECT_BASE]:
+    global AUTRES_SOURCES
+    essais = []
+    if NOUVELLES_COLONNES and AUTRES_SOURCES:
+        essais.append(_SELECT_BASE + "," + ",".join(COLONNES_PRATIQUES) + ",autres_sources")
+    if NOUVELLES_COLONNES:
+        essais.append(_SELECT_BASE + "," + ",".join(COLONNES_PRATIQUES))
+    for select in essais + [_SELECT_BASE]:
         r = requests.get(_url(db), headers=db.headers, timeout=30, params={
             "select": select, "event_date": f"gte.{depuis.isoformat()}", "order": "event_date.asc", "limit": "400"})
         if r.status_code == 404 or (r.status_code >= 400 and "upcoming_events" in r.text and "column" not in r.text):
             return None
         if r.status_code >= 400 and "column" in r.text and select != _SELECT_BASE:
-            NOUVELLES_COLONNES = False      # migration 011 pas encore faite : on continue sans les infos pratiques
+            if "autres_sources" in select:
+                AUTRES_SOURCES = False      # migration 012 pas encore faite : une seule source par carte
+            else:
+                NOUVELLES_COLONNES = False  # migration 011 pas encore faite : on continue sans les infos pratiques
             continue
         r.raise_for_status()
         return r.json()
@@ -225,6 +237,29 @@ def _inserer(db, ligne: dict) -> dict | None:
                       json=ligne, timeout=30, params={"select": "*", "on_conflict": "source_url"})
     p.raise_for_status()
     return p.json()[0] if p.json() else None
+
+
+def _ajouter_source(db, e: dict, art: dict, log) -> None:
+    """Un autre média parle du même événement : on l'ajoute aux sources de la carte."""
+    if not AUTRES_SOURCES:
+        return
+    nom, url = art.get("source_name") or "", art.get("url") or ""
+    deja = e.get("autres_sources") or []
+    if not nom or not url or nom == e.get("source_name") or url == e.get("source_url") \
+            or any(s.get("nom") == nom or s.get("url") == url for s in deja) or len(deja) >= MAX_AUTRES_SOURCES:
+        return
+    d = art.get("published_at")
+    principal = sys.modules.get("__main__")       # main.py : liste des sources en français / espagnol
+    langue = getattr(principal, "langue_source", lambda n: "en")(nom)
+    source = {"nom": nom, "url": url, "langue": langue,
+              "date": d.date().isoformat() if hasattr(d, "date") else ""}
+    try:
+        requests.patch(_url(db), headers=dict(db.headers, Prefer="return=minimal"), timeout=30,
+                       params={"id": f"eq.{e['id']}"}, json={"autres_sources": deja + [source]}).raise_for_status()
+        e["autres_sources"] = deja + [source]
+        log(f"  🔗 À venir : + source {nom} pour « {e['title'][:60]} »")
+    except Exception as ex:
+        log(f"  ⚠ À venir : source non ajoutée ({str(ex)[:80]})")
 
 
 def _modifier(db, e: dict, champs: dict) -> None:
@@ -718,6 +753,7 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
             k = r.get("meme_que", -1)
             if isinstance(k, int) and 0 <= k < len(futurs):
                 e = futurs[k]
+                _ajouter_source(db, e, art, log)    # même événement, autre média (planche 82)
                 # Report, avance, annulation ou date enfin précise (choix de Maxime, 02/11).
                 if d is None and statut != "annule":
                     continue

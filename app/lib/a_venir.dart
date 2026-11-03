@@ -23,7 +23,7 @@ import 'detail.dart';
 import 'donnees.dart';
 import 'etat.dart';
 import 'langues.dart';
-import 'modele.dart' show enTeteMois;
+import 'modele.dart' show enTeteMois, SourceAvancee;
 import 'notifications.dart';
 import 'regions_monde.dart';
 import 'reglages.dart';
@@ -75,6 +75,8 @@ class Evenement {
   final DateTime? datePrecedente, fin, instantExact;
   final List<LignePratique> pratique;
   final List<String> visibleRegions, visiblePartiel;
+  /// Autres médias qui parlent du même événement (colonne autres_sources, migration 012).
+  final List<SourceAvancee> autresSources;
   final int importance;
   const Evenement({
     required this.id,
@@ -103,6 +105,7 @@ class Evenement {
     this.pratique = const [],
     this.visibleRegions = const [],
     this.visiblePartiel = const [],
+    this.autresSources = const [],
   });
 
   static List<String> _liste(Object? v) => v is List ? [for (final x in v) '$x'] : const [];
@@ -140,6 +143,11 @@ class Evenement {
         heure: j['event_time'] as String?,
         precision: j['precision'] == 'mois' || j['precision'] == 'avant' ? '${j['precision']}' : 'jour',
         importance: (j['importance'] as num?)?.toInt() ?? 2,
+        autresSources: [
+          for (final x in (j['autres_sources'] is List ? j['autres_sources'] as List : const []))
+            if (x is Map && '${x['nom'] ?? ''}'.isNotEmpty && '${x['url'] ?? ''}'.isNotEmpty)
+              SourceAvancee('${x['nom']}', '${x['url']}', '${x['langue'] ?? ''}', DateTime.tryParse('${x['date'] ?? ''}')),
+        ],
         sourceUrl: '${j['source_url'] ?? ''}',
         sourceNom: '${j['source_name'] ?? ''}',
         datePrecedente: _jour(j['previous_date']),
@@ -1141,13 +1149,12 @@ class _EcranEvenementState extends State<EcranEvenement> {
                   ),
                 bloc('Ce qui est prévu', e.prevu),
                 bloc('Pourquoi c’est important', e.pourquoi),
-                InkWell(
-                  onTap: () => ouvrirArticle(Uri.parse(e.sourceUrl)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Text('${tr('Source')} : ${e.sourceNom} ↗ · ${tr('la date peut changer (météo, retard)')}',
-                        style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret, hauteur: 1.4)),
-                  ),
+                // Sources, comme dans une avancée (planche 49 · B1).
+                BlocSources(source: e.sourceNom, lien: e.sourceUrl, autres: e.autresSources),
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(_majuscule(tr('la date peut changer (météo, retard)')),
+                      style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret, hauteur: 1.4)),
                 ),
                 const SizedBox(height: 4),
                 Text(tr(texteMentionResume), style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
@@ -1207,3 +1214,5 @@ class _EcranEvenementState extends State<EcranEvenement> {
     );
   }
 }
+
+String _majuscule(String t) => t.isEmpty ? t : t[0].toUpperCase() + t.substring(1);

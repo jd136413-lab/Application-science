@@ -115,22 +115,7 @@ class EcranDetail extends StatelessWidget {
         const SizedBox(height: 16),
         _TitreEtResume(avancee: avancee),
         const SizedBox(height: 18),
-        avancee.autresSources.isEmpty
-            ? Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(color: p.fond, borderRadius: BorderRadius.circular(16)),
-                child: Row(children: [
-                  _TuileSource(nom: avancee.source, fond: p.carte, taille: 40),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Text(avancee.source, style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
-                      Text(_domaine(avancee.lien), style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
-                    ]),
-                  ),
-                ]),
-              )
-            : _Sources(avancee: avancee),
+        BlocSources(source: avancee.source, lien: avancee.lien, autres: avancee.autresSources, avancee: avancee),
       ]),
     );
 
@@ -343,20 +328,24 @@ class _TuileSource extends StatelessWidget {
       );
 }
 
-class _Sources extends StatefulWidget {
-  final Avancee avancee;
-  const _Sources({required this.avancee});
+/// Sources d'une avancée ou d'un événement À venir (planche 49 · B1) :
+/// une seule source = une tuile ; plusieurs = « X + N autres », dépliable.
+class BlocSources extends StatefulWidget {
+  final String source, lien;
+  final List<SourceAvancee> autres;
+  final Avancee? avancee; // pour les statistiques (null pour un événement À venir)
+  const BlocSources({super.key, required this.source, required this.lien, this.autres = const [], this.avancee});
 
   @override
-  State<_Sources> createState() => _SourcesState();
+  State<BlocSources> createState() => _BlocSourcesState();
 }
 
-class _SourcesState extends State<_Sources> {
+class _BlocSourcesState extends State<BlocSources> {
   bool _ouvert = false;
 
   Future<void> _ouvrirSource(String nom, String lien) async {
     final uri = Uri.tryParse(lien);
-    stat('article', a: widget.avancee, valeur: nom == widget.avancee.source ? null : 'autre_source');
+    if (widget.avancee != null) stat('article', a: widget.avancee, valeur: nom == widget.source ? null : 'autre_source');
     if (uri == null || !await ouvrirArticle(uri)) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Impossible d’ouvrir l’article'))));
@@ -367,10 +356,35 @@ class _SourcesState extends State<_Sources> {
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
-    final a = widget.avancee;
-    final n = a.autresSources.length;
-    final noms = [a.source, for (final s in a.autresSources) s.nom];
+    final w = widget;
+    final n = w.autres.length;
+    final noms = [w.source, for (final s in w.autres) s.nom];
     final sombre = estSombre(context);
+
+    if (n == 0) {
+      return Material(
+        color: p.fond,
+        borderRadius: BorderRadius.circular(16),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: () => _ouvrirSource(w.source, w.lien),
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Row(children: [
+              _TuileSource(nom: w.source, fond: p.carte, taille: 40),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(w.source, style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
+                  Text(_domaine(w.lien), style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                ]),
+              ),
+              Icon(Icons.chevron_right_rounded, color: p.texteDiscret, size: 20),
+            ]),
+          ),
+        ),
+      );
+    }
 
     Widget pile() => SizedBox(
           width: 30.0 + 20.0 * (noms.take(4).length - 1),
@@ -449,7 +463,7 @@ class _SourcesState extends State<_Sources> {
               const SizedBox(width: 12),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text('${a.source} ${n == 1 ? tr('+ 1 autre') : tr('+ {n} autres', n: n)}',
+                  Text('${w.source} ${n == 1 ? tr('+ 1 autre') : tr('+ {n} autres', n: n)}',
                       style: police(policeTexte, taille: 14, graisse: FontWeight.w700, couleur: p.texte)),
                   Text(_ouvert ? tr('Toucher pour replier') : tr('Voir toutes les sources'),
                       style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
@@ -472,9 +486,8 @@ class _SourcesState extends State<_Sources> {
             ? const SizedBox(width: double.infinity)
             : Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                 const SizedBox(height: 2),
-                ligne(a.source, a.lien, '', principale: true, rang: 0),
-                for (var i = 0; i < n; i++)
-                  ligne(a.autresSources[i].nom, a.autresSources[i].url, a.autresSources[i].langue, rang: i + 1),
+                ligne(w.source, w.lien, '', principale: true, rang: 0),
+                for (var i = 0; i < n; i++) ligne(w.autres[i].nom, w.autres[i].url, w.autres[i].langue, rang: i + 1),
               ]),
       ),
     ]);
