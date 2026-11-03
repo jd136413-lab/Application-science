@@ -17,7 +17,12 @@
 # =====================================================================
 
 import json
+import os
 import re
+
+# Réflexion interne de Haiku avant d'écrire : « low » la limite (c'est elle qui coûte le
+# plus : ~9 000 tokens de sortie par fiche en « medium », le réglage par défaut).
+EFFORT = os.environ.get("REDACTION_EFFORT", "low")
 
 TYPES_SCIENCE = ["essai_clinique", "humain", "animal", "cellules", "laboratoire", "simulation",
                  "observation", "terrain", "donnees"]
@@ -198,7 +203,7 @@ def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict,
                 model=modele_id, max_tokens=16000,
                 system=[{"type": "text", "text": CONSIGNE, "cache_control": {"type": "ephemeral"}}],
                 messages=[{"role": "user", "content": message(art, fil, brouillon)}],
-                output_config={"format": {"type": "json_schema", "schema": schema(fil)}},
+                output_config={"format": {"type": "json_schema", "schema": schema(fil)}, "effort": EFFORT},
             )
         except Exception as ex:
             conso["diag"] = f"{ex.__class__.__name__}: {str(ex)[:300]}"
@@ -227,7 +232,7 @@ Cherche UNIQUEMENT ces défauts précis (un défaut = une ligne dans "problemes"
 4. "jargon" : un mot technique ou un sigle ni remplacé par des mots simples, ni expliqué juste après, ni donné en mot à connaître.
 5. "comparaison" : un chiffre ou une comparaison incompréhensible sans référence (« 90 fois plus abondante » : que quoi ?), ou deux chiffres sur la même chose dont le lien n'est pas expliqué.
 6. "apres" : le paragraphe « Et après » ne dit pas ce que ça peut changer, OU ne dit pas la limite principale ou la prochaine étape, OU n'est qu'une liste de prix.
-7. "forme" : nom de personne inutile (chercheur d'une autre équipe), « avant » qui raconte l'histoire d'une entreprise au lieu du problème, phrase de plus de 30 mots, tournure maladroite ou traduite de l'anglais, date relative (« mardi », « hier »), majuscule fautive, « avant » de plus de 2 phrases, « decouverte » de plus de 3, « apres » de plus de 2.
+7. "forme" : phrase qui parle de l'article, de la source ou de la publication (« l'article ne dit pas… », « selon la revue… ») au lieu des faits ; nom de personne inutile ou non présenté (« selon Travis Beals » sans dire qui c'est : écrire « selon un responsable du projet ») ; « avant » qui raconte l'histoire d'une entreprise au lieu du problème, phrase de plus de 30 mots, tournure maladroite ou traduite de l'anglais, date relative (« mardi », « hier »), majuscule fautive, « avant » de plus de 2 phrases, « decouverte » de plus de 3, « apres » de plus de 2.
 8. "mot" : mot à connaître mal choisi (mot courant, nom propre, sigle, absent du texte, déjà expliqué dans le texte) ou définition qui reprend le mot ou reste vague.
 
 Sois sévère mais juste : ne signale pas une préférence de style, seulement un vrai défaut de la liste.
@@ -286,7 +291,7 @@ def relire(client, modele_id: str, art: dict, fil: str, fiche: dict, essais: int
                 model=modele_id, max_tokens=16000,
                 system=[{"type": "text", "text": CONSIGNE_RELECTURE, "cache_control": {"type": "ephemeral"}}],
                 messages=[{"role": "user", "content": contenu}],
-                output_config={"format": {"type": "json_schema", "schema": SCHEMA_RELECTURE}},
+                output_config={"format": {"type": "json_schema", "schema": SCHEMA_RELECTURE}, "effort": EFFORT},
             )
         except Exception as ex:
             conso["diag"] = f"{ex.__class__.__name__}: {str(ex)[:300]}"

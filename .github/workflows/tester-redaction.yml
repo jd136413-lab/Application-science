@@ -44,6 +44,7 @@ jobs:
           # Test 6 : fiches JAMAIS vues pendant la mise au point (plus anciennes)
           TITRES: ""
           DECALAGE: "14"
+          REDACTION_EFFORT: "low"
           PLAFOND: "1.0"
         run: python tester_redaction.py
       - name: Enregistrer le rapport sur la branche
