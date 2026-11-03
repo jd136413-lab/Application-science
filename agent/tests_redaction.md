@@ -1,488 +1,488 @@
-# Test de la rédaction — 03/11/2026 19:08 UTC
+# Test de la rédaction — 03/11/2026 19:16 UTC
 
 Modèles : haiku · 12 fiches
 
 
 ---
 
-## 1. Satellites : un petit satellite relie la Terre par un faisceau laser
+## 1. Bactéries : une cellule s'autodétruit pour bloquer un virus
 
-Fil : tech · 2★ · source : ESA · page lue : oui (4175 caractères) · https://www.esa.int/Applications/Connectivity_and_Secure_Communications/CubeSat_achieves_challenging_laser_link_to_ground
+Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261029072123.htm
 
 **Actuel (publié)**
 
-- **Titre** : Satellites : un petit satellite relie la Terre par un faisceau laser
-- **Avant** : Les satellites communiquent le plus souvent avec le sol par ondes radio. Les liaisons laser, plus rapides, restent rares sur les petits satellites.
-- **Découverte** : Le CubeSat ERMIS-3, de format 8U et développé par l'université d'Athènes, a établi une liaison laser avec une station au sol en Grèce. C'est la première liaison optique du pays avec un satellite en orbite basse. Le lien a été réalisé quelques semaines après la mise en service du satellite, avec des terminaux optiques de la société lituanienne Astrolight.
-- **Et après** : Les chercheurs veulent confirmer que ce type de communication fonctionne sur de petits satellites. Le faisceau doit rester précis alors que le satellite file à plusieurs kilomètres par seconde, et les nuages peuvent couper le lien.
-- **Mots** : (aucun)
-- **Type** : demonstration
+- **Titre** : Bactéries : une cellule s'autodétruit pour bloquer un virus
+- **Avant** : Les défenses connues des bactéries gardent en général une toxine mortelle sous contrôle jusqu'à l'arrivée d'un virus. Ce nouveau système fonctionne presque à l'inverse.
+- **Découverte** : Des chercheurs du Gladstone Institutes décrivent un type de défense bactérienne inédit, les « rétrons de type VI ». Ici, de l'ADN fabriqué au début de l'infection active la toxine, et la bactérie infectée se détruit, ce qui empêche le virus de se multiplier et de se propager aux cellules voisines.
+- **Et après** : Les chercheurs veulent comprendre en détail ce mécanisme en plusieurs étapes. Ils pensent qu'il pourrait inspirer de nouveaux outils de modification de l'ADN, capables de corriger certaines mutations avec plus de précision, mais ces outils restent à développer.
+- **Mots** : **Rétron** → Petite structure naturelle des bactéries, formée d'ADN fabriqué à partir d'ARN et de protéines, qui intervient dans leur défense.
+- **Type** : cellules
 
 **Final après relecture (haiku)**
 
-- **Titre** : Satellites : un petit satellite grec relie une station au sol par laser
-- **Avant** : Les satellites échangent le plus souvent leurs données avec le sol par ondes radio. Les liaisons laser permettent des débits élevés, mais il est difficile de viser et de suivre le faisceau pendant une courte fenêtre de communication.
-- **Découverte** : Des chercheurs de l'université d'Athènes ont relié un petit satellite, ERMIS-3, à une station au sol en Grèce grâce à un faisceau laser. Le lien a été établi quelques semaines après la mise en service du satellite, lancé le 30 mars 2026. Le faisceau doit viser le récepteur avec précision, le satellite filant à plusieurs kilomètres par seconde.
-- **Et après** : Ces liaisons pourraient aider à transférer les images très détaillées des satellites d'observation, de plus en plus lourdes. Mais un seul lien a été réalisé, et les nuages peuvent le couper complètement.
-- **Mots** : (aucun)
-- **Type** : demonstration
+- **Titre** : Bactéries : face à un virus, une cellule fabrique un poison et meurt
+- **Avant** : Dans les défenses bactériennes étudiées jusqu'ici, une toxine mortelle est déjà présente et reste bloquée par de courts morceaux d'ADN. Un virus perturbe ce blocage, et la toxine agit alors.
+- **Découverte** : Des chercheurs du Gladstone Institutes, dirigés par Seth Shipman, ont décrit des rétrons « de type VI » qui fonctionnent presque à l'inverse. Ici, l'ADN fabriqué pendant l'infection active la production d'une petite protéine toxique, qui s'insère dans la membrane de la cellule et la rend instable. La cellule meurt, et le virus ne peut plus se copier ni infecter ses voisines.
+- **Et après** : Ce mécanisme pourrait inspirer des outils de modification de l'ADN plus précis, capables de corriger certaines mutations responsables de maladies. Ces outils restent à développer, et l'étude porte sur des bactéries, pas sur des traitements chez l'humain.
+- **Mots** : **Rétron** → Système de défense moléculaire de la bactérie, capable de repérer une infection virale et de déclencher l'autodestruction de la cellule.
+- **Type** : cellules
 
-- _Défauts trouvés par le relecteur_ : aucun
+- _Défauts trouvés par le relecteur_ : [jargon] « des rétrons « de type VI » » → Le mot « rétrons » est un terme technique non expliqué dans la fiche et absent de la liste des mots à connaître. | [non_soutenu] « qui perce la membrane de la cellule » → L'article dit seulement que la toxine s'insère dans la membrane et en perturbe la stabilité ; « perce » déforme ce fait.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Satellites : un petit satellite grec relie une station au sol par laser
-- **Avant** : Les satellites échangent le plus souvent leurs données avec le sol par ondes radio. Les liaisons laser permettent des débits élevés, mais il est difficile de viser et de suivre le faisceau pendant une courte fenêtre de communication.
-- **Découverte** : Des chercheurs de l'université d'Athènes ont relié un petit satellite, ERMIS-3, à une station au sol en Grèce grâce à un faisceau laser. Le lien a été établi quelques semaines après la mise en service du satellite, lancé le 30 mars 2026. Le faisceau doit viser le récepteur avec précision, le satellite filant à plusieurs kilomètres par seconde.
-- **Et après** : Ces liaisons pourraient aider à transférer les images très détaillées des satellites d'observation, de plus en plus lourdes. Mais un seul lien a été réalisé, et les nuages peuvent le couper complètement.
+- **Titre** : Bactéries : face à un virus, une cellule fabrique un poison et meurt
+- **Avant** : Dans les défenses bactériennes étudiées jusqu'ici, une toxine mortelle est déjà présente et reste bloquée par de courts morceaux d'ADN. Un virus perturbe ce blocage, et la toxine agit alors.
+- **Découverte** : Des chercheurs du Gladstone Institutes, dirigés par Seth Shipman, ont décrit des rétrons « de type VI » qui fonctionnent presque à l'inverse. Ici, l'ADN fabriqué pendant l'infection active la production d'une petite protéine toxique, qui perce la membrane de la cellule. La cellule meurt, et le virus ne peut plus se copier ni infecter ses voisines.
+- **Et après** : Ce mécanisme pourrait inspirer des outils de modification de l'ADN plus précis, capables de corriger certaines mutations responsables de maladies. Ces outils restent à développer, et l'étude porte sur des bactéries, pas sur des traitements chez l'humain.
 - **Mots** : (aucun)
-- **Type** : demonstration
+- **Type** : cellules
 
-- _Faits relevés_ : ERMIS-3, un petit satellite développé par l'université nationale et capodistrienne d'Athènes, a établi une liaison laser avec une station au sol en Grèce. | La station au sol, HolOGS-1, a été développée par l'université Aristote de Thessalonique. | Le lien a été établi quelques semaines après la mise en service du satellite, lancé le 30 mars 2026. | Les terminaux optiques ont été développés par la société lituanienne Astrolight, et l'ESA a soutenu la mission. | Le faisceau laser doit viser le récepteur avec précision, car le satellite se déplace à plusieurs kilomètres par seconde. | Les nuages peuvent couper complètement le lien, et la turbulence de l'air peut dégrader le signal. | Selon l'article, c'est la première liaison optique de la Grèce avec un satellite en orbite basse. | La mission fait partie d'un programme de démonstration en orbite, qui teste les communications pour petits satellites.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première mondiale : il dit seulement que c'est la première liaison optique de la Grèce avec un satellite en orbite basse, les liaisons laser existant déjà ailleurs.
-- _Jargon_ : CubeSat : remplacé par « petit satellite » | Liaison optique : expliquée par « liaison laser, qui transmet des données par un faisceau de lumière laser » | Orbite basse : expliquée par « en orbite autour de la Terre »
+- _Faits relevés_ : Des chercheurs du Gladstone Institutes ont étudié un groupe de défenses bactériennes appelé « rétrons de type VI ». | Dans les rétrons déjà étudiés, une toxine mortelle est présente dans la cellule saine, mais bloquée par de courts morceaux d'ADN. | Dans les rétrons de type VI, les chercheurs ne détectent presque pas d'ADN et pas de toxine dans les cellules non infectées. | L'arrivée d'un virus (un phage) fait fortement augmenter la production d'ADN. | Cet ADN se lie à une molécule d'ARN qui empêchait la fabrication de la toxine, qui peut alors être produite rapidement. | La toxine est une très petite protéine qui s'insère dans la membrane de la cellule et la fait mourir. | La mort de la cellule infectée empêche le virus de se copier et de contaminer les bactéries voisines. | Selon Seth Shipman, ces rétrons fonctionnent de façon plus complexe que ceux connus, et l'équipe étudie leur usage possible pour modifier l'ADN.
+- _Nouveauté selon l'article_ : Selon Seth Shipman, c'est « de loin » le plus étrange des systèmes rétrons observés ; ici l'ADN active la toxine au lieu de la bloquer, alors que les rétrons connus la retiennent, et l'article ne revendique pas de première.
+- _Jargon_ : rétron : expliqué en quelques mots (système de défense qui fait mourir la cellule infectée) | toxine : remplacée par « poison » | ADN : mot courant, non expliqué | phage : remplacé par « virus »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 2. Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
+## 2. Électronique : un moteur d'une seule molécule tourne avec du courant
 
-Fil : science · 1★ · source : Communications Physics · page lue : oui (2974 caractères) · https://www.nature.com/articles/s42005-026-02928-6
+Fil : tech · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002940.htm
 
 **Actuel (publié)**
 
-- **Titre** : Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
-- **Avant** : On savait que le nickelate La3Ni2O7 devient supraconducteur sous très forte pression, vers -193 °C, mais le mécanisme responsable restait débattu.
-- **Découverte** : Des chercheurs ont simulé sur ordinateur un modèle de ce matériau à deux couches. Ils montrent que l'appariement des électrons vient surtout de la division de certaines orbitales électroniques, puis que l'hybridation avec une autre orbitale redistribue ces paires.
-- **Et après** : Il s'agit d'un modèle théorique qui doit être confirmé par des expériences ; pour l'instant, le matériau ne fonctionne qu'à très haute pression.
-- **Mots** : **Supraconductivité** → État d'un matériau qui laisse passer l'électricité sans aucune résistance, donc sans perte d'énergie.
-- **Type** : simulation
+- **Titre** : Électronique : un moteur d'une seule molécule tourne avec du courant
+- **Avant** : Les moteurs moléculaires alimentés directement par l'électricité, apparus en 2011, fonctionnaient sur des surfaces et demandaient la pointe d'un microscope pour bouger.
+- **Découverte** : Des chercheurs ont fabriqué un moteur formé d'une seule molécule en forme de spirale, inspiré de la vis d'Archimède. Il tourne quand le courant le traverse, change de sens quand on inverse la tension, et sa rotation peut multiplier la conductivité électrique jusqu'à 100 fois.
+- **Et après** : Il s'agit d'un prototype de laboratoire, encore loin d'un usage concret ; l'idée pourrait ouvrir la voie à de très petites machines et à des circuits électroniques moléculaires.
+- **Mots** : **Vis d'Archimède** → Machine très ancienne formée d'une spirale qui tourne, utilisée depuis longtemps pour faire monter l'eau.
+- **Type** : prototype
 
 **Final après relecture (haiku)**
 
-- **Titre** : Électricité : un calcul explique le courant sans perte d'un matériau au nickel
-- **Avant** : Ce matériau au nickel laisse passer le courant sans perte sous très forte pression, vers -193 °C. Le mécanisme responsable restait débattu, et plusieurs explications théoriques s'opposaient.
-- **Découverte** : Une équipe de chercheurs japonais a simulé sur ordinateur un modèle simplifié de ce matériau à deux couches. Elle montre que l'association des électrons par paires vient surtout de la séparation de certaines zones d'électrons en deux niveaux. Le mélange de ces zones étend ensuite cet effet à une autre zone, pourtant peu active au départ.
-- **Et après** : Cela aide à réconcilier des théories concurrentes et met en avant le rôle du mélange entre zones dans les supraconducteurs à plusieurs couches. Mais il s'agit d'un calcul sur un modèle simplifié, et le matériau ne fonctionne qu'à très haute pression.
-- **Mots** : **Supraconductivité** → État d'un matériau qui laisse passer le courant sans aucune résistance, donc sans perte d'énergie.
-- **Type** : simulation
+- **Titre** : Électronique : une molécule en spirale tourne avec du courant et s'inverse
+- **Avant** : Des moteurs moléculaires alimentés par l'électricité existaient depuis 2011, mais ils fonctionnaient sur des surfaces, avec la pointe d'un microscope pour les faire bouger. Il manquait un moteur relié à deux électrodes et capable de tourner dans un sens choisi.
+- **Découverte** : Des chercheurs ont fabriqué un moteur formé d'une seule molécule en spirale, inspiré de la vis d'Archimède. Placée entre deux pointes d'or, elle tourne quand le courant la traverse, et tourne dans l'autre sens quand la tension est inversée. Selon les calculs, sa rotation peut multiplier la conductivité électrique jusqu'à 100 fois.
+- **Et après** : Ce moteur est un prototype de laboratoire, encore loin d'un usage concret. Les chercheurs citent des pistes comme les composants électroniques moléculaires, mais ces applications restent à explorer.
+- **Mots** : **Vis d'Archimède** → Machine très ancienne formée d'une spirale qui tourne, utilisée depuis longtemps pour faire monter l'eau.
+- **Type** : prototype
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « Mais il s'agit d'un calcul, qui doit être confirmé par des expériences » → L'article ne dit pas que le résultat doit être confirmé par des expériences. Il présente un calcul sur un modèle simplifié, ce qui est le seul fait sûr.
+- _Défauts trouvés par le relecteur_ : [titre] « Électronique : une molécule en spirale tourne avec du courant et change de sens » → Le titre compte 13 mots, au-delà de la limite de 12. « change de sens » est aussi moins précis que ce qui est montré dans l'article, à savoir l'inversion du sens de rotation quand la tension est inversée.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Électricité : un calcul explique le courant sans perte d'un matériau au nickel
-- **Avant** : Ce matériau au nickel laisse passer le courant sans perte sous très forte pression, vers -193 °C. Le mécanisme responsable restait débattu, et plusieurs explications théoriques s'opposaient.
-- **Découverte** : Une équipe de chercheurs japonais a simulé sur ordinateur un modèle simplifié de ce matériau à deux couches. Elle montre que l'association des électrons par paires vient surtout de la séparation de certaines zones d'électrons en deux niveaux. Le mélange de ces zones étend ensuite cet effet à une autre zone, pourtant peu active au départ.
-- **Et après** : Cela aide à réconcilier des théories concurrentes et met en avant le rôle du mélange entre zones dans les supraconducteurs à plusieurs couches. Mais il s'agit d'un calcul, qui doit être confirmé par des expériences, et le matériau ne fonctionne qu'à très haute pression.
-- **Mots** : **Supraconductivité** → État d'un matériau qui laisse passer le courant sans aucune résistance, donc sans perte d'énergie.
-- **Type** : simulation
+- **Titre** : Électronique : une molécule en spirale tourne avec du courant et change de sens
+- **Avant** : Des moteurs moléculaires alimentés par l'électricité existaient depuis 2011, mais ils fonctionnaient sur des surfaces, avec la pointe d'un microscope pour les faire bouger. Il manquait un moteur relié à deux électrodes et capable de tourner dans un sens choisi.
+- **Découverte** : Des chercheurs ont fabriqué un moteur formé d'une seule molécule en spirale, inspiré de la vis d'Archimède. Placée entre deux pointes d'or, elle tourne quand le courant la traverse, et tourne dans l'autre sens quand la tension est inversée. Selon les calculs, sa rotation peut multiplier la conductivité électrique jusqu'à 100 fois.
+- **Et après** : Ce moteur est un prototype de laboratoire, encore loin d'un usage concret. Les chercheurs citent des pistes comme les composants électroniques moléculaires, mais ces applications restent à explorer.
+- **Mots** : **Vis d'Archimède** → Machine très ancienne formée d'une spirale qui tourne, utilisée depuis longtemps pour faire monter l'eau.
+- **Type** : prototype
 
-- _Faits relevés_ : Le matériau est un nickelate à deux couches, à base de nickel, qui devient supraconducteur sous très forte pression. | Sa température de transition approche 80 K, soit environ -193 °C. | L'étude est une simulation sur ordinateur d'un modèle simplifié de ce matériau. | L'association des électrons par paires vient surtout de la séparation de certaines zones d'électrons en deux niveaux. | Le mélange de ces zones étend ensuite l'effet à une autre zone, pourtant peu active au départ. | Le résultat reste valable même si la forme des surfaces d'énergie des électrons change. | Le travail vise à réconcilier des théories concurrentes sur l'origine du phénomène. | Les calculs ont été faits sur un superordinateur de l'Université de Tokyo.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il réconcilie des explications théoriques concurrentes, la supraconductivité à haute pression de ce matériau ayant déjà été observée.
-- _Jargon_ : Modèle de Hubbard : remplacé par « modèle simplifié des électrons ». | Méthode variationnelle de Monte Carlo : remplacée par « méthode de calcul sur ordinateur ». | Nickelate : remplacé par « matériau à base de nickel ». | Symétrie s± : non détaillée, remplacée par « explications théoriques concurrentes ». | Hybridation : remplacée par « mélange ». | Appariement : expliqué en quelques mots, « association des électrons par paires ». | Supraconductivité : mot à connaître.
+- _Faits relevés_ : Un moteur formé d'une seule molécule en forme de spirale tourne quand le courant électrique le traverse. | Il change de sens de rotation quand on inverse la tension électrique. | Sa rotation peut multiplier la conductivité électrique jusqu'à 100 fois, selon les calculs des chercheurs. | La molécule est placée entre deux pointes d'or écartées de quelques milliardièmes de mètre ; la mesure se fait à cette échelle atomique. | Le design s'inspire de la vis d'Archimède, une machine vieille de plus de 2 000 ans. | Les moteurs moléculaires alimentés par l'électricité datent de 2011, mais ils fonctionnaient sur des surfaces avec la pointe d'un microscope. | La molécule en spirale a été conçue à l'université de Copenhague, les mesures faites à l'Institut Weizmann en Israël. | Les calculs quantiques ont été faits à l'université d'Augsburg, en Allemagne ; un modèle théorique simplifié a été ensuite construit. | L'article présente ces usages comme des pistes possibles : composants moléculaires, spintronique, systèmes microfluidiques.
+- _Nouveauté selon l'article_ : Selon l'article, c'est la première démonstration d'un moteur moléculaire alimenté par un courant électrique, relié à deux électrodes métalliques et capable de tourner dans un sens contrôlé.
+- _Jargon_ : Moteur moléculaire : expliqué en quelques mots (machine formée d'une seule molécule). | Conductivité : remplacé par « capacité à laisser passer le courant ». | Spintronique : mot à connaître, à mentionner seulement comme piste possible. | Microscope à effet tunnel : remplacé par « microscope à pointe ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 3. Paludisme : des chercheurs lisent l'ADN complet de trois parasites
+## 3. Univers : des chocs d'atomes d'oxygène recréent la matière du Big Bang
 
-Fil : science · 2★ · source : PLOS Pathogens · page lue : oui (6000 caractères) · https://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1014754
+Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002935.htm
 
 **Actuel (publié)**
 
-- **Titre** : Paludisme : des chercheurs lisent l'ADN complet de trois parasites
-- **Avant** : On savait lire le génome du parasite du paludisme le plus meurtrier, mais les autres espèces restaient mal connues. Elles sont difficiles à cultiver en laboratoire, et les prélèvements contiennent très peu de parasites.
-- **Découverte** : Des chercheurs ont reconstruit les génomes complets de trois espèces de parasites directement à partir de sang de malades. Ils ont combiné des techniques de lecture de l'ADN capables de travailler avec très peu de matière. Les extrémités des chromosomes, jusque-là illisibles, sont désormais visibles, avec des familles de gènes sans doute liées aux relations entre parasite et hôte.
-- **Et après** : Ces génomes de référence doivent aider à comprendre comment ces espèces persistent, se transmettent et échappent au système immunitaire. Les chercheurs veulent ainsi mieux intégrer ces espèces longtemps négligées dans les efforts mondiaux pour éliminer le paludisme.
-- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, codée dans son ADN.
-- **Type** : donnees
+- **Titre** : Univers : des chocs d'atomes d'oxygène recréent la matière du Big Bang
+- **Avant** : Les chercheurs savaient recréer la matière des tout premiers instants de l'univers en écrasant de très gros noyaux atomiques à très haute énergie. Ils pensaient qu'il fallait des collisions puissantes pour y parvenir.
+- **Découverte** : Dans l'expérience STAR, menée au collisionneur RHIC aux États-Unis, des noyaux d'oxygène sont lancés presque à la vitesse de la lumière puis se percutent. Les particules qui traversent la matière ainsi créée perdent de l'énergie, un signe typique de ce plasma, et ce signal apparaît à des énergies plus basses que celles déjà démontrées.
+- **Et après** : Les résultats, publiés dans Physical Review Letters, fixent une nouvelle limite inférieure des conditions nécessaires à cette matière. Les chercheurs veulent maintenant préciser ce qu'il faut pour la créer, en comparant ces mesures à celles du LHC du CERN.
+- **Mots** : **Plasma de quarks et de gluons** → État de la matière extrêmement chaud et dense, qui existait quelques instants après le Big Bang.
+- **Type** : observation
 
 **Final après relecture (haiku)**
 
-- **Titre** : Paludisme : l'ADN de trois parasites lu à partir du sang de malades
-- **Avant** : Le parasite le plus meurtrier du paludisme est très étudié. Deux autres espèces, souvent négligées, causent des infections chroniques ; elles ne se cultivent pas en laboratoire et leurs prélèvements contiennent très peu de parasites.
-- **Découverte** : Des chercheurs ont reconstruit l'ADN complet de trois espèces de parasites à partir de prélèvements de sang de malades au Mali. Ils ont utilisé une technique de lecture longue, capable de travailler avec très peu de parasites. Les extrémités des chromosomes, jusque-là illisibles, sont maintenant visibles, avec des familles de gènes sans doute liées aux relations entre le parasite et l'humain qu'il infecte.
-- **Et après** : Ces génomes de référence pourraient aider à comprendre comment ces espèces persistent, se transmettent et échappent au système immunitaire. Il s'agit de travaux de base : ils ne testent ni traitement ni diagnostic.
-- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, codée dans son ADN, qui sert de plan de référence pour l'étudier.
+- **Titre** : Univers : des chocs d'oxygène recréent la matière du Big Bang
+- **Avant** : Pour créer cette matière, on faisait jusqu'ici se percuter des noyaux lourds, comme l'or, à très grande vitesse. Au LHC, des collisions d'oxygène montraient déjà le même signal, mais on cherchait à savoir quelles conditions minimales suffisent.
+- **Découverte** : Des chercheurs de l'expérience STAR, au collisionneur RHIC aux États-Unis, ont fait se percuter des noyaux d'oxygène à presque la vitesse de la lumière. Les particules qui traversent la matière ainsi créée perdent de l'énergie, signe d'un plasma de quarks et de gluons. Ce signal apparaît à des énergies plus basses que celles déjà démontrées.
+- **Et après** : Cela aide à préciser les conditions minimales de création de cette matière, proche de celle des premiers instants de l'univers. Les physiciens veulent maintenant savoir où ces signatures apparaissent et où elles s'éteignent.
+- **Mots** : **Plasma de quarks et de gluons** → État de la matière extrêmement chaud et dense, faits de particules élémentaires libres, qui existait quelques instants après le Big Bang.
 - **Type** : laboratoire
 
-- _Défauts trouvés par le relecteur_ : [titre] « Paludisme : l'ADN complet de trois parasites lu à partir du sang de malades » → Le titre compte 13 mots, soit plus que la limite de 12 mots.
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Il reste à comparer ces mesures à celles du LHC, au CERN, pour préciser ce qu'il faut. » → L'article ne présente pas une comparaison avec le LHC comme prochaine étape. Il mentionne le LHC seulement comme contexte, où l'effet a déjà été observé avec l'oxygène. | [apres] « Cela aide à comprendre dans quelles conditions se forme cette matière des premiers instants de l'univers. » → Le paragraphe ne dit pas la limite principale ni la prochaine étape. L'article indique que les chercheurs veulent savoir où ces signatures apparaissent et où elles s'éteignent. | [mot] « État de la matière extrêmement chaud et dense, formé de quarks et de gluons libres, qui existait quelques instants après le Big Bang. » → La définition reprend les mots du terme à expliquer (quarks et gluons).
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Paludisme : l'ADN complet de trois parasites lu à partir du sang de malades
-- **Avant** : Le parasite le plus meurtrier du paludisme est très étudié. Deux autres espèces, souvent négligées, causent des infections chroniques ; elles ne se cultivent pas en laboratoire et leurs prélèvements contiennent très peu de parasites.
-- **Découverte** : Des chercheurs ont reconstruit l'ADN complet de trois espèces de parasites à partir de prélèvements de sang de malades au Mali. Ils ont utilisé une technique de lecture longue, capable de travailler avec très peu de parasites. Les extrémités des chromosomes, jusque-là illisibles, sont maintenant visibles, avec des familles de gènes sans doute liées aux relations entre le parasite et l'humain qu'il infecte.
-- **Et après** : Ces génomes de référence pourraient aider à comprendre comment ces espèces persistent, se transmettent et échappent au système immunitaire. Il s'agit de travaux de base : ils ne testent ni traitement ni diagnostic.
-- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, codée dans son ADN, qui sert de plan de référence pour l'étudier.
+- **Titre** : Univers : des chocs d'oxygène recréent la matière du Big Bang
+- **Avant** : Pour créer cette matière, on faisait jusqu'ici se percuter des noyaux lourds, comme l'or, à très grande vitesse. Au LHC, des collisions d'oxygène montraient déjà le même signal, mais on cherchait à savoir quelles conditions minimales suffisent.
+- **Découverte** : Des chercheurs de l'expérience STAR, au collisionneur RHIC aux États-Unis, ont fait se percuter des noyaux d'oxygène à presque la vitesse de la lumière. Les particules qui traversent la matière ainsi créée perdent de l'énergie, signe d'un plasma de quarks et de gluons. Ce signal apparaît à des énergies plus basses que celles déjà démontrées.
+- **Et après** : Cela aide à comprendre dans quelles conditions se forme cette matière des premiers instants de l'univers. Il reste à comparer ces mesures à celles du LHC, au CERN, pour préciser ce qu'il faut.
+- **Mots** : **Plasma de quarks et de gluons** → État de la matière extrêmement chaud et dense, formé de quarks et de gluons libres, qui existait quelques instants après le Big Bang.
 - **Type** : laboratoire
 
-- _Faits relevés_ : Des chercheurs ont reconstruit l'ADN complet de trois espèces de parasites du paludisme. | Les prélèvements de sang viennent d'infections naturelles de malades, recueillis au Mali. | Le parasite le plus meurtrier, très étudié, est l'une des trois espèces. | Les deux autres espèces sont moins étudiées, souvent négligées, et causent des infections chroniques. | Ces deux espèces ne peuvent pas être cultivées en laboratoire. | Les prélèvements contiennent très peu de parasites, ce qui rend la lecture difficile. | Une technique de lecture longue de l'ADN a permis ce travail. | Les extrémités des chromosomes, jusque-là illisibles, sont maintenant visibles.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il décrit des génomes complets de trois espèces lus directement dans le sang, alors que les ressources génétiques sur deux d'entre elles étaient limitées.
-- _Jargon_ : Génome : mot à connaître. | Lecture longue de l'ADN : remplacé par « technique de lecture longue de l'ADN ». | Extrémités des chromosomes : remplacé par « extrémités des chromosomes » (sans terme savant).
+- _Faits relevés_ : L'expérience STAR, au collisionneur RHIC aux États-Unis, fait se percuter des noyaux d'oxygène à presque la vitesse de la lumière. | Les particules qui traversent la matière ainsi créée perdent de l'énergie, un signe de plasma de quarks et de gluons. | Ce signal apparaît dans des collisions plus petites et à plus basse énergie que celles déjà démontrées au RHIC. | Au RHIC, le même effet était connu depuis longtemps dans des collisions de noyaux beaucoup plus lourds, comme l'or. | Le même effet a aussi été détecté dans des collisions d'oxygène au LHC, au CERN. | La matière formée dure moins d'un milliardième de milliardième de seconde et ne peut pas être observée directement. | Les résultats établissent une nouvelle limite basse des conditions qui produisent cette matière dans ce type de collision. | Selon les chercheurs, il faut encore préciser ce qu'il faut pour créer cette matière.
+- _Nouveauté selon l'article_ : Ce qui est nouveau : le signal apparaît à des énergies plus basses que celles déjà démontrées ; l'article ne revendique pas de première.
+- _Jargon_ : plasma de quarks et de gluons : expliqué dans les mots à connaître | jet quenching : remplacé par « les particules perdent de l'énergie en traversant la matière » | collisionneur : remplacé par « expérience de collisions » | RHIC et STAR : noms d'installation et d'équipe, expliqués comme « une installation américaine » et « l'équipe STAR »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 4. Espace : la poussière de Mars est assez fine pour atteindre les poumons
+## 4. IA : une IA injecte un médicament dans le cerveau d'une souris vivante
 
-Fil : science · 1★ · source : NASA JPL · page lue : oui (6000 caractères) · https://www.jpl.nasa.gov/news/nasas-perseverance-offers-clues-to-protect-crews-from-mars-dust
-
-**Actuel (publié)**
-
-- **Titre** : Espace : la poussière de Mars est assez fine pour atteindre les poumons
-- **Avant** : On savait que la poussière de la Lune avait abîmé les visières et les joints des combinaisons d'Apollo, mais on connaissait mal le comportement de la poussière martienne sur les équipements.
-- **Découverte** : Le robot Perseverance a mesuré pendant environ 1 645 jours martiens les fines et ultrafines particules de poussière collées à des échantillons de matériaux de combinaison emportés à bord. Certaines sont assez petites pour pénétrer dans les poumons et passer dans le sang. Ces résultats seront publiés dans la revue PNAS.
-- **Et après** : Ces données pourraient aider à concevoir des combinaisons et des habitats mieux protégés, ainsi que des méthodes de nettoyage et des normes de santé pour les futures missions vers Mars. Il reste à vérifier ces résultats dans des conditions réelles avec des astronautes.
-- **Mots** : (aucun)
-- **Type** : donnees
-
-**Final après relecture (haiku)**
-
-- **Titre** : Espace : des particules de poussière martienne assez fines pour entrer dans le sang
-- **Avant** : Sur la Lune, la poussière avait abîmé les visières et les joints des combinaisons d'Apollo. Sur Mars, on savait que la poussière existait, mais pas à quel point ses grains les plus fins restaient collés aux équipements.
-- **Découverte** : Le robot Perseverance de la NASA a mesuré, pendant 1 645 jours martiens, la poussière accrochée à des échantillons de combinaison spatiale. Son instrument à rayons X PIXL a repéré des particules ultrafines, d'environ 100 nanomètres, soit près de 700 fois plus fines qu'un cheveu. Certaines sont assez petites pour atteindre les poumons et passer dans le sang.
-- **Et après** : Ces mesures pourraient aider à concevoir des combinaisons et des habitats mieux protégés, ainsi que des méthodes de nettoyage pour les futures missions. Ces mesures ne disent pas encore comment ces particules affectent la santé des astronautes sur Mars.
-- **Mots** : (aucun)
-- **Type** : donnees
-
-- _Défauts trouvés par le relecteur_ : [jargon] « son instrument PIXL a repéré des particules ultrafines » → Le sigle PIXL n'est ni expliqué ni remplacé par des mots simples. L'article le décrit comme un instrument de mesure par rayons X. | [non_soutenu] « Il reste à vérifier ces résultats avec des astronautes dans des conditions réelles. » → L'article ne dit pas que les résultats doivent être vérifiés avec des astronautes. Cette prochaine étape est inventée.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Espace : des particules de poussière martienne assez fines pour entrer dans le sang
-- **Avant** : Sur la Lune, la poussière avait abîmé les visières et les joints des combinaisons d'Apollo. Sur Mars, on savait que la poussière existait, mais pas à quel point ses grains les plus fins restaient collés aux équipements.
-- **Découverte** : Le robot Perseverance de la NASA a mesuré, pendant 1 645 jours martiens, la poussière accrochée à des échantillons de combinaison spatiale. Son instrument PIXL a repéré des particules ultrafines, d'environ 100 nanomètres, soit près de 700 fois plus fines qu'un cheveu. Certaines sont assez petites pour atteindre les poumons et passer dans le sang.
-- **Et après** : Ces mesures pourraient aider à concevoir des combinaisons et des habitats mieux protégés, ainsi que des méthodes de nettoyage pour les futures missions. Il reste à vérifier ces résultats avec des astronautes dans des conditions réelles.
-- **Mots** : (aucun)
-- **Type** : donnees
-
-- _Faits relevés_ : Le robot Perseverance de la NASA a mesuré la poussière martienne pendant 1 645 jours martiens. | Il a étudié des particules collées à des échantillons de matériaux de combinaison spatiale emportés à bord. | L'instrument PIXL a détecté des particules fines (moins de 2,5 micromètres) et ultrafines (vers 100 nanomètres). | Certaines particules sont assez petites pour atteindre les poumons et passer dans le sang. | Les particules les plus fines restent accrochées malgré des années de roulage et de forage. | Les matériaux de combinaison testés sont le Teflon et le Vectran. | Les résultats sont publiés le 27 octobre dans la revue PNAS, selon l'article. | Les données pourraient aider à concevoir combinaisons, habitats et méthodes de nettoyage.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il dit que la présence de poussière ultrafine était prédite depuis longtemps et que PIXL l'a mesurée directement sur Mars.
-- _Jargon_ : Particules ultrafines : expliqué en quelques mots (plus fines qu'un cheveu de 700 fois). | Micromètre : remplacé par « un cheveu fait environ 70 micromètres de large » ou par des comparaisons simples.
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 5. Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
-
-Fil : tech · 1★ · source : MIT News · page lue : oui (6000 caractères) · https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102
+Fil : tech · 1★ · source : Wired · page lue : oui (5327 caractères) · https://www.wired.com/story/an-ai-agent-did-brain-surgery-on-live-mouse/
 
 **Actuel (publié)**
 
-- **Titre** : Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
-- **Avant** : Les poissons d'élevage sont exposés à des maladies qui causent de lourdes pertes dans l'aquaculture. Il faut donc des outils de vaccination adaptés à l'eau.
-- **Découverte** : Des chercheurs du MIT ont conçu de minuscules aiguilles imperméables, en soie de qualité alimentaire et recouvertes d'une fine couche de shellac. Leur pointe creuse peut transporter le vaccin, et l'aiguille pénètre légèrement la peau du poisson avant de se décomposer.
-- **Et après** : Les chercheurs veulent offrir une méthode plus sûre et plus efficace pour vacciner les poissons d'élevage. Il reste à vérifier ces résultats à plus grande échelle avant tout usage dans les fermes.
-- **Mots** : **Shellac** → Résine naturelle, produite par des insectes, utilisée comme vernis alimentaire pour rendre une surface imperméable.
-- **Type** : prototype
-
-**Final après relecture (haiku)**
-
-- **Titre** : Élevage : des micro-aiguilles en soie peuvent porter des vaccins aux poissons
-- **Avant** : Les aiguilles métalliques restent la méthode la plus efficace pour vacciner les poissons d'élevage. Mais elles stressent les poissons et exposent les ouvriers à des piqûres et à des risques de contamination.
-- **Découverte** : Des chercheurs du MIT et du département américain de l'Agriculture ont conçu de micro-aiguilles en soie de qualité alimentaire, recouvertes d'une couche imperméable de shellac, une résine alimentaire. Leur pointe creuse porte le vaccin, puis l'aiguille pénètre légèrement la peau du poisson, y reste accrochée et se décompose. Les chercheurs ont montré que le système peut transporter plusieurs types de charges, dont des vaccins bactériens.
-- **Et après** : Si la méthode se confirme, les éleveurs disposeraient d'un outil moins risqué pour les poissons et pour les ouvriers. Il reste à montrer que ces aiguilles protègent réellement les poissons contre les maladies.
-- **Mots** : (aucun)
-- **Type** : prototype
-
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « à plus grande échelle » → L'article ne dit pas que la prochaine étape serait un essai à plus grande échelle. Il indique seulement que la méthode pourrait servir à livrer des vaccins et qu'elle reste à valider.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Élevage : des micro-aiguilles en soie peuvent porter des vaccins aux poissons
-- **Avant** : Les aiguilles métalliques restent la méthode la plus efficace pour vacciner les poissons d'élevage. Mais elles stressent les poissons et exposent les ouvriers à des piqûres et à des risques de contamination.
-- **Découverte** : Des chercheurs du MIT et du département américain de l'Agriculture ont conçu de micro-aiguilles en soie de qualité alimentaire, recouvertes d'une couche imperméable de shellac, une résine alimentaire. Leur pointe creuse porte le vaccin, puis l'aiguille pénètre légèrement la peau du poisson, y reste accrochée et se décompose. Les chercheurs ont montré que le système peut transporter plusieurs types de charges, dont des vaccins bactériens.
-- **Et après** : Si la méthode se confirme, les éleveurs disposeraient d'un outil moins risqué pour les poissons et pour les ouvriers. Il reste à montrer que ces aiguilles protègent réellement les poissons contre les maladies, à plus grande échelle.
-- **Mots** : (aucun)
-- **Type** : prototype
-
-- _Faits relevés_ : Des chercheurs du MIT et du département américain de l'Agriculture ont conçu de micro-aiguilles en soie de qualité alimentaire. | Chaque aiguille a une pointe creuse et une couche de shellac, une résine alimentaire qui la rend imperméable à l'eau. | L'aiguille pénètre légèrement la peau du poisson, y reste accrochée, puis se décompose. | Le système peut transporter plusieurs types de charges, par exemple des vaccins bactériens. | La méthode la plus efficace aujourd'hui utilise des aiguilles métalliques, qui demandent d'endormir les poissons et de les sortir de l'eau. | Ce processus stresse les poissons et expose les ouvriers à des piqûres accidentelles et à la transmission de maladies entre poissons. | La soie est classée comme sûre pour l'alimentation dans les enrobages alimentaires. | Les chercheurs présentent leur méthode comme plus sûre et plus efficace, mais cela reste à vérifier à plus grande échelle.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; les chercheurs montrent que ces micro-aiguilles peuvent transporter des vaccins bactériens et se veulent plus sûres que les aiguilles métalliques.
-- _Jargon_ : microneedles remplacé par micro-aiguilles | aquaculture remplacé par élevage de poissons | shellac expliqué en quelques mots : une résine alimentaire qui rend la couche imperméable
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 6. Internet : une fibre envoie 128 000 milliards de bits par seconde
-
-Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (181 caractères) · https://pandaily.com/china-telecom-yofc-zte-1000km-hollow-core-fiber-bidirectional-real-time-transmission-800g-128tbps
-
-**Actuel (publié)**
-
-- **Titre** : Internet : une fibre envoie 128 000 milliards de bits par seconde
-- **Avant** : Les liaisons Internet longue distance utilisent surtout des fibres en verre plein, dont le débit et la rapidité du signal sont déjà bien connus.
-- **Découverte** : Des équipes de China Telecom, YOFC et ZTE ont fait passer 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens, sur une fibre de 1 007 km. Le total atteint 128 000 milliards de bits par seconde.
-- **Et après** : Cette technique vise des réseaux plus rapides et plus réactifs, mais l'essai reste une démonstration et les conditions d'exploitation commerciale ne sont pas précisées.
-- **Mots** : **Fibre creuse** → Fibre optique dont le cœur est rempli d'air, ce qui permet à la lumière de voyager plus vite que dans le verre.
-- **Type** : demonstration
-
-**Final après relecture (haiku)**
-
-- **Titre** : Internet : une fibre envoie 128 000 milliards de bits par seconde
-- **Avant** : Les réseaux longue distance cherchent à réduire le délai de transmission des données. Les fibres à cœur creux sont une piste pour y parvenir, mais leur usage sur de grandes distances restait à prouver.
-- **Découverte** : Des équipes chinoises de China Telecom, YOFC et ZTE ont envoyé 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens. Le test a porté sur une fibre à cœur creux d'environ 1 007 km. Au total, le débit atteint 128 000 milliards de bits par seconde.
-- **Et après** : Le but est de réduire le délai de transmission sur les grandes distances, utile aux réseaux qui doivent réagir vite. C'est une étape vers ce but, pas encore un service commercial, et aucune date de déploiement n'est donnée.
-- **Mots** : **Fibre à cœur creux** → Fibre optique dont le centre est vide, rempli d'air au lieu de verre, utilisée pour transmettre des données.
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « trois acteurs chinois des télécoms » → L'article ne qualifie pas YOFC et ZTE d'acteurs des télécoms ; il cite seulement China Telecom Research Institute, YOFC et ZTE comme auteurs du test. | [non_soutenu] « Les liaisons Internet longue distance passent surtout par des fibres en verre plein. » → Cette affirmation sur l'usage actuel des fibres n'est pas dans l'article source, qui ne parle que d'un test et d'une étape vers des réseaux à faible délai.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Internet : une fibre envoie 128 000 milliards de bits par seconde
-- **Avant** : Les liaisons Internet longue distance passent surtout par des fibres en verre plein. Les fibres à cœur creux visent des délais plus courts, mais leur usage sur de grandes distances restait à prouver.
-- **Découverte** : Des équipes de China Telecom, YOFC et ZTE, trois acteurs chinois des télécoms, ont envoyé 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens. Le test a porté sur une fibre à cœur creux d'environ 1 007 km. Au total, le débit atteint 128 000 milliards de bits par seconde.
-- **Et après** : Le but est de réduire le délai de transmission sur les grandes distances, utile aux réseaux qui doivent réagir vite. C'est une étape vers ce but, pas encore un service commercial, et aucune date de déploiement n'est donnée.
-- **Mots** : **Fibre à cœur creux** → Fibre optique dont le centre est vide, rempli d'air au lieu de verre, utilisée pour transmettre des données.
-- **Type** : demonstration
-
-- _Faits relevés_ : Des équipes de China Telecom, YOFC et ZTE ont fait l'essai. | Le signal a été envoyé à 800 gigabits par seconde sur chaque longueur d'onde, dans les deux sens. | Le test a utilisé une fibre à cœur creux longue de 1 007,48 km. | Le débit total atteint 128 térabits par seconde, soit 128 000 milliards de bits par seconde. | L'essai est présenté comme une étape vers des réseaux longue distance à faible délai. | L'article ne cite pas de résultat antérieur pour comparer. | Aucune date de déploiement commercial n'est donnée.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il présente un essai de débit total record sur une fibre à cœur creux de plus de 1 000 km.
-- _Jargon_ : Fibre à cœur creux : mot à connaître, défini dans la liste des mots. | Longueur d'onde : remplacé par « couleur de lumière ». | Latence : remplacé par « délai de transmission ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 7. Drones : un étudiant atteint 790 km/h avec un petit avion à réaction
-
-Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (4156 caractères) · https://www.tomshardware.com/tech-industry/drones/college-student-unofficially-breaks-world-record-for-fastest-jet-powered-drone-with-491-mph-aircraft-built-in-his-dorm-reaper-aims-to-grab-the-usd800-000-boom-prize
-
-**Actuel (publié)**
-
-- **Titre** : Drones : un étudiant atteint 790 km/h avec un petit avion à réaction
-- **Avant** : Les drones à réaction, petits avions sans pilote équipés d'un moteur à réaction, étaient jusque-là moins rapides que ce nouvel appareil, selon la source.
-- **Découverte** : Un étudiant d'une université américaine a construit son avion télécommandé dans sa chambre d'étudiant. L'appareil a atteint 790 km/h, soit 491 mph, ce que la source présente comme un record.
-- **Et après** : L'étudiant vise un prix de 800 000 dollars récompensant le plus rapide avion télécommandé à réaction. Pour l'instant, ce record n'est pas officiel.
+- **Titre** : IA : une IA injecte un médicament dans le cerveau d'une souris vivante
+- **Avant** : Jusqu'ici, les IA aidaient surtout à concevoir des expériences ou à analyser leurs résultats. Les injections dans le cerveau des souris étaient faites à la main par des chercheurs.
+- **Découverte** : Une startup américaine a relié un agent IA à un bras robotisé, une seringue et une caméra. L'IA a choisi une thérapie génique, observé la souris et réalisé l'injection, après quelques étapes supplémentaires.
+- **Et après** : Il s'agit d'une seule souris, présentée par le fondateur de la startup, sans étude publiée dans les informations disponibles. Les chercheurs veulent maintenant connecter leurs IA à de vrais laboratoires pour tester la méthode à plus grande échelle.
 - **Mots** : (aucun)
 - **Type** : demonstration
 
 **Final après relecture (haiku)**
 
-- **Titre** : Drones : un étudiant fait voler un avion à réaction à 790 km/h
-- **Avant** : Le record de vitesse des avions télécommandés à réaction appartient à Niels Herbrich. Un autre projet, le Kingchaser, n'a atteint que 440 km/h, faute de place pour accélérer.
-- **Découverte** : Tomas Salvo, un étudiant, a assemblé son avion, le Reaper, dans sa chambre universitaire. Il pèse environ 5 kg, a atteint 790 km/h et a volé avec 1,2 kg de charge ; sa tuyère en titane imprimée en 3D place le moteur plus en avant, sans lest. Il peut tenir cette vitesse quatre minutes avec un plein.
-- **Et après** : Le Reaper pourrait être un sérieux candidat au prix Boom, qui demande de dépasser la vitesse du son, soit 1 235 km/h. Il est encore loin de ce seuil : il devrait aller environ 1,5 fois plus vite.
-- **Mots** : (aucun)
+- **Titre** : IA : une IA dirige l'injection d'un traitement dans le cerveau d'une souris
+- **Avant** : Les IA servaient surtout à concevoir des expériences ou à analyser leurs résultats, sans toucher au matériel. Elles apprennent surtout à partir des travaux scientifiques, qui laissent de côté les échecs et les choix faits en cours d'expérience.
+- **Découverte** : Des chercheurs de la startup Exin Therapeutics, à San Francisco, ont relié un agent IA à un bras robotisé, un injecteur et une caméra. Sur une souris atteinte d'épilepsie, l'IA a choisi parmi 19 traitements une thérapie génique, puis a guidé l'aiguille vers le cerveau, après une ouverture du crâne faite par un vétérinaire. L'injection a duré un peu plus d'une heure, à cause d'un incident technique qui a ralenti l'expérience, contre environ 45 minutes pour une injection classique.
+- **Et après** : Cela pourrait donner aux IA un rôle actif dans les laboratoires, mais il ne s'agit que d'une souris, et l'effet sur les crises reste à mesurer. Le fondateur juge qu'il est bien trop tôt pour un cerveau humain, et la surveillance humaine reste indispensable.
+- **Mots** : **Thérapie génique** → Traitement qui modifie l'activité d'un gène défaillant, ou apporte un gène utile, pour soigner une maladie.
 - **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « grâce à une tuyère en titane imprimée en 3D qui allège l'avant » → L'article dit que la tuyère permet de placer le moteur plus en avant, sans lest à l'avant. Il ne dit pas qu'elle a permis d'atteindre la vitesse, ni qu'elle allège l'avant. | [forme] « Il est encore loin de ce seuil, à environ 1,5 fois plus vite. » → Tournure ambiguë : on ne voit pas ce qui doit être 1,5 fois plus vite. Il faut dire que la vitesse doit être environ 1,5 fois plus élevée.
+- _Défauts trouvés par le relecteur_ : [comparaison] « L'injection a duré un peu plus d'une heure, contre environ 45 minutes pour une injection classique. » → Deux durées sont comparées sans dire pourquoi l'expérience a été plus longue. L'article attribue ce retard aux allers-retours causés par un incident technique.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Drones : un étudiant fait voler un avion à réaction à 790 km/h
-- **Avant** : Le record de vitesse des avions télécommandés à réaction appartient à Niels Herbrich. Un autre projet, le Kingchaser, n'a atteint que 440 km/h, faute de place pour accélérer.
-- **Découverte** : Tomas Salvo, un étudiant, a assemblé son avion, le Reaper, dans sa chambre universitaire. Il pèse environ 5 kg et a atteint 790 km/h, grâce à une tuyère en titane imprimée en 3D qui allège l'avant. Il a volé avec 1,2 kg de charge et peut tenir cette vitesse quatre minutes avec un plein.
-- **Et après** : Le Reaper pourrait être le principal candidat au prix Boom, qui demande de dépasser la vitesse du son, soit 1 235 km/h. Il est encore loin de ce seuil, à environ 1,5 fois plus vite.
-- **Mots** : (aucun)
+- **Titre** : IA : une IA dirige l'injection d'un traitement dans le cerveau d'une souris
+- **Avant** : Les IA servaient surtout à concevoir des expériences ou à analyser leurs résultats, sans toucher au matériel. Elles apprennent surtout à partir des travaux scientifiques, qui laissent de côté les échecs et les choix faits en cours d'expérience.
+- **Découverte** : Des chercheurs de la startup Exin Therapeutics, à San Francisco, ont relié un agent IA à un bras robotisé, un injecteur et une caméra. Sur une souris atteinte d'épilepsie, l'IA a choisi parmi 19 traitements une thérapie génique, puis a guidé l'aiguille vers le cerveau, après une ouverture du crâne faite par un vétérinaire. L'injection a duré un peu plus d'une heure, contre environ 45 minutes pour une injection classique.
+- **Et après** : Cela pourrait donner aux IA un rôle actif dans les laboratoires, mais il ne s'agit que d'une souris, et l'effet sur les crises reste à mesurer. Le fondateur juge qu'il est bien trop tôt pour un cerveau humain, et la surveillance humaine reste indispensable.
+- **Mots** : **Thérapie génique** → Traitement qui modifie l'activité d'un gène défaillant, ou apporte un gène utile, pour soigner une maladie.
 - **Type** : demonstration
 
-- _Faits relevés_ : Le Reaper, un avion télécommandé à réaction conçu par Tomas Salvo, a atteint 491 mph, soit 790 km/h. | Il a été assemblé dans sa chambre universitaire, avec une structure en fibre de carbone et une tuyère en titane imprimée en 3D. | Il pèse environ 11 livres, soit environ 5 kg, et a porté une charge de 1,2 kg à cette vitesse. | Selon son auteur, il peut tenir cette vitesse quatre minutes avec un plein de carburant. | L'avion concurrent Kingchaser n'avait atteint que 273 mph (environ 440 km/h), faute de place pour accélérer. | Le prix Boom de 800 000 dollars (environ 680 000 €) exige de dépasser la vitesse du son, 767 mph (1 235 km/h). | Le prix est réservé aux particuliers ou équipes sans financement d'entreprise ni de fonds d'investissement ou d'État. | Le constructeur Mach Initiative estime que le Kingchaser pourrait atteindre 550 mph avec plus de place.
-- _Nouveauté selon l'article_ : Le Reaper atteint 491 mph (790 km/h), au-dessus du test de 273 mph du Kingchaser ; l'article ne revendique pas de première.
-- _Jargon_ : Mach 1 : remplacé par « la vitesse du son (1 235 km/h) » | avion à réaction : expliqué par le contexte, mots de tous les jours
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Faits relevés_ : Exin Therapeutics, une startup de San Francisco, a relié un agent IA à un bras robotisé, un injecteur et une caméra. | L'IA devait choisir un traitement parmi 19 options dans un tableur. | Le traitement testé est une thérapie génique, visant à réduire les crises d'une souris épileptique. | Un vétérinaire a d'abord ouvert le crâne de la souris pendant que l'IA observait. | L'IA a choisi la zone du cerveau et les coordonnées, puis piloté le bras et l'aiguille. | Claude Opus 5.5 a refusé de guider l'aiguille ; l'équipe a alors utilisé Claude Sonnet 5, qui a accepté. | Un bug de coordonnées a été corrigé par un second agent IA, sans qu'il sache qu'il s'agissait d'une opération. | L'injection a duré un peu plus d'une heure, contre environ 45 minutes pour une injection classique. | Des garde-fous existaient : validation humaine du plan, bouton d'arrêt d'urgence, accès limité au code. | L'effet sur les crises n'était pas encore mesuré au moment de l'article. | Le fondateur juge trop tôt de confier une telle tâche à une IA sur un cerveau humain.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; ce qui est nouveau est de laisser une IA choisir le traitement et guider elle-même l'injection sur un animal vivant, alors que les IA servaient surtout à concevoir ou analyser des expériences.
+- _Jargon_ : craniotomie : remplacé par « ouverture du crâne » | thérapie génique : mot à connaître | épilepsie : mot courant, expliqué par « crises » dans le texte
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 8. Océan : une étoile de mer laisse souvent du corail vivant
+## 5. Arbres : un bois agit comme des muscles pour redresser le tronc
 
-Fil : science · 1★ · source : ScienceDaily · page lue : oui (5346 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002957.htm
+Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030003006.htm
 
 **Actuel (publié)**
 
-- **Titre** : Océan : une étoile de mer laisse souvent du corail vivant
-- **Avant** : On voyait surtout l'étoile de mer à épines comme une menace pour les récifs, car ses explosions de population ont causé de gros dégâts sur la Grande Barrière de corail depuis les années 1960.
-- **Découverte** : Des chercheurs de l'université de Sydney ont examiné les traces de repas laissées sur des coraux près de la station One Tree Island. Environ 75 % des repas observés laissaient du tissu vivant sur le corail. En mangeant les coraux qui dominent et poussent vite, l'étoile laisse de la place aux espèces plus lentes.
-- **Et après** : Les chercheurs restent prudents : cet effet bénéfique est surtout possible quand les populations d'étoiles sont maintenues sous contrôle. L'impact réel sur la variété des coraux reste à mesurer sur une zone plus large.
+- **Titre** : Arbres : un bois agit comme des muscles pour redresser le tronc
+- **Avant** : On savait depuis 2012 que les plantes peuvent sentir la forme de leur propre corps. On ignorait comment cette information se transforme en mouvement.
+- **Découverte** : Des chercheurs ont fait pousser de jeunes arbres sur une plateforme qui tourne dans une sphère éclairée de tous les côtés, pour supprimer les repères de la gravité et de la lumière. Ils ont montré que les arbres redressent leur tronc grâce à un bois spécialisé qui fonctionne comme des muscles antagonistes.
+- **Et après** : Ces résultats pourraient aider à obtenir des forêts plus solides, un bois de meilleure qualité et des cultures plus résistantes. Il faudra vérifier ce mécanisme sur d'autres espèces et en conditions réelles.
+- **Mots** : **Proprioception** → Capacité à sentir la position et la forme de son propre corps, sans avoir besoin de le regarder.
+- **Type** : observation
+
+**Final après relecture (haiku)**
+
+- **Titre** : Arbres : un bois qui tire dans les deux sens redresse les peupliers
+- **Avant** : On savait depuis 2012 que les plantes sentent la forme de leur corps, une capacité appelée proprioception. On pensait que le bois spécial qui tire la tige vers le haut ne se formait que d'un seul côté, et le mécanisme qui transforme cette information en mouvement restait inconnu.
+- **Découverte** : Des chercheurs ont fait pousser de jeunes peupliers sur une plateforme qui tourne dans une sphère éclairée de toutes parts, pour que la gravité et la lumière ne leur indiquent pas où pousser. Après avoir été courbés, les arbres se sont redressés : un bois spécial s'est formé du côté opposé et tire la tige dans l'autre sens. Le bois qui tirait vers le haut a cessé de se former, comme deux muscles qui s'opposent.
+- **Et après** : Cette coordination pourrait aider à obtenir des arbres plus droits, un bois de meilleure qualité et des céréales moins sujettes à la chute avant la récolte. Pour l'instant, l'étude porte sur de jeunes peupliers placés dans un dispositif expérimental, et ces applications restent à vérifier.
+- **Mots** : **Proprioception** → Capacité à sentir la position et la forme de son propre corps, sans avoir besoin de le regarder.
+- **Type** : laboratoire
+
+- _Défauts trouvés par le relecteur_ : [jargon] « des céréales moins sujettes à la verse avant la récolte » → Le mot technique « verse » n'est ni remplacé par des mots simples ni expliqué dans la fiche.
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Arbres : un bois qui tire dans les deux sens redresse les peupliers
+- **Avant** : On savait depuis 2012 que les plantes sentent la forme de leur corps, une capacité appelée proprioception. On pensait que le bois spécial qui tire la tige vers le haut ne se formait que d'un seul côté, et le mécanisme qui transforme cette information en mouvement restait inconnu.
+- **Découverte** : Des chercheurs ont fait pousser de jeunes peupliers sur une plateforme qui tourne dans une sphère éclairée de toutes parts, pour que la gravité et la lumière ne leur indiquent pas où pousser. Après avoir été courbés, les arbres se sont redressés : un bois spécial s'est formé du côté opposé et tire la tige dans l'autre sens. Le bois qui tirait vers le haut a cessé de se former, comme deux muscles qui s'opposent.
+- **Et après** : Cette coordination pourrait aider à obtenir des arbres plus droits, un bois de meilleure qualité et des céréales moins sujettes à la verse avant la récolte. Pour l'instant, l'étude porte sur de jeunes peupliers placés dans un dispositif expérimental, et ces applications restent à vérifier.
+- **Mots** : **Proprioception** → Capacité à sentir la position et la forme de son propre corps, sans avoir besoin de le regarder.
+- **Type** : laboratoire
+
+- _Faits relevés_ : Des arbres jeunes, des peupliers, ont été placés à l'horizontale sur une plateforme qui tourne dans une sphère éclairée de toutes parts. | Le dispositif supprime les signaux de la gravité et de la lumière qui indiquent la direction de la croissance. | Les tiges, d'abord courbées vers le haut, se sont redressées pendant plusieurs semaines. | Le bois de tension qui tirait vers le haut a cessé de se former après l'activation du dispositif. | Du bois de tension identique s'est formé sur le côté opposé et tire la tige dans l'autre sens. | En 2012, des chercheurs de l'INRAE avaient montré que les plantes peuvent sentir la forme de leur corps. | Selon l'article, une mauvaise coordination du bois de tension peut créer des tensions internes et réduire la qualité du bois. | L'article évoque des applications possibles en foresterie et pour les céréales, sans les avoir testées.
+- _Nouveauté selon l'article_ : Selon l'article, le bois de tension peut se former des deux côtés d'une tige et agir comme des muscles antagonistes, alors qu'on le pensait limité au côté supérieur ; l'article ne revendique pas de première.
+- _Jargon_ : Proprioception : mot à connaître, défini dans la fiche. | Bois de tension : remplacé par « un bois spécial qui tire la tige ». | Muscles antagonistes : remplacé par « deux muscles qui s'opposent ».
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 6. Plastique : de minuscules morceaux de plastique retombent sur l'Everest
+
+Fil : science · 1★ · source : Communications Earth & Environment · page lue : oui (2946 caractères) · https://www.nature.com/articles/s43247-026-04206-3
+
+**Actuel (publié)**
+
+- **Titre** : Plastique : de minuscules morceaux de plastique retombent sur l'Everest
+- **Avant** : On savait que des polluants venus de loin atteignent l'Himalaya, mais la quantité de plastique apportée par l'air restait mal connue.
+- **Découverte** : Pendant un an, des chercheurs ont mesuré les retombées de plastique sur le versant nord de l'Everest, à deux stations d'altitude. Les dépôts sont plus importants à la station Qomolangma qu'au camp de base. Ils estiment qu'environ 56 tonnes de microplastiques tombent chaque année sur le plateau tibétain au-dessus de 4 000 mètres.
+- **Et après** : Et après ? Ces plastiques pourraient poser des risques pour l'environnement de la région, mais l'étude ne mesure pas directement ces effets. L'estimation repose sur des mesures faites sur une seule pente de montagne.
 - **Mots** : (aucun)
 - **Type** : terrain
 
 **Final après relecture (haiku)**
 
-- **Titre** : Océan : les repas d'étoiles de mer laissent souvent du corail vivant
-- **Avant** : Depuis les années 1960, les explosions de ces étoiles de mer ont détruit de vastes zones de la Grande Barrière de corail. On les jugeait surtout comme un fléau.
-- **Découverte** : Des chercheurs de l'université de Sydney ont examiné les traces de repas laissées sur des coraux près de la station One Tree Island, dans des zones protégées où ces étoiles sont peu nombreuses. Dans près de 75 % des cas, du tissu vivant subsistait après leur passage, car chaque repas reste limité. En mangeant les coraux à croissance rapide, qui prennent beaucoup de place, elles pourraient laisser la place aux coraux à croissance plus lente.
-- **Et après** : Cette idée pourrait changer la façon de gérer les explosions : retirer toutes les étoiles n'est peut-être pas le meilleur choix une fois l'explosion maîtrisée. Mais cet effet n'a été observé que dans des zones protégées, et il ne fonctionne que si les étoiles restent sous contrôle.
-- **Mots** : (aucun)
+- **Titre** : Pollution : l'air apporte des microplastiques sur les pentes de l'Everest
+- **Avant** : Des polluants venus de loin atteignent déjà l'Himalaya, mais les apports de plastique par l'air restaient mal connus sur le plateau tibétain.
+- **Découverte** : Une équipe chinoise a mesuré pendant un an les retombées de microplastiques sur le versant nord de l'Everest. À la station Qomolangma, elles étaient environ 2,8 fois plus fortes qu'au camp de base : 64 contre 23 particules par mètre carré et par jour. En extrapolant ces mesures, les auteurs estiment à 56 tonnes par an l'apport de l'air sur le plateau tibétain au-dessus de 4 000 mètres.
+- **Et après** : Cela montre que l'air est un chemin efficace pour apporter le plastique jusqu'à ces hauts plateaux, avec des risques écologiques possibles. Mais les effets réels ne sont pas mesurés, et l'estimation de 56 tonnes repose sur une seule année et une seule pente de montagne.
+- **Mots** : **Microplastique** → Fragment de plastique plus petit que 5 millimètres, trop petit pour être vu facilement. Il vient de l'usure des objets en plastique.
 - **Type** : terrain
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « leur rôle dans l'équilibre du récif restait peu étudié » → L'article ne dit pas que ce rôle était peu étudié ; il présente seulement une recherche nouvelle. Cette affirmation n'est pas dans la source. | [forme] « elle pourrait laisser la place aux espèces plus lentes » → Le pronom « elle » n'a pas d'antécédent clair (les étoiles de mer, au pluriel). La tournure est aussi floue : « espèces plus lentes » doit être précisé en coraux à croissance lente.
+- _Défauts trouvés par le relecteur_ : [mot] « Il vient de l'usure des objets en plastique et se retrouve partout, jusque dans l'air. » → La définition du mot à connaître dépasse 25 mots (environ 29 mots au total), ce qui ne respecte pas la règle de longueur.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Océan : les repas d'étoiles de mer laissent souvent du corail vivant
-- **Avant** : Depuis les années 1960, les explosions de ces étoiles de mer ont détruit de vastes zones de la Grande Barrière de corail. On les jugeait surtout comme un fléau, et leur rôle dans l'équilibre du récif restait peu étudié.
-- **Découverte** : Des chercheurs de l'université de Sydney ont examiné les traces de repas laissées sur des coraux près de la station One Tree Island, dans des zones protégées où ces étoiles sont peu nombreuses. Dans près de 75 % des cas, du tissu vivant subsistait après leur passage, car chaque repas reste limité. En mangeant les coraux à croissance rapide, qui prennent beaucoup de place, elle pourrait laisser la place aux espèces plus lentes.
-- **Et après** : Cette idée pourrait changer la façon de gérer les explosions : retirer toutes les étoiles n'est peut-être pas le meilleur choix une fois l'explosion maîtrisée. Mais cet effet n'a été observé que dans des zones protégées, et il ne fonctionne que si les étoiles restent sous contrôle.
-- **Mots** : (aucun)
+- **Titre** : Pollution : l'air apporte des microplastiques sur les pentes de l'Everest
+- **Avant** : Des polluants venus de loin atteignent déjà l'Himalaya, mais les apports de plastique par l'air restaient mal connus sur le plateau tibétain.
+- **Découverte** : Une équipe chinoise a mesuré pendant un an les retombées de microplastiques sur le versant nord de l'Everest. À la station Qomolangma, elles étaient environ 2,8 fois plus fortes qu'au camp de base : 64 contre 23 particules par mètre carré et par jour. En extrapolant ces mesures, les auteurs estiment à 56 tonnes par an l'apport de l'air sur le plateau tibétain au-dessus de 4 000 mètres.
+- **Et après** : Cela montre que l'air est un chemin efficace pour apporter le plastique jusqu'à ces hauts plateaux, avec des risques écologiques possibles. Mais les effets réels ne sont pas mesurés, et l'estimation de 56 tonnes repose sur une seule année et une seule pente de montagne.
+- **Mots** : **Microplastique** → Fragment de plastique plus petit que 5 millimètres, trop petit pour être vu facilement. Il vient de l'usure des objets en plastique et se retrouve partout, jusque dans l'air.
 - **Type** : terrain
 
-- _Faits relevés_ : Étude de l'université de Sydney sur la Grande Barrière de corail, menée à la station One Tree Island. | Les zones étudiées sont des aires protégées où les étoiles de mer restent peu nombreuses. | Dans près de 75 % des repas observés, du tissu de corail vivant subsistait après le passage de l'étoile. | À chaque repas, l'étoile consomme une quantité assez régulière de corail, sans tout détruire. | Les coraux à croissance rapide ne repoussaient pas sur les zones broutées ; les espèces plus lentes, elles, repoussaient. | Depuis les années 1960, quatre grandes explosions de population ont été observées, environ une tous les 15 ans. | Les chercheurs préviennent que les grosses explosions restent une menace sérieuse pour les récifs. | Ils suggèrent qu'après une explosion maîtrisée, éliminer toutes les étoiles n'est peut-être pas nécessaire.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il présente un résultat surprenant : ces étoiles laissent souvent du corail vivant, alors qu'on les jugeait surtout destructrices.
-- _Jargon_ : explosions de population : remplacé par « explosions du nombre » | élimination des étoiles : remplacé par « retrait » | hypothèse de la perturbation intermédiaire : non reprise dans la fiche, car l'article ne demande pas de la connaître pour comprendre
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Faits relevés_ : Pendant un an, des chercheurs ont mesuré les dépôts de particules de plastique sur le versant nord de l'Everest. | Les mesures ont été faites à deux stations : la station Qomolangma et le camp de base de l'Everest. | Les retombées sont plus fortes à la station Qomolangma : 64 contre 23 dans le camp de base (par mètre carré et par jour). | Pendant la mousson, les retombées viennent surtout de sources proches, par la pluie. | Hors mousson, les retombées viennent surtout d'apports venus de loin par le continent. | Les nanoplastiques, encore plus petits, sont plus nombreux à Qomolangma sur cinq mois de mesures. | En extrapolant, les auteurs estiment à 56,4 tonnes par an l'apport de microplastiques par l'air sur le plateau tibétain au-dessus de 4 000 mètres. | Les auteurs soulignent des risques écologiques possibles malgré de faibles concentrations dans l'air ; ces effets ne sont pas mesurés.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il apporte un an de mesures sur le versant nord de l'Everest et une estimation pour tout le plateau tibétain au-dessus de 4 000 mètres.
+- _Jargon_ : microplastiques : expliqué en quelques mots dans le texte | nanoplastiques : remplacé par « plastiques encore plus petits » | dépôts : remplacé par « retombées » | extrapolation : remplacé par « en calculant à partir de ces mesures »
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 9. Satellites : une IA de Google écrit un poème depuis l'espace
+## 7. Batteries : une pile vivante inspirée de l'intestin produit 8 fois plus d'électricité
 
-Fil : tech · 2★ · source : Clubic · page lue : oui (6000 caractères) · https://www.clubic.com/actualite-637000-un-satellite-une-ia-et-un-poeme-google-vient-de-reussir-une-experience-assez-folle-dans-l-espace.html
+Fil : tech · 1★ · source : New Atlas · page lue : oui (6000 caractères) · https://newatlas.com/energy/villi-small-intestine-inspired-microbial-fuel-cell/
 
 **Actuel (publié)**
 
-- **Titre** : Satellites : une IA de Google écrit un poème depuis l'espace
-- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont jusqu'ici installés sur Terre. En novembre 2025, Google a présenté son projet Suncatcher, qui vise à en installer en orbite.
-- **Découverte** : Google a lancé le 1er octobre un satellite de la taille d'un réfrigérateur, équipé de quatre puces d'IA, par une fusée Falcon 9 de SpaceX. Le modèle Gemma 4 a produit en orbite un haïku, la première réponse d'IA jamais générée par une puce de centre de données dans l'espace. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
-- **Et après** : Ce n'est encore qu'un prototype qui ne tourne que par courtes séquences. Google veut un jour alimenter des centres de données en orbite grâce à l'énergie du Soleil, ce qui reste à prouver à grande échelle.
-- **Mots** : (aucun)
-- **Type** : demonstration
+- **Titre** : Batteries : une pile vivante inspirée de l'intestin produit 8 fois plus d'électricité
+- **Avant** : Les piles à bactéries, qui produisent de l'électricité à partir de matière organique, restent surtout au stade de la recherche, en partie parce qu'elles donnent peu de courant.
+- **Découverte** : Des chercheurs de Binghamton University ont conçu une biopile dont l'électrode imite les villosités de l'intestin grêle, ces petits prolongements en forme de doigts. À volume égal, elle produit plus de huit fois plus d'électricité qu'une version à surface plane.
+- **Et après** : Il s'agit d'un prototype de laboratoire, et le résultat n'a pas encore été validé dans des conditions réelles. Ce type de pile pourrait un jour traiter les eaux usées ou alimenter de petits appareils, mais cela reste à démontrer.
+- **Mots** : **Villosités** → Petits prolongements en forme de doigts qui tapissent la paroi de l'intestin grêle.
+- **Type** : prototype
 
 **Final après relecture (haiku)**
 
-- **Titre** : Satellites : Google fait écrire un poème à son IA depuis l'orbite
-- **Avant** : Les intelligences artificielles tournent aujourd'hui dans des centres de données sur Terre. Google veut en installer en orbite, où le Soleil fournit l'énergie, mais il fallait d'abord vérifier que les puces tiennent là-haut.
-- **Découverte** : Google a lancé le 1er octobre un satellite de la taille d'un réfrigérateur, équipé de quatre puces d'IA, avec une fusée Falcon 9 de SpaceX. Lors d'un passage au-dessus de la Norvège, le modèle Gemma 4 a répondu à une demande de haïku en orbite. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
-- **Et après** : Ce n'est encore qu'un prototype, avec environ 1 kilowatt, la puissance d'un sèche-cheveux, pour une mission d'un an. Google estime que le prix des lancements devra baisser, vers 2035, pour que ces centres soient rentables.
-- **Mots** : (aucun)
+- **Titre** : Batteries : des doigts de gel donnent 8 fois plus d'électricité par volume
+- **Avant** : Les piles à bactéries produisent du courant à partir de matière organique, mais restent surtout en recherche, en partie parce qu'elles donnent peu d'électricité. Une électrode plate offre peu de surface aux bactéries, et les matériaux poreux finissent par se boucher.
+- **Découverte** : Des chercheurs de Binghamton University ont imité les villosités de l'intestin grêle : des doigts de gel conducteur où les bactéries se développent. Pour un même volume, cette électrode produit 8,3 fois plus d'électricité qu'une électrode plate. Le meilleur doigt atteint un pic d'environ 8 millionièmes de watt.
+- **Et après** : Ce modèle pourrait un jour alimenter de petits capteurs installés dans les canalisations d'eaux usées, pour surveiller l'environnement. Mais la puissance reste très faible pour les appareils courants, et les tests n'ont été faits qu'en laboratoire.
+- **Mots** : **Villosités** → Petits prolongements en forme de doigts qui tapissent la paroi de l'intestin grêle et augmentent sa surface d'absorption.
 - **Type** : prototype
 
-- _Défauts trouvés par le relecteur_ : aucun
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Batteries : une électrode à doigts, 8 fois plus de courant qu'une plate » → L'article parle d'une puissance par volume (66,45 contre 8,04 µW/cm³), pas d'un courant. Le titre doit aussi préciser que la comparaison se fait pour un même volume. | [non_soutenu] « restent surtout en recherche, car elles donnent peu d'électricité » → L'article dit que c'est « en partie » à cause de leur faible puissance. « Car » en fait l'unique cause.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Satellites : Google fait écrire un poème à son IA depuis l'orbite
-- **Avant** : Les intelligences artificielles tournent aujourd'hui dans des centres de données sur Terre. Google veut en installer en orbite, où le Soleil fournit l'énergie, mais il fallait d'abord vérifier que les puces tiennent là-haut.
-- **Découverte** : Google a lancé le 1er octobre un satellite de la taille d'un réfrigérateur, équipé de quatre puces d'IA, avec une fusée Falcon 9 de SpaceX. Lors d'un passage au-dessus de la Norvège, le modèle Gemma 4 a répondu à une demande de haïku en orbite. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
-- **Et après** : Ce n'est encore qu'un prototype, avec environ 1 kilowatt, la puissance d'un sèche-cheveux, pour une mission d'un an. Google estime que le prix des lancements devra baisser, vers 2035, pour que ces centres soient rentables.
-- **Mots** : (aucun)
+- **Titre** : Batteries : une électrode à doigts, 8 fois plus de courant qu'une plate
+- **Avant** : Les piles à bactéries produisent du courant à partir de matière organique, mais restent surtout en recherche, car elles donnent peu d'électricité. Une électrode plate offre peu de surface aux bactéries, et les matériaux poreux finissent par se boucher.
+- **Découverte** : Des chercheurs de Binghamton University ont imité les villosités de l'intestin grêle : des doigts de gel conducteur où les bactéries se développent. Pour un même volume, cette électrode produit 8,3 fois plus d'électricité qu'une électrode plate. Le meilleur doigt atteint un pic d'environ 8 millionièmes de watt.
+- **Et après** : Ce modèle pourrait un jour alimenter de petits capteurs installés dans les canalisations d'eaux usées, pour surveiller l'environnement. Mais la puissance reste très faible pour les appareils courants, et les tests n'ont été faits qu'en laboratoire.
+- **Mots** : **Villosités** → Petits prolongements en forme de doigts qui tapissent la paroi de l'intestin grêle et augmentent sa surface d'absorption.
 - **Type** : prototype
 
-- _Faits relevés_ : Google a lancé le 1er octobre un satellite de la taille d'un réfrigérateur, avec une fusée Falcon 9 de SpaceX. | Le satellite porte quatre puces d'IA de Google, fournies avec l'entreprise Planet pour l'engin. | Le modèle Gemma 4, installé dans le satellite, a écrit un haïku lorsque l'engin survolait le Svalbard, en Norvège. | Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée. | Le satellite dispose d'environ 1 kilowatt d'électricité pour une mission prévue sur un an. | Le lancement est estimé à environ 7 000 dollars le kilo, selon le site The Register, qui évalue aussi la masse du satellite à environ 500 kilos. | Google estime que SpaceX pourrait proposer des lancements à un tarif rentable vers 2035. | En 2027, Google prévoit d'envoyer deux satellites reliés entre eux pour tester des liaisons optiques.
-- _Nouveauté selon l'article_ : Selon Travis Beals, directeur de l'équipe de recherche chez Google, c'est « la toute première réponse d'IA produite en orbite par une puce de centre de données » ; le projet Suncatcher, lui, avait été dévoilé en novembre 2025.
-- _Jargon_ : TPU : remplacé par « puces d'IA ». | Gemma 4 : expliqué comme « le modèle d'IA de Google ». | Orbite : expliqué comme « autour de la Terre ».
+- _Faits relevés_ : Des chercheurs de Binghamton University ont conçu une pile à bactéries dont l'électrode imite les villosités de l'intestin grêle. | Ces petits prolongements en forme de doigts augmentent la surface où les bactéries peuvent se développer. | Pour un même volume, la version en doigts produit 8,3 fois plus d'électricité que l'électrode plate testée. | Le meilleur doigt atteint un pic de 8,35 microwatts, soit environ 8 millionièmes de watt. | La pile maintient environ 0,75 volt pendant au moins 14 heures, avec une alimentation continue en nutriments. | Les tests ont eu lieu en laboratoire, dont un dispositif simulant une canalisation d'eaux usées. | Les chercheurs jugent la puissance trop faible pour les appareils électroniques courants.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; la nouveauté est une électrode en forme de doigts, qui produit 8,3 fois plus que la même pile à électrode plate, alors que les piles à bactéries existaient déjà.
+- _Jargon_ : biobatterie : remplacé par « pile à bactéries » | électrode : expliqué (la partie qui capte les électrons produits par les bactéries) | villosités : mot à connaître
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 10. Momification : une plante du désert entrait dans l'embaumement égyptien
+## 8. Batteries : un nouveau liquide permet à l'étain de stocker plus d'énergie
 
-Fil : science · 2★ · source : Phys.org · page lue : NON (0 caractères) · https://phys.org/news/2026-10-year-mummy-yields-molecular-evidence.html
+Fil : tech · 1★ · source : Tech Xplore · page lue : NON (0 caractères) · https://techxplore.com/news/2026-10-electrolyte-redesign-tin-full-capacity.html
 
 **Actuel (publié)**
 
-- **Titre** : Momification : une plante du désert entrait dans l'embaumement égyptien
-- **Avant** : On savait que les Égyptiens anciens employaient diverses substances pour conserver les corps, mais la composition exacte de ces mélanges restait mal connue.
-- **Découverte** : Une équipe de l'université de Marbourg a analysé une tête momifiée vieille d'environ 2 700 ans. Elle y a trouvé des traces moléculaires d'aloès, une plante grasse du désert, ce qui constitue la première preuve de ce type. Les chercheurs ont combiné analyse de produits naturels, égyptologie et histoire de la pharmacie.
-- **Et après** : Ce résultat permet de mieux comprendre les recettes d'embaumement et les savoirs des anciens Égyptiens. Il reste à vérifier cette découverte sur d'autres momies.
-- **Mots** : **Aloès** → Plante grasse et épineuse originaire d'Afrique et d'Arabie, dont le suc est utilisé depuis très longtemps.
-- **Type** : donnees
+- **Titre** : Batteries : un nouveau liquide permet à l'étain de stocker plus d'énergie
+- **Avant** : Les batteries à flux à base d'étain, en milieu acide, n'utilisent qu'une réaction à deux électrons sur quatre possibles. La moitié de leur capacité théorique reste donc inutilisée.
+- **Découverte** : Des chercheurs chinois ont modifié le liquide, appelé électrolyte, qui entoure l'étain dans la batterie. Ce changement permet à l'étain d'utiliser la réaction à quatre électrons et d'exploiter sa capacité complète, selon les essais rapportés.
+- **Et après** : Et après ? Il reste à vérifier la durée de vie et la tenue de ces batteries en conditions réelles. L'article ne parle pas encore d'un produit commercial.
+- **Mots** : **Électrolyte** → Liquide qui conduit l'électricité entre les deux côtés d'une batterie et permet les réactions chimiques qui stockent ou libèrent l'énergie.
+- **Type** : prototype
 
 _Article illisible : pas de réécriture._
 
 
 ---
 
-## 11. Archéologie : un mur de 4 000 ans révèle une défense ancienne
+## 9. Préhistoire : une lance en bois tue sans doute un Néandertal
 
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030003022.htm
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261029072126.htm
 
 **Actuel (publié)**
 
-- **Titre** : Archéologie : un mur de 4 000 ans révèle une défense ancienne
-- **Avant** : Jusqu'ici, on connaissait peu de constructions militaires très anciennes en Afrique du Nord, en dehors de la vallée du Nil. Le site d'Oued Beht, au Maroc, était déjà connu pour un vaste complexe agricole vieux de plus de 5 000 ans.
-- **Découverte** : Des archéologues ont fouillé le site d'Oued Beht, dans le nord-ouest du Maroc, en 2023. Ils y ont mis au jour une grande construction en forme de mur, sans doute destinée à se défendre. Elle date d'environ 4 000 à 3 500 ans, ce qui en fait la plus ancienne de ce type connue dans la région hors de la vallée du Nil.
-- **Et après** : Les chercheurs veulent maintenant savoir qui a bâti ce mur et contre quelle menace. Ils pensent qu'il répondait surtout à des rivalités pour la terre et les ressources, et il doit encore être confirmé par d'autres sites.
-- **Mots** : (aucun)
+- **Titre** : Préhistoire : une lance en bois tue sans doute un Néandertal
+- **Avant** : Les traces de violence mortelle chez les humains anciens restent rares. Les armes en bois se conservent très mal, donc on sait peu de choses sur leur usage.
+- **Découverte** : Dans une grotte du Kurdistan irakien, des chercheurs ont examiné une omoplate de Néandertal vieille d'environ 75 000 ans. Un trou circulaire net de 15 millimètres suggère qu'une lance en bois, à pointe taillée, a traversé la poitrine. Selon leur reconstitution, elle a percé un poumon et de gros vaisseaux sanguins.
+- **Et après** : Et après ? Ce serait l'une des plus anciennes traces d'un meurtre à la lance en bois connues, mais l'interprétation reste une hypothèse fondée sur une seule pièce. L'homme avait aussi survécu à une grave blessure au visage, ce qui suggère que d'autres Néandertaliens l'ont soigné.
+- **Mots** : **Omoplate** → Os plat et large de l'épaule, qui relie le bras au tronc.
 - **Type** : terrain
 
 **Final après relecture (haiku)**
 
-- **Titre** : Archéologie : au Maroc, un rempart de 4 000 ans barrait une crête
-- **Avant** : Selon les chercheurs, le site d'Oued Beht abritait déjà un vaste complexe agricole vieux de 4 900 à 5 400 ans. Les murs repérés dès les années 1930 restaient mal datés, et leur rôle défensif n'était pas établi.
-- **Découverte** : Lors de fouilles menées en 2023, des chercheurs ont mis au jour, à Oued Beht, dans le nord-ouest du Maroc, un ensemble formé d'un fossé, d'un talus et d'un mur. Il coupait en travers une crête étroite entre la rivière et un ravin, et isolait sa pointe sud. Daté d'environ 4 000 à 3 500 ans, il serait, selon les auteurs, la plus ancienne construction défensive confirmée au nord de l'Afrique hors d'Égypte.
-- **Et après** : Les chercheurs ignorent encore quelle menace ce mur devait contrer : des conflits pour la terre et les ressources paraissent plus probables que des envahisseurs. Sa construction a demandé planification et main-d'œuvre, ce qui laisse supposer une communauté capable d'organiser de grands chantiers.
-- **Mots** : (aucun)
+- **Titre** : Préhistoire : une lance en bois a sans doute tué un Néandertal
+- **Avant** : Les traces de violence mortelle chez les humains anciens sont rares. Les armes en bois se conservent très mal, donc on sait peu de choses sur leur usage.
+- **Découverte** : Des chercheurs de l'université de Cambridge ont examiné une omoplate de Néandertal trouvée dans la grotte de Shanidar, au Kurdistan irakien. Un trou circulaire de 15 millimètres de diamètre suggère qu'une lance en bois, à pointe taillée, a traversé la poitrine. Selon leur reconstitution, elle a touché un poumon et probablement de gros vaisseaux sanguins.
+- **Et après** : Cette découverte aide à comprendre la violence et les armes des Néandertaliens. Mais c'est une hypothèse fondée sur une seule pièce, et les chercheurs ne savent pas si le coup était volontaire ou accidentel.
+- **Mots** : **Omoplate** → Os plat et large de l'épaule, qui relie le bras au tronc. Il bouge avec les muscles du bras et du dos.
 - **Type** : terrain
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « Il faudra d'autres sites pour mieux comprendre la société qui l'a bâti. » → L'article ne dit pas qu'il faudra d'autres sites. Il dit seulement que la construction soulève d'importantes questions sur la société qui l'a bâtie. | [forme] « un ensemble de fossé, talus et mur » → Tournure maladroite : « fossé » est au singulier après « un ensemble de » et la liste n'est pas correctement construite.
+- _Défauts trouvés par le relecteur_ : [titre] « Néandertaliens : une omoplate de 75 000 ans révèle un coup de lance mortel au cœur » → Le titre fait plus de 12 mots et affirme comme certain un coup de lance mortel visant le cœur, alors que l'article dit que le Néandertal « a peut-être été tué » et que le coup était peut-être intentionnel.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Archéologie : au Maroc, un rempart de 4 000 ans barrait une crête
-- **Avant** : Selon les chercheurs, le site d'Oued Beht abritait déjà un vaste complexe agricole vieux de 4 900 à 5 400 ans. Les murs repérés dès les années 1930 restaient mal datés, et leur rôle défensif n'était pas établi.
-- **Découverte** : Lors de fouilles menées en 2023, des chercheurs ont mis au jour, à Oued Beht, dans le nord-ouest du Maroc, un ensemble de fossé, talus et mur. Il coupait en travers une crête étroite entre la rivière et un ravin, et isolait sa pointe sud. Daté d'environ 4 000 à 3 500 ans, il serait, selon les auteurs, la plus ancienne construction défensive confirmée au nord de l'Afrique hors d'Égypte.
-- **Et après** : Les chercheurs ignorent encore quelle menace ce mur devait contrer : des conflits pour la terre et les ressources paraissent plus probables que des envahisseurs. Il faudra d'autres sites pour mieux comprendre la société qui l'a bâti.
-- **Mots** : (aucun)
+- **Titre** : Néandertaliens : une omoplate de 75 000 ans révèle un coup de lance mortel au cœur
+- **Avant** : Les traces de violence mortelle chez les humains anciens sont rares. Les armes en bois se conservent très mal, donc on sait peu de choses sur leur usage.
+- **Découverte** : Des chercheurs de l'université de Cambridge ont examiné une omoplate de Néandertal trouvée dans la grotte de Shanidar, au Kurdistan irakien. Un trou circulaire de 15 millimètres de diamètre suggère qu'une lance en bois, à pointe taillée, a traversé la poitrine. Selon leur reconstitution, elle a touché un poumon et probablement de gros vaisseaux sanguins.
+- **Et après** : Cette découverte aide à comprendre la violence et les armes des Néandertaliens. Mais c'est une hypothèse fondée sur une seule pièce, et les chercheurs ne savent pas si le coup était volontaire ou accidentel.
+- **Mots** : **Omoplate** → Os plat et large de l'épaule, qui relie le bras au tronc. Il bouge avec les muscles du bras et du dos.
 - **Type** : terrain
 
-- _Faits relevés_ : Le site d'Oued Beht se trouve dans le nord-ouest du Maroc, sur une crête qui domine une rivière. | De nouvelles fouilles en 2023 ont dégagé un fossé, un talus et un mur, construits en plusieurs phases. | L'ensemble barre une crête étroite entre la rivière et un ravin, et isole la pointe sud de la crête. | Les datations au carbone 14 situent la construction vers 4 000 à 3 500 ans. | L'article juge la construction probablement défensive, mais ignore quelle menace elle devait contrer. | Selon les auteurs, la concurrence pour la terre et les ressources, ou le contrôle des déplacements, est plus probable que des envahisseurs. | Au Moyen Âge (XIe au XIIIe siècle), le même dispositif a été reconstruit, et un hameau ainsi qu'un cimetière ont été installés à proximité. | Des murs avaient été repérés dès les années 1930, mais leur nature et leur date restaient incertaines.
-- _Nouveauté selon l'article_ : Selon les auteurs, c'est la plus ancienne construction défensive confirmée au nord de l'Afrique hors d'Égypte ; des murs avaient été repérés dès les années 1930, mais leur date et leur nature restaient incertaines.
-- _Jargon_ : éperon barré : remplacé par « pointe de crête coupée par des murs » | radiocarbone : expliqué en quelques mots (datation au carbone 14) | âge du bronze : remplacé par « époque équivalente à celle de l'Europe occidentale à la même période »
+- _Faits relevés_ : Une omoplate (os de l'épaule) de Néandertal, vieille d'environ 75 000 ans, a été trouvée dans une grotte du Kurdistan irakien, nommée Shanidar. | L'os porte un trou circulaire net de 15 millimètres de diamètre. | Les chercheurs pensent qu'une lance en bois taillé en pointe a traversé la poitrine. | La reconstitution suggère que la lance a traversé un poumon et probablement de gros vaisseaux sanguins, causant une mort rapide. | Les chercheurs ne peuvent pas dire si l'attaque était volontaire ou si c'était un accident de chasse. | Les chercheurs considèrent la violence entre Néandertaliens comme l'explication la plus simple. | Des lances en bois plus anciennes existent, comme celles de Schöningen en Allemagne, vieilles d'environ 200 000 ans.
+- _Nouveauté selon l'article_ : Selon l'article, ce serait peut-être la plus ancienne trace de mort causée par une lance en bois dans le registre fossile des hominines ; l'article dit « potentially » et « could represent », et ces lances en bois existaient déjà ailleurs.
+- _Jargon_ : Omoplate → remplacé par « os de l'épaule ». | Hominines → remplacé par « humains anciens ». | Vaisseaux sanguins → expliqué par les mots courants « gros vaisseaux sanguins ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 12. Ancêtres : un fossile de singe découvert en Égypte bouscule nos origines
+## 10. Singes : des chercheurs identifient deux nouvelles espèces en Amazonie
 
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261031011638.htm
+Fil : science · 2★ · source : Communications Biology · page lue : oui (6000 caractères) · https://www.nature.com/articles/s42003-026-11187-8
 
 **Actuel (publié)**
 
-- **Titre** : Ancêtres : un fossile de singe découvert en Égypte bouscule nos origines
-- **Avant** : Les chercheurs pensaient que les premiers grands singes, dont la lignée de l'humain, étaient apparus surtout en Afrique de l'Est. Aucun fossile certain de singe de cette époque n'avait été trouvé en Afrique du Nord.
-- **Découverte** : Une équipe internationale décrit une nouvelle espèce, Masripithecus moghraensis, à partir de restes trouvés à Wadi Moghra, dans le nord de l'Égypte. Âgé de 17 à 18 millions d'années, ce fossile est le premier singe certain découvert en Afrique du Nord. L'étude est publiée dans la revue Science.
-- **Et après** : Les chercheurs suggèrent que le nord de l'Afrique et le Moyen-Orient ont pu jouer un rôle central dans l'origine des grands singes, dont la lignée humaine. D'autres fossiles seront nécessaires pour confirmer cette hypothèse.
-- **Mots** : (aucun)
-- **Type** : terrain
+- **Titre** : Singes : des chercheurs identifient deux nouvelles espèces en Amazonie
+- **Avant** : Les singes hurleurs, du genre Alouatta, vivent en Amérique du Sud. Onze des seize groupes reconnus sont menacés, et leur diversité restait mal connue.
+- **Découverte** : Des chercheurs ont analysé le génome de 11 espèces de singes hurleurs. Ils montrent que la plupart des formes amazoniennes sont apparues il y a moins d'un million d'années, et décrivent deux espèces nouvelles à partir de l'ADN et de caractères du corps.
+- **Et après** : Ces résultats peuvent aider à protéger des singes menacés par la déforestation, la fragmentation des forêts et la chasse. Les deux espèces décrites devront être étudiées sur le terrain pour mieux connaître leur répartition.
+- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, inscrite dans son ADN.
+- **Type** : donnees
 
 **Final après relecture (haiku)**
 
-- **Titre** : Origines humaines : une mâchoire de singe trouvée en Égypte
-- **Avant** : Pendant des décennies, on pensait que les premiers singes et leurs proches vivaient surtout en Afrique de l'Est. Dans le nord de l'Afrique, on avait trouvé des singes anciens, mais jamais de vrai singe de la même époque.
-- **Découverte** : Une équipe égyptienne et américaine a décrit une nouvelle espèce à partir d'une mâchoire trouvée à Wadi Moghra, dans le nord de l'Égypte. Âgé de 17 à 18 millions d'années, c'est le premier fossile de singe certain trouvé en Afrique du Nord. Ses dents suggèrent un régime surtout à base de fruits, avec des aliments plus durs en cas de besoin.
-- **Et après** : Selon les chercheurs, le nord de l'Afrique et le Moyen-Orient ont pu être le berceau de l'ancêtre commun des grands singes, dont l'humain. Ce n'est qu'une hypothèse : elle repose sur une seule mâchoire, et d'autres fossiles sont nécessaires pour la confirmer.
-- **Mots** : (aucun)
-- **Type** : terrain
+- **Titre** : Singes : l'ADN de 11 espèces de singes hurleurs révèle deux espèces inconnues
+- **Avant** : Les singes hurleurs d'Amérique du Sud sont nombreux à être menacés, et 11 de leurs 16 formes reconnues le sont. Leur diversité restait mal connue, surtout en Amazonie.
+- **Découverte** : Des chercheurs ont analysé l'ADN complet de 11 des 13 espèces de singes hurleurs. Ils montrent que la plupart des formes amazoniennes sont apparues il y a moins d'un million d'années. Ils décrivent deux espèces nouvelles, à partir de l'ADN et de caractères du corps observés sur de nombreux spécimens.
+- **Et après** : Ces résultats peuvent aider à protéger ces singes menacés par la déforestation, la fragmentation des forêts et la chasse. Les deux nouvelles espèces pourraient déjà être menacées, car elles n'avaient pas encore été décrites.
+- **Mots** : **Spécimen** → Un individu ou un échantillon conservé et étudié par les scientifiques, par exemple dans un musée.
+- **Type** : donnees
 
-- _Défauts trouvés par le relecteur_ : [titre] « Origines humaines : une mâchoire de singe trouvée en Égypte suggère un autre berceau » → Le titre compte 13 mots, au-delà de la limite de 12. Le verbe « suggère » est vague et ne dit pas ce qui a été vu.
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Les deux espèces décrites devront être étudiées sur le terrain pour connaître leur répartition. » → L'article ne dit pas que ces espèces devront être étudiées sur le terrain pour connaître leur répartition. Il dit seulement qu'elles n'avaient pas encore été décrites et pourraient déjà être menacées. | [mot] « Génome » → Le mot « génome » n'apparaît pas dans la fiche : le texte parle d'ADN complet. Le mot à connaître est donc mal choisi.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Origines humaines : une mâchoire de singe trouvée en Égypte suggère un autre berceau
-- **Avant** : Pendant des décennies, on pensait que les premiers singes et leurs proches vivaient surtout en Afrique de l'Est. Dans le nord de l'Afrique, on avait trouvé des singes anciens, mais jamais de vrai singe de la même époque.
-- **Découverte** : Une équipe égyptienne et américaine a décrit une nouvelle espèce à partir d'une mâchoire trouvée à Wadi Moghra, dans le nord de l'Égypte. Âgé de 17 à 18 millions d'années, c'est le premier fossile de singe certain trouvé en Afrique du Nord. Ses dents suggèrent un régime surtout à base de fruits, avec des aliments plus durs en cas de besoin.
-- **Et après** : Selon les chercheurs, le nord de l'Afrique et le Moyen-Orient ont pu être le berceau de l'ancêtre commun des grands singes, dont l'humain. Ce n'est qu'une hypothèse : elle repose sur une seule mâchoire, et d'autres fossiles sont nécessaires pour la confirmer.
-- **Mots** : (aucun)
-- **Type** : terrain
+- **Titre** : Singes : l'ADN de 11 espèces de singes hurleurs révèle deux espèces inconnues
+- **Avant** : Les singes hurleurs d'Amérique du Sud sont nombreux à être menacés, et 11 de leurs 16 formes reconnues le sont. Leur diversité restait mal connue, surtout en Amazonie.
+- **Découverte** : Des chercheurs ont analysé l'ADN complet de 11 des 13 espèces de singes hurleurs. Ils montrent que la plupart des formes amazoniennes sont apparues il y a moins d'un million d'années. Ils décrivent deux espèces nouvelles, à partir de l'ADN et de caractères du corps observés sur de nombreux spécimens.
+- **Et après** : Ces résultats peuvent aider à protéger ces singes menacés par la déforestation, la fragmentation des forêts et la chasse. Les deux espèces décrites devront être étudiées sur le terrain pour connaître leur répartition.
+- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, inscrite dans son ADN. Il sert à comparer les espèces entre elles.
+- **Type** : donnees
 
-- _Faits relevés_ : Un fossile de singe âgé de 17 à 18 millions d'années a été trouvé à Wadi Moghra, dans le nord de l'Égypte. | L'espèce a été nommée Masripithecus moghraensis. | Le fossile ne comprend qu'une partie de mâchoire inférieure. | La mâchoire est très solide, avec de grosses canines et prémolaires, et des molaires adaptées à broyer. | Les chercheurs pensent que l'animal mangeait surtout des fruits, mais pouvait aussi manger des aliments plus durs comme des noix ou des graines. | Les fossiles ont été découverts lors de campagnes menées en 2023 et 2024. | Une analyse évolutive place cette espèce plus près des singes actuels que les singes connus de la même époque en Afrique de l'Est. | Les analyses de répartition des animaux anciens désignent le nord de l'Afrique et le Moyen-Orient comme lieu probable de l'ancêtre commun de tous les singes vivants. | Les fossiles de singes de cette époque manquaient jusqu'ici en Afrique du Nord, alors que des singes anciens y étaient connus. | L'étude a été menée par l'université de Mansoura (Égypte) et l'université de Californie du Sud (États-Unis).
-- _Nouveauté selon l'article_ : Selon l'article, c'est le premier fossile de singe certain trouvé en Afrique du Nord, alors que des fossiles de singes anciens avaient déjà été trouvés ailleurs en Afrique, en Europe et en Asie.
-- _Jargon_ : Hominoidea (remplacé par « grands singes actuels, dont la lignée humaine ») | Bayésien (remplacé par « méthodes statistiques »)
+- _Faits relevés_ : Les singes hurleurs (genre Alouatta) vivent en Amérique du Sud ; 11 des 16 formes reconnues sont classées menacées par l'UICN. | L'étude porte sur 11 des 13 espèces reconnues de singes hurleurs. | La plupart des formes amazoniennes sont apparues au cours du dernier million d'années. | Les barrières géographiques (fleuves amazoniens, Andes) et les mosaïques savane-forêt ont joué un rôle dans cette diversification. | L'origine du genre serait située à l'ouest des Andes (transandine), selon les reconstructions historiques. | Deux nouvelles espèces sont décrites, à partir de données génomiques et de l'examen de nombreux spécimens. | Les menaces citées sont la déforestation, la fragmentation des habitats et la chasse.
+- _Nouveauté selon l'article_ : Selon l'article, deux espèces nouvelles sont décrites ; l'article ne revendique pas de première.
+- _Jargon_ : Génome : expliqué en quelques mots dans la fiche (mot à connaître). | Espèce, génomique : remplacés par « analyse de l'ADN complet » et « groupes d'animaux ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-Coût total du test : 0.0368 $ · par fiche : 0.0033 $ · tokens moyens par fiche (rédaction + relecture) : entrée 4188, cache lu 11143, cache écrit 0, sortie 5630
+## 11. Cancer : une tumeur passe d'un poisson à un autre
+
+Fil : science · 2★ · source : The Hindu Science · page lue : oui (1464 caractères) · https://www.thehindu.com/sci-tech/science/scientists-unearth-new-instance-of-contagious-cancer-in-animals/article71604404.ece
+
+**Actuel (publié)**
+
+- **Titre** : Cancer : une tumeur passe d'un poisson à un autre
+- **Avant** : Les cancers ne sont habituellement pas contagieux, contrairement aux maladies infectieuses. Seuls trois cas de cancers animaux transmissibles étaient connus jusqu'ici.
+- **Découverte** : Des chercheurs ont étudié un mélanome chez le poisson-chat brun du lac Memphrémagog, situé entre le Québec et le Vermont. Les cellules cancéreuses d'un poisson se sont installées chez un autre et y ont formé des tumeurs, ce qui constitue un nouveau cas connu.
+- **Et après** : Cette découverte pourrait aider à comprendre comment éviter le rejet d'un organe greffé chez l'humain. Il reste à expliquer comment ces cellules échappent au système immunitaire.
+- **Mots** : **Mélanome** → Cancer qui se développe à partir des cellules qui fabriquent le pigment, c'est-à-dire la couleur de la peau.
+- **Type** : terrain
+
+**Final après relecture (haiku)**
+
+- **Titre** : Cancer : des tumeurs passent d'un poisson-chat à un autre dans un lac
+- **Avant** : Les cancers ne se transmettent habituellement pas, contrairement au sida, au Covid-19 ou au paludisme. Jusqu'ici, des scientifiques n'avaient décrit que trois cas où un cancer animal naturel était passé d'un animal à un autre.
+- **Découverte** : Des chercheurs ont étudié un mélanome chez le poisson-chat brun du lac Memphrémagog, entre le Québec et le Vermont. Ce cancer passe d'un poisson à un autre : les cellules tumorales de l'un s'installent chez l'autre et y forment des tumeurs.
+- **Et après** : Cela pourrait donner des pistes pour éviter qu'un organe greffé soit rejeté par le corps humain.
+- **Mots** : **Mélanome** → Cancer qui se développe à partir des cellules qui produisent le pigment de la peau, celui qui la colore.
+- **Type** : terrain
+
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Mais on ne sait pas encore comment ces cellules échappent à la défense de l'organisme. » → L'article ne dit rien sur la manière dont les cellules tumorales échappent à la défense de l'organisme. Cette affirmation n'est pas dans la source.
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Cancer : des tumeurs passent d'un poisson-chat à un autre dans un lac
+- **Avant** : Les cancers ne se transmettent habituellement pas, contrairement au sida, au Covid-19 ou au paludisme. Jusqu'ici, des scientifiques n'avaient décrit que trois cas où un cancer animal naturel était passé d'un animal à un autre.
+- **Découverte** : Des chercheurs ont étudié un mélanome chez le poisson-chat brun du lac Memphrémagog, entre le Québec et le Vermont. Ce cancer passe d'un poisson à un autre : les cellules tumorales de l'un s'installent chez l'autre et y forment des tumeurs.
+- **Et après** : Cela pourrait donner des pistes pour éviter qu'un organe greffé soit rejeté par le corps humain. Mais on ne sait pas encore comment ces cellules échappent à la défense de l'organisme.
+- **Mots** : **Mélanome** → Cancer qui se développe à partir des cellules qui produisent le pigment de la peau, celui qui la colore.
+- **Type** : terrain
+
+- _Faits relevés_ : Étude du mélanome chez le poisson-chat brun du lac Memphrémagog, entre le Québec et le Vermont. | Les cancers ne sont habituellement pas considérés comme contagieux, contrairement au sida, au Covid-19, à la tuberculose ou au paludisme. | Les maladies contagieuses se transmettent par contact direct, par gouttelettes dans l'air ou par des insectes. | Un cancer naît des propres cellules du patient. | Trois cas de cancers animaux devenus contagieux avaient été documentés jusqu'ici. | Dans ces cas, les cellules cancéreuses d'un animal ont formé des tumeurs chez un autre, puis sont allées vers d'autres hôtes. | La découverte pourrait donner des pistes pour éviter qu'un organe greffé soit rejeté par le corps humain.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il rappelle qu'on connaissait déjà trois cas de cancers animaux devenus contagieux.
+- _Jargon_ : Mélanome : mot à connaître, défini dans la fiche. | Système immunitaire : remplacé par « la défense de l'organisme ». | Contagieux : mot courant, expliqué par la comparaison avec les maladies infectieuses.
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 12. Défense : une horloge atomique ultra-précise fonctionne deux semaines en mer
+
+Fil : tech · 1★ · source : The Quantum Insider · page lue : oui (3852 caractères) · https://thequantuminsider.com/2026/10/30/infleqtion-optical-atomic-clock-navy-exercise/
+
+**Actuel (publié)**
+
+- **Titre** : Défense : une horloge atomique ultra-précise fonctionne deux semaines en mer
+- **Avant** : Les horloges atomiques les plus précises restent surtout installées dans des laboratoires ou des bâtiments fixes. Les navires dépendent souvent de signaux extérieurs, comme le GPS, pour se repérer.
+- **Découverte** : L'entreprise Infleqtion a fait fonctionner en continu son horloge atomique optique Tiqker pendant deux semaines à bord du navire de soutien américain RV Merlin. L'essai s'est déroulé pendant un exercice militaire dans le Pacifique, dans la zone d'opérations du sud de la Californie. Il visait à vérifier la précision du temps dans des conditions réelles de mer.
+- **Et après** : Les résultats chiffrés n'ont pas encore été publiés, et l'entreprise doit encore recueillir des données pour intégrer cette horloge aux navires. Il s'agit donc d'un prototype testé en mer, et non d'un produit déployé.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+**Final après relecture (haiku)**
+
+- **Titre** : Défense : une horloge atomique fonctionne deux semaines en mer sans GPS
+- **Avant** : Les navires dépendent souvent du GPS, système de positionnement par satellites, pour l'heure exacte, alors que ces signaux peuvent être brouillés ou falsifiés. La version Tiqker avait déjà été testée en mer en 2025, sur un sous-marin britannique sans équipage.
+- **Découverte** : L'entreprise américaine Infleqtion a fait fonctionner en continu son horloge atomique Tiqker pendant plus de deux semaines à bord du navire de soutien américain RV Merlin. Le test faisait partie d'un exercice militaire de la marine américaine dans le Pacifique, dans la zone d'opérations du sud de la Californie. L'horloge a supporté de fortes variations de température et des vibrations constantes.
+- **Et après** : Selon l'entreprise, une telle horloge pourrait garder l'heure en mer quand le GPS est brouillé, et synchroniser communications et radars. C'est une démonstration en conditions réelles, pas un produit déployé, et les données restent à recueillir avant l'intégration aux navires.
+- **Mots** : **Horloge atomique** → Horloge qui mesure le temps grâce aux vibrations très régulières des atomes, bien plus précise qu'une montre ordinaire.
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : aucun
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Défense : une horloge atomique fonctionne deux semaines en mer sans GPS
+- **Avant** : Les navires dépendent souvent du GPS, système de positionnement par satellites, pour l'heure exacte, alors que ces signaux peuvent être brouillés ou falsifiés. La version Tiqker avait déjà été testée en mer en 2025, sur un sous-marin britannique sans équipage.
+- **Découverte** : L'entreprise américaine Infleqtion a fait fonctionner en continu son horloge atomique Tiqker pendant plus de deux semaines à bord du navire de soutien américain RV Merlin. Le test faisait partie d'un exercice militaire de la marine américaine dans le Pacifique, dans la zone d'opérations du sud de la Californie. L'horloge a supporté de fortes variations de température et des vibrations constantes.
+- **Et après** : Selon l'entreprise, une telle horloge pourrait garder l'heure en mer quand le GPS est brouillé, et synchroniser communications et radars. C'est une démonstration en conditions réelles, pas un produit déployé, et les données restent à recueillir avant l'intégration aux navires.
+- **Mots** : **Horloge atomique** → Horloge qui mesure le temps grâce aux vibrations très régulières des atomes, bien plus précise qu'une montre ordinaire.
+- **Type** : demonstration
+
+- _Faits relevés_ : L'entreprise américaine Infleqtion a fait fonctionner en continu son horloge atomique Tiqker pendant plus de deux semaines. | L'horloge était installée à bord du navire de soutien américain RV Merlin. | Le test faisait partie de l'exercice militaire Maritime Big Play Pacific, dans la zone d'opérations du sud de la Californie. | Un autre exercice de la marine américaine, BARB-26, portant sur la guerre sous-marine et au fond des mers, a aussi été soutenu par ce test. | Pendant le test, l'horloge a supporté de fortes variations de température et des vibrations constantes. | Selon l'entreprise, Tiqker peut garder l'heure locale quand le GPS est indisponible, brouillé ou falsifié. | Tiqker avait déjà été testé en 2025 sur un sous-marin sans équipage de la Royal Navy britannique, et en vol en 2024. | L'entreprise dit devoir encore recueillir des données opérationnelles pour l'intégrer aux bateaux de la marine.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; ce qui est nouveau ici est une utilisation continue de deux semaines en mer, pendant un exercice militaire, alors que Tiqker avait déjà été testé en 2024 et 2025 sur d'autres engins.
+- _Jargon_ : horloge atomique optique : remplacé par « horloge atomique » | GPS : expliqué dans l'avant comme système de positionnement par satellites | horloge atomique : mot à connaître
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+Coût total du test : 0.0379 $ · par fiche : 0.0034 $ · tokens moyens par fiche (rédaction + relecture) : entrée 4263, cache lu 9796, cache écrit 1601, sortie 5447
