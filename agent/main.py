@@ -66,6 +66,10 @@ MODELE_PAR_DEFAUT = "haiku"
 # le premier jet (déjà contrôlé comme avant).
 REDACTION = True
 PLAFOND_REDACTION = 0.05     # $ par passage
+# Le premier jet n'est plus qu'un brouillon (décision, thème, importance) puisque la fiche est
+# réécrite ensuite : on le fait réfléchir un peu moins pour compenser le coût de la réécriture.
+# Valeurs possibles : "low", "medium", "high" (= comme avant). Sans effet si REDACTION = False.
+EFFORT_PREMIER_JET = "medium"
 # ---------------------------------------------------------------------
 
 import html
@@ -1095,7 +1099,8 @@ def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, 
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
             article, sujets["science"], sujets["tech"])}],   # listes « déjà publié » en cache
-        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}},
+        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE},
+                       **({"effort": EFFORT_PREMIER_JET} if REDACTION and EFFORT_PREMIER_JET != "high" else {})},
     )
     u = rep.usage
     conso = {"in": u.input_tokens or 0, "out": u.output_tokens or 0,
