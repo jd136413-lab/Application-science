@@ -1318,6 +1318,8 @@ def ameliorer_fiche(client, modele: dict, art: dict, ligne: dict) -> float:
     })
     if d.get("type_etude") in TYPES_ETUDE[fil]:
         ligne["type_etude"] = d["type_etude"]
+    elif d.get("type_etude") == "aucun":          # preuve mathématique, travail théorique : pas de badge
+        ligne["type_etude"] = None
     log(f"  ✎ réécrite, {res['relectures']} relecture(s), {len(res['problemes'])} défaut(s) corrigé(s)"
         f"{', reste : ' + ' ; '.join(res['restants'])[:120] if res['restants'] else ''} : « {ancien[:50]} » → « {titre[:60]} »")
     return total

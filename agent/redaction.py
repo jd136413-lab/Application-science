@@ -25,7 +25,7 @@ import re
 EFFORT = os.environ.get("REDACTION_EFFORT", "low")
 
 TYPES_SCIENCE = ["essai_clinique", "humain", "animal", "cellules", "laboratoire", "simulation",
-                 "observation", "terrain", "donnees"]
+                 "observation", "terrain", "donnees", "aucun"]
 TYPES_TECH = ["en_vente", "annonce", "demonstration", "prototype", "mise_a_jour"]
 
 CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite qui explique chaque jour les avancées scientifiques et technologiques à des lecteurs curieux mais non spécialistes (lycéens, adultes sans formation scientifique). Ta fiche doit être EXACTE, CLAIRE et UTILE. Un expert du domaine qui la lit ne doit trouver aucune erreur ; un lycéen doit tout comprendre du premier coup.
@@ -96,7 +96,7 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 
 # Le type d'étude ("type_etude", la nature de la preuve)
 
-- Sciences : "essai_clinique" (traitement testé sur des volontaires) ; "humain" (autre étude chez l'humain) ; "animal" ; "cellules" ; "laboratoire" (expérience ou mesure en laboratoire sur des matériaux, des échantillons, des appareils : physique, chimie, analyse d'échantillons rapportés de l'espace…) ; "simulation" (modèle, calcul) ; "observation" (télescope, satellite, mesures dans la nature) ; "terrain" (fouilles, relevés sur le terrain) ; "donnees" (analyse statistique de données ou de dossiers existants).
+- Sciences : "essai_clinique" (traitement testé sur des volontaires) ; "humain" (autre étude chez l'humain) ; "animal" ; "cellules" ; "laboratoire" (expérience ou mesure en laboratoire sur des matériaux, des échantillons, des appareils : physique, chimie, analyse d'échantillons rapportés de l'espace…) ; "simulation" (modèle, calcul) ; "observation" (télescope, satellite, mesures dans la nature) ; "terrain" (fouilles, relevés sur le terrain) ; "donnees" (analyse statistique de données ou de dossiers existants) ; "aucun" pour une démonstration mathématique ou un travail purement théorique (jamais "simulation" pour une preuve).
 - Technologies : "en_vente", "annonce" (présenté, pas encore en vente), "demonstration", "prototype", "mise_a_jour".
 
 # Liste de contrôle ("controle", une réponse honnête par point)
@@ -152,6 +152,9 @@ MAUVAIS → POURQUOI
 Un « Et après » réduit à un espoir (« Cela pourrait donner des pistes pour les greffes. ») → il manque la limite : « il s'agit d'observations dans un seul lac » (si l'article le dit ou si c'est le cadre de l'étude).
 « La série Pura 90 comptait déjà deux modèles ; un modèle intermédiaire manquait. » → l'avant d'un produit ne raconte pas la gamme du fabricant : dis le besoin ou la limite des produits actuels (si l'article en parle), sinon une seule phrase de contexte utile.
 « Et après » d'un produit = ce que ça change pour l'utilisateur + ce qui reste à prouver (annonce du fabricant, tests indépendants, disponibilité) ; les prix vont dans « decouverte ».
+Article court (moins de 2 000 caractères) → fiche courte : « avant » 1 phrase, « decouverte » 2 phrases, sans remplissage ni répétition. N'ajoute rien qui n'y est pas.
+« le taux de sucre a baissé de 2,2 points » → « points » de quoi ? Une unité ou une échelle doit être compréhensible, sinon dis « nettement plus que… ».
+« le médicament pourrait devenir un moteur de croissance du laboratoire » → l'intérêt de l'entreprise n'intéresse pas le lecteur : dis ce que ça change pour les malades ou les utilisateurs.
 « un trillion de paramètres » → faux ami : 1 trillion anglais = mille milliards ; 1 billion anglais = 1 milliard.
 « Des outils de pierre montrent que des humains fabriquaient des outils » → phrase qui tourne en rond : dis ce que le site a d'intéressant.
 « Si cette hypothèse se confirme… » dans « apres » alors qu'aucune hypothèse n'a été présentée → nomme l'idée : « Selon les chercheurs, cette sphère protégerait les bactéries de l'oxygène. »
@@ -470,6 +473,46 @@ def alertes(fiche: dict) -> list[str]:
     return a
 
 
+_TAUX = [(r"dollars?(?: américains)?|\$", 0.85), (r"yuans?", 0.12), (r"livres?(?: sterling)?|£", 1.15),
+         (r"yens?", 0.006), (r"wons?", 0.0006), (r"francs? suisses?", 1.05)]
+
+
+def _arrondi(x: float) -> str:
+    if x >= 100:
+        p = 10 ** (len(str(int(x))) - 2)          # 2 chiffres significatifs
+        x = round(x / p) * p
+        return f"{int(x):,}".replace(",", " ")
+    return f"{x:.0f}" if x >= 10 else f"{x:.1f}".replace(".", ",")
+
+
+def euros(texte: str) -> str:
+    """Ajoute « (environ X €) » après un prix en monnaie étrangère qui n'en a pas (gratuit, sûr)."""
+    if not texte:
+        return texte
+    for monnaie, taux in _TAUX:
+        motif = re.compile(r"(\d[\d\u202f\u00a0 ]*(?:,\d+)?)\s*(milliards?|millions?)?\s*(?:de |d')?(?:" + monnaie + r")(?![\w])")
+
+        def remplacer(m):
+            suite = texte[m.end():m.end() + 30]
+            if "€" in suite or "euro" in suite:
+                return m.group(0)
+            try:
+                v = float(re.sub(r"[\s\u202f\u00a0]", "", m.group(1)).replace(",", "."))
+            except ValueError:
+                return m.group(0)
+            mult = {"milliard": 1e9, "million": 1e6}.get((m.group(2) or "").rstrip("s"), 1)
+            x = v * mult * taux
+            if x >= 1e9:
+                e = f"{_arrondi(x / 1e9)} milliard{'s' if x >= 2e9 else ''} d’euros"
+            elif x >= 1e6:
+                e = f"{_arrondi(x / 1e6)} million{'s' if x >= 2e6 else ''} d’euros"
+            else:
+                e = f"{_arrondi(x)} €"
+            return f"{m.group(0)} (environ {e})"
+        texte = motif.sub(remplacer, texte)
+    return texte
+
+
 def rediger_complet(client, modele_id: str, prix: tuple, art: dict, fil: str, brouillon: dict) -> dict:
     """Chaîne complète, identique en test et dans l'agent (03/11) :
     1. réécriture ; 2. relecture critique (avec les défauts mesurés) ;
@@ -505,6 +548,10 @@ def rediger_complet(client, modele_id: str, prix: tuple, art: dict, fil: str, br
             # on garde la version relue sauf si elle a PLUS de défauts mesurables
             if res["relectures"] == 1 or len(verifications(r)) <= len(avant_rel):
                 finale = r
+        if finale is not None:
+            finale = dict(finale)
+            for k in ("avant", "decouverte", "apres"):
+                finale[k] = euros(finale.get(k, ""))
         if any("non latins" in a for a in alertes(finale)):
             finale = d if not any("non latins" in a for a in alertes(d)) else None
         res["finale"] = finale

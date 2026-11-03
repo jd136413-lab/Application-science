@@ -43,7 +43,7 @@ jobs:
           NB: ${{ inputs.nb || '12' }}
           # Lot de fiches testé (décalage dans les fiches publiées, de la plus récente à la plus ancienne)
           TITRES: ""
-          DECALAGE: "62"
+          DECALAGE: "74"
           REDACTION_EFFORT: "low"
           PLAFOND: "1.0"
         run: python tester_redaction.py
