@@ -45,6 +45,7 @@ jobs:
           TITRES: ""
           DECALAGE: "14"
           REDACTION_EFFORT: "low"
+          SANS_BROUILLON: "1"
           PLAFOND: "1.0"
         run: python tester_redaction.py
       - name: Enregistrer le rapport sur la branche
