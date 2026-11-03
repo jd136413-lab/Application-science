@@ -1050,9 +1050,24 @@ class _EcranEvenementState extends State<EcranEvenement> {
       listenable: etat,
       builder: (context, _) {
         final rappel = etat.rappels.contains(e.id);
+        final avecRappel = !e.arrive && !e.annule && (e.joursFin >= 0 || (rappel && e.type != 'ciel'));
+        final boutonSource = OutlinedButton.icon(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: p.texte,
+            side: BorderSide(color: p.bordure, width: 1.5),
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(horizontal: 14),
+            textStyle: police(policeTexte, taille: 14, graisse: FontWeight.w800),
+          ),
+          onPressed: () => ouvrirArticle(Uri.parse(e.sourceUrl)),
+          icon: const Icon(Icons.north_east_rounded, size: 18),
+          label: Text(tr('Source')),
+        );
         return Scaffold(
           backgroundColor: p.fond,
-          body: ListView(padding: EdgeInsets.zero, children: [
+          body: Column(children: [
+          Expanded(
+          child: ListView(padding: EdgeInsets.zero, children: [
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -1134,40 +1149,58 @@ class _EcranEvenementState extends State<EcranEvenement> {
                         style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret, hauteur: 1.4)),
                   ),
                 ),
-                const SizedBox(height: 16),
-                if (!e.arrive && !e.annule && (e.joursFin >= 0 || (rappel && e.type != 'ciel'))) ...[
-                  SizedBox(
-                    height: 52,
-                    child: FilledButton.icon(
-                      style: FilledButton.styleFrom(
-                        backgroundColor: rappel ? p.pastille : p.encre,
-                        foregroundColor: rappel ? p.texte : p.surEncre,
-                        shape: const StadiumBorder(),
-                        textStyle: police(policeTexte, taille: 15, graisse: FontWeight.w800),
-                      ),
-                      onPressed: () => basculerRappel(context, e),
-                      icon: Icon(rappel ? Icons.notifications_active_rounded : Icons.notifications_none_rounded),
-                      label: Text(tr(rappel ? 'Rappel activé' : 'Me le rappeler')),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    height: 52,
-                    child: OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: p.texte,
-                        side: BorderSide(color: p.bordure, width: 1.5),
-                        shape: const StadiumBorder(),
-                        textStyle: police(policeTexte, taille: 15, graisse: FontWeight.w800),
-                      ),
-                      onPressed: () => ajouterAgenda(e),
-                      icon: const Icon(Icons.event_available_rounded),
-                      label: Text(tr('Ajouter à mon agenda')),
-                    ),
-                  ),
-                ],
+                const SizedBox(height: 4),
+                Text(tr(texteMentionResume), style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
               ]),
             ),
+          ]),
+          ),
+          // Barre collée compacte (maquette 81 · C) : rappel, agenda et source,
+          // pour laisser la place au futur bandeau publicitaire.
+          SafeArea(
+            top: false,
+            child: Container(
+              decoration: BoxDecoration(border: Border(top: BorderSide(color: p.bordure.withValues(alpha: 0.5)))),
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 10),
+              child: SizedBox(
+                height: 46,
+                child: Row(children: [
+                  if (avecRappel) ...[
+                    Expanded(
+                      child: FilledButton.icon(
+                        style: FilledButton.styleFrom(
+                          backgroundColor: rappel ? p.pastille : p.encre,
+                          foregroundColor: rappel ? p.texte : p.surEncre,
+                          shape: const StadiumBorder(),
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          textStyle: police(policeTexte, taille: 14, graisse: FontWeight.w800),
+                        ),
+                        onPressed: () => basculerRappel(context, e),
+                        icon: Icon(rappel ? Icons.notifications_active_rounded : Icons.notifications_none_rounded, size: 20),
+                        label: Text(tr(rappel ? 'Rappel activé' : 'Me le rappeler'), maxLines: 1, overflow: TextOverflow.ellipsis),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    SizedBox(
+                      width: 46,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: p.texte,
+                          side: BorderSide(color: p.bordure, width: 1.5),
+                          shape: const StadiumBorder(),
+                          padding: EdgeInsets.zero,
+                        ),
+                        onPressed: () => ajouterAgenda(e),
+                        child: Tooltip(message: tr('Ajouter à mon agenda'), child: const Icon(Icons.event_available_rounded, size: 20)),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+                  if (avecRappel) boutonSource else Expanded(child: boutonSource),
+                ]),
+              ),
+            ),
+          ),
           ]),
         );
       },

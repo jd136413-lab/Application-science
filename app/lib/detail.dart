@@ -176,38 +176,48 @@ class EcranDetail extends StatelessWidget {
                     ]),
                   ),
                 contenu,
+                // Mention IA (obligatoire) et « Signaler une erreur » : à la fin du résumé.
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 4, 20, 20),
+                  child: Column(children: [
+                    Text(tr(texteMentionResume),
+                        textAlign: TextAlign.center, style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
+                    TextButton.icon(
+                      onPressed: () => signalerErreur(context, avancee),
+                      style: TextButton.styleFrom(
+                          foregroundColor: p.texte,
+                          visualDensity: VisualDensity.compact,
+                          padding: const EdgeInsets.symmetric(horizontal: 10)),
+                      icon: const Icon(Icons.flag_outlined, size: 16),
+                      label: Text(tr('Signaler une erreur'),
+                          style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: p.texte)),
+                    ),
+                  ]),
+                ),
               ]),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-            child: Column(children: [
-              SizedBox(
-                width: double.infinity,
-                height: 54,
-                child: FilledButton.icon(
-                  style: FilledButton.styleFrom(
-                    backgroundColor: p.encre,
-                    foregroundColor: p.surEncre,
-                    shape: const StadiumBorder(),
-                    textStyle: police(policeTexte, taille: 16, graisse: FontWeight.w700),
-                  ),
-                  onPressed: () => _ouvrir(context),
-                  icon: const Icon(Icons.north_east_rounded),
-                  label: Text(tr(texteLireArticle)),
+          // Barre collée compacte (maquette 81 · C) : seulement « ↗ Source »,
+          // pour laisser la place au futur bandeau publicitaire.
+          Container(
+            decoration: BoxDecoration(border: Border(top: BorderSide(color: p.bordure.withValues(alpha: 0.5)))),
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 10),
+            child: SizedBox(
+              width: double.infinity,
+              height: 46,
+              // Même bouton « ↗ Source » que dans une fiche À venir.
+              child: OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: p.texte,
+                  side: BorderSide(color: p.bordure, width: 1.5),
+                  shape: const StadiumBorder(),
+                  textStyle: police(policeTexte, taille: 14, graisse: FontWeight.w800),
                 ),
+                onPressed: () => _ouvrir(context),
+                icon: const Icon(Icons.north_east_rounded, size: 18),
+                label: Text(tr('Source')),
               ),
-              const SizedBox(height: 6),
-              Text(tr(texteMentionResume), textAlign: TextAlign.center, style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
-              TextButton.icon(
-                onPressed: () => signalerErreur(context, avancee),
-                style: TextButton.styleFrom(
-                    foregroundColor: p.texte, visualDensity: VisualDensity.compact, padding: const EdgeInsets.symmetric(horizontal: 10)),
-                icon: const Icon(Icons.flag_outlined, size: 16),
-                label: Text(tr('Signaler une erreur'),
-                    style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: p.texte)),
-              ),
-            ]),
+            ),
           ),
         ]),
         ),
