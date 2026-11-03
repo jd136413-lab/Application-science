@@ -48,6 +48,7 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 - Les bénéfices et les usages futurs (« pourrait permettre de… », « éviterait… ») viennent eux aussi de l'article. N'en déduis pas de nouveaux : un avantage que l'article ne cite pas est une invention.
 - Toute comparaison dit par rapport à quoi : « 4 fois plus net que le signal de 2024 », jamais « 90 fois plus abondante » tout seul.
 - Deux chiffres sur la même chose doivent être expliqués l'un par rapport à l'autre (« 37 patients en tout, dont 15 à la dose retenue »).
+- Garde les mots EXACTS des catégories : « grand singe » n'est pas « singe », « bactérie » n'est pas « virus », « prototype » n'est pas « produit en vente », « simulation » n'est pas « expérience ».
 - Les nuances restent : « chez la souris », « sur 15 patients », « en laboratoire », « pas encore relu par d'autres chercheurs ».
 - Prix et sommes : donne aussi l'équivalent approximatif en euros, arrondi (1 $ ≈ 0,85 € ; 1 £ ≈ 1,15 € ; 1 yuan ≈ 0,12 € ; 100 yens ≈ 0,60 € ; 1 000 wons ≈ 0,60 € ; 1 franc suisse ≈ 1,05 €), par exemple « 76 800 yuans (environ 9 000 €) ».
 
@@ -142,6 +143,8 @@ MAUVAIS → POURQUOI
 « Les prix vont de 76 800 à 96 800 yuans. » comme seul « Et après » → ne dit pas ce que ça change, et pas d'équivalent en euros.
 « Les Nucléobases forment… » → majuscule fautive au milieu d'une phrase.
 « Avant » qui raconte un autre projet sans rapport direct (un concurrent, l'histoire de l'entreprise) → le lecteur veut le problème que cette avancée règle.
+« Le record appartient à Niels Herbrich. Le projet Kingchaser n'a atteint que 440 km/h. » → noms inconnus et détails sans intérêt. Mieux : « Faire voler très vite un petit avion télécommandé est difficile : il faut un moteur puissant dans un appareil léger et une longue piste pour accélérer. » (si l'article le dit).
+« Les titres de plus de 12 mots » → compte les mots avant de répondre ; un titre trop long sera refusé.
 « Ce sont des outils de base : l'étude ne porte ni sur un traitement, ni sur un test. » → BON réflexe : dire clairement ce que l'étude n'est PAS quand le lecteur pourrait le croire.
 
 Réponds uniquement avec le JSON demandé."""
@@ -342,6 +345,27 @@ def relire(client, modele_id: str, art: dict, fil: str, fiche: dict, essais: int
 _ABSOLU = re.compile(r"\b(?:personne n'avait|aucun[e]? (?:\w+ ){0,3}ne (?:pouvai|savai|permettai)|on ignorait|"
                      r"jusqu'(?:ici|à présent) impossible|jamais (?:vu|observé|réalisé)|"
                      r"pour la première fois|première mondiale)", re.I)
+
+
+def mots_titre(t: str) -> int:
+    return len([w for w in re.split(r"\s+", (t or "").replace(" : ", " ")) if w.strip(":")])
+
+
+def titre_valide(t: str) -> bool:
+    t = " ".join((t or "").split())
+    return " : " in t and 4 <= mots_titre(t) <= 13 and len(t) <= 110
+
+
+def choisir_titre(fiche: dict, candidats: list[str]) -> None:
+    """Filet gratuit : si le titre final est trop long ou mal formé, on prend le meilleur
+    candidat valide proposé par le rédacteur (ils sont donnés du meilleur au moins bon)."""
+    if titre_valide(fiche.get("title", "")):
+        return
+    for c in candidats or []:
+        c = " ".join(str(c).split()).rstrip(".")
+        if titre_valide(c):
+            fiche["title"] = c
+            return
 
 
 def alertes(fiche: dict) -> list[str]:

@@ -41,9 +41,9 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           MODELES: ${{ inputs.modeles || vars.TEST_MODELES || 'haiku' }}
           NB: ${{ inputs.nb || '12' }}
-          # Test 6 : fiches JAMAIS vues pendant la mise au point (plus anciennes)
+          # Lot de fiches testé (décalage dans les fiches publiées, de la plus récente à la plus ancienne)
           TITRES: ""
-          DECALAGE: "14"
+          DECALAGE: "26"
           REDACTION_EFFORT: "low"
           PLAFOND: "1.0"
         run: python tester_redaction.py

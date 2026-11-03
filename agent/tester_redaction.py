@@ -93,6 +93,7 @@ def main() -> int:
                 jetons[k] += c.get(k, 0) + c2.get(k, 0)
             cout += ((c2["in"] + c2["cache_w"] * 1.25 + c2["cache_r"] * 0.1) * prix[0] + c2["out"] * prix[1]) / 1e6
             if r:
+                redaction.choisir_titre(r, d.get("titres_candidats") or [])
                 pbs = r.get("problemes") or []
                 out.append(bloc(f"Final après relecture ({nom})", r))
                 out.append("- _Défauts trouvés par le relecteur_ : "
