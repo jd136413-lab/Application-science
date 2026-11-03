@@ -155,6 +155,7 @@ Un « Et après » réduit à un espoir (« Cela pourrait donner des pistes pour
 Article court (moins de 2 000 caractères) → fiche courte : « avant » 1 phrase, « decouverte » 2 phrases, sans remplissage ni répétition. N'ajoute rien qui n'y est pas.
 « le taux de sucre a baissé de 2,2 points » → « points » de quoi ? Une unité ou une échelle doit être compréhensible, sinon dis « nettement plus que… ».
 « le médicament pourrait devenir un moteur de croissance du laboratoire » → l'intérêt de l'entreprise n'intéresse pas le lecteur : dis ce que ça change pour les malades ou les utilisateurs.
+« Le constructeur chinois lance la Seagull » → nomme l'entreprise une fois (« BYD, le plus grand constructeur chinois ») : un nom d'entreprise n'est pas du jargon, seuls les noms de produits ou de projets inconnus le sont.
 « un trillion de paramètres » → faux ami : 1 trillion anglais = mille milliards ; 1 billion anglais = 1 milliard.
 « Des outils de pierre montrent que des humains fabriquaient des outils » → phrase qui tourne en rond : dis ce que le site a d'intéressant.
 « Si cette hypothèse se confirme… » dans « apres » alors qu'aucune hypothèse n'a été présentée → nomme l'idée : « Selon les chercheurs, cette sphère protégerait les bactéries de l'oxygène. »
@@ -449,6 +450,11 @@ def verifications(fiche: dict) -> list[str]:
     if re.search(r"\b(?:yuans?|dollars?|livres sterling|yens?|wons?)\b", textes, re.I) and "€" not in textes:
         v.append("prix sans équivalent approximatif en euros : ajoute-le (1 $ ≈ 0,85 €)")
     apres = str(fiche.get("apres", ""))
+    b = re.search(r"\b(?:marché|croissance du|chiffre d'affaires|investisseurs|en bourse|place de choix|"
+                  r"moteurs? de croissance|parts? de marché|rentabilité)\b", apres, re.I)
+    if b:
+        v.append(f"« apres » parle de l'intérêt de l'entreprise (« {b.group(0)} ») : dis plutôt ce que ça change "
+                 "pour les malades, les utilisateurs ou la science")
     if apres and not _LIMITE.search(apres):
         v.append("« apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)")
     for m in fiche.get("mots") or []:
