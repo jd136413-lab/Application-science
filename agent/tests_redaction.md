@@ -1,6 +1,6 @@
-# Test de la rédaction — 03/11/2026 17:49 UTC
+# Test de la rédaction — 03/11/2026 18:02 UTC
 
-Modèles : haiku, sonnet · 12 fiches
+Modèles : haiku · 12 fiches
 
 
 ---
@@ -20,32 +20,17 @@ Fil : science · 1★ · source : The Quantum Insider · page lue : oui (4545 ca
 
 **Nouveau (haiku)**
 
-- **Titre** : Ordinateurs quantiques : des physiciens mesurent des états quantiques dans un montage prometteur
-- **Avant** : Les informations stockées dans un ordinateur quantique sont fragiles et sujettes aux erreurs. Une piste s'appuie sur des états quantiques censés mieux résister aux perturbations locales. Mais les démontrer et les contrôler en laboratoire restait un défi.
-- **Découverte** : Des physiciens de l'université de Cologne, en Allemagne, ont observé des états quantiques conformes aux prévisions dans une jonction Josephson, un dispositif où deux supraconducteurs (des matériaux qui conduisent l'électricité sans perte) sont reliés par une zone non supraconductrice. Le contact repose sur un isolant topologique, un matériau isolant à l'intérieur mais conducteur à sa surface. Sous champ magnétique, ces états se concentrent dans les zones attendues par la théorie.
-- **Et après** : Ces états pourraient servir à fabriquer des bits quantiques plus stables, selon les chercheurs, mais ce n'est pas démontré. La limite principale : il faut encore prouver, avec des mesures plus précises, que l'écart d'énergie se referme puis se rouvre.
-- **Mots** : (aucun)
+- **Titre** : Ordinateurs quantiques : des physiciens observent des états censés résister aux perturbations
+- **Avant** : Stocker l'information dans un ordinateur quantique reste sujet aux erreurs. Une piste repose sur des états quantiques censés mieux résister aux perturbations locales. Restait à montrer que ces états existent dans un système réel.
+- **Découverte** : Des physiciens de l'université de Cologne ont observé des états quantiques dans un dispositif formé de deux supraconducteurs reliés par une zone non supraconductrice. Ce dispositif repose sur un matériau qui isole à l'intérieur mais conduit le courant à sa surface. Les états observés se répartissent comme le prévoit la théorie, et se concentrent dans les zones attendues quand un champ magnétique est appliqué.
+- **Et après** : Ces états pourraient un jour servir à fabriquer des unités de calcul plus stables, si leur protection contre les perturbations est confirmée. La transition clé n'est pas encore mesurée : il faut des instruments plus précis, prochaine étape du laboratoire.
+- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans perte, à très basse température. Il sert par exemple dans les aimants des appareils d'IRM.
 - **Type** : laboratoire
 
-- _Faits relevés_ : Des physiciens de l'université de Cologne, en Allemagne, ont étudié une jonction Josephson. | Une jonction Josephson relie deux supraconducteurs par une zone qui n'est pas supraconductrice. | Le dispositif repose sur un isolant topologique, un matériau isolant à l'intérieur mais conducteur à sa surface. | Les chercheurs ont mesuré les états quantiques à l'intérieur de la jonction en changeant une grandeur clé du dispositif. | Les états observés sont très transmissifs et apparaissent sur une large gamme de densités de charges électriques, comme prévu. | Sous champ magnétique, ces états se concentrent dans des zones précises, comme la théorie le prévoit. | Les résultats concordent avec un modèle théorique proposé en 2008 et avec des simulations de l'université RWTH d'Aachen. | La question reste ouverte : il faut vérifier, avec des mesures plus précises, si l'écart d'énergie se referme puis se rouvre.
-- _Nouveauté selon l'article_ : Selon l'article, les chercheurs ont observé des états quantiques conformes aux prévisions ; l'article ne revendique pas de première, et le modèle théorique existait déjà depuis 2008.
-- _Jargon_ : jonction Josephson : expliqué en quelques mots | isolant topologique : expliqué en quelques mots | supraconducteur : expliqué en quelques mots | états d'Andreev : remplacés par « états quantiques » | qubit : remplacé par « bit quantique »
+- _Faits relevés_ : Des physiciens de l'université de Cologne ont observé des états quantiques conformes aux prédictions théoriques. | Le système étudié est une piste considérée comme prometteuse pour le calcul quantique topologique. | Le dispositif est une jonction formée de deux supraconducteurs reliés par une zone non supraconductrice. | Les chercheurs ont sondé les états quantiques par spectroscopie à effet tunnel, en faisant varier la différence de phase. | Les états observés apparaissent sur une plage de densités de charges, comme le prévoit la théorie. | Sous champ magnétique, ces états se concentrent dans les zones attendues de la jonction. | Les résultats concordent avec un modèle proposé en 2008 par Liang Fu et Charles Kane, et avec des simulations de l'équipe de Fabian Hassler à Aix-la-Chapelle. | La transition vers la supraconductivité topologique n'est pas encore confirmée : elle demande des mesures plus précises en énergie et en temps.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : les chercheurs confirment expérimentalement des états quantiques déjà prévus par un modèle théorique de 2008.
+- _Jargon_ : isolant topologique : expliqué en quelques mots dans la fiche | états d'Andreev : remplacé par « états quantiques » | jonction Josephson : remplacé par « deux supraconducteurs reliés par une zone non supraconductrice » | qubits : remplacé par « unités de calcul quantique » | supraconducteur : mot à connaître
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 9}
-- _Alertes automatiques_ : aucune
-
-**Nouveau (sonnet)**
-
-- **Titre** : Ordinateurs quantiques : un matériau prometteur contre les erreurs se comporte comme prévu
-- **Avant** : Les ordinateurs quantiques sont sujets aux erreurs. Une piste utilise des états quantiques censés mieux résister aux petites perturbations, mais les obtenir et les contrôler en expérience reste un défi.
-- **Découverte** : Des physiciens de l'université de Cologne ont étudié deux supraconducteurs reliés par une zone qui ne l'est pas, construits avec un isolant topologique, un matériau isolant à l'intérieur mais conducteur en surface. Leurs mesures montrent des états quantiques conformes aux prédictions de la théorie, pour différentes quantités de charges électriques mobiles. Sous champ magnétique, ces états se concentrent aussi dans des zones précises, comme prévu.
-- **Et après** : La théorie sur ce matériau en sort renforcée, ce qui intéresse la recherche sur des ordinateurs quantiques moins sujets aux erreurs. Mais il reste à prouver que l'écart d'énergie des états se ferme puis se rouvre, signe d'un état protégé ; cela demande des mesures plus précises.
-- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans aucune résistance, en général à très basse température ; c'est une propriété précieuse en électronique et en physique quantique.
-- **Type** : laboratoire
-
-- _Faits relevés_ : Des physiciens de l'université de Cologne (Allemagne) ont étudié un isolant topologique, matériau isolant à l'intérieur et conducteur en surface. | Ils ont utilisé une jonction Josephson : deux supraconducteurs reliés par une zone qui ne l'est pas. | Ils ont sondé les états quantiques de la jonction en faisant varier la différence de phase entre les deux supraconducteurs. | Ils ont observé des états d'Andreev très transmissifs, sur une gamme de densités de porteurs de charge, comme la théorie le prédit. | Sous champ magnétique, ces états se concentrent dans des zones précises de la jonction, comme prévu. | Les résultats concordent avec le modèle de Liang Fu et Charles Kane (2008) et avec des simulations de l'équipe de Fabian Hassler (Aix-la-Chapelle). | Question ouverte : l'écart d'énergie se ferme-t-il puis se rouvre-t-il, signe possible d'une supraconductivité topologique ? | Pour le prouver, l'équipe doit améliorer la résolution en énergie et en temps de ses mesures : c'est sa prochaine étape.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : des états quantiques attendus par la théorie sont observés dans ce système, mais la transition vers la phase protégée reste à confirmer.
-- _Jargon_ : isolant topologique : expliqué en quelques mots | jonction Josephson : remplacé par « deux supraconducteurs reliés par une zone qui ne l'est pas » | états d'Andreev : remplacé par « états quantiques conformes aux prédictions » | supraconducteur : mot à connaître | écart d'énergie, phase topologique, qubit, Majorana : remplacés par « changement précis de l'énergie des états » et « état protégé des perturbations »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
@@ -64,20 +49,18 @@ Fil : science · 2★ · source : ScienceDaily · page lue : oui (4328 caractèr
 - **Mots** : **Nucléobase** → Molécule contenant de l'azote qui forme une lettre du code génétique de l'ADN ou de l'ARN.
 - **Type** : donnees
 
-**haiku** : échec de la réécriture
+**Nouveau (haiku)**
 
-**Nouveau (sonnet)**
-
-- **Titre** : Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
-- **Avant** : L'ADN et l'ARN s'écrivent avec cinq « lettres », des molécules appelées nucléobases. On en avait déjà trouvé dans des météorites tombées sur Terre, mais celles-ci ont pu être contaminées pendant leur voyage et leur chute.
-- **Découverte** : Des chercheurs japonais ont détecté les cinq nucléobases dans deux échantillons de l'astéroïde Ryugu, rapportés sur Terre en 2020 par la sonde Hayabusa2. Ils les ont extraites dans des conditions ultra-propres pour éviter toute contamination, et les cinq sont présentes en quantités à peu près similaires. En 2023, une équipe internationale avait trouvé l'une d'elles, l'uracile, dans ces échantillons.
-- **Et après** : Selon les chercheurs, ces ingrédients de la vie ont pu être répandus dans le jeune Système solaire, puis livrés à la Terre primitive par des astéroïdes. Mais cela ne prouve pas ce transport, et le dosage des cinq molécules varie d'un astéroïde à l'autre.
-- **Mots** : **Nucléobase** → Molécule contenant de l'azote qui joue le rôle d'une lettre dans le code génétique de l'ADN et de l'ARN ; il en existe cinq.
+- **Titre** : Espace : des échantillons d'astéroïde renferment les cinq « lettres » de l'ADN
+- **Avant** : Cinq molécules, appelées nucléobases, forment les « lettres » de l'ADN et de l'ARN. On cherchait encore à savoir si elles existaient déjà dans l'espace, avant la naissance de la Terre. En 2023, une seule d'entre elles avait été repérée dans des roches venues de l'espace.
+- **Découverte** : Une équipe de scientifiques japonais a trouvé les cinq nucléobases dans des échantillons de l'astéroïde Ryugu. La sonde japonaise Hayabusa2 avait rapporté ces roches sur Terre en 2020, soit 5,4 grammes au total. Les chercheurs ont extrait les molécules à l'aide d'eau et d'un acide, dans un laboratoire très propre. Dans les deux échantillons analysés, les cinq molécules sont présentes en quantités à peu près semblables.
+- **Et après** : Selon les chercheurs, ces molécules ont pu être répandues dans tout le Système solaire et apportées à la Terre primitive par les astéroïdes. Ce n'est pas une preuve que la vie est née ainsi. Les chercheurs comparent maintenant ces roches à des météorites pour retracer leur histoire chimique.
+- **Mots** : **Nucléobase** → Molécule contenant de l'azote qui sert de lettre au code génétique de l'ADN et de l'ARN.
 - **Type** : laboratoire
 
-- _Faits relevés_ : Des chercheurs japonais ont détecté les cinq nucléobases de l'ADN et de l'ARN dans des échantillons de l'astéroïde Ryugu. | Les échantillons ont été rapportés sur Terre en 2020 par la sonde japonaise Hayabusa2, pour 5,4 grammes de matière au total. | En 2023, une équipe internationale avait trouvé une seule nucléobase, l'uracile, dans ces échantillons. | Les cinq nucléobases sont présentes dans les deux échantillons analysés, en quantités à peu près similaires. | Les météorites Murchison (Australie, 1969) et Orgueil (France, 1864) contenaient déjà des nucléobases, mais ont pu être contaminées sur Terre. | Les échantillons de l'astéroïde Bennu (NASA) ont aussi livré les cinq nucléobases en 2025. | Le dosage varie : Murchison est riche en purines, Bennu et Orgueil contiennent plus de pyrimidines, peut-être à cause de l'ammoniac. | Les chercheurs avancent que ces molécules ont pu se former dans l'espace puis être livrées à la Terre primitive.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : une équipe avait déjà trouvé l'uracile dans ces échantillons en 2023, et les cinq nucléobases avaient aussi été trouvées dans l'astéroïde Bennu en 2025 ; ici, les cinq sont confirmées dans Ryugu.
-- _Jargon_ : nucléobase : mot à connaître | purines et pyrimidines : non utilisés | acide chlorhydrique : non utilisé | prébiotique : non utilisé | JAXA : remplacé par « sonde japonaise » | ADN et ARN : mots connus du grand public, laissés tels quels
+- _Faits relevés_ : Des échantillons de l'astéroïde Ryugu ont été rapportés sur Terre en 2020 par la mission japonaise Hayabusa2. | En 2023, une équipe internationale n'avait trouvé qu'une des cinq nucléobases dans ces échantillons : l'uracile. | Une équipe de scientifiques japonais a confirmé la présence des cinq nucléobases de l'ADN et de l'ARN. | Les chercheurs disposaient de 5,4 grammes de matière au total et ont analysé deux échantillons. | Dans les deux échantillons, les cinq nucléobases sont présentes en quantités à peu près semblables. | Des météorites tombées en Australie en 1969 et en France en 1864 avaient déjà livré des nucléobases. | Des échantillons de l'astéroïde Bennu, rapportés par la NASA, en ont aussi livré cinq en 2025. | Selon les chercheurs, la proportion de chaque type de nucléobase varie selon l'astéroïde, sans doute à cause de l'ammoniac.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il confirme les cinq nucléobases dans Ryugu, après l'uracile repéré en 2023, et des échantillons de Bennu en avaient aussi livré cinq en 2025.
+- _Jargon_ : nucléobases : mot à connaître | acide chlorhydrique : remplacé par « un acide » | Hayabusa2 : remplacé par « la mission japonaise » | purines et pyrimidines : non employés
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
@@ -99,20 +82,18 @@ Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caract
 
 **Nouveau (haiku)**
 
-- **Titre** : Cancer : des cellules modifiées font reculer des tumeurs de la peau
-- **Avant** : Quand un mélanome, un cancer de la peau, ne répond plus à l'immunothérapie, les options restent rares. La thérapie cellulaire existante impose une opération pour prélever la tumeur, et de fortes doses d'une protéine stimulante aux effets secondaires lourds.
-- **Découverte** : Des chercheurs ont modifié les cellules de défense prélevées dans la tumeur de chaque patient pour qu'elles fabriquent elles-mêmes une protéine stimulante, activée seulement par un médicament ancien. Sur 15 patients traités à la dose retenue, la tumeur a reculé chez 10, dont 2 avec une réponse complète. Au total, 37 patients ont été traités, sans décès lié au traitement.
-- **Et après** : Cette méthode pourrait éviter les fortes doses de protéine stimulante, très toxiques, chez des malades en échec. Mais les données viennent de deux petits essais regroupés après coup, et un patient a eu un gonflement du cerveau ; une étude plus large est en cours.
-- **Mots** : **Immunothérapie** → Traitement qui aide le système de défense du corps à reconnaître et attaquer les cellules cancéreuses, en le renforçant contre la tumeur.
+- **Titre** : Cancer : des cellules modifiées réduisent des mélanomes chez 10 malades sur 15
+- **Avant** : Quand un mélanome ne répond plus à l'immunothérapie, les traitements disponibles aident peu. La méthode existante impose une opération pour prélever la tumeur et de fortes doses d'une protéine stimulante aux effets secondaires lourds.
+- **Découverte** : Des chercheurs ont modifié les cellules de défense extraites de la tumeur de chaque patient pour qu'elles produisent une protéine stimulante. Cette production ne démarre que si on donne un médicament ancien, l'acétazolamide, utilisé comme diurétique depuis 1953. Sur 37 patients traités dans deux essais, 15 ont reçu la dose retenue : la tumeur a reculé chez 10, dont 2 ont disparu complètement. Aucun décès lié au traitement n'a été observé.
+- **Et après** : Si cela se confirme, les malades pourraient éviter la forte dose de protéine stimulante, très toxique. Mais l'analyse, non prévue au départ, porte sur peu de malades ; un premier patient a eu un gonflement du cerveau, et une étude plus large est en cours.
+- **Mots** : **Immunothérapie** → Traitement qui aide le système de défense du corps à reconnaître et détruire les cellules cancéreuses.
 - **Type** : essai_clinique
 
-- _Faits relevés_ : Les patients avaient un mélanome avancé, qui ne répondait plus à l'immunothérapie. | Les cellules de défense sont prélevées dans la tumeur de chaque patient, modifiées, puis réinjectées. | Ces cellules fabriquent une protéine stimulante seulement quand on leur donne un médicament, l'acétazolamide. | Ce médicament, utilisé comme diurétique depuis 1953, remplace la forte dose de protéine stimulante donnée habituellement. | Au total, 37 patients ont été traités, dans deux essais de 17 et 20 patients, analysés ensemble après coup. | L'analyse n'a relevé ni toxicité limitant la dose, ni soins en réanimation, ni décès lié au traitement. | À la dose retenue, sur 15 patients, la tumeur a reculé chez 10, dont 2 avec une réponse complète. | Au début, un patient a eu un gonflement du cerveau, et les doses ont été baissées. Un essai plus large est en cours.
-- _Nouveauté selon l'article_ : Selon l'article, la thérapie évite la protéine stimulante à forte dose, déjà utilisée dans les traitements de ce type, grâce à un interrupteur médicamenteux ; l'article ne revendique pas de première.
-- _Jargon_ : immunothérapie : mot à connaître | protéine à forte dose (IL-2) : remplacé par « une protéine stimulante » | IL-15 : remplacé par « une protéine stimulante » | acétazolamide : expliqué (médicament diurétique ancien) | lymphocytes infiltrés de tumeur : remplacé par « cellules de défense prélevées dans la tumeur » | œdème vasogénique : remplacé par « gonflement du cerveau » | essai pivot : remplacé par « un essai plus large »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 8}
+- _Faits relevés_ : Test sur 37 patients au total, dans deux essais : 17 dans le premier, 20 dans le second. | Patients atteints d'un mélanome qui ne répond plus aux traitements par immunothérapie. | Les cellules de défense sont prélevées dans la tumeur de chaque patient, puis modifiées pour produire une protéine stimulante. | Cette protéine n'est produite que si on donne le médicament acétazolamide, ce qui évite la forte dose d'IL-2 habituelle. | Parmi les 15 patients traités à la dose retenue, la tumeur a reculé chez 10, dont 2 réponses complètes. | Aucun décès lié au traitement, aucune toxicité limitant la dose ; des effets graves ont touché 10 patients. | Le premier patient a eu un gonflement du cerveau ; les doses ont été réduites puis remontées. | L'analyse regroupant les deux essais n'était pas prévue au départ (analyse post hoc).
+- _Nouveauté selon l'article_ : Ce qui est nouveau : des cellules modifiées qui n'ont plus besoin d'IL-2 à forte dose, grâce à un interrupteur médicamenteux ; la thérapie cellulaire à partir de la tumeur existait déjà sans cette modification. L'article ne revendique pas de première.
+- _Jargon_ : IL-2 remplacé par « protéine stimulante » | IL-15 remplacé par « protéine stimulante » | Acétazolamide expliqué : médicament ancien, utilisé comme diurétique depuis 1953 | Immunothérapie : mot à connaître
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 9}
 - _Alertes automatiques_ : aucune
-
-**sonnet** : échec de la réécriture
 
 
 ---
@@ -130,9 +111,20 @@ Fil : tech · 1★ · source : CnEVPost (véhicules électriques, Chine) · page
 - **Mots** : **Méthanol** → Alcool liquide qui peut servir de carburant seul ou mélangé à l'essence, dans un moteur adapté.
 - **Type** : en_vente
 
-**haiku** : échec de la réécriture
+**Nouveau (haiku)**
 
-**sonnet** : échec de la réécriture
+- **Titre** : Voitures : un constructeur chinois lance une berline qui roule au méthanol
+- **Avant** : Le méthanol, un alcool de bois, restait encore peu présent dans les voitures particulières. Le constructeur voulait offrir plus d'options énergétiques pour les climats froids et les longs trajets.
+- **Découverte** : Geely, un constructeur chinois, a lancé mardi la Xingyao 6 EF à Shenyang, une berline qui roule au méthanol, à l'essence ou à l'électricité. Le constructeur affirme qu'elle est la première berline familiale hybride au méthanol produite en série, avec un mélange libre dans un seul réservoir. Son moteur de 1,5 litre atteint un rendement de 48,15 %, le plus haut parmi les moteurs au méthanol produits en série, selon le constructeur.
+- **Et après** : Le constructeur la présente comme un complément aux voitures électriques, pour les climats froids et les longs trajets. Les prix promotionnels, environ 9 200 à 11 600 €, sont limités dans le temps ; les performances restent celles annoncées par le constructeur.
+- **Mots** : (aucun)
+- **Type** : en_vente
+
+- _Faits relevés_ : Geely lance la Xingyao 6 EF mardi, à Shenyang (province du Liaoning). | La voiture roule au méthanol, à l'essence ou à l'électricité, avec n'importe quel mélange dans le même réservoir. | Le constructeur affirme qu'elle est la première berline familiale hybride au méthanol produite en série. | Autonomie électrique : 130 km en entrée de gamme, 230 km pour les deux autres versions. | Autonomie totale annoncée : environ 1 250 km au méthanol, 1 880 km à l'essence, réservoir plein. | Moteur au méthanol de 1,5 litre, rendement de 48,15 % selon le constructeur. | Démarrage à froid annoncé jusqu'à près de -40 °C ; plein en environ 3 minutes. | Prix promotionnels de 76 800 à 96 800 yuans ; prix officiels de 86 800 à 106 800 yuans. | Plus de 6 000 Xingyao 6 EF déjà utilisées en flotte (VTC, taxis, usages officiels), selon le président du groupe Geely. | Plus de 1 400 stations de ravitaillement en méthanol en Chine, selon un dirigeant du groupe.
+- _Nouveauté selon l'article_ : Selon le constructeur, c'est la première berline familiale hybride au méthanol produite en série ; le constructeur travaille sur le méthanol depuis 2005.
+- _Jargon_ : rendement : expliqué en quelques mots (part de l'énergie transformée en mouvement) | injection et allumage : remplacés par « réglage du moteur » | hybride : mot courant, non expliqué | CLTC et LFP : non repris dans la fiche
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 8}
+- _Alertes automatiques_ : aucune
 
 
 ---
@@ -152,32 +144,17 @@ Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (1607 caractère
 
 **Nouveau (haiku)**
 
-- **Titre** : Centres de calcul : en Chine, une alimentation électrique plus simple est déjà en service
-- **Avant** : Dans un centre de calcul, le courant passe par plusieurs étapes de transformation avant d'alimenter les serveurs. Chaque étape fait perdre de l'énergie et prend de la place.
-- **Découverte** : En Chine, l'entreprise Envision a mis en service à Ulanqab son système Dubhe, qui transforme directement le courant du réseau, à 10 000 volts, en courant continu de 800 volts. Il supprime des étapes intermédiaires, ce qui améliore le rendement et rend les appareils beaucoup plus petits, selon l'entreprise. Le système est déjà en service dans le centre de calcul Galaxy AI, dont la puissance doit augmenter.
-- **Et après** : Envision prévoit d'alimenter à terme jusqu'à un million de puces d'IA sur ce site, et d'utiliser la même technique dans son projet Mission Gobi, qui vise 5 gigawatts de centres de calcul dans les déserts d'ici 2030. Les résultats ne sont donnés que par l'entreprise elle-même.
-- **Mots** : **Courant continu** → Électricité qui circule toujours dans le même sens, comme celle des piles et des batteries. La plupart des appareils électroniques fonctionnent avec ce type de courant.
+- **Titre** : Centres de calcul : un système chinois convertit le courant directement
+- **Avant** : Dans un centre de calcul, le courant du réseau passe par plusieurs étapes de conversion avant d'alimenter les serveurs. Ces étapes réduisent le rendement et demandent des appareils volumineux.
+- **Découverte** : L'entreprise chinoise Envision a mis en service à Ulanqab, en Chine, son système Dubhe. Il convertit directement le courant du réseau, 10 000 volts, en 800 volts, ce qui réduit les étapes et la taille des appareils. Selon Envision, il fonctionne bien dans le centre Galaxy AI, qu'il doit aider à agrandir.
+- **Et après** : Selon Envision, ce système pourrait rendre les centres de calcul plus économes et plus compacts. Mais les performances ne viennent que de l'entreprise, et le projet Mission Gobi, de 5 gigawatts d'ici 2030, reste à réaliser.
+- **Mots** : (aucun)
 - **Type** : demonstration
 
-- _Faits relevés_ : L'entreprise chinoise Envision a mis en service son système Dubhe à Ulanqab, en Chine. | Dubhe transforme directement le courant du réseau, à 10 000 volts, en courant continu de 800 volts. | Selon Envision, ce système améliore le rendement et réduit fortement la taille des appareils de conversion. | Le système est déjà en service dans le centre de calcul Galaxy AI d'Ulanqab. | Il pourra à terme alimenter jusqu'à un million de puces d'IA sur ce site. | Envision veut utiliser la même technique dans son projet Mission Gobi, qui vise 5 gigawatts de centres de calcul dans les déserts d'ici 2030. | Les bonnes performances ne sont données que par l'entreprise elle-même.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; ce qui est nouveau, c'est la mise en service de Dubhe, là où les centres de calcul utilisent aujourd'hui plusieurs étapes de conversion.
-- _Jargon_ : centre de calcul : remplacé par « centre de calcul » expliqué en titre, sans autre mot technique | courant alternatif : remplacé par « courant du réseau » | courant continu : mot à connaître | accélérateurs d'IA : remplacés par « puces d'IA » | étapes de conversion : expliquées par « transformations successives du courant »
+- _Faits relevés_ : Le système Dubhe de l'entreprise Envision est déjà en service à Ulanqab, en Chine. | Il convertit directement le courant du réseau, 10 000 volts, en 800 volts. | Les centres de calcul utilisent aujourd'hui plusieurs étapes de conversion électrique. | Selon Envision, le système améliore le rendement et réduit la taille des appareils de conversion. | Il doit servir à agrandir le centre de calcul Galaxy AI à Ulanqab. | À terme, il doit alimenter jusqu'à un million de puces d'IA sur ce site. | Le projet Mission Gobi vise 5 gigawatts de centres de calcul verts dans des déserts d'ici 2030, avec la même technique. | Les performances ne sont données que par l'entreprise elle-même.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; selon Envision, le système est déjà en service, et il remplace plusieurs étapes de conversion utilisées jusqu'ici dans les centres de calcul.
+- _Jargon_ : courant alternatif : remplacé par « courant du réseau » | courant continu : expliqué dans la fiche par « 800 volts » sans nom technique | accélérateurs d'IA : remplacés par « puces d'IA » | moyenne tension : remplacée par « 10 000 volts »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 9}
-- _Alertes automatiques_ : aucune
-
-**Nouveau (sonnet)**
-
-- **Titre** : IA : un centre de calcul chinois utilise déjà une alimentation électrique simplifiée
-- **Avant** : Les centres de calcul, ces bâtiments remplis d'ordinateurs pour l'IA, transforment aujourd'hui le courant du réseau en plusieurs étapes avant de l'utiliser. Chaque étape suppose des appareils de conversion.
-- **Découverte** : Envision a mis en service à Ulanqab, en Chine, un système d'alimentation nommé Dubhe, qui doit aider à agrandir le centre de calcul Galaxy AI. Il convertit directement le courant alternatif du réseau, à 10 000 volts, en courant continu de 800 volts. Selon l'entreprise, cela améliore le rendement et réduit fortement la taille des appareils de conversion.
-- **Et après** : Cela pourrait rendre les centres de calcul plus compacts et économes, mais seule l'entreprise rapporte ces bons résultats. Elle vise un million de puces d'IA à Ulanqab, puis 5 gigawatts de centres de calcul dans des déserts d'ici 2030.
-- **Mots** : **Courant continu** → Courant électrique qui circule toujours dans le même sens, comme celui d'une pile, contrairement au courant alternatif des prises murales qui change de sens.
-- **Type** : demonstration
-
-- _Faits relevés_ : Un nouveau système d'alimentation électrique est déjà en service à Ulanqab, en Chine. | Il doit à terme alimenter jusqu'à un million d'accélérateurs d'IA. | Aujourd'hui, les centres de calcul passent par plusieurs étapes de conversion du courant du réseau. | Le système Dubhe d'Envision convertit directement du courant alternatif de 10 000 volts en courant continu de 800 volts. | Cela vise à améliorer le rendement et à réduire fortement la taille des appareils de conversion. | D'après l'entreprise elle-même, le système fonctionne bien. | Envision veut le déployer dans Mission Gobi : 5 gigawatts de centres de calcul verts dans des déserts d'ici 2030.
-- _Nouveauté selon l'article_ : Un système qui convertit directement le courant du réseau (10 000 volts) en courant continu de 800 volts, au lieu de plusieurs étapes ; l'article ne revendique pas de première.
-- _Jargon_ : courant alternatif / courant continu : mot à connaître (courant continu), l'autre est cité dans sa définition | moyenne tension : remplacé par « à 10 000 volts » | accélérateurs d'IA : remplacé par « puces d'IA » | gigawatts : expliqué en contexte, comme une grande puissance de centres de calcul | centre de calcul : expliqué en quelques mots (bâtiment rempli d'ordinateurs pour l'IA)
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
@@ -214,9 +191,20 @@ Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caract
 - **Mots** : (aucun)
 - **Type** : essai_clinique
 
-**haiku** : échec de la réécriture
+**Nouveau (haiku)**
 
-**sonnet** : échec de la réécriture
+- **Titre** : Cancer du côlon : deux médicaments donnés avant opération réduisent la tumeur
+- **Avant** : Jusqu'à 35 % des malades avec un cancer colorectal localisé rechutent après traitement. Les cancers du côlon dont le système de réparation de l'ADN fonctionne encore étaient jugés résistants aux premières immunothérapies.
+- **Découverte** : Des chercheurs ont testé une courte cure avant opération sur 56 malades avec un cancer du côlon localement avancé. Chez les cancers résistants, le duo de médicaments a réduit la tumeur à 10 % ou moins de cellules vivantes chez 36 % des malades, contre 0 % avec le botensilimab seul. Chez les cancers dont la réparation de l'ADN est défaillante, le duo a obtenu ce résultat chez 100 % des 14 malades traités.
+- **Et après** : Le duo pourrait offrir une option avant opération aux cancers résistants. Mais chaque groupe ne comptait que 14 malades, et 54 % des malades traités par le duo ont eu des effets indésirables liés au système immunitaire. Il s'agit d'un petit essai, à confirmer sur davantage de malades.
+- **Mots** : **Immunothérapie** → Traitement qui aide le système de défense du corps à reconnaître et détruire les cellules cancéreuses.
+- **Type** : essai_clinique
+
+- _Faits relevés_ : Essai de phase 2 nommé UNICORN, mené sur 56 malades avec un cancer du côlon opérable mais déjà localement avancé. | Les malades ont reçu une courte cure de médicaments avant l'opération : le botensilimab seul, ou le botensilimab avec le balstilimab. | Les malades étaient répartis en deux types de cancer, 28 chacun, puis en deux groupes de 14 selon le traitement. | Réponse majeure, c'est-à-dire au plus 10 % de tumeur vivante restante : 0 % avec le botensilimab seul dans les cancers résistants. | Réponse majeure : 36 % avec le duo dans les cancers résistants, et 36 % avec le botensilimab seul dans les cancers réagissant déjà aux immunothérapies. | Réponse majeure : 100 % avec le duo dans les cancers réagissant déjà aux immunothérapies. | Effets indésirables liés au système immunitaire : 8 malades (29 %) avec le botensilimab seul, 15 (54 %) avec le duo, surtout syndrome grippal et diarrhée. | Disparition de l'ADN tumoral circulant avant l'opération liée à une meilleure réponse et à l'absence de rechute au moment de l'analyse. | Les auteurs jugent l'approche prometteuse pour étendre le bénéfice de ces médicaments aux stades plus précoces.
+- _Nouveauté selon l'article_ : Selon les chercheurs, le duo botensilimab et balstilimab a fait disparaître la majorité de la tumeur chez 36 % des malades aux cancers résistants, alors que ces cancers étaient considérés comme résistants aux premiers médicaments de ce type ; l'article ne revendique pas de première.
+- _Jargon_ : Immunothérapie : mot à connaître, expliqué dans la liste des mots. | pMMR : remplacé par « dont le système de réparation de l'ADN fonctionne encore ». | dMMR : remplacé par « dont le système de réparation de l'ADN est défaillant ».
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 8}
+- _Alertes automatiques_ : aucune
 
 
 ---
@@ -234,20 +222,18 @@ Fil : science · 2★ · source : Pour la Science · page lue : oui (6000 caract
 - **Mots** : (aucun)
 - **Type** : observation
 
-**haiku** : échec de la réécriture
+**Nouveau (haiku)**
 
-**Nouveau (sonnet)**
-
-- **Titre** : Étoiles : un télescope géant repère un compagnon probable près d'une étoile rouge
-- **Avant** : Soupçonnée depuis plus d'un siècle, une étoile compagne de la géante rouge Bételgeuse restait sans preuve solide. En 2024, des tentatives de détection ont donné soit rien, soit un signal trop faible pour conclure.
-- **Découverte** : Des astronomes de l'Observatoire de Paris ont repéré une source faible près de Bételgeuse avec le Very Large Telescope, au Chili, les 3 et 6 décembre 2024. Elle se trouvait à l'endroit et à la date prévus : son signal dépasse 6,1 fois le bruit de fond, contre 1,5 fois pour une tentative précédente. Ils estiment que ce compagnon pèse 2,6 à 3,1 fois le Soleil : une jeune étoile bleu-blanc.
-- **Et après** : Si elle est confirmée, cette compagne expliquerait le cycle de luminosité de six ans de Bételgeuse : son tour complet durerait 5,5 à 5,9 ans. Mais il s'agit encore d'un candidat : il faudra réobserver vers 2027 pour écarter un objet aligné par hasard.
+- **Titre** : Étoiles : des astronomes repèrent une probable étoile compagne de Bételgeuse
+- **Avant** : Depuis plus d'un siècle, on soupçonne Bételgeuse d'avoir une étoile compagne, sans preuve solide. En 2024, deux équipes ont prévu le moment où ce compagnon serait le plus éloigné, mais les recherches n'ont donné qu'un signal trop faible pour conclure.
+- **Découverte** : Des chercheurs de l'Observatoire de Paris, menés par Miguel Montargès, ont repéré une source faible nommée Bételgeuse B, à l'endroit prévu. Observée les 3 et 6 décembre 2024 avec le très grand télescope européen VLT, au Chili, elle est environ quatre fois plus nette que le signal de l'équipe de la Nasa. Selon eux, ce compagnon pèserait 2,6 à 3,1 fois la masse du Soleil, soit une jeune étoile bleu-blanc.
+- **Et après** : Si le compagnon se confirme, il montrerait que les étoiles très massives vivent aussi en couple, et qu'il est plus lourd qu'on ne le pensait. Les chercheurs parlent encore de « candidat » : il faudra revoir l'étoile vers 2027, de l'autre côté de son orbite, pour écarter un objet seulement aligné par hasard.
 - **Mots** : (aucun)
 - **Type** : observation
 
-- _Faits relevés_ : Bételgeuse est une géante rouge de la constellation d'Orion, à environ 550 années-lumière, de 16,5 à 19 fois la masse du Soleil. | Sa luminosité varie selon plusieurs cycles, dont un d'environ 2 200 jours (six ans) qui pourrait venir du passage d'un compagnon. | En 2024, deux équipes ont prédit que le compagnon serait le plus éloigné de l'étoile en décembre 2024. | Hubble et Chandra n'ont rien détecté ; le télescope Gemini North a capté un signal à 1,5 fois le niveau de bruit, trop faible pour conclure. | Le Very Large Telescope, au Chili, a observé l'étoile les 3 et 6 décembre 2024 et détecté une source nommée Bételgeuse B, à l'endroit et à la date attendus. | Le signal vaut 6,1 fois le bruit, soit quatre fois plus significatif que celui de Gemini North ; une seconde méthode d'analyse donne un résultat cohérent. | La masse estimée du compagnon est de 2,6 à 3,1 fois celle du Soleil ; c'est une jeune étoile bleu-blanc. | Le tour complet durerait 5,5 à 5,9 ans ; les chercheurs parlent encore de candidat, à revoir vers 2027.
-- _Nouveauté selon l'article_ : L'hypothèse d'un compagnon date de plus d'un siècle et un signal faible existait déjà ; la nouveauté est une source vue à l'endroit et à la date prévus, avec un signal quatre fois plus significatif ; l'article ne revendique pas de première.
-- _Jargon_ : supergéante rouge : remplacé par « géante rouge » | système binaire : remplacé par « étoile compagne » | rapport signal sur bruit : remplacé par « fois le bruit de fond » | séquence principale, type spectral B, Hα, SPHERE-ZIMPOL : non utilisés | longue période secondaire (LSP) : remplacé par « cycle de luminosité de six ans »
+- _Faits relevés_ : Une source faible, nommée Bételgeuse B, a été repérée à l'endroit et à la date prévus. | Les observations ont eu lieu les 3 et 6 décembre 2024 avec le très grand télescope européen VLT, au Chili. | Le signal est environ quatre fois plus net que celui obtenu par l'équipe de Steve Howell, de la Nasa, avec le télescope Gemini North. | Selon l'équipe de Miguel Montargès, le compagnon pèserait entre 2,6 et 3,1 fois la masse du Soleil. | Ce compagnon serait une jeune étoile bleu-blanc, tout juste arrivée à l'âge adulte. | Les modèles antérieurs prédisaient un compagnon deux à trois fois moins massif. | Aucune lumière de l'hydrogène n'a été détectée, et Hubble et Chandra n'avaient rien trouvé. | Les chercheurs parlent encore de « candidat » : il faudra réobserver vers 2027, de l'autre côté de l'orbite.
+- _Nouveauté selon l'article_ : Ce qui est nouveau : une source détectée exactement à l'endroit prévu, avec un signal plus net que la tentative précédente ; l'article ne revendique pas de première.
+- _Jargon_ : Supergéante rouge : remplacé par « étoile géante très massive » | VLT : expliqué (le très grand télescope européen VLT) | Système binaire : remplacé par « couple d'étoiles » | Hα : remplacé par « lumière de l'hydrogène »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
@@ -267,9 +253,20 @@ Fil : tech · 1★ · source : pv magazine (solaire) · page lue : oui (3533 car
 - **Mots** : **Transformateur** → Appareil qui change la tension du courant électrique, ici sans pièce mobile grâce à l'électronique de puissance.
 - **Type** : demonstration
 
-**haiku** : échec de la réécriture
+**Nouveau (haiku)**
 
-**sonnet** : échec de la réécriture
+- **Titre** : Centres de calcul : un site chinois alimente ses serveurs en courant continu à 800 volts
+- **Avant** : Dans les centres de calcul pour l'IA, le courant arrive en alternatif, qui change de sens en permanence, puis est converti en continu près des serveurs. Pour mettre plus de puissance dans chaque baie, de grands acteurs visent un courant continu à plus haute tension.
+- **Découverte** : Envision Energy a mis en service, au campus Galaxy d'Ulanqab, en Chine, un système qui relie un transformateur électronique à des batteries. Il alimente les serveurs en 800 volts continus, à partir d'un courant à 10 000 volts. Selon l'entreprise, un logiciel ajuste l'énergie aux processeurs graphiques en quelques millisecondes.
+- **Et après** : Pour les exploitants de centres de calcul, cela pourrait permettre plus de serveurs dans le même espace. Mais c'est un seul site, et les chiffres de rendement et d'énergie renouvelable viennent du constructeur.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Faits relevés_ : Envision Energy, une entreprise chinoise, a déployé son système au campus Galaxy d'Ulanqab, en Chine. | Le système combine un transformateur électronique et des batteries, reliés à un circuit de 800 volts en courant continu. | Le transformateur prend du courant à 10 000 volts (10 kV) et le ramène à 800 volts continus. | Un logiciel ajuste en temps réel l'énergie aux processeurs graphiques, en quelques millisecondes, selon l'entreprise. | Les batteries assurent un appui et une réserve de secours de l'ordre de la minute. | Le campus a commencé à fonctionner en août 2026, avec une capacité prévue de 3 gigawatts. | Plus de 80 % de son énergie devrait venir de sources renouvelables, selon le constructeur. | Un modèle de transformateur de 2,5 MW, annoncé avec un rendement de 98,5 %, a été présenté à Munich en juillet 2026.
+- _Nouveauté selon l'article_ : Selon l'entreprise, c'est le premier déploiement commercial d'un système 800 volts continus intégré dans un grand centre de calcul ; l'article ne le vérifie pas. Les architectures en continu à plus haute tension existaient déjà à l'état de projets chez de grands acteurs.
+- _Jargon_ : courant alternatif et courant continu : expliqués en quelques mots dans l'avant | SST : remplacé par « transformateur électronique » | BESS : remplacé par « batteries » | GPU : remplacé par « processeurs graphiques » | GW : remplacé par « gigawatts »
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 8}
+- _Alertes automatiques_ : aucune
 
 
 ---
@@ -287,21 +284,19 @@ Fil : science · 2★ · source : New Atlas · page lue : oui (5922 caractères)
 - **Mots** : **Hème** → Partie de l'hémoglobine contenant du fer, qui permet au sang de transporter l'oxygène.
 - **Type** : terrain
 
-**haiku** : échec de la réécriture
+**Nouveau (haiku)**
 
-**Nouveau (sonnet)**
-
-- **Titre** : Dinosaures : des chercheurs détectent une molécule du sang dans un os fossile
-- **Avant** : Avec le temps, la matière des os fossiles devrait en principe être remplacée par des minéraux. Des chercheurs avaient déjà annoncé retrouver des molécules du sang dans des fossiles, mais ces résultats restaient très débattus, car des microbes pouvaient les avoir contaminés.
-- **Découverte** : Une équipe dirigée par Kliti Grice, de l'université Curtin, a détecté de l'hème, une molécule du sang, dans la patte arrière d'un dinosaure d'environ 3 mètres, mort il y a 115 millions d'années et retrouvé au nord-est du Brésil. Dans d'anciens canaux de vaisseaux sanguins, des formes arrondies ressemblent à des globules rouges fossilisés et portent une signature chimique compatible avec l'hème. Une version modifiée de l'hème est environ 90 fois plus abondante que l'hème d'origine.
-- **Et après** : Selon les chercheurs, de telles traces pourraient renseigner sur le fonctionnement du corps d'animaux disparus, mais il faudra d'autres travaux. Une contamination par des microbes fabriquant de l'hème n'est pas totalement exclue, et la protéine de l'hémoglobine n'a pas été retrouvée.
-- **Mots** : **Hème** → Molécule contenant du fer, au cœur de l'hémoglobine, la protéine du sang qui transporte l'oxygène dans le corps.
+- **Titre** : Dinosaures : un os de 115 millions d'années contient une molécule du sang
+- **Avant** : Les os fossiles gardent surtout leur forme, car leur matière est remplacée par des minéraux. Survivre de la chimie d'origine était jugé très peu probable. Des signalements antérieurs, dès la fin des années 1990, restaient très discutés à cause du risque de contamination.
+- **Découverte** : Une équipe internationale dirigée par Kliti Grice, de l'université Curtin, a identifié de l'hème, la partie du sang qui transporte l'oxygène, dans une patte arrière fossile d'un dinosaure d'environ 3 mètres, mort il y a 115 millions d'années. Des formes rondes, logées dans les anciens canaux des vaisseaux sanguins, ressemblent à des globules rouges fossilisés. Les chercheurs ont combiné microscopie et plusieurs analyses chimiques, qui ont relevé du fer, de l'azote et du carbone autour de ces formes.
+- **Et après** : Ces restes pourraient aider à comprendre comment fonctionnait le corps de ces animaux disparus. Mais une contamination par des microbes n'est pas totalement exclue, et aucune trace de la protéine du sang n'a été signalée.
+- **Mots** : **Hème** → Partie du sang contenant du fer, qui permet au sang de transporter l'oxygène.
 - **Type** : laboratoire
 
-- _Faits relevés_ : Les restes viennent d'un dinosaure d'environ 3 mètres de long, mort il y a 115 millions d'années, dans le nord-est du Brésil. | L'étude porte sur une partie de la patte arrière droite, prise dans ce que les chercheurs identifient comme un ancien tapis de microbes. | Une équipe internationale dirigée par Kliti Grice, de l'université Curtin, a identifié de l'hème dans des extraits de l'os. | L'hème est la partie à fer de l'hémoglobine, qui permet de transporter l'oxygène. | Une version modifiée de l'hème est environ 90 fois plus abondante que l'hème d'origine. | Des formes arrondies, dans d'anciens canaux de vaisseaux sanguins, ressemblent à des globules rouges fossilisés et contiennent une signature chimique compatible avec l'hème. | Le tapis de microbes était dominé par des composés issus de pigments de photosynthèse, alors que les molécules de l'extrait étaient surtout liées à l'hème. | Une contamination par des microbes fabriquant de l'hème ne peut pas être totalement exclue. | Ces globules supposés sont un peu plus ronds et larges que ceux des oiseaux et des crocodiles actuels. | Rien n'indique que la protéine de l'hémoglobine ait été conservée.
-- _Nouveauté selon l'article_ : Des annonces de molécules du sang dans des fossiles existaient déjà (années 1990, 2015) et étaient très débattues ; ici, l'hème est détecté dans un contexte plus difficile à attribuer à une contamination, et Grice parle de « landmark discovery » qui « extends the known fossil record of blood ».
-- _Jargon_ : hème : expliqué en quelques mots et mot à connaître | hémoglobine : expliquée dans la définition de l'hème | porphyrine : remplacé par « signature chimique » | spectroscopie et cartographie des éléments : remplacés par « analyses chimiques » | théropode : supprimé, remplacé par « dinosaure » | contamination : expliquée par « des microbes pouvaient les avoir contaminés »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 8}
+- _Faits relevés_ : Le dinosaure mesurait environ 3 mètres de long et serait mort vers l'âge de 4 ans, il y a 115 millions d'années. | Les restes viennent du nord-est du Brésil, et une patte arrière est concernée. | L'équipe de Kliti Grice, de l'université Curtin, a identifié de l'hème, la partie du sang qui transporte l'oxygène. | Des formes rondes, logées dans les anciens canaux des vaisseaux sanguins, ressemblent à des globules rouges fossilisés. | Une analyse chimique trouve une signature compatible avec l'hème dans ces formes, avec du fer, de l'azote et du carbone. | La plupart de l'hème détecté avait changé chimiquement pendant la fossilisation. | Un composé lié au collagène a été trouvé, mais pas le collagène lui-même. | Aucune protéine de l'hémoglobine conservée n'est signalée, et une contamination par des microbes n'est pas totalement exclue.
+- _Nouveauté selon l'article_ : Selon Kliti Grice, c'est une découverte « marquante » (landmark discovery) ; des signalements similaires existaient depuis la fin des années 1990, et l'article ne revendique pas de première.
+- _Jargon_ : hème : expliqué en quelques mots dans la fiche | hémoglobine : expliqué en quelques mots dans la mots à connaître | collagène : remplacé par « une protéine de la peau et des os » | porphyrine : non utilisé dans la fiche | hydroxyproline : non utilisé dans la fiche | hausmannite : non utilisé dans la fiche
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
 
@@ -322,31 +317,16 @@ Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2694 car
 
 **Nouveau (haiku)**
 
-- **Titre** : Cerveau : comprimer le noyau aide des cellules de souris à devenir nerveuses
-- **Avant** : Pour changer le rôle d'une cellule, les chercheurs savent activer certains gènes. Mais l'ADN, très serré dans le noyau, rend certains gènes difficiles à atteindre pour les outils de laboratoire.
-- **Découverte** : Des chercheurs de l'Université de Californie à Los Angeles ont fait passer des cellules de peau de souris dans des canaux plus étroits que leur noyau. Pendant quelques millièmes de seconde, ce noyau est comprimé et son ADN se desserre. Avec un outil qui active des gènes sans couper l'ADN, environ 3 % des cellules devenaient nerveuses ; avec la compression, environ 10 %. En activant aussi un autre gène qui facilite la transformation, le taux monte à près de 40 %.
-- **Et après** : Les cellules nerveuses humaines étant difficiles à prélever, ces cellules pourraient servir à étudier des maladies du cerveau et tester des médicaments. Mais l'expérience porte sur des cellules de souris cultivées en laboratoire ; la méthode doit encore être testée sur d'autres types de cellules, notamment humaines.
+- **Titre** : Cellules : comprimer le noyau aide des cellules de souris à devenir neurones
+- **Avant** : Les chercheurs savaient déjà changer le rôle d'une cellule en agissant sur ses instructions génétiques. Mais certaines instructions restaient difficiles à atteindre, car l'ADN est très serré dans le noyau.
+- **Découverte** : Des chercheurs de l'Université de Californie à Los Angeles ont fait passer des cellules de peau de souris dans des canaux plus étroits que leur noyau. Combinée à un outil qui active des gènes déjà présents, sans les couper, cette compression fait passer la part de cellules devenues nerveuses d'environ 3 % à environ 10 %. En activant d'abord un autre gène qui les rend plus faciles à transformer, la proportion atteint près de 40 %.
+- **Et après** : Ces cellules nerveuses pourraient aider à étudier des maladies du cerveau et à tester des médicaments, sans prélever de tissu cérébral. Pour l'instant, l'expérience est faite chez la souris, en laboratoire, et reste à tester sur des cellules humaines.
 - **Mots** : (aucun)
 - **Type** : cellules
 
-- _Faits relevés_ : Des cellules de peau de souris sont passées dans des canaux microscopiques, plus étroits que leur noyau. | Cette compression dure quelques millièmes de seconde et fait desserrer l'ADN temporairement. | L'outil CRISPRa active des gènes déjà présents, sans couper l'ADN. | Avec CRISPRa seul, environ 3 % des cellules devenaient nerveuses ; avec la compression, environ 10 %. | Après activation d'un autre gène qui facilite la transformation, le taux atteint près de 40 %. | Les cellules nerveuses humaines sont difficiles à prélever, d'où l'intérêt de les produire en laboratoire. | Ces cellules pourraient servir à étudier des maladies du cerveau et à tester des médicaments. | L'expérience porte sur des cellules de souris cultivées en laboratoire ; d'autres types de cellules, notamment humaines, doivent encore être testés.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; la nouveauté est d'associer une compression du noyau à un outil d'activation de gènes, alors que les chercheurs savaient déjà agir sur ces instructions.
-- _Jargon_ : CRISPRa : remplacé par « un outil qui active des gènes sans couper l'ADN ». | Millisecondes : remplacé par « millièmes de seconde ». | Neurone : remplacé par « cellule nerveuse ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 9}
-- _Alertes automatiques_ : aucune
-
-**Nouveau (sonnet)**
-
-- **Titre** : Souris : une pression aide des cellules de peau à devenir des neurones
-- **Avant** : Les chercheurs savent agir sur les instructions génétiques pour changer la fonction d'une cellule. Mais l'ADN est très serré dans le noyau, et certains gènes utiles restent parfois inaccessibles aux outils de laboratoire.
-- **Découverte** : Des chercheurs de l'Université de Californie à Los Angeles ont fait passer des cellules de peau de souris dans des canaux plus étroits que leur noyau. Celui-ci, comprimé quelques millisecondes, desserre son ADN. Avec CRISPRa, un outil qui active des gènes sans couper l'ADN, environ 10 % des cellules sont devenues des neurones, contre environ 3 % sans compression. Activer d'abord un autre gène, qui facilite la transformation, a fait monter ce taux à près de 40 %.
-- **Et après** : Produire des neurones en laboratoire pourrait aider à étudier des maladies du cerveau et à tester des médicaments, sans prélever de tissu cérébral. Pour l'instant, cela n'a été fait que sur des cellules de souris cultivées en laboratoire ; il faut tester d'autres cellules, notamment humaines.
-- **Mots** : (aucun)
-- **Type** : cellules
-
-- _Faits relevés_ : Une équipe de l'Université de Californie à Los Angeles a travaillé sur des cellules de peau de souris. | Les cellules passent dans des canaux microscopiques plus étroits que leur noyau. | Le noyau est comprimé quelques millisecondes et l'ADN se desserre temporairement. | L'outil CRISPRa active des gènes déjà présents, sans couper l'ADN. | Avec CRISPRa seul, environ 3 % des cellules deviennent des cellules neuronales ; avec la compression, environ 10 %. | Après activation d'un autre gène qui rend les cellules plus faciles à transformer, le taux monte à près de 40 %. | L'expérience porte sur des cellules de souris cultivées en laboratoire. | Les chercheurs doivent tester la méthode sur d'autres types de cellules, notamment humaines.
-- _Nouveauté selon l'article_ : Nouveau : associer une compression brève du noyau à l'outil CRISPRa pour transformer plus de cellules de peau en neurones ; existait déjà : agir sur les gènes pour changer la fonction d'une cellule. L'article ne revendique pas de première.
-- _Jargon_ : CRISPRa : expliqué en quelques mots (outil qui active des gènes sans couper l'ADN) | ADN : mot courant, gardé tel quel | noyau : mot courant, gardé tel quel | neurone : expliqué par « cellule nerveuse » dans le titre et le texte | conversion : remplacé par « transformation »
+- _Faits relevés_ : Une équipe de l'Université de Californie à Los Angeles a travaillé sur des cellules de peau de souris. | Les cellules sont passées dans des canaux microscopiques, plus étroits que leur noyau, pendant quelques millisecondes. | Cette compression fait se desserrer temporairement l'ADN à l'intérieur du noyau. | L'outil CRISPRa active des gènes déjà présents, sans couper l'ADN. | Avec CRISPRa seul, environ 3 % des cellules devenaient des cellules nerveuses. | Avec la compression en plus, cette proportion atteignait environ 10 %. | En activant d'abord un autre gène qui facilite la transformation, le taux montait à près de 40 %. | L'expérience porte sur des cellules de souris cultivées en laboratoire ; les tests sur des cellules humaines restent à faire.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; la nouveauté est d'associer la compression du noyau à CRISPRa, qui augmente la proportion de cellules transformées.
+- _Jargon_ : CRISPRa : expliqué en quelques mots dans la fiche | gènes : mot courant, non expliqué | ADN : mot courant, non expliqué
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
@@ -366,24 +346,22 @@ Fil : science · 2★ · source : Live Science · page lue : oui (4370 caractèr
 - **Mots** : (aucun)
 - **Type** : observation
 
-**haiku** : échec de la réécriture
+**Nouveau (haiku)**
 
-**Nouveau (sonnet)**
-
-- **Titre** : Archéologie : un radar satellite révèle un bâtiment égyptien enfoui de 2 600 ans
-- **Avant** : Buto, dans le delta du Nil, était une ville sacrée de l'Égypte ancienne. Ses couches anciennes, sous le niveau de la nappe d'eau, restaient hors de portée : les fouilles précédentes s'étaient arrêtées à l'eau.
-- **Découverte** : Des chercheurs ont repéré, sans creuser, un grand bâtiment en briques de terre crue vieux d'environ 2 600 ans à Buto, en Égypte. Un satellite européen a d'abord montré par radar une forme ovale enfouie de 128 sur 62 mètres. Des mesures électriques du sol, sur environ 5 400 m², ont ensuite révélé le bâtiment entre 3 et 6 mètres de profondeur. Dessous, une couche de sable, à 6 ou 7 mètres, aurait servi de coussin contre l'argile instable.
-- **Et après** : Cette méthode permet de sonder des couches profondes sans fouille, ce qui est utile dans un sol gorgé d'eau. Mais l'usage du bâtiment reste inconnu : tombe, maison de prêtres ou sanctuaire.
+- **Titre** : Égypte : un bâtiment de 2 600 ans repéré sous terre sans creuser
+- **Avant** : Le site de Buto, ville sacrée de l'Égypte ancienne, est fouillé depuis des décennies. Mais les fouilles n'avaient pas atteint les couches plus anciennes, noyées sous la nappe d'eau.
+- **Découverte** : Des chercheurs ont repéré, grâce à un radar installé sur un satellite européen, une grande structure enfouie à Buto. Elle est faite de briques de boue et date de la 26e dynastie, entre 688 et 525 av. J.-C. Des mesures électriques du sol, faites sans creuser sur environ 5 400 m², ont permis de détailler ces couches.
+- **Et après** : Cette méthode permet d'étudier des sites enfouis sous la nappe d'eau sans les déranger. Mais il s'agit de mesures à distance : l'usage du bâtiment, tombe, maison de prêtres ou sanctuaire, reste à établir.
 - **Mots** : (aucun)
-- **Type** : observation
+- **Type** : terrain
 
-- _Faits relevés_ : Buto (Tell el-Fara'in), dans le nord-ouest du delta du Nil, était un lieu très sacré de l'Égypte ancienne, foyer de la déesse cobra Ouadjet. | Les fouilles précédentes de la butte Kom C n'avaient atteint que les couches ptolémaïques et romaines avant de buter sur la nappe d'eau. | Le satellite européen Sentinel-1 a montré par radar une forme ovale enfouie de 128 sur 62 mètres sous Kom C. | Des mesures électriques du sol sur 15 lignes parallèles, environ 5 400 m², ont ensuite été réalisées. | Entre 0 et 3 m, débris ptolémaïques et romains ; entre 3 et 6 m, un grand bâtiment en briques de terre crue de la 26e dynastie (688 à 525 av. J.-C.). | La datation repose sur la couche, la forme des briques, des poteries et du carbone 14 sur des matières organiques associées. | Le bâtiment pourrait être une tombe, une maison de prêtres ou un sanctuaire. | Entre 6 et 7 m, une couche de sable propre, inattendue, aurait servi de coussin sous les fondations dans l'argile instable.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; la nouveauté est d'avoir repéré ce bâtiment profond sans fouille, avec un radar satellite puis des mesures électriques, alors que les fouilles s'arrêtaient à la nappe d'eau.
-- _Jargon_ : radar satellite : expliqué en quelques mots (signaux envoyés depuis l'orbite puis mesurés au retour) | tomographie de résistivité électrique : remplacé par « mesures électriques du sol » | anomalie : remplacé par « forme ovale enfouie » | 26e dynastie / période saïte : remplacé par la date (environ 2 600 ans) | carbone 14 : non utilisé dans la fiche
+- _Faits relevés_ : Le site, Buto (Tell el-Fara'in), se trouve dans le delta du Nil, au nord-ouest de l'Égypte, et était consacré à la déesse-cobra Wadjet. | Les fouilles précédentes n'avaient atteint que les couches ptolémaïques et romaines, car la nappe d'eau bloquait l'accès aux couches plus profondes. | Un radar installé sur un satellite de l'Agence spatiale européenne a repéré une zone ovale de 128 m sur 62 m sous le monticule Kom C. | Quinze lignes de mesures électriques du sol, sur environ 5 400 m², ont été faites sans creuser. | Entre 3 et 6 m de profondeur, une grande structure en briques de boue date de la 26e dynastie, entre 688 et 525 av. J.-C. | Cette datation repose sur la couche où se trouve la structure, la forme des briques et la poterie trouvée à proximité. | Entre 6 et 7 m, une épaisse couche de sable propre se trouve sous la structure : elle a été posée avant la construction. | Les chercheurs ne savent pas encore à quoi servait le bâtiment : tombe, maison de prêtres ou sanctuaire restent possibles.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : la nouveauté est d'avoir daté un bâtiment ancien sous la nappe d'eau sans fouiller, alors que les fouilles s'arrêtaient à cette nappe.
+- _Jargon_ : radar satellite : expliqué en quelques mots (un radar installé sur un satellite) | tomographie électrique : remplacé par « mesures électriques du sol » | dynastie : expliqué en quelques mots (une suite de pharaons d'une même famille, ici la 26e) | carbone 14 : remplacé par « la couche, la forme des briques et la poterie »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-Coût total du test : 0.6928 $
+Coût total du test : 0.0343 $
