@@ -67,9 +67,9 @@ Future<String> _pied() async => '———\n'
     'Téléphone : ${await _appareil()}\n'
     'Langue : ${etat.langue}';
 
-/// « Signaler une erreur » : choix du motif, puis e-mail prérempli.
-Future<void> signalerErreur(BuildContext context, Avancee a) async {
-  final motif = await showModalBottomSheet<String>(
+/// Feuille « Signaler une erreur » : renvoie le motif choisi (titre français) ou null.
+Future<String?> choisirMotif(BuildContext context, String question, List<(String, String)> motifs) {
+  return showModalBottomSheet<String>(
     context: context,
     isScrollControlled: true,
     backgroundColor: palette(context).carte,
@@ -91,10 +91,10 @@ Future<void> signalerErreur(BuildContext context, Avancee a) async {
             Text(tr('Signaler une erreur'),
                 style: police(policeTitres, taille: 22, graisse: FontWeight.w800, couleur: p.texte)),
             const SizedBox(height: 4),
-            Text(tr('Qu’est-ce qui ne va pas avec cette avancée ?'),
+            Text(tr(question),
                 style: police(policeTexte, taille: 14, couleur: p.texteDiscret)),
             const SizedBox(height: 8),
-            for (final (titre, precision) in motifsSignalement)
+            for (final (titre, precision) in motifs)
               InkWell(
                 borderRadius: BorderRadius.circular(12),
                 onTap: () => Navigator.of(context).pop(titre),
@@ -122,6 +122,11 @@ Future<void> signalerErreur(BuildContext context, Avancee a) async {
       );
     },
   );
+}
+
+/// « Signaler une erreur » : choix du motif, puis e-mail prérempli.
+Future<void> signalerErreur(BuildContext context, Avancee a) async {
+  final motif = await choisirMotif(context, 'Qu’est-ce qui ne va pas avec cette avancée ?', motifsSignalement);
   if (motif == null || !context.mounted) return;
   stat('signalement', a: a, valeur: motif);
   final corps = '${tr('Votre remarque (facultatif) :')}\n\n\n\n'
@@ -133,6 +138,35 @@ Future<void> signalerErreur(BuildContext context, Avancee a) async {
       '${(await _pied()).replaceFirst('———\n', '')}';
   if (!context.mounted) return;
   await _envoyer(context, '[NovaSTEM] Signalement : $motif', corps);
+}
+
+/// Motifs pour un événement « À venir ».
+const List<(String, String)> motifsSignalementEvenement = [
+  ('Mauvaise date ou heure', 'Le jour, l’heure ou le fuseau horaire'),
+  ('Annulé ou reporté', 'L’événement a changé de date ou n’aura pas lieu'),
+  ('Infos pratiques fausses', 'Lieu, visibilité, lien du direct…'),
+  ('Résumé inexact', 'Un fait, un chiffre ou une exagération'),
+  ('Pas un vrai événement', 'Rumeur, publicité, simple annonce…'),
+  ('Doublon', 'Déjà présent dans À venir'),
+  ('Lien cassé', 'L’article ne s’ouvre pas'),
+  ('Autre', ''),
+];
+
+/// « Signaler une erreur » sur un événement À venir.
+Future<void> signalerErreurEvenement(BuildContext context,
+    {required String id, required String titre, required String date, required String source, required String lien}) async {
+  final motif = await choisirMotif(context, 'Qu’est-ce qui ne va pas avec cet événement ?', motifsSignalementEvenement);
+  if (motif == null || !context.mounted) return;
+  stat('signalement', valeur: 'À venir · $motif');
+  final corps = '${tr('Votre remarque (facultatif) :')}\n\n\n\n'
+      '———\n'
+      'Motif : $motif\n'
+      'Événement À venir : $titre ($date)\n'
+      'Source : $source · $lien\n'
+      'Identifiant : $id\n'
+      '${(await _pied()).replaceFirst('———\n', '')}';
+  if (!context.mounted) return;
+  await _envoyer(context, '[NovaSTEM] Signalement À venir : $motif', corps);
 }
 
 /// « Donner mon avis » (Réglages) : trois questions déjà écrites.
