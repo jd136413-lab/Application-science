@@ -51,6 +51,7 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 - Phrases courtes (25 mots au plus), une idée par phrase, mots de tous les jours.
 - Chaque mot technique est soit REMPLACÉ par des mots simples, soit EXPLIQUÉ tout de suite en quelques mots (« un isolant topologique, un matériau isolant à l'intérieur mais conducteur en surface »), soit donné en « mot à connaître ». Au plus deux mots techniques dans toute la fiche. Si le sujet est très technique (physique quantique, chimie…), décris CE QU'ON A VU et À QUOI ÇA SERT plutôt que l'appareillage : un lecteur n'a pas besoin du nom de chaque composant.
 - Les sigles sont écrits en entier ou expliqués à la première apparition.
+- Le nom d'un chercheur n'est utile que s'il dirige l'équipe dont on parle ; pour une autre équipe, dis ce qu'elle est (« une équipe de la NASA »), pas « Steve Howell ».
 - Noms communs en minuscule au milieu d'une phrase (« les nucléobases », jamais « les Nucléobases »), même si c'est un mot à connaître.
 - Ne parle jamais de la publication ni de l'article (« publié dans… », « selon la revue… », « l'article ne précise pas… ») : parle des chercheurs et de ce qu'ils ont fait. Ne nomme ni le média ni la revue.
 - Formules creuses interdites : « ouvre la voie », « ouvre de nouvelles perspectives », « pourrait révolutionner », « avancée majeure », « pas important », « change la donne », « nouvelle ère », « reste à confirmer » sans dire quoi.
@@ -63,13 +64,15 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 
 - Forme : « Thème : phrase ». Thème = 1 à 3 mots que tout le monde connaît, avec majuscule (Cancer, Espace, Climat, Voitures, Smartphones, Ordinateurs quantiques…). Puis « : » avec une espace avant et après. Puis une vraie phrase au présent : sujet + verbe conjugué + complément. 12 mots au plus en tout, sans point final.
 - Il dit CONCRÈTEMENT ce qui a été vu, fait ou lancé, et si possible à quoi ça sert. Interdits car vides : « un phénomène », « une découverte », « une avancée », « un résultat », « quelque chose », « prévu par la théorie », « une nouvelle méthode » sans dire laquelle, et les adjectifs creux « prometteur », « innovant », « étonnant », « inédit ».
+- Formule qui marche : « Thème : QUI ou QUOI + VERBE D'ACTION + RÉSULTAT CONCRET (chiffre, chose vue, record) ou À QUOI ÇA SERT ». Bons titres : « Cancer : des cellules modifiées font reculer la tumeur chez 10 malades sur 15 » ; « Archéologie : un bâtiment de 2 600 ans repéré sous terre sans creuser » ; « Cellules : comprimer le noyau aide à fabriquer des neurones » ; « Espace : un astéroïde contient les cinq "lettres" du code génétique » ; « Centres de calcul : la Chine alimente des serveurs d'IA sans étapes de conversion ».
+- Le thème est le domaine que le lecteur reconnaît (Cancer, Espace, Voitures, Électricité…), pas « IA » quand le sujet est l'électricité d'un bâtiment.
 - Quand le sujet est très technique, le titre dit à quoi sert la recherche plutôt que le nom de l'objet étudié. Exemple : « Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie » (vide) → « Ordinateurs quantiques : une piste vers des calculs sans erreurs se confirme en laboratoire ».
 - Test du passant : quelqu'un qui n'a jamais entendu parler du sujet comprend. Pas de nom propre inconnu du grand public (dis ce que c'est : « un nouveau médicament », « une IA de Google », « un constructeur chinois »), pas de jargon ni de sigle. Connus de tous et permis : Apple, Google, NASA, SpaceX, Mars, la Lune, Alzheimer, Covid, ordinateur quantique, IA, ADN, ARN, gène, vaccin, virus, robot, satellite, astéroïde, trou noir…
 - Exact : pas de « guérit » pour un traitement qui fait reculer une tumeur, pas de « révolutionne ».
 
 # Les trois paragraphes
 
-- "avant" (1 à 2 phrases, 45 mots au plus) : le contexte et le PROBLÈME qui restait, vu du domaine (pas les intentions d'une entreprise). Ce qu'on savait déjà ou ce qui existait, puis ce qui manquait.
+- "avant" (1 à 2 phrases, 45 mots au plus) : le contexte et le PROBLÈME qui restait, vu du domaine : jamais l'historique ou les intentions d'une entreprise, jamais un détail qui contredit la nouveauté (« 6 000 exemplaires déjà en circulation » dans une fiche sur un lancement). Ce qu'on savait déjà ou ce qui existait, puis ce qui manquait.
   · Si l'article cite des résultats ou des produits antérieurs (autre étude, autre mission, autre météorite, modèle précédent), l'« avant » les mentionne en quelques mots pour situer EXACTEMENT ce qui est nouveau. Exemple : « Des météorites et des échantillons de l'astéroïde Bennu en contenaient déjà ; dans Ryugu, on n'en avait trouvé qu'une sur cinq. » Ne jamais écrire « on cherchait encore à savoir si… » quand l'article montre que c'était déjà connu ailleurs.
   · Pas d'affirmation absolue non soutenue par l'article (voir exactitude).
 - "decouverte" (2 à 3 phrases, 85 mots au plus) — « La découverte » (Sciences) ou « La nouveauté » (Technologies) : QUI (« des chercheurs de l'université de Kyoto », « Samsung »), QUOI exactement, COMMENT, avec les 2 ou 3 chiffres clés. La 1re phrase se suffit à elle-même (elle sert aux notifications). Ton factuel, jamais publicitaire.
@@ -219,14 +222,21 @@ CONSIGNE_RELECTURE = """Tu es le relecteur le plus exigeant de NovaSTEM, une app
 Cherche UNIQUEMENT ces défauts précis (un défaut = une ligne dans "problemes") :
 1. "non_soutenu" : un fait, un chiffre, un bénéfice, un usage futur ou une comparaison qui n'est PAS dans l'article, ou qui le déforme (ex. « les malades pourraient éviter une opération » alors que la méthode demande toujours d'opérer).
 2. "absolu" : « pour la première fois », « jamais », « aucun… ne pouvait », « on ignorait », « personne n'avait » que l'article ne dit pas, ou un contexte qui laisse croire que c'était inconnu alors que l'article cite des résultats antérieurs.
-3. "titre" : titre vague (« un phénomène », « une nouvelle alimentation », « des états »…), qui ne dit pas concrètement ce qui a été vu, fait ou lancé ; ou qui contient un nom propre inconnu du grand public (nom d'astéroïde, de mission, de produit, de molécule) ou un mot technique ; ou plus de 12 mots ; ou un thème (avant les deux-points) mal choisi.
+3. "titre" : titre vague (« un phénomène », « une nouvelle alimentation », « un nouveau système », « des états », « attendus »…), qui ne dit pas concrètement ce qui a été vu, fait ou lancé ; ou qui contient un nom propre inconnu du grand public (nom d'astéroïde, de mission, de produit, de molécule) ou un mot technique ; ou plus de 12 mots ; ou un thème (avant les deux-points) mal choisi.
 4. "jargon" : un mot technique ou un sigle ni remplacé par des mots simples, ni expliqué juste après, ni donné en mot à connaître.
 5. "comparaison" : un chiffre ou une comparaison incompréhensible sans référence (« 90 fois plus abondante » : que quoi ?), ou deux chiffres sur la même chose dont le lien n'est pas expliqué.
 6. "apres" : le paragraphe « Et après » ne dit pas ce que ça peut changer, OU ne dit pas la limite principale ou la prochaine étape, OU n'est qu'une liste de prix.
-7. "forme" : phrase de plus de 30 mots, tournure maladroite ou traduite de l'anglais, date relative (« mardi », « hier »), majuscule fautive, « avant » de plus de 2 phrases, « decouverte » de plus de 3, « apres » de plus de 2.
+7. "forme" : nom de personne inutile (chercheur d'une autre équipe), « avant » qui raconte l'histoire d'une entreprise au lieu du problème, phrase de plus de 30 mots, tournure maladroite ou traduite de l'anglais, date relative (« mardi », « hier »), majuscule fautive, « avant » de plus de 2 phrases, « decouverte » de plus de 3, « apres » de plus de 2.
 8. "mot" : mot à connaître mal choisi (mot courant, nom propre, sigle, absent du texte, déjà expliqué dans le texte) ou définition qui reprend le mot ou reste vague.
 
 Sois sévère mais juste : ne signale pas une préférence de style, seulement un vrai défaut de la liste.
+
+Ce qui est PERMIS (ne le signale pas, ne le retire pas) :
+- l'équivalent approximatif en euros d'un prix donné dans une autre monnaie (« 76 800 yuans, environ 9 000 € ») : c'est une règle de l'application ;
+- dans la définition d'un mot à connaître, une connaissance générale exacte (« le mélanome est le cancer de la peau le plus dangereux ») ;
+- une reformulation simple d'un terme technique, si elle reste exacte.
+
+Quand tu corriges le titre, le nouveau titre doit être PLUS concret que l'ancien (résultat chiffré, chose vue ou à quoi ça sert), jamais plus vague. Si tu ne trouves pas mieux, garde l'ancien.
 
 Puis donne la fiche corrigée : reprends la fiche telle quelle et corrige SEULEMENT les défauts trouvés, sans rien inventer (chaque correction s'appuie sur l'article). Règles de forme à garder : titre « Thème : phrase au présent », 12 mots au plus, sans point final ; avant 1-2 phrases ; decouverte 2-3 phrases ; apres 1-2 phrases, sans commencer par « Et après » ; noms communs en minuscule dans les phrases ; aucune mention de la publication, de la revue ou du média ; mots à connaître : 0 à 2, avec majuscule initiale, définition de 12 à 25 mots sans reprendre le mot. S'il n'y a aucun défaut, "problemes" est vide et la fiche corrigée est identique.
 
