@@ -57,6 +57,19 @@ MODELES = {
     "sonnet": {"id": "claude-sonnet-5-5", "prix": (2.00, 10.00)},
 }
 MODELE_PAR_DEFAUT = "haiku"
+
+# Rédaction en deux temps (03/11/2026, demande de Maxime, mise au point sur 15 tests) :
+# pour chaque fiche RETENUE (≈ 5 par passage), un 2e appel réécrit titre et paragraphes
+# avec une consigne dédiée à l'écriture, puis un 3e appel relit la fiche comme un
+# relecteur sévère et corrige les défauts (voir redaction.py). Coût mesuré ≈ 0,003 $
+# par fiche. PLAFOND_REDACTION borne le coût par passage : au-delà, les fiches gardent
+# le premier jet (déjà contrôlé comme avant).
+REDACTION = True
+PLAFOND_REDACTION = 0.05     # $ par passage
+# Le premier jet n'est plus qu'un brouillon (décision, thème, importance) puisque la fiche est
+# réécrite ensuite : on le fait réfléchir un peu moins pour compenser le coût de la réécriture.
+# Valeurs possibles : "low", "medium", "high" (= comme avant). Sans effet si REDACTION = False.
+EFFORT_PREMIER_JET = "medium"
 # ---------------------------------------------------------------------
 
 import html
@@ -78,6 +91,7 @@ import traduction
 import titres
 import bilan_sources
 import a_venir
+import redaction
 from anthropic import Anthropic
 
 from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
@@ -588,7 +602,7 @@ def extraire_json(texte: str) -> dict | None:
 
 
 TYPES_ETUDE = {
-    "science": ["essai_clinique", "humain", "animal", "cellules", "simulation",
+    "science": ["essai_clinique", "humain", "animal", "cellules", "laboratoire", "simulation",
                 "observation", "terrain", "donnees"],
     "tech": ["en_vente", "annonce", "demonstration", "prototype", "mise_a_jour"],
 }
@@ -1085,7 +1099,8 @@ def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, 
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
             article, sujets["science"], sujets["tech"])}],   # listes « déjà publié » en cache
-        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}},
+        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE},
+                       **({"effort": EFFORT_PREMIER_JET} if REDACTION and EFFORT_PREMIER_JET != "high" else {})},
     )
     u = rep.usage
     conso = {"in": u.input_tokens or 0, "out": u.output_tokens or 0,
@@ -1277,6 +1292,39 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     }
 
 
+def ameliorer_fiche(client, modele: dict, art: dict, ligne: dict) -> float:
+    """Rédaction en deux temps (redaction.rediger_complet) : réécriture puis relecture critique
+    (une 2e relecture seulement si des défauts mesurables restent).
+    Modifie `ligne` sur place (titre, paragraphes, mots, type d'étude). Renvoie le coût ($).
+    Ne lève jamais d'erreur : en cas de souci, la fiche garde le premier jet."""
+    fil = ligne["feed"]
+    res = redaction.rediger_complet(client, modele["id"], modele["prix"], art, fil, ligne)
+    total = res["cout"]
+    finale, d = res["finale"], res["redacteur"]
+    if not finale:
+        log(f"  ✎ réécriture impossible ({res['diag'][:80]}) : premier jet gardé")
+        return total
+    titre = " ".join(str(finale.get("title", "")).split()).rstrip(".")
+    avant = sans_publication(" ".join(str(finale.get("avant", "")).split()))
+    decouverte = sans_publication(" ".join(str(finale.get("decouverte", "")).split()))
+    apres = sans_publication(sans_et_apres(" ".join(str(finale.get("apres", "")).split())))
+    if not titre or not decouverte:
+        return total
+    ancien = ligne["title"]
+    ligne.update({
+        "title": titre, "avant": avant or None, "decouverte": decouverte, "apres": apres or None,
+        "summary": " ".join(x for x in (avant, decouverte, apres) if x),
+        "mots": mots_valides(finale.get("mots") or [], " ".join((titre, avant, decouverte, apres))),
+    })
+    if d.get("type_etude") in TYPES_ETUDE[fil]:
+        ligne["type_etude"] = d["type_etude"]
+    elif d.get("type_etude") == "aucun":          # preuve mathématique, travail théorique : pas de badge
+        ligne["type_etude"] = None
+    log(f"  ✎ réécrite, {res['relectures']} relecture(s), {len(res['problemes'])} défaut(s) corrigé(s)"
+        f"{', reste : ' + ' ; '.join(res['restants'])[:120] if res['restants'] else ''} : « {ancien[:50]} » → « {titre[:60]} »")
+    return total
+
+
 COLONNES_005 = ("avant", "decouverte", "apres", "mots", "type_etude")
 
 
@@ -1406,6 +1454,7 @@ def main() -> int:
     nb_articles = 0                    # articles retenus (un « les deux » compte pour 1)
     ignores, doublons, erreurs = [], [], []
     conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
+    cout_redaction = [0.0]             # coût de la rédaction en deux temps ($)
     appels = 0
     a_venir.preparer_attendus(db, log)      # événements du moment : articles prioritaires
     if PRESELECTION:
@@ -1520,6 +1569,12 @@ def main() -> int:
                 log(f"  ⚖ famille au plafond ({FAMILLE_DU_THEME.get(lignes[0]['theme'])}) : {art['title'][:70]}")
                 continue
             lignes = gardees
+            if REDACTION and art.get("page_lue"):
+                for l in lignes:
+                    if cout_redaction[0] < PLAFOND_REDACTION:
+                        cout_redaction[0] += ameliorer_fiche(client, modele, art, l)
+                    else:
+                        log("  ✎ plafond de la rédaction atteint : premier jet gardé")
             for l in lignes:
                 l["_qualite"] = controle_qualite(l, art)
             if any(trop_pauvre(l["_qualite"], art) for l in lignes):
@@ -1556,6 +1611,7 @@ def main() -> int:
 
     # --- Relecture des titres (« test du passant », titres.py), avant traductions et notifications ---
     nb_titres, cout_titres = titres.passage_agent(db, client, ajoutes, log)
+    cout_red = cout_redaction[0]
 
     # --- Traductions (anglais…) : nouvelles fiches + rattrapage d'anciennes (traduction.py) ---
     trad_nouv, trad_anc, cout_trad = traduction.passage_agent(db, client, ajoutes, log)
@@ -1572,7 +1628,7 @@ def main() -> int:
     # --- Coût (cache : écriture = 1,25 × le prix d'entrée, lecture = 0,1 ×) ---
     p_in, p_out = modele["prix"]
     cout = (conso["in"] * p_in + conso["cache_w"] * p_in * 1.25
-            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad + cout_titres + cout_avenir
+            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad + cout_titres + cout_avenir + cout_red
 
     enregistrer_attente()
     if ATTENTE:
@@ -1583,6 +1639,7 @@ def main() -> int:
         f"{len(ignores)} ignoré(s), {len(doublons)} doublon(s), {len(erreurs)} erreur(s)")
     log(f"Appels à Claude : {appels} — tokens : {conso['in']} entrée, {conso['cache_w']} mis en cache, "
         f"{conso['cache_r']} lus en cache, {conso['out']} sortie")
+    log(f"Rédaction en deux temps (réécriture + relecture) : {cout_red:.4f} $")
     log(f"Titres simplifiés à la relecture (test du passant) : {nb_titres} sur {len(ajoutes)}, {cout_titres:.4f} $")
     log(f"Sources ajoutées à des fiches déjà publiées (même avancée, autre média) : {sources_ajoutees} ; "
         f"fiches publiées avec plusieurs sources : {sum(1 for a in ajoutes if a.get('autres_sources'))}")

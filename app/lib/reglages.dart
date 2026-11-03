@@ -134,6 +134,7 @@ const Map<String, (String, String)> badgesEtude = {
   'humain': ('Étude chez l’humain', 'vert'),
   'animal': ('Étude chez l’animal', 'jaune'),
   'cellules': ('Étude sur des cellules', 'jaune'),
+  'laboratoire': ('Expérience en labo', 'jaune'),
   'simulation': ('Simulation / modèle', 'bleu'),
   'observation': ('Observation', 'bleu'),
   'terrain': ('Fouilles / terrain', 'bleu'),
