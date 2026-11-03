@@ -1,488 +1,488 @@
-# Test de la rédaction — 03/11/2026 18:38 UTC
+# Test de la rédaction — 03/11/2026 18:49 UTC
 
 Modèles : haiku · 12 fiches
 
 
 ---
 
-## 1. Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
+## 1. Satellites : un petit satellite relie la Terre par un faisceau laser
 
-Fil : science · 1★ · source : The Quantum Insider · page lue : oui (4545 caractères) · https://thequantuminsider.com/2026/11/03/experiment-supports-theoretical-path-to-topological-quantum-computing/
+Fil : tech · 2★ · source : ESA · page lue : oui (4175 caractères) · https://www.esa.int/Applications/Connectivity_and_Secure_Communications/CubeSat_achieves_challenging_laser_link_to_ground
 
 **Actuel (publié)**
 
-- **Titre** : Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
-- **Avant** : Les ordinateurs quantiques font beaucoup d'erreurs. Une piste consiste à utiliser des états quantiques censés mieux résister aux perturbations, mais ils n'avaient pas encore été vérifiés dans un montage réel.
-- **Découverte** : Des physiciens de l'université de Cologne ont étudié une jonction Josephson posée sur un isolant topologique, un matériau isolant à l'intérieur mais conducteur à sa surface. En mesurant les états quantiques de cette jonction, ils ont observé des états d'Andreev répartis comme la théorie le prévoit. Sous champ magnétique, ces états se concentrent aussi dans les zones attendues.
-- **Et après** : La question clé reste ouverte : il faut encore prouver que l'écart d'énergie se referme puis se rouvre, signe de la phase protégée. Pour cela, les chercheurs doivent améliorer la précision de leurs mesures, prochaine étape de leur travail.
+- **Titre** : Satellites : un petit satellite relie la Terre par un faisceau laser
+- **Avant** : Les satellites communiquent le plus souvent avec le sol par ondes radio. Les liaisons laser, plus rapides, restent rares sur les petits satellites.
+- **Découverte** : Le CubeSat ERMIS-3, de format 8U et développé par l'université d'Athènes, a établi une liaison laser avec une station au sol en Grèce. C'est la première liaison optique du pays avec un satellite en orbite basse. Le lien a été réalisé quelques semaines après la mise en service du satellite, avec des terminaux optiques de la société lituanienne Astrolight.
+- **Et après** : Les chercheurs veulent confirmer que ce type de communication fonctionne sur de petits satellites. Le faisceau doit rester précis alors que le satellite file à plusieurs kilomètres par seconde, et les nuages peuvent couper le lien.
 - **Mots** : (aucun)
-- **Type** : observation
+- **Type** : demonstration
 
 **Final après relecture (haiku)**
 
-- **Titre** : Ordinateurs quantiques : des physiciens observent des états prévus par la théorie
-- **Avant** : Les ordinateurs quantiques sont sensibles aux erreurs. Une piste consiste à coder l'information dans des états censés mieux résister aux perturbations locales, mais les produire et les contrôler dans une expérience reste difficile.
-- **Découverte** : Des physiciens de l'université de Cologne, dirigés par Yoichi Ando, ont observé des états quantiques conformes à la théorie dans une jonction Josephson. Ce dispositif relie deux supraconducteurs (matériaux qui conduisent l'électricité sans résistance) par une zone qui ne supraconduit pas. Ces états très conducteurs apparaissent comme prévu et se concentrent aux endroits attendus sous l'effet d'un aimant.
-- **Et après** : Si la protection attendue est confirmée, ces états pourraient aider à construire des ordinateurs quantiques plus robustes. Il reste à vérifier un écart d'énergie qui se ferme puis se rouvre, signe possible de cette protection, et les chercheurs doivent pour cela affiner leurs mesures.
-- **Mots** : **Jonction Josephson** → Assemblage de deux supraconducteurs séparés par une zone qui ne supraconduit pas, où un courant peut passer.
-- **Type** : laboratoire
+- **Titre** : Satellites : un petit satellite grec relie le sol par un faisceau laser
+- **Avant** : Les satellites échangent le plus souvent avec le sol par ondes radio. Les liaisons laser permettent de transmettre beaucoup de données en peu de temps, mais elles exigent de viser très précisément entre deux appareils en mouvement.
+- **Découverte** : Des chercheurs de l'université d'Athènes ont établi une liaison laser entre leur petit satellite ERMIS-3 et une station au sol grecque. Le lien, réalisé avec la station HolOGS-1 de l'université Aristote de Thessalonique, a été établi quelques semaines après la mise en service du satellite. Les appareils laser viennent de l'entreprise lituanienne Astrolight, avec l'appui de l'Agence spatiale européenne.
+- **Et après** : Ces liaisons pourraient aider à transférer les images très lourdes des satellites d'observation de la Terre. Le lien reste fragile : les nuages peuvent le couper, et la turbulence de l'air dégrader le signal.
+- **Mots** : (aucun)
+- **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « une zone isolante posée sur un isolant topologique, un matériau isolant en son cœur mais conducteur en surface » → L'article ne dit pas que le dispositif est posé sur un isolant topologique. Il dit seulement que les surfaces de ces matériaux, combinées à un supraconducteur classique, pourraient porter un état particulier. La fiche présente donc comme fait une configuration non décrite dans l'article. | [titre] « des états attendus » → « Attendus » est un mot vague qui ne dit pas ce qui a été vu. Le titre doit dire concrètement que des états prévus par la théorie ont été observés. | [jargon] « jonction Josephson » → Ce terme technique n'est ni expliqué dans la fiche ni donné en mot à connaître. Il faut ajouter une définition.
+- _Défauts trouvés par le relecteur_ : [jargon] « permettent des débits élevés » → Le mot « débits » est technique et n'est ni remplacé par des mots simples ni expliqué. L'article dit seulement que ces liaisons permettent des débits élevés (high data rates), donc on peut dire qu'elles permettent de transmettre beaucoup de données en peu de temps.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Ordinateurs quantiques : des physiciens vérifient des états attendus, censés résister aux perturbations
-- **Avant** : Les ordinateurs quantiques sont sensibles aux erreurs. Une piste consiste à coder l'information dans des états censés mieux résister aux perturbations locales, mais les produire et les contrôler dans une expérience reste difficile.
-- **Découverte** : Des physiciens de l'université de Cologne, dirigés par Yoichi Ando, ont observé des états quantiques conformes à la théorie dans une jonction Josephson. Ce dispositif relie deux supraconducteurs (matériaux qui conduisent l'électricité sans résistance) par une zone isolante posée sur un isolant topologique, un matériau isolant en son cœur mais conducteur en surface. Ces états très conducteurs apparaissent comme prévu et se concentrent aux endroits attendus sous l'effet d'un aimant.
-- **Et après** : Si la protection attendue est confirmée, ces états pourraient aider à construire des ordinateurs quantiques plus robustes. Il reste à vérifier un écart d'énergie qui se ferme puis se rouvre, signe possible de cette protection, et les chercheurs doivent pour cela affiner leurs mesures.
+- **Titre** : Satellites : un petit satellite grec relie le sol par un faisceau laser
+- **Avant** : Les satellites échangent le plus souvent avec le sol par ondes radio. Les liaisons laser permettent des débits élevés, mais elles exigent de viser très précisément entre deux appareils en mouvement.
+- **Découverte** : Des chercheurs de l'université d'Athènes ont établi une liaison laser entre leur petit satellite ERMIS-3 et une station au sol grecque. Le lien, réalisé avec la station HolOGS-1 de l'université Aristote de Thessalonique, a été établi quelques semaines après la mise en service du satellite. Les appareils laser viennent de l'entreprise lituanienne Astrolight, avec l'appui de l'Agence spatiale européenne.
+- **Et après** : Ces liaisons pourraient aider à transférer les images très lourdes des satellites d'observation de la Terre. Le lien reste fragile : les nuages peuvent le couper, et la turbulence de l'air dégrader le signal.
 - **Mots** : (aucun)
-- **Type** : laboratoire
+- **Type** : demonstration
 
-- _Faits relevés_ : Une approche de l'informatique quantique vise à stocker l'information dans des états moins sensibles aux perturbations locales. | Des physiciens de l'université de Cologne ont étudié une jonction Josephson posée sur un isolant topologique. | Une jonction Josephson relie deux matériaux supraconducteurs par une zone qui ne l'est pas. | Les chercheurs ont mesuré les états quantiques en faisant varier la différence de phase entre les deux supraconducteurs. | Les états observés apparaissent sur une gamme de densités de charges électriques, comme la théorie le prévoit. | Sous l'effet d'un aimant, ces états se concentrent dans des zones précises, comme prévu. | Les résultats concordent avec un modèle théorique de 2008 (Liang Fu et Charles Kane) et avec des simulations de l'université RWTH Aachen. | La transition vers la supraconductivité topologique n'est pas encore confirmée ; il faut des mesures plus précises.
-- _Nouveauté selon l'article_ : Selon l'article, les chercheurs ont observé dans un montage réel des états conformes aux prédictions théoriques, mais l'article ne revendique pas de première et le modèle théorique date de 2008.
-- _Jargon_ : jonction Josephson : expliquée en quelques mots | isolant topologique : expliqué en quelques mots | supraconducteurs : expliqués en quelques mots | états d'Andreev : remplacés par « états très conducteurs » | champ magnétique : remplacé par « un aimant » | supraconductivité topologique : mentionnée une fois, dans les faits seulement, sans terme dans le texte principal
+- _Faits relevés_ : ERMIS-3, petit satellite de format 8U, a été développé par l'université nationale et capodistrienne d'Athènes. | Le satellite a établi une liaison laser avec la station au sol HolOGS-1, en Grèce, développée par l'université Aristote de Thessalonique. | ERMIS-3 a été lancé le 30 mars 2026 avec ERMIS-1 et ERMIS-2, dans un programme de démonstration en orbite. | La liaison a été établie quelques semaines seulement après la mise en service du satellite. | Les appareils optiques embarqués et au sol viennent de l'entreprise lituanienne Astrolight. | Le faisceau doit viser précisément un récepteur alors que le satellite file à plusieurs kilomètres par seconde. | Les nuages peuvent bloquer complètement le lien, et la turbulence de l'air peut dégrader le signal. | Selon l'université d'Aristote, c'est la première liaison optique de la Grèce avec un satellite en orbite basse.
+- _Nouveauté selon l'article_ : Selon l'université d'Athènes et l'ESA, c'est la première liaison laser directe vers la Terre d'un petit satellite de cette université, et selon l'université d'Aristote la première liaison optique de la Grèce avec un satellite en orbite basse ; l'article ne revendique pas de première mondiale, et les liaisons laser entre satellites et sol existaient déjà.
+- _Jargon_ : CubeSat : remplacé par « petit satellite ». | Orbite basse : expliqué comme une orbite proche de la Terre. | Terminaux optiques : remplacés par « appareils laser ». | Pointage, acquisition et suivi : remplacés par « viser et suivre le signal ».
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 2. Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
+
+Fil : science · 1★ · source : Communications Physics · page lue : oui (2974 caractères) · https://www.nature.com/articles/s42005-026-02928-6
+
+**Actuel (publié)**
+
+- **Titre** : Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
+- **Avant** : On savait que le nickelate La3Ni2O7 devient supraconducteur sous très forte pression, vers -193 °C, mais le mécanisme responsable restait débattu.
+- **Découverte** : Des chercheurs ont simulé sur ordinateur un modèle de ce matériau à deux couches. Ils montrent que l'appariement des électrons vient surtout de la division de certaines orbitales électroniques, puis que l'hybridation avec une autre orbitale redistribue ces paires.
+- **Et après** : Il s'agit d'un modèle théorique qui doit être confirmé par des expériences ; pour l'instant, le matériau ne fonctionne qu'à très haute pression.
+- **Mots** : **Supraconductivité** → État d'un matériau qui laisse passer l'électricité sans aucune résistance, donc sans perte d'énergie.
+- **Type** : simulation
+
+**Final après relecture (haiku)**
+
+- **Titre** : Électricité : un calcul explique la conduction sans perte sous forte pression
+- **Avant** : Un matériau à base de nickel devient supraconducteur sous très forte pression, jusqu'à près de -193 °C. Le mécanisme responsable restait débattu, et un scénario de répartition des paires d'électrons était largement proposé sans être tranché.
+- **Découverte** : Des chercheurs japonais ont simulé sur ordinateur un modèle simplifié de ce matériau, à deux couches. Leur calcul montre que les électrons s'associent par paires surtout à cause de l'écart entre deux niveaux d'énergie du nickel. Un mélange entre deux familles de niveaux répartit ensuite ces associations sur les deux, même si l'une a une tendance propre faible.
+- **Et après** : Ce résultat aide à comprendre quels électrons rendent ce matériau supraconducteur. C'est un calcul sur un modèle simplifié, et le matériau ne fonctionne qu'à très haute pression.
+- **Mots** : **Supraconductivité** → Propriété de certains matériaux qui laissent passer l'électricité sans aucune résistance, donc sans perte d'énergie. Elle n'apparaît en général qu'à très basse température.
+- **Type** : simulation
+
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « il doit être confirmé par des expériences » → L'article ne dit pas que ce résultat doit être confirmé par des expériences. Il présente un calcul théorique sur un modèle simplifié, ce qui est déjà indiqué dans la fiche. L'affirmation sur une confirmation expérimentale est une inférence non présente dans la source.
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Électricité : un calcul explique la conduction sans perte sous forte pression
+- **Avant** : Un matériau à base de nickel devient supraconducteur sous très forte pression, jusqu'à près de -193 °C. Le mécanisme responsable restait débattu, et un scénario de répartition des paires d'électrons était largement proposé sans être tranché.
+- **Découverte** : Des chercheurs japonais ont simulé sur ordinateur un modèle simplifié de ce matériau, à deux couches. Leur calcul montre que les électrons s'associent par paires surtout à cause de l'écart entre deux niveaux d'énergie du nickel. Un mélange entre deux familles de niveaux répartit ensuite ces associations sur les deux, même si l'une a une tendance propre faible.
+- **Et après** : Ce résultat aide à comprendre quels électrons rendent ce matériau supraconducteur. C'est un calcul sur un modèle simplifié : il doit être confirmé par des expériences, et le matériau ne fonctionne qu'à très haute pression.
+- **Mots** : **Supraconductivité** → Propriété de certains matériaux qui laissent passer l'électricité sans aucune résistance, donc sans perte d'énergie. Elle n'apparaît en général qu'à très basse température.
+- **Type** : simulation
+
+- _Faits relevés_ : Un matériau à base de nickel devient supraconducteur sous très forte pression, avec une température de transition proche de 80 K, soit environ -193 °C. | Le mécanisme qui explique cette supraconductivité restait débattu, et un scénario appelé s± était largement proposé sans être tranché. | Les auteurs, des chercheurs japonais, ont étudié un modèle théorique à deux couches de ce matériau par simulation numérique sur ordinateur. | Selon l'article, la tendance principale à associer les électrons par paires vient de l'écart entre deux niveaux d'énergie du nickel (les orbitales 3dz²). | Un mélange entre orbitales répartit ensuite les associations d'électrons vers l'orbitale dx²-y², qui a une tendance propre faible. | Selon l'article, l'état supraconducteur s± reste stable même si la forme des zones de conduction du modèle change. | L'article présente ces résultats comme une conciliation de scénarios théoriques concurrents ; c'est un calcul, sans expérience.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il explique comment deux scénarios théoriques concurrents peuvent être réconciliés, en distinguant l'origine de l'association des électrons et les corrélations qui en résultent.
+- _Jargon_ : supraconductivité : mot à connaître, défini dans la liste des mots | orbitales : remplacé par « niveaux d'énergie du nickel » | appariement : remplacé par « association des électrons par paires » | hybridation : remplacé par « mélange » | nickelate : remplacé par « matériau à base de nickel » | surface de Fermi : remplacé par « zones de conduction du modèle »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 2. Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
+## 3. Paludisme : des chercheurs lisent l'ADN complet de trois parasites
 
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (4328 caractères) · https://www.sciencedaily.com/releases/2026/11/261102075903.htm
+Fil : science · 2★ · source : PLOS Pathogens · page lue : oui (6000 caractères) · https://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1014754
 
 **Actuel (publié)**
 
-- **Titre** : Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
-- **Avant** : Les Nucléobases forment les lettres du code génétique de l'ADN et de l'ARN. On ignorait encore si ces cinq lettres existaient déjà dans l'espace, avant la naissance de la Terre.
-- **Découverte** : Des chercheurs japonais ont analysé des échantillons rapportés de l'astéroïde Ryugu par la sonde Hayabusa2, en 2020. Ils y ont trouvé les cinq Nucléobases, en quantités à peu près comparables dans deux échantillons. L'uracile avait déjà été repéré en 2023 ; cette fois, les cinq sont confirmées dans une roche restée presque intacte depuis la formation du Système solaire.
-- **Et après** : Ces molécules ont pu être répandues dans tout le Système solaire et livrées à la Terre primitive par les astéroïdes. Les chercheurs comparent maintenant ces échantillons à des météorites pour retracer l'histoire chimique de ces roches très anciennes.
-- **Mots** : **Nucléobase** → Molécule contenant de l'azote qui forme une lettre du code génétique de l'ADN ou de l'ARN.
+- **Titre** : Paludisme : des chercheurs lisent l'ADN complet de trois parasites
+- **Avant** : On savait lire le génome du parasite du paludisme le plus meurtrier, mais les autres espèces restaient mal connues. Elles sont difficiles à cultiver en laboratoire, et les prélèvements contiennent très peu de parasites.
+- **Découverte** : Des chercheurs ont reconstruit les génomes complets de trois espèces de parasites directement à partir de sang de malades. Ils ont combiné des techniques de lecture de l'ADN capables de travailler avec très peu de matière. Les extrémités des chromosomes, jusque-là illisibles, sont désormais visibles, avec des familles de gènes sans doute liées aux relations entre parasite et hôte.
+- **Et après** : Ces génomes de référence doivent aider à comprendre comment ces espèces persistent, se transmettent et échappent au système immunitaire. Les chercheurs veulent ainsi mieux intégrer ces espèces longtemps négligées dans les efforts mondiaux pour éliminer le paludisme.
+- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, codée dans son ADN.
 - **Type** : donnees
 
 **Final après relecture (haiku)**
 
-- **Titre** : Espace : un astéroïde contient les cinq « lettres » de l'ADN et de l'ARN
-- **Avant** : Plusieurs « lettres » de l'ADN et de l'ARN avaient déjà été trouvées dans des météorites, comme Murchison, tombée en Australie en 1969. En 2023, une seule avait été repérée dans des échantillons prélevés dans l'espace.
-- **Découverte** : Une équipe de chercheurs japonais a trouvé les cinq nucléobases dans des échantillons de l'astéroïde Ryugu, ramenés sur Terre en 2020 par la sonde japonaise Hayabusa2. Ils ont extrait les molécules avec de l'eau et un acide, dans des salles très propres, pour éviter toute pollution. Les cinq nucléobases étaient présentes dans les deux échantillons analysés, en quantités assez proches ; la sonde avait rapporté 5,4 grammes au total.
-- **Et après** : Ces molécules auraient pu se répandre dans tout le Système solaire et être apportées à la Terre primitive par les astéroïdes. Mais le mélange varie d'un astéroïde à l'autre, et les chercheurs comparent encore ces résultats à ceux des météorites.
-- **Mots** : **Nucléobase** → Molécule contenant de l'azote qui forme une lettre du code génétique de l'ADN ou de l'ARN.
+- **Titre** : Paludisme : trois parasites lus en entier à partir du sang de malades
+- **Avant** : Le paludisme touche une grande partie du monde, surtout à cause d'un seul parasite, le plus meurtrier. Les deux autres espèces, moins étudiées, provoquent des infections souvent bénignes mais chroniques, et leurs génomes restaient mal connus.
+- **Découverte** : Des chercheurs ont reconstitué le génome complet de trois espèces de parasites du paludisme, chromosome par chromosome (les grands ensembles d'ADN qui portent les gènes). Ils ont travaillé directement sur le sang de personnes infectées au Mali, sans passer par une culture en laboratoire. Ils ont pu lire les extrémités des chromosomes, jusque-là inaccessibles, où se trouvent des familles de gènes probablement liées aux relations entre parasite et organisme infecté.
+- **Et après** : Ces génomes pourraient aider à mieux diagnostiquer ces espèces et à trouver de nouvelles cibles pour des médicaments. Ce sont des outils de base : l'étude ne porte ni sur un traitement, ni sur un test.
+- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, écrite dans son ADN. Il sert à comparer des espèces et à repérer leurs gènes.
 - **Type** : laboratoire
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « Les cinq « lettres » de l'ADN et de l'ARN avaient déjà été trouvées dans des météorites » → L'article dit seulement que Murchison et Orgueil ont livré « une riche variété de molécules organiques, dont des nucléobases », sans affirmer que les cinq y avaient été trouvées. | [non_soutenu] « souvent polluées à leur arrivée sur Terre » → L'article dit que les météorites qui atterrissent « peuvent » être contaminées, ce qui ne signifie pas « souvent ».
+- _Défauts trouvés par le relecteur_ : [jargon] « chromosome par chromosome » → Le mot « chromosome » est technique et n'est ni expliqué ni remplacé par des mots simples dans la fiche.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Espace : un astéroïde contient les cinq « lettres » de l'ADN et de l'ARN
-- **Avant** : Les cinq « lettres » de l'ADN et de l'ARN avaient déjà été trouvées dans des météorites, souvent polluées à leur arrivée sur Terre. En 2023, une seule avait été repérée dans des échantillons prélevés dans l'espace.
-- **Découverte** : Une équipe de chercheurs japonais a trouvé les cinq nucléobases dans des échantillons de l'astéroïde Ryugu, ramenés sur Terre en 2020 par la sonde japonaise Hayabusa2. Ils ont extrait les molécules avec de l'eau et un acide, dans des salles très propres, pour éviter toute pollution. Les cinq nucléobases étaient présentes dans les deux échantillons analysés, en quantités assez proches ; la sonde avait rapporté 5,4 grammes au total.
-- **Et après** : Ces molécules auraient pu se répandre dans tout le Système solaire et être apportées à la Terre primitive par les astéroïdes. Mais le mélange varie d'un astéroïde à l'autre, et les chercheurs comparent encore ces résultats à ceux des météorites.
-- **Mots** : **Nucléobase** → Molécule contenant de l'azote qui forme une lettre du code génétique de l'ADN ou de l'ARN.
+- **Titre** : Paludisme : trois parasites lus en entier à partir du sang de malades
+- **Avant** : Le paludisme touche une grande partie du monde, surtout à cause d'un seul parasite, le plus meurtrier. Les deux autres espèces, moins étudiées, provoquent des infections souvent bénignes mais chroniques, et leurs génomes restaient mal connus.
+- **Découverte** : Des chercheurs ont reconstitué le génome complet de trois espèces de parasites du paludisme, chromosome par chromosome. Ils ont travaillé directement sur le sang de personnes infectées au Mali, sans passer par une culture en laboratoire. Ils ont pu lire les extrémités des chromosomes, jusque-là inaccessibles, où se trouvent des familles de gènes probablement liées aux relations entre parasite et organisme infecté.
+- **Et après** : Ces génomes pourraient aider à mieux diagnostiquer ces espèces et à trouver de nouvelles cibles pour des médicaments. Ce sont des outils de base : l'étude ne porte ni sur un traitement, ni sur un test.
+- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, écrite dans son ADN. Il sert à comparer des espèces et à repérer leurs gènes.
 - **Type** : laboratoire
 
-- _Faits relevés_ : Des échantillons de l'astéroïde Ryugu ont été ramenés sur Terre en 2020 par la sonde japonaise Hayabusa2. | En 2023, une équipe internationale n'avait trouvé qu'une des cinq nucléobases, l'uracile, dans ces échantillons. | Une équipe de scientifiques japonais confirme aujourd'hui que les cinq nucléobases y sont présentes. | Les nucléobases sont les lettres du code génétique de l'ADN et de l'ARN. | Les molécules ont été extraites avec de l'eau et un acide, dans des salles très propres pour éviter toute pollution. | Les cinq nucléobases étaient présentes dans les deux échantillons analysés, en quantités assez proches. | La sonde avait rapporté 5,4 grammes de matière au total. | Des météorites tombées sur Terre contenaient déjà des nucléobases ; des échantillons de Bennu, un astéroïde étudié par la NASA, en contenaient les cinq en 2025. | Les proportions de purines et de pyrimidines varient d'un astéroïde à l'autre ; l'ammoniac pourrait jouer un rôle.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : les cinq nucléobases sont confirmées dans des échantillons de Ryugu, alors que seule l'une d'elles y avait été trouvée en 2023, et que les cinq avaient déjà été trouvées dans des échantillons de Bennu en 2025.
-- _Jargon_ : Nucléobase : mot à connaître, expliqué dans la fiche | Uracile : remplacé par « une seule des cinq » dans l'avant | Acide chlorhydrique : remplacé par « un acide » | Purines et pyrimidines : non cités dans la fiche
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 3. Cancer : des cellules du patient font reculer des tumeurs de la peau
-
-Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04743-6
-
-**Actuel (publié)**
-
-- **Titre** : Cancer : des cellules du patient font reculer des tumeurs de la peau
-- **Avant** : Quand un mélanome ne répond plus à l'immunothérapie, les options restent rares. La thérapie cellulaire classique exige d'opérer pour prélever la tumeur et de donner de fortes doses d'une protéine stimulante, l'IL-2, aux effets indésirables importants.
-- **Découverte** : Les chercheurs ont modifié les cellules immunitaires extraites de la tumeur de chaque patient pour qu'elles produisent elles-mêmes l'IL-15, une protéine stimulante, uniquement lorsqu'on leur donne un médicament, l'acétazolamide. Sur 15 patients traités à la dose retenue, 10 ont vu leur tumeur reculer, dont 2 avec une réponse complète. Aucun décès lié au traitement n'a été observé parmi les 37 patients traités.
-- **Et après** : L'analyse regroupe deux petits essais et n'était pas prévue au départ, donc les résultats restent préliminaires. Une étude pivot plus large est en cours, et le premier patient a eu un gonflement du cerveau qui a obligé à baisser les doses.
-- **Mots** : (aucun)
-- **Type** : essai_clinique
-
-**Final après relecture (haiku)**
-
-- **Titre** : Cancer : des cellules modifiées réduisent des tumeurs chez 10 malades sur 15
-- **Avant** : Quand un mélanome ne répond plus aux traitements qui réveillent le système de défense, les options restent rares. Un traitement à base des propres cellules du patient existe, mais il exige une opération et de fortes doses d'une protéine stimulante aux effets lourds.
-- **Découverte** : Des chercheurs ont modifié les cellules de défense prélevées dans la tumeur de chaque patient pour qu'elles fabriquent elles-mêmes une protéine stimulante, activée seulement par un médicament diurétique, l'acétazolamide. Sur les 15 patients traités à la dose retenue, 10 ont vu leur tumeur reculer, dont 2 chez qui elle a totalement disparu. Parmi les 37 patients de deux essais, aucun décès lié au traitement n'a été observé.
-- **Et après** : Cette approche pourrait éviter les fortes doses de protéine stimulante aux malades dont le mélanome ne répond plus aux traitements qui réveillent le système de défense. Mais l'analyse n'était pas prévue, les groupes sont petits, et un patient a eu un gonflement du cerveau ; une étude plus large est en cours.
-- **Mots** : **Mélanome** → Cancer qui naît dans les cellules qui colorent la peau ; c'est le cancer de la peau le plus dangereux.
-- **Type** : essai_clinique
-
-- _Défauts trouvés par le relecteur_ : [jargon] « aux malades qui ne répondent plus à l'immunothérapie » → Le mot technique « immunothérapie » n'est ni expliqué ni remplacé par des mots simples dans la fiche. Il faut le reformuler en termes courants, comme dans le paragraphe « Avant ».
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Cancer : des cellules modifiées réduisent des tumeurs chez 10 malades sur 15
-- **Avant** : Quand un mélanome ne répond plus aux traitements qui réveillent le système de défense, les options restent rares. Un traitement à base des propres cellules du patient existe, mais il exige une opération et de fortes doses d'une protéine stimulante aux effets lourds.
-- **Découverte** : Des chercheurs ont modifié les cellules de défense prélevées dans la tumeur de chaque patient pour qu'elles fabriquent elles-mêmes une protéine stimulante, activée seulement par un médicament diurétique, l'acétazolamide. Sur les 15 patients traités à la dose retenue, 10 ont vu leur tumeur reculer, dont 2 chez qui elle a totalement disparu. Parmi les 37 patients de deux essais, aucun décès lié au traitement n'a été observé.
-- **Et après** : Cette approche pourrait éviter les fortes doses de protéine stimulante aux malades qui ne répondent plus à l'immunothérapie. Mais l'analyse n'était pas prévue, les groupes sont petits, et un patient a eu un gonflement du cerveau ; une étude plus large est en cours.
-- **Mots** : **Mélanome** → Cancer qui naît dans les cellules qui colorent la peau ; c'est le cancer de la peau le plus dangereux.
-- **Type** : essai_clinique
-
-- _Faits relevés_ : Traitement à base des propres cellules de défense du patient, prélevées dans sa tumeur puis modifiées en laboratoire. | Les cellules modifiées fabriquent une protéine stimulante, activée uniquement par l'acétazolamide, un médicament diurétique. | Deux essais sans groupe témoin : 17 patients dans un petit essai à un centre, 20 dans un essai multicentre en cours. | Analyse regroupée non prévue au départ : aucune toxicité limitant la dose, pas de soins en réanimation, pas de décès lié au traitement. | Premier patient : gonflement du cerveau au niveau d'une métastase déjà irradiée ; les doses ont été réduites puis remontées. | Dose retenue : 10 réponses sur 15 patients (intervalle de confiance de 38 à 88 %), dont 2 réponses complètes ; neutropénie sévère chez 64,9 % des 37 patients.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : la thérapie cellulaire par TIL existe depuis les années 1980 ; ce qui est nouveau est que les cellules fabriquent elles-mêmes leur protéine stimulante, au lieu de recevoir de fortes doses.
-- _Jargon_ : IL-2 : remplacé par « une protéine stimulante » | IL-15 : remplacé par « une protéine stimulante » | TIL : remplacé par « cellules de défense prélevées dans la tumeur » | Immunothérapie : remplacé par « traitements qui réveillent le système de défense » | Acétazolamide : expliqué (médicament diurétique) | Mélanome : mot à connaître
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 4. Voitures : une berline chinoise roule à l'alcool de bois
-
-Fil : tech · 1★ · source : CnEVPost (véhicules électriques, Chine) · page lue : oui (3864 caractères) · https://cnevpost.com/2026/11/03/geely-launches-xingyao-6-ef-methanol-hybrid-sedan/
-
-**Actuel (publié)**
-
-- **Titre** : Voitures : une berline chinoise roule à l'alcool de bois
-- **Avant** : Jusqu'ici, les voitures hybrides roulaient à l'essence ou à l'électricité, et aucune berline familiale produite en série ne pouvait rouler au méthanol. Ce carburant restait donc réservé à des usages peu répandus pour les particuliers.
-- **Découverte** : Geely a lancé la Xingyao 6 EF, une berline qui roule au méthanol, à l'essence ou à l'électricité, avec un mélange libre dans le même réservoir. Son moteur au méthanol atteint un rendement de 48,15 %, selon le constructeur, le plus élevé parmi les moteurs au méthanol produits en série. Un capteur mesure en temps réel le mélange pour régler l'injection et l'allumage, et le démarrage à froid est annoncé jusqu'à environ -40 °C.
-- **Et après** : Les prix promotionnels, de 76 800 à 96 800 yuans, sont limités dans le temps, le prix officiel allant de 86 800 à 106 800 yuans. Le constructeur la présente comme un complément aux voitures électriques, surtout pour les climats froids et les longs trajets.
-- **Mots** : **Méthanol** → Alcool liquide qui peut servir de carburant seul ou mélangé à l'essence, dans un moteur adapté.
-- **Type** : en_vente
-
-**Final après relecture (haiku)**
-
-- **Titre** : Voitures : une berline chinoise roule au méthanol, à l'essence ou à l'électricité
-- **Avant** : Le méthanol, un alcool qui peut servir de carburant, restait peu présent dans les voitures particulières. Geely travaille sur cette technologie depuis 2005.
-- **Découverte** : Le constructeur chinois Geely a lancé la Xingyao 6 EF, une berline qui roule au méthanol, à l'essence ou à l'électricité. Le méthanol et l'essence se mélangent dans n'importe quelle proportion, dans le même réservoir ; selon Geely, le moteur au méthanol atteint un rendement de 48,15 %, soit la part de l'énergie du carburant utilisée. Un capteur ajuste le moteur au mélange en temps réel, et le démarrage par grand froid est annoncé jusqu'à près de -40 °C.
-- **Et après** : Geely la présente comme un complément aux voitures électriques, pour les climats froids et les longs trajets, et elle est déjà utilisée par plus de 6 000 berlines de VTC, taxis et services officiels. La principale limite reste le réseau de ravitaillement : la Chine compte plus de 1 400 stations au méthanol, et ce réseau s'étend encore.
-- **Mots** : (aucun)
-- **Type** : en_vente
-
-- _Défauts trouvés par le relecteur_ : [apres] « Le prix promotionnel de départ, 76 800 yuans (environ 9 200 €), est limité dans le temps ; le prix officiel est de 86 800 yuans (environ 10 400 €). » → Le paragraphe « Et après » n'est qu'une liste de prix. Il ne dit ni ce que la technologie peut changer, ni la limite principale. L'article donne la limite (réseau de ravitaillement en cours d'extension, plus de 1 400 stations) et l'usage déjà en place (plus de 6 000 berlines en flotte).
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Voitures : une berline chinoise roule au méthanol, à l'essence ou à l'électricité
-- **Avant** : Le méthanol, un alcool qui peut servir de carburant, restait peu présent dans les voitures particulières. Geely travaille sur cette technologie depuis 2005.
-- **Découverte** : Le constructeur chinois Geely a lancé la Xingyao 6 EF, une berline qui roule au méthanol, à l'essence ou à l'électricité. Le méthanol et l'essence se mélangent dans n'importe quelle proportion, dans le même réservoir ; selon Geely, le moteur au méthanol atteint un rendement de 48,15 %, soit la part de l'énergie du carburant utilisée. Un capteur ajuste le moteur au mélange en temps réel, et le démarrage par grand froid est annoncé jusqu'à près de -40 °C.
-- **Et après** : Geely la présente comme un complément aux voitures électriques, pour les climats froids et les longs trajets. Le prix promotionnel de départ, 76 800 yuans (environ 9 200 €), est limité dans le temps ; le prix officiel est de 86 800 yuans (environ 10 400 €).
-- **Mots** : (aucun)
-- **Type** : en_vente
-
-- _Faits relevés_ : Geely Auto a lancé la Xingyao 6 EF à Shenyang, dans la province du Liaoning. | La berline peut rouler au méthanol, à l'essence ou à l'électricité, avec un mélange libre dans le même réservoir. | Elle existe en 3 versions. Leur moteur au méthanol fait 1,5 litre, avec un moteur électrique. | Selon le constructeur, le moteur au méthanol a un rendement de 48,15 %, le plus élevé parmi les moteurs au méthanol produits en série. | Un capteur mesure le mélange en temps réel. Le démarrage par grand froid est annoncé jusqu'à près de -40 °C. | Autonomie électrique de 130 km (version d'entrée) ou 230 km. Autonomie combinée jusqu'à 1 250 km au méthanol et 1 880 km à l'essence. | Prix promotionnels limités de 76 800 à 96 800 yuans ; prix officiels de 86 800 à 106 800 yuans. | Selon un dirigeant de Geely Holding, la Chine compte plus de 1 400 stations de ravitaillement au méthanol. Geely travaille sur le méthanol depuis 2005.
-- _Nouveauté selon l'article_ : Selon le constructeur, c'est la première berline familiale produite en série de ce type au monde ; l'article n'en dit pas davantage sur les autres véhicules.
-- _Jargon_ : méthanol : expliqué en quelques mots dans l'avant | rendement : expliqué en quelques mots dans la découverte | hybride : remplacé par « roule au méthanol, à l'essence ou à l'électricité » | démarrage à froid : remplacé par « démarrage par grand froid »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 5. Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
-
-Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (1607 caractères) · https://www.tomshardware.com/tech-industry/data-centers/china-deploys-worlds-first-800-volt-dc-power-system-for-massive-ai-data-center-seeks-to-quench-power-needs-with-higher-conversion-and-efficiency-inside-a-smaller-footprint
-
-**Actuel (publié)**
-
-- **Titre** : Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
-- **Avant** : Dans un centre de calcul, le courant passe par plusieurs étapes de conversion avant d'alimenter les serveurs, ce qui fait perdre de l'énergie et prend beaucoup de place.
-- **Découverte** : À Ulanqab, en Chine, l'entreprise Envision a mis en service son système Dubhe, qui transforme directement le courant alternatif moyenne tension de 10 000 volts en courant continu de 800 volts. Moins d'étapes signifie un meilleur rendement et des appareils de conversion nettement plus petits. Le système alimente déjà une partie du centre de calcul Galaxy AI.
-- **Et après** : Envision veut à terme alimenter jusqu'à un million d'accélérateurs d'IA sur ce site, et utiliser la même technique dans son projet Mission Gobi, qui vise 5 gigawatts de centres de calcul verts dans les déserts d'ici 2030. Les performances ne sont pour l'instant données que par l'entreprise elle-même.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-**Final après relecture (haiku)**
-
-- **Titre** : Centres de calcul : un système alimente déjà des serveurs d'IA en Chine
-- **Avant** : Dans un centre de calcul, le courant subit plusieurs conversions avant d'alimenter les serveurs. Ces conversions demandent des appareils encombrants.
-- **Découverte** : L'entreprise Envision a mis en service à Ulanqab, en Chine, son système Dubhe. Il transforme directement du courant de 10 000 volts, celui du réseau, en courant continu, c'est-à-dire qui circule dans un seul sens, de 800 volts, sans passer par plusieurs étapes. Selon l'entreprise, il fonctionne bien et devrait servir à agrandir le centre de calcul Galaxy AI.
-- **Et après** : Le système doit à terme alimenter jusqu'à un million de puces d'IA, mais les performances ne sont pour l'instant données que par Envision. Le même procédé doit aussi servir dans Mission Gobi, un plan de 5 gigawatts de centres de calcul dans les déserts d'ici 2030.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « Chaque étape fait perdre de l'énergie et demande des appareils volumineux. » → L'article ne dit pas que chaque étape fait perdre de l'énergie. Il dit seulement que le système améliore le rendement et réduit fortement la taille des appareils de conversion. | [jargon] « en courant continu de 800 volts » → « Courant continu » est un terme technique non expliqué dans la fiche.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Centres de calcul : un système alimente déjà des serveurs d'IA en Chine
-- **Avant** : Dans un centre de calcul, le courant subit plusieurs conversions avant d'alimenter les serveurs. Chaque étape fait perdre de l'énergie et demande des appareils volumineux.
-- **Découverte** : L'entreprise Envision a mis en service à Ulanqab, en Chine, son système Dubhe. Il transforme directement du courant de 10 000 volts, celui du réseau, en courant continu de 800 volts, sans passer par plusieurs étapes. Selon l'entreprise, il fonctionne bien et devrait servir à agrandir le centre de calcul Galaxy AI.
-- **Et après** : Le système doit à terme alimenter jusqu'à un million de puces d'IA, mais les performances ne sont pour l'instant données que par Envision. Le même procédé doit aussi servir dans Mission Gobi, un plan de 5 gigawatts de centres de calcul dans les déserts d'ici 2030.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Faits relevés_ : L'entreprise Envision a mis en service son système Dubhe à Ulanqab, en Chine. | Le système est déjà en service et doit à terme alimenter jusqu'à un million de puces d'IA. | Dans les centres de calcul actuels, le courant passe par plusieurs étapes de conversion. | Dubhe transforme directement un courant de 10 000 volts en courant continu de 800 volts. | Le système réduit fortement la taille des appareils de conversion. | Selon l'entreprise, le système fonctionne bien ; l'article ne donne aucune mesure de performance. | Il doit servir à agrandir le centre de calcul Galaxy AI à Ulanqab. | Envision veut utiliser la même technique dans Mission Gobi : 5 gigawatts de centres de calcul dans les déserts d'ici 2030.
-- _Nouveauté selon l'article_ : Ce qui est nouveau : le système Dubhe est déjà en service et convertit le courant en une seule étape ; l'article ne revendique pas de première.
-- _Jargon_ : courant continu : expliqué (un courant stable, comme celui d'une pile) | accélérateurs d'IA : remplacé par « puces d'IA » | moyenne tension : remplacé par « 10 000 volts » | conversion : expliqué (changer la forme du courant avant qu'il alimente les serveurs)
+- _Faits relevés_ : Des chercheurs ont reconstitué les génomes complets, chromosome par chromosome, de trois espèces de parasites du paludisme. | Les trois espèces sont Plasmodium falciparum, P. ovale wallikeri et P. malariae. | Les échantillons ont été prélevés directement dans le sang de personnes infectées, au Mali. | Les prélèvements contenaient très peu de parasites, et ces espèces ne se cultivent pas en laboratoire. | La méthode combine une lecture de longs fragments d'ADN et une technique qui montre comment l'ADN est replié dans le noyau. | Les régions situées aux extrémités des chromosomes, jusque-là inaccessibles selon l'article, sont désormais lisibles. | Ces extrémités contiennent des familles de gènes élargies, probablement liées aux relations entre parasite et organisme infecté. | P. falciparum cause la plupart des décès, tandis que P. ovale et P. malariae sont moins étudiés et provoquent des infections souvent bénignes mais chroniques.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il dit que ces deux espèces avaient peu de ressources génomiques, et que leurs extrémités de chromosomes étaient jusque-là inaccessibles.
+- _Jargon_ : génome : mot à connaître | subtélomérique : remplacé par « extrémités des chromosomes » | hôte : remplacé par « organisme infecté » | Plasmodium : remplacé par « parasites du paludisme » | séquençage à longues lectures et Hi-C : non nommés, décrits en une phrase simple
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 6. Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
+## 4. Espace : la poussière de Mars est assez fine pour atteindre les poumons
 
-Fil : tech · 1★ · source : Tech Xplore · page lue : NON (0 caractères) · https://techxplore.com/news/2026-11-infrared-transparent-aerogel-boosts-subambient.html
+Fil : science · 1★ · source : NASA JPL · page lue : oui (6000 caractères) · https://www.jpl.nasa.gov/news/nasas-perseverance-offers-clues-to-protect-crews-from-mars-dust
 
 **Actuel (publié)**
 
-- **Titre** : Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
-- **Avant** : Pour se rafraîchir sans électricité, certains matériaux renvoient la chaleur vers le ciel, mais le jour le soleil réduit beaucoup leur efficacité.
-- **Découverte** : Des chercheurs de la City University of Hong Kong ont conçu un nouvel aérogel, un matériau très léger et poreux, transparent aux infrarouges. Associé aux matériaux de refroidissement de jour, il améliore leurs performances de jusqu'à 5,2 °C. Il laisse passer la chaleur infrarouge que le matériau doit évacuer vers le ciel.
-- **Et après** : Le gain atteint jusqu'à 5,2 °C selon les résultats annoncés, mais l'article ne précise ni les conditions des essais ni la date de mise sur le marché.
+- **Titre** : Espace : la poussière de Mars est assez fine pour atteindre les poumons
+- **Avant** : On savait que la poussière de la Lune avait abîmé les visières et les joints des combinaisons d'Apollo, mais on connaissait mal le comportement de la poussière martienne sur les équipements.
+- **Découverte** : Le robot Perseverance a mesuré pendant environ 1 645 jours martiens les fines et ultrafines particules de poussière collées à des échantillons de matériaux de combinaison emportés à bord. Certaines sont assez petites pour pénétrer dans les poumons et passer dans le sang. Ces résultats seront publiés dans la revue PNAS.
+- **Et après** : Ces données pourraient aider à concevoir des combinaisons et des habitats mieux protégés, ainsi que des méthodes de nettoyage et des normes de santé pour les futures missions vers Mars. Il reste à vérifier ces résultats dans des conditions réelles avec des astronautes.
+- **Mots** : (aucun)
+- **Type** : donnees
+
+**Final après relecture (haiku)**
+
+- **Titre** : Espace : sur Mars, une poussière assez fine pour entrer dans les poumons
+- **Avant** : On savait que la poussière lunaire des missions Apollo avait rayé les visières et abîmé les joints des combinaisons. Les mesures sur Mars ne descendaient qu'à environ 3 micromètres.
+- **Découverte** : Des chercheurs de la mission Perseverance de la NASA ont analysé la poussière collée à des matériaux de combinaison spatiale, pendant 1 645 jours martiens. Un des instruments du robot a détecté des particules fines, de moins de 2,5 micromètres, et des particules ultrafines d'environ 100 nanomètres. Certaines sont assez petites pour pénétrer profondément dans les poumons et passer dans le sang.
+- **Et après** : Ces mesures pourraient guider les futures combinaisons, les habitats, le dépoussiérage et les normes de santé pour les missions vers Mars. Elles viennent d'un robot et d'échantillons de matériaux, et ne disent pas encore comment ces grains affectent l'humain.
+- **Mots** : **Particule ultrafine** → Grain de poussière si petit qu'il peut passer des poumons au sang ; environ 700 fois plus fin qu'un cheveu, selon la NASA.
+- **Type** : observation
+
+- _Défauts trouvés par le relecteur_ : aucun
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : sur Mars, une poussière assez fine pour entrer dans les poumons
+- **Avant** : On savait que la poussière lunaire des missions Apollo avait rayé les visières et abîmé les joints des combinaisons. Les mesures sur Mars ne descendaient qu'à environ 3 micromètres.
+- **Découverte** : Des chercheurs de la mission Perseverance de la NASA ont analysé la poussière collée à des matériaux de combinaison spatiale, pendant 1 645 jours martiens. Un des instruments du robot a détecté des particules fines, de moins de 2,5 micromètres, et des particules ultrafines d'environ 100 nanomètres. Certaines sont assez petites pour pénétrer profondément dans les poumons et passer dans le sang.
+- **Et après** : Ces mesures pourraient guider les futures combinaisons, les habitats, le dépoussiérage et les normes de santé pour les missions vers Mars. Elles viennent d'un robot et d'échantillons de matériaux, et ne disent pas encore comment ces grains affectent l'humain.
+- **Mots** : **Particule ultrafine** → Grain de poussière si petit qu'il peut passer des poumons au sang ; environ 700 fois plus fin qu'un cheveu, selon la NASA.
+- **Type** : observation
+
+- _Faits relevés_ : Le robot Perseverance de la NASA a mesuré la poussière martienne pendant 1 645 jours martiens. | Les mesures portent sur de la poussière collée à cinq échantillons de matériaux de combinaison spatiale emportés à bord. | Des particules fines, de moins de 2,5 micromètres, et des particules ultrafines, d'environ 100 nanomètres, ont été détectées. | Certaines particules sont assez petites pour pénétrer dans les poumons et passer dans le sang. | Les mesures précédentes sur Mars ne descendaient qu'à environ 3 micromètres. | Sur Terre, les particules fines de moins de 2,5 micromètres sont liées à des effets négatifs sur la santé. | La poussière de Mars est moins abrasive que celle de la Lune, car ses grains sont arrondis par les chocs. | Les particules les plus fines restent accrochées malgré des années de conduite et de forage. | Les résultats pourraient guider le choix des matériaux, la conception des habitats, le dépoussiérage et les normes de santé.
+- _Nouveauté selon l'article_ : Selon les chercheurs, des particules ultrafines, prédites depuis longtemps, ont été mesurées directement sur Mars, alors que les mesures précédentes descendaient jusqu'à environ 3 micromètres.
+- _Jargon_ : particules ultrafines : mot à connaître, expliqué dans la fiche | micromètre et nanomètre : unités de taille, expliquées par la comparaison avec un cheveu | abrasif : remplacé par « moins abîmante » ou non utilisé
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 5. Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
+
+Fil : tech · 1★ · source : MIT News · page lue : oui (6000 caractères) · https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102
+
+**Actuel (publié)**
+
+- **Titre** : Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
+- **Avant** : Les poissons d'élevage sont exposés à des maladies qui causent de lourdes pertes dans l'aquaculture. Il faut donc des outils de vaccination adaptés à l'eau.
+- **Découverte** : Des chercheurs du MIT ont conçu de minuscules aiguilles imperméables, en soie de qualité alimentaire et recouvertes d'une fine couche de shellac. Leur pointe creuse peut transporter le vaccin, et l'aiguille pénètre légèrement la peau du poisson avant de se décomposer.
+- **Et après** : Les chercheurs veulent offrir une méthode plus sûre et plus efficace pour vacciner les poissons d'élevage. Il reste à vérifier ces résultats à plus grande échelle avant tout usage dans les fermes.
+- **Mots** : **Shellac** → Résine naturelle, produite par des insectes, utilisée comme vernis alimentaire pour rendre une surface imperméable.
+- **Type** : prototype
+
+**Final après relecture (haiku)**
+
+- **Titre** : Élevage : des aiguilles en soie plutôt qu'en métal pour vacciner les poissons
+- **Avant** : Dans l'aquaculture, les poissons d'élevage tombent malades et les pertes sont lourdes. Le vaccin le plus efficace utilise aujourd'hui des aiguilles en métal, qui stressent les poissons et exposent les ouvriers à des piqûres.
+- **Découverte** : Des chercheurs du MIT et du ministère américain de l'Agriculture ont mis au point de minuscules aiguilles en soie alimentaire, rendues imperméables par une fine couche de shellac, une résine alimentaire. La pointe creuse en soie peut porter le vaccin ; l'aiguille pénètre légèrement la peau du poisson et reste accrochée avant de se décomposer. L'équipe a montré qu'elles pouvaient transporter plusieurs types de substances à transporter, comme des vaccins bactériens.
+- **Et après** : Cette méthode pourrait donner aux éleveurs un outil plus précis pour garder les poissons en bonne santé. Pour l'instant, elle est présentée comme une piste potentiellement meilleure que les aiguilles en métal, qui restent la méthode la plus efficace.
+- **Mots** : **Aquaculture** → Élevage d'animaux aquatiques, comme les poissons, en bassins ou en cages, pour les vendre comme nourriture.
+- **Type** : prototype
+
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Cette méthode pourrait éviter de sédater chaque poisson et de le sortir de l'eau, avec moins de stress pour les animaux et moins de risques pour les ouvriers. » → L'article ne dit pas que la nouvelle méthode évite la sédation ni la sortie de l'eau. Il dit seulement que l'approche est « potentiellement meilleure » et qu'elle pourrait donner un outil plus précis pour la santé des poissons. | [non_soutenu] « Il reste à montrer que la méthode fonctionne à grande échelle, dans de vrais élevages, avant tout usage. » → L'article ne mentionne pas ce test à grande échelle ni cette condition préalable. La prochaine étape n'y est pas décrite. | [jargon] « plusieurs types de charges » → Le mot « charges » au sens de substances transportées par l'aiguille n'est ni expliqué ni remplacé par des mots simples.
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Élevage : des aiguilles en soie plutôt qu'en métal pour vacciner les poissons
+- **Avant** : Dans l'aquaculture, les poissons d'élevage tombent malades et les pertes sont lourdes. Le vaccin le plus efficace utilise aujourd'hui des aiguilles en métal, qui stressent les poissons et exposent les ouvriers à des piqûres.
+- **Découverte** : Des chercheurs du MIT et du ministère américain de l'Agriculture ont mis au point de minuscules aiguilles en soie alimentaire, rendues imperméables par une fine couche de shellac, une résine alimentaire. La pointe creuse en soie peut porter le vaccin ; l'aiguille pénètre légèrement la peau du poisson et reste accrochée avant de se décomposer. L'équipe a montré qu'elles pouvaient transporter plusieurs types de charges, comme des vaccins bactériens.
+- **Et après** : Cette méthode pourrait éviter de sédater chaque poisson et de le sortir de l'eau, avec moins de stress pour les animaux et moins de risques pour les ouvriers. Il reste à montrer que la méthode fonctionne à grande échelle, dans de vrais élevages, avant tout usage.
+- **Mots** : **Aquaculture** → Élevage d'animaux aquatiques, comme les poissons, en bassins ou en cages, pour les vendre comme nourriture.
+- **Type** : prototype
+
+- _Faits relevés_ : Des micro-aiguilles en soie de qualité alimentaire, imperméabilisées par une fine couche de shellac, ont été mises au point. | La pointe creuse en soie peut transporter le vaccin. | Les micro-aiguilles pénètrent légèrement la peau du poisson, restent accrochées, puis se décomposent. | L'équipe a montré qu'elles pouvaient transporter plusieurs types de charges, comme des vaccins bactériens. | Le vaccin le plus efficace aujourd'hui utilise des aiguilles en métal, avec sédation et manipulation des poissons. | Les autres méthodes, dans la nourriture ou dans l'eau du bassin, n'atteignent pas tous les poissons et demandent bien plus de produit. | Les travaux sont menés par des chercheurs du MIT et du ministère américain de l'Agriculture. | La soie est classée comme sûre pour la consommation humaine dans les enrobages alimentaires.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il présente une méthode comme une voie possible, alors que les aiguilles en métal restent aujourd'hui la plus efficace.
+- _Jargon_ : shellac : expliqué en quelques mots (une résine alimentaire) | micro-aiguilles : formulé simplement comme des aiguilles minuscules | aquaculture : mot à connaître, défini dans la liste des mots
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 6. Internet : une fibre envoie 128 000 milliards de bits par seconde
+
+Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (181 caractères) · https://pandaily.com/china-telecom-yofc-zte-1000km-hollow-core-fiber-bidirectional-real-time-transmission-800g-128tbps
+
+**Actuel (publié)**
+
+- **Titre** : Internet : une fibre envoie 128 000 milliards de bits par seconde
+- **Avant** : Les liaisons Internet longue distance utilisent surtout des fibres en verre plein, dont le débit et la rapidité du signal sont déjà bien connus.
+- **Découverte** : Des équipes de China Telecom, YOFC et ZTE ont fait passer 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens, sur une fibre de 1 007 km. Le total atteint 128 000 milliards de bits par seconde.
+- **Et après** : Cette technique vise des réseaux plus rapides et plus réactifs, mais l'essai reste une démonstration et les conditions d'exploitation commerciale ne sont pas précisées.
+- **Mots** : **Fibre creuse** → Fibre optique dont le cœur est rempli d'air, ce qui permet à la lumière de voyager plus vite que dans le verre.
+- **Type** : demonstration
+
+**Final après relecture (haiku)**
+
+- **Titre** : Internet : une fibre creuse envoie 128 000 milliards de bits par seconde
+- **Avant** : Les liaisons qui relient les villes et les pays doivent transmettre les données avec le moins de délai possible. Le défi est de réduire ce délai de transmission.
+- **Découverte** : Des équipes de China Telecom Research Institute, YOFC et ZTE ont fait passer 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens. Le test a porté sur une fibre à cœur creux, dont le centre est vide, longue de 1 007 km. Au total, le débit atteint 128 000 milliards de bits par seconde.
+- **Et après** : Cette technique vise des réseaux longue distance plus rapides, avec des délais de transmission plus courts. L'article ne dit ni quand ni comment elle pourrait être déployée commercialement.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Les liaisons qui relient les villes et les pays doivent transporter toujours plus de données, plus vite. » → L'article ne dit pas que les liaisons doivent transporter toujours plus de données. Il parle seulement d'un pas vers des dorsales à faible latence, ce qui ne permet pas d'affirmer cette croissance du trafic.
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Internet : une fibre creuse envoie 128 000 milliards de bits par seconde
+- **Avant** : Les liaisons qui relient les villes et les pays doivent transporter toujours plus de données, plus vite. Le défi est de réduire le délai de transmission des données.
+- **Découverte** : Des équipes de China Telecom Research Institute, YOFC et ZTE ont fait passer 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens. Le test a porté sur une fibre à cœur creux, dont le centre est vide, longue de 1 007 km. Au total, le débit atteint 128 000 milliards de bits par seconde.
+- **Et après** : Cette technique vise des réseaux longue distance plus rapides, avec des délais de transmission plus courts. L'article ne dit ni quand ni comment elle pourrait être déployée commercialement.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Faits relevés_ : Test mené par China Telecom Research Institute, YOFC et ZTE. | Le test a porté sur une fibre à cœur creux de 1 007 km (1 007,48 km exactement). | Chaque longueur d'onde, c'est-à-dire chaque couleur de lumière utilisée, a transporté 800 gigabits par seconde. | Le signal circulait dans les deux sens. | Le total atteint 128 térabits par seconde, soit 128 000 milliards de bits par seconde. | Selon l'article, le test est une étape vers des réseaux longue distance à faible latence.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il présente l'essai comme une étape vers des réseaux longue distance à faible latence.
+- _Jargon_ : Fibre à cœur creux : expliquée dans le texte (fibre dont le centre est vide). | Longueur d'onde : remplacée par « couleur de lumière utilisée ». | Latence : remplacée par « délai de transmission ». | Réseau longue distance (ou dorsal) : remplacé par « liaisons qui relient les villes et les pays ».
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 7. Drones : un étudiant atteint 790 km/h avec un petit avion à réaction
+
+Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (4156 caractères) · https://www.tomshardware.com/tech-industry/drones/college-student-unofficially-breaks-world-record-for-fastest-jet-powered-drone-with-491-mph-aircraft-built-in-his-dorm-reaper-aims-to-grab-the-usd800-000-boom-prize
+
+**Actuel (publié)**
+
+- **Titre** : Drones : un étudiant atteint 790 km/h avec un petit avion à réaction
+- **Avant** : Les drones à réaction, petits avions sans pilote équipés d'un moteur à réaction, étaient jusque-là moins rapides que ce nouvel appareil, selon la source.
+- **Découverte** : Un étudiant d'une université américaine a construit son avion télécommandé dans sa chambre d'étudiant. L'appareil a atteint 790 km/h, soit 491 mph, ce que la source présente comme un record.
+- **Et après** : L'étudiant vise un prix de 800 000 dollars récompensant le plus rapide avion télécommandé à réaction. Pour l'instant, ce record n'est pas officiel.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+**Final après relecture (haiku)**
+
+- **Titre** : Avions : un étudiant construit un petit jet télécommandé à 790 km/h
+- **Avant** : Un autre projet, le Kingchaser, visait le même record mondial de vitesse et n'avait atteint que 273 mph, soit environ 439 km/h, en test, faute de place pour accélérer.
+- **Découverte** : Tomas Salvo, étudiant, a assemblé dans sa chambre un avion télécommandé à réaction nommé Reaper. Il a atteint environ 790 km/h (491 mph) lors de son essai de vol. Son corps est en fibre de carbone moulée sur mesure, avec une structure intérieure découpée au laser.
+- **Et après** : Le Boom Prize, doté de 800 000 dollars (environ 680 000 €), exige de dépasser la vitesse du son, soit 1 234,8 km/h, pendant cinq secondes au moins. Le Reaper en est encore loin, et son record n'est pas homologué par Guinness ; le prix exclut aussi les entreprises.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : [forme] « Ce prix de 800 000 dollars (environ 680 000 €) exige de dépasser la vitesse du son » → Le paragraphe « Et après » parle de « ce prix » sans jamais avoir nommé le prix (le Boom Prize) dans la fiche. Le lecteur ne sait pas de quoi il s'agit.
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Avions : un étudiant construit un petit jet télécommandé à 790 km/h
+- **Avant** : Un autre projet, le Kingchaser, visait le même record mondial de vitesse et n'avait atteint que 273 mph, soit environ 439 km/h, en test, faute de place pour accélérer.
+- **Découverte** : Tomas Salvo, étudiant, a assemblé dans sa chambre un avion télécommandé à réaction nommé Reaper. Il a atteint environ 790 km/h (491 mph) lors de son essai de vol. Son corps est en fibre de carbone moulée sur mesure, avec une structure intérieure découpée au laser.
+- **Et après** : Ce prix de 800 000 dollars (environ 680 000 €) exige de dépasser la vitesse du son, soit 1 234,8 km/h, pendant cinq secondes au moins. Le Reaper en est encore loin, et son record n'est pas homologué par Guinness ; le prix exclut aussi les entreprises.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Faits relevés_ : Tomas Salvo, étudiant, a conçu et assemblé son avion télécommandé Reaper dans sa chambre d'étudiant. | Le Reaper a atteint 491 mph, soit environ 790 km/h, pendant son vol d'essai. | Son moteur à réaction a une poussée de 250 newtons, contre 300 newtons pour le Kingchaser, un autre projet. | Le Kingchaser visait le même record mondial mais n'avait atteint que 273 mph en test, faute de place pour accélérer. | Le Reaper pèse 11 livres, soit environ 5 kg, avec une structure en fibre de carbone et une buse de moteur en titane imprimée en 3D. | Le prix Boom vaut 800 000 dollars et est réservé aux particuliers ou aux équipes, pas aux entreprises. | Pour gagner ce prix, il faut passer Mach 1, soit 767,3 mph (1 234,8 km/h), pendant au moins 5 secondes. | Le record de Tomas n'a pas été homologué officiellement par Guinness.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il dit seulement que le Reaper a dépassé en vol d'essai le Kingchaser (491 mph contre 273 mph), mais reste loin de la vitesse du son.
+- _Jargon_ : Mach 1 : remplacé par « la vitesse du son », avec l'équivalent en km/h | moteur à réaction : expliqué dès le titre comme un petit avion à réaction, sans autre définition
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 8. Océan : une étoile de mer laisse souvent du corail vivant
+
+Fil : science · 1★ · source : ScienceDaily · page lue : oui (5346 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002957.htm
+
+**Actuel (publié)**
+
+- **Titre** : Océan : une étoile de mer laisse souvent du corail vivant
+- **Avant** : On voyait surtout l'étoile de mer à épines comme une menace pour les récifs, car ses explosions de population ont causé de gros dégâts sur la Grande Barrière de corail depuis les années 1960.
+- **Découverte** : Des chercheurs de l'université de Sydney ont examiné les traces de repas laissées sur des coraux près de la station One Tree Island. Environ 75 % des repas observés laissaient du tissu vivant sur le corail. En mangeant les coraux qui dominent et poussent vite, l'étoile laisse de la place aux espèces plus lentes.
+- **Et après** : Les chercheurs restent prudents : cet effet bénéfique est surtout possible quand les populations d'étoiles sont maintenues sous contrôle. L'impact réel sur la variété des coraux reste à mesurer sur une zone plus large.
+- **Mots** : (aucun)
+- **Type** : terrain
+
+**Final après relecture (haiku)**
+
+- **Titre** : Récifs : l'étoile de mer laisse souvent du corail vivant après ses repas
+- **Avant** : Depuis les années 1960, les explosions de population de ces étoiles ont causé de grands dégâts sur la Grande Barrière de corail. On les voyait surtout comme une menace, et les chercheurs voulaient savoir ce qui restait du corail après leur passage.
+- **Découverte** : Une équipe de l'université de Sydney, dirigée par Shawna Foo, a examiné les traces de repas laissées par ces étoiles sur le récif, dans des zones protégées où les poissons gardent leur nombre bas. Dans près de 75 % des cas, du tissu de corail vivant a survécu au repas. Les coraux à croissance rapide, qui occupent beaucoup de place, ne se sont pas reformés sur les zones broutées, contrairement aux espèces plus lentes.
+- **Et après** : Ces étoiles peuvent donc être utiles quand leur nombre reste bas, ce qui pourrait aider à décider quand les éliminer, sans forcément viser toutes les étoiles. Les grandes explosions restent dangereuses, et l'étude ne porte que sur des zones protégées.
+- **Mots** : (aucun)
+- **Type** : terrain
+
+- _Défauts trouvés par le relecteur_ : [apres] « Ces étoiles peuvent donc jouer un rôle utile quand leur nombre reste bas, ce qui remet en cause l'idée qu'elles sont toujours nuisibles. » → Le paragraphe « Et après » ne dit pas ce que la découverte peut changer en pratique. L'article indique qu'elle peut aider à décider quand et pourquoi éliminer les étoiles, et que l'objectif n'est pas forcément de toutes les supprimer.
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Récifs : l'étoile de mer laisse souvent du corail vivant après ses repas
+- **Avant** : Depuis les années 1960, les explosions de population de ces étoiles ont causé de grands dégâts sur la Grande Barrière de corail. On les voyait surtout comme une menace, et les chercheurs voulaient savoir ce qui restait du corail après leur passage.
+- **Découverte** : Une équipe de l'université de Sydney, dirigée par Shawna Foo, a examiné les traces de repas laissées par ces étoiles sur le récif, dans des zones protégées où les poissons gardent leur nombre bas. Dans près de 75 % des cas, du tissu de corail vivant a survécu au repas. Les coraux à croissance rapide, qui occupent beaucoup de place, ne se sont pas reformés sur les zones broutées, contrairement aux espèces plus lentes.
+- **Et après** : Ces étoiles peuvent donc jouer un rôle utile quand leur nombre reste bas, ce qui remet en cause l'idée qu'elles sont toujours nuisibles. Les chercheurs insistent : les grandes explosions restent dangereuses, et l'étude ne porte que sur des zones protégées.
+- **Mots** : (aucun)
+- **Type** : terrain
+
+- _Faits relevés_ : Une équipe de l'université de Sydney, dirigée par Shawna Foo, a étudié la Grande Barrière de corail en Australie. | Les chercheurs ont examiné les traces de repas laissées par l'étoile de mer à épines sur le corail, à la station One Tree Island. | Dans près de 75 % des repas observés, du tissu de corail vivant est resté sur le récif. | Les zones étudiées étaient protégées, et les poissons prédateurs y gardaient les étoiles de mer en nombre faible. | Les coraux à croissance rapide ne se sont pas reformés sur les zones broutées, contrairement aux espèces plus lentes. | Depuis les années 1960, le récif a connu quatre grandes explosions de population d'étoiles de mer, environ tous les 15 ans. | Les chercheurs préviennent que ces grandes explosions restent une menace sérieuse pour les récifs. | Une fois une explosion maîtrisée, éliminer toutes les étoiles n'est peut-être pas le meilleur objectif, selon les auteurs.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il montre qu'un petit nombre d'étoiles de mer peut laisser du corail vivant et favoriser des espèces plus lentes, ce qui va à l'encontre de l'idée que toute consommation de corail est nuisible.
+- _Jargon_ : étoile de mer à épines : remplacé par « étoile de mer » suivi de sa description (épines, toxines) | biodiversité : remplacé par « variété des espèces » | hypothèse de la perturbation intermédiaire : non citée, l'article n'en a pas besoin pour le lecteur
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 9. Satellites : une IA de Google écrit un poème depuis l'espace
+
+Fil : tech · 2★ · source : Clubic · page lue : oui (6000 caractères) · https://www.clubic.com/actualite-637000-un-satellite-une-ia-et-un-poeme-google-vient-de-reussir-une-experience-assez-folle-dans-l-espace.html
+
+**Actuel (publié)**
+
+- **Titre** : Satellites : une IA de Google écrit un poème depuis l'espace
+- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont jusqu'ici installés sur Terre. En novembre 2025, Google a présenté son projet Suncatcher, qui vise à en installer en orbite.
+- **Découverte** : Google a lancé le 1er octobre un satellite de la taille d'un réfrigérateur, équipé de quatre puces d'IA, par une fusée Falcon 9 de SpaceX. Le modèle Gemma 4 a produit en orbite un haïku, la première réponse d'IA jamais générée par une puce de centre de données dans l'espace. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
+- **Et après** : Ce n'est encore qu'un prototype qui ne tourne que par courtes séquences. Google veut un jour alimenter des centres de données en orbite grâce à l'énergie du Soleil, ce qui reste à prouver à grande échelle.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+**Final après relecture (haiku)**
+
+- **Titre** : Satellites : une puce d'IA de Google écrit un haïku depuis l'orbite
+- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont installés sur Terre. Pour les placer en orbite, il fallait d'abord savoir si les puces tiennent dans l'espace.
+- **Découverte** : Google a installé quatre de ses puces d'IA dans un satellite de la taille d'un réfrigérateur, lancé le 1er octobre par une fusée Falcon 9 de SpaceX. Ses ingénieurs ont demandé un haïku au modèle Gemma 4, récupéré quand le satellite survolait la Norvège ; selon Travis Beals, c'est la toute première réponse d'IA produite en orbite par une puce de centre de données. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
+- **Et après** : Google veut un jour alimenter des centres de données en orbite avec l'énergie du Soleil, mais ce n'est encore qu'un prototype. Pour être rentable, il faudra des fusées bien moins chères : à 200 dollars le kilo, Google calcule encore 810 à 7 500 dollars par kilowatt et par an.
 - **Mots** : (aucun)
 - **Type** : prototype
+
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Pour être rentable, le lancement devrait coûter environ 200 dollars le kilo, un prix que Google juge possible vers 2035. » → L'article ne dit pas que 200 dollars le kilo suffit à rendre Suncatcher rentable. À ce prix, Google calcule encore 810 à 7 500 dollars par kilowatt et par an, contre 570 à 3 000 dollars sur Terre. Le prix de 200 dollars est un scénario de calcul, et la date de 2035 concerne une estimation de SpaceX.
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Satellites : une puce d'IA de Google écrit un haïku depuis l'orbite
+- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont installés sur Terre. Pour les placer en orbite, il fallait d'abord savoir si les puces tiennent dans l'espace.
+- **Découverte** : Google a installé quatre de ses puces d'IA dans un satellite de la taille d'un réfrigérateur, lancé le 1er octobre par une fusée Falcon 9 de SpaceX. Ses ingénieurs ont demandé un haïku au modèle Gemma 4, récupéré quand le satellite survolait la Norvège ; selon Travis Beals, c'est la toute première réponse d'IA produite en orbite par une puce de centre de données. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
+- **Et après** : Google veut un jour alimenter des centres de données en orbite avec l'énergie du Soleil, mais ce n'est encore qu'un prototype. Pour être rentable, le lancement devrait coûter environ 200 dollars le kilo, un prix que Google juge possible vers 2035.
+- **Mots** : (aucun)
+- **Type** : prototype
+
+- _Faits relevés_ : Google a installé quatre de ses puces d'IA dans un satellite de la taille d'un réfrigérateur. | Le satellite, fourni par la société Planet, a été lancé le 1er octobre par une fusée Falcon 9 de SpaceX. | Le projet Suncatcher, de centres de données en orbite, avait été dévoilé en novembre 2025. | Les ingénieurs ont demandé un haïku au modèle d'IA Gemma 4 et récupéré la réponse au-dessus du Svalbard, en Norvège. | Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée. | Le satellite dispose d'environ 1 kilowatt d'électricité pour une mission prévue sur un an. | Pour être rentable, le lancement devrait coûter environ 200 dollars le kilo, selon une étude de Google. | Deux satellites reliés entre eux par liaisons optiques sont prévus en 2027, toujours avec Planet.
+- _Nouveauté selon l'article_ : Selon Travis Beals, responsable de l'équipe, c'est la toute première réponse d'IA produite en orbite par une puce de centre de données ; le projet lui-même était annoncé depuis novembre 2025.
+- _Jargon_ : TPU : remplacé par « puces d'IA ». | Suncatcher : remplacé par « le projet » ou expliqué comme projet de centres de données en orbite. | Gemma 4 : nom du modèle d'IA, gardé tel quel comme nom de produit. | Orbite : mot courant, gardé.
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Alertes automatiques_ : prix sans équivalent en euros
+
+
+---
+
+## 10. Momification : une plante du désert entrait dans l'embaumement égyptien
+
+Fil : science · 2★ · source : Phys.org · page lue : NON (0 caractères) · https://phys.org/news/2026-10-year-mummy-yields-molecular-evidence.html
+
+**Actuel (publié)**
+
+- **Titre** : Momification : une plante du désert entrait dans l'embaumement égyptien
+- **Avant** : On savait que les Égyptiens anciens employaient diverses substances pour conserver les corps, mais la composition exacte de ces mélanges restait mal connue.
+- **Découverte** : Une équipe de l'université de Marbourg a analysé une tête momifiée vieille d'environ 2 700 ans. Elle y a trouvé des traces moléculaires d'aloès, une plante grasse du désert, ce qui constitue la première preuve de ce type. Les chercheurs ont combiné analyse de produits naturels, égyptologie et histoire de la pharmacie.
+- **Et après** : Ce résultat permet de mieux comprendre les recettes d'embaumement et les savoirs des anciens Égyptiens. Il reste à vérifier cette découverte sur d'autres momies.
+- **Mots** : **Aloès** → Plante grasse et épineuse originaire d'Afrique et d'Arabie, dont le suc est utilisé depuis très longtemps.
+- **Type** : donnees
 
 _Article illisible : pas de réécriture._
 
 
 ---
 
-## 7. Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
+## 11. Archéologie : un mur de 4 000 ans révèle une défense ancienne
 
-Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04710-1
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030003022.htm
 
 **Actuel (publié)**
 
-- **Titre** : Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
-- **Avant** : Contre le cancer du côlon, certaines formes ne répondaient pas aux immunothérapies de première génération, et une partie des malades rechutaient après l'opération.
-- **Découverte** : Dans l'essai UNICORN, 56 patients avec un cancer du côlon opérable ont reçu une courte cure avant la chirurgie. Chez les cancers jusque-là résistants, le duo botensilimab et balstilimab a fait presque disparaître la tumeur chez 36 % des patients, contre 0 % avec le seul botensilimab. Dans l'autre type de cancer étudié, le même duo a obtenu ce résultat chez 100 % des patients.
-- **Et après** : Chaque groupe ne comptait que 14 patients et plus de la moitié des malades traités par le duo ont eu des effets indésirables liés au système immunitaire, comme un syndrome grippal ou la diarrhée. Il faudra un essai plus large pour confirmer ces résultats avant tout usage courant.
+- **Titre** : Archéologie : un mur de 4 000 ans révèle une défense ancienne
+- **Avant** : Jusqu'ici, on connaissait peu de constructions militaires très anciennes en Afrique du Nord, en dehors de la vallée du Nil. Le site d'Oued Beht, au Maroc, était déjà connu pour un vaste complexe agricole vieux de plus de 5 000 ans.
+- **Découverte** : Des archéologues ont fouillé le site d'Oued Beht, dans le nord-ouest du Maroc, en 2023. Ils y ont mis au jour une grande construction en forme de mur, sans doute destinée à se défendre. Elle date d'environ 4 000 à 3 500 ans, ce qui en fait la plus ancienne de ce type connue dans la région hors de la vallée du Nil.
+- **Et après** : Les chercheurs veulent maintenant savoir qui a bâti ce mur et contre quelle menace. Ils pensent qu'il répondait surtout à des rivalités pour la terre et les ressources, et il doit encore être confirmé par d'autres sites.
 - **Mots** : (aucun)
-- **Type** : essai_clinique
+- **Type** : terrain
 
 **Final après relecture (haiku)**
 
-- **Titre** : Cancer du côlon : un duo d'anticorps réduit la tumeur avant la chirurgie
-- **Avant** : Les premiers traitements qui relancent la défense immunitaire contre la tumeur marchent surtout sur les cancers du côlon avec un défaut de réparation de l'ADN. Les autres étaient jugés résistants ; quand le cancer s'était déjà propagé à d'autres organes, le duo avait fait reculer la tumeur chez 20 % des patients sans métastases au foie.
-- **Découverte** : Des chercheurs ont testé deux traitements à base d'anticorps, avant la chirurgie, chez des patients atteints d'un cancer du côlon opérable. Sans défaut de réparation de l'ADN, le duo n'a laissé presque plus de cellules cancéreuses vivantes chez 36 % des patients de ce groupe, contre 0 % avec l'anticorps seul. Avec ce défaut, le duo a obtenu le même résultat chez tous les patients de son groupe.
-- **Et après** : Ce duo pourrait offrir une option avant la chirurgie aux cancers du côlon réputés résistants. Mais chaque groupe ne compte que 14 patients, et 15 patients sur 28 traités par le duo ont eu des effets indésirables liés au système immunitaire.
+- **Titre** : Archéologie : au Maroc, un fossé et un mur protègent une crête
+- **Avant** : On connaissait déjà, au Maroc, un vaste site agricole vieux d'environ 5 000 ans. Mais les murs repérés depuis les années 1930 restaient mal datés, et leur nature exacte était incertaine.
+- **Découverte** : Des chercheurs ont fouillé le site d'Oued Beht, dans le nord-ouest du Maroc, en 2023. Ils ont mis au jour un fossé, un rempart et un mur construits en plusieurs étapes, qui isolaient l'extrémité sud d'une crête. Ces ouvrages datent d'environ 4 000 à 3 500 ans. Selon les chercheurs, c'est la plus ancienne construction de grande taille de nature probablement défensive connue au nord de l'Afrique, hors de la vallée du Nil.
+- **Et après** : Ces constructions suggèrent des sociétés plus organisées qu'on ne le pensait, capables de planifier et de mobiliser beaucoup de main-d'œuvre. On ignore encore quelle menace visait ce mur ; les chercheurs pensent à une concurrence pour la terre et les ressources.
 - **Mots** : (aucun)
-- **Type** : essai_clinique
+- **Type** : terrain
 
-- _Défauts trouvés par le relecteur_ : [jargon] « Les immunothérapies de première génération » → Le terme « immunothérapies de première génération » est technique et n'est ni expliqué ni remplacé par des mots simples dans la fiche. Il faut le traduire, par exemple par « les premiers traitements qui relancent la défense immunitaire contre la tumeur », ce que l'article décrit (inhibiteurs de points de contrôle immunitaires). | [jargon] « au stade métastatique » → Le terme « stade métastatique » est un terme médical non expliqué. Il doit être remplacé par une formulation simple, par exemple « quand le cancer s'était déjà propagé à d'autres organes », ce qui correspond à l'article.
+- _Défauts trouvés par le relecteur_ : [forme] « Archéologie : au Maroc, un fossé et un mur protégeaient une crête » → Le titre doit être au présent selon les règles de la fiche ; « protégeaient » est à l'imparfait. | [forme] « Ces ouvrages datent d'environ 4 000 à 3 500 ans : selon les chercheurs, c'est la plus ancienne construction de grande taille de nature probablement défensive connue au nord de l'Afrique hors de la vallée du Nil. » → La phrase compte plus de 30 mots ; elle doit être coupée en deux. | [non_soutenu] « Ces constructions montrent des sociétés plus organisées qu'on ne le pensait » → L'article dit que ces constructions suggèrent (« suggest ») des sociétés plus complexes, et non qu'elles le prouvent ; la fiche affirme donc plus fortement que la source.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Cancer du côlon : un duo d'anticorps réduit la tumeur avant la chirurgie
-- **Avant** : Les immunothérapies de première génération marchent surtout sur les cancers du côlon avec un défaut de réparation de l'ADN. Les autres étaient jugés résistants ; au stade métastatique, le duo avait fait reculer la tumeur chez 20 % des patients sans métastases au foie.
-- **Découverte** : Des chercheurs ont testé deux traitements à base d'anticorps, avant la chirurgie, chez des patients atteints d'un cancer du côlon opérable. Sans défaut de réparation de l'ADN, le duo n'a laissé presque plus de cellules cancéreuses vivantes chez 36 % des patients de ce groupe, contre 0 % avec l'anticorps seul. Avec ce défaut, le duo a obtenu le même résultat chez tous les patients de son groupe.
-- **Et après** : Ce duo pourrait offrir une option avant la chirurgie aux cancers du côlon réputés résistants. Mais chaque groupe ne compte que 14 patients, et 15 patients sur 28 traités par le duo ont eu des effets indésirables liés au système immunitaire.
+- **Titre** : Archéologie : au Maroc, un fossé et un mur protégeaient une crête
+- **Avant** : On connaissait déjà, au Maroc, un vaste site agricole vieux d'environ 5 000 ans. Mais les murs repérés depuis les années 1930 restaient mal datés, et leur nature exacte était incertaine.
+- **Découverte** : Des chercheurs ont fouillé le site d'Oued Beht, dans le nord-ouest du Maroc, en 2023. Ils ont mis au jour un fossé, un rempart et un mur construits en plusieurs étapes, qui isolaient l'extrémité sud d'une crête. Ces ouvrages datent d'environ 4 000 à 3 500 ans : selon les chercheurs, c'est la plus ancienne construction de grande taille de nature probablement défensive connue au nord de l'Afrique hors de la vallée du Nil.
+- **Et après** : Ces constructions montrent des sociétés plus organisées qu'on ne le pensait, capables de planifier et de mobiliser beaucoup de main-d'œuvre. On ignore encore quelle menace visait ce mur ; les chercheurs pensent à une concurrence pour la terre et les ressources.
 - **Mots** : (aucun)
-- **Type** : essai_clinique
+- **Type** : terrain
 
-- _Faits relevés_ : Essai UNICORN, de phase 2 (étape précoce des tests), sur 56 patients ayant un cancer du côlon opérable. | Traitement court donné avant la chirurgie : un anticorps seul (botensilimab), ou ce même anticorps associé à un second (balstilimab). | 28 patients avaient un cancer sans défaut de réparation de l'ADN, 28 un cancer avec ce défaut, répartis en groupes de 14. | Critère : il ne reste plus que 10 % ou moins de cellules cancéreuses vivantes dans la tumeur. | Cancer sans défaut : 36 % des patients du duo atteignent ce critère, contre 0 % avec l'anticorps seul (14 patients par groupe). | Cancer avec défaut : 36 % avec l'anticorps seul, 100 % avec le duo (intervalle de confiance de 76,8 à 100 %). | Effets indésirables liés au système immunitaire : 29 % des patients sous anticorps seul, 54 % sous duo, surtout syndrome grippal et diarrhée. | Une disparition de l'ADN tumoral circulant avant la chirurgie était liée à une meilleure réponse et à l'absence de rechute au moment de l'analyse.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il présente le duo comme une stratégie prometteuse pour étendre les immunothérapies au stade précoce, alors que les cancers sans défaut de réparation de l'ADN étaient jugés résistants.
-- _Jargon_ : dMMR et pMMR : remplacés par « un défaut de réparation de l'ADN » ou « sans ce défaut ». | pMR (réponse pathologique majeure) : remplacé par « presque plus de cellules cancéreuses vivantes ». | Phase 2, CTLA-4, PD-1, ADN tumoral circulant : non cités dans la fiche.
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Faits relevés_ : Le site d'Oued Beht se trouve dans le nord-ouest du Maroc, sur des collines dominant une rivière, et a été fouillé en 2023. | La construction combine fossé, rempart et mur, élevés en plusieurs étapes sur une partie étroite de la crête, entre la rivière et un ravin. | Cet ouvrage coupait et protégeait l'extrémité sud de la crête. | Les datations placent sa construction il y a environ 4 000 à 3 500 ans. | Des murs étaient signalés sur le site depuis les années 1930 ; l'archéologue français Armand Ruhlmann les avait décrits, mais leur nature et leur date restaient incertaines. | Selon les chercheurs, la menace visée n'est pas connue ; il s'agirait probablement de concurrence pour la terre, les ressources et le contrôle des déplacements, plutôt que d'envahisseurs. | Au Moyen Âge, entre le XIe et le XIIIe siècle, l'ouvrage a été reconstruit et un hameau ou une ferme s'est installé sur une colline voisine. | Des travaux antérieurs ont déjà mis au jour, à Oued Beht, un complexe agricole vieux d'environ 5 400 à 4 900 ans.
+- _Nouveauté selon l'article_ : Selon les chercheurs, c'est la plus ancienne construction de grande taille de nature probablement défensive connue au nord de l'Afrique hors de la vallée du Nil ; les murs étaient repérés depuis les années 1930, mais leur date restait inconnue.
+- _Jargon_ : rempart : expliqué en quelques mots, butte de terre élevée pour protéger un lieu | datation : remplacé par « âge mesuré » | crête : mot courant, gardé tel quel
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 8. Étoiles : des astronomes repèrent un probable compagnon d'une étoile géante
+## 12. Ancêtres : un fossile de singe découvert en Égypte bouscule nos origines
 
-Fil : science · 2★ · source : Pour la Science · page lue : oui (6000 caractères) · https://www.pourlascience.fr/sd/astrophysique/la-preuve-la-plus-solide-a-ce-jour-pour-le-compagnon-de-betelgeuse-29610.php
-
-**Actuel (publié)**
-
-- **Titre** : Étoiles : des astronomes repèrent un probable compagnon d'une étoile géante
-- **Avant** : Depuis plus d'un siècle, on soupçonne Bételgeuse d'avoir une étoile compagne, sans preuve solide. En 2024, une variation de sa lumière laissait supposer un compagnon, mais les premières recherches n'avaient rien détecté.
-- **Découverte** : Une équipe de Miguel Montargès, de l'Observatoire de Paris, a observé l'étoile en décembre 2024 avec le Very Large Telescope, au Chili, à la date et à l'endroit prévus. Elle y a repéré une source faible, baptisée Bételgeuse B, avec un signal environ quatre fois plus net que celui de la tentative précédente. Selon leur estimation, ce compagnon ferait entre 2,6 et 3,1 fois la masse du Soleil, soit une jeune étoile bleu-blanc.
-- **Et après** : Les chercheurs parlent encore d'un candidat : il faudra revoir l'étoile vers 2027, de l'autre côté de sa course, pour écarter un objet situé seulement par hasard dans la même direction. Si la détection se confirme, la période de révolution calculée, d'environ 5,5 à 5,9 ans, correspondra bien à la variation observée.
-- **Mots** : (aucun)
-- **Type** : observation
-
-**Final après relecture (haiku)**
-
-- **Titre** : Espace : une étoile compagne probable détectée à l'endroit prévu de Bételgeuse
-- **Avant** : Depuis plus d'un siècle, on soupçonne Bételgeuse d'avoir une étoile compagne, sans preuve solide. En 2024, sa lumière variant tous les six ans environ a fait proposer un compagnon, mais les recherches précédentes n'avaient rien donné de net.
-- **Découverte** : Une équipe de l'Observatoire de Paris, dirigée par Miguel Montargès, a repéré une source faible près de Bételgeuse, baptisée Bételgeuse B. Observée les 3 et 6 décembre 2024 avec le Very Large Telescope, au Chili, elle est apparue à l'endroit et à la date prévus. Son signal est quatre fois plus significatif que celui d'une équipe de la NASA ; selon l'estimation des chercheurs, le compagnon ferait 2,6 à 3,1 fois la masse du Soleil.
-- **Et après** : Les chercheurs parlent encore de candidat : il faudra revoir Bételgeuse B vers 2027, de l'autre côté de l'étoile, pour écarter un objet situé là par hasard. Si le compagnon est confirmé, il expliquerait la variation de lumière de six ans observée depuis longtemps.
-- **Mots** : (aucun)
-- **Type** : observation
-
-- _Défauts trouvés par le relecteur_ : [forme] « sa lumière变化 revenant tous les six ans environ » → Des caractères chinois (变化) sont restés dans le texte à la place du mot « variation ». Erreur typographique à corriger. | [non_soutenu] « il faudra revoir l'étoile vers 2027, de l'autre côté de son orbite » → L'article dit qu'il faudra réobserver Bételgeuse B, le compagnon, de l'autre côté de l'étoile primaire. Écrire « revoir l'étoile » attribue à Bételgeuse elle-même l'objet à réobserver.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Espace : une étoile compagne probable détectée à l'endroit prévu de Bételgeuse
-- **Avant** : Depuis plus d'un siècle, on soupçonne Bételgeuse d'avoir une étoile compagne, sans preuve solide. En 2024, sa lumière变化 revenant tous les six ans environ a fait proposer un compagnon, mais les recherches précédentes n'avaient rien donné de net.
-- **Découverte** : Une équipe de l'Observatoire de Paris, dirigée par Miguel Montargès, a repéré une source faible près de Bételgeuse, baptisée Bételgeuse B. Observée les 3 et 6 décembre 2024 avec le Very Large Telescope, au Chili, elle est apparue à l'endroit et à la date prévus. Son signal est quatre fois plus significatif que celui d'une équipe de la NASA ; selon l'estimation des chercheurs, le compagnon ferait 2,6 à 3,1 fois la masse du Soleil.
-- **Et après** : Les chercheurs parlent encore de candidat : il faudra revoir l'étoile vers 2027, de l'autre côté de son orbite, pour écarter un objet situé là par hasard. Si le compagnon est confirmé, il expliquerait la variation de lumière de six ans observée depuis longtemps.
-- **Mots** : (aucun)
-- **Type** : observation
-
-- _Faits relevés_ : Bételgeuse, une très grosse étoile rouge, est située à environ 550 années-lumière de la Terre. | Depuis plus d'un siècle, on soupçonne Bételgeuse d'avoir une étoile compagne, sans confirmation solide. | En 2024, deux équipes ont interprété une variation de lumière d'environ six ans comme le signe d'un compagnon, et ont prévu sa position pour décembre 2024. | Hubble et Chandra n'ont rien détecté ; l'équipe de Steve Howell, de la NASA, a obtenu un signal trop faible pour conclure. | Les 3 et 6 décembre 2024, l'équipe de Miguel Montargès a observé Bételgeuse avec le Very Large Telescope, au Chili. | Une source, nommée Bételgeuse B, est apparue à l'endroit et à la date prévus, avec un signal quatre fois plus significatif que celui de la NASA. | Selon l'équipe, Bételgeuse B aurait une masse de 2,6 à 3,1 fois celle du Soleil, et serait une jeune étoile bleu-blanc. | Une confirmation définitive devra attendre vers 2027, quand l'observation pourra se faire de l'autre côté de l'orbite.
-- _Nouveauté selon l'article_ : Ce qui est nouveau : une source a été repérée à l'endroit et à la date prévus, avec un signal plus net que celui de la recherche précédente ; l'article ne revendique pas de première.
-- _Jargon_ : « Signal sur bruit » remplacé par « signal plus net » | « LSP » remplacé par « variation de lumière d'environ six ans » | « Période de révolution » remplacé par « durée d'une orbite »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 9. Électricité : un centre de calcul chinois fonctionne désormais avec un courant stable
-
-Fil : tech · 1★ · source : pv magazine (solaire) · page lue : oui (3533 caractères) · https://www.pv-magazine.com/2026/11/02/envision-claims-world-first-with-800-v-dc-architecture-for-ai-data-center/
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261031011638.htm
 
 **Actuel (publié)**
 
-- **Titre** : Électricité : un centre de calcul chinois fonctionne désormais avec un courant stable
-- **Avant** : Les centres de calcul pour l'IA convertissent le courant alternatif en continu près des serveurs, ce qui limite la puissance qu'on peut installer dans un même espace.
-- **Découverte** : Envision Energy a mis en service à Ulanqab, en Chine, un système qui relie un transformateur électronique à des batteries et alimente les serveurs en 800 volts continus. Un logiciel ajuste en temps réel l'énergie fournie aux processeurs graphiques, en quelques millisecondes, selon l'entreprise.
-- **Et après** : Le campus Galaxy, qui vise 3 GW et plus de 80 % d'énergie renouvelable, a commencé à fonctionner en août 2026. Les performances annoncées, comme un rendement de 98,5 %, n'ont pas été vérifiées indépendamment.
-- **Mots** : **Transformateur** → Appareil qui change la tension du courant électrique, ici sans pièce mobile grâce à l'électronique de puissance.
-- **Type** : demonstration
+- **Titre** : Ancêtres : un fossile de singe découvert en Égypte bouscule nos origines
+- **Avant** : Les chercheurs pensaient que les premiers grands singes, dont la lignée de l'humain, étaient apparus surtout en Afrique de l'Est. Aucun fossile certain de singe de cette époque n'avait été trouvé en Afrique du Nord.
+- **Découverte** : Une équipe internationale décrit une nouvelle espèce, Masripithecus moghraensis, à partir de restes trouvés à Wadi Moghra, dans le nord de l'Égypte. Âgé de 17 à 18 millions d'années, ce fossile est le premier singe certain découvert en Afrique du Nord. L'étude est publiée dans la revue Science.
+- **Et après** : Les chercheurs suggèrent que le nord de l'Afrique et le Moyen-Orient ont pu jouer un rôle central dans l'origine des grands singes, dont la lignée humaine. D'autres fossiles seront nécessaires pour confirmer cette hypothèse.
+- **Mots** : (aucun)
+- **Type** : terrain
 
 **Final après relecture (haiku)**
 
-- **Titre** : Centres de calcul : un site chinois alimente ses serveurs en courant continu
-- **Avant** : Les centres de calcul pour l'IA convertissent le courant alternatif, qui change de sens en permanence, en courant continu seulement près des serveurs. Ce schéma limite la puissance de calcul qu'on peut installer dans un même espace.
-- **Découverte** : Envision Energy a mis en service à Ulanqab, en Chine, un système qui alimente des serveurs d'IA en 800 volts continus. Des transformateurs électroniques convertissent le courant de 10 000 volts en 800 volts continus, et des batteries assurent l'appui et le secours. Un logiciel coordonne l'ensemble à la milliseconde près pour suivre les variations de charge des processeurs graphiques, selon l'entreprise.
-- **Et après** : Selon le constructeur, cette méthode permettrait de loger plus de calcul dans un même espace. Ses chiffres, dont un rendement de 98,5 % pour un modèle de 2,5 MW, restent les siens, et le campus n'a démarré qu'en août 2026.
-- **Mots** : **Transformateur électronique** → Appareil qui change la tension d'un courant électrique grâce à des composants électroniques de puissance, sans pièces en mouvement.
-- **Type** : demonstration
+- **Titre** : Grands singes : un fossile égyptien suggère une origine au nord de l'Afrique
+- **Avant** : Pendant des décennies, les chercheurs pensaient que les ancêtres des grands singes vivaient surtout en Afrique de l'Est. Le nord de l'Afrique avait livré des singes anciens, mais aucun grand singe certain de la même période.
+- **Découverte** : Une équipe égyptienne et américaine décrit à Wadi Moghra, en Égypte, le premier grand singe certain trouvé en Afrique du Nord. Vieux de 17 à 18 millions d'années, il n'est connu que par une mâchoire inférieure. Selon l'analyse, il serait plus proche des grands singes actuels que tout singe connu d'Afrique de l'Est à la même époque.
+- **Et après** : Si cette analyse se confirme, l'origine des grands singes, dont la lignée humaine, pourrait se situer au nord de l'Afrique et au Moyen-Orient. Mais cela repose sur une seule mâchoire et des calculs statistiques : il faudra d'autres fossiles pour confirmer.
+- **Mots** : (aucun)
+- **Type** : terrain
 
 - _Défauts trouvés par le relecteur_ : aucun
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Centres de calcul : un site chinois alimente ses serveurs en courant continu
-- **Avant** : Les centres de calcul pour l'IA convertissent le courant alternatif, qui change de sens en permanence, en courant continu seulement près des serveurs. Ce schéma limite la puissance de calcul qu'on peut installer dans un même espace.
-- **Découverte** : Envision Energy a mis en service à Ulanqab, en Chine, un système qui alimente des serveurs d'IA en 800 volts continus. Des transformateurs électroniques convertissent le courant de 10 000 volts en 800 volts continus, et des batteries assurent l'appui et le secours. Un logiciel coordonne l'ensemble à la milliseconde près pour suivre les variations de charge des processeurs graphiques, selon l'entreprise.
-- **Et après** : Selon le constructeur, cette méthode permettrait de loger plus de calcul dans un même espace. Ses chiffres, dont un rendement de 98,5 % pour un modèle de 2,5 MW, restent les siens, et le campus n'a démarré qu'en août 2026.
-- **Mots** : **Transformateur électronique** → Appareil qui change la tension d'un courant électrique grâce à des composants électroniques de puissance, sans pièces en mouvement.
-- **Type** : demonstration
+- **Titre** : Grands singes : un fossile égyptien suggère une origine au nord de l'Afrique
+- **Avant** : Pendant des décennies, les chercheurs pensaient que les ancêtres des grands singes vivaient surtout en Afrique de l'Est. Le nord de l'Afrique avait livré des singes anciens, mais aucun grand singe certain de la même période.
+- **Découverte** : Une équipe égyptienne et américaine décrit à Wadi Moghra, en Égypte, le premier grand singe certain trouvé en Afrique du Nord. Vieux de 17 à 18 millions d'années, il n'est connu que par une mâchoire inférieure. Selon l'analyse, il serait plus proche des grands singes actuels que tout singe connu d'Afrique de l'Est à la même époque.
+- **Et après** : Si cette analyse se confirme, l'origine des grands singes, dont la lignée humaine, pourrait se situer au nord de l'Afrique et au Moyen-Orient. Mais cela repose sur une seule mâchoire et des calculs statistiques : il faudra d'autres fossiles pour confirmer.
+- **Mots** : (aucun)
+- **Type** : terrain
 
-- _Faits relevés_ : Envision Energy a installé à son campus Galaxy AI, à Ulanqab (Chine), un système combinant transformateurs électroniques et batteries. | Le transformateur électronique prend un courant de moyenne tension (10 kV) et le convertit en 800 volts continus. | Un logiciel, le Dubhe Controller, coordonne transformateurs et batteries en temps réel, à la milliseconde près. | Les batteries aident à absorber les variations de charge des processeurs graphiques, et assurent une alimentation de secours de l'ordre de la minute. | Le campus a commencé à fonctionner en août 2026, avec une capacité prévue de 3 gigawatts. | Selon le constructeur, plus de 80 % de l'énergie du campus devrait venir de sources renouvelables. | Un modèle de transformateur de 2,5 MW, présenté en juillet 2026 à Munich, annonce un rendement de 98,5 %. | Le constructeur vise 5 gigawatts de centres de calcul verts dans les régions désertiques d'ici 2030, avec un programme appelé Mission Gobi.
-- _Nouveauté selon l'article_ : Selon l'entreprise, c'est le « premier déploiement commercial mondial » d'un système 800 volts continus intégrant transformateurs électroniques et batteries dans un grand centre de calcul.
-- _Jargon_ : Transformateur électronique (solid-state transformer) : mot à connaître, expliqué dans la fiche. | BESS (batteries de stockage) : remplacé par « batteries ». | 800 V DC : remplacé par « 800 volts en courant continu ». | GPU : remplacé par « processeurs graphiques ». | Dubhe Controller : remplacé par « logiciel ». | Courant alternatif et courant continu : expliqués en quelques mots dans l'avant.
+- _Faits relevés_ : Fossile d'une mâchoire inférieure trouvé à Wadi Moghra, dans le nord de l'Égypte. | Âge : 17 à 18 millions d'années. | Nouvelle espèce nommée Masripithecus moghraensis, d'après Masr (Égypte) et pithekos (singe en grec). | Fossiles récoltés lors d'expéditions en 2023 et 2024. | Étude menée par l'université de Mansoura (Égypte) et l'université de Californie du Sud (USA). | Dents solides : régime surtout fruitier, capable de broyer noix ou graines si besoin. | Analyse statistique : plus proche des grands singes actuels que les singes connus d'Afrique de l'Est à la même époque. | Selon l'analyse, l'ancêtre commun des grands singes vivait peut-être au nord de l'Afrique et au Moyen-Orient, il y a 23 à 16 millions d'années. | Limite : un seul fossile, partiel, et des calculs statistiques.
+- _Nouveauté selon l'article_ : Selon l'article, c'est le premier fossile de singe certain trouvé en Afrique du Nord (« first definitive fossil ape ever discovered in North Africa »), alors que des singes anciens y étaient déjà connus.
+- _Jargon_ : Hominoidea (grands singes actuels) : remplacé par « grands singes actuels ». | Méthodes bayésiennes : remplacé par « méthodes statistiques ». | Arbre évolutif / phylogénie : remplacé par « arbre de famille » ou « lignée ». | Miocène inférieur : remplacé par « il y a 17 à 18 millions d'années ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 10. Dinosaures : des chercheurs trouvent des restes de cellules sanguines dans un os
-
-Fil : science · 2★ · source : New Atlas · page lue : oui (5922 caractères) · https://newatlas.com/biology/fossilized-blood-cells-dinosaur-bone/
-
-**Actuel (publié)**
-
-- **Titre** : Dinosaures : des chercheurs trouvent des restes de cellules sanguines dans un os
-- **Avant** : On pensait que les molécules du sang ne pouvaient pas survivre dans les os de dinosaures pendant des millions d'années, car la matière d'origine est remplacée par des minéraux. Les affirmations contraires restaient très discutées, à cause du risque de contamination.
-- **Découverte** : Dans une patte arrière d'un théropode d'environ 3 mètres de long, mort il y a 115 millions d'années, une équipe internationale dirigée par Kliti Grice, de l'université Curtin, a identifié de l'hème, la partie du sang qui transporte l'oxygène. Des formes arrondies, logées dans les anciens canaux des vaisseaux sanguins, ressemblent à des globules rouges fossilisés et contiennent une signature chimique compatible avec cette molécule. Les chercheurs ont combiné microscopie et plusieurs analyses chimiques pour renforcer cette interprétation.
-- **Et après** : Les chercheurs n'ont pas trouvé de trace de la protéine de l'hémoglobine, et une contamination par des microbes ne peut pas être totalement exclue. D'autres analyses seront nécessaires pour comprendre le fonctionnement de ces cellules.
-- **Mots** : **Hème** → Partie de l'hémoglobine contenant du fer, qui permet au sang de transporter l'oxygène.
-- **Type** : terrain
-
-**Final après relecture (haiku)**
-
-- **Titre** : Dinosaures : une patte fossile conserve des traces d'une molécule du sang
-- **Avant** : Il était jugé peu probable que des molécules du sang survivent des millions d'années : la matière d'origine de l'os est remplacée par des minéraux. Des traces de ce type étaient annoncées depuis les années 1990, sans faire l'unanimité.
-- **Découverte** : Une équipe internationale dirigée par Kliti Grice, de l'université Curtin, a trouvé de l'hème dans une patte fossile d'un dinosaure de 3 mètres, mort il y a 115 millions d'années. Des formes rondes, logées dans les anciens vaisseaux sanguins, ressemblent à des globules rouges fossilisés et contiennent une signature chimique compatible avec l'hème. Dans les extraits d'os, une forme modifiée de l'hème est environ 90 fois plus abondante que l'hème d'origine, signe d'une transformation pendant la fossilisation.
-- **Et après** : Si elle se confirme, cette trace permettrait d'étudier le fonctionnement du corps des animaux disparus, selon Kliti Grice. Mais une contamination par des microbes n'est pas totalement exclue, et aucune trace de la protéine du sang qui accompagne l'hème n'a été signalée.
-- **Mots** : **Hème** → Partie du sang contenant du fer, qui permet à l'hémoglobine de transporter l'oxygène dans le corps des animaux.
-- **Type** : laboratoire
-
-- _Défauts trouvés par le relecteur_ : aucun
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Dinosaures : une patte fossile conserve des traces d'une molécule du sang
-- **Avant** : Il était jugé peu probable que des molécules du sang survivent des millions d'années : la matière d'origine de l'os est remplacée par des minéraux. Des traces de ce type étaient annoncées depuis les années 1990, sans faire l'unanimité.
-- **Découverte** : Une équipe internationale dirigée par Kliti Grice, de l'université Curtin, a trouvé de l'hème dans une patte fossile d'un dinosaure de 3 mètres, mort il y a 115 millions d'années. Des formes rondes, logées dans les anciens vaisseaux sanguins, ressemblent à des globules rouges fossilisés et contiennent une signature chimique compatible avec l'hème. Dans les extraits d'os, une forme modifiée de l'hème est environ 90 fois plus abondante que l'hème d'origine, signe d'une transformation pendant la fossilisation.
-- **Et après** : Si elle se confirme, cette trace permettrait d'étudier le fonctionnement du corps des animaux disparus, selon Kliti Grice. Mais une contamination par des microbes n'est pas totalement exclue, et aucune trace de la protéine du sang qui accompagne l'hème n'a été signalée.
-- **Mots** : **Hème** → Partie du sang contenant du fer, qui permet à l'hémoglobine de transporter l'oxygène dans le corps des animaux.
-- **Type** : laboratoire
-
-- _Faits relevés_ : Un dinosaure d'environ 3 mètres de long, mort il y a 115 millions d'années, a été retrouvé dans le nord-est du Brésil. | Une partie d'une patte arrière fossilisée contient de l'hème, la partie du sang qui transporte l'oxygène. | Des formes rondes, dans les anciens vaisseaux sanguins, ressemblent à des globules rouges fossilisés. | Ces formes contiennent du fer, de l'azote et du carbone, ainsi qu'une signature chimique compatible avec l'hème. | Dans les extraits d'os, une forme modifiée de l'hème est environ 90 fois plus abondante que l'hème d'origine. | Les cellules sont un peu plus rondes et plus larges que celles des oiseaux et crocodiles actuels, ce que les auteurs expliquent par un possible écrasement. | Une contamination par des microbes ne peut pas être totalement exclue, selon les auteurs. | Aucune trace de la protéine du sang qui accompagne l'hème n'est signalée.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : des traces comparables avaient déjà été annoncées depuis la fin des années 1990, mais restaient très discutées ; ici, les auteurs estiment que la contamination est plus difficile à invoquer.
-- _Jargon_ : hème : mot à connaître | théropode : remplacé par « dinosaure » | porphyrine : non utilisée, remplacée par « signature chimique » | hydroxyproline : non utilisée, remplacée par « signature chimique » | hausmannite : non utilisée, le minéral n'est pas nommé
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 11. Cellules : une pression desserre l'ADN de cellules de peau de souris
-
-Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2694 caractères) · https://www.techno-science.net/fr/actualites/pression-peau-souris-neurones-crispra-29644
-
-**Actuel (publié)**
-
-- **Titre** : Cellules : une pression desserre l'ADN de cellules de peau de souris
-- **Avant** : On savait qu'on peut changer le rôle d'une cellule en activant certaines de ses instructions génétiques. Mais l'ADN, très serré dans le noyau, rend certains gènes difficiles à atteindre.
-- **Découverte** : Des chercheurs de l'Université de Californie à Los Angeles ont fait passer des cellules de peau de souris dans des canaux plus étroits que leur noyau. Pendant quelques millisecondes, le noyau est comprimé et son ADN se desserre. Combinée à un outil qui active des gènes existants sans les couper, cette pression fait passer la part de cellules devenues nerveuses d'environ 3 % à environ 10 %.
-- **Et après** : Ces résultats portent sur des cellules de souris cultivées en laboratoire, et la méthode doit encore être testée sur d'autres types de cellules. Son intérêt pour l'humain reste à démontrer.
-- **Mots** : **CRISPRa** → Outil qui active des gènes déjà présents dans une cellule, sans couper l'ADN.
-- **Type** : cellules
-
-**Final après relecture (haiku)**
-
-- **Titre** : Cellules : comprimer le noyau aide des cellules de souris à devenir neurones
-- **Avant** : Depuis plusieurs années, les chercheurs savent changer la fonction d'une cellule en agissant sur certaines de ses instructions. Mais l'ADN, très serré dans le noyau, rend certains gènes nécessaires à la transformation difficiles à atteindre.
-- **Découverte** : Une équipe de l'Université de Californie à Los Angeles a fait passer des cellules de peau de souris dans des canaux plus étroits que leur noyau. Pendant quelques millisecondes, le noyau se comprime et son ADN se desserre ; combiné à un outil appelé CRISPRa, qui active des gènes existants sans couper l'ADN, cela fait passer la part de cellules neuronales d'environ 3 % à environ 10 %. Avec une étape de préparation supplémentaire, la proportion atteint près de 40 %.
-- **Et après** : Produire des neurones en laboratoire pourrait aider à étudier des maladies du cerveau et à tester des médicaments, sans prélever de tissu cérébral. Mais l'expérience porte pour l'instant sur des cellules de souris cultivées en laboratoire, et la méthode doit encore être testée sur des cellules humaines.
-- **Mots** : **ADN** → Molécule présente dans chaque cellule, qui contient les instructions qui déterminent le fonctionnement de la cellule.
-- **Type** : cellules
-
-- _Défauts trouvés par le relecteur_ : [jargon] « l'ADN, très serré dans le noyau » → Le sigle ADN n'est ni remplacé par des mots simples, ni expliqué dans la fiche, ni donné comme mot à connaître.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Cellules : comprimer le noyau aide des cellules de souris à devenir neurones
-- **Avant** : Depuis plusieurs années, les chercheurs savent changer la fonction d'une cellule en agissant sur certaines de ses instructions. Mais l'ADN, très serré dans le noyau, rend certains gènes nécessaires à la transformation difficiles à atteindre.
-- **Découverte** : Une équipe de l'Université de Californie à Los Angeles a fait passer des cellules de peau de souris dans des canaux plus étroits que leur noyau. Pendant quelques millisecondes, le noyau se comprime et son ADN se desserre ; combiné à un outil appelé CRISPRa, qui active des gènes existants sans couper l'ADN, cela fait passer la part de cellules neuronales d'environ 3 % à environ 10 %. Avec une étape de préparation supplémentaire, la proportion atteint près de 40 %.
-- **Et après** : Produire des neurones en laboratoire pourrait aider à étudier des maladies du cerveau et à tester des médicaments, sans prélever de tissu cérébral. Mais l'expérience porte pour l'instant sur des cellules de souris cultivées en laboratoire, et la méthode doit encore être testée sur des cellules humaines.
-- **Mots** : (aucun)
-- **Type** : cellules
-
-- _Faits relevés_ : Une équipe de l'Université de Californie à Los Angeles (UCLA) a fait passer des cellules de peau de souris dans des canaux microscopiques, plus étroits que leur noyau. | Pendant quelques millisecondes, le noyau est comprimé et son ADN se desserre temporairement. | L'outil CRISPRa active des gènes déjà présents dans la cellule, sans couper l'ADN. | Avec CRISPRa seul, environ 3 % des cellules deviennent des cellules nerveuses (neuronales). | Avec la compression en plus, cette proportion atteint environ 10 %. | Une étape de préparation, qui active un autre gène rendant les cellules plus faciles à transformer, fait monter le taux à près de 40 %. | Les cellules nerveuses humaines sont difficiles à prélever. | L'expérience porte sur des cellules de souris cultivées en laboratoire ; les chercheurs doivent encore tester d'autres types de cellules, dont les cellules humaines.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : la compression du noyau ajoutée à CRISPRa est présentée comme nouvelle, alors que changer la fonction d'une cellule en agissant sur ses gènes se fait depuis plusieurs années.
-- _Jargon_ : CRISPRa : expliqué en une phrase dans la décision (outil qui active des gènes sans couper l'ADN) | instructions génétiques : remplacé par « instructions » | noyau : mot courant, gardé tel quel
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 12. Archéologie : un bâtiment égyptien de 2 600 ans repéré par satellite
-
-Fil : science · 2★ · source : Live Science · page lue : oui (4370 caractères) · https://www.livescience.com/archaeology/ancient-egyptians/buried-for-2-600-years-beneath-nile-mud-a-massive-ancient-egyptian-complex-was-just-found-from-space
-
-**Actuel (publié)**
-
-- **Titre** : Archéologie : un bâtiment égyptien de 2 600 ans repéré par satellite
-- **Avant** : Buto était l'une des villes les plus sacrées de l'Égypte ancienne, mais une grande partie de ses vestiges restait cachée sous les dépôts de boue du Nil.
-- **Découverte** : Des chercheurs ont utilisé un radar satellite et des mesures électriques du sol pour repérer une structure vieille de 2 600 ans, sans fouille préalable. Les relevés montrent des murs enfouis, et ce qui se trouve sous ces murs est la vraie surprise de l'étude.
-- **Et après** : Les archéologues veulent maintenant fouiller le site pour dater précisément le complexe et comprendre à quoi il servait. Les images ne disent pas encore quel était son usage exact.
-- **Mots** : (aucun)
-- **Type** : observation
-
-**Final après relecture (haiku)**
-
-- **Titre** : Archéologie : une construction en briques de boue repérée sous terre sans creuser
-- **Avant** : Buto, ville sacrée de l'Égypte ancienne, garde ses couches les plus anciennes sous le niveau de l'eau souterraine. Les fouilles s'arrêtaient jusqu'ici aux couches de l'époque romaine et ptolémaïque, la période des rois grecs d'Égypte.
-- **Découverte** : Des chercheurs ont repéré par radar satellite une zone ovale de 128 m sur 62 m sous le site de Buto, dans le delta du Nil. Des mesures électriques du sol, faites sans creuser, ont révélé une grande construction en briques de boue datant de la 26e dynastie, une famille de pharaons (688 à 525 av. J.-C.), à 3 à 6 m de profondeur. Sous ces briques, une couche de sable propre a été posée avant la construction pour répartir son poids et empêcher l'argile de bouger.
-- **Et après** : Ces méthodes sans fouille peuvent aider à repérer des sites enfouis sous l'eau souterraine sans les abîmer. Mais l'usage exact du bâtiment reste incertain : il pourrait être une tombe, une maison de prêtres ou un sanctuaire religieux.
-- **Mots** : (aucun)
-- **Type** : terrain
-
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « seule une fouille pourra le dire » → L'article ne dit pas qu'une fouille sera nécessaire pour déterminer l'usage du bâtiment. C'est une conclusion ajoutée par le rédacteur. L'article indique seulement que la structure pourrait être une tombe, une maison de prêtres ou un sanctuaire religieux.
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Archéologie : une construction en briques de boue repérée sous terre sans creuser
-- **Avant** : Buto, ville sacrée de l'Égypte ancienne, garde ses couches les plus anciennes sous le niveau de l'eau souterraine. Les fouilles s'arrêtaient jusqu'ici aux couches de l'époque romaine et ptolémaïque, la période des rois grecs d'Égypte.
-- **Découverte** : Des chercheurs ont repéré par radar satellite une zone ovale de 128 m sur 62 m sous le site de Buto, dans le delta du Nil. Des mesures électriques du sol, faites sans creuser, ont révélé une grande construction en briques de boue datant de la 26e dynastie, une famille de pharaons (688 à 525 av. J.-C.), à 3 à 6 m de profondeur. Sous ces briques, une couche de sable propre a été posée avant la construction pour répartir son poids et empêcher l'argile de bouger.
-- **Et après** : Ces méthodes sans fouille peuvent aider à repérer des sites enfouis sous l'eau souterraine sans les abîmer. Mais l'usage exact du bâtiment reste incertain, et seule une fouille pourra le dire.
-- **Mots** : (aucun)
-- **Type** : terrain
-
-- _Faits relevés_ : Le site de Buto (Tell el-Fara'in) se trouve dans le nord-ouest du delta du Nil, ville sacrée de la déesse cobra Wadjet. | Les fouilles précédentes avaient atteint seulement les couches ptolémaïques et romaines, au niveau de la nappe d'eau souterraine. | Un radar installé sur le satellite Sentinel-1 de l'Agence spatiale européenne a repéré une zone ovale de 128 m sur 62 m sous le monticule Kom C. | Des mesures électriques du sol, faites en 15 lignes parallèles sur environ 5 400 m², ont confirmé des structures enfouies sans fouille. | Entre 3 et 6 m de profondeur, une grande construction en briques de boue date de la 26e dynastie (688 à 525 av. J.-C.). | Ce bâtiment pourrait être une tombe, une maison de prêtres ou un sanctuaire, selon l'équipe. | Sous lui, entre 6 et 7 m, une couche épaisse de sable propre, mise en place avant la construction. | Ce sable répartissait le poids et empêchait l'argile du delta de bouger, selon les chercheurs.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : la nouveauté est d'avoir repéré et daté cette construction profonde sans fouiller, grâce au radar satellite et aux mesures électriques, là où les fouilles s'arrêtaient à la nappe.
-- _Jargon_ : radar satellite : remplacé par radar installé sur un satellite | tomographie électrique : remplacée par mesures électriques du sol | nappe phréatique : remplacée par nappe d'eau souterraine | dynastie : expliquée comme famille de pharaons, dans la fiche
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : aucune
-
-
----
-
-Coût total du test : 0.0706 $
+Coût total du test : 0.0589 $ · par fiche : 0.0054 $ · tokens moyens par fiche (rédaction + relecture) : entrée 4202, cache lu 8091, cache écrit 1533, sortie 9325
