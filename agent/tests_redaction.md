@@ -1,329 +1,21 @@
-# Test de la rédaction — 03/11/2026 19:43 UTC
+# Test de la rédaction — 03/11/2026 19:52 UTC
 
 Modèles : haiku · 12 fiches
 
 
 ---
 
-## 1. Planètes : une étoile morte garde un double disque de débris
+## 1. Parkinson : des ultrasons sans opération atténuent la raideur et les tremblements
 
-Fil : science · 1★ · source : ESO · page lue : oui (6000 caractères) · https://www.eso.org/public/news/eso2613/
-
-**Actuel (publié)**
-
-- **Titre** : Planètes : une étoile morte garde un double disque de débris
-- **Avant** : Quand une étoile semblable au Soleil arrive au bout de sa vie, elle gonfle et détruit les planètes proches. On savait que certains corps pouvaient survivre, mais les systèmes connus restaient plus simples.
-- **Découverte** : Avec le Very Large Telescope de l'ESO, des astronomes observent autour de la naine blanche J1328-1450 des débris séparés par un espace vide. Ces débris, restes de planètes détruites, forment deux anneaux façonnés par deux petits corps, dont l'un pourrait avoir la taille de Pluton.
-- **Et après** : Ce système montre que des corps rocheux peuvent survivre à la mort de leur étoile, ce qui donne une idée de l'avenir possible du Soleil. Il s'agit d'un seul système observé, et la taille des corps reste à confirmer.
-- **Mots** : **Naine blanche** → Reste très dense d'une étoile semblable au Soleil, après l'épuisement de son carburant.
-- **Type** : observation
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Espace : une étoile morte entourée de deux anneaux de débris de planètes
-- **Avant** : Quand une étoile semblable au Soleil meurt, elle gonfle et détruit les planètes proches. Les disques de débris connus autour de ces étoiles mortes n'avaient jusqu'ici qu'un seul anneau.
-- **Découverte** : Des chercheurs ont observé deux anneaux de débris séparés par un vide, grâce à un télescope installé au Chili. Ils entourent une naine blanche, le noyau dense qui reste d'une étoile semblable au Soleil, et sont façonnés par deux corps sur des orbites distinctes. Le corps intérieur mesurerait quelques kilomètres, l'extérieur pourrait atteindre la taille de Pluton.
-- **Et après** : Cette observation montre que des corps rocheux peuvent survivre à la mort de leur étoile, ce qui donne une idée de l'avenir possible du Soleil. C'est un seul système observé, et la taille des corps reste une estimation à confirmer.
-- **Mots** : (aucun)
-- **Type** : observation
-
-- _Défauts trouvés par le relecteur_ : [forme] « Des chercheurs, avec le Very Large Telescope de l'ESO, ont observé autour d'une naine blanche, le noyau dense qui reste d'une étoile semblable au Soleil, deux anneaux de débris séparés par un vide. » → Phrase de 33 mots, trop longue pour être lue facilement ; elle doit être coupée. | [jargon] « avec le Very Large Telescope de l'ESO » → Le sigle ESO et le nom anglais du télescope ne sont ni expliqués ni traduits pour le public. | [mot] « Naine blanche » → Le mot est déjà expliqué dans le texte de la découverte, il ne doit donc pas figurer comme mot à connaître.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0056 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Espace : une étoile morte entourée de deux anneaux de débris de planètes
-- **Avant** : Quand une étoile semblable au Soleil meurt, elle gonfle et détruit les planètes proches. Les disques de débris connus autour de ces étoiles mortes n'avaient jusqu'ici qu'un seul anneau.
-- **Découverte** : Des chercheurs, avec le Very Large Telescope de l'ESO, ont observé autour d'une naine blanche, le noyau dense qui reste d'une étoile semblable au Soleil, deux anneaux de débris séparés par un vide. Ces débris sont les restes de planètes détruites, façonnés par deux petits corps placés sur des orbites distinctes. Le corps intérieur mesurerait quelques kilomètres, l'extérieur pourrait atteindre la taille de Pluton.
-- **Et après** : Cette observation montre que des corps rocheux peuvent survivre à la mort de leur étoile, ce qui donne une idée de l'avenir possible du Soleil. C'est un seul système observé, et la taille des corps reste une estimation à confirmer.
-- **Mots** : **Naine blanche** → Reste très dense d'une étoile semblable au Soleil, qui s'est éteinte après avoir épuisé son carburant nucléaire.
-- **Type** : observation
-
-- _Faits relevés_ : Des astronomes ont utilisé le Very Large Telescope de l'ESO, un télescope installé au Chili, pour observer le système. | Autour de la naine blanche, les restes de planètes forment deux anneaux séparés par un espace vide. | Les disques de débris connus autour de naines blanches n'avaient jusqu'ici qu'un seul anneau. | Deux petits corps façonnent les anneaux : celui de l'intérieur mesure quelques kilomètres, celui de l'extérieur pourrait atteindre la taille de Pluton, voire celle de la Lune. | Les calcium, oxygène, magnésium et fer sont présents dans le disque, comme dans les roches du Système solaire. | L'anneau intérieur est riche en gaz de magnésium, alors que l'anneau extérieur en contient très peu. | Selon l'équipe, les deux anneaux viendraient de deux planètes de compositions différentes, ou de deux parties d'un même corps, comme la croûte et le noyau. | Les observations ont été faites avec l'instrument X-Shooter du VLT, dans le désert d'Atacama au Chili.
-- _Nouveauté selon l'article_ : Selon les chercheurs, c'est le premier exemple d'un système complexe avec un double disque de débris et peut-être deux petits corps survivants ; les disques connus n'en avaient qu'un.
-- _Jargon_ : naine blanche : expliquée dans le texte et donnée en mot à connaître | planétésimaux : remplacés par petits corps | Système solaire : mot courant, gardé tel quel
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : phrase de 33 mots dans « decouverte », à couper : « Des chercheurs, avec le Very Large Telescope de l'ESO, ont observé autour d'une naine blan… » ; sigles ou noms codés inconnus du public : ESO → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-
-
----
-
-## 2. Diabète : un nouveau médicament fait mieux que le traitement de référence
-
-Fil : science · 2★ · source : STAT News (santé) · page lue : oui (1349 caractères) · https://www.statnews.com/2026/10/28/retatrutide-vs-ozempic-lilly-diabetes-study/?utm_campaign=rss
+Fil : science · 2★ · source : Medical Xpress · page lue : NON (0 caractères) · https://medicalxpress.com/news/2026-10-noninvasive-focused-ultrasound-treatment-ease.html
 
 **Actuel (publié)**
 
-- **Titre** : Diabète : un nouveau médicament fait mieux que le traitement de référence
-- **Avant** : L'Ozempic est déjà un traitement utilisé contre le diabète. Le retatrutide, médicament encore expérimental, n'avait pas encore été comparé à lui dans un grand essai de ce type.
-- **Découverte** : Dans un essai comparatif de 80 semaines chez des personnes diabétiques, le retatrutide a fait baisser le taux moyen de sucre dans le sang de 2,2 points, contre 1,8 point avec l'Ozempic. Les personnes sous la dose la plus forte ont aussi perdu 20,9 % de leur poids, contre 9,4 % sous Ozempic.
-- **Et après** : Ces résultats doivent encore être confirmés, car l'analyse ne porte que sur les personnes restées sous traitement, et la sécurité du médicament reste à établir. Le retatrutide n'est pas encore autorisé.
-- **Mots** : **A1c** → Mesure du taux moyen de sucre dans le sang sur plusieurs mois.
-- **Type** : essai_clinique
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Diabète : un médicament expérimental fait baisser plus le sucre que l'Ozempic
-- **Avant** : Le retatrutide, médicament expérimental du laboratoire Eli Lilly, a été testé face à l'Ozempic dans une grande étude sur le diabète. L'Ozempic, de Novo Nordisk, sert déjà à traiter le diabète.
-- **Découverte** : Eli Lilly a comparé son médicament expérimental, le retatrutide, à l'Ozempic chez des personnes diabétiques. Après environ un an et demi, à la dose la plus forte, le taux moyen de sucre dans le sang a baissé de 2,2 points, contre 1,8 point avec l'Ozempic. Le poids a diminué de 20,9 % avec le retatrutide, alors que les personnes diabétiques perdent en général moins de poids avec ces traitements.
-- **Et après** : Ces données renforcent l'espoir que le médicament devienne l'un des plus grands moteurs de croissance du laboratoire. Mais les chiffres ne portent que sur les personnes restées sous traitement, et le retatrutide reste expérimental.
-- **Mots** : (aucun)
-- **Type** : essai_clinique
-
-- _Défauts trouvés par le relecteur_ : [titre] « Diabète : un médicament expérimental baisse plus le sucre dans le sang que l'Ozempic » → Le titre fait 13 mots, au-delà de la limite de 12. Il est reformulé en 11 mots, avec un verbe plus concret. | [absolu] « n'avait pas encore été comparé directement à l'Ozempic dans une grande étude de ce type » → L'article ne dit pas que cette comparaison était inédite. Il décrit seulement une étude comparative de grande taille, sans affirmer qu'aucune autre n'existait. | [comparaison] « contre 9,4 % avec l'Ozempic » → Le chiffre de 9,4 % n'est pas expliqué pour les lecteurs et dépasse la limite de chiffres. Il est remplacé par la comparaison de l'article, qui dit que les personnes diabétiques perdent en général moins de poids avec ces traitements. | [forme] « Après 80 semaines, à la dose la plus forte, le taux moyen de sucre dans le sang a baissé de 2,2 points, contre 1,8 point avec l'Ozempic. Le poids a diminué de 20,9 % » → La fiche contient quatre chiffres dans « decouverte ». Le nombre de semaines est le moins parlant ; on le remplace par une durée approximative exacte (80 semaines ≈ un an et demi).
-
-- _Défauts mesurés restants_ : phrase de 30 mots dans « decouverte », à couper : « Après environ un an et demi, à la dose la plus forte, le taux moyen de sucre dans le sang … » · coût 0.0045 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Diabète : un médicament expérimental baisse plus le sucre dans le sang que l'Ozempic
-- **Avant** : Le retatrutide, médicament expérimental du laboratoire Eli Lilly, n'avait pas encore été comparé directement à l'Ozempic dans une grande étude de ce type. L'Ozempic, de Novo Nordisk, sert déjà à traiter le diabète.
-- **Découverte** : Eli Lilly a comparé son médicament expérimental, le retatrutide, à l'Ozempic chez des personnes diabétiques. Après 80 semaines, à la dose la plus forte, le taux moyen de sucre dans le sang a baissé de 2,2 points, contre 1,8 point avec l'Ozempic. Le poids a diminué de 20,9 % avec le retatrutide, contre 9,4 % avec l'Ozempic.
-- **Et après** : Ces données renforcent l'espoir que le médicament devienne l'un des plus grands moteurs de croissance du laboratoire. Mais les chiffres ne portent que sur les personnes restées sous traitement, et le retatrutide reste expérimental.
-- **Mots** : (aucun)
-- **Type** : essai_clinique
-
-- _Faits relevés_ : Le laboratoire américain Eli Lilly a comparé son médicament expérimental, le retatrutide, à l'Ozempic de Novo Nordisk. | L'étude porte sur un grand nombre de personnes diabétiques et dure 80 semaines. | À la dose la plus forte, le taux moyen de sucre dans le sang baisse de 2,2 points avec le retatrutide. | Avec l'Ozempic, la même baisse est de 1,8 point. | À la dose la plus forte, le poids baisse de 20,9 % avec le retatrutide. | Avec l'Ozempic, le poids baisse de 9,4 %. | Les résultats ne portent que sur les participants restés sous traitement, pas sur tous les participants. | Le retatrutide est encore un médicament expérimental, non commercialisé.
-- _Nouveauté selon l'article_ : Selon l'article, le retatrutide fait baisser davantage le sucre et le poids que l'Ozempic dans cette étude comparative ; l'article ne revendique pas de première.
-- _Jargon_ : A1c : remplacé par « taux moyen de sucre dans le sang ». | Point de pourcentage : expliqué en quelques mots dans « decouverte ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; 5 chiffres dans « decouverte » : garde les 3 plus parlants
-
-
----
-
-## 3. Évolution : des chercheurs cultivent les plus proches cousins des cellules complexes
-
-Fil : science · 1★ · source : Nature · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41586-026-11170-7
-
-**Actuel (publié)**
-
-- **Titre** : Évolution : des chercheurs cultivent les plus proches cousins des cellules complexes
-- **Avant** : Les cellules à noyau, comme les nôtres, seraient issues d'un groupe de microbes appelés archées. Les premiers représentants de ce groupe cultivés en laboratoire restaient cependant assez éloignés de ces cellules.
-- **Découverte** : Des chercheurs ont isolé deux souches, HC1 et SC1, qui appartiennent à la lignée d'archées la plus proche des cellules à noyau. Ces microbes vivent sans oxygène, dépendent d'autres micro-organismes et forment des protubérances et des petites vésicules, sans membranes internes permanentes. Ils semblent surtout consacrer leur énergie à construire leur enveloppe plutôt qu'à se diviser.
-- **Et après** : Et après ? Ces cultures permettent d'étudier directement les étapes qui ont pu mener à l'apparition des cellules à noyau, un sujet longtemps difficile à tester. Le scénario complet de cette origine reste cependant à prouver.
-- **Mots** : **Archée** → Micro-organisme unicellulaire sans noyau, différent des bactéries et plus proche des cellules à noyau.
-- **Type** : cellules
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Évolution : des microbes cultivés sans oxygène, cousins des cellules à noyau
-- **Avant** : Les cellules à noyau, comme les nôtres, seraient issues d'archées, un groupe de micro-organismes. Les premières archées de ce groupe mises en culture restaient assez éloignées de ces cellules, et leur fonctionnement était mal connu.
-- **Découverte** : Des chercheurs ont isolé deux souches de microbes qui appartiennent à la lignée d'archées la plus proche des cellules à noyau. Elles vivent sans oxygène, se nourrissent de protéines découpées en petits morceaux et travaillent avec des microbes qui produisent du méthane. Elles forment des prolongements et de petites vésicules sans membranes internes permanentes, et consacrent surtout leur énergie à construire leur enveloppe plutôt qu'à se diviser.
-- **Et après** : Ces cultures permettent de tester en laboratoire certaines étapes de leur apparition. Le scénario complet reste une hypothèse : l'étude porte sur deux souches et ne prouve pas comment ces cellules sont nées.
-- **Mots** : **Archée** → Micro-organisme unicellulaire sans noyau, différent des bactéries, dont fait partie le groupe ancêtre des cellules à noyau.
-- **Type** : cellules
-
-- _Défauts trouvés par le relecteur_ : [jargon] « deux souches, HC1 et SC1, qui appartiennent » → Les noms HC1 et SC1 sont des codes de laboratoire que le lecteur ne connaît pas. On les remplace par une description simple. | [apres] « de l'apparition des cellules à noyau » → La locution « des cellules à noyau » est répétée entre « decouverte » et « apres ». Elle n'est gardée qu'une fois, dans « avant ».
-
-- _Défauts mesurés restants_ : aucun · coût 0.0038 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Évolution : des microbes cultivés sans oxygène, cousins des cellules à noyau
-- **Avant** : Les cellules à noyau, comme les nôtres, seraient issues d'archées, un groupe de micro-organismes. Les premières archées de ce groupe mises en culture restaient assez éloignées de ces cellules, et leur fonctionnement était mal connu.
-- **Découverte** : Des chercheurs ont isolé deux souches, HC1 et SC1, qui appartiennent à la lignée d'archées la plus proche des cellules à noyau. Elles vivent sans oxygène, se nourrissent de protéines découpées en petits morceaux et travaillent avec des microbes qui produisent du méthane. Elles forment des prolongements et de petites vésicules sans membranes internes permanentes, et consacrent surtout leur énergie à construire leur enveloppe plutôt qu'à se diviser.
-- **Et après** : Ces cultures permettent de tester en laboratoire certaines étapes de l'apparition des cellules à noyau. Le scénario complet reste une hypothèse : l'étude porte sur deux souches et ne prouve pas comment ces cellules sont nées.
-- **Mots** : **Archée** → Micro-organisme unicellulaire sans noyau, différent des bactéries, dont fait partie le groupe ancêtre des cellules à noyau.
-- **Type** : cellules
-
-- _Faits relevés_ : Des chercheurs ont isolé deux souches d'archées, HC1 et SC1. | Ces deux souches appartiennent à la lignée d'archées la plus proche des cellules à noyau (Heimdallarchaeia). | Les deux souches vivent sans oxygène et se nourrissent de protéines découpées en petits morceaux. | Elles travaillent avec des microbes partenaires qui produisent du méthane. | Elles forment des prolongements et de petites vésicules, mais sans membranes internes permanentes. | Tous les microbes de ce groupe semblent consacrer leur énergie à construire leur enveloppe plutôt qu'à se diviser. | La souche HC1 possède un gène de respiration, mais ses cultures ne poussent pas avec un peu d'oxygène. | Selon les auteurs, ce gène servirait plutôt à neutraliser l'oxygène qu'à respirer, et l'ancêtre des cellules à noyau était peut-être aussi sans oxygène.
-- _Nouveauté selon l'article_ : Les deux souches appartiennent à la lignée la plus proche des cellules à noyau, alors que les premières archées de ce groupe mises en culture en étaient plus éloignées ; l'article ne revendique pas de première.
-- _Jargon_ : Archée : mot à connaître, expliqué dans la définition. | Cellules à noyau : formulation simple, pas de jargon. | Cytochrome c oxydase : remplacé par « un gène de respiration ». | Peptides : remplacés par « protéines découpées en petits morceaux ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : sigles ou noms codés inconnus du public : HC1, SC1 → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; répétition entre « decouverte » et « apres » : « des cellules à noyau » (dis-le une seule fois)
-
-
----
-
-## 4. IA : un nouveau modèle crée des mondes virtuels qu'on explore au clavier
-
-Fil : tech · 1★ · source : Google DeepMind · page lue : oui (6000 caractères) · https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/
-
-**Actuel (publié)**
-
-- **Titre** : IA : un nouveau modèle crée des mondes virtuels qu'on explore au clavier
-- **Avant** : Un modèle de monde est une IA qui génère un environnement virtuel réagissant aux actions de l'utilisateur. Google DeepMind présente ici sa nouvelle version de ce type de modèle, appelée Genie 4.
-- **Découverte** : Genie 4 produit des simulations en temps réel, avec un réalisme renforcé, des mouvements plus fluides et un son généré en même temps que l'image. L'utilisateur se déplace au clavier et modifie la scène par des consignes écrites, comme changer la météo ou ajouter une personne. Le modèle s'appuie sur la famille Gemini pour garder la scène cohérente.
-- **Et après** : Selon Google DeepMind, ces simulations pourraient servir à entraîner des robots et des agents, ou à créer de nouvelles expériences interactives. Les performances annoncées restent à vérifier de façon indépendante, car l'annonce vient de l'entreprise elle-même.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : IA : un modèle de Google génère des mondes qu'on explore au clavier
-- **Avant** : Un modèle de monde est une IA qui crée un environnement virtuel réagissant aux actions de l'utilisateur. Pour entraîner des robots, il faut des simulations sûres et variées, que l'on peut créer sans danger.
-- **Découverte** : Google DeepMind a présenté Genie 4, la nouvelle version de son modèle de monde. L'utilisateur se déplace au clavier dans la scène et la modifie par écrit, par exemple en changeant la météo ou en ajoutant une personne. Les sons et les dialogues sont générés en même temps que l'image, et l'IA Gemini aide à garder la scène cohérente.
-- **Et après** : Selon Google DeepMind, ces simulations pourraient servir à entraîner des robots et des agents, ou à créer de nouvelles expériences interactives. Ces résultats sont des démonstrations publiées par l'entreprise, à partir d'enregistrements d'interactions en temps réel.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [apres] « Les performances annoncées restent à vérifier de façon indépendante, car elles viennent de l'entreprise elle-même. » → Cette limite n'est pas dans l'article : l'article ne demande aucune vérification indépendante et n'explique pas pourquoi les performances seraient douteuses. La vraie limite est que les démonstrations viennent de l'entreprise et sont des enregistrements d'interactions en temps réel.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0040 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : IA : un modèle de Google génère des mondes qu'on explore au clavier
-- **Avant** : Un modèle de monde est une IA qui crée un environnement virtuel réagissant aux actions de l'utilisateur. Pour entraîner des robots, il faut des simulations sûres et variées, que l'on peut créer sans danger.
-- **Découverte** : Google DeepMind a présenté Genie 4, la nouvelle version de son modèle de monde. L'utilisateur se déplace au clavier dans la scène et la modifie par écrit, par exemple en changeant la météo ou en ajoutant une personne. Les sons et les dialogues sont générés en même temps que l'image, et l'IA Gemini aide à garder la scène cohérente.
-- **Et après** : Selon Google DeepMind, ces simulations pourraient servir à entraîner des robots et des agents, ou à créer de nouvelles expériences interactives. Les performances annoncées restent à vérifier de façon indépendante, car elles viennent de l'entreprise elle-même.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Faits relevés_ : Google DeepMind annonce Genie 4, son nouveau modèle de monde, le 27 octobre. | Le modèle crée des simulations interactives en temps réel, dans lesquelles l'utilisateur se déplace au clavier. | L'utilisateur modifie la scène par consignes écrites, par exemple la météo, la caméra ou l'ajout d'une personne ou d'un objet. | Les sons, la musique et les dialogues sont générés en même temps que le monde. | La famille d'IA Gemini ancre l'apparence et le comportement de la scène et aide à garder sa cohérence. | Le modèle simule des lois physiques comme l'aérodynamique et les collisions, et des personnes qui bougent et parlent. | Les extraits présentés sont des démonstrations publiées par l'entreprise, sans mesures indépendantes. | Google présente ces simulations comme un moyen d'entraîner des robots et des agents.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il présente une nouvelle version d'un modèle de monde, avec des simulations en temps réel, des sons générés avec l'image et un contrôle par texte.
-- _Jargon_ : modèle de monde : expliqué dans « avant » | multimodal : remplacé par « image, son et dialogues » | AGI : non utilisé dans la fiche | Gemini : expliqué comme la famille d'IA de Google
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 5. Ordinateurs : Apple lance son premier MacBook Pro à écran tactile
-
-Fil : tech · 2★ · source : 9to5Mac · page lue : oui (5923 caractères) · https://9to5mac.com/2026/10/28/apple-announces-redesigned-macbook-pro-its-first-touchscreen-mac/
-
-**Actuel (publié)**
-
-- **Titre** : Ordinateurs : Apple lance son premier MacBook Pro à écran tactile
-- **Avant** : Jusqu'ici, les MacBook Pro d'Apple n'avaient pas d'écran tactile et utilisaient des écrans à rétroéclairage classique. Les modèles actuels reposent sur les puces M5 Pro et M5 Max.
-- **Découverte** : Apple présente un MacBook Pro de 14 et 16 pouces doté d'un écran OLED PROLED XDR, tactile pour la première fois sur un Mac. Le logo Apple de la coque s'éclaire à nouveau, et l'entreprise affirme que l'appareil est plus fin et plus léger que les modèles classiques de même taille.
-- **Et après** : Les précommandes sont ouvertes, avec livraison prévue le 6 novembre, à partir de 2 899 dollars pour le 14 pouces et 3 399 dollars pour le 16 pouces. Autonomie et durée de vie de l'écran restent à vérifier par des tests indépendants.
-- **Mots** : **OLED** → Écran dont chaque point s'éclaire seul, sans rétroéclairage séparé, ce qui donne des noirs très profonds.
-- **Type** : en_vente
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Ordinateurs : Apple lance un MacBook Pro à écran tactile
-- **Avant** : Sur Mac, Apple n'avait jamais proposé d'écran tactile, alors que ses iPhone et iPad en ont. Les MacBook Pro utilisaient jusqu'ici des écrans Mini-LED, sans commande au doigt.
-- **Découverte** : Apple présente un MacBook Pro à écran OLED tactile, en deux tailles, son premier Mac de ce type selon l'entreprise. Le doigt peut désormais faire défiler une page, zoomer sur une photo ou placer une fenêtre, en plus du clavier et du pavé tactile. Il part de 2 899 dollars pour le plus petit modèle, et de 3 399 dollars pour le plus grand.
-- **Et après** : Les graphistes et les musiciens pourront dessiner ou jouer directement sur tout l'écran, selon Apple. Les livraisons commencent le 6 novembre, et les anciens modèles sans écran tactile restent vendus.
-- **Mots** : **OLED** → Écran dont chaque point s'éclaire seul, sans lampe séparée derrière, ce qui donne des noirs très profonds.
-- **Type** : en_vente
-
-- _Défauts trouvés par le relecteur_ : [comparaison] « 8 chiffres dans « decouverte » » → Trop de chiffres se succèdent (tailles et prix en dollars et en euros). Ils sont réduits à l'essentiel : les deux prix en dollars, les tailles étant dites en deux tailles. | [non_soutenu] « L'autonomie et la durée de vie de l'écran restent à vérifier par des tests indépendants. » → L'article ne parle ni d'autonomie ni de durée de vie de l'écran. Cette limite n'est pas tirée de l'article et est remplacée par des faits de l'article (livraisons du 6 novembre, modèles sans tactile toujours vendus). | [comparaison] « Il part de 2 899 dollars pour le plus petit modèle, et de 3 399 dollars pour le plus grand. » → Les prix en dollars n'ont pas d'équivalent approximatif en euros pour le lecteur français. | [apres] « Les livraisons commencent le 6 novembre, et les anciens modèles sans écran tactile restent vendus. » → Le paragraphe « Et après » ne dit pas la limite principale du produit : il n'y a ni Face ID ni connexion cellulaire intégrée, ce que l'article indique.
-
-- _Défauts mesurés restants_ : prix sans équivalent approximatif en euros : ajoute-le (1 $ ≈ 0,85 €) · coût 0.0060 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Ordinateurs : Apple lance un MacBook Pro à écran tactile
-- **Avant** : Sur Mac, Apple n'avait jamais proposé d'écran tactile, alors que ses iPhone et iPad en ont. Les MacBook Pro utilisaient jusqu'ici des écrans Mini-LED, sans commande au doigt.
-- **Découverte** : Apple présente un MacBook Pro de 14 et 16 pouces à écran OLED tactile, son premier Mac de ce type selon l'entreprise. Le doigt peut désormais faire défiler une page, zoomer sur une photo ou placer une fenêtre, en plus du clavier et du pavé tactile. Il part de 2 899 dollars pour le 14 pouces (environ 2 460 €) et de 3 399 dollars pour le 16 pouces (environ 2 890 €).
-- **Et après** : Les graphistes et les musiciens pourront dessiner ou jouer directement sur tout l'écran, selon Apple. L'autonomie et la durée de vie de l'écran restent à vérifier par des tests indépendants.
-- **Mots** : **OLED** → Écran dont chaque point s'éclaire seul, sans lampe séparée derrière, ce qui donne des noirs très profonds.
-- **Type** : en_vente
-
-- _Faits relevés_ : Apple présente deux MacBook Pro, de 14 et 16 pouces, avec un écran OLED tactile appelé PROLED XDR. | Selon Apple, c'est la première fois que l'écran d'un Mac est tactile : on peut faire défiler une page du doigt, zoomer en pinçant ou glisser-déposer. | Le capteur tactile est intégré à l'écran lui-même, et une nouvelle charnière assure la stabilité pendant le toucher. | Le logo Apple de la coque s'éclaire à nouveau, comme sur les anciens modèles. | Selon Apple, l'appareil est plus fin et plus léger que le modèle classique de même taille. | Prix de départ : 2 899 dollars pour le 14 pouces, 3 399 dollars pour le 16 pouces ; précommandes ouvertes, livraison prévue le 6 novembre. | Les anciens MacBook Pro avec écran Mini-LED restent vendus aux mêmes prix, sans écran tactile ni logo lumineux. | Il n'y a toujours pas de Face ID ni de modèle avec connexion cellulaire.
-- _Nouveauté selon l'article_ : Selon Apple, c'est le premier Mac à écran tactile ; le nouvel écran OLED remplace le Mini-LED, et l'article ne revendique pas d'autre première.
-- _Jargon_ : OLED : expliqué dans les mots à connaître. | PROLED XDR : remplacé par « écran OLED ». | Mini-LED : remplacé par « écran Mini-LED » en contexte, sans explication supplémentaire.
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : 8 chiffres dans « decouverte » : garde les 3 plus parlants
-
-
----
-
-## 6. Archéologie : des plongeurs trouvent une épave vieille d'environ 4 500 ans
-
-Fil : science · 1★ · source : Techno-Science.net · page lue : oui (4360 caractères) · https://www.techno-science.net/fr/actualites/plus-ancienne-epave-decouverte-turquie-29607
-
-**Actuel (publié)**
-
-- **Titre** : Archéologie : des plongeurs trouvent une épave vieille d'environ 4 500 ans
-- **Avant** : Jusqu'ici, l'épave considérée comme la plus ancienne était celle de Dokos, en Grèce.
-- **Découverte** : Des plongeurs ont trouvé, près de l'île de Kekova en Turquie, les restes d'un navire qui aurait coulé il y a environ 4 500 ans. Du bateau, il ne reste presque rien, mais sa cargaison de grandes jarres en céramique et d'ancres a résisté. La forme de ces jarres a permis aux chercheurs d'estimer l'âge du naufrage.
-- **Et après** : Les premières analyses situent le naufrage entre 2700 et 2400 avant notre ère, une datation qui reste à confirmer. Si elle se confirme, cette épave dépasserait Dokos en ancienneté.
-- **Mots** : **Épave** → Restes d'un navire coulé, qui reposent au fond de l'eau.
-- **Type** : terrain
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Archéologie : des plongeurs trouvent les jarres d'un navire de 4 500 ans
-- **Avant** : L'épave la plus ancienne connue était jusqu'ici celle de Dokos, en Grèce, datée d'environ 4 200 ans. Ici, le bois de la coque a disparu depuis longtemps sous l'eau.
-- **Découverte** : Des plongeurs ont trouvé près de l'île de Kekova, sur la côte turque, les restes d'un navire coulé il y a quelque 4 500 ans. Il ne reste presque rien de la coque, mais la cargaison de grandes jarres en céramique et d'ancres a résisté. La forme des jarres, comparée à des objets déjà datés, a permis d'estimer l'âge du naufrage.
-- **Et après** : Si la datation est confirmée, entre 2700 et 2400 avant notre ère, ce bateau serait plus ancien que celui de Dokos. Les chercheurs doivent encore affiner la date et identifier le contenu des jarres.
-- **Mots** : **Épave** → Restes d'un navire coulé, reposant au fond de l'eau. Les épaves renseignent les archéologues sur les anciens échanges et la construction des bateaux.
-- **Type** : terrain
-
-- _Défauts trouvés par le relecteur_ : [titre] « Archéologie : des plongeurs trouvent au large de la Turquie les jarres d'un navire coulé il y a 4 500 ans » → Le titre compte 20 mots, au-delà de la limite de 12. | [non_soutenu] « Les épaves anciennes sont rares, et la coque de bois disparaît presque toujours sous l'eau. » → L'article ne dit pas que les épaves anciennes sont rares en général ni que la coque disparaît « presque toujours » ; il dit seulement que le bois a disparu ici depuis longtemps. | [forme] « Elles renseignent les archéologues sur les anciens échanges et la construction des bateaux. » → Le pronom « Elles » n'a pas d'antécédent clair dans la définition du mot « Épave », tournure maladroite à corriger.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0026 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Archéologie : des plongeurs trouvent au large de la Turquie les jarres d'un navire coulé il y a 4 500 ans
-- **Avant** : L'épave la plus ancienne connue était jusqu'ici celle de Dokos, en Grèce, datée d'environ 4 200 ans. Les épaves anciennes sont rares, et la coque de bois disparaît presque toujours sous l'eau.
-- **Découverte** : Des plongeurs ont trouvé près de l'île de Kekova, sur la côte turque, les restes d'un navire coulé il y a quelque 4 500 ans. Il ne reste presque rien de la coque, mais la cargaison de grandes jarres en céramique et d'ancres a résisté. La forme des jarres, comparée à des objets déjà datés, a permis d'estimer l'âge du naufrage.
-- **Et après** : Si la datation est confirmée, entre 2700 et 2400 avant notre ère, ce bateau serait plus ancien que celui de Dokos. Les chercheurs doivent encore affiner la date et identifier le contenu des jarres.
-- **Mots** : **Épave** → Restes d'un navire coulé, qui reposent au fond de l'eau. Elles renseignent les archéologues sur les anciens échanges et la construction des bateaux.
-- **Type** : terrain
-
-- _Faits relevés_ : Des plongeurs ont découvert au large de la Turquie, près de l'île de Kekova, les restes d'un navire. | Le navire aurait coulé il y a quelque 4 500 ans, et pourrait être l'épave connue la plus ancienne. | L'archéologue Hakan Öniz a repéré le site en 2024, grâce notamment aux indications de marins locaux. | Le bois de la coque a disparu ; il reste de grandes jarres en céramique à deux anses et des ancres. | Les jarres, à fond plat et avec un bourrelet d'argile, ressemblent à des récipients trouvés sur des sites du Proche-Orient. | Selon les premières analyses, le naufrage pourrait dater de 2700 à 2400 avant notre ère. | L'épave de Dokos, en Grèce, est datée d'environ 4 200 ans. | Le contenu des jarres reste à identifier : huile, vin ou résines végétales sont possibles.
-- _Nouveauté selon l'article_ : Selon l'article, l'épave pourrait être la plus ancienne connue, mais la datation reste provisoire et l'article ne revendique pas de première certaine ; l'épave de Dokos était jusqu'ici considérée comme la plus ancienne.
-- _Jargon_ : Épave : remplacé par « restes d'un navire coulé » | Proche-Orient : remplacé par « régions du Moyen-Orient actuel »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : titre de 20 mots : 12 au plus
-
-
----
-
-## 7. Grippe aviaire : un vaccin à ARN réduit le virus chez les vaches
-
-Fil : science · 2★ · source : Nature Biotechnology · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41587-026-03343-6
-
-**Actuel (publié)**
-
-- **Titre** : Grippe aviaire : un vaccin à ARN réduit le virus chez les vaches
-- **Avant** : Depuis 2024, le virus H5N1 de la grippe aviaire touche les vaches laitières aux États-Unis. Il provoque des infections des mamelles et fait chuter la production de lait.
-- **Découverte** : Des chercheurs ont mis au point un vaccin à ARN messager contre une souche bovine de H5N1. Sur huit vaches, les bêtes vaccinées ont eu environ 1 000 fois moins de virus dans leur lait après une contamination volontaire, avec moins de mammites.
-- **Et après** : Le vaccin pourrait limiter la propagation du virus entre animaux, qui passe en partie par le lait. Il reste à le tester sur davantage de vaches et sur une plus longue durée.
-- **Mots** : **ARN messager** → Molécule qui transporte les instructions de fabrication d'une protéine, utilisée ici pour apprendre au corps à reconnaître le virus.
-- **Type** : animal
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Grippe aviaire : un vaccin réduit le virus dans le lait des vaches
-- **Avant** : Depuis 2024, le virus de la grippe aviaire touche les vaches laitières aux États-Unis et passe en partie par leur lait. Le même vaccin avait déjà réduit l'élimination du virus chez des veaux ; il restait à tester chez des vaches qui produisent du lait.
-- **Découverte** : Des chercheurs ont testé un vaccin à ARN messager contre une souche circulant chez les vaches, qui donne au corps la consigne de fabriquer une partie du virus. Quatre vaches ont été vaccinées et quatre autres ont reçu une injection d'eau salée, puis toutes ont été infectées volontairement dans la mamelle. Chez les vaccinées, le virus dans le lait était environ 1 000 fois moins abondant au pic de l'infection, avec moins de mammites.
-- **Et après** : Si ces résultats se confirment, le vaccin pourrait limiter la propagation du virus entre vaches. Mais l'essai ne porte que sur huit vaches, et sur une infection provoquée en laboratoire.
-- **Mots** : **Mammite** → Inflammation de la mamelle, souvent causée par une infection, qui fait baisser la production de lait.
-- **Type** : animal
-
-- _Défauts trouvés par le relecteur_ : [jargon] « le virus H5N1 de la grippe aviaire » → Le sigle H5N1 n'est ni expliqué ni remplacé par des mots simples, et il n'aide pas le lecteur non spécialiste. | [forme] « Des chercheurs ont testé un vaccin à ARN messager, une molécule qui donne au corps la consigne de fabriquer une partie du virus, contre une souche circulant chez les vaches. » → Phrase de 30 mots ou plus, à couper en deux pour rester lisible.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0046 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Grippe aviaire : un vaccin réduit le virus dans le lait des vaches
-- **Avant** : Depuis 2024, le virus H5N1 de la grippe aviaire touche les vaches laitières aux États-Unis et passe en partie par leur lait. Le même vaccin avait déjà réduit l'élimination du virus chez des veaux ; il restait à tester chez des vaches qui produisent du lait.
-- **Découverte** : Des chercheurs ont testé un vaccin à ARN messager, une molécule qui donne au corps la consigne de fabriquer une partie du virus, contre une souche circulant chez les vaches. Quatre vaches ont été vaccinées et quatre autres ont reçu une injection d'eau salée, puis toutes ont été infectées volontairement dans la mamelle. Chez les vaccinées, le virus dans le lait était environ 1 000 fois moins abondant au pic de l'infection, avec moins de mammites.
-- **Et après** : Si ces résultats se confirment, le vaccin pourrait limiter la propagation du virus entre vaches. Mais l'essai ne porte que sur huit vaches, et sur une infection provoquée en laboratoire.
-- **Mots** : **Mammite** → Inflammation de la mamelle, souvent causée par une infection, qui fait baisser la production de lait.
-- **Type** : animal
-
-- _Faits relevés_ : Un virus H5N1 de la grippe aviaire touche les vaches laitières aux États-Unis depuis 2024 et s'est propagé à 19 États. | Le virus se multiplie surtout dans la mamelle, et il passe en partie entre animaux par le lait. | Le vaccin à ARN messager contient une partie du virus d'une souche circulant chez les vaches au Texas. | Quatre vaches ont reçu deux doses dans le muscle, à trois semaines d'intervalle, et quatre autres une injection d'eau salée. | Toutes ont ensuite été infectées volontairement dans la mamelle, 49 jours après la première dose. | Les vaccinées avaient environ 1 000 fois moins de virus dans leur lait au pic de l'infection. | Elles ont eu moins de mammites et moins de fibrose mammaire. | Le vaccin a été bien toléré, sans effet indésirable évident.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il évalue le vaccin chez des vaches qui produisent du lait, après des tests sur souris, furets et veaux.
-- _Jargon_ : ARN messager : expliqué en quelques mots dans le texte | Mammite : mot à connaître | H5N1 : sigle connu, gardé tel quel car c'est le nom du virus
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : phrase de 30 mots dans « decouverte », à couper : « Des chercheurs ont testé un vaccin à ARN messager, une molécule qui donne au corps la cons… » ; sigles ou noms codés inconnus du public : H5N1 → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-
-
----
-
-## 8. Cancer : un vaccin personnalisé déclenche l'immunité chez des patientes
-
-Fil : science · 1★ · source : Medical Xpress · page lue : NON (0 caractères) · https://medicalxpress.com/news/2026-10-personalized-ovarian-cancer-vaccines-immunity.html
-
-**Actuel (publié)**
-
-- **Titre** : Cancer : un vaccin personnalisé déclenche l'immunité chez des patientes
-- **Avant** : Les cellules cancéreuses qui se divisent vite accumulent des mutations, qui produisent des protéines anormales appelées néoantigènes, propres à la tumeur de chaque patiente.
-- **Découverte** : Un vaccin fabriqué sur mesure pour chaque patiente cible ces néoantigènes. Dans un premier essai de phase 1, conçu surtout pour tester la sécurité, le système immunitaire réagit contre ces cibles.
-- **Et après** : Il faudra des essais plus grands pour savoir si ces vaccins empêchent vraiment le retour du cancer. Le stade reste expérimental.
-- **Mots** : **Néoantigène** → Protéine anormale produite par une mutation d'une cellule cancéreuse, que le système immunitaire peut reconnaître.
+- **Titre** : Parkinson : des ultrasons sans opération atténuent la raideur et les tremblements
+- **Avant** : Les médicaments habituels soulagent les symptômes moteurs de la maladie de Parkinson, mais ils ne suffisent pas toujours. Certains malades ont encore du mal à tenir un objet ou à bouger librement.
+- **Découverte** : Des chercheurs ont testé des ultrasons focalisés, envoyés à travers la peau sans incision, sur des patients atteints de Parkinson. Selon l'étude, la raideur, la lenteur et les mouvements involontaires s'atténuent après le traitement.
+- **Et après** : Il reste à confirmer ces résultats sur davantage de patients et sur une durée plus longue. Si la méthode se confirme, elle pourrait offrir une option sans chirurgie à des malades dont les médicaments ne suffisent plus.
+- **Mots** : **Ultrasons focalisés** → Ondes sonores trop aiguës pour être entendues, concentrées sur une petite zone du corps pour agir précisément.
 - **Type** : essai_clinique
 
 _Article illisible : pas de réécriture._
@@ -331,180 +23,384 @@ _Article illisible : pas de réécriture._
 
 ---
 
-## 9. Sous-marins : un petit sous-marin plonge à 7 057 mètres après travaux
+## 2. Mémoire : une zone du cerveau annonce les souvenirs qui resteront
 
-Fil : tech · 1★ · source : Pandaily (Chine) · page lue : oui (192 caractères) · https://pandaily.com/jiaolong-manned-submersible-second-upgrade-7000m-sea-trial-philippine-basin-7056-9-meters
+Fil : science · 2★ · source : Nature Neuroscience · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41593-026-02493-9
 
 **Actuel (publié)**
 
-- **Titre** : Sous-marins : un petit sous-marin plonge à 7 057 mètres après travaux
-- **Avant** : Le sous-marin habité chinois Jiaolong sert à explorer les grands fonds marins. Il a subi une deuxième série de modifications.
-- **Découverte** : Après ces travaux, le Jiaolong a réalisé trois plongées d'essai dans le bassin des Philippines, dont deux au-delà de 7 000 mètres. La plus profonde atteint 7 056,9 mètres. Il utilise désormais de nouvelles batteries au lithium et de nouveaux propulseurs.
-- **Et après** : Ces essais montrent que le sous-marin peut travailler à très grande profondeur avec son nouvel équipement. Les prochaines missions scientifiques n'ont pas été précisées dans l'article.
-- **Mots** : **Propulseur** → Appareil qui pousse un engin dans l'eau ou dans l'air, comme une hélice.
-- **Type** : demonstration
+- **Titre** : Mémoire : une zone du cerveau annonce les souvenirs qui resteront
+- **Avant** : On savait que l'hippocampe joue un rôle clé dans la mémorisation des événements vécus. Le rôle précis de l'amygdale, zone du cerveau liée aux émotions, restait moins bien compris.
+- **Découverte** : Des chercheurs ont enregistré l'activité de neurones isolés chez des volontaires pendant qu'ils apprenaient des images, puis se souvenaient de ces images. Certains neurones de l'amygdale réagissent à une seule catégorie d'images et s'activent davantage pour celles qui seront retenues. Ce signal est plus précoce et plus marqué dans l'amygdale que dans l'hippocampe.
+- **Et après** : Ce résultat pourrait aider à mieux comprendre les troubles de la mémoire et à cibler de futurs traitements. Il reste à vérifier ces effets sur un plus grand nombre de personnes et à tester concrètement ces pistes.
+- **Mots** : **Amygdale** → Petite zone profonde du cerveau qui joue un rôle important dans les émotions.
+- **Type** : humain
 
 **Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Sous-marins : un sous-marin chinois plonge à plus de 7 000 mètres
-- **Avant** : Le sous-marin habité chinois Jiaolong a subi une deuxième série de modifications avant de nouveaux essais.
-- **Découverte** : Un sous-marin habité chinois, le Jiaolong, a fait trois plongées d'essai dans le bassin des Philippines. Deux ont dépassé 7 000 mètres, la plus profonde atteignant 7 057 mètres. Il utilise désormais de nouvelles batteries au lithium et de nouveaux propulseurs.
-- **Et après** : Ces trois plongées dans un seul bassin montrent qu'il peut descendre au-delà de 7 000 mètres avec son nouvel équipement. Ce sont des essais, pas encore des missions scientifiques.
+- **Titre** : Mémoire : des neurones de l'amygdale signalent les souvenirs qui resteront
+- **Avant** : L'hippocampe, zone du cerveau qui aide à retenir les événements vécus, est connu pour ce rôle clé. On comprenait mal si l'amygdale, zone profonde du cerveau liée aux émotions, participe au contenu des souvenirs ou seulement à l'attention.
+- **Découverte** : Des chercheurs ont enregistré l'activité de neurones individuels chez 42 patients pendant qu'ils mémorisaient des images. Certains neurones de l'amygdale ne réagissent qu'à une catégorie d'images, comme les visages ou les paysages. Ils s'activent davantage pour les images que les patients reconnaîtront plus tard.
+- **Et après** : Selon les chercheurs, ces neurones pourraient guider de futurs traitements des troubles de la mémoire. Ce résultat reste une observation chez des patients suivis en neurochirurgie, pas un traitement.
 - **Mots** : (aucun)
-- **Type** : demonstration
+- **Type** : humain
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « Le sous-marin habité chinois Jiaolong sert à explorer les grands fonds marins. » → L'article ne dit pas à quoi sert le Jiaolong ; il ne parle que de modifications et d'essais de plongée. Cette phrase ajoute un usage absent de la source. | [apres] « Les missions scientifiques à venir ne sont pas encore connues. » → Cette phrase n'énonce pas une limite tirée de l'étude. Elle affirme une absence d'information que l'article ne mentionne pas. La vraie limite est qu'il s'agit de trois plongées d'essai dans un seul bassin.
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « aucun traitement n'a encore été testé sur ce mécanisme » → L'article ne dit pas qu'aucun traitement n'a été testé. Il dit seulement que le mécanisme pourrait guider de futurs traitements. La phrase ajoute un fait absent de la source. | [jargon] « L'hippocampe est connu pour son rôle clé » → Le mot « hippocampe » est un terme technique qui n'est ni expliqué ni remplacé dans le texte.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0029 $
+- _Défauts mesurés restants_ : aucun · coût 0.0040 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Sous-marins : un sous-marin chinois plonge à plus de 7 000 mètres
-- **Avant** : Le sous-marin habité chinois Jiaolong sert à explorer les grands fonds marins. Il a subi une deuxième série de modifications avant de nouveaux essais.
-- **Découverte** : Un sous-marin habité chinois, le Jiaolong, a fait trois plongées d'essai dans le bassin des Philippines. Deux ont dépassé 7 000 mètres, la plus profonde atteignant 7 057 mètres. Il utilise désormais de nouvelles batteries au lithium et de nouveaux propulseurs.
-- **Et après** : Ces essais montrent qu'il peut descendre au-delà de 7 000 mètres avec son nouvel équipement. Les missions scientifiques à venir ne sont pas encore connues.
+- **Titre** : Mémoire : des neurones de l'amygdale signalent les souvenirs qui resteront
+- **Avant** : L'hippocampe est connu pour son rôle clé dans la mémoire des événements vécus. On comprenait mal si l'amygdale, zone profonde du cerveau liée aux émotions, participe au contenu des souvenirs ou seulement à l'attention.
+- **Découverte** : Des chercheurs ont enregistré l'activité de neurones individuels chez 42 patients pendant qu'ils mémorisaient des images. Certains neurones de l'amygdale ne réagissent qu'à une catégorie d'images, comme les visages ou les paysages. Ils s'activent davantage pour les images que les patients reconnaîtront plus tard.
+- **Et après** : Selon les chercheurs, ces neurones pourraient guider des traitements des troubles de la mémoire. Ce n'est qu'une observation : aucun traitement n'a encore été testé sur ce mécanisme.
 - **Mots** : (aucun)
-- **Type** : demonstration
+- **Type** : humain
 
-- _Faits relevés_ : Le Jiaolong, un sous-marin habité chinois, a subi une deuxième série de modifications. | Il a fait trois plongées d'essai dans le bassin des Philippines. | Deux de ces plongées ont dépassé 7 000 mètres, la plus profonde à 7 057 mètres. | Il utilise de nouvelles batteries au lithium et de nouveaux propulseurs. | L'article ne cite pas de mission scientifique précise après ces essais.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : le sous-marin existait déjà, et ce qui est nouveau, ce sont les batteries et les propulseurs installés lors des travaux.
-- _Jargon_ : submersible : remplacé par « sous-marin habité » | thrusters : remplacé par « propulseurs » | lithium : gardé dans « batteries au lithium », sans explication nécessaire
+- _Faits relevés_ : Étude menée sur 42 patients opérés du cerveau, en 49 sessions d'enregistrement. | Les chercheurs ont mesuré l'activité de neurones individuels de l'amygdale pendant que les patients mémorisaient des images. | Les images appartenaient à cinq catégories : personnes, nourriture, animaux, voitures et paysages. | Certains neurones ne réagissaient qu'à une seule catégorie, et s'activaient davantage pour les images retenues plus tard. | Ce signal était plus précoce et plus marqué dans l'amygdale que dans l'hippocampe. | L'effet ne dépendait pas de l'aspect émotionnel (agréable ou désagréable) des images. | Quand un souvenir se formait, l'activité des neurones de l'amygdale était mieux synchronisée avec celle de l'hippocampe. | Le test de mémoire se faisait 10 à 30 minutes après la tâche, avec 400 images à reconnaître.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il montre que certains neurones de l'amygdale s'activent davantage pour les images qui seront retenues, plus tôt et plus fort que dans l'hippocampe.
+- _Jargon_ : hippocampe : expliqué en quelques mots dans « avant » | amygdale : expliquée en quelques mots dans « avant » | neurones individuels : remplacé par « neurones »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-## 10. Ordinateurs quantiques : IBM relie des puces par câbles d'un mètre
+## 3. Implants : un capteur sans métal transmet ses signaux sans fil
 
-Fil : tech · 1★ · source : IBM Research · page lue : oui (6000 caractères) · https://research.ibm.com/blog/connecting-quantum-processors-with-l-couplers?utm_medium=rss&utm_source=rss
+Fil : tech · 2★ · source : Phys.org · page lue : NON (0 caractères) · https://phys.org/news/2026-10-metal-free-magnetic-sensor-safely.html
 
 **Actuel (publié)**
 
-- **Titre** : Ordinateurs quantiques : IBM relie des puces par câbles d'un mètre
-- **Avant** : Les ordinateurs quantiques d'IBM reposent sur des processeurs isolés, et les liaisons entre plusieurs puces n'avaient été testées qu'à petite échelle.
-- **Découverte** : IBM a relié des processeurs supraconducteurs par plusieurs câbles de un mètre, appelés l-couplers, avec une fidélité moyenne de 99 % pour le transfert d'information quantique. Ce nouveau design de connexion est compatible avec le processeur IBM Quantum Nighthawk.
-- **Et après** : Et après ? Il ne s'agit encore que d'une démonstration en laboratoire, qui devra être étendue à de nombreux processeurs pour atteindre l'ordinateur tolérant aux fautes Starling.
-- **Mots** : **Fidélité** → Mesure de la qualité d'un transfert : plus elle est proche de 100 %, moins l'information est abîmée pendant le trajet.
+- **Titre** : Implants : un capteur sans métal transmet ses signaux sans fil
+- **Avant** : Les capteurs médicaux implantés contiennent souvent des pièces métalliques. Il est difficile de suivre ce qui se passe dans le corps sans fil.
+- **Découverte** : Le capteur repose sur un aimant sans métal, fait de nitrure de carbone. Il peut être implanté en sécurité et émettre des signaux depuis le fond du corps.
+- **Et après** : Ce dispositif pourrait suivre l'état d'un organe à distance. Il reste à évaluer sa durée d'utilisation et son efficacité chez les patients.
+- **Mots** : **Nitrure de carbone** → Matériau formé d'atomes de carbone et d'azote, assemblés en couches.
+- **Type** : prototype
+
+_Article illisible : pas de réécriture._
+
+
+---
+
+## 4. Matériaux : un carbone sans métal devient aimant
+
+Fil : science · 2★ · source : Phys.org · page lue : NON (0 caractères) · https://phys.org/news/2026-10-metal-free-magnetic-sensor-safely.html
+
+**Actuel (publié)**
+
+- **Titre** : Matériaux : un carbone sans métal devient aimant
+- **Avant** : Les aimants courants contiennent des métaux, comme le fer ou le cobalt. On comprenait mal comment un matériau sans métal pouvait devenir magnétique.
+- **Découverte** : Des chercheurs américains et chinois chauffent du nitrure de carbone et observent l'apparition du magnétisme. Le chauffage réarrange les atomes, ce qui renforce le lien entre des électrons non appariés.
+- **Et après** : Ce mécanisme ouvre la voie à des aimants sans métal, plus compatibles avec le corps. Il reste à confirmer ces résultats et à vérifier qu'ils se reproduisent.
+- **Mots** : **Électron non apparié** → Électron qui n'a pas de partenaire dans son atome, ce qui lui donne un petit effet magnétique.
+- **Type** : donnees
+
+_Article illisible : pas de réécriture._
+
+
+---
+
+## 5. Intestin : des anticorps freinent la protéine qui calme l'inflammation
+
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261025073053.htm
+
+**Actuel (publié)**
+
+- **Titre** : Intestin : des anticorps freinent la protéine qui calme l'inflammation
+- **Avant** : Les maladies inflammatoires de l'intestin, comme la maladie de Crohn ou la colite ulcéreuse, provoquent une inflammation qui ne s'arrête pas. Un facteur génétique à fort risque était connu depuis longtemps, mais son rôle restait incompris.
+- **Découverte** : Dans une étude publiée dans le New England Journal of Medicine, des chercheurs ont examiné plus de 4 900 personnes malades. Chez certaines, des anticorps bloquent l'interleukine-10, une protéine qui sert de messager pour calmer l'immunité, et cette réaction explique comment le facteur génétique favorise la maladie.
+- **Et après** : La maladie pourrait en fait regrouper plusieurs affections distinctes, ce qui ouvrirait la voie à des diagnostics plus précis et à des traitements adaptés à chaque cause. Ces résultats doivent encore être confirmés par d'autres études avant d'arriver aux soins.
+- **Mots** : **Interleukine** → Protéine que les cellules utilisent pour s'envoyer des messages et calmer l'inflammation dans le corps.
+- **Type** : humain
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Intestin : des anticorps bloquent une protéine anti-inflammatoire chez 3,5 % des malades
+- **Avant** : Les maladies inflammatoires de l'intestin, comme la maladie de Crohn, provoquent une inflammation qui peut durer. Une variante génétique à fort risque était liée à des formes sévères depuis 30 ans, sans que son mécanisme soit clair.
+- **Découverte** : Des chercheurs d'Oxford, Newcastle et Cambridge ont étudié plus de 4 900 malades. Chez environ 3,5 % d'entre eux, des anticorps bloquent la protéine qui freine l'inflammation, l'interleukine-10. Ces anticorps sont plus fréquents chez les personnes porteuses d'une variante génétique liée à des formes sévères.
+- **Et après** : Ces résultats pourraient servir de base à un test sanguin pour repérer ces patients et leur proposer des traitements adaptés à leur cause. Il reste à mettre au point ce test avant tout usage en soins.
+- **Mots** : **Anticorps** → Protéines que fabrique le système de défense du corps. Normalement, elles protègent contre les microbes, mais ici elles s'attaquent à l'organisme lui-même.
+- **Type** : humain
+
+- _Défauts trouvés par le relecteur_ : [titre] « Intestin : des anticorps bloquent une protéine qui limite l'inflammation chez 3,5 % des malades » → Le titre compte 14 mots, au-delà de la limite de 12. Il a été raccourci en gardant ce qui a été vu : des anticorps bloquent une protéine, chez 3,5 % des malades. | [jargon] « des anticorps liés à la variante génétique HLA-DRB1*01:03 » → Le nom codé HLA-DRB1*01:03 est inconnu du public et n'aide pas à comprendre. Il a été remplacé par une description simple de la variante génétique. | [non_soutenu] « Ces résultats pourraient permettre un test sanguin pour repérer ces patients et leur proposer des traitements adaptés à leur cause. » → L'article dit que les résultats fournissent une base pour développer un test sanguin, pas qu'ils permettront un test ni des traitements adaptés déjà proposés. | [apres] « Il s'agit d'une étude à confirmer par d'autres équipes avant tout usage en soins. » → Cette limite n'est pas tirée de l'article ; il faut une limite tirée du cadre de l'étude, ici qu'il reste à mettre au point le test. | [jargon] « des anticorps bloquent l'interleukine-10, une protéine qui freine l'inflammation » → Le nom savant « interleukine-10 » est présenté sans être expliqué clairement ; il faut l'introduire comme la protéine qui freine l'inflammation. | [comparaison] « Ces anticorps sont plus fréquents chez les personnes porteuses d'une variante génétique liée à des formes sévères depuis 30 ans. » → Le chiffre « 30 ans » est répété alors que l'« avant » le donne déjà ; le détail est retiré pour alléger les chiffres de la découverte.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0041 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Intestin : des anticorps bloquent une protéine qui limite l'inflammation chez 3,5 % des malades
+- **Avant** : Les maladies inflammatoires de l'intestin, comme la maladie de Crohn, provoquent une inflammation qui peut durer. Une variante génétique à fort risque était liée à des formes sévères depuis 30 ans, sans que son mécanisme soit clair.
+- **Découverte** : Des chercheurs d'Oxford, Newcastle et Cambridge ont étudié plus de 4 900 malades. Chez environ 3,5 % d'entre eux, des anticorps bloquent l'interleukine-10, une protéine qui freine l'inflammation. Ces anticorps sont liés à la variante génétique HLA-DRB1*01:03.
+- **Et après** : Ces résultats pourraient permettre un test sanguin pour repérer ces patients et leur proposer des traitements adaptés à leur cause. Il s'agit d'une étude à confirmer par d'autres équipes avant tout usage en soins.
+- **Mots** : **Anticorps** → Protéines que fabrique le système de défense du corps. Normalement, elles protègent contre les microbes, mais ici elles s'attaquent à l'organisme lui-même.
+- **Type** : humain
+
+- _Faits relevés_ : Des chercheurs d'Oxford, de Newcastle et de Cambridge ont étudié plus de 4 900 personnes atteintes de maladies inflammatoires de l'intestin. | Chez environ 3,5 % des malades, des anticorps bloquent l'interleukine-10, une protéine qui limite l'inflammation. | Ces anticorps ont été trouvés chez des malades atteints de la maladie de Crohn comme de la colite ulcéreuse, mais pas chez des personnes en bonne santé. | Les chercheurs estiment que 15 000 à 20 000 malades au Royaume-Uni pourraient porter ces anticorps. | Ces anticorps sont fortement liés à une variante génétique, HLA-DRB1*01:03, associée depuis 30 ans à une forme sévère de la maladie. | Les chercheurs pensent qu'un test sanguin pourrait repérer ces patients. | Les résultats reposent sur l'étude de 4 900 personnes ; ils doivent être confirmés par d'autres équipes.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il explique le lien entre une variante génétique connue depuis 30 ans et des anticorps qui bloquent l'interleukine-10.
+- _Jargon_ : Interleukine-10 : remplacé par « une protéine qui limite l'inflammation » | Anticorps : mot à connaître expliqué dans la fiche si besoin, non utilisé sans explication
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : titre de 14 mots : 12 au plus ; sigles ou noms codés inconnus du public : DRB1, HLA → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 6 chiffres dans « decouverte » : garde les 3 plus parlants
+
+
+---
+
+## 6. Humains anciens : un fossile adulte vieux de deux millions d'années
+
+Fil : science · 2★ · source : Sciences et Avenir · page lue : NON (0 caractères) · https://www.sciencesetavenir.fr/archeo-paleo/paleontologie/le-plus-ancien-homo-erectus-vivait-en-afrique-du-sud-il-y-a-deux-millions-d-annees_195501?xtor=RSS-4
+
+**Actuel (publié)**
+
+- **Titre** : Humains anciens : un fossile adulte vieux de deux millions d'années
+- **Avant** : Homo erectus est une espèce humaine ancienne, connue par de nombreux fossiles. Jusqu'ici, le plus ancien spécimen adulte connu était moins ancien que celui-ci.
+- **Découverte** : Des chercheurs annoncent avoir identifié, sur le site de Drimolen en Afrique du Sud, un individu adulte de cette espèce daté d'environ deux millions d'années. C'est un témoignage direct de la présence d'Homo erectus à cette époque.
+- **Et après** : Cette trouvaille peut aider à mieux situer l'origine et la répartition de cette espèce en Afrique. D'autres spécialistes devront encore examiner le fossile et confirmer sa datation.
+- **Mots** : **Homo erectus** → Espèce humaine ancienne, plus proche de nous que les premiers australopithèques, qui a vécu en Afrique puis en Asie.
+- **Type** : terrain
+
+_Article illisible : pas de réécriture._
+
+
+---
+
+## 7. Drones : un drone sans pilote bat trois champions du monde
+
+Fil : tech · 2★ · source : Techno-Science.net · page lue : oui (2963 caractères) · https://www.techno-science.net/fr/actualites/drone-autonome-bat-champions-course-29615
+
+**Actuel (publié)**
+
+- **Titre** : Drones : un drone sans pilote bat trois champions du monde
+- **Avant** : Les drones de course étaient jusqu'ici guidés à distance par des pilotes humains, qui suivaient l'image de la caméra embarquée.
+- **Découverte** : Le drone MonoRace, conçu à l'université de technologie de Delft, vole sans pilote à près de 100 km/h. Il n'utilise ni GPS ni caméras installées autour de la piste : une seule caméra, un capteur de mouvements et un petit ordinateur suffisent, et une intelligence artificielle décide seule de ses trajectoires. En 2025, à Abou Dhabi, il a d'abord battu des drones autonomes, puis trois anciens champions du monde humains.
+- **Et après** : Ce matériel simple pourrait intéresser d'autres usages des drones, comme la livraison ou l'inspection. Le test a eu lieu sur un circuit de course, et son adaptation à des environnements réels reste à vérifier.
+- **Mots** : **FPV** → Pilotage en vue subjective, où le pilote suit l'image renvoyée par une caméra embarquée sur le drone.
+- **Type** : demonstration
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Drones : sans pilote, un drone bat trois anciens champions du monde
+- **Avant** : Les drones de course sont d'habitude pilotés à distance par un humain, qui regarde l'image de la caméra embarquée. Sans pilote, l'appareil doit lui-même savoir où il se trouve et corriger sa route.
+- **Découverte** : Des chercheurs de l'université de technologie de Delft, aux Pays-Bas, ont mis au point MonoRace, un drone de course qui vole sans pilote, à près de 100 km/h. En 2025, à Abou Dhabi, il a d'abord battu d'autres drones autonomes, puis trois anciens champions du monde humains, en courses à élimination directe. Il n'a qu'une caméra, un capteur de mouvements et un petit ordinateur. Il ne reçoit aucun signal de localisation par satellite et aucune caméra ne surveille la piste ; une intelligence artificielle décide de ses trajectoires.
+- **Et après** : Selon les chercheurs, les mêmes principes pourraient aider des robots mobiles ou des appareils là où la navigation par satellite fonctionne mal. Ce résultat reste limité à une course sur un parcours précis, sans temps au tour ni écarts connus avec les humains.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : [jargon] « sans GPS ni caméras autour de la piste » → Le sigle GPS n'est ni remplacé par des mots simples, ni expliqué, ni donné en mot à connaître. | [jargon] « là où le GPS fonctionne mal » → Le sigle GPS reste non expliqué dans la fiche. | [forme] « l'article ne donne pas les temps au tour ni les écarts avec les humains » → La phrase parle de l'article au lieu de donner la limite de l'étude elle-même. | [forme] « Il n'a qu'une caméra, un capteur de mouvements et un petit ordinateur, sans signal de localisation par satellite ni caméras autour de la piste ; une intelligence artificielle décide de ses trajectoires. » → Phrase de 32 mots, trop longue pour une lecture facile ; elle est coupée en deux phrases courtes. | [forme] « signal de localisation par satellite fonctionne mal » → La même expression est répétée entre « decouverte » et « apres » ; elle n'est dite qu'une fois, dans « decouverte ».
+
+- _Défauts mesurés restants_ : « decouverte » a 4 phrases : 3 au plus · coût 0.0057 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Drones : sans pilote, un drone bat trois anciens champions du monde
+- **Avant** : Les drones de course sont d'habitude pilotés à distance par un humain, qui regarde l'image de la caméra embarquée. Sans pilote, l'appareil doit lui-même savoir où il se trouve et corriger sa route.
+- **Découverte** : Des chercheurs de l'université de technologie de Delft, aux Pays-Bas, ont mis au point MonoRace, un drone de course qui vole sans pilote, à près de 100 km/h. En 2025, à Abou Dhabi, il a d'abord battu d'autres drones autonomes, puis trois anciens champions du monde humains, en courses à élimination directe. Il n'a qu'une caméra, un capteur de mouvements et un petit ordinateur, sans GPS ni caméras autour de la piste ; une intelligence artificielle décide de ses trajectoires.
+- **Et après** : Selon les chercheurs, les mêmes principes pourraient aider des robots mobiles ou des appareils là où le GPS fonctionne mal. Ce test reste une course sur un parcours précis, et l'article ne donne pas les temps au tour ni les écarts avec les humains.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Faits relevés_ : Le drone MonoRace, de l'université de technologie de Delft (Pays-Bas), peut voler à près de 100 km/h. | La compétition a eu lieu en 2025 à Abou Dhabi, sur un parcours de portes à franchir. | Le drone a d'abord battu les autres drones autonomes, puis trois anciens champions du monde humains, en courses à élimination directe. | Il n'a qu'une caméra, un capteur de mouvements et un petit ordinateur. | Il n'utilise ni GPS ni caméras installées autour de la piste. | Un réseau de neurones règle la puissance des moteurs 500 fois par seconde. | Les chercheurs ont conçu une méthode qui corrige l'estimation de la position à partir des données enregistrées pendant les vols. | L'article ne donne ni temps au tour ni écart de temps avec les humains.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il décrit un drone de course qui vole sans pilote et gagne contre des humains, avec un matériel très simple, alors que les drones de course restent d'habitude pilotés à distance.
+- _Jargon_ : FPV : remplacé par « drones de course ». | Réseau de neurones : expliqué par « une intelligence artificielle qui règle elle-même les moteurs ». | Capteur de mouvements : gardé tel quel, mot simple et compréhensible.
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : aucune
+
+
+---
+
+## 8. Voitures : une petite électrique chinoise recharge sa batterie en cinq minutes
+
+Fil : tech · 1★ · source : New Atlas · page lue : oui (4664 caractères) · https://newatlas.com/automotive/byd-seagull-ev-flash-charging/
+
+**Actuel (publié)**
+
+- **Titre** : Voitures : une petite électrique chinoise recharge sa batterie en cinq minutes
+- **Avant** : Les voitures électriques bon marché offraient en général une recharge lente, et la recharge très rapide restait réservée aux modèles plus chers.
+- **Découverte** : BYD lance en Chine la Seagull, une petite électrique vendue entre environ 9 800 et 15 000 dollars selon la version. Les trois versions haut de gamme ont une batterie de 39,2 kWh, une autonomie annoncée de 420 km et une recharge de 10 à 70 % en cinq minutes, selon le constructeur.
+- **Et après** : Cette recharge rapide n'est disponible que sur le réseau de bornes Flash Charging de BYD, donc surtout en Chine, et les deux versions d'entrée n'en profitent pas. Les performances annoncées par le constructeur restent à confirmer par des tests indépendants.
+- **Mots** : (aucun)
+- **Type** : en_vente
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Voitures : une électrique chinoise promet 70 % de charge en cinq minutes
+- **Avant** : Les constructeurs chinois se battent déjà sur les prix des voitures électriques. L'ancien modèle avait un moteur de 55 kW et quatre places, sans recharge très rapide.
+- **Découverte** : Le constructeur chinois lance la Seagull, une petite voiture électrique vendue environ 9 800 dollars (environ 8 300 €) selon la finition. Les trois versions haut de gamme annoncent 420 km d'autonomie et une recharge rapide de cinq minutes, selon le constructeur. Les deux versions d'entrée n'ont pas cette recharge rapide.
+- **Et après** : La recharge rapide ne marche que sur le réseau de bornes propre au constructeur, donc surtout en Chine pour l'instant. Ces chiffres sont annoncés par le constructeur.
+- **Mots** : (aucun)
+- **Type** : en_vente
+
+- _Défauts trouvés par le relecteur_ : [forme] « Les trois versions haut de gamme ont une batterie de 39,2 kWh, une autonomie annoncée de 420 km et une recharge de 10 à 70 % en cinq minutes, selon le constructeur. » → Phrase de plus de 30 mots, à couper en deux. | [jargon] « BYD » → Sigle de marque non expliqué : le texte dit seulement « le constructeur chinois » ou ne donne pas de nom. | [forme] « 65 900 et 99 900 yuans (environ 7 900 € à 12 000 €) » → Dix chiffres dans la découverte, dont plusieurs prix et capacités trop détaillés pour un lecteur non spécialiste ; on garde les plus parlants. | [non_soutenu] « Ces chiffres viennent du constructeur et ne sont pas encore confirmés par des tests indépendants. » → L'article ne dit pas que les chiffres n'ont pas été confirmés par des tests indépendants ; il dit seulement qu'ils sont annoncés (claimed) par le constructeur. | [jargon] « bornes Flash Charging de BYD » → Nom anglais de réseau de recharge non expliqué ; remplacé par une description simple. | [non_soutenu] « vendue environ 7 900 € à 12 000 € » → L'article donne les prix en yuans (65 900 à 99 900) et en dollars (environ 9 810 à 15 000 $). Les montants en euros de la fiche ne correspondent pas à ces chiffres. | [comparaison] « Les trois versions haut de gamme annoncent 420 km d'autonomie et une recharge de 10 à 70 % en cinq minutes, selon le constructeur. » → Le paragraphe contient cinq chiffres (prix, autonomie, pourcentages, durée). Le défaut mesuré demande d'en garder trois : le pourcentage est déjà dans le titre et le prix passe en dollars arrondis.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0062 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Voitures : une électrique chinoise promet 70 % de charge en cinq minutes
+- **Avant** : Les constructeurs chinois se battent déjà sur les prix des voitures électriques. L'ancien modèle avait un moteur de 55 kW et quatre places, sans recharge très rapide.
+- **Découverte** : Le constructeur chinois BYD lance la Seagull, une petite voiture électrique vendue entre 65 900 et 99 900 yuans (environ 7 900 € à 12 000 €). Les trois versions haut de gamme ont une batterie de 39,2 kWh, une autonomie annoncée de 420 km et une recharge de 10 à 70 % en cinq minutes, selon le constructeur. Les deux versions d'entrée, avec 30,1 kWh et 320 km d'autonomie, n'ont pas cette recharge rapide.
+- **Et après** : La recharge rapide ne fonctionne que sur les bornes Flash Charging de BYD, donc surtout en Chine pour l'instant. Ces chiffres viennent du constructeur et ne sont pas encore confirmés par des tests indépendants.
+- **Mots** : (aucun)
+- **Type** : en_vente
+
+- _Faits relevés_ : Le constructeur chinois BYD présente la Seagull, une petite voiture électrique vendue en cinq versions. | Les prix vont de 65 900 à 99 900 yuans, soit environ 9 810 à 15 000 dollars pour la version de base et la plus haute. | Les trois versions haut de gamme ont une batterie de 39,2 kWh et une autonomie annoncée de 420 km. | Ces trois versions passent de 10 à 70 % de charge en cinq minutes, selon le constructeur. | La recharge rapide ne fonctionne que sur le réseau de bornes Flash Charging de BYD, donc surtout en Chine pour l'instant. | Les deux versions d'entrée ont une batterie de 30,1 kWh, une autonomie de 320 km et pas de recharge rapide. | La voiture mesure 4 205 mm de long, soit 425 mm de plus que l'ancien modèle, et accueille cinq personnes au lieu de quatre. | Le moteur passe à l'arrière, avec 85 kW pour les versions d'entrée et 95 kW pour les autres, contre 55 kW auparavant.
+- _Nouveauté selon l'article_ : Selon l'article, la nouveauté est la recharge de 10 à 70 % en cinq minutes sur les trois versions haut de gamme, alors que l'ancien modèle avait un moteur de 55 kW ; l'article ne revendique pas de première.
+- _Jargon_ : kWh : gardé tel quel, unité de la capacité de la batterie, compréhensible avec le mot « batterie » juste avant | Flash Charging : remplacé par « le réseau de bornes de BYD » | CLTC : remplacé par « autonomie annoncée »
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : phrase de 32 mots dans « decouverte », à couper : « Les trois versions haut de gamme ont une batterie de 39,2 kWh, une autonomie annoncée de 4… » ; sigles ou noms codés inconnus du public : BYD → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 10 chiffres dans « decouverte » : garde les 3 plus parlants
+
+
+---
+
+## 9. Espace : une explosion cosmique dure 27 jours, un record
+
+Fil : science · 2★ · source : Space.com · page lue : oui (6000 caractères) · https://www.space.com/science/astrophysics/record-breaker-astronomers-spot-powerful-cosmic-explosion-that-lasted-27-days
+
+**Actuel (publié)**
+
+- **Titre** : Espace : une explosion cosmique dure 27 jours, un record
+- **Avant** : Les sursauts gamma sont des explosions cosmiques très puissantes, qui durent en général quelques secondes à quelques minutes.
+- **Découverte** : Des astronomes ont repéré un sursaut gamma qui a duré 27 jours, ce qui en fait un record. Il dépasse très largement la durée des explosions du même type.
+- **Et après** : Ce cas pousse à revoir ce que l'on croyait possible pour ces explosions. Son origine précise reste à établir.
+- **Mots** : **Sursaut gamma** → Explosion très puissante qui émet de la lumière gamma, la forme la plus énergétique de la lumière, depuis l'espace lointain.
+- **Type** : observation
+
+**Final après 1 relecture(s) (haiku)**
+
+- **Titre** : Espace : une explosion cosmique émet encore des rayons X pendant 27 jours
+- **Avant** : Les sursauts gamma sont des explosions très puissantes, qui durent d'ordinaire quelques secondes à quelques minutes. Les éclats de rayons X qui suivent sont rapides, et le record précédent n'avait duré qu'environ six jours.
+- **Découverte** : Une équipe d'astronomes, dont un chercheur de l'université de Birmingham en Angleterre, a suivi un sursaut gamma repéré en juillet 2022. Sa source d'énergie est restée active environ 27 jours, avec des éclats de rayons X, soit 20 jours de plus que le sursaut le plus long connu. Les chercheurs jugent ce délai sans précédent, et la cause reste inconnue.
+- **Et après** : Ce cas bouscule les modèles qui expliquent l'énergie de ces jets, et les chercheurs évoquent une étoile plus massive que la normale, sans trancher. La cause exacte reste à établir, et des sursauts aussi longs pourraient passer inaperçus.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Défauts trouvés par le relecteur_ : [jargon] « le sursaut GRB 220706A, repéré le 6 juillet 2022 » → Le sigle GRB et le nom codé 220706A ne sont ni expliqués ni remplacés par des mots simples. | [comparaison] « repéré le 6 juillet 2022. Sa source d'énergie est restée active environ 27 jours, avec des éclats de rayons X, soit 20 jours de plus » → La fiche donnait trop de chiffres (date complète, code du sursaut) pour une phrase d'introduction ; seuls les plus parlants sont gardés. | [mot] « Sursaut gamma » → Le mot est déjà expliqué dans le paragraphe « Avant », et sa définition reprend le mot « gamma » ; il n'apporte rien de nouveau, donc il est retiré.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0043 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : une explosion cosmique émet encore des rayons X pendant 27 jours
+- **Avant** : Les sursauts gamma sont des explosions très puissantes, qui durent d'ordinaire quelques secondes à quelques minutes. Les éclats de rayons X qui suivent sont rapides, et le record précédent n'avait duré qu'environ six jours.
+- **Découverte** : Une équipe d'astronomes, dont un chercheur de l'université de Birmingham en Angleterre, a suivi le sursaut GRB 220706A, repéré le 6 juillet 2022. Sa source d'énergie est restée active environ 27 jours, avec des éclats de rayons X, soit 20 jours de plus que le sursaut le plus long connu. Les chercheurs jugent ce délai sans précédent, et la cause reste inconnue.
+- **Et après** : Ce cas bouscule les modèles qui expliquent l'énergie de ces jets, et les chercheurs évoquent une étoile plus massive que la normale, sans trancher. La cause exacte reste à établir, et des sursauts aussi longs pourraient passer inaperçus.
+- **Mots** : **Sursaut gamma** → Explosion très puissante dans l'espace qui émet des rayons gamma, la lumière la plus énergétique ; elle dure en général quelques secondes.
+- **Type** : observation
+
+- _Faits relevés_ : Le sursaut GRB 220706A a été repéré le 6 juillet 2022. | Sa source d'énergie centrale est restée active environ 27 jours, avec des éclats de rayons X après l'explosion initiale. | Cette durée dépasse de 20 jours celle du sursaut le plus long connu jusqu'ici. | Le record précédent pour les éclats tardifs était d'environ six jours après le sursaut. | La cause exacte n'est pas connue ; une supernova, explosion d'étoile, a été observée. | Un sursaut long de 2011 était associé à un astre à champ magnétique très puissant, possible source ici aussi. | Autres pistes : une étoile beaucoup plus massive que la normale, ou des couches de matière dense éjectées. | Les satellites en orbite basse ne voient ces sursauts que par intervalles, à cause des passages derrière la Terre toutes les 90 minutes environ. | L'étude n'a pas encore été relue par d'autres chercheurs ; elle est disponible sur arXiv.
+- _Nouveauté selon l'article_ : Selon l'article, c'est le sursaut le plus long connu, 20 jours de plus que le précédent record ; les chercheurs le jugent sans précédent parmi les sursauts connus.
+- _Jargon_ : sursaut gamma : mot à connaître | rayons gamma : expliqué dans la définition | moteur central : remplacé par « source d'énergie » | magnétar : remplacé par « astre à champ magnétique très puissant » | supernova : expliquée en quelques mots (explosion d'étoile)
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Alertes automatiques_ : sigles ou noms codés inconnus du public : GRB → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 5 chiffres dans « decouverte » : garde les 3 plus parlants
+
+
+---
+
+## 10. Ordinateurs quantiques : cinq petits composants en silicium restent précis ensemble
+
+Fil : tech · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261024222024.htm
+
+**Actuel (publié)**
+
+- **Titre** : Ordinateurs quantiques : cinq petits composants en silicium restent précis ensemble
+- **Avant** : Les qubits en silicium peuvent être fabriqués avec les mêmes méthodes que les puces d'ordinateur actuelles. Mais quand plusieurs qubits sont pilotés en même temps, leurs opérations deviennent moins précises.
+- **Découverte** : Une équipe du centre RIKEN pilote simultanément cinq qubits en silicium reliés à une même ligne de commande micro-ondes. Les chercheurs ont identifié une cause majeure des erreurs et ont mis au point une technique pour la réduire. La précision reste d'environ 99,9 % même quand les cinq qubits fonctionnent en même temps.
+- **Et après** : Il ne s'agit que d'un petit réseau de cinq qubits en laboratoire, et les grands processeurs quantiques restent à construire. Le résultat est publié dans la revue Nature Physics et constitue une étape vers des processeurs plus grands.
+- **Mots** : **Qubit** → Unité de base d'un ordinateur quantique, qui peut prendre plusieurs états à la fois.
 - **Type** : demonstration
 
 **Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Ordinateurs quantiques : deux puces échangent l'information par câbles, fiables à 99 %
-- **Avant** : Pour agrandir un ordinateur quantique, il faut faire travailler ensemble plusieurs processeurs. Les liaisons testées jusqu'ici étaient de bonne qualité mais peu compatibles avec la fabrication de grandes machines.
-- **Découverte** : Des chercheurs d'IBM ont relié deux processeurs quantiques par plusieurs câbles en aluminium de 80 centimètres, dans une même enceinte refroidie. Le transfert d'information réussit en moyenne 99 % du temps, et une opération entre les deux puces atteint 94,75 % de fiabilité. Ce test n'a utilisé qu'une partie des qubits (bits quantiques).
-- **Et après** : Cette méthode pourrait permettre de relier de nombreux processeurs pour construire des machines plus grandes. Il ne s'agit que d'un test en laboratoire, et IBM doit encore améliorer le rendement et réduire les erreurs des câbles.
-- **Mots** : (aucun)
-- **Type** : prototype
+- **Titre** : Ordinateurs quantiques : cinq composants en silicium gardent 99,9 % de précision ensemble
+- **Avant** : Les qubits en silicium peuvent être fabriqués avec les méthodes des puces d'ordinateur actuelles. Mais quand plusieurs qubits sont pilotés en même temps, leurs opérations deviennent moins précises.
+- **Découverte** : Une équipe de chercheurs japonais a piloté cinq qubits en silicium reliés à une même ligne de commande micro-ondes. Un calibrage entre paires de qubits compense les décalages de phase, c'est-à-dire des désynchronisations de signaux, qui causaient une partie des erreurs. Avec les cinq qubits actifs en même temps, la précision reste d'environ 99,9 %.
+- **Et après** : Selon les chercheurs, cette méthode est une étape vers des processeurs plus grands, pour lesquels une ligne de commande partagée évite de multiplier les systèmes de contrôle. Il ne s'agit toutefois que de cinq qubits en laboratoire, et une perte de précision liée à la puissance micro-onde subsiste.
+- **Mots** : **Qubit** → Unité de base d'un ordinateur quantique, qui peut prendre plusieurs états à la fois, au lieu de 0 ou 1 seulement.
+- **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : [titre] « Ordinateurs quantiques : deux processeurs IBM échangent des informations par câbles avec 99 % de fiabilité » → Le titre fait 15 mots, au-delà de la limite de 12. | [jargon] « deux processeurs Nighthawk R1 » → Le nom de produit « Nighthawk R1 » est un nom codé inconnu du public et n'aide pas à comprendre ; il est supprimé. | [jargon] « Le transfert d'un état quantique » → « État quantique » est un terme technique non expliqué ; remplacé par « information ». | [forme] « quatre câbles en aluminium de 80 centimètres ... 99 % ... 94,75 % » → La fiche contient quatre chiffres dans « decouverte » ; le nombre « quatre » est retiré pour garder les trois plus parlants. | [jargon] « Ce test a utilisé seulement une partie des qubits. » → « Qubits » est un terme technique non expliqué dans le texte ; il est accompagné de sa traduction simple. | [mot] « Fidélité » → Le mot à connaître « Fidélité » n'est pas dans le texte de la fiche ; la liste est vidée.
+- _Défauts trouvés par le relecteur_ : [titre] « Ordinateurs quantiques : cinq qubits en silicium pilotés ensemble gardent une précision de 99,9 % » → Le titre compte 14 mots, au-delà de la limite de 12. Il utilise aussi le mot technique « qubits » sans explication. | [jargon] « Une équipe du centre RIKEN, au Japon » → Le sigle RIKEN est un nom inconnu du public. Il n'aide pas à comprendre, on le supprime donc et on garde « japonais ». | [jargon] « Un calibrage entre paires de qubits compense les décalages de phase qui causaient une partie des erreurs. » → « Décalages de phase » est un terme technique non expliqué. Il faut le traduire en mots simples. | [mot] « Un qubit en silicium stocke son information dans un électron. » → La définition reprend le mot à définir « qubit ». Elle doit aussi rester simple et exacte.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0031 $
+- _Défauts mesurés restants_ : aucun · coût 0.0028 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Ordinateurs quantiques : deux processeurs IBM échangent des informations par câbles avec 99 % de fiabilité
-- **Avant** : Pour agrandir un ordinateur quantique, il faut faire travailler ensemble plusieurs processeurs. Les liaisons testées jusqu'ici étaient de bonne qualité mais peu compatibles avec la fabrication de grandes machines.
-- **Découverte** : Des chercheurs d'IBM ont relié deux processeurs Nighthawk R1 par quatre câbles en aluminium de 80 centimètres, dans une même enceinte refroidie. Le transfert d'un état quantique réussit en moyenne 99 % du temps, et une opération entre les deux puces atteint 94,75 % de fiabilité. Ce test a utilisé seulement une partie des qubits.
-- **Et après** : Cette méthode pourrait permettre de relier de nombreux processeurs pour construire des machines plus grandes. Il ne s'agit que d'un test en laboratoire, et IBM doit encore améliorer le rendement et réduire les erreurs des câbles.
-- **Mots** : **Fidélité** → Mesure de la qualité d'un transfert : plus elle est proche de 100 %, moins l'information est abîmée pendant le trajet.
-- **Type** : prototype
+- **Titre** : Ordinateurs quantiques : cinq qubits en silicium pilotés ensemble gardent une précision de 99,9 %
+- **Avant** : Les qubits en silicium peuvent être fabriqués avec les méthodes des puces d'ordinateur actuelles. Mais quand plusieurs qubits sont pilotés en même temps, leurs opérations deviennent moins précises.
+- **Découverte** : Une équipe du centre RIKEN, au Japon, a piloté cinq qubits en silicium reliés à une même ligne de commande micro-ondes. Un calibrage entre paires de qubits compense les décalages de phase qui causaient une partie des erreurs. Avec les cinq qubits actifs en même temps, la précision reste d'environ 99,9 %.
+- **Et après** : Selon les chercheurs, cette méthode est une étape vers des processeurs plus grands, pour lesquels une ligne de commande partagée évite de multiplier les systèmes de contrôle. Il ne s'agit toutefois que de cinq qubits en laboratoire, et une perte de précision liée à la puissance micro-onde subsiste.
+- **Mots** : **Qubit** → Unité de base d'un ordinateur quantique, qui peut prendre plusieurs états à la fois. Un qubit en silicium stocke son information dans un électron.
+- **Type** : demonstration
 
-- _Faits relevés_ : IBM a relié deux processeurs quantiques supraconducteurs IBM Quantum Nighthawk R1 à l'aide de quatre câbles en aluminium de 80 centimètres chacun, à l'intérieur d'un même réfrigérateur à dilution. | Les câbles, appelés l-couplers, sont branchés après que les processeurs ont été montés dans le réfrigérateur. | Le transfert d'un état quantique a une fidélité moyenne de 99 % sur les quatre liaisons, avec un maximum de 99,3 %. | Une porte CZ à distance, réalisée en transférant des états entre les deux modules, atteint une fidélité de 94,75 % en moyenne sur les quatre liaisons. | Les chercheurs ont généré des états intriqués partagés entre les deux modules, y compris en utilisant deux l-couplers simultanément. | L'expérience n'a branché qu'une partie des qubits, à des fins de développement, mais les puces sont des processeurs Nighthawk complets. | Selon IBM, c'est la première fois que des processeurs supraconducteurs sont reliés par plusieurs canaux quantiques avec une fidélité moyenne de 99 %. | IBM dit viser à terme l'ordinateur tolérant aux fautes Starling, et doit encore améliorer le rendement, la reproductibilité et les taux d'erreur des l-couplers.
-- _Nouveauté selon l'article_ : Selon IBM, c'est la première fois que des processeurs supraconducteurs sont reliés par plusieurs canaux quantiques avec une fidélité moyenne de 99 % ; des liaisons entre modules existaient déjà, mais à petite échelle.
-- _Jargon_ : Processeur supraconducteur → expliqué en quelques mots (puce qui conduit l'électricité sans perte, refroidie très fort) | Réfrigérateur à dilution → remplacé par « enceinte refroidie à très basse température » | l-couplers → remplacé par « câbles de liaison » | Fidélité → mot à connaître | Porte CZ et états intriqués → remplacés par « opérations entre processeurs » et « états liés entre eux »
+- _Faits relevés_ : Une équipe du centre RIKEN (Japon) a piloté simultanément cinq qubits en silicium reliés à une même ligne de commande micro-ondes. | Les qubits en silicium stockent l'information grâce au spin d'électrons confinés dans le silicium. | Avec un qubit seul, la précision dépasse 99,99 %, et atteint presque 99,999 % pour le meilleur. | Avec trois qubits actifs ensemble, la précision reste au-dessus de 99,99 %. | Avec les cinq qubits actifs en même temps, la précision reste d'environ 99,9 %. | La méthode corrige les décalages de phase causés par les micro-ondes, grâce à des calibrages entre paires de qubits. | Il reste une perte de précision liée à la puissance micro-onde plus forte nécessaire, un effet appelé décohérence induite par le pilotage. | Les travaux sont publiés dans la revue Nature Physics. | Les chercheurs disent que les qubits en silicium peuvent être fabriqués avec les méthodes de l'industrie des puces. | L'article ne revendique pas de première.
+- _Nouveauté selon l'article_ : Selon l'article, l'équipe montre qu'on peut contrôler plusieurs qubits en silicium en même temps avec une précision proche de 99,9 %, alors que ces opérations perdaient en précision auparavant ; l'article ne revendique pas de première.
+- _Jargon_ : Qubit : mot à connaître, expliqué dans la liste des mots. | Micro-ondes : remplacé par « signaux de commande » dans le texte, sans les détailler. | Décohérence : remplacée par « perte de la cohérence quantique », expliquée en quelques mots. | Spin : remplacé par « l'état quantique des électrons ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : titre de 15 mots : 12 au plus ; sigles ou noms codés inconnus du public : R1 → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 4 chiffres dans « decouverte » : garde les 3 plus parlants ; mot à connaître « Fidélité » absent du texte de la fiche : choisis un mot du texte ou aucun
+- _Alertes automatiques_ : titre de 14 mots : 12 au plus ; sigles ou noms codés inconnus du public : RIKEN → écris ce que c'est (ou supprime le nom s'il n'aide pas)
 
 
 ---
 
-## 11. Mathématiques : une preuve résout un vieux problème de droites en trois dimensions
+## 11. Prostate : un traitement avant et après l'opération limite la propagation du cancer
 
-Fil : science · 2★ · source : Pour la Science · page lue : oui (6000 caractères) · https://www.pourlascience.fr/sd/mathematiques/la-preuve-du-siecle-pour-la-conjecture-de-kakeya-29572.php
+Fil : science · 2★ · source : Medical Xpress · page lue : NON (0 caractères) · https://medicalxpress.com/news/2026-10-patients-apalutamide-hormone-therapy-surgery.html
 
 **Actuel (publié)**
 
-- **Titre** : Mathématiques : une preuve résout un vieux problème de droites en trois dimensions
-- **Avant** : Depuis plus de cinquante ans, les mathématiciens cherchent la meilleure façon de faire pointer une aiguille dans toutes les directions en balayant le moins d'espace possible. Ce problème en trois dimensions restait sans réponse.
-- **Découverte** : Hong Wang et Joshua Zahl démontrent la conjecture en trois dimensions. Leur preuve éclaire aussi plusieurs problèmes liés, qui portent sur la façon dont des droites peuvent se couper.
-- **Et après** : Il s'agit d'un résultat théorique, sans application directe annoncée à ce stade. Il ouvre surtout de nouvelles questions pour les mathématiciens.
-- **Mots** : **Conjecture** → Affirmation mathématique jugée probablement vraie, mais qui n'a pas encore été démontrée.
-- **Type** : simulation
+- **Titre** : Prostate : un traitement avant et après l'opération limite la propagation du cancer
+- **Avant** : Pour les cancers de la prostate à haut risque, la chirurgie est souvent complétée par une hormonothérapie. Les médecins cherchent à limiter le risque que la maladie se propage à d'autres organes.
+- **Découverte** : Un essai international de phase 3 a testé l'apalutamide, un médicament qui bloque les récepteurs des hormones masculines, associé à l'hormonothérapie avant et après la chirurgie. Une sous-étude montre que les patients traités ont moins souvent développé des métastases ou sont morts que ceux ayant reçu le traitement standard.
+- **Et après** : Ces résultats renforcent l'intérêt de ce traitement, mais ils viennent d'une sous-étude et il faudra un suivi plus long pour confirmer l'effet sur la survie.
+- **Mots** : **Hormonothérapie** → Traitement qui bloque les hormones, comme la testostérone, pour ralentir certains cancers. ; **Métastase** → Nouvelle tumeur formée à distance de la tumeur d'origine, lorsque le cancer se propage.
+- **Type** : essai_clinique
 
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Mathématiques : une preuve limite le volume qu'une aiguille balaie en pivotant
-- **Avant** : En 1919, le mathématicien russe Abram Besicovitch a montré que, dans le plan, une aiguille peut être retournée en balayant une surface nulle. Pour trois dimensions, la question restait sans réponse depuis plus de cinquante ans.
-- **Découverte** : Hong Wang, de l'université de New York, et Joshua Zahl, de l'université Nankai en Chine, ont prouvé la conjecture de Kakeya en trois dimensions. Ils ont établi une limite absolue sur le volume balayé par l'aiguille, même avec les mouvements les plus astucieux. Selon le mathématicien Nets Katz, de l'université Rice, c'est un résultat qu'on ne voit qu'une fois par siècle.
-- **Et après** : Il s'agit d'un résultat théorique, démontré seulement pour trois dimensions : une démonstration, pas un outil pratique. Il éclaire aussi un ensemble de problèmes liés à la façon dont des lignes droites se coupent.
-- **Mots** : **Conjecture** → Affirmation mathématique qu'on croit vraie, mais qui n'a pas été démontrée. Une fois démontrée, elle devient un théorème.
-- **Type** : simulation
-
-- _Défauts trouvés par le relecteur_ : [apres] « Il s'agit d'un résultat théorique, sans application concrète citée à ce stade. » → Le paragraphe « Et après » ne dit pas la limite principale du résultat. Il manque le cadre de l'étude : la preuve ne porte que sur le cas à trois dimensions. | [apres] « Il s'agit d'un résultat théorique, limité au cas à trois dimensions, sans application concrète citée à ce stade. » → Le paragraphe ne donne pas la limite principale : il s'agit d'une démonstration théorique pour trois dimensions, pas d'un outil pratique. La formulation remplace une limite vague par la limite exacte tirée de l'étude.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0055 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Mathématiques : une preuve limite le volume qu'une aiguille balaie en pivotant
-- **Avant** : En 1919, le mathématicien russe Abram Besicovitch a montré que, dans le plan, une aiguille peut être retournée en balayant une surface nulle. Pour trois dimensions, la question restait sans réponse depuis plus de cinquante ans.
-- **Découverte** : Hong Wang, de l'université de New York, et Joshua Zahl, de l'université Nankai en Chine, ont prouvé la conjecture de Kakeya en trois dimensions. Ils ont établi une limite absolue sur le volume balayé par l'aiguille, même avec les mouvements les plus astucieux. Selon le mathématicien Nets Katz, de l'université Rice, c'est un résultat qu'on ne voit qu'une fois par siècle.
-- **Et après** : Il s'agit d'un résultat théorique, sans application concrète citée à ce stade. Il éclaire aussi un ensemble de problèmes liés à la façon dont des lignes droites se coupent.
-- **Mots** : **Conjecture** → Affirmation mathématique qu'on croit vraie, mais qui n'a pas été démontrée. Une fois démontrée, elle devient un théorème.
-- **Type** : simulation
-
-- _Faits relevés_ : Un problème posé en 1917 par le mathématicien japonais Soichi Kakeya porte sur une aiguille qui pointe dans toutes les directions. | En 1919, Abram Besicovitch a montré que, dans le plan, l'aiguille peut être retournée en balayant une surface nulle. | En 1971, Charles Fefferman a démontré que l'ensemble le plus chevauchant doit occuper un certain espace. | La conjecture de Kakeya en trois dimensions affirme que la dimension de Minkowski de cet ensemble doit être égale à trois. | Hong Wang (université de New York) et Joshua Zahl (université Nankai, en Chine) ont prouvé cette conjecture en trois dimensions. | Les chercheurs ont établi une limite absolue sur le volume balayé, même avec les mouvements les plus astucieux. | Nets Katz, de l'université Rice, juge que ce résultat n'arrive qu'une fois par siècle. | En 2022, les deux chercheurs ont franchi une étape importante, en suivant un programme élaboré par Nets Katz et d'autres.
-- _Nouveauté selon l'article_ : Selon Nets Katz, c'est un résultat qu'on ne voit qu'une fois par siècle, et la version en trois dimensions était restée ouverte depuis plus de cinquante ans ; l'article ne revendique pas de première.
-- _Jargon_ : Conjecture : mot à connaître | Dimension de Minkowski : remplacé par « la taille de l'ensemble de tubes, selon l'épaisseur des tubes » | Transformation de Fourier : non citée dans la fiche (remplacée par rien, hors sujet)
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
+_Article illisible : pas de réécriture._
 
 
 ---
 
-## 12. Humains anciens : une femme de la Préhistoire mêle deux origines européennes
+## 12. Poumon : un nouveau médicament devance deux traitements plus anciens
 
-Fil : science · 2★ · source : Live Science · page lue : oui (4966 caractères) · https://www.livescience.com/archaeology/human-evolution/30-000-year-old-bone-found-in-french-cave-reveals-vast-genetic-connections-between-people-of-eastern-and-western-europe-during-the-stone-age
+Fil : science · 2★ · source : STAT News (santé) · page lue : oui (1013 caractères) · https://www.statnews.com/2026/10/26/roche-kras-drug-divarasib-lung-cancer-treatment-win/?utm_campaign=rss
 
 **Actuel (publié)**
 
-- **Titre** : Humains anciens : une femme de la Préhistoire mêle deux origines européennes
-- **Avant** : On savait que les groupes humains de l'âge de pierre se déplaçaient et se mêlaient en Europe. Mais on connaissait mal les liens qui unissaient les populations de l'Est et de l'Ouest du continent.
-- **Découverte** : Le génome d'une femme ayant vécu il y a 30 000 ans, dont les restes ont été retrouvés dans une grotte française, a été séquencé. Son ADN montre qu'elle descendait à la fois de groupes venus de l'Est et de groupes de l'Ouest de l'Europe.
-- **Et après** : Ce résultat suggère de vastes contacts entre groupes préhistoriques. Un seul individu ne suffit pas à décrire toute cette histoire : d'autres fossiles seront nécessaires pour mesurer l'ampleur de ces échanges.
-- **Mots** : **Génome** → L'ensemble de l'ADN d'un être vivant, qui contient toutes ses informations héréditaires.
-- **Type** : donnees
+- **Titre** : Poumon : un nouveau médicament devance deux traitements plus anciens
+- **Avant** : Certains cancers du poumon portent une mutation KRAS G12C qui les rend agressifs. Deux médicaments plus anciens, d'Amgen et de Bristol Myers Squibb, ciblent déjà cette mutation.
+- **Découverte** : Roche a testé son médicament divarasib chez des personnes ayant un cancer du poumon avancé, après un premier traitement. Présentés au congrès ESMO, les résultats montrent qu'il fait mieux que ces deux médicaments plus anciens.
+- **Et après** : Le médicament pourrait prendre une place importante sur le marché, mais il faudra des données complètes et publiées, puis une autorisation des autorités de santé.
+- **Mots** : **Mutation** → Changement dans la séquence d'un gène, qui peut modifier le fonctionnement d'une cellule.
+- **Type** : essai_clinique
 
 **Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Préhistoire : une femme avait des ancêtres de l'Est et de l'Ouest
-- **Avant** : Entre 34 000 et 25 000 ans, une culture de l'âge de pierre, le gravettien, était répandue en Europe. On connaissait mal les liens entre ses groupes de l'Est et de l'Ouest, car très peu de squelettes avaient été analysés.
-- **Découverte** : Des chercheurs ont analysé l'ADN de trois personnes ayant vécu en Espagne, en France et en Italie à cette époque. Une femme retrouvée dans la grotte d'Isturitz, en France, avait des ancêtres venus à la fois de l'Ouest et de l'Est de l'Europe. Cet apport venu de l'Est remonte à environ 31 500 à 32 500 ans.
-- **Et après** : Ces résultats montrent que les populations de l'Est et de l'Ouest n'étaient pas aussi séparées qu'on le pensait. Ils ne reposent que sur trois personnes, et il faudra d'autres squelettes pour préciser ces mouvements.
+- **Titre** : Cancer du poumon : un médicament de Roche devance deux traitements plus anciens
+- **Avant** : Certains cancers du poumon portent une anomalie génétique bien précise. Deux médicaments plus anciens, d'Amgen et de Bristol Myers Squibb, visent déjà cette anomalie.
+- **Découverte** : Roche a testé son médicament divarasib chez des personnes ayant un cancer du poumon avancé, après un premier traitement. Présentés lors d'un grand congrès de cancérologie, les résultats dépassent ceux des deux médicaments plus anciens et comptent parmi les plus impressionnants de l'année.
+- **Et après** : Ces résultats pourraient donner au médicament une place de choix sur le marché. Il reste à publier des données détaillées pour les confirmer.
 - **Mots** : (aucun)
-- **Type** : donnees
+- **Type** : essai_clinique
 
-- _Défauts trouvés par le relecteur_ : [titre] « Préhistoire : l'ADN d'une femme de la grotte d'Isturitz montre des liens entre l'Est et l'Ouest » → Le titre compte 15 mots (12 au plus) et contient le nom propre « Isturitz », inconnu du grand public. | [mot] « Génome » → Le mot n'apparaît pas dans le texte de la fiche ; il n'y a donc pas de mot à expliquer.
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « qui les rend plus agressifs » → L'article ne dit pas que cette anomalie rend les cancers plus agressifs. | [jargon] « anomalie du gène KRAS, appelée G12C » → Le nom du gène et de la variante est un code technique, non expliqué au lecteur. | [jargon] « congrès ESMO » → Le sigle ESMO n'est pas expliqué ; le texte source désigne un congrès de cancérologie. | [forme] « selon l'article, les résultats dépassent » → La phrase parle de l'article au lieu des faits. | [forme] « Selon l'article, ces résultats pourraient » → La phrase parle de l'article au lieu des faits. | [forme] « l'article ne donnant pas de chiffres » → La phrase parle de l'article au lieu de la limite réelle de l'étude.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0023 $
+- _Défauts mesurés restants_ : aucun · coût 0.0027 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Préhistoire : l'ADN d'une femme de la grotte d'Isturitz montre des liens entre l'Est et l'Ouest
-- **Avant** : Entre 34 000 et 25 000 ans, une culture de l'âge de pierre, le gravettien, était répandue en Europe. On connaissait mal les liens entre ses groupes de l'Est et de l'Ouest, car très peu de squelettes avaient été analysés.
-- **Découverte** : Des chercheurs ont analysé l'ADN de trois personnes ayant vécu en Espagne, en France et en Italie à cette époque. Une femme retrouvée dans la grotte d'Isturitz, en France, avait des ancêtres venus à la fois de l'Ouest et de l'Est de l'Europe. Cet apport venu de l'Est remonte à environ 31 500 à 32 500 ans.
-- **Et après** : Ces résultats montrent que les populations de l'Est et de l'Ouest n'étaient pas aussi séparées qu'on le pensait. Ils ne reposent que sur trois personnes, et il faudra d'autres squelettes pour préciser ces mouvements.
-- **Mots** : **Génome** → L'ensemble de l'ADN d'un être vivant, qui contient toutes ses informations héréditaires.
-- **Type** : donnees
+- **Titre** : Cancer du poumon : un médicament de Roche devance deux traitements plus anciens
+- **Avant** : Certains cancers du poumon portent une anomalie du gène KRAS, appelée G12C, qui les rend plus agressifs. Deux médicaments plus anciens, d'Amgen et de Bristol Myers Squibb, visent déjà cette anomalie.
+- **Découverte** : Roche a testé son médicament divarasib chez des personnes ayant un cancer du poumon avancé, après un premier traitement. Présentés au congrès ESMO, les résultats dépassent ceux des deux médicaments plus anciens, selon l'article. Il est jugé parmi les plus impressionnants de l'année.
+- **Et après** : Selon l'article, ces résultats pourraient donner au médicament une place de choix sur le marché. Il reste à confirmer ces résultats avec des données détaillées, l'article ne donnant pas de chiffres.
+- **Mots** : (aucun)
+- **Type** : essai_clinique
 
-- _Faits relevés_ : Trois personnes qui vivaient à la période gravettienne ont été séquencées : elles ont vécu en Espagne, en France et en Italie actuelles. | Le gravettien est une culture de l'âge de pierre qui a duré d'environ 34 000 à 25 000 ans. | Auparavant, l'ADN ancien n'avait été récupéré que chez deux douzaines de squelettes gravettiens. | L'une des trois personnes, une femme morte il y a environ 30 000 ans, a été retrouvée dans la grotte d'Isturitz, dans le sud-ouest de la France. | Son ADN ressemble surtout aux génomes déjà connus d'Europe de l'Ouest, avec un lien avec des groupes d'Europe de l'Est et du centre. | Cet apport génétique de l'Est est daté d'environ 31 500 à 32 500 ans. | Les trois génomes montrent des parents peu apparentés entre eux, ce qui suggère que ces groupes évitaient peut-être la consanguinité. | Les chercheurs jugent les populations de l'Ouest et de l'Est moins isolées qu'on ne le pensait.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il montre que des échanges génétiques entre l'Est et l'Ouest de l'Europe ont eu lieu dès il y a environ 30 000 ans, alors qu'on pensait ces groupes largement séparés.
-- _Jargon_ : Génome : mot à connaître, défini ci-dessous. | Gravettien : remplacé par « une culture de l'âge de pierre, il y a 34 000 à 25 000 ans ». | Séquencé : remplacé par « analysé ».
+- _Faits relevés_ : Le médicament divarasib, du groupe pharmaceutique Roche, a été testé sur des personnes ayant un cancer du poumon avancé. | Ces patients avaient déjà reçu un premier traitement. | Le médicament bloque une anomalie d'un gène appelé KRAS, dite G12C. | Deux médicaments plus anciens, d'Amgen et de Bristol Myers Squibb, visent aussi cette anomalie. | Selon l'article, les résultats présentés au congrès ESMO comptent parmi les plus impressionnants de l'année. | Ces résultats dépassent ceux des deux médicaments plus anciens, selon l'article. | L'article ne donne pas de chiffres détaillés sur l'essai.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il dit seulement que les résultats dépassent ceux de deux médicaments plus anciens déjà utilisés contre la même anomalie.
+- _Jargon_ : KRAS G12C : remplacé par « une anomalie d'un gène appelé KRAS ». | Deuxième traitement : remplacé par « après un premier traitement ». | Cancer du poumon non à petites cellules : remplacé par « cancer du poumon avancé ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : titre de 15 mots : 12 au plus ; mot à connaître « Génome » absent du texte de la fiche : choisis un mot du texte ou aucun
+- _Alertes automatiques_ : sigles ou noms codés inconnus du public : ESMO, G12C, KRAS → écris ce que c'est (ou supprime le nom s'il n'aide pas)
 
 
 ---
 
-Coût total du test : 0.0448 $ · par fiche : 0.0041 $ · tokens moyens par fiche (rédaction + relecture) : entrée 5112, cache lu 11610, cache écrit 1766, sortie 6450
+Coût total du test : 0.0298 $ · par fiche : 0.0043 $ · tokens moyens par fiche (rédaction + relecture) : entrée 4990, cache lu 11239, cache écrit 2852, sortie 6587
