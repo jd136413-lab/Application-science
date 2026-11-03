@@ -1152,12 +1152,14 @@ class _EcranEvenementState extends State<EcranEvenement> {
                 // Sources, comme dans une avancée (planche 49 · B1).
                 BlocSources(source: e.sourceNom, lien: e.sourceUrl, autres: e.autresSources),
                 Padding(
-                  padding: const EdgeInsets.only(top: 6),
+                  padding: const EdgeInsets.only(top: 12),
                   child: Text(_majuscule(tr('la date peut changer (météo, retard)')),
-                      style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret, hauteur: 1.4)),
+                      textAlign: TextAlign.center,
+                      style: police(policeTexte, taille: 12, couleur: p.texteDiscret, hauteur: 1.4)),
                 ),
                 const SizedBox(height: 4),
-                Text(tr(texteMentionResume), style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
+                Text(tr(texteMentionResume),
+                    textAlign: TextAlign.center, style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
               ]),
             ),
           ]),
