@@ -52,7 +52,10 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 - Noms communs en minuscule au milieu d'une phrase (« les nucléobases », jamais « les Nucléobases »), même si c'est un mot à connaître.
 - Ne parle jamais de la publication ni de l'article (« publié dans… », « selon la revue… », « l'article ne précise pas… ») : parle des chercheurs et de ce qu'ils ont fait. Ne nomme ni le média ni la revue.
 - Formules creuses interdites : « ouvre la voie », « ouvre de nouvelles perspectives », « pourrait révolutionner », « avancée majeure », « pas important », « change la donne », « nouvelle ère », « reste à confirmer » sans dire quoi.
-- Ne répète pas le même chiffre ou la même idée dans deux paragraphes.
+- Ne répète pas le même chiffre ou la même idée dans deux paragraphes. Au plus 3 chiffres dans « decouverte » : garde les plus parlants.
+- Pas de date relative (« mardi », « hier », « cette semaine », « récemment ») : la fiche sera lue plus tard. Donne la date (« le 3 novembre ») ou rien.
+- Un français naturel, comme dans un bon journal : relis chaque phrase et corrige les tournures maladroites ou les traductions mot à mot de l'anglais.
+- RESPECTE les longueurs : « avant » 2 phrases au plus, « decouverte » 3 phrases au plus, « apres » 2 phrases au plus. Si c'est trop long, coupe le détail le moins utile.
 
 # Le titre
 
@@ -64,7 +67,9 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 
 # Les trois paragraphes
 
-- "avant" (1 à 2 phrases, 45 mots au plus) : le contexte et le PROBLÈME qui restait. Ce qu'on savait déjà ou ce qui existait, puis pourquoi ce n'était pas suffisant. Pas d'affirmation absolue non soutenue par l'article (voir exactitude).
+- "avant" (1 à 2 phrases, 45 mots au plus) : le contexte et le PROBLÈME qui restait, vu du domaine (pas les intentions d'une entreprise). Ce qu'on savait déjà ou ce qui existait, puis ce qui manquait.
+  · Si l'article cite des résultats ou des produits antérieurs (autre étude, autre mission, autre météorite, modèle précédent), l'« avant » les mentionne en quelques mots pour situer EXACTEMENT ce qui est nouveau. Exemple : « Des météorites et des échantillons de l'astéroïde Bennu en contenaient déjà ; dans Ryugu, on n'en avait trouvé qu'une sur cinq. » Ne jamais écrire « on cherchait encore à savoir si… » quand l'article montre que c'était déjà connu ailleurs.
+  · Pas d'affirmation absolue non soutenue par l'article (voir exactitude).
 - "decouverte" (2 à 3 phrases, 85 mots au plus) — « La découverte » (Sciences) ou « La nouveauté » (Technologies) : QUI (« des chercheurs de l'université de Kyoto », « Samsung »), QUOI exactement, COMMENT, avec les 2 ou 3 chiffres clés. La 1re phrase se suffit à elle-même (elle sert aux notifications). Ton factuel, jamais publicitaire.
 - "apres" (1 à 2 phrases, 50 mots au plus) — titre « Et après ? » déjà affiché, donc ne commence ni par « Et après » ni par une question. Il dit (a) CE QUE ÇA PEUT CHANGER concrètement et pour qui, et (b) la LIMITE principale ou la prochaine étape (petit essai, chez l'animal, prototype, prix, date de sortie, résultat pas encore relu). Une liste de prix seule n'est PAS un « Et après ».
 
@@ -88,6 +93,8 @@ On te donne l'article source (seule base de faits autorisée), le fil (Sciences 
 - "jargon_non_explique" : liste des mots techniques ni remplacés, ni expliqués, ni en mot à connaître (doit être vide)
 - "apres_dit_ce_que_ca_change_et_la_limite" : (doit être true)
 - "chiffres_coherents" : (doit être true)
+- "longueurs_respectees" : avant ≤ 2 phrases, decouverte ≤ 3, apres ≤ 2, titre ≤ 12 mots (doit être true)
+- "avant_situe_les_resultats_anterieurs" : si l'article cite des résultats ou produits antérieurs, l'« avant » les mentionne-t-il ? (true s'il n'y en a pas)
 - "note" : ta note sincère de la fiche de 1 à 10, avec la grille : 10 = parfaite pour le public ; 8 = très bonne, un détail ; 6 = correcte mais un vrai défaut ; 4 = défaut grave (erreur, titre vide ou jargon). Si ta note est sous 8, corrige d'abord la fiche.
 
 # Exemples
@@ -137,11 +144,14 @@ def schema(fil: str) -> dict:
                     "jargon_non_explique": {"type": "array", "items": {"type": "string"}},
                     "apres_dit_ce_que_ca_change_et_la_limite": {"type": "boolean"},
                     "chiffres_coherents": {"type": "boolean"},
+                    "longueurs_respectees": {"type": "boolean"},
+                    "avant_situe_les_resultats_anterieurs": {"type": "boolean"},
                     "note": {"type": "integer"},
                 },
                 "required": ["faits_tous_dans_article", "affirmation_absolue_non_soutenue", "titre_concret",
                              "jargon_non_explique", "apres_dit_ce_que_ca_change_et_la_limite",
-                             "chiffres_coherents", "note"],
+                             "chiffres_coherents", "longueurs_respectees",
+                             "avant_situe_les_resultats_anterieurs", "note"],
                 "additionalProperties": False,
             },
         },
