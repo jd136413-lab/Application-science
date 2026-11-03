@@ -1,4 +1,4 @@
-# Test de la rédaction — 03/11/2026 18:59 UTC
+# Test de la rédaction — 03/11/2026 19:08 UTC
 
 Modèles : haiku · 12 fiches
 
@@ -20,29 +20,29 @@ Fil : tech · 2★ · source : ESA · page lue : oui (4175 caractères) · https
 
 **Final après relecture (haiku)**
 
-- **Titre** : Satellites : un petit satellite grec établit un lien laser avec le sol
-- **Avant** : Les satellites échangent surtout leurs données par ondes radio. Les liaisons laser peuvent transporter davantage de données, mais viser un petit satellite qui file à plusieurs kilomètres par seconde reste difficile.
-- **Découverte** : Des chercheurs de l'université d'Athènes ont relié leur petit satellite ERMIS-3 à une station au sol en Grèce par un faisceau laser. Ce lien a été établi quelques semaines après la mise en service du satellite, lancé le 30 mars 2026, avec des terminaux de l'entreprise lituanienne Astrolight. Il a permis de tester la visée, l'accrochage et le suivi du faisceau, un objectif majeur de la mission.
-- **Et après** : Ces liaisons pourraient aider à transmettre les images très détaillées des satellites d'observation de la Terre, dont le volume de données augmente. Mais les nuages peuvent couper complètement le lien, et la turbulence de l'air peut dégrader le signal.
+- **Titre** : Satellites : un petit satellite grec relie la Terre par un faisceau laser
+- **Avant** : Les liaisons radio classiques transmettent les données mais avec un débit limité. Les liaisons laser peuvent aller plus vite, mais tenir le faisceau pointé sur une station au sol est difficile.
+- **Découverte** : ERMIS-3, un petit satellite développé à l'université d'Athènes, a établi une liaison laser avec une station au sol en Grèce. Le lien s'est fait peu de semaines après la mise en service du satellite. C'est la première liaison laser de la Grèce avec un satellite qui tourne près de la Terre.
+- **Et après** : Ces liaisons laser pourraient aider à transférer les très nombreuses images haute résolution prises par les satellites d'observation de la Terre. Mais les nuages peuvent couper complètement la liaison et la turbulence de l'air peut dégrader le signal.
 - **Mots** : (aucun)
 - **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : aucun
+- _Défauts trouvés par le relecteur_ : [forme] « Selon l'université Aristote de Thessalonique, c'est la première liaison optique de la Grèce avec un satellite en orbite basse. » → La phrase attribue l'information à une institution au lieu de donner directement le fait. | [jargon] « satellite en orbite basse » → Terme technique non expliqué ni remplacé par des mots simples. Il faut le reformuler en langage courant, sans inventer d'altitude. | [apres] « la suite reste à voir dans le programme en orbite. » → Le paragraphe ne donne pas la limite principale de la technique. L'article indique que les nuages peuvent bloquer la liaison et que la turbulence dégrade le signal, ce qui manque ici.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Satellites : un petit satellite grec établit un lien laser avec le sol
-- **Avant** : Les satellites échangent surtout leurs données par ondes radio. Les liaisons laser peuvent transporter davantage de données, mais viser un petit satellite qui file à plusieurs kilomètres par seconde reste difficile.
-- **Découverte** : Des chercheurs de l'université d'Athènes ont relié leur petit satellite ERMIS-3 à une station au sol en Grèce par un faisceau laser. Ce lien a été établi quelques semaines après la mise en service du satellite, lancé le 30 mars 2026, avec des terminaux de l'entreprise lituanienne Astrolight. Il a permis de tester la visée, l'accrochage et le suivi du faisceau, un objectif majeur de la mission.
-- **Et après** : Ces liaisons pourraient aider à transmettre les images très détaillées des satellites d'observation de la Terre, dont le volume de données augmente. Mais les nuages peuvent couper complètement le lien, et la turbulence de l'air peut dégrader le signal.
+- **Titre** : Satellites : un petit satellite grec relie la Terre par un faisceau laser
+- **Avant** : Les liaisons radio classiques transmettent les données mais avec un débit limité. Les liaisons laser peuvent aller plus vite, mais tenir le faisceau pointé sur une station au sol est difficile.
+- **Découverte** : ERMIS-3, un petit satellite développé à l'université d'Athènes, a établi une liaison laser avec une station au sol en Grèce. Le lien s'est fait peu de semaines après la mise en service du satellite. Selon l'université Aristote de Thessalonique, c'est la première liaison optique de la Grèce avec un satellite en orbite basse.
+- **Et après** : Ces liaisons laser pourraient aider à transférer les très nombreuses images haute résolution prises par les satellites d'observation de la Terre. Le test sert à valider la technique sur de petits satellites ; la suite reste à voir dans le programme en orbite.
 - **Mots** : (aucun)
 - **Type** : demonstration
 
-- _Faits relevés_ : ERMIS-3 est un CubeSat 8U (petit satellite) développé par l'université nationale et capodistrienne d'Athènes. | Il a établi une liaison laser avec la station au sol HolOGS-1, en Grèce, développée par l'université Aristote de Thessalonique. | Les terminaux optiques ATLAS-1 viennent de l'entreprise lituanienne Astrolight ; l'ESA a soutenu la démonstration. | Le lien a été établi quelques semaines après la mise en service du satellite, lancé le 30 mars 2026 avec ERMIS-1 et ERMIS-2. | Le faisceau doit viser précisément une cible qui file à plusieurs kilomètres par seconde. | Les nuages peuvent couper complètement le lien, et la turbulence de l'air peut dégrader le signal. | Un des objectifs principaux de la mission, la visée, l'accrochage et le suivi, a été atteint.
-- _Nouveauté selon l'article_ : Selon l'ESA, c'est la première liaison optique de la Grèce avec un satellite en orbite basse ; les liaisons laser par satellite existaient déjà ailleurs, et l'article ne précise pas s'il s'agit d'une liaison laser inédite pour un petit satellite.
-- _Jargon_ : CubeSat remplacé par « petit satellite ». | PAT (pointage, acquisition et suivi) expliqué par « visée, accrochage et suivi du faisceau ». | Liaison optique remplacée par « liaison laser ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : aucune
+- _Faits relevés_ : ERMIS-3, un petit satellite de type CubeSat 8U, a été développé par l'université nationale et capodistrienne d'Athènes. | Il a établi une liaison optique avec une station au sol, HolOGS-1, en Grèce, développée par l'université Aristote de Thessalonique. | La liaison a été établie peu de semaines après la mise mise en service du satellite. | Les terminaux optiques, fabriqués par la société lituanienne Astrolight, utilisent des faisceaux laser étroits pour transmettre les données. | Le satellite se déplace à plusieurs kilomètres par seconde ; les deux terminaux doivent se viser et se suivre pendant une fenêtre de communication limitée. | Les nuages peuvent bloquer complètement la liaison, et la turbulence atmosphérique peut dégrader le signal. | ERMIS-3 a été lancé le 30 mars 2026 avec ERMIS-1 et ERMIS-2, dans un programme de démonstration en orbite. | L'ESA a apporté un soutien technique, notamment des tests environnementaux et un alignement optique au centre ESTEC, aux Pays-Bas.
+- _Nouveauté selon l'article_ : Selon l'article, c'est la première liaison optique de la Grèce avec un satellite en orbite basse, et la première fois qu'un CubeSat 8U de l'université d'Athènes établit une liaison laser directe avec la Terre.
+- _Jargon_ : Liaison optique (laser) : remplacé par « liaison par faisceau laser ». | Orbite basse : expliqué en quelques mots, « à quelques centaines de kilomètres d'altitude » n'est pas dans l'article, donc remplacé par « un satellite en orbite basse ». | CubeSat : expliqué en quelques mots, « un petit satellite de la taille d'une boîte »; l'article ne donne pas de dimension, donc remplacé par « petit satellite ».
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 7}
+- _Alertes automatiques_ : note du rédacteur : 7/10
 
 
 ---
@@ -62,27 +62,27 @@ Fil : science · 1★ · source : Communications Physics · page lue : oui (2974
 
 **Final après relecture (haiku)**
 
-- **Titre** : Supraconducteurs : un calcul explique comment les électrons s'associent en paires sans perte
-- **Avant** : Certains matériaux deviennent supraconducteurs, c'est-à-dire sans résistance, à très basse température. Le nickelate La3Ni2O7 le devient vers 80 K, mais seulement sous très forte pression, et l'origine de ce phénomène restait débattue.
-- **Découverte** : Une équipe japonaise a simulé sur ordinateur un modèle à deux couches de ce matériau. Selon ce calcul, les électrons s'associent surtout parce que leurs niveaux d'énergie se séparent en deux. Cette association se répartit ensuite sur une seconde famille d'électrons, qui a pourtant une tendance propre faible.
-- **Et après** : Le résultat réconcilie des explications théoriques rivales, mais il repose sur un calcul théorique et non sur une mesure directe. Le matériau ne devient supraconducteur que sous très forte pression, ce qui limite pour l'instant ses usages.
-- **Mots** : **Nickelate** → Composé chimique associant du nickel et de l'oxygène, dont la structure en couches peut conduire l'électricité sans perte.
+- **Titre** : Supraconducteurs : un calcul explique pourquoi un matériau au nickel conduit sans perte
+- **Avant** : Certains matériaux conduisent l'électricité sans perte, mais le mécanisme de ce matériau au nickel restait discuté. Un scénario était largement proposé, sans que les rôles précis des électrons soient tranchés.
+- **Découverte** : Des chercheurs de l'université de Tokyo et d'autres institutions japonaises ont fait un calcul numérique sur un modèle à deux couches de ce matériau. Ils montrent que la tendance principale vient d'un écart entre deux niveaux d'électrons du nickel. Un mélange entre niveaux transmet ensuite l'effet à un deuxième canal.
+- **Et après** : Ce calcul rapproche des théories jusque-là opposées et aide à comprendre les supraconducteurs à plusieurs couches. C'est un travail théorique fondé sur un modèle simplifié à deux couches.
+- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans aucune perte, en général seulement lorsqu'il est refroidi très fortement ou soumis à une pression extrême.
 - **Type** : simulation
 
-- _Défauts trouvés par le relecteur_ : [jargon] « les niveaux d'une même orbitale se séparent en deux » → Le mot « orbitale » n'est ni remplacé par des mots simples, ni expliqué, ni donné en mot à connaître. | [jargon] « Cette association se répartit ensuite sur une seconde orbitale » → Le mot « orbitale » est répété sans explication. Il faut le remplacer par des mots simples. | [non_soutenu] « mais c'est un calcul qui doit encore être vérifié en laboratoire » → L'article ne dit pas qu'une vérification en laboratoire est nécessaire. Il dit seulement que le résultat est théorique, obtenu par simulation. | [mot] « Supraconducteur » → Ce mot est déjà expliqué dans le paragraphe « avant » (sans résistance, à très basse température). Il ne doit pas être un mot à connaître.
+- _Défauts trouvés par le relecteur_ : [jargon] « le mécanisme de ce nickelate restait discuté » → Le mot « nickelate » est un terme de chimie non expliqué et non remplacé par des mots simples. | [non_soutenu] « C'est un travail théorique : il doit être confirmé par des mesures en laboratoire. » → L'article ne dit pas qu'une confirmation expérimentale est nécessaire ; il indique seulement qu'il s'agit d'un calcul sur un modèle.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Supraconducteurs : un calcul explique comment les électrons s'associent en paires sans perte
-- **Avant** : Certains matériaux deviennent supraconducteurs, c'est-à-dire sans résistance, à très basse température. Le nickelate La3Ni2O7 le devient vers 80 K, mais seulement sous très forte pression, et l'origine de ce phénomène restait débattue.
-- **Découverte** : Une équipe japonaise a simulé sur ordinateur un modèle à deux couches de ce matériau. Selon ce calcul, les électrons s'associent surtout parce que les niveaux d'une même orbitale se séparent en deux. Cette association se répartit ensuite sur une seconde orbitale, qui a pourtant une tendance propre faible.
-- **Et après** : Le résultat réconcilie des explications théoriques rivales, mais c'est un calcul qui doit encore être vérifié en laboratoire. Le matériau ne devient supraconducteur que sous très forte pression, ce qui limite pour l'instant ses usages.
-- **Mots** : **Supraconducteur** → Matériau qui laisse passer l'électricité sans aucune résistance, donc sans perte d'énergie. Ce phénomène n'apparaît en général qu'à très basse température.
+- **Titre** : Supraconducteurs : un calcul explique pourquoi un matériau au nickel conduit sans perte
+- **Avant** : Certains matériaux conduisent l'électricité sans perte, mais le mécanisme de ce nickelate restait discuté. Un scénario était largement proposé, sans que les rôles précis des électrons soient tranchés.
+- **Découverte** : Des chercheurs de l'université de Tokyo et d'autres institutions japonaises ont fait un calcul numérique sur un modèle à deux couches de ce matériau. Ils montrent que la tendance principale vient d'un écart entre deux niveaux d'électrons du nickel. Un mélange entre niveaux transmet ensuite l'effet à un deuxième canal.
+- **Et après** : Ce calcul rapproche des théories jusque-là opposées et aide à comprendre les supraconducteurs à plusieurs couches. C'est un travail théorique : il doit être confirmé par des mesures en laboratoire.
+- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans aucune perte, en général seulement lorsqu'il est refroidi très fortement ou soumis à une pression extrême.
 - **Type** : simulation
 
-- _Faits relevés_ : Le nickelate La3Ni2O7 devient supraconducteur sous très forte pression, avec une température de transition proche de 80 K (environ -193 °C). | L'origine de ce phénomène, c'est-à-dire les électrons responsables de l'appariement, restait non résolue. | Une symétrie appelée s± était largement proposée par d'autres travaux théoriques. | Les auteurs ont étudié un modèle à deux couches et deux orbitales par un calcul numérique sur ordinateur. | La principale tendance à l'appariement vient de la séparation des niveaux de l'orbitale 3dz2 du nickel. | L'hybridation avec l'orbitale dx2-y2 redistribue les corrélations supraconductrices, alors que cette orbitale a une tendance propre faible. | Les deux canaux présentent des corrélations à longue distance comparables. | L'état s± reste stable quand la forme de la surface de Fermi change.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il propose une hiérarchie entre la cause de l'appariement et les corrélations qui en résultent, là où la symétrie s± était seulement proposée.
-- _Jargon_ : Modèle de Hubbard : remplacé par « modèle théorique ». | Monte Carlo variationnel : remplacé par « calcul sur ordinateur ». | Symétrie s± : remplacée par « une organisation proposée par d'autres travaux théoriques ». | Orbitales : expliqué en quelques mots (zones où se trouvent les électrons autour du noyau).
+- _Faits relevés_ : Le matériau étudié est La3Ni2O7, un composé à base de nickel qui devient supraconducteur sous très haute pression, jusqu'à une température proche de -193 °C. | Les chercheurs ont mené une étude théorique : un calcul numérique sur un modèle à deux couches, sans expérience sur un échantillon. | La cause de la supraconductivité de ce matériau restait débattue ; un scénario appelé s± était largement proposé. | Le calcul montre une structure en deux étages : la tendance principale vient de l'écart entre deux combinaisons des orbitales 3d z² du nickel. | L'orbitale d x²-y² n'a qu'une faible tendance propre à l'appariement, mais l'hybridation redistribue vers elle des corrélations supraconductrices. | Cela explique pourquoi les deux canaux présentent des corrélations à longue portée comparables. | L'état s± obtenu reste robuste quand la forme des surfaces de Fermi change. | Les auteurs disent que leurs résultats concilient des scénarios théoriques concurrents ; ils ne rapportent pas de mesure expérimentale nouvelle.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il réconcilie des scénarios théoriques concurrents et propose une explication unifiée de l'appariement dans ce matériau, qui était encore débattue.
+- _Jargon_ : Supraconductivité : remplacé par « conduire l'électricité sans perte ». | Orbitales du nickel : remplacé par « des niveaux d'électrons du nickel ». | Scénario s± : expliqué en quelques mots comme une hypothèse sur la manière dont les électrons s'associent par paires. | Hybridation : remplacé par « mélange entre niveaux ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
@@ -104,27 +104,27 @@ Fil : science · 2★ · source : PLOS Pathogens · page lue : oui (6000 caract�
 
 **Final après relecture (haiku)**
 
-- **Titre** : Paludisme : trois génomes complets reconstruits à partir du sang de malades
-- **Avant** : L'espèce la plus meurtrière du paludisme est bien étudiée. Les deux autres, Plasmodium ovale et Plasmodium malariae, restaient mal décrites : elles se cultivent mal en laboratoire et leurs prélèvements contiennent très peu de parasites.
-- **Découverte** : Des chercheurs ont lu l'ADN complet de trois espèces de parasites du paludisme, directement dans le sang de malades, notamment au Mali. Ils ont utilisé des techniques de lecture capables de travailler avec très peu de parasites. Les extrémités des chromosomes, ces longs filaments d'ADN, sont désormais lisibles.
-- **Et après** : Ces génomes de référence pourraient aider à comprendre comment ces espèces persistent dans le corps, se transmettent et échappent au système immunitaire. Ils donnent une base pour mieux intégrer ces espèces dans les efforts d'élimination du paludisme, même si leur rôle exact reste à vérifier.
-- **Mots** : **Génome** → Ensemble de l'information génétique d'un être vivant, codée dans son ADN. Il sert de carte pour comprendre le fonctionnement d'un organisme.
+- **Titre** : Paludisme : le génome complet de trois parasites lu directement dans le sang
+- **Avant** : Le paludisme, transmis par les moustiques, tue surtout à cause d'un parasite très étudié. Deux autres espèces, plus discrètes mais souvent chroniques, restaient mal connues faute de données génétiques complètes.
+- **Découverte** : Des chercheurs ont lu l'ADN complet de trois espèces de parasites, prélevées directement dans le sang de personnes infectées au Mali. Ils ont obtenu des génomes à l'échelle des chromosomes, y compris des zones situées à l'extrémité des chromosomes, jusqu'ici difficiles à lire. Ces zones contiennent des familles de gènes qui pourraient jouer dans l'interaction entre le parasite et son hôte.
+- **Et après** : Ces références pourraient aider à mieux diagnostiquer ces espèces et à chercher de nouvelles cibles de traitement. Ce sont des outils de base : elles ne testent encore aucun traitement ni aucun diagnostic.
+- **Mots** : **Génome** → Ensemble complet de l'ADN d'un organisme, c'est-à-dire la liste de toutes ses instructions génétiques, rangées chromosome par chromosome.
 - **Type** : laboratoire
 
-- _Défauts trouvés par le relecteur_ : aucun
+- _Défauts trouvés par le relecteur_ : [forme] « Selon les auteurs, ces références pourraient aider à mieux diagnostiquer ces espèces et à chercher de nouvelles cibles de traitement. Ce sont des outils de base : l'étude ne teste ni traitement ni méthode de diagnostic. » → Le paragraphe « Et après » parle de l'étude et des auteurs au lieu des faits. Les bénéfices possibles sont bien dans l'article, mais la formulation doit être reprise sans mention de la publication.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Paludisme : trois génomes complets reconstruits à partir du sang de malades
-- **Avant** : L'espèce la plus meurtrière du paludisme est bien étudiée. Les deux autres, Plasmodium ovale et Plasmodium malariae, restaient mal décrites : elles se cultivent mal en laboratoire et leurs prélèvements contiennent très peu de parasites.
-- **Découverte** : Des chercheurs ont lu l'ADN complet de trois espèces de parasites du paludisme, directement dans le sang de malades, notamment au Mali. Ils ont utilisé des techniques de lecture capables de travailler avec très peu de parasites. Les extrémités des chromosomes, ces longs filaments d'ADN, sont désormais lisibles.
-- **Et après** : Ces génomes de référence pourraient aider à comprendre comment ces espèces persistent dans le corps, se transmettent et échappent au système immunitaire. Ils donnent une base pour mieux intégrer ces espèces dans les efforts d'élimination du paludisme, même si leur rôle exact reste à vérifier.
-- **Mots** : **Génome** → Ensemble de l'information génétique d'un être vivant, codée dans son ADN. Il sert de carte pour comprendre le fonctionnement d'un organisme.
+- **Titre** : Paludisme : le génome complet de trois parasites lu directement dans le sang
+- **Avant** : Le paludisme, transmis par les moustiques, tue surtout à cause d'un parasite très étudié. Deux autres espèces, plus discrètes mais souvent chroniques, restaient mal connues faute de données génétiques complètes.
+- **Découverte** : Des chercheurs ont lu l'ADN complet de trois espèces de parasites, prélevées directement dans le sang de personnes infectées au Mali. Ils ont obtenu des génomes à l'échelle des chromosomes, y compris des zones situées à l'extrémité des chromosomes, jusqu'ici difficiles à lire. Ces zones contiennent des familles de gènes qui pourraient jouer dans l'interaction entre le parasite et son hôte.
+- **Et après** : Selon les auteurs, ces références pourraient aider à mieux diagnostiquer ces espèces et à chercher de nouvelles cibles de traitement. Ce sont des outils de base : l'étude ne teste ni traitement ni méthode de diagnostic.
+- **Mots** : **Génome** → Ensemble complet de l'ADN d'un organisme, c'est-à-dire la liste de toutes ses instructions génétiques, rangées chromosome par chromosome.
 - **Type** : laboratoire
 
-- _Faits relevés_ : Des chercheurs ont obtenu des génomes de référence complets, chromosome par chromosome, pour trois espèces de Plasmodium, les parasites du paludisme : P. ovale wallikeri, P. malariae et P. falciparum. | Les échantillons viennent directement de sang de personnes infectées, sans culture en laboratoire. | La méthode de lecture de l'ADN fonctionne avec très peu de parasites dans le prélèvement. | Les régions situées aux extrémités des chromosomes, jusque-là inaccessibles, sont désormais résolues. | Ces régions contiennent des familles de gènes élargies, probablement liées aux interactions entre le parasite et le corps humain. | P. falciparum cause la plupart des décès du paludisme, alors que P. ovale et P. malariae sont moins étudiées et provoquent souvent des infections plus légères mais chroniques. | Une partie des échantillons a été prélevée au Mali.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il fournit des génomes de haute qualité pour deux espèces peu étudiées, obtenus directement chez des malades, alors que leurs ressources génomiques restaient limitées.
-- _Jargon_ : génome : mot à connaître | chromosome : expliqué dans la découverte (« longs filaments d'ADN ») | subtélomérique : remplacé par « extrémités des chromosomes » | hôte : remplacé par « corps humain »
+- _Faits relevés_ : Des chercheurs ont lu l'ADN complet de trois espèces de parasites du paludisme. | Les espèces sont P. falciparum, P. ovale wallikeri et P. malariae. | Les échantillons ont été prélevés directement dans le sang de personnes infectées, au Mali. | Les génomes obtenus sont dits de qualité élevée, à l'échelle des chromosomes. | Pour P. ovale wallikeri et P. malariae, ces parasites ne se cultivent pas en laboratoire. | Les zones situées à l'extrémité des chromosomes étaient jusqu'ici difficiles à lire ; elles sont maintenant résolues. | Ces zones contiennent des familles de gènes possiblement liées aux interactions entre parasite et hôte. | P. falciparum est l'espèce la plus étudiée et cause la plupart des décès, selon l'article.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il dit que ces génomes résolvent des zones subtélomériques jusqu'ici inaccessibles, pour deux espèces peu étudiées.
+- _Jargon_ : génome : expliqué en quelques mots (ADN complet d'un organisme) | subtélomériques : remplacé par « zones situées à l'extrémité des chromosomes » | PacBio et Hi-C : omis, remplacés par « lecture de l'ADN directement dans le sang »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
@@ -146,28 +146,28 @@ Fil : science · 1★ · source : NASA JPL · page lue : oui (6000 caractères) 
 
 **Final après relecture (haiku)**
 
-- **Titre** : Espace : un robot mesure une poussière martienne assez fine pour les poumons
-- **Avant** : Sur la Lune, la poussière des missions Apollo avait rayé les visières et abîmé les joints des combinaisons. Sur Mars, les mesures précédentes ne distinguaient pas les particules plus petites que 3 micromètres environ.
-- **Découverte** : Le robot Perseverance de la NASA a mesuré, pendant 1 645 jours martiens, la poussière collée à des échantillons de matériaux de combinaison emportés à bord. Un instrument a repéré des particules fines, inférieures à 2,5 micromètres, et ultrafines, vers 100 nanomètres. Certaines sont assez petites pour pénétrer dans les poumons et passer dans le sang.
-- **Et après** : Ces mesures peuvent aider à mieux concevoir les combinaisons et les habitats, et à définir des méthodes de nettoyage pour les futures missions vers Mars. Elles pourraient aussi guider le choix des matériaux et des revêtements protecteurs des combinaisons.
+- **Titre** : Espace : des poussières de Mars assez fines pour atteindre les poumons
+- **Avant** : Sur la Lune, la poussière a abîmé les visières et les combinaisons des astronautes d'Apollo. Sur Mars, les mesures précédentes descendaient seulement à environ 3 micromètres (3 millièmes de millimètre), sans montrer les plus fines particules.
+- **Découverte** : Le rover Perseverance de la NASA a mesuré la poussière martienne sur des échantillons de matériaux de combinaisons spatiales placés à bord. Les particules fines, moins de 2,5 micromètres (environ 30 fois plus fines qu'un cheveu), et les ultrafines, d'environ 100 nanomètres (700 fois plus fines qu'un cheveu), restent collées même après des années de conduite et de forage.
+- **Et après** : Ces mesures peuvent aider à concevoir des combinaisons, des habitats et des procédures de nettoyage pour les futures missions humaines vers Mars. Il ne s'agit toutefois que de mesures sur quelques matériaux, et les conséquences pour la santé des astronautes restent à évaluer.
 - **Mots** : (aucun)
-- **Type** : observation
+- **Type** : laboratoire
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « Ces résultats restent à vérifier dans des conditions réelles avec des astronautes. » → L'article ne dit pas que les résultats doivent être vérifiés avec des astronautes. Il dit seulement que les mesures peuvent aider à améliorer les conceptions avant l'arrivée des premiers astronautes américains.
+- _Défauts trouvés par le relecteur_ : [titre] « Espace : le rover Perseverance mesure une poussière martienne assez fine pour entrer dans les poumons » → Le titre dépasse 12 mots et contient le nom de mission « Perseverance », inconnu du grand public. | [jargon] « à environ 3 micromètres » → L'unité micromètre n'est pas convertie en repère simple, alors que l'article donne une comparaison avec un cheveu. | [jargon] « moins de 2,5 micromètres et les ultrafines d'environ 100 nanomètres » → Les unités micromètre et nanomètre ne sont pas converties en repère simple dans la décou­verte. | [forme] « Les résultats seront publiés dans les Proceedings of the National Academy of Sciences. » → La fiche mentionne la publication et la revue, ce qui est interdit.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Espace : un robot mesure une poussière martienne assez fine pour les poumons
-- **Avant** : Sur la Lune, la poussière des missions Apollo avait rayé les visières et abîmé les joints des combinaisons. Sur Mars, les mesures précédentes ne distinguaient pas les particules plus petites que 3 micromètres environ.
-- **Découverte** : Le robot Perseverance de la NASA a mesuré, pendant 1 645 jours martiens, la poussière collée à des échantillons de matériaux de combinaison emportés à bord. Un instrument a repéré des particules fines, inférieures à 2,5 micromètres, et ultrafines, vers 100 nanomètres. Certaines sont assez petites pour pénétrer dans les poumons et passer dans le sang.
-- **Et après** : Ces mesures peuvent aider à mieux concevoir les combinaisons et les habitats, et à définir des méthodes de nettoyage pour les futures missions vers Mars. Ces résultats restent à vérifier dans des conditions réelles avec des astronautes.
+- **Titre** : Espace : le rover Perseverance mesure une poussière martienne assez fine pour entrer dans les poumons
+- **Avant** : Sur la Lune, la poussière a abîmé les visières et les combinaisons des astronautes d'Apollo. Sur Mars, les mesures précédentes descendaient seulement à environ 3 micromètres, sans montrer les plus fines particules.
+- **Découverte** : Le rover Perseverance de la NASA a mesuré la poussière martienne sur des échantillons de matériaux de combinaisons spatiales placés à bord. Les particules fines de moins de 2,5 micromètres et les ultrafines d'environ 100 nanomètres restent collées, même après des années de conduite et de forage. Les résultats seront publiés dans les Proceedings of the National Academy of Sciences.
+- **Et après** : Ces mesures peuvent aider à concevoir des combinaisons, des habitats et des procédures de nettoyage pour les futures missions humaines vers Mars. Il ne s'agit toutefois que de mesures sur quelques matériaux, et les conséquences pour la santé des astronautes restent à évaluer.
 - **Mots** : (aucun)
-- **Type** : observation
+- **Type** : laboratoire
 
-- _Faits relevés_ : Le robot Perseverance de la NASA a mesuré la poussière martienne pendant 1 645 jours martiens. | Les mesures portaient sur de la poussière collée à des échantillons de matériaux de combinaison spatiale emportés à bord. | Des particules fines, inférieures à 2,5 micromètres, ont été détectées. | Des particules ultrafines, vers 100 nanomètres, ont aussi été détectées. | Certaines particules sont assez petites pour pénétrer dans les poumons et passer dans le sang. | Les mesures précédentes sur Mars ne distinguaient pas les particules plus petites que 3 micromètres environ. | L'électricité statique semble déterminer quelles particules restent collées à quelle surface. | Les résultats peuvent guider le choix des matériaux, les nettoyages et les normes de santé pour les futures missions. | Les résultats seront publiés le 27 octobre ; l'article ne revendique pas de première. | Les grains martiens sont moins abrasifs que la poussière lunaire, qui avait rayé les visières d'Apollo.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il mesure des particules plus petites que celles que les mesures martiennes précédentes distinguaient, jusqu'à environ 100 nanomètres.
-- _Jargon_ : ultrafines : remplacé par « très fines » | micromètre : expliqué (un millième de millimètre, environ le tiers d'un cheveu) | instrument de mesure : remplacé par « un instrument »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Faits relevés_ : Le rover Perseverance de la NASA a mesuré des particules de poussière martienne accrochées à des échantillons de matériaux de combinaison spatiale, pendant 1 645 jours martiens. | Certaines particules sont assez fines pour pénétrer dans les poumons et passer dans le sang. | Les mesures ont été faites par l'instrument PIXL, sur des cibles d'étalonnage portées par le rover. | PIXL a détecté des particules fines de moins de 2,5 micromètres et des particules ultrafines d'environ 100 nanomètres, là où les mesures précédentes descendaient à environ 3 micromètres. | Les particules sur le Teflon de PIXL et le Vectran de SHERLOC faisaient en moyenne environ 2 micromètres. | L'électricité statique semble déterminer quelles tailles de poussière restent collées à quelle surface. | Les plus fines particules restent accrochées malgré des années de conduite et de forage. | La poussière martienne est moins abrasive que la poussière lunaire, car ses grains sont plus arrondis. | Les résultats seront publiés le 27 octobre dans les Proceedings of the National Academy of Sciences. | Les chercheurs citent des pistes pour réduire l'exposition : combinaisons et habitats conçus différemment, sas à deux compartiments, choix de matériaux et revêtements.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il dit que la présence de poussière ultrafine était prédite depuis longtemps et que PIXL a permis de la mesurer directement sur Mars.
+- _Jargon_ : Particules ultrafines → remplacé par « particules très fines d'environ 100 nanomètres, des milliers de fois plus fines qu'un cheveu » (expliqué). | Teflon et Vectran → remplacés par « deux matériaux des combinaisons spatiales ». | PIXL, SHERLOC → remplacés par « instruments du rover ».
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
@@ -188,27 +188,27 @@ Fil : tech · 1★ · source : MIT News · page lue : oui (6000 caractères) · 
 
 **Final après relecture (haiku)**
 
-- **Titre** : Élevage : des aiguilles en soie imperméables peuvent vacciner les poissons d'élevage
-- **Avant** : Les poissons d'élevage sont touchés par des maladies qui causent de lourdes pertes. Le vaccin le plus efficace se fait avec des aiguilles en métal, qui stressent les poissons et exposent les ouvriers à des piqûres.
-- **Découverte** : Des chercheurs du MIT et du ministère américain de l'Agriculture ont mis au point de minuscules aiguilles en soie de qualité alimentaire. Elles sont recouvertes d'une fine couche de shellac, une résine alimentaire qui les rend imperméables à l'eau. Leur pointe creuse porte le vaccin, puis elle pénètre légèrement la peau du poisson et s'y accroche avant de se décomposer.
-- **Et après** : Selon les chercheurs, cette méthode pourrait être plus sûre et plus précise que les aiguilles en métal, pour les poissons comme pour les ouvriers. Elle n'en est encore qu'au stade de prototype, et il faudra la tester davantage avant tout usage dans les fermes.
+- **Titre** : Élevage : des micro-aiguilles en soie conçues pour vacciner les poissons
+- **Avant** : Les poissons d'élevage se vaccinent surtout avec des aiguilles en métal, la méthode la plus efficace mais aussi la plus lourde. Elle impose d'endormir les poissons, de les sortir de l'eau et expose les ouvriers à des piqûres accidentelles.
+- **Découverte** : Des chercheurs du MIT et du ministère américain de l'Agriculture ont mis au point de minuscules aiguilles en soie, résistantes à l'eau et sans danger pour l'alimentation. Une fine couche de résine alimentaire les rend imperméables ; elles pénètrent légèrement la peau, restent accrochées, puis se décomposent. Les chercheurs ont montré qu'elles peuvent transporter plusieurs substances, dont des vaccins bactériens.
+- **Et après** : Les éleveurs disposeraient d'un outil plus précis, sans les contraintes des aiguilles en métal. Mais il reste à prouver qu'il protège vraiment les poissons en élevage : les chercheurs décrivent un système, pas une campagne de vaccination.
 - **Mots** : (aucun)
 - **Type** : prototype
 
-- _Défauts trouvés par le relecteur_ : [mot] « Shellac » → Le mot « shellac » est déjà expliqué dans le paragraphe « Découverte » (« une fine couche de shellac, une résine alimentaire qui les rend imperméables à l'eau »). Il n'a donc pas besoin d'un mot à connaître.
+- _Défauts trouvés par le relecteur_ : [jargon] « Une fine couche de shellac les rend imperméables » → Le mot « shellac » est un terme technique non expliqué. L'article parle d'une résine alimentaire (food-grade resin), ce qui permet de le remplacer par des mots simples.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Élevage : des aiguilles en soie imperméables peuvent vacciner les poissons d'élevage
-- **Avant** : Les poissons d'élevage sont touchés par des maladies qui causent de lourdes pertes. Le vaccin le plus efficace se fait avec des aiguilles en métal, qui stressent les poissons et exposent les ouvriers à des piqûres.
-- **Découverte** : Des chercheurs du MIT et du ministère américain de l'Agriculture ont mis au point de minuscules aiguilles en soie de qualité alimentaire. Elles sont recouvertes d'une fine couche de shellac, une résine alimentaire qui les rend imperméables à l'eau. Leur pointe creuse porte le vaccin, puis elle pénètre légèrement la peau du poisson et s'y accroche avant de se décomposer.
-- **Et après** : Selon les chercheurs, cette méthode pourrait être plus sûre et plus précise que les aiguilles en métal, pour les poissons comme pour les ouvriers. Elle n'en est encore qu'au stade de prototype, et il faudra la tester davantage avant tout usage dans les fermes.
-- **Mots** : **Shellac** → Résine de qualité alimentaire, utilisée comme vernis pour rendre une surface imperméable à l'eau.
+- **Titre** : Élevage : des micro-aiguilles en soie conçues pour vacciner les poissons
+- **Avant** : Les poissons d'élevage se vaccinent surtout avec des aiguilles en métal, la méthode la plus efficace mais aussi la plus lourde. Elle impose d'endormir les poissons, de les sortir de l'eau et expose les ouvriers à des piqûres accidentelles.
+- **Découverte** : Des chercheurs du MIT et du ministère américain de l'Agriculture ont mis au point de minuscules aiguilles en soie, résistantes à l'eau et sans danger pour l'alimentation. Une fine couche de shellac les rend imperméables ; elles pénètrent légèrement la peau, restent accrochées, puis se décomposent. Les chercheurs ont montré qu'elles peuvent transporter plusieurs substances, dont des vaccins bactériens.
+- **Et après** : Les éleveurs disposeraient d'un outil plus précis, sans les contraintes des aiguilles en métal. Mais il reste à prouver qu'il protège vraiment les poissons en élevage : les chercheurs décrivent un système, pas une campagne de vaccination.
+- **Mots** : (aucun)
 - **Type** : prototype
 
-- _Faits relevés_ : Les poissons d'élevage sont une source de nourriture importante dans le monde. | Les maladies causent de lourdes pertes en élevage de poissons. | Le moyen le plus efficace de vacciner les poissons utilise des aiguilles en métal. | Ces aiguilles obligent à endormir les poissons, à les sortir de l'eau et à les vacciner sur un tapis roulant. | Les chercheurs du MIT et du ministère américain de l'Agriculture ont conçu des micro-aiguilles en soie de qualité alimentaire. | Les aiguilles sont imperméables grâce à une fine couche de shellac, une résine de qualité alimentaire. | La pointe creuse peut transporter un vaccin, par exemple un vaccin bactérien. | Les aiguilles pénètrent légèrement la peau, restent accrochées, puis se décomposent.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : la vaccination par aiguilles métalliques existe déjà et reste la méthode la plus efficace aujourd'hui.
-- _Jargon_ : Aquaculture : remplacé par « élevage de poissons ». | Shellac : expliqué en quelques mots dans le texte et donné en mot à connaître.
+- _Faits relevés_ : Des chercheurs du MIT et du ministère américain de l'Agriculture ont mis au point de minuscules aiguilles en soie. | Ces aiguilles résistent à l'eau et sont faites de matériaux autorisés dans l'alimentation. | Une fine couche de shellac, une résine alimentaire, les rend imperméables. | Elles pénètrent légèrement la peau des poissons, restent accrochées, puis se décomposent. | Les chercheurs ont montré qu'elles peuvent transporter plusieurs substances, dont des vaccins bactériens. | Aujourd'hui, le vaccin le plus efficace pour les poissons passe par des aiguilles en métal, avec anesthésie et manipulation à la main.
+- _Nouveauté selon l'article_ : Des micro-aiguilles en soie, résistantes à l'eau et alimentaires, sont proposées comme alternative aux aiguilles en métal, qui restent aujourd'hui la méthode la plus efficace ; l'article ne revendique pas de première.
+- _Jargon_ : microneedles : remplacé par « micro-aiguilles » | aquaculture : remplacé par « élevage de poissons » | shellac : expliqué (une résine alimentaire) | food-grade : remplacé par « alimentaires »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
@@ -230,27 +230,27 @@ Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (181 caractèr
 
 **Final après relecture (haiku)**
 
-- **Titre** : Internet : une fibre optique envoie 128 000 milliards de bits par seconde
-- **Avant** : Les grands réseaux d'Internet doivent transporter toujours plus de données tout en répondant plus vite. Le délai de réponse, appelé latence, reste un point à améliorer.
-- **Découverte** : Des chercheurs de China Telecom, de YOFC et de ZTE ont envoyé 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens. Le test a porté sur une seule fibre à cœur creux de 1 007 km. En additionnant toutes les couleurs de lumière, le total atteint 128 000 milliards de bits par seconde.
-- **Et après** : Cela pourrait servir à construire des réseaux plus rapides, avec un délai de réponse plus court. Il s'agit toutefois d'un test sur une seule fibre, pas encore d'un réseau en service.
-- **Mots** : **Fibre à cœur creux** → Fibre optique dont le centre est vide au lieu d'être en verre plein, ce qui modifie la manière dont la lumière se propage.
+- **Titre** : Internet : une fibre creuse envoie 128 000 milliards de bits par seconde
+- **Avant** : Les grandes liaisons d'Internet doivent transporter des volumes de données toujours plus importants, avec des délais aussi courts que possible. Il restait à vérifier qu'une fibre à cœur creux pouvait porter un débit élevé sur de longues distances.
+- **Découverte** : Le China Telecom Research Institute, avec les entreprises YOFC et ZTE, a testé une liaison sur 1 007,48 km de fibre à cœur creux, un fil dont le centre est rempli d'air et non de verre. Le signal circule dans les deux sens à 800 milliards de bits par seconde sur chaque canal lumineux, une couleur de lumière. Au total, cela fait 128 000 milliards de bits par seconde.
+- **Et après** : Ce type de fibre pourrait servir aux grandes artères d'Internet, où les données doivent arriver vite. C'est une étape vers des liaisons à faible délai.
+- **Mots** : (aucun)
 - **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : [comparaison] « 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens. Le test a porté sur une seule fibre à cœur creux de 1 007 km. Le total atteint 128 000 milliards de bits par seconde. » → Les deux chiffres (800 Gb/s par couleur et 128 000 milliards de bits par seconde au total) portent sur la même chose, mais le lien entre eux n'est pas expliqué. L'article indique « per wavelength » puis « in total » : le total additionne toutes les couleurs de lumière.
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « C'est un essai : aucune date ni déploiement commercial n'est annoncé. » → L'article ne dit rien sur l'absence de date ni de déploiement commercial. Cette affirmation n'est donc pas dans la source.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Internet : une fibre optique envoie 128 000 milliards de bits par seconde
-- **Avant** : Les grands réseaux d'Internet doivent transporter toujours plus de données tout en répondant plus vite. Le délai de réponse, appelé latence, reste un point à améliorer.
-- **Découverte** : Des chercheurs de China Telecom, de YOFC et de ZTE ont envoyé 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens. Le test a porté sur une seule fibre à cœur creux de 1 007 km. Le total atteint 128 000 milliards de bits par seconde.
-- **Et après** : Cela pourrait servir à construire des réseaux plus rapides, avec un délai de réponse plus court. Il s'agit toutefois d'un test sur une seule fibre, pas encore d'un réseau en service.
-- **Mots** : **Fibre à cœur creux** → Fibre optique dont le centre est vide au lieu d'être en verre plein, ce qui modifie la manière dont la lumière se propage.
+- **Titre** : Internet : une fibre creuse envoie 128 000 milliards de bits par seconde
+- **Avant** : Les grandes liaisons d'Internet doivent transporter des volumes de données toujours plus importants, avec des délais aussi courts que possible. Il restait à vérifier qu'une fibre à cœur creux pouvait porter un débit élevé sur de longues distances.
+- **Découverte** : Le China Telecom Research Institute, avec les entreprises YOFC et ZTE, a testé une liaison sur 1 007,48 km de fibre à cœur creux, un fil dont le centre est rempli d'air et non de verre. Le signal circule dans les deux sens à 800 milliards de bits par seconde sur chaque canal lumineux, une couleur de lumière. Au total, cela fait 128 000 milliards de bits par seconde.
+- **Et après** : Ce type de fibre pourrait servir aux grandes artères d'Internet, où les données doivent arriver vite. C'est un essai : aucune date ni déploiement commercial n'est annoncé.
+- **Mots** : (aucun)
 - **Type** : demonstration
 
-- _Faits relevés_ : Des équipes de China Telecom Research Institute, YOFC et ZTE ont fait passer des données sur une fibre optique à cœur creux. | La fibre mesure 1 007,48 km, soit environ 1 007 km. | Chaque couleur de lumière transporte 800 gigabits par seconde, dans les deux sens. | Le total atteint 128 térabits par seconde, soit 128 000 milliards de bits par seconde. | L'essai vise des grands réseaux à faible latence, c'est-à-dire à délai de réponse court. | Il s'agit d'une démonstration sur une seule fibre, et non d'un réseau déjà en service.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il présente un essai réussi sur une fibre à cœur creux de plus de 1 000 km.
-- _Jargon_ : fibre à cœur creux : mot à connaître, expliqué dans la liste des mots | latence : remplacé par « délai de réponse » | longueur d'onde : remplacé par « couleur de lumière » | backbone : remplacé par « grands réseaux »
+- _Faits relevés_ : Trois acteurs chinois ont mené l'essai : le China Telecom Research Institute, l'entreprise YOFC et l'entreprise ZTE. | La liaison test utilise une fibre à cœur creux longue de 1 007,48 km. | Les données sont envoyées dans les deux sens à 800 Gb/s par canal lumineux. | Au total, le débit atteint 128 Tb/s, soit 128 000 milliards de bits par seconde. | L'essai est présenté comme une étape vers des grandes liaisons Internet à faible délai.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il décrit un test de débit sur plus de mille kilomètres de fibre à cœur creux, sans préciser ce qui existait déjà.
+- _Jargon_ : Fibre à cœur creux : expliquée en une phrase (un fil dont le centre est rempli d'air). | Canal lumineux (longueur d'onde) : remplacé par « canal lumineux, une couleur de lumière ». | Tb/s : remplacé par « milliards de bits par seconde ». | Backbone à faible latence : remplacé par « grandes liaisons Internet à faible délai ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
@@ -272,29 +272,29 @@ Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (4156 caractère
 
 **Final après relecture (haiku)**
 
-- **Titre** : Drones : un avion à réaction monté dans sa chambre atteint 790 km/h
-- **Avant** : Le record mondial de vitesse pour avion télécommandé à réaction est détenu par Niels Herbrich. Le Kingchaser, un autre projet, n'avait volé qu'à 273 mph (environ 439 km/h), faute de place pour accélérer.
-- **Découverte** : Tomas Salvo a monté son avion, le Reaper, dans sa chambre d'étudiant, avec un petit moteur à réaction et une structure en fibre de carbone. Il a atteint 491 mph (environ 790 km/h) en portant une charge de 1,2 kg. Ce vol n'est pas officiellement homologué par Guinness.
-- **Et après** : Il vise le Boom Prize de 800 000 dollars (environ 680 000 €), qui exige de dépasser Mach 1, la vitesse du son, soit 767 mph. Le Reaper reste loin de cette vitesse, et sa situation face aux règles sur le financement reste incertaine.
+- **Titre** : Drones : un étudiant atteint 790 km/h avec un avion à réaction radiocommandé
+- **Avant** : Des avions radiocommandés à réaction visent le record du monde de vitesse, détenu par Niels Herbrich. Le projet Kingchaser n'avait atteint qu'environ 440 km/h lors de son test, faute de place pour accélérer.
+- **Découverte** : Tomas Salvo, étudiant, a conçu le Reaper dans sa chambre, avec une coque en fibre de carbone et une pièce de sortie du moteur en titane imprimée en 3D. Il a atteint 790 km/h, avec une charge de 1,2 kg. Son avion dépasse ainsi le test du Kingchaser, mais sans homologation officielle de Guinness.
+- **Et après** : Le Reaper reste loin de Mach 1, la vitesse du son, soit environ 1 235 km/h, condition du prix Boom de 800 000 dollars. Il est pour l'instant le seul projet américain de ce concours, mais son financement participatif pourrait l'exclure au regard des règles.
 - **Mots** : (aucun)
 - **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : aucun
+- _Défauts trouvés par le relecteur_ : [jargon] « Le projet Kingchaser n'avait atteint que 273 mph lors de son test » → L'unité mph n'est pas convertie en km/h, alors que la fiche utilise déjà les km/h. | [jargon] « Il a atteint 491 mph, soit environ 790 km/h » → L'unité mph n'est pas nécessaire : le chiffre en km/h suffit, comme dans le titre. | [jargon] « la vitesse du son, qui vaut environ 767 mph » → L'unité mph n'est pas convertie en km/h ; l'article donne 1 234,8 km/h. | [non_soutenu] « Il est pour l'instant le seul projet américain sérieux pour ce concours » → L'article dit seulement qu'il n'a pas d'égal parmi les projets américains ; le mot « sérieux » n'est pas dans l'article. | [non_soutenu] « qui rapporte 800 000 dollars au Boom Prize » → Le prix de 800 000 dollars est versé au vainqueur ; la phrase le présente à tort comme un gain pour le Boom Prize. | [mot] « Mach 1 » → Le terme est déjà expliqué dans le paragraphe « Et après » (la vitesse du son), il n'a donc pas sa place dans les mots à connaître.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Drones : un avion à réaction monté dans sa chambre atteint 790 km/h
-- **Avant** : Le record mondial de vitesse pour avion télécommandé à réaction est détenu par Niels Herbrich. Le Kingchaser, un autre projet, n'avait volé qu'à 273 mph (environ 439 km/h), faute de place pour accélérer.
-- **Découverte** : Tomas Salvo a monté son avion, le Reaper, dans sa chambre d'étudiant, avec un petit moteur à réaction et une structure en fibre de carbone. Il a atteint 491 mph (environ 790 km/h) en portant une charge de 1,2 kg. Ce vol n'est pas officiellement homologué par Guinness.
-- **Et après** : Il vise le Boom Prize de 800 000 dollars (environ 680 000 €), qui exige de dépasser Mach 1, la vitesse du son, soit 767 mph. Le Reaper reste loin de cette vitesse, et sa situation face aux règles sur le financement reste incertaine.
-- **Mots** : (aucun)
+- **Titre** : Drones : un étudiant atteint 790 km/h avec un avion à réaction radiocommandé
+- **Avant** : Des avions radiocommandés à réaction visent le record du monde de vitesse, détenu par Niels Herbrich. Le projet Kingchaser n'avait atteint que 273 mph lors de son test, faute de place pour accélérer.
+- **Découverte** : Tomas Salvo, étudiant, a conçu le Reaper dans sa chambre, avec une coque en fibre de carbone et une pièce de sortie du moteur en titane imprimée en 3D. Il a atteint 491 mph, soit environ 790 km/h, avec une charge de 1,2 kg. Son avion dépasse ainsi le test du Kingchaser, mais sans homologation officielle de Guinness.
+- **Et après** : Le Reaper reste loin de Mach 1, la vitesse du son, qui vaut environ 767 mph et qui rapporte 800 000 dollars au Boom Prize. Il est pour l'instant le seul projet américain sérieux pour ce concours, mais son financement participatif pose question au regard des règles.
+- **Mots** : **Mach 1** → Vitesse du son dans l'air, environ 1 235 km/h. Un avion qui la dépasse vole plus vite que le son.
 - **Type** : demonstration
 
-- _Faits relevés_ : Tomas Salvo, étudiant, a construit le Reaper, un avion télécommandé à réaction, dans sa chambre universitaire. | Le Reaper a volé à 491 mph (environ 790 km/h), en portant une charge de 1,2 kg. | Son moteur à réaction pèse peu : l'avion entier pèse 11 livres (environ 5 kg). | Le projet vise le record de Niels Herbrich, le plus rapide avion télécommandé à réaction. | Guinness n'a pas officiellement enregistré le vol de Tomas Salvo. | Le Boom Prize offre 800 000 dollars, financés par Blake Scholl, patron de Boom Supersonic. | Pour gagner, il faut dépasser Mach 1 (767 mph) pendant 5 secondes, et être construit sans entreprise ni fonds d'investissement. | Tomas Salvo a levé 20 000 dollars par financement participatif et en demande 50 000 de plus.
-- _Nouveauté selon l'article_ : Selon l'article, le Reaper dépasse la vitesse de 273 mph du Kingchaser, mais son record n'est pas homologué par Guinness ; l'article ne revendique pas de première.
-- _Jargon_ : Mach 1 : expliqué dans l'« apres » (la vitesse du son) | Avion à réaction : remplacé par « avion à réaction » expliqué par « moteur à réaction » dans le texte, sans terme technique | RC : remplacé par « télécommandé »
+- _Faits relevés_ : Tomas Salvo, étudiant, a conçu le Reaper dans sa chambre, avec une coque en fibre de carbone et une pièce de sortie du moteur en titane imprimée en 3D. | Le Reaper a volé à 491 mph, soit environ 790 km/h, en portant une charge de 1,2 kg. | Le moteur a une poussée de 250 N ; celui du Kingchaser, autre projet, en a 300 N. | Le Kingchaser n'avait atteint que 273 mph lors de son test, faute de place pour accélérer ; ses concepteurs estiment 550 mph possibles. | Le Reaper tient cette vitesse pendant quatre minutes avec un plein ; il parcourt 31 miles à pleine vitesse. | Le Boom Prize offre 800 000 dollars (environ 680 000 €) à qui dépasse Mach 1, soit environ 767 mph. | Le Reaper est encore loin de Mach 1 ; Tomas Salvo a financé une partie du projet par financement participatif. | Tomas Salvo n'a pas encore de record officiel : Guinness n'a pas homologué son essai.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : le Reaper dépasse seulement le test du Kingchaser, un autre avion, sans record officiel Guinness.
+- _Jargon_ : Mach 1 : remplacé par « la vitesse du son », puis expliqué dans les mots à connaître. | Poussée en newtons : remplacée par « le moteur a une poussée de 250 N », sans explication supplémentaire car la comparaison suffit ; mot à connaître non retenu. | Avion à réaction : expliqué dans le titre par « avion à réaction radiocommandé ». | Financement participatif : remplacé par « financement participatif ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
+- _Alertes automatiques_ : prix sans équivalent en euros
 
 
 ---
@@ -314,28 +314,28 @@ Fil : science · 1★ · source : ScienceDaily · page lue : oui (5346 caractèr
 
 **Final après relecture (haiku)**
 
-- **Titre** : Océan : après ses repas, l'étoile à épines laisse du corail vivant
-- **Avant** : Depuis les années 1960, quatre grandes explosions de population de cette étoile ont ravagé la Grande Barrière de corail. On en retenait surtout les dégâts, sans regarder ce qui restait du corail après ses repas.
-- **Découverte** : Des chercheurs de l'université de Sydney ont examiné les traces de repas sur des coraux près de la station One Tree Island. Dans près de 75 % des repas observés, du tissu de corail vivant avait survécu. Les coraux à croissance rapide (genre Acropora) ne repoussaient pas sur les zones mangées, alors que des espèces plus lentes, comme les Montipora et les Porites, repoussaient.
-- **Et après** : Ces résultats pourraient aider à décider quand et pourquoi retirer ces étoiles, sans forcément chercher à les éliminer toutes. Ils viennent surtout de zones protégées, peu touchées par les explosions, et les grandes explosions restent une menace sérieuse.
+- **Titre** : Océan : en petit nombre, les étoiles de mer laissent le corail survivre
+- **Avant** : Les étoiles de mer couronne-d'épines mangent le corail et causent de gros dégâts lors de leurs explosions de population. Avec moins de prédateurs naturels, les récifs sont plus vulnérables à ces pics.
+- **Découverte** : Des chercheurs de l'université de Sydney ont étudié la Grande Barrière de corail, dans des zones protégées où ces étoiles restent peu nombreuses. Sur les traces de leurs repas, du corail vivant a survécu dans près de 75 % des cas. Les coraux à croissance rapide ne repoussent pas sur les zones broutées, mais d'autres coraux à croissance lente reprennent.
+- **Et après** : Quand leur nombre reste bas, ces étoiles pourraient aider à garder une plus grande variété de coraux. Mais les grosses explosions restent une menace sérieuse, et l'étude porte surtout sur des zones protégées, sans risque majeur d'explosion.
 - **Mots** : (aucun)
 - **Type** : terrain
 
-- _Défauts trouvés par le relecteur_ : [jargon] « comme les Montipora et les Porites » → Les noms de genres de coraux ne sont ni expliqués ni remplacés par des mots simples. Le lecteur ne sait pas ce que sont ces coraux. | [apres] « Selon les chercheurs, l'étoile pourrait aider la diversité des coraux, à condition que ses populations restent basses. » → Le paragraphe ne dit pas ce que la découverte peut changer pour la gestion des étoiles. L'article indique que retirer toutes les étoiles n'est peut-être pas la meilleure stratégie une fois une explosion maîtrisée, ce qui est absent de la fiche.
+- _Défauts trouvés par le relecteur_ : aucun
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Océan : après ses repas, l'étoile à épines laisse du corail vivant
-- **Avant** : Depuis les années 1960, quatre grandes explosions de population de cette étoile ont ravagé la Grande Barrière de corail. On en retenait surtout les dégâts, sans regarder ce qui restait du corail après ses repas.
-- **Découverte** : Des chercheurs de l'université de Sydney ont examiné les traces de repas sur des coraux près de la station One Tree Island. Dans près de 75 % des repas observés, du tissu de corail vivant avait survécu. Les coraux à croissance rapide (genre Acropora) ne repoussaient pas sur les zones mangées, alors que des espèces plus lentes, comme les Montipora et les Porites, repoussaient.
-- **Et après** : Selon les chercheurs, l'étoile pourrait aider la diversité des coraux, à condition que ses populations restent basses. Les mesures viennent surtout de zones protégées, peu touchées par les explosions, et les grandes explosions restent une menace sérieuse.
+- **Titre** : Océan : en petit nombre, les étoiles de mer laissent le corail survivre
+- **Avant** : Les étoiles de mer couronne-d'épines mangent le corail et causent de gros dégâts lors de leurs explosions de population. Avec moins de prédateurs naturels, les récifs sont plus vulnérables à ces pics.
+- **Découverte** : Des chercheurs de l'université de Sydney ont étudié la Grande Barrière de corail, dans des zones protégées où ces étoiles restent peu nombreuses. Sur les traces de leurs repas, du corail vivant a survécu dans près de 75 % des cas. Les coraux à croissance rapide ne repoussent pas sur les zones broutées, mais d'autres coraux à croissance lente reprennent.
+- **Et après** : Quand leur nombre reste bas, ces étoiles pourraient aider à garder une plus grande variété de coraux. Mais les grosses explosions restent une menace sérieuse, et l'étude porte surtout sur des zones protégées, sans risque majeur d'explosion.
 - **Mots** : (aucun)
 - **Type** : terrain
 
-- _Faits relevés_ : Des chercheurs de l'université de Sydney ont étudié des coraux de la Grande Barrière d'Australie, près de la station One Tree Island. | Ils ont examiné les traces laissées par l'étoile après ses repas et le corail vivant restant. | Dans près de 75 % des repas observés, du tissu de corail vivant avait survécu. | Les coraux à croissance rapide (genre Acropora) ne repoussaient pas sur les zones mangées. | Les coraux plus lents, comme les Montipora et les Porites, repoussaient surtout sur ces zones. | Les sites étudiés étaient des zones protégées, avec peu d'étoiles et des poissons en bonne santé. | Depuis les années 1960, quatre grandes explosions de population ont eu lieu, environ tous les 15 ans. | Les chercheurs préviennent que les grandes explosions restent une menace sérieuse pour les récifs.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : la nouveauté est que le corail survit souvent à un repas de cette étoile, et qu'elle peut favoriser la variété des coraux quand ses populations restent basses.
-- _Jargon_ : Coraux à croissance rapide (genre Acropora) : remplacé par « coraux à croissance rapide » | Perturbation intermédiaire : expliqué en quelques mots dans la fiche
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Faits relevés_ : Les étoiles de mer couronne-d'épines mangent le corail et peuvent causer de gros dégâts lors de leurs explosions de population. | L'étude a été menée sur la Grande Barrière de corail, en Australie, sur le site de recherche de One Tree Island. | Les sites étudiés sont dans des zones protégées, où des poissons en bonne santé gardent les étoiles de mer en nombre limité. | Dans près de 75 % des repas observés, du corail vivant a survécu autour des zones broutées. | Les coraux à croissance rapide ne repoussent pas sur les zones broutées, alors que les coraux à croissance lente reprennent. | Depuis les années 1960, la Grande Barrière a connu quatre grandes explosions, environ tous les 15 ans. | Les chercheurs préviennent que les grandes explosions restent une menace sérieuse pour les récifs. | Le chercheur principal, Shawna Foo, est de l'université de Sydney.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il montre que, à faible densité, ces étoiles de mer ne détruisent pas tout le corail et peuvent laisser la place à d'autres espèces, ce qui contredit l'idée que chacun de leurs repas est nuisible.
+- _Jargon_ : Acropora : remplacé par « coraux à croissance rapide ». | Biodiversité : remplacé par « variété des espèces ». | Perturbation intermédiaire : expliquée en « un dérangement modéré qui empêche une espèce de dominer ». | Culling (élimination) : remplacé par « retrait des étoiles de mer ».
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
@@ -356,27 +356,27 @@ Fil : tech · 2★ · source : Clubic · page lue : oui (6000 caractères) · ht
 
 **Final après relecture (haiku)**
 
-- **Titre** : Espace : une IA de Google écrit un poème depuis son satellite
-- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont aujourd'hui installés sur Terre. En novembre 2025, Google a dévoilé le projet Suncatcher, qui vise à en installer en orbite.
-- **Découverte** : Google a lancé un satellite de la taille d'un réfrigérateur, équipé de quatre puces d'IA, le 1er octobre avec une fusée Falcon 9 de SpaceX. Son modèle Gemma 4 a répondu à une demande de poème pendant le passage du satellite au-dessus de la Norvège. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
-- **Et après** : Cette idée pourrait un jour alimenter des centres de données en orbite grâce à l'énergie du Soleil. Ce n'est pour l'instant qu'un prototype : le lancement doit devenir bien moins cher, vers 2035, et Google prévoit d'envoyer en 2027 deux satellites reliés entre eux.
+- **Titre** : Satellites : une IA de Google écrit un poème depuis l'orbite
+- **Avant** : Les centres de calcul consomment beaucoup d'électricité et chauffent sur Terre. Google veut en installer dans l'espace, où le Soleil fournit l'énergie, mais il fallait d'abord vérifier que les puces tiennent en orbite.
+- **Découverte** : Google a placé quatre de ses puces d'IA dans un satellite de la taille d'un réfrigérateur, lancé le 1er octobre par une fusée Falcon 9 de SpaceX. Au passage au-dessus de la Norvège, les ingénieurs ont reçu un haïku écrit par le modèle Gemma 4. Les puces ne tournent que quinze minutes d'affilée, pour éviter la surchauffe.
+- **Et après** : Si ces puces tiennent, Google pourrait alimenter ses centres de calcul avec l'énergie du Soleil. Mais le satellite n'a qu'environ 1 kilowatt et la mission dure un an ; un lancement moins cher reste nécessaire.
 - **Mots** : (aucun)
 - **Type** : prototype
 
-- _Défauts trouvés par le relecteur_ : [titre] « Espace : des puces d'IA de Google fonctionnent en orbite et produisent un poème » → Le titre compte 13 mots, au-delà de la limite de 12. Il peut être raccourci en gardant ce qui a été vu : une IA qui écrit depuis le satellite. | [apres] « Ce n'est pour l'instant qu'un prototype, et Google estime que les fusées devront coûter beaucoup moins cher, vers 2035. » → Le paragraphe ne donne pas la prochaine étape. L'article indique que Google prévoit d'envoyer en 2027 deux satellites reliés entre eux, pour tester les liaisons entre puces.
+- _Défauts trouvés par le relecteur_ : [titre] « Satellites : Google fait tourner une IA de calcul en orbite, qui écrit un poème » → Le titre compte 13 mots après les deux-points, soit plus de 12 autorisés.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Espace : des puces d'IA de Google fonctionnent en orbite et produisent un poème
-- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont aujourd'hui installés sur Terre. En novembre 2025, Google a dévoilé le projet Suncatcher, qui vise à en installer en orbite.
-- **Découverte** : Google a lancé un satellite de la taille d'un réfrigérateur, équipé de quatre puces d'IA, le 1er octobre avec une fusée Falcon 9 de SpaceX. Son modèle Gemma 4 a répondu à une demande de poème pendant le passage du satellite au-dessus de la Norvège. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
-- **Et après** : Cette idée pourrait un jour alimenter des centres de données en orbite grâce à l'énergie du Soleil. Ce n'est pour l'instant qu'un prototype, et Google estime que les fusées devront coûter beaucoup moins cher, vers 2035.
+- **Titre** : Satellites : Google fait tourner une IA de calcul en orbite, qui écrit un poème
+- **Avant** : Les centres de calcul consomment beaucoup d'électricité et chauffent sur Terre. Google veut en installer dans l'espace, où le Soleil fournit l'énergie, mais il fallait d'abord vérifier que les puces tiennent en orbite.
+- **Découverte** : Google a placé quatre de ses puces d'IA dans un satellite de la taille d'un réfrigérateur, lancé le 1er octobre par une fusée Falcon 9 de SpaceX. Au passage au-dessus de la Norvège, les ingénieurs ont reçu un haïku écrit par le modèle Gemma 4. Les puces ne tournent que quinze minutes d'affilée, pour éviter la surchauffe.
+- **Et après** : Si ces puces tiennent, Google pourrait alimenter ses centres de calcul avec l'énergie du Soleil. Mais le satellite n'a qu'environ 1 kilowatt et la mission dure un an ; un lancement moins cher reste nécessaire.
 - **Mots** : (aucun)
 - **Type** : prototype
 
-- _Faits relevés_ : Un satellite de la taille d'un réfrigérateur, prototype du projet Suncatcher de Google, a été lancé le 1er octobre par une fusée Falcon 9 de SpaceX. | Il embarque quatre puces d'IA de Google, fournies avec un satellite de l'entreprise Planet. | Les ingénieurs ont demandé à Gemma 4, un modèle d'IA de Google, un haïku, reçu au passage au-dessus du Svalbard, en Norvège. | Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée. | Au sol, les chercheurs ont trouvé des anomalies dans la mémoire après une dose de radiations près de trois fois le seuil exigé par Google. | Ils prévoient environ une réponse fausse sur 3 millions, sans alerte, en orbite. | Le satellite a environ 1 kilowatt d'électricité pour une mission prévue sur un an. | En 2027, Google prévoit d'envoyer deux satellites reliés entre eux pour tester des liaisons optiques.
-- _Nouveauté selon l'article_ : Selon Travis Beals, directeur de l'équipe de recherche de Google, c'est « la toute première réponse d'IA produite en orbite par une puce de centre de données » ; l'article ne donne pas d'autre première.
-- _Jargon_ : TPU (puce d'IA de Google) : remplacé par « puce d'IA » | Gemma 4 : expliqué comme « modèle d'IA de Google » | Haïku : remplacé par « poème court »
+- _Faits relevés_ : Google a fait tourner le modèle d'IA Gemma 4 dans un satellite expérimental, qui a écrit un haïku en orbite. | Le satellite, de la taille d'un réfrigérateur, a été lancé le 1er octobre par une fusée Falcon 9 de SpaceX. | Le satellite porte quatre puces d'IA TPU, fournies par l'entreprise d'imagerie spatiale Planet. | Les puces ne tournent que quinze minutes d'affilée, pour éviter la surchauffe. | La réponse a été récupérée au passage du satellite au-dessus du Svalbard, en Norvège. | Au sol, une puce a montré des anomalies après une dose équivalant à près de trois fois le seuil minimal exigé par Google. | Selon les chercheurs, une réponse sur 3 millions pourrait contenir des calculs faussés sans alerte. | Le satellite dispose d'environ 1 kilowatt d'électricité, soit à peu près la consommation d'un sèche-cheveux, pour une mission prévue sur un an. | Google estime que SpaceX pourrait proposer un tarif compétitif vers 2035. | En 2027, Google prévoit d'envoyer deux satellites reliés entre eux pour tester des liaisons optiques.
+- _Nouveauté selon l'article_ : La nouveauté est que Google a fait fonctionner une puce d'IA de centre de données en orbite et qu'elle a produit une réponse depuis l'espace ; l'article ne revendique pas de première mondiale.
+- _Jargon_ : TPU : remplacé par « puce d'IA de Google » | Haïku : expliqué en quelques mots (poème court de trois vers) | Inférence : remplacé par « utiliser le modèle déjà entraîné » | Centre de données : remplacé par « centre de calcul »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
@@ -416,27 +416,27 @@ Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 **Final après relecture (haiku)**
 
-- **Titre** : Archéologie : un rempart de 4 000 ans barrait une crête au Maroc
-- **Avant** : Le site comptait déjà un complexe agricole vieux de 4 900 à 5 400 ans, probablement le plus ancien d'Afrique hors vallée du Nil. Des murs étaient signalés depuis les années 1930, mais leur nature et leur date restaient incertaines.
-- **Découverte** : Des archéologues ont fouillé en 2023 le site d'Oued Beht, dans le nord-ouest du Maroc, et y ont dégagé un fossé, un rempart et un mur. Ces ouvrages, construits en plusieurs étapes en travers d'une crête étroite, isolaient et protégeaient la pointe sud de la crête. Datés au radiocarbone d'environ 4 000 à 3 500 ans, ils seraient, selon les chercheurs, la plus ancienne construction défensive confirmée en Afrique du Nord hors d'Égypte.
-- **Et après** : Ce mur suggère des sociétés plus organisées qu'on ne le pensait, capables de coordonner un grand chantier. Mais la menace visée reste inconnue : la concurrence pour la terre est une hypothèse, non une preuve.
-- **Mots** : **Radiocarbone** → Méthode de datation qui mesure la baisse progressive d'un isotope du carbone dans les restes d'êtres vivants pour estimer leur âge.
+- **Titre** : Archéologie : au Maroc, des murs de 4 000 ans barrent une crête
+- **Avant** : Dans la préhistoire du Maghreb, les traces de peuplement restaient fragmentaires. Des murs repérés depuis les années 1930 n'avaient pas de date précise.
+- **Découverte** : Des chercheurs ont fouillé le site d'Oued Beht, dans les collines du nord-ouest du Maroc, en 2023. Ils ont daté des murs, fossés et remparts qui barrent une étroite crête entre une rivière et un ravin. Selon eux, la construction date d'il y a 4 000 à 3 500 ans, et c'est la plus ancienne défense confirmée d'Afrique du Nord hors de la vallée du Nil.
+- **Et après** : Ces résultats montrent que des communautés rurales de l'époque savaient s'organiser pour de grands travaux. Les menaces exactes restent inconnues, et l'on ignore encore s'il s'agissait d'un village permanent ou d'un centre saisonnier.
+- **Mots** : (aucun)
 - **Type** : terrain
 
-- _Défauts trouvés par le relecteur_ : aucun
+- _Défauts trouvés par le relecteur_ : [titre] « Archéologie : au Maroc, des murs de 4 000 ans barrent une crête, la plus ancienne défense confirmée d'Afrique du Nord » → Le titre dépasse 12 mots (21 mots) et donne une comparaison à l'échelle de tout un continent, moins concrète que ce qui a été vu. | [non_soutenu] « le site n'a été étudié qu'à travers cette fouille » → L'article décrit des travaux antérieurs du projet Oued Beht sur un complexe agricole plus ancien, et des murs notés depuis les années 1930. Cette affirmation est fausse.
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Archéologie : un rempart de 4 000 ans barrait une crête au Maroc
-- **Avant** : Le site comptait déjà un complexe agricole vieux de 4 900 à 5 400 ans, probablement le plus ancien d'Afrique hors vallée du Nil. Des murs étaient signalés depuis les années 1930, mais leur nature et leur date restaient incertaines.
-- **Découverte** : Des archéologues ont fouillé en 2023 le site d'Oued Beht, dans le nord-ouest du Maroc, et y ont dégagé un fossé, un rempart et un mur. Ces ouvrages, construits en plusieurs étapes en travers d'une crête étroite, isolaient et protégeaient la pointe sud de la crête. Datés au radiocarbone d'environ 4 000 à 3 500 ans, ils seraient, selon les chercheurs, la plus ancienne construction défensive confirmée en Afrique du Nord hors d'Égypte.
-- **Et après** : Ce mur suggère des sociétés plus organisées qu'on ne le pensait, capables de coordonner un grand chantier. Mais la menace visée reste inconnue : la concurrence pour la terre est une hypothèse, non une preuve.
-- **Mots** : **Radiocarbone** → Méthode de datation qui mesure la baisse progressive d'un isotope du carbone dans les restes d'êtres vivants pour estimer leur âge.
+- **Titre** : Archéologie : au Maroc, des murs de 4 000 ans barrent une crête, la plus ancienne défense confirmée d'Afrique du Nord
+- **Avant** : Dans la préhistoire du Maghreb, les traces de peuplement restaient fragmentaires. Des murs repérés depuis les années 1930 n'avaient pas de date précise.
+- **Découverte** : Des chercheurs ont fouillé le site d'Oued Beht, dans les collines du nord-ouest du Maroc, en 2023. Ils ont daté des murs, fossés et remparts qui barrent une étroite crête entre une rivière et un ravin. Selon eux, la construction date d'il y a 4 000 à 3 500 ans, et c'est la plus ancienne défense confirmée d'Afrique du Nord hors de la vallée du Nil.
+- **Et après** : Ces résultats montrent que des communautés rurales de l'époque savaient s'organiser pour de grands travaux. Les menaces exactes restent inconnues, et le site n'a été étudié qu'à travers cette fouille.
+- **Mots** : (aucun)
 - **Type** : terrain
 
-- _Faits relevés_ : Le site d'Oued Beht se trouve dans le nord-ouest du Maroc, sur une crête qui domine une rivière. | Les fouilles de 2023 ont dégagé un fossé, un rempart et un mur construits en plusieurs étapes. | Ces ouvrages ont été élevés en travers d'une crête étroite, entre la rivière et un ravin. | Ils isolaient et protégeaient la pointe sud de la crête. | Datés au radiocarbone, ils ont environ 4 000 à 3 500 ans. | L'article ne sait pas exactement quelle menace ces murs visaient ; la concurrence pour la terre et les ressources est une piste. | Le même ouvrage a été reconstruit au Moyen Âge, entre le XIe et le XIIIe siècle après J.-C.
-- _Nouveauté selon l'article_ : Selon les chercheurs, il s'agit de la plus ancienne construction défensive confirmée en Afrique du Nord hors d'Égypte ; le complexe agricole voisin était déjà connu.
-- _Jargon_ : radiocarbone : mot à connaître | rempart et fossé : remplacés par des mots simples dans le texte | Maghreb : remplacé par Afrique du Nord
+- _Faits relevés_ : Site d'Oued Beht, dans les collines du nord-ouest du Maroc, fouillé en 2023 par une équipe de recherche. | Une structure défensive de murs, fossés et remparts barre une étroite partie de la crête, entre la rivière et un ravin. | Les dates au radiocarbone placent sa construction il y a environ 4 000 à 3 500 ans, à l'époque de l'âge du bronze en Méditerranée occidentale. | Selon les chercheurs, c'est la plus ancienne construction défensive confirmée en Afrique du Nord hors de la vallée du Nil. | Des murs repérés depuis les années 1930 par l'archéologue français Armand Ruhlmann n'avaient pas été datés avant ces fouilles. | Le site a aussi été réutilisé au Moyen Âge, aux XIe-XIIIe siècles : la défense a été reconstruite et un hameau installé sur une colline voisine. | Les menaces exactes ne sont pas connues ; les chercheurs pensent surtout à la concurrence pour la terre, les ressources et le contrôle des déplacements. | La construction a demandé de la planification et de la main-d'œuvre organisée.
+- _Nouveauté selon l'article_ : Les chercheurs datent la construction défensive et disent qu'elle est la plus ancienne confirmée en Afrique du Nord hors de la vallée du Nil ; des vestiges de l'époque préhistorique du site étaient déjà connus, comme un vaste complexe agricole plus ancien.
+- _Jargon_ : éperon barré → remplacé par « crête protégée par des murs » | radiocarbone → expliqué en quelques mots (datation par la mesure du carbone) | âge du bronze → remplacé par « une période où l'on travaillait déjà le bronze »
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
@@ -458,31 +458,31 @@ Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 **Final après relecture (haiku)**
 
-- **Titre** : Évolution : une mâchoire de singe de 17 millions d'années trouvée en Égypte
-- **Avant** : Les chercheurs pensaient que les premiers grands singes, ancêtres de l'humain, vivaient surtout en Afrique de l'Est. Dans le nord du continent, on avait trouvé des fossiles de singes anciens, mais aucun grand singe de cette époque n'y était attesté avec certitude.
-- **Découverte** : Une équipe égyptienne et américaine décrit une nouvelle espèce, Masripithecus moghraensis, à partir d'une mâchoire trouvée à Wadi Moghra, dans le nord de l'Égypte. Vieille de 17 à 18 millions d'années, elle est selon les chercheurs le premier singe fossile certain découvert en Afrique du Nord. Son analyse la place plus proche des singes actuels que tout singe connu d'Afrique de l'Est à la même époque.
-- **Et après** : Si ces résultats se confirment, les grands singes, dont la lignée humaine, seraient nés plus au nord qu'on le pensait, au nord de l'Afrique ou au Moyen-Orient. Il ne s'agit que d'une mâchoire : d'autres fossiles sont nécessaires pour confirmer cette hypothèse.
-- **Mots** : (aucun)
-- **Type** : terrain
+- **Titre** : Ancêtres : une mâchoire de singe trouvée en Égypte déplace l'origine des singes
+- **Avant** : Pendant des décennies, les chercheurs pensaient que les premiers singes et leurs proches vivaient surtout plus au sud, en Afrique. Dans le nord de l'Afrique, on avait trouvé des singes anciens, mais jamais de singe certain de la même époque.
+- **Découverte** : Des chercheurs de l'université de Mansoura, en Égypte, et de l'université de Californie du Sud ont décrit une nouvelle espèce à partir d'une mâchoire trouvée à Wadi Moghra. Leur analyse la place plus proche des singes actuels que tout singe connu d'Afrique de l'Est à la même époque. Ces résultats suggèrent que l'Afrique du Nord et le Moyen-Orient ont pu être le berceau des singes actuels.
+- **Et après** : Cette découverte change la carte des origines des grands singes, humains compris, et pousse à chercher davantage dans le nord de l'Afrique. Il ne reste qu'une mâchoire partielle, et l'hypothèse doit encore être confirmée par d'autres fossiles.
+- **Mots** : **Hominoidea** → Groupe qui réunit les grands singes actuels et leurs ancêtres communs, y compris les humains. Il permet de classer les espèces selon leur parenté.
+- **Type** : laboratoire
 
-- _Défauts trouvés par le relecteur_ : [absolu] « mais jamais de grand singe de cette époque » → L'article dit que les chercheurs n'avaient jamais trouvé de preuve certaine (« definitive evidence ») de grands singes de cette période en Afrique du Nord, pas une absence totale. Le « jamais » sans nuance est donc trop absolu.
+- _Défauts trouvés par le relecteur_ : [titre] « Ancêtres : une mâchoire de singe trouvée en Égypte déplace l'origine des grands singes » → Le titre dépasse 12 mots (13 mots).
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Évolution : une mâchoire de singe de 17 millions d'années trouvée en Égypte
-- **Avant** : Les chercheurs pensaient que les premiers grands singes, ancêtres de l'humain, vivaient surtout en Afrique de l'Est. Dans le nord du continent, on avait trouvé des fossiles de singes anciens, mais jamais de grand singe de cette époque.
-- **Découverte** : Une équipe égyptienne et américaine décrit une nouvelle espèce, Masripithecus moghraensis, à partir d'une mâchoire trouvée à Wadi Moghra, dans le nord de l'Égypte. Vieille de 17 à 18 millions d'années, elle est selon les chercheurs le premier singe fossile certain découvert en Afrique du Nord. Son analyse la place plus proche des singes actuels que tout singe connu d'Afrique de l'Est à la même époque.
-- **Et après** : Si ces résultats se confirment, les grands singes, dont la lignée humaine, seraient nés plus au nord qu'on le pensait, au nord de l'Afrique ou au Moyen-Orient. Il ne s'agit que d'une mâchoire : d'autres fossiles sont nécessaires pour confirmer cette hypothèse.
-- **Mots** : (aucun)
-- **Type** : terrain
+- **Titre** : Ancêtres : une mâchoire de singe trouvée en Égypte déplace l'origine des grands singes
+- **Avant** : Pendant des décennies, les chercheurs pensaient que les premiers singes et leurs proches vivaient surtout plus au sud, en Afrique. Dans le nord de l'Afrique, on avait trouvé des singes anciens, mais jamais de singe certain de la même époque.
+- **Découverte** : Des chercheurs de l'université de Mansoura, en Égypte, et de l'université de Californie du Sud ont décrit une nouvelle espèce à partir d'une mâchoire trouvée à Wadi Moghra. Leur analyse la place plus proche des singes actuels que tout singe connu d'Afrique de l'Est à la même époque. Ces résultats suggèrent que l'Afrique du Nord et le Moyen-Orient ont pu être le berceau des singes actuels.
+- **Et après** : Cette découverte change la carte des origines des grands singes, humains compris, et pousse à chercher davantage dans le nord de l'Afrique. Il ne reste qu'une mâchoire partielle, et l'hypothèse doit encore être confirmée par d'autres fossiles.
+- **Mots** : **Hominoidea** → Groupe qui réunit les grands singes actuels et leurs ancêtres communs, y compris les humains. Il permet de classer les espèces selon leur parenté.
+- **Type** : laboratoire
 
-- _Faits relevés_ : Une mâchoire inférieure de singe fossile a été trouvée à Wadi Moghra, dans le nord de l'Égypte. | L'espèce est nommée Masripithecus moghraensis et vivait il y a 17 à 18 millions d'années. | Les fossiles ont été découverts lors d'expéditions en 2023 et 2024. | L'équipe vient de l'université de Mansoura (Égypte) et de l'université de Californie du Sud (États-Unis). | Les dents indiquent un régime surtout à base de fruits, avec la capacité de manger des aliments plus durs. | Selon l'analyse, cette espèce est plus proche des singes actuels que tout singe connu de la même époque en Afrique de l'Est. | Les chercheurs situent l'ancêtre commun de tous les singes actuels au nord de l'Afrique ou au Moyen-Orient, il y a 23 à 16 millions d'années. | Il ne reste que la mâchoire : aucun autre os n'a été trouvé pour cette espèce.
-- _Nouveauté selon l'article_ : Selon l'article, c'est le premier fossile de singe certain jamais découvert en Afrique du Nord, alors que des singes anciens y avaient déjà été trouvés.
-- _Jargon_ : grands singes (remplacé par « singes actuels » et expliqué) | méthodes bayésiennes (remplacé par « méthodes statistiques ») | Miocène inférieur (remplacé par « il y a 17 à 18 millions d'années »)
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
+- _Faits relevés_ : Un fossile de singe ancien de 17 à 18 millions d'années a été trouvé à Wadi Moghra, dans le nord de l'Égypte. | L'espèce a été nommée Masripithecus moghraensis. | Le fossile ne comprend qu'une partie de mâchoire inférieure, mais elle a une combinaison de traits inhabituelle. | La mâchoire est très solide, avec de grandes canines et prémolaires ; les molaires ont des surfaces de mastication arrondies et texturées. | Les chercheurs pensent que l'animal mangeait surtout des fruits, mais pouvait aussi traiter des aliments plus durs comme des noix ou des graines. | Selon l'analyse, cette espèce serait plus proche des singes actuels que tout singe connu d'Afrique de l'Est de la même période. | Les fossiles ont été découverts lors d'expéditions en 2023 et 2024 ; l'équipe travaillait depuis cinq ans à ce type de recherche. | Les chercheurs suggèrent que l'Afrique du Nord et le Moyen-Orient pourraient avoir été le berceau des singes actuels, au lieu de l'Afrique de l'Est. | Il s'agit de l'équipe de l'université de Mansoura (Égypte) et de l'université de Californie du Sud (États-Unis).
+- _Nouveauté selon l'article_ : L'article dit que Masripithecus est le premier fossile de singe ancien certain découvert en Afrique du Nord ; des fossiles de singes plus récents existaient déjà ailleurs en Afrique, en Europe et en Asie.
+- _Jargon_ : Hominoidea : remplacé par « le groupe des singes actuels, humains compris ». | Bayesian : remplacé par « des méthodes statistiques ».
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 - _Alertes automatiques_ : aucune
 
 
 ---
 
-Coût total du test : 0.0396 $ · par fiche : 0.0036 $ · tokens moyens par fiche (rédaction + relecture) : entrée 4202, cache lu 9482, cache écrit 224, sortie 6121
+Coût total du test : 0.0332 $ · par fiche : 0.0030 $ · tokens moyens par fiche (rédaction + relecture) : entrée 3870, cache lu 9352, cache écrit 1790, sortie 4626
