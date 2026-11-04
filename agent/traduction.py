@@ -37,6 +37,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 import requests
 
+import economie
+
 CHAMPS = ("title", "summary", "avant", "decouverte", "apres")
 
 CONSIGNE = """Tu es le traducteur de NovaSTEM, une application qui présente les avancées scientifiques et technologiques du moment à un large public. Tu traduis du français vers l'{langue} des fiches écrites pour un lycéen curieux.
@@ -138,6 +140,7 @@ def _traduire_paquet(client, fiches: list[dict], code: str) -> tuple[dict[int, d
                  "cache_control": {"type": "ephemeral"}}],
         messages=[{"role": "user", "content": json.dumps({"fiches": entrees}, ensure_ascii=False)}],
         output_config={"format": {"type": "json_schema", "schema": SCHEMA}},
+        **economie.PARAMS,
     )
     u = rep.usage
     entree = (u.input_tokens or 0) + (getattr(u, "cache_creation_input_tokens", 0) or 0) \

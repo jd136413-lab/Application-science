@@ -17,6 +17,8 @@
 # =====================================================================
 
 import json
+
+import economie
 import os
 import re
 
@@ -244,6 +246,7 @@ def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict,
                 system=[{"type": "text", "text": CONSIGNE, "cache_control": {"type": "ephemeral"}}],
                 messages=[{"role": "user", "content": message(art, fil, brouillon)}],
                 output_config={"format": {"type": "json_schema", "schema": schema(fil)}, "effort": EFFORT},
+                **economie.PARAMS,
             )
         except Exception as ex:
             conso["diag"] = f"{ex.__class__.__name__}: {str(ex)[:300]}"
@@ -339,6 +342,7 @@ def relire(client, modele_id: str, art: dict, fil: str, fiche: dict, essais: int
                 system=[{"type": "text", "text": CONSIGNE_RELECTURE, "cache_control": {"type": "ephemeral"}}],
                 messages=[{"role": "user", "content": contenu}],
                 output_config={"format": {"type": "json_schema", "schema": SCHEMA_RELECTURE}, "effort": EFFORT},
+                **economie.PARAMS,
             )
         except Exception as ex:
             conso["diag"] = f"{ex.__class__.__name__}: {str(ex)[:300]}"
@@ -567,6 +571,9 @@ def rediger_complet(client, modele_id: str, prix: tuple, art: dict, fil: str, br
                 finale = r
         if finale is not None:
             finale = dict(finale)
+            # Titre encore trop long ou invalide : on reprend le titre du premier jet s'il est valide
+            if not titre_valide(str(finale.get("title", ""))) and titre_valide(str(brouillon.get("title", ""))):
+                finale["title"] = brouillon["title"]
             for k in ("avant", "decouverte", "apres"):
                 finale[k] = euros(finale.get(k, ""))
         if any("non latins" in a for a in alertes(finale)):
