@@ -79,8 +79,10 @@ ATTENTE_LOT = 900
 #    - en avance sur le budget du mois (au prorata des jours) : pas de réécriture ni
 #      d'« À venir » à ce passage (fiches du premier jet seulement) ;
 #    - budget du mois atteint : aucun appel à Claude jusqu'au 1er du mois suivant.
-BUDGET_MOIS = 2.30           # $ ≈ 1,95 € (1 $ ≈ 0,85 €)
-MARGE_AVANCE = 0.10          # $ d'avance tolérée sur le prorata avant de passer en mode économie
+BUDGET_MOIS = 2.30           # $ ≈ 1,95 € : rythme de croisière visé (1 $ ≈ 0,85 €)
+# 04/11 soir (Maxime) : plus de « mode économie » ; dépasser un peu le rythme n'est pas grave.
+# Seule sécurité : au-delà de PLAFOND_SECURITE dans le mois, l'agent s'arrête jusqu'au 1er.
+PLAFOND_SECURITE = 3.50      # $ ≈ 3 €
 DEPENSES_DEPART = {"2026-11": 0.40}   # passages du 1er au 4/11 avant la mise en place du suivi
 # Décision de Maxime (03/11) : pas de fiche sur un article illisible ou trop court (moins de
 # TEXTE_MIN caractères lus) : ces fiches plafonnaient à 6-7/10. L'article n'est pas envoyé
@@ -1324,10 +1326,8 @@ def etat_budget() -> tuple[str, float, float]:
     deja = DEPENSES.get(mois, 0.0)
     jours = calendar.monthrange(MAINTENANT.year, MAINTENANT.month)[1]
     prorata = BUDGET_MOIS * (MAINTENANT.day - 1 + MAINTENANT.hour / 24) / jours
-    if deja >= BUDGET_MOIS:
+    if deja >= PLAFOND_SECURITE:
         return "stop", deja, prorata
-    if deja > prorata + MARGE_AVANCE:
-        return "economie", deja, prorata
     return "normal", deja, prorata
 
 
@@ -1513,15 +1513,13 @@ def main() -> int:
     charger_attente()
     charger_depenses()
     mode_budget, depense_mois, prorata = etat_budget()
-    log(f"Budget du mois : {depense_mois:.2f} $ dépensés sur {BUDGET_MOIS:.2f} $ "
-        f"(prorata à ce jour : {prorata:.2f} $) → mode {mode_budget}")
+    log(f"Budget du mois : {depense_mois:.2f} $ dépensés (rythme visé à ce jour : {prorata:.2f} $ ; "
+        f"{BUDGET_MOIS:.2f} $ sur le mois, arrêt de sécurité à {PLAFOND_SECURITE:.2f} $)")
     if mode_budget == "stop":
-        log("⛔ Budget du mois atteint : aucun appel à Claude jusqu'au 1er du mois prochain.")
-        print(f"::warning::Budget du mois atteint ({depense_mois:.2f} $ / {BUDGET_MOIS:.2f} $) : passage sans nouvelle fiche")
+        log("⛔ Plafond de sécurité du mois atteint : aucun appel à Claude jusqu'au 1er du mois prochain.")
+        print(f"::warning::Plafond de sécurité atteint ({depense_mois:.2f} $ / {PLAFOND_SECURITE:.2f} $) : passage sans nouvelle fiche")
         return 0
     redaction_active = REDACTION and mode_budget == "normal"
-    if REDACTION and not redaction_active:
-        log("💶 En avance sur le budget du mois : rédaction sans relecture et sans « À venir » à ce passage.")
     for u, d in list(ATTENTE.items()):          # trop vieux : abandonné
         if d < (MAINTENANT - timedelta(days=ATTENTE_JOURS)).isoformat():
             db.marquer_ecarte(u, "illisible")
