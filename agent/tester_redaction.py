@@ -67,46 +67,49 @@ def main() -> int:
            f"Modèles : {', '.join(noms)} · {len(liste)} fiches\n"]
     cout = 0.0
     jetons = {"in": 0, "out": 0, "cache_r": 0, "cache_w": 0, "fiches": 0}
+    nom = noms[0]
+    modele, prix = MODELES[nom]
+    entetes, items = {}, []
     for i, f in enumerate(liste, 1):
         art = {"url": f["source_url"], "source_name": f["source_name"], "title": f["title"], "text": ""}
         agent.lire_page(art)
-        out.append(f"\n---\n\n## {i}. {f['title']}\n\nFil : {f['feed']} · {f['importance']}★ · "
-                   f"source : {f['source_name']} · page lue : {'oui' if art.get('page_lue') else 'NON'} "
-                   f"({len(art.get('text', ''))} caractères) · {f['source_url']}\n")
-        out.append(bloc("Actuel (publié)", f))
-        if not art.get("text"):
-            out.append("_Article illisible : pas de réécriture._\n")
+        entetes[i] = [f"\n---\n\n## {i}. {f['title']}\n\nFil : {f['feed']} · {f['importance']}★ · "
+                      f"source : {f['source_name']} · page lue : {'oui' if art.get('page_lue') else 'NON'} "
+                      f"({len(art.get('text', ''))} caractères) · {f['source_url']}\n", bloc("Actuel (publié)", f)]
+        if os.environ.get("LECTURE_SEULE"):          # relire les fiches publiées, sans appel à Claude
+            entetes[i].append(f"- _Mesures automatiques_ : {' ; '.join(redaction.verifications(f)) or 'aucun défaut'}\n"
+                              f"- _Ajoutée le_ : {f.get('created_at')}\n")
             continue
-        for nom in noms:
-            if cout > plafond:
-                out.append(f"_Plafond de coût atteint ({plafond} $)._\n")
-                break
-            modele, prix = MODELES[nom]
-            res = redaction.rediger_complet(client, modele, prix, art, f["feed"], f)
-            jetons["fiches"] += 1
-            for k in ("in", "out", "cache_r", "cache_w"):
-                jetons[k] += res["jetons"][k]
-            cout += res["cout"]
-            d, r = res["redacteur"], res["finale"]
-            if not d:
-                out.append(f"**{nom}** : échec de la réécriture ({res['diag']})\n")
-                continue
-            if r:
-                pbs = res["problemes"]
-                out.append(bloc(f"Final après {res['relectures']} relecture(s) ({nom})", r))
-                out.append("- _Défauts trouvés par le relecteur_ : "
-                           + (" | ".join(f"[{p.get('type')}] « {p.get('extrait')} » → {p.get('explication')}" for p in pbs)
-                              or "aucun") + "\n")
-                out.append(f"- _Défauts mesurés restants_ : {' ; '.join(res['restants']) or 'aucun'} · coût {res['cout']:.4f} $\n")
-            else:
-                out.append(f"_Relecture impossible ({res['diag']})_\n")
-            out.append(bloc(f"Version du rédacteur ({nom})", d))
-            out.append(f"- _Faits relevés_ : {' | '.join(d.get('faits') or [])}\n"
-                       f"- _Nouveauté selon l'article_ : {d.get('nouveaute')}\n"
-                       f"- _Jargon_ : {' | '.join(d.get('jargon') or [])}\n"
-                       f"- _Contrôle_ : {json.dumps(d.get('controle'), ensure_ascii=False)}\n"
-                       f"- _Alertes automatiques_ : {' ; '.join(redaction.alertes(d)) or 'aucune'}\n")
-        print(f"  {i}/{len(liste)} · coût cumulé {cout:.4f} $", flush=True)
+        if len(art.get("text", "")) < agent.TEXTE_MIN or not art.get("page_lue"):
+            entetes[i].append("_Article illisible ou trop court : pas de fiche (comme dans l'agent)._\n")
+            continue
+        # Comme dans l'agent depuis le 04/11 : le trieur ne donne qu'un titre provisoire
+        brouillon = {k: f.get(k) for k in ("title", "importance", "type_etude")} if os.environ.get("TRI_SEUL") else f
+        items.append((f"f{i}", art, f["feed"], brouillon))
+    resultats, cout = ({}, 0.0) if not items else redaction.rediger_lot(
+        client, modele, prix, items, par_lot=bool(os.environ.get("PAR_LOT")), attente_lot=900,
+        log=lambda m: print(m, flush=True))
+    for i in entetes:
+        out += entetes[i]
+        res = resultats.get(f"f{i}")
+        if not res:
+            continue
+        jetons["fiches"] += 1
+        for k in ("in", "out", "cache_r", "cache_w"):
+            jetons[k] += res["jetons"][k]
+        d, r = res["redacteur"], res["finale"]
+        if not d:
+            out.append(f"**{nom}** : échec de la réécriture ({res['diag']})\n")
+            continue
+        if r:
+            pbs = res["problemes"]
+            out.append(bloc(f"Final après {res['relectures']} relecture(s) ({nom}{', lot' if res['lot'] else ''})", r))
+            out.append("- _Défauts trouvés par le relecteur_ : "
+                       + (" | ".join(f"[{p.get('type')}] « {p.get('extrait')} » → {p.get('explication')}" for p in pbs)
+                          or "aucun") + "\n")
+            out.append(f"- _Défauts mesurés restants_ : {' ; '.join(res['restants']) or 'aucun'} · coût {res['cout']:.4f} $\n")
+        out.append(bloc(f"Version du rédacteur ({nom})", d))
+        out.append(f"- _Contrôle_ : {json.dumps(d.get('controle'), ensure_ascii=False)}\n")
     n = max(1, jetons["fiches"])
     out.append(f"\n---\n\nCoût total du test : {cout:.4f} $ · par fiche : {cout / n:.4f} $ · tokens moyens par fiche "
                f"(rédaction + relecture) : entrée {jetons['in'] // n}, cache lu {jetons['cache_r'] // n}, "

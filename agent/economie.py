@@ -13,5 +13,11 @@
 
 REFLEXION = False
 
-# Paramètre ajouté à chaque appel client.messages.create(...)
+# Exception pour la réécriture et la relecture des fiches (redaction.py) : là, la réflexion
+# améliore nettement la qualité (7,9 au lieu de 7,7 sur nos tests). Elle redevient abordable
+# grâce au traitement par lot (−50 %) et au premier jet réduit au tri (04/11).
+REFLEXION_REDACTION = True
+
+# Paramètres ajoutés à chaque appel client.messages.create(...)
 PARAMS = {} if REFLEXION else {"thinking": {"type": "disabled"}}
+PARAMS_REDACTION = {} if REFLEXION_REDACTION else {"thinking": {"type": "disabled"}}
