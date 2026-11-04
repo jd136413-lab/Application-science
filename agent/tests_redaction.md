@@ -1,11 +1,205 @@
-# Test de la rédaction — 03/11/2026 19:57 UTC
+# Test de la rédaction — 04/11/2026 12:27 UTC
 
 Modèles : haiku · 12 fiches
 
 
 ---
 
-## 1. Internet : une équipe chinoise atteint 3,2 pétabits par seconde
+## 1. Voitures : une petite électrique chinoise recharge sa batterie en cinq minutes
+
+Fil : tech · 1★ · source : New Atlas · page lue : oui (4664 caractères) · https://newatlas.com/automotive/byd-seagull-ev-flash-charging/
+
+**Actuel (publié)**
+
+- **Titre** : Voitures : une petite électrique chinoise recharge sa batterie en cinq minutes
+- **Avant** : Les voitures électriques bon marché offraient en général une recharge lente, et la recharge très rapide restait réservée aux modèles plus chers.
+- **Découverte** : BYD lance en Chine la Seagull, une petite électrique vendue entre environ 9 800 et 15 000 dollars selon la version. Les trois versions haut de gamme ont une batterie de 39,2 kWh, une autonomie annoncée de 420 km et une recharge de 10 à 70 % en cinq minutes, selon le constructeur.
+- **Et après** : Cette recharge rapide n'est disponible que sur le réseau de bornes Flash Charging de BYD, donc surtout en Chine, et les deux versions d'entrée n'en profitent pas. Les performances annoncées par le constructeur restent à confirmer par des tests indépendants.
+- **Mots** : (aucun)
+- **Type** : en_vente
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Voitures : une petite électrique chinoise passe de 10 % à 70 % en cinq minutes
+- **Avant** : Les voitures électriques bon marché rechargeaient en général lentement. La recharge très rapide restait réservée aux modèles plus chers.
+- **Découverte** : Le constructeur chinois BYD lance en Chine la Seagull, une petite électrique vendue environ 9 800 à 14 900 €. Ses trois versions haut de gamme passent de 10 % à 70 % de charge en cinq minutes, selon le constructeur. Elles parcourent 420 km d'autonomie selon un cycle d'essai chinois.
+- **Et après** : Cette recharge rapide ne fonctionne que sur le réseau de bornes de BYD, donc uniquement pour l'instant en Chine, et les deux versions d'entrée n'en profitent pas. Ces performances annoncées par le constructeur restent à confirmer par des tests indépendants.
+- **Mots** : (aucun)
+- **Type** : en_vente
+
+- _Défauts trouvés par le relecteur_ : [titre] « Voitures : une petite électrique chinoise passe de 10 % à 70 % de charge en cinq minutes » → Titre de 17 mots, plus de 12 autorisés ; il contient un ensemble de chiffres et « charge » sans dire clairement qu'il s'agit d'une annonce du constructeur. | [forme] « Les trois versions haut de gamme passent de 10 % à 70 % de charge en cinq minutes, selon le constructeur, et roulent 420 km avec une batterie de 39,2 kWh. » → Phrase de 31 mots, à couper ; elle mêle trois chiffres techniques (39,2 kWh, 420 km, 70 %) peu parlants. | [jargon] « BYD lance en Chine la Seagull » → Sigle BYD non expliqué ; le lecteur ne sait pas qu'il s'agit d'un constructeur chinois. | [comparaison] « une petite électrique vendue entre environ 9 800 € et 14 900 € » → Chiffres de prix en euros d'après des conversions, mais le lien avec le modèle standard n'est pas clair ; à garder seulement si utile. | [apres] « Cette recharge rapide ne fonctionne que sur le réseau de bornes de BYD, donc surtout en Chine, et les deux versions d'entrée n'en profitent pas. » → Limite correcte mais le paragraphe ne dit pas ce que la recharge change pour l'automobiliste ; il manque une conséquence pratique. | [titre] « Voitures : une petite électrique chinoise se recharge de 10 % à 70 % en cinq minutes » → Titre de 16 mots, au-delà de 12, et contenant le nom de marque BYD inconnu du public. | [jargon] « BYD » → Sigle ou nom de constructeur non expliqué au lecteur, à présenter comme un constructeur chinois. | [comparaison] « passent de 10 % à 70 % de charge en cinq minutes » → Le chiffre n'est pas explicitement attribué à une comparaison avec les voitures ordinaires, ce qui reste vague ; à préciser qu'il s'agit d'une annonce du constructeur. | [non_soutenu] « Elles parcourent 420 km avec une batterie de 39,2 kWh. » → Le chiffre de 420 km est une autonomie CLTC (cycle d'essai chinois), qui n'est pas une autonomie réelle ; la fiche le présente sans cette précision, ce qui peut induire en erreur. Seule la version la plus haut de gamme est concernée. | [apres] « Ces performances annoncées par le constructeur restent à confirmer par des tests indépendants. » → La limite est bien présente, mais le paragraphe ne dit pas la conséquence pratique pour l'acheteur ; il reste acceptable. | [forme] « Cette recharge rapide ne fonctionne que sur le réseau de bornes de BYD, donc surtout en Chine, et les deux versions d'entrée n'en profitent pas. » → « donc surtout en Chine » est un lien logique que l'article ne pose pas explicitement, « effectivement » en Chine pour l'instant ; formulation à ajuster. | [forme] « decouverte : 6 chiffres » → Trop de chiffres dans le paragraphe découverte ; il faut garder les 3 plus parlants.
+
+- _Défauts mesurés restants_ : titre de 15 mots : 12 au plus ; sigles ou noms codés inconnus du public : BYD → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 5 chiffres dans « decouverte » : garde les 3 plus parlants · coût 0.0038 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Voitures : une petite électrique chinoise passe de 10 % à 70 % de charge en cinq minutes
+- **Avant** : Les voitures électriques bon marché rechargeaient en général lentement. La recharge très rapide restait réservée aux modèles plus chers.
+- **Découverte** : BYD lance en Chine la Seagull, une petite électrique vendue entre environ 9 800 € et 14 900 € selon la version. Les trois versions haut de gamme passent de 10 % à 70 % de charge en cinq minutes, selon le constructeur, et roulent 420 km avec une batterie de 39,2 kWh.
+- **Et après** : Cette recharge rapide ne fonctionne que sur le réseau de bornes de BYD, donc surtout en Chine, et les deux versions d'entrée n'en profitent pas. Ces performances annoncées par le constructeur restent à confirmer par des tests indépendants.
+- **Mots** : (aucun)
+- **Type** : en_vente
+
+- _Faits relevés_ : BYD lance en Chine la Seagull, une petite voiture électrique, en cinq versions. | Les trois versions haut de gamme ont une batterie de 39,2 kWh et une autonomie de 420 km (cycle CLTC). | Ces trois versions peuvent passer de 10 % à 70 % de charge en cinq minutes, selon le constructeur. | Les deux versions d'entrée ont une batterie de 30,1 kWh, une autonomie de 320 km et pas de recharge rapide. | Le prix va de 65 900 yuans (environ 9 800 €) à 99 900 yuans (environ 14 900 €). | La recharge rapide ne fonctionne que sur le réseau de bornes Flash Charging de BYD. | La voiture est plus longue de 425 mm et peut accueillir cinq personnes au lieu de quatre. | Un système d'aide à la conduite utilisant un capteur LiDAR est proposé.
+- _Nouveauté selon l'article_ : L'article ne revendique pas de première : la recharge rapide existait déjà sur des modèles plus chers, c'est sa présence sur une petite voiture bon marché qui est nouvelle.
+- _Jargon_ : Recharge rapide : expliquée en quelques mots dans la fiche | LiDAR : remplacé par « capteur » dans la fiche
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : titre de 17 mots : 12 au plus ; phrase de 31 mots dans « decouverte », à couper : « Les trois versions haut de gamme passent de 10 % à 70 % de charge en cinq minutes, selon l… » ; sigles ou noms codés inconnus du public : BYD → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 6 chiffres dans « decouverte » : garde les 3 plus parlants
+
+
+---
+
+## 2. Espace : une explosion cosmique dure 27 jours, un record
+
+Fil : science · 2★ · source : Space.com · page lue : oui (6000 caractères) · https://www.space.com/science/astrophysics/record-breaker-astronomers-spot-powerful-cosmic-explosion-that-lasted-27-days
+
+**Actuel (publié)**
+
+- **Titre** : Espace : une explosion cosmique dure 27 jours, un record
+- **Avant** : Les sursauts gamma sont des explosions cosmiques très puissantes, qui durent en général quelques secondes à quelques minutes.
+- **Découverte** : Des astronomes ont repéré un sursaut gamma qui a duré 27 jours, ce qui en fait un record. Il dépasse très largement la durée des explosions du même type.
+- **Et après** : Ce cas pousse à revoir ce que l'on croyait possible pour ces explosions. Son origine précise reste à établir.
+- **Mots** : **Sursaut gamma** → Explosion très puissante qui émet de la lumière gamma, la forme la plus énergétique de la lumière, depuis l'espace lointain.
+- **Type** : observation
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Espace : une explosion cosmique dure 27 jours, un record
+- **Avant** : Les sursauts gamma sont des explosions cosmiques très puissantes, qui durent en général quelques secondes à quelques minutes. Les rayons X qui les suivent ne durent d'habitude que quelques jours.
+- **Découverte** : Des astronomes ont repéré un sursaut gamma le 6 juillet 2022. Sa source a continué d'émettre des rayons X pendant environ 27 jours, soit environ 20 jours de plus que le record précédent. Une explosion d'étoile a aussi été observée.
+- **Et après** : Ce cas oblige à revoir les modèles qui expliquent l'alimentation de ces explosions. La source exacte reste inconnue, et l'étude n'est pas encore relue par d'autres chercheurs. Des instruments récents comme la sonde Einstein Probe pourraient en trouver d'autres.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Défauts trouvés par le relecteur_ : [titre] « Espace : une explosion cosmique brille en rayons X pendant 27 jours, un record » → Titre de 13 mots, plus que les 12 autorisés. | [jargon] « GRB 220706A » → Nom codé du sursaut, inconnu du public, à remplacer par une description simple ou à supprimer. | [jargon] « Une supernova a aussi été observée. » → Le mot supernova n'est pas expliqué ; mot technique sans explication simple. | [mot] « Magnétar » → Mot à connaître absent du texte de la fiche. | [mot] « Magnétar » → Définition de 29 mots, trop longue (25 au plus). | [comparaison] « soit 20 jours de plus que le record précédent » → Le chiffre est compréhensible, mais la décision de garder les 3 chiffres les plus parlants impose de réduire la liste de chiffres du paragraphe « decouverte ». | [comparaison] « soit 20 jours de plus que le record précédent » → Le record précédent n'est pas chiffré dans la fiche : le lecteur ne sait pas à combien de jours comparer 27 jours. L'article indique environ six jours pour le record de réactivation. | [mot] « Magnétar » → Mot à connaître absent du texte de la fiche : il n'est présenté nulle part dans le paragraphe découverte ou avant. Le mot doit être retiré ou remplacé par un mot du texte. | [non_soutenu] « Une explosion d'étoile a aussi été observée. » → Ce fait est correct mais incomplet : l'article précise qu'une supernova a été observée et que son lien avec la source reste inconnu. La phrase est acceptable mais l'étoile n'est pas décrite. | [apres] « La source exacte reste inconnue, et l'étude n'est pas encore relue par d'autres chercheurs. » → La limite est vraie mais ne dit pas la prochaine étape ni ce que cela peut changer concrètement. Il manque une phrase sur les futurs instruments comme Einstein Probe qui pourraient trouver d'autres cas. | [titre] « Espace : une explosion cosmique dure 27 jours, un record » → Le titre est acceptable et concret, mais le mot « cosmique » et l'expression « un record » gagnent à être précisés par ce qui a été vu : une source qui continue d'émettre des rayons X pendant 27 jours.
+
+- _Défauts mesurés restants_ : « apres » a 3 phrases : 2 au plus ; 4 chiffres dans « decouverte » : garde les 3 plus parlants · coût 0.0034 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : une explosion cosmique brille en rayons X pendant 27 jours, un record
+- **Avant** : Les sursauts gamma sont des explosions cosmiques très puissantes, qui durent en général quelques secondes à quelques minutes. Les rayons X qui les suivent ne durent d'habitude que quelques jours.
+- **Découverte** : Des astronomes ont repéré le sursaut GRB 220706A le 6 juillet 2022. Sa source a continué d'émettre des rayons X pendant environ 27 jours, soit 20 jours de plus que le record précédent. Une supernova a aussi été observée.
+- **Et après** : Ce cas oblige à revoir les modèles qui expliquent l'alimentation de ces explosions. La source exacte reste inconnue, et l'étude n'est pas encore relue par d'autres chercheurs.
+- **Mots** : **Magnétar** → Étoile à neutrons très dense dont le champ magnétique est des milliers de milliards de fois plus fort que celui de la Terre, qui pourrait alimenter certaines explosions cosmiques.
+- **Type** : observation
+
+- _Faits relevés_ : Un sursaut gamma repéré le 6 juillet 2022, nommé GRB 220706A, a émis des rayons X pendant environ 27 jours. | Cette durée dépasse de 20 jours le record précédent pour un sursaut gamma. | Les rayons X tardifs précédemment observés ne duraient pas plus de quelques jours après le sursaut. | Une supernova a aussi été observée, ce qui indique qu'une étoile s'est effondrée. | La source qui alimente ce phénomène reste inconnue ; une étoile très grande ou un magnétar sont des pistes évoquées. | Les chercheurs décrivent ce cas comme un sursaut ultra-long, un type rare, et l'étude n'est pas encore relue par d'autres chercheurs. | Le satellite Einstein Probe, plus sensible aux rayons X, pourrait aider à trouver d'autres cas.
+- _Nouveauté selon l'article_ : Selon les chercheurs, c'est le plus long épisode de rayons X tardifs jamais enregistré après un sursaut gamma, environ 27 jours contre six jours pour le record précédent ; ce type de sursaut existait déjà.
+- _Jargon_ : Sursaut gamma : expliqué en quelques mots, explosion très puissante dans l'espace. | Magnétar : mot à connaître, étoile à neutrons au champ magnétique extrêmement fort. | Supernova : expliqué en quelques mots, explosion d'une étoile en fin de vie.
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; sigles ou noms codés inconnus du public : GRB → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 5 chiffres dans « decouverte » : garde les 3 plus parlants ; définition de « Magnétar » trop longue (29 mots, 25 au plus) ; mot à connaître « Magnétar » absent du texte de la fiche : choisis un mot du texte ou aucun
+
+
+---
+
+## 3. Ordinateurs quantiques : cinq petits composants en silicium restent précis ensemble
+
+Fil : tech · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261024222024.htm
+
+**Actuel (publié)**
+
+- **Titre** : Ordinateurs quantiques : cinq petits composants en silicium restent précis ensemble
+- **Avant** : Les qubits en silicium peuvent être fabriqués avec les mêmes méthodes que les puces d'ordinateur actuelles. Mais quand plusieurs qubits sont pilotés en même temps, leurs opérations deviennent moins précises.
+- **Découverte** : Une équipe du centre RIKEN pilote simultanément cinq qubits en silicium reliés à une même ligne de commande micro-ondes. Les chercheurs ont identifié une cause majeure des erreurs et ont mis au point une technique pour la réduire. La précision reste d'environ 99,9 % même quand les cinq qubits fonctionnent en même temps.
+- **Et après** : Il ne s'agit que d'un petit réseau de cinq qubits en laboratoire, et les grands processeurs quantiques restent à construire. Le résultat est publié dans la revue Nature Physics et constitue une étape vers des processeurs plus grands.
+- **Mots** : **Qubit** → Unité de base d'un ordinateur quantique, qui peut prendre plusieurs états à la fois.
+- **Type** : demonstration
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Ordinateurs quantiques : cinq bits en silicium gardent 99,9 % de précision
+- **Avant** : Les bits quantiques en silicium peuvent être fabriqués avec les méthodes utilisées pour les puces actuelles. Mais piloter plusieurs de ces bits en même temps rend leurs opérations moins précises.
+- **Découverte** : Une équipe du centre RIKEN de recherche sur la matière émergente, au Japon, pilote cinq bits quantiques en silicium reliés à une même ligne de commande micro-ondes. Elle a repéré la cause principale des erreurs : les micro-ondes décalent l'état quantique de chaque bit, et elle a corrigé ce décalage par des calibrations entre paires de bits. La précision reste d'environ 99,9 % quand les cinq bits travaillent ensemble.
+- **Et après** : Cette méthode rend plus réaliste la construction de processeurs quantiques plus grands. Il ne s'agit toutefois que d'un petit réseau de cinq bits en laboratoire, et une perte de cohérence liée à la puissance micro-onde reste à réduire.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : [titre] « Ordinateurs quantiques : cinq bits en silicium gardent une précision de 99,9 % à la fois » → Titre de 15 mots, au-delà de 12 ; « bits » et « à la fois » sont trop flous pour dire le résultat. | [forme] « Elle a repéré la cause principale des erreurs, l'effet AC Stark, qui décale la phase de chaque bit, puis elle a corrigé ce décalage par des calibrations entre paires de bits. La précision reste d'environ 99,9 % quand les cinq bits travaillent ensemble. » → Phrase de 31 mots, trop longue pour être lue facilement ; « AC Stark » est un nom technique sans explication. | [jargon] « l'effet AC Stark » → Nom technique du public non spécialiste, à remplacer par une description simple : un effet des micro-ondes qui décale l'énergie de chaque bit. | [mot] « Qubit » → Le mot n'apparaît pas dans le texte de la fiche ; il doit être remplacé par un mot du texte ou supprimé. | [absolu] « Les bits quantiques en silicium se fabriquent avec les mêmes méthodes que les puces actuelles. » → L'article dit que ces bits peuvent être produits avec les méthodes de fabrication des puces actuelles : formulation trop affirmative, à attribuer ou nuancer. | [jargon] « RIKEN » → Sigle inconnu du public : l'article dit qu'il s'agit du centre RIKEN de recherche sur la matière émergente, au Japon, et l'équipe n'a pas besoin du nom. | [jargon] « des micro-ondes qui décalent la phase de chaque bit » → Le mot « phase » est technique ; l'article parle d'un décalage de l'état quantique de chaque bit, à reformuler simplement. | [forme] « decouverte » → La découverte compte 4 phrases alors que la règle en autorise 3 au plus. | [mot] « Bit quantique » → Le mot à connaître n'apparaît pas dans le texte de la fiche : il faut en choisir un présent dans le texte ou n'en garder aucun.
+
+- _Défauts mesurés restants_ : phrase de 30 mots dans « decouverte », à couper : « Elle a repéré la cause principale des erreurs : les micro-ondes décalent l'état quantique … » ; sigles ou noms codés inconnus du public : RIKEN → écris ce que c'est (ou supprime le nom s'il n'aide pas) · coût 0.0024 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Ordinateurs quantiques : cinq bits en silicium gardent une précision de 99,9 % à la fois
+- **Avant** : Les bits quantiques en silicium se fabriquent avec les mêmes méthodes que les puces actuelles. Mais, piloter plusieurs d'entre eux en même temps rend leurs opérations moins précises.
+- **Découverte** : Une équipe du centre RIKEN, au Japon, pilote cinq bits quantiques en silicium reliés à une même ligne de commande micro-ondes. Elle a repéré la cause principale des erreurs, l'effet AC Stark, qui décale la phase de chaque bit, puis elle a corrigé ce décalage par des calibrations entre paires de bits. La précision reste d'environ 99,9 % quand les cinq bits travaillent ensemble.
+- **Et après** : Cette méthode rend plus réaliste la construction de processeurs quantiques plus grands. Il ne s'agit toutefois que d'un petit réseau de cinq bits en laboratoire, et une perte de cohérence liée à la puissance micro-onde reste à réduire.
+- **Mots** : **Qubit** → Unité de base d'un ordinateur quantique, qui peut être dans plusieurs états à la fois, contrairement au bit classique qui vaut 0 ou 1.
+- **Type** : demonstration
+
+- _Faits relevés_ : Une équipe du centre RIKEN (Japon) a piloté simultanément cinq qubits en silicium reliés à une même ligne de commande micro-ondes. | La précision reste d'environ 99,9 % quand les cinq qubits fonctionnent en même temps. | Quand les cinq qubits sont testés seuls, chacun dépasse 99,99 % de fidélité, le meilleur approchant 99,999 %. | Avec trois qubits actifs ensemble, la fidélité reste au-dessus de 99,99 %. | La cause principale des erreurs, l'effet AC Stark, a été identifiée et corrigée par une calibration par paires de qubits. | Une limite subsiste : la perte de cohérence liée à la puissance micro-onde plus forte nécessaire pour piloter plusieurs qubits. | Les résultats sont publiés dans la revue Nature Physics.
+- _Nouveauté selon l'article_ : Les chercheurs ont montré qu'on peut piloter plusieurs qubits en silicium en même temps avec une grande précision, grâce à une calibration par paires ; l'article ne revendique pas de première.
+- _Jargon_ : Qubit : remplacé par « bit quantique » puis expliqué en quelques mots | Fidélité : remplacée par « précision » | Effet AC Stark : expliqué, car c'est la cause des erreurs | Décohérence : remplacée par « perte de l'état quantique délicat »
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : titre de 15 mots : 12 au plus ; phrase de 31 mots dans « decouverte », à couper : « Elle a repéré la cause principale des erreurs, l'effet AC Stark, qui décale la phase de ch… » ; sigles ou noms codés inconnus du public : AC, RIKEN → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; mot à connaître « Qubit » absent du texte de la fiche : choisis un mot du texte ou aucun
+
+
+---
+
+## 4. Prostate : un traitement avant et après l'opération limite la propagation du cancer
+
+Fil : science · 2★ · source : Medical Xpress · page lue : NON (0 caractères) · https://medicalxpress.com/news/2026-10-patients-apalutamide-hormone-therapy-surgery.html
+
+**Actuel (publié)**
+
+- **Titre** : Prostate : un traitement avant et après l'opération limite la propagation du cancer
+- **Avant** : Pour les cancers de la prostate à haut risque, la chirurgie est souvent complétée par une hormonothérapie. Les médecins cherchent à limiter le risque que la maladie se propage à d'autres organes.
+- **Découverte** : Un essai international de phase 3 a testé l'apalutamide, un médicament qui bloque les récepteurs des hormones masculines, associé à l'hormonothérapie avant et après la chirurgie. Une sous-étude montre que les patients traités ont moins souvent développé des métastases ou sont morts que ceux ayant reçu le traitement standard.
+- **Et après** : Ces résultats renforcent l'intérêt de ce traitement, mais ils viennent d'une sous-étude et il faudra un suivi plus long pour confirmer l'effet sur la survie.
+- **Mots** : **Hormonothérapie** → Traitement qui bloque les hormones, comme la testostérone, pour ralentir certains cancers. ; **Métastase** → Nouvelle tumeur formée à distance de la tumeur d'origine, lorsque le cancer se propage.
+- **Type** : essai_clinique
+
+_Article illisible : pas de réécriture._
+
+
+---
+
+## 5. Poumon : un nouveau médicament devance deux traitements plus anciens
+
+Fil : science · 2★ · source : STAT News (santé) · page lue : oui (1013 caractères) · https://www.statnews.com/2026/10/26/roche-kras-drug-divarasib-lung-cancer-treatment-win/?utm_campaign=rss
+
+**Actuel (publié)**
+
+- **Titre** : Poumon : un nouveau médicament devance deux traitements plus anciens
+- **Avant** : Certains cancers du poumon portent une mutation KRAS G12C qui les rend agressifs. Deux médicaments plus anciens, d'Amgen et de Bristol Myers Squibb, ciblent déjà cette mutation.
+- **Découverte** : Roche a testé son médicament divarasib chez des personnes ayant un cancer du poumon avancé, après un premier traitement. Présentés au congrès ESMO, les résultats montrent qu'il fait mieux que ces deux médicaments plus anciens.
+- **Et après** : Le médicament pourrait prendre une place importante sur le marché, mais il faudra des données complètes et publiées, puis une autorisation des autorités de santé.
+- **Mots** : **Mutation** → Changement dans la séquence d'un gène, qui peut modifier le fonctionnement d'une cellule.
+- **Type** : essai_clinique
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Poumon : un médicament de Roche fait mieux que deux anciens traitements
+- **Avant** : Certains cancers du poumon portent une mutation d'un gène appelé KRAS, qui les rend plus agressifs. Deux médicaments plus anciens, d'Amgen et de Bristol Myers Squibb, ciblent déjà cette mutation.
+- **Découverte** : Roche a testé son médicament divarasib chez des patients dont le cancer du poumon avait progressé après un premier traitement. Présentés lors d'un grand congrès européen de cancérologie, les résultats montrent qu'il fait mieux que les deux médicaments plus anciens.
+- **Et après** : Pour ces malades, ce traitement pourrait offrir une option plus efficace. Mais les données complètes doivent encore être publiées, puis examinées par les autorités de santé avant tout usage courant.
+- **Mots** : **Médicament** → Substance utilisée pour soigner une maladie ou en soulager les symptômes.
+- **Type** : essai_clinique
+
+- _Défauts trouvés par le relecteur_ : [titre] « Poumon : un médicament de Roche fait mieux que deux traitements plus anciens contre un cancer » → Titre de 15 mots, au-delà de la limite de 12 mots. | [jargon] « ESMO » → Sigle non expliqué : il s'agit d'un grand congrès européen de cancérologie, à expliquer ou à supprimer. | [jargon] « KRAS » → Nom de gène non expliqué pour le public. | [mot] « Inhibiteur » → Mot à connaître absent du texte de la fiche. | [non_soutenu] « Ce traitement pourrait prendre une place importante pour ces malades. » → Affirmation sur un usage futur non claire dans l'article ; l'article dit seulement que les résultats sont très bons et que le médicament pourrait se retrouver en bonne position sur le marché. | [jargon] « ESMO » → Sigle non expliqué : le congrès européen d'oncologie médicale n'est pas connu du public. Il faut le décrire ou le retirer. | [jargon] « KRAS » → Nom codé d'un gène, non expliqué dans la fiche ; il faut dire que c'est un gène dont une mutation rend certains cancers plus agressifs (ce qui est dit dans « avant », mais le nom doit être expliqué au premier usage). | [apres] « Ce traitement pourrait se retrouver en bonne position sur le marché pour ces malades. » → Le paragraphe parle de l'intérêt commercial de l'entreprise au lieu de ce que cela change pour les malades.
+
+- _Défauts mesurés restants_ : sigles ou noms codés inconnus du public : KRAS → écris ce que c'est (ou supprime le nom s'il n'aide pas) · coût 0.0016 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Poumon : un médicament de Roche fait mieux que deux traitements plus anciens contre un cancer
+- **Avant** : Certains cancers du poumon portent une mutation du gène KRAS qui les rend plus agressifs. Deux médicaments plus anciens, d'Amgen et de Bristol Myers Squibb, ciblent déjà cette mutation.
+- **Découverte** : Roche a testé son médicament divarasib chez des patients dont le cancer du poumon avait progressé après un premier traitement. Présentés au congrès ESMO, les résultats montrent qu'il fait mieux que les deux médicaments plus anciens.
+- **Et après** : Ce traitement pourrait prendre une place importante pour ces malades. Mais les données complètes doivent encore être publiées, puis examinées par les autorités de santé avant tout usage courant.
+- **Mots** : **Inhibiteur** → Médicament qui bloque l'action d'une protéine précise dans les cellules, pour freiner une maladie.
+- **Type** : essai_clinique
+
+- _Faits relevés_ : Le médicament divarasib, de Roche, cible la mutation KRAS G12C. | Il est testé chez des patients ayant un cancer du poumon avancé à petites cellules non, après un premier traitement (deuxième ligne). | Les résultats ont été présentés au congrès ESMO. | Le divarasib a fait mieux que deux inhibiteurs KRAS plus anciens, d'Amgen et de Bristol Myers Squibb. | L'article ne donne pas de chiffres précis sur les résultats.
+- _Nouveauté selon l'article_ : Selon l'article, le divarasib dépasse en efficacité deux médicaments plus anciens ciblant la même mutation ; l'article ne revendique pas de première.
+- _Jargon_ : Mutation KRAS G12C : remplacé par « mutation d'un gène qui rend certaines cellules cancéreuses plus agressives » | Inhibiteur : expliqué en quelques mots, un médicament qui bloque une protéine
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : titre de 15 mots : 12 au plus ; sigles ou noms codés inconnus du public : ESMO, KRAS → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; mot à connaître « Inhibiteur » absent du texte de la fiche : choisis un mot du texte ou aucun
+
+
+---
+
+## 6. Internet : une équipe chinoise atteint 3,2 pétabits par seconde
 
 Fil : tech · 2★ · source : Tom's Hardware · page lue : oui (2446 caractères) · https://www.tomshardware.com/networking/3-2-pb-s-real-time-optical-fiber-transfer-speed-world-record-claimed-by-chinese-team-speed-fast-enough-to-download-more-than-20-000-4k-movies-in-one-second
 
@@ -20,36 +214,36 @@ Fil : tech · 2★ · source : Tom's Hardware · page lue : oui (2446 caractère
 
 **Final après 2 relecture(s) (haiku)**
 
-- **Titre** : Internet : une fibre optique transporte 3,2 millions de gigabits par seconde
-- **Avant** : Le record de débit hors laboratoire était jusqu'ici de 2,5 pétabits (2,5 millions de gigabits) par seconde, établi par la même équipe plus tôt cette année. Les records de laboratoire atteignent davantage, mais reposent souvent sur des traitements expérimentaux.
-- **Découverte** : Des chercheurs chinois ont transmis 3,2 pétabits (3,2 millions de gigabits) par seconde en temps réel, dans une fibre optique à plusieurs cœurs. Ils ont combiné plusieurs cœurs de fibre et trois plages de lumière, avec du matériel conforme aux normes commerciales. Selon la source, si ce débit était un jour déployé, il pourrait permettre à 3,2 millions de foyers d'utiliser en même temps une connexion d'un gigabit.
-- **Et après** : Cette technique pourrait un jour accélérer de vrais réseaux, car elle utilise du matériel commercial. Aucune date de déploiement n'est donnée, et il reste à voir si elle sortira des laboratoires.
-- **Mots** : (aucun)
+- **Titre** : Internet : une équipe chinoise transfère 3,2 pétabits de données par seconde
+- **Avant** : Le record de débit en conditions réelles sur fibre optique était de 2,5 pétabits par seconde, obtenu par la même équipe plus tôt dans l'année. Les débits des réseaux courants restent très inférieurs.
+- **Découverte** : Des chercheurs chinois ont transmis des données en temps réel à 3,2 pétabits par seconde. Pour cela, ils ont utilisé une fibre à 24 cœurs et trois bandes de longueurs d'onde, en surmontant les interférences entre les cœurs avec du matériel conforme aux standards commerciaux. Selon les chercheurs, ce débit pourrait alimenter 3,2 millions de foyers en gigabit simultanément.
+- **Et après** : Si la technique passe à l'échelle, elle pourrait accélérer fortement les réseaux de données. Les records obtenus en laboratoire, jusqu'à 5,29 pétabits, reposent sur des équipements expérimentaux et ne sont pas encore transposables aux réseaux réels.
+- **Mots** : **Pétabit** → Unité valant un million de milliards de bits ; utilisée pour mesurer des débits de réseaux très élevés.
 - **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : [jargon] « Le record de débit hors laboratoire était jusqu'ici de 2,5 pétabits par seconde » → Le pétabit est une unité savante non convertie. Il faut ajouter l'équivalent en gigabits, comme le titre le fait. | [jargon] « Des chercheurs chinois ont transmis 3,2 pétabits par seconde en temps réel » → Le pétabit est une unité savante non convertie dans le corps de la fiche. | [non_soutenu] « ce débit suffirait à faire utiliser ensemble une connexion d'un gigabit à 3,2 millions de foyers » → L'article dit que ce débit pourrait permettre cela si et quand il serait déployé. La fiche présente un usage futur comme acquis. | [forme] « Selon l'article, cette technique pourrait un jour accélérer de vrais réseaux » → La phrase parle de l'article au lieu des faits. | [comparaison] « dans une fibre optique à 24 cœurs » → Le nombre de cœurs (24) est un chiffre technique qui s'ajoute aux autres chiffres de la section sans apporter de repère pour le lecteur ; la fiche garde trois chiffres parlants.
+- _Défauts trouvés par le relecteur_ : [titre] « Internet : une équipe chinoise envoie 3,2 pétabits par seconde sur une fibre optique » → Le titre fait 13 mots, plus que la limite de 12. | [forme] « Des chercheurs chinois ont transmis des données en temps réel à 3,2 pétabits par seconde, grâce à une fibre à 24 cœurs et à trois bandes de longueurs d'onde. » → Phrase de 29 mots dans « decouverte » à couper pour rester lisible. | [forme] « plus tôt cette année » → Date relative : la fiche sera lue plus tard, il faut donner l'année ou rien. | [forme] « Selon la source, ce débit pourrait alimenter 3,2 millions de foyers en gigabit simultanément. » → Parle de la source au lieu de dire qui affirme ; l'article attribue cette estimation aux chercheurs, et la portée est conditionnelle (« si et quand »). | [non_soutenu] « ce débit pourrait alimenter 3,2 millions de foyers en gigabit simultanément » → L'article précise que c'est possible seulement si et quand ces débits seront déployés ; la fiche ne dit pas cette condition. | [forme] « plus tôt cette année » → Date relative dans « avant » : même correction que ci-dessus, donner l'année. | [jargon] « à 24 cœurs et à trois bandes de longueurs d'onde » → Notion technique non expliquée pour un lecteur non spécialiste. | [forme] « decouverte : 4 phrases » → Le paragraphe « decouverte » dépasse les 3 phrases autorisées. | [non_soutenu] « Selon les chercheurs, si ce débit est déployé, il pourrait alimenter 3,2 millions de foyers en gigabit simultanément. » → L'article dit que ce débit pourrait alimenter 3,2 millions de foyers en gigabit, mais la phrase est une affirmation conditionnelle correcte ; le point faible est surtout sa redondance avec la comparaison. Non retenu comme défaut de fond. | [apres] « Le résultat n'est pas encore confirmé par d'autres chercheurs, et il reste à voir si la méthode sortira des laboratoires. » → Le paragraphe ne donne pas de limite vraie tirée de l'étude : l'article précise que le test a été fait en conditions réelles avec du matériel commercial, mais aussi que les records de laboratoire dépassent 5 Pb/s avec des équipements expérimentaux. La limite principale à citer est l'écart avec ces dispositifs de laboratoire.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0058 $
+- _Défauts mesurés restants_ : phrase de 30 mots dans « decouverte », à couper : « Pour cela, ils ont utilisé une fibre à 24 cœurs et trois bandes de longueurs d'onde, en su… » · coût 0.0022 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Internet : une fibre optique transporte 3,2 millions de gigabits par seconde
-- **Avant** : Le record de débit hors laboratoire était jusqu'ici de 2,5 pétabits par seconde, établi par la même équipe plus tôt cette année. Les records de laboratoire atteignent davantage, mais reposent souvent sur des traitements expérimentaux.
-- **Découverte** : Des chercheurs chinois ont transmis 3,2 pétabits par seconde en temps réel, dans une fibre optique à 24 cœurs. Ils ont combiné plusieurs cœurs de fibre et trois plages de lumière, avec du matériel conforme aux normes commerciales. Selon la source, ce débit suffirait à faire utiliser ensemble une connexion d'un gigabit à 3,2 millions de foyers.
-- **Et après** : Selon l'article, cette technique pourrait un jour accélérer de vrais réseaux, puisqu'elle utilise du matériel commercial. Aucune date de déploiement n'est donnée, et il reste à voir si elle sortira des laboratoires.
-- **Mots** : (aucun)
+- **Titre** : Internet : une équipe chinoise envoie 3,2 pétabits par seconde sur une fibre optique
+- **Avant** : Le record de débit hors laboratoire sur fibre optique était de 2,5 pétabits par seconde, obtenu par la même équipe plus tôt cette année. Les débits des réseaux courants restent très inférieurs.
+- **Découverte** : Des chercheurs chinois ont transmis des données en temps réel à 3,2 pétabits par seconde, grâce à une fibre à 24 cœurs et à trois bandes de longueurs d'onde. Ils ont surmonté les interférences entre les cœurs et utilisé du matériel conforme aux standards commerciaux. Selon la source, ce débit pourrait alimenter 3,2 millions de foyers en gigabit simultanément.
+- **Et après** : Si la technique passe à l'échelle, elle pourrait accélérer fortement les réseaux de données. Le résultat n'est pas encore confirmé par d'autres chercheurs, et il reste à voir si la méthode sortira des laboratoires.
+- **Mots** : **Pétabit** → Unité valant un million de milliards de bits ; utilisée pour mesurer des débits de réseaux très élevés.
 - **Type** : demonstration
 
-- _Faits relevés_ : Une équipe atteint 3,2 pétabits par seconde en transmission en temps réel, selon l'article. | Le test utilise une fibre optique à 24 cœurs, avec du matériel conforme aux normes commerciales. | Le record précédent hors laboratoire était de 2,5 pétabits par seconde, par la même équipe plus tôt cette année. | L'amélioration atteint près de 30 % en un an, selon l'article. | La technique combine le multiplexage spatial et la transmission sur trois plages de lumière (S, C et L). | Les difficultés principales étaient les interférences entre cœurs de fibre et la gestion des trois plages de lumière. | Selon la source, ce débit équivaudrait à 3,2 millions de foyers utilisant ensemble une connexion d'un gigabit. | Des records de laboratoire atteignent 5,29 pétabits par seconde, mais avec des traitements du signal expérimentaux et des équipements de laboratoire.
-- _Nouveauté selon l'article_ : Selon l'article, c'est un record mondial de transmission en temps réel, qui dépasse de près de 30 % le record hors laboratoire de la même équipe ; les records de laboratoire, eux, étaient déjà plus élevés.
-- _Jargon_ : Pétabit : remplacé par « millions de gigabits par seconde » dans le titre et « millions de foyers » dans le texte. | Multiplexage spatial et bandes S+C+L : expliqués en quelques mots (plusieurs cœurs de fibre et plusieurs plages de lumière).
+- _Faits relevés_ : Une équipe chinoise annonce un transfert de données en temps réel à 3,2 pétabits par seconde sur fibre optique. | Le record précédent hors laboratoire était de 2,5 pétabits par seconde, obtenu par la même équipe plus tôt cette année. | Le progrès représente une hausse d'environ 30 % en un an. | La technique combine le multiplexage spatial et la transmission sur trois bandes de longueurs d'onde (S, C et L). | Les chercheurs ont dû surmonter les interférences entre cœurs de la fibre (diaphonie) et les exigences différentes des trois bandes. | Le test utilise un matériel conforme aux standards commerciaux, selon l'article. | Un record de laboratoire atteint 5,29 pétabits par seconde sur une fibre comparable à 24 cœurs, mais avec des équipements expérimentaux. | Selon la source, ce débit pourrait alimenter simultanément 3,2 millions de foyers en haut débit gigabit.
+- _Nouveauté selon l'article_ : Selon l'article, c'est un nouveau record de débit en temps réel avec du matériel commercial, en progression sur le précédent record hors laboratoire de la même équipe ; l'article ne revendique pas de première mondiale absolue.
+- _Jargon_ : Pétabit par seconde : remplacé par « mille milliards de milliards de bits »... à expliquer en une phrase : un million de milliards de bits envoyés chaque seconde. | Multiplexage spatial : expliqué en quelques mots (plusieurs canaux de données passent en même temps dans une même fibre). | Diaphonie : remplacée par « interférences entre les cœurs de la fibre ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
+- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; phrase de 29 mots dans « decouverte », à couper : « Des chercheurs chinois ont transmis des données en temps réel à 3,2 pétabits par seconde, … » ; date relative « plus tôt cette année » : la fiche sera lue plus tard, donne l'année ou rien ; « Selon la source » parle de la source : écris « selon les chercheurs » ou « selon l'entreprise »
 
 
 ---
 
-## 2. Poumon : deux traitements combinés réduisent de 58 % le risque de décès
+## 7. Poumon : deux traitements combinés réduisent de 58 % le risque de décès
 
 Fil : science · 3★ · source : Le Monde Sciences · page lue : NON (0 caractères) · https://www.lemonde.fr/sciences/article/2026/10/26/cancers-du-poumon-a-petites-cellules-une-nouvelle-immunotherapie-permet-un-gain-de-survie-jamais-vu_6800675_1650684.html
 
@@ -67,9 +261,9 @@ _Article illisible : pas de réécriture._
 
 ---
 
-## 3. Cancer : un médicament réduit d'un tiers le risque de décès
+## 8. Cancer : un médicament réduit d'un tiers le risque de décès
 
-Fil : science · 2★ · source : STAT News (santé) · page lue : oui (1424 caractères) · https://www.statnews.com/2026/10/26/merck-kelun-sac-tmt-endometrial-cancer-study-esmo-2026/?utm_campaign=rss
+Fil : science · 2★ · source : STAT News (santé) · page lue : oui (1522 caractères) · https://www.statnews.com/2026/10/26/merck-kelun-sac-tmt-endometrial-cancer-study-esmo-2026/?utm_campaign=rss
 
 **Actuel (publié)**
 
@@ -82,36 +276,36 @@ Fil : science · 2★ · source : STAT News (santé) · page lue : oui (1424 car
 
 **Final après 2 relecture(s) (haiku)**
 
-- **Titre** : Cancer : une chimiothérapie ciblée réduit d'un tiers le risque de décès
-- **Avant** : Le cancer de l'endomètre touche la paroi interne de l'utérus et fait partie des cancers gynécologiques fréquents. Ici, il s'agit de formes avancées de ce cancer.
-- **Découverte** : Merck et l'entreprise chinoise Kelun-Biotech ont testé le sacituzumab tirumotecan, une chimiothérapie ciblée. Dans un essai de phase 3, une grande étude menée avant une demande d'autorisation. Le risque de décès a baissé d'un tiers chez des patientes atteintes d'un cancer de l'endomètre avancé. Les résultats ont été présentés.
-- **Et après** : Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe, où il doit encore prouver son efficacité. Merck mène 18 études de phase 3 dans le monde pour obtenir ces autorisations, car son médicament phare Keytruda perdra sa protection par brevet en 2028.
-- **Mots** : **Chimiothérapie ciblée** → Traitement anticancéreux qui vise surtout les cellules tumorales, en limitant les effets sur le reste du corps.
+- **Titre** : Cancer de l'endomètre : un traitement réduit d'un tiers le risque de décès
+- **Avant** : Le cancer de l'endomètre, qui touche la paroi interne de l'utérus, est un cancer gynécologique courant. Au stade avancé, les options de traitement restent limitées.
+- **Découverte** : Merck et Kelun-Biotech ont testé un traitement ciblé, une forme de chimiothérapie appelée sacituzumab tirumotecan, auprès de patientes atteintes d'un cancer avancé de l'endomètre. Selon des résultats d'essai présentés en novembre 2026, le risque de décès est réduit d'un tiers. Le médicament est déjà autorisé en Chine.
+- **Et après** : Ce traitement doit encore obtenir une autorisation aux États-Unis et en Europe. Merck poursuit 18 essais pour confirmer ces résultats chez un plus grand nombre de patientes.
+- **Mots** : **Essai randomisé** → Essai où les patients sont répartis au hasard entre plusieurs traitements, pour comparer leurs effets.
 - **Type** : essai_clinique
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « pour lesquelles les laboratoires développent de nouveaux traitements » → L'article ne dit pas que les laboratoires développent de nouveaux traitements pour ces formes avancées. Cette affirmation n'est pas dans la source. | [jargon] « Merck et l'entreprise chinoise Kelun-Biotech ont testé le sac-TMT » → Le sigle TMT est un nom codé inconnu du public. L'article donne le nom complet, sacituzumab tirumotecan, ce qui permet de l'expliquer. | [forme] « Dans un essai de phase 3, la grande étude qui précède une demande d'autorisation, le risque de décès a baissé d'un tiers » → Phrase de 30 mots, à couper. | [forme] « Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe : Merck y mène 18 études de phase 3, dont 10 sur des cancers féminins. » → Phrase de 30 mots, à couper. Le paragraphe « apres » contient aussi trois phrases au lieu de deux. | [jargon] « Keytruda perdra sa protection par brevet en 2028 » → Keytruda est un nom de médicament inconnu du public. Il n'est pas expliqué dans le texte. | [forme] « Dans un essai de phase 3, c'est-à-dire une grande étude qui précède une demande d'autorisation, le risque de décès a baissé d'un tiers chez des patientes au cancer de l'endomètre avancé. » → Phrase de 31 mots, trop longue pour une fiche ; à couper. | [jargon] « dit sac-TMT » → Le sigle TMT est un nom codé inconnu du public ; il n'aide pas le lecteur et doit être supprimé. | [non_soutenu] « où Merck mène 18 études de phase 3 » → L'article dit que les 18 études sont mondiales (pour obtenir les autorisations hors de Chine), pas qu'elles ont lieu en Europe ; la fiche laisse croire le contraire.
+- _Défauts trouvés par le relecteur_ : [titre] « Cancer de l'utérus : un médicament réduit d'un tiers le risque de décès à un stade avancé » → Titre de 16 mots, plus que la limite de 12 mots. | [forme] « Selon des résultats présentés lundi » → Jour de la semaine relatif interdit ; il faut une date ou rien. | [mot] « Chimiothérapie ciblée » → Ce mot à connaître n'est pas dans le texte de la fiche. | [non_soutenu] « Ce traitement pourrait devenir une option pour des patientes en stade avancé. » → L'article ne dit pas que le traitement sera une option de soins ; il dit seulement qu'il réduit le risque de décès et qu'il doit encore être autorisé hors de Chine. | [forme] « Selon des résultats d'essai présentés récemment » → Date relative « récemment » interdite ; la fiche sera lue plus tard. Il faut donner l'année ou la date (l'article est daté de novembre 2026, présentation lundi). | [mot] « Essai randomisé » → Le mot à connaître est un terme technique du texte qui n'y apparaît pas et n'est pas expliqué ailleurs ; la définition reste acceptable mais le mot est un jargon non remplacé par des mots simples dans la fiche. | [jargon] « sacituzumab tirumotecan » → Nom de molécule complexe non expliqué dans la fiche ; il faut indiquer qu'il s'agit d'un traitement ciblé de type chimiothérapie, comme le précise l'article.
 
-- _Défauts mesurés restants_ : « decouverte » a 4 phrases : 3 au plus · coût 0.0076 $
+- _Défauts mesurés restants_ : aucun · coût 0.0018 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Cancer : une chimiothérapie ciblée réduit d'un tiers le risque de décès
-- **Avant** : Le cancer de l'endomètre touche la paroi interne de l'utérus et fait partie des cancers gynécologiques fréquents. Ici, il s'agit de formes avancées, pour lesquelles les laboratoires développent de nouveaux traitements.
-- **Découverte** : Merck et l'entreprise chinoise Kelun-Biotech ont testé le sac-TMT, une chimiothérapie ciblée. Dans un essai de phase 3, la grande étude qui précède une demande d'autorisation, le risque de décès a baissé d'un tiers chez des patientes au cancer de l'endomètre avancé. Les résultats ont été présentés.
-- **Et après** : Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe : Merck y mène 18 études de phase 3, dont 10 sur des cancers féminins. Le groupe en a besoin, car Keytruda perdra sa protection par brevet en 2028.
-- **Mots** : **Chimiothérapie ciblée** → Traitement anticancéreux qui vise surtout les cellules tumorales, en limitant les effets sur le reste du corps.
+- **Titre** : Cancer de l'utérus : un médicament réduit d'un tiers le risque de décès à un stade avancé
+- **Avant** : Le cancer de l'endomètre, qui touche la paroi interne de l'utérus, est un cancer gynécologique courant. Au stade avancé, les options de traitement restent limitées.
+- **Découverte** : Merck et Kelun-Biotech ont testé un traitement ciblé, le sacituzumab tirumotecan, auprès de patientes atteintes d'un cancer avancé de l'endomètre. Selon des résultats présentés lundi, le risque de décès est réduit d'un tiers. Le médicament est déjà autorisé en Chine.
+- **Et après** : Ce traitement pourrait devenir une option pour des patientes en stade avancé. Il doit encore obtenir une autorisation aux États-Unis et en Europe, et Merck poursuit 18 essais pour le confirmer.
+- **Mots** : **Essai randomisé** → Essai où les patients sont répartis au hasard entre plusieurs traitements, pour comparer leurs effets. ; **Chimiothérapie ciblée** → Traitement anticancéreux qui vise surtout certaines cellules tumorales en leur apportant une substance toxique.
 - **Type** : essai_clinique
 
-- _Faits relevés_ : Merck et l'entreprise chinoise Kelun-Biotech ont mis au point le médicament sac-TMT. | Le sac-TMT est une chimiothérapie ciblée. | L'essai de phase 3 porte sur des patientes atteintes d'un cancer de l'endomètre avancé. | Le risque de décès est réduit d'un tiers, selon les résultats présentés. | Le médicament a déjà montré des bénéfices pour plusieurs cancers dans des études menées par Kelun en Chine. | Le sac-TMT est autorisé en Chine, mais pas encore aux États-Unis ni en Europe. | Merck mène 18 études de phase 3 avec ce médicament, dont 10 sur des cancers féminins. | Keytruda, le médicament phare de Merck, perdra sa protection par brevet en 2028.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il rapporte qu'un essai a montré une baisse d'un tiers du risque de décès, et que le médicament était déjà autorisé en Chine.
-- _Jargon_ : Chimiothérapie ciblée : expliqué dans le texte et en mot à connaître. | Phase 3 : expliqué en quelques mots dans la découverte (grande étude qui précède une demande d'autorisation). | Brevet : remplacé par « protection par brevet », expliqué comme la protection juridique qui empêche les copies.
+- _Faits relevés_ : Essai de phase 3 (randomisé) sur un traitement ciblé mis au point par Merck et l'entreprise chinoise Kelun-Biotech. | Le médicament, le sacituzumab tirumotecan (sac-TMT), réduit d'un tiers le risque de décès chez les patientes au stade avancé d'un cancer de l'endomètre. | Le cancer de l'endomètre touche la paroi interne de l'utérus ; c'est un cancer gynécologique courant. | Le sac-TMT a déjà prolongé la survie de patients dans plusieurs types de cancers, dans des études menées par Kelun en Chine, où il est autorisé. | Merck mène 18 essais de phase 3 avec ce médicament, dont 10 sur des cancers féminins, pour obtenir des autorisations aux États-Unis, en Europe et ailleurs. | Les résultats ont été présentés lundi lors d'un congrès médical à Madrid.
+- _Nouveauté selon l'article_ : Selon l'article, le sac-TMT réduit d'un tiers le risque de décès dans ce cancer avancé ; l'article ne revendique pas de première, et des bénéfices avaient déjà été observés dans d'autres cancers en Chine.
+- _Jargon_ : Chimiothérapie ciblée : remplacé par « traitement anticancéreux qui vise certaines cellules », expliqué dans les mots à connaître. | Essai randomisé : expliqué en mot à connaître. | Phase 3 : remplacé par « essai à grande échelle sur des patientes ». | Immunothérapie : remplacé par « médicament qui aide le système de défense du corps ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : phrase de 30 mots dans « decouverte », à couper : « Dans un essai de phase 3, la grande étude qui précède une demande d'autorisation, le risqu… » ; phrase de 30 mots dans « apres », à couper : « Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe : Me… » ; sigles ou noms codés inconnus du public : TMT → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Alertes automatiques_ : titre de 16 mots : 12 au plus ; jour de la semaine « lundi » : écris seulement la date (« le 28 octobre ») ou rien ; mot à connaître « Chimiothérapie ciblée » absent du texte de la fiche : choisis un mot du texte ou aucun
 
 
 ---
 
-## 4. Muscles : des ciseaux à ADN modifient un gène dans des muscles humains
+## 9. Muscles : des ciseaux à ADN modifient un gène dans des muscles humains
 
 Fil : science · 2★ · source : Cell · page lue : NON (0 caractères) · https://www.cell.com/cell/fulltext/S0092-8674(26)01206-7?rss=yes
 
@@ -129,7 +323,7 @@ _Article illisible : pas de réécriture._
 
 ---
 
-## 5. IA : un virus dessiné par ordinateur attaque une bactérie
+## 10. IA : un virus dessiné par ordinateur attaque une bactérie
 
 Fil : tech · 2★ · source : Les Numériques · page lue : oui (3266 caractères) · https://www.lesnumeriques.com/intelligence-artificielle/si-ca-marche-c-est-incroyable-un-patient-que-les-antibiotiques-ne-soignaient-plus-a-recu-le-tout-premier-virus-concu-par-ia-n263803.html
 
@@ -142,38 +336,38 @@ Fil : tech · 2★ · source : Les Numériques · page lue : oui (3266 caractèr
 - **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries, sans toucher aux cellules humaines.
 - **Type** : demonstration
 
-**Final après 2 relecture(s) (haiku)**
+**Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Intelligence artificielle : un virus dessiné par IA tue en éprouvette une bactérie
-- **Avant** : Des virus appelés bactériophages s'attaquent aux seules bactéries et servent contre les infections résistantes. Trouver celui qui agit sur la bactérie d'un malade peut prendre des semaines, parfois des mois.
-- **Découverte** : Une start-up américaine, Radical Numerics, a fait réécrire par son IA un virus connu depuis 1945, qui s'attaque à une bactérie intestinale. Selon l'entreprise, 69,9 % des virus conçus étaient viables, contre 4,8 % avec des changements au hasard. Le mélange a détruit la bactérie du malade en éprouvette avant d'être donné au patient.
-- **Et après** : Selon l'entreprise, la méthode pourrait raccourcir la recherche d'un virus adapté. Les observations portent sur un seul patient : son état n'est pas connu et les résultats ne sont pas encore vérifiés par d'autres chercheurs.
-- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries et ignore les cellules humaines ; on s'en sert contre les infections résistantes.
+- **Titre** : Virus : une IA dessine des phages qui détruisent une bactérie résistante
+- **Avant** : Les bactériophages sont des virus qui ne s'attaquent qu'aux bactéries. Trouver celui qui reconnaît la bactérie d'un malade peut prendre des semaines, voire des mois.
+- **Découverte** : Une IA a réécrit le gène d'un virus connu qui s'accroche aux bactéries, pour qu'il reconnaisse une bactérie résistante. Le virus a été fabriqué en laboratoire, et le mélange de virus a détruit la bactérie du patient dans une éprouvette. Sur les variantes conçues, 69,9 % étaient viables, contre 4,8 % pour des changements au hasard.
+- **Et après** : Un patient a reçu ce traitement sous usage compassionnel, mais l'entreprise ne dit pas s'il va mieux. Ces résultats viennent d'un seul patient : l'efficacité et la sécurité restent à prouver chez d'autres malades.
+- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries et ignore les cellules humaines. On s'en sert depuis un siècle contre les infections difficiles à soigner.
 - **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : [jargon] « a fait réécrire par son IA un virus connu, le T7, pour qu'il s'accroche » → Le sigle T7 n'est ni expliqué ni remplacé par des mots simples. L'article dit que c'est un phage de la bactérie Escherichia coli, documenté depuis 1945. | [non_soutenu] « Ce cas reste unique » → L'article ne dit pas que le cas est unique. Il dit seulement que les observations portent sur un seul patient et ne permettent pas d'établir la sécurité ni l'efficacité. | [titre] « Intelligence artificielle : un virus créé sur ordinateur détruit la bactérie d'un patient » → Le titre laisse croire que le virus a détruit la bactérie dans le corps du patient. L'article dit seulement que le mélange a détruit l'isolat en éprouvette, avant d'être administré. | [forme] « Une start-up américaine, Radical Numerics, a fait réécrire par son IA un virus connu depuis 1945, qui s'attaque à une bactérie intestinale, pour qu'il s'accroche à la bactérie d'un patient. » → Phrase de 30 mots, trop longue pour la fiche.
+- _Défauts trouvés par le relecteur_ : [absolu] « Les virus qui ne s'attaquent qu'aux bactéries sont choisis parmi ceux qui existent dans la nature. » → Présenté comme une règle générale ; c'est vrai du procédé habituel mais l'article ne le pose pas en absolu, et la phrase n'est pas un défaut majeur. Surtout, le titre et la phrase « Une IA a redessiné... » sont corrects. | [non_soutenu] « Une IA a redessiné la partie d'un virus connu qui s'accroche aux bactéries, pour qu'il reconnaisse une bactérie résistante. » → L'article dit que l'IA a réécrit le gène gp17 du phage T7 ; la formulation est juste, mais « redessiné » reste à relier au gène précis. Non retenu comme défaut. | [apres] « Un patient a reçu ce traitement sous usage compassionnel, mais l'entreprise ne dit pas s'il va mieux. » → Le paragraphe « Et après » ne donne pas la prochaine étape ni la limite principale de façon claire ; il manque l'indication que les autorités n'ont pas approuvé ce usage. | [mot] « Bactériophage » → La définition dit que le virus « ignore les cellules humaines » et qu'on s'en sert depuis un siècle : exact selon l'article, mais le mot est utilisé avant d'être expliqué dans la fiche, ce qui est acceptable. | [forme] « Ces résultats viennent d'un seul patient et n'ont pas été évalués par d'autres chercheurs » → Le paragraphe « Et après » parle de la publication (absence d'évaluation par les pairs) au lieu de dire ce que ça change ; la limite utile est le cadre de l'étude.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0043 $
+- _Défauts mesurés restants_ : aucun · coût 0.0016 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Intelligence artificielle : un virus créé sur ordinateur détruit la bactérie d'un patient
-- **Avant** : Des virus appelés bactériophages s'attaquent aux seules bactéries et servent contre les infections résistantes. Trouver celui qui agit sur la bactérie d'un malade peut prendre des semaines, parfois des mois.
-- **Découverte** : Une start-up américaine, Radical Numerics, a fait réécrire par son IA un virus connu, le T7, pour qu'il s'accroche à la bactérie d'un patient. Selon l'entreprise, 69,9 % des virus conçus étaient viables, contre 4,8 % avec des changements au hasard. Le mélange a détruit la bactérie du malade en laboratoire avant d'être donné au patient.
-- **Et après** : Selon l'entreprise, la méthode pourrait raccourcir la recherche d'un virus adapté. Ce cas reste unique : l'état du patient n'est pas connu et les résultats ne sont pas encore vérifiés par d'autres chercheurs.
-- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries et ignore les cellules humaines ; on s'en sert contre les infections résistantes.
+- **Titre** : Virus : une IA dessine des phages qui détruisent une bactérie résistante
+- **Avant** : Les virus qui ne s'attaquent qu'aux bactéries sont choisis parmi ceux qui existent dans la nature. Trouver celui qui reconnaît la bactérie d'un malade peut prendre des semaines, voire des mois.
+- **Découverte** : Une IA a redessiné la partie d'un virus connu qui s'accroche aux bactéries, pour qu'il reconnaisse une bactérie résistante. Le virus a été fabriqué en laboratoire, et le mélange de virus a détruit la bactérie du patient dans une éprouvette. Sur les variantes conçues, 69,9 % étaient viables, contre 4,8 % pour des changements au hasard.
+- **Et après** : Un patient a reçu ce traitement sous usage compassionnel, mais l'entreprise ne dit pas s'il va mieux. Ces résultats viennent d'un seul patient et n'ont pas été évalués par d'autres chercheurs : l'efficacité et la sécurité restent à prouver.
+- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries et ignore les cellules humaines. On s'en sert depuis un siècle contre les infections difficiles à soigner.
 - **Type** : demonstration
 
-- _Faits relevés_ : Une start-up de San Francisco, Radical Numerics, a fait dessiner un virus par son IA, Omnii-1, pour un patient avec une infection bactérienne résistante aux antibiotiques. | Le virus dessiné est un dérivé du T7, un bactériophage d'Escherichia coli documenté depuis 1945. | L'IA a réécrit le gène gp17, la fibre qui agrippe la bactérie, avec 11 à 15 changements. | Selon l'entreprise, 69,9 % des variantes proposées ont donné un virus viable, contre 4,8 % pour des mutations au hasard. | Sur 6 694 variantes actives mesurées, 2 161 surpassaient le phage d'origine. | Le cocktail a détruit l'isolat bactérien du patient en éprouvette, puis a été administré sous usage compassionnel. | L'entreprise refuse de dire si le patient va mieux, invoquant la confidentialité. | Le rapport technique, publié le 20 octobre 2026, n'a pas encore été évalué par des pairs.
-- _Nouveauté selon l'article_ : Selon l'entreprise, c'est une première mondiale : un virus conçu par IA a été administré à un patient ; l'article rapporte cette revendication sans la confirmer.
-- _Jargon_ : bactériophage : mot à connaître, expliqué dans mots | gène gp17 : remplacé par « le gène qui fabrique la fibre de fixation du virus » | isolat : remplacé par « la bactérie du patient » | usage compassionnel : expliqué comme « un traitement donné hors essai, faute d'autre solution »
+- _Faits relevés_ : Une start-up de San Francisco, Radical Numerics, a publié un rapport technique le 20 octobre 2026. | Son modèle d'IA, Omnii-1, a redessiné le gène gp17 du phage T7, un virus qui attaque la bactérie Escherichia coli. | Le gène gp17 code la fibre caudale, la partie du virus qui s'accroche à la surface de la bactérie. | Le virus a été fabriqué en laboratoire, puis administré à un patient atteint d'une infection résistante aux antibiotiques, sous usage compassionnel. | Sur les variantes conçues, 69,9 % étaient viables, contre 4,8 % pour des mutations au hasard. | Sur 6 694 variantes actives mesurées, 2 161 étaient plus efficaces que le phage d'origine. | Le cocktail retenu a détruit en éprouvette la bactérie prélevée chez le patient. | L'entreprise ne dit pas si le patient va mieux et ne précise ni l'hôpital ni les médecins.
+- _Nouveauté selon l'article_ : Selon l'entreprise, c'est une première mondiale : des virus conçus par IA ont été donnés à un patient ; avant, on choisissait des phages existants dans la nature.
+- _Jargon_ : bactériophage : remplacé par « virus qui n'attaque que les bactéries » | gène : mot à connaître sans explication supplémentaire car courant | IA : sigle connu du grand public
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : sigles ou noms codés inconnus du public : T7 → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Alertes automatiques_ : aucune
 
 
 ---
 
-## 6. Désert : des ultrasons libèrent l'eau captée dans l'air
+## 11. Désert : des ultrasons libèrent l'eau captée dans l'air
 
 Fil : tech · 1★ · source : Journal du Geek · page lue : oui (3197 caractères) · https://www.journaldugeek.com/2026/10/26/le-mit-accelere-la-collecte-deau-dans-le-desert-grace-aux-ultrasons/
 
@@ -188,36 +382,36 @@ Fil : tech · 1★ · source : Journal du Geek · page lue : oui (3197 caractèr
 
 **Final après 2 relecture(s) (haiku)**
 
-- **Titre** : Eau : des ultrasons extraient l'eau d'un matériau en quelques minutes
-- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau y reste piégée : selon les systèmes, la libérer prend des dizaines de minutes, des heures, voire des jours.
-- **Découverte** : Des chercheurs de l'institut de technologie du Massachusetts, aux États-Unis, ont conçu un appareil où un anneau en céramique vibre sous tension électrique, à des fréquences ultrasonores. Ces vibrations rompent les liens faibles qui retiennent l'eau, et des buses la dirigent vers des récipients de collecte. Sur de petits échantillons, quelques minutes ont suffi à les assécher ; selon les calculs des chercheurs, l'extraction seule est 45 fois plus efficace qu'avec la chaleur solaire.
-- **Et après** : Le système pourrait enchaîner plusieurs collectes par jour au lieu d'attendre le soleil, et potentiellement recueillir davantage d'eau avec le même équipement. Mais aucun volume quotidien n'est annoncé, l'appareil consomme de l'électricité et le matériau doit se recharger assez vite en humidité entre deux passages.
-- **Mots** : **Ultrasons** → Ondes sonores trop aiguës pour être entendues, utilisées ici pour faire vibrer le matériau et en chasser l'eau.
+- **Titre** : Désert : des vibrations sonores extraient l'eau captée dans l'air en quelques minutes
+- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau reste piégée, et sa récupération par la chaleur solaire demande parfois des heures, voire des jours.
+- **Découverte** : Des chercheurs de l'institut de technologie américain MIT ont conçu un appareil dont un anneau en céramique vibre sous tension électrique, à des fréquences inaudibles. Ces vibrations rompent les liaisons qui retiennent l'eau, et des buses la dirigent vers des récipients. Sur de petits échantillons saturés, quelques minutes ont suffi à les assécher.
+- **Et après** : Selon les calculs des chercheurs, l'extraction serait 45 fois plus efficace que par la chaleur solaire pour ce même matériau, mais ce chiffre ne concerne que l'extraction. Il reste à prouver la consommation d'énergie et les volumes d'eau d'un appareil complet, testé hors du laboratoire.
+- **Mots** : **Vibrations** → Mouvements rapides et répétés d'un objet d'avant en arrière, qui peuvent produire des sons ou des ondes qui se propagent dans l'air.
 - **Type** : prototype
 
-- _Défauts trouvés par le relecteur_ : [jargon] « des chercheurs du MIT, une université américaine » → Le sigle MIT n'est pas expliqué ; il faut dire ce que c'est. | [comparaison] « soit 45 fois plus efficace que la chaleur solaire, selon les calculs des chercheurs » → Le chiffre concerne seulement l'extraction pour ce matériau, pas une installation complète ; ce cadre manque. | [forme] « Sur de petits échantillons saturés d'eau » → Le fait des petits échantillons est répété dans « apres » ; il ne doit être dit qu'une fois. | [forme] « Sur de petits échantillons saturés d'eau, quelques minutes ont suffi à les assécher ; selon les calculs des chercheurs, l'extraction est 45 fois plus efficace qu'avec la chaleur solaire pour ce même matériau, mais ce chiffre ne concerne que l'extraction. » → Phrase de 40 mots, trop longue pour être lue facilement. Elle est coupée et raccourcie en gardant la précision que le chiffre de 45 fois ne concerne que l'extraction.
+- _Défauts trouvés par le relecteur_ : [jargon] « MIT » → Sigle non expliqué pour le grand public ; l'article parle de chercheurs du MIT, institut de technologie américain. | [mot] « Ultrasons » → Mot à connaître absent du texte de la fiche ; il faut le choisir dans le texte ou ne pas le proposer. | [jargon] « Des chercheurs de l'institut de technologie américain MIT » → Le sigle MIT n'est pas expliqué ; il faut dire ce que c'est, ou supprimer le nom s'il n'aide pas.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0055 $
+- _Défauts mesurés restants_ : sigles ou noms codés inconnus du public : MIT → écris ce que c'est (ou supprime le nom s'il n'aide pas) · coût 0.0020 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Eau : des ultrasons extraient l'eau d'un matériau en quelques minutes
-- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau y reste piégée : selon les systèmes, la libérer prend des dizaines de minutes, des heures, voire des jours.
-- **Découverte** : Des chercheurs du MIT, une université américaine, ont conçu un appareil où un anneau en céramique vibre sous tension électrique, à des fréquences ultrasonores. Ces vibrations rompent les liens faibles qui retiennent l'eau, et des buses la dirigent vers des récipients de collecte. Sur de petits échantillons saturés d'eau, quelques minutes ont suffi à les assécher, soit 45 fois plus efficace que la chaleur solaire, selon les calculs des chercheurs.
-- **Et après** : Le système pourrait enchaîner plusieurs collectes par jour au lieu d'attendre le soleil, donc recueillir davantage d'eau avec le même équipement. Mais les tests portent sur de petits échantillons, aucun volume quotidien n'est annoncé et l'appareil consomme de l'électricité.
-- **Mots** : **Ultrasons** → Ondes sonores trop aiguës pour être entendues, utilisées ici pour faire vibrer le matériau et en chasser l'eau.
+- **Titre** : Désert : des vibrations sonores extraient l'eau captée dans l'air en quelques minutes
+- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau reste piégée, et sa récupération par la chaleur solaire demande parfois des heures, voire des jours.
+- **Découverte** : Des chercheurs du MIT ont conçu un appareil dont un anneau en céramique vibre sous tension électrique, à des fréquences inaudibles. Ces vibrations rompent les liaisons qui retiennent l'eau, et des buses la dirigent vers des récipients. Sur de petits échantillons saturés, quelques minutes ont suffi à les assécher.
+- **Et après** : Selon les calculs des chercheurs, l'extraction serait 45 fois plus efficace que par la chaleur solaire, et le matériau pourrait reprendre la collecte plus souvent. Il reste à prouver la consommation d'énergie et les volumes d'eau d'un appareil complet, testé hors du laboratoire.
+- **Mots** : **Ultrasons** → Ondes sonores dont la fréquence est trop aiguë pour être entendue par l'oreille humaine, au-delà de 20 000 vibrations par seconde.
 - **Type** : prototype
 
-- _Faits relevés_ : Des chercheurs du MIT ont mis au point un appareil qui extrait l'eau de matériaux absorbants grâce à des ultrasons. | Un anneau plat en céramique vibre quand on lui applique une tension électrique. | Un second anneau à minuscules buses dirige l'eau vers des récipients de collecte. | Les ultrasons ont une fréquence supérieure à 20 kilohertz et sont inaudibles pour l'être humain. | Sur de petits échantillons saturés d'eau, quelques minutes ont suffi à les assécher. | Selon les calculs des chercheurs, l'extraction est 45 fois plus efficace qu'avec la chaleur solaire pour ce matériau. | L'appareil consomme de l'électricité ; une petite cellule solaire et un déclenchement automatique sont envisagés. | Aucun volume quotidien d'eau n'est annoncé pour un équipement domestique dont chaque élément aurait la taille d'une fenêtre.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : les matériaux absorbants capteurs d'humidité existaient déjà, et la nouveauté est l'extraction rapide de l'eau par ultrasons, testée sur de petits échantillons.
-- _Jargon_ : Ultrasons : mot à connaître, expliqué dans la fiche | Matériau absorbant : expliqué en quelques mots (capte l'eau de l'air) | Interactions faibles : remplacé par « liens faibles »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : sigles ou noms codés inconnus du public : MIT → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; répétition entre « decouverte » et « apres » : « sur de petits échantillons » (dis-le une seule fois)
+- _Faits relevés_ : Des chercheurs du MIT ont conçu un appareil qui utilise des ultrasons pour extraire l'eau d'un matériau absorbant. | L'appareil comporte un anneau plat en céramique qui vibre lorsqu'on lui applique une tension électrique. | Un second anneau équipé de minuscules buses dirige l'eau vers des récipients de collecte. | Les ultrasons ont une fréquence supérieure à 20 kilohertz, donc inaudibles pour l'oreille humaine. | Les vibrations rompent les interactions faibles qui retiennent l'eau dans le matériau. | Sur de petits échantillons saturés en eau, quelques minutes ont suffi à les assécher. | Selon les calculs des chercheurs, l'extraction est 45 fois plus efficace qu'avec la chaleur solaire pour ce même matériau. | Les travaux sont présentés dans la revue Nature Communications. | L'appareil demande de l'électricité ; une petite cellule solaire et un déclenchement automatique sont envisagés. | Aucun volume d'eau quotidien n'est annoncé pour un appareil complet.
+- _Nouveauté selon l'article_ : Selon l'article, la nouveauté est d'utiliser des vibrations ultrasonores pour extraire l'eau, au lieu d'attendre qu'elle s'évapore sous la chaleur solaire ; les matériaux absorbants qui captent l'humidité existaient déjà. L'article ne revendique pas de première.
+- _Jargon_ : Ultrasons : remplacé par « vibrations inaudibles » et expliqué en quelques mots (fréquence supérieure à 20 000 hertz). | Interactions faibles : remplacé par « liaisons qui retiennent l'eau dans le matériau ». | Matériau absorbant : expliqué comme un matériau qui retient l'eau de l'air.
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+- _Alertes automatiques_ : sigles ou noms codés inconnus du public : MIT → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; mot à connaître « Ultrasons » absent du texte de la fiche : choisis un mot du texte ou aucun
 
 
 ---
 
-## 7. IA : une photo du visage prédit les chances de survie au cancer
+## 12. IA : une photo du visage prédit les chances de survie au cancer
 
 Fil : tech · 1★ · source : New Atlas · page lue : oui (4586 caractères) · https://newatlas.com/medical/photo-predict-cancer-treatment-faceage-facesurvival/
 
@@ -230,255 +424,35 @@ Fil : tech · 1★ · source : New Atlas · page lue : oui (4586 caractères) ·
 - **Mots** : **Âge biologique** → Âge réel du corps, qui peut être plus jeune ou plus vieux que l'âge indiqué par le calendrier.
 - **Type** : demonstration
 
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Cancer : une IA lit une photo du visage pour estimer la survie
-- **Avant** : Aujourd'hui, les médecins jugent surtout à l'intuition la capacité d'un patient à supporter un traitement lourd, et les personnes âgées passent parfois des examens éprouvants. Un autre outil d'IA estimait déjà l'âge réel des personnes avec une erreur moyenne de 6,92 ans.
-- **Découverte** : Des chercheurs américains ont créé une intelligence artificielle (IA) qui estime l'âge biologique d'une personne et ses chances de survie à partir d'une seule photo du visage. Entraînée sur des millions de photos, elle a été adaptée en deux outils, dont un prédit la survie de patients atteints de cancer. Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque.
-- **Et après** : Ce type d'outil pourrait compléter l'avis des médecins et réduire certains examens lourds pour les patients âgés. Il s'agit pour l'instant d'une étude de recherche, et une version élargie au public est en cours.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [forme] « Des chercheurs du Mass General Brigham Cancer Institute, aux États-Unis, ont créé une intelligence artificielle (IA) qui estime l'âge biologique d'une personne et ses chances de survie à partir d'une seule photo du visage. » → Phrase de 34 mots, trop longue pour la fiche (30 mots au plus). | [forme] « Entraînée sur plus de 42 millions de photos, elle a été adaptée en deux outils, dont un prédit la survie de patients atteints de cancer. Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque. » → Quatre chiffres dans le paragraphe « decouverte » : le chiffre 42 millions est le moins utile, il est retiré. | [non_soutenu] « le test élargi au public ne remplace pas un avis médical » → L'article ne dit pas que ce test ne remplace pas un avis médical ; la limite doit venir de l'étude elle-même (étude de recherche).
-
-- _Défauts mesurés restants_ : aucun · coût 0.0047 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Cancer : une IA lit une photo du visage pour estimer la survie
-- **Avant** : Aujourd'hui, les médecins jugent surtout à l'intuition la capacité d'un patient à supporter un traitement lourd, et les personnes âgées passent parfois des examens éprouvants. Un autre outil d'IA estimait déjà l'âge réel des personnes avec une erreur moyenne de 6,92 ans.
-- **Découverte** : Des chercheurs du Mass General Brigham Cancer Institute, aux États-Unis, ont créé une intelligence artificielle (IA) qui estime l'âge biologique d'une personne et ses chances de survie à partir d'une seule photo du visage. Entraînée sur plus de 42 millions de photos, elle a été adaptée en deux outils, dont un prédit la survie de patients atteints de cancer. Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque.
-- **Et après** : Ce type d'outil pourrait compléter l'avis des médecins et réduire certains examens lourds pour les patients âgés. Il s'agit pour l'instant d'une étude de recherche, et le test élargi au public ne remplace pas un avis médical.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Faits relevés_ : Des chercheurs du Mass General Brigham Cancer Institute ont créé l'outil FAHR-Face, une IA entraînée sur plus de 42 millions de photos de visages. | L'outil estime l'âge biologique d'une personne, c'est-à-dire l'état physique lié au vieillissement, à partir d'une seule photo. | Un second outil, FAHR-FaceSurvival, prédit la survie de patients atteints de cancer ; il a été entraîné sur plus de 34 000 patients sous radiothérapie, et sur deux autres groupes de près de 4 000 et 5 000 patients. | Les patients qui paraissaient de plus de 5 ans plus âgés que leur âge réel avaient un risque de mortalité supérieur de 21 % à ceux qui paraissaient de leur âge. | Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque. | L'erreur moyenne de FAHR-FaceAge pour l'âge réel est de 5,1 ans, contre 6,92 ans pour un autre modèle. | Les maquillages, lunettes et changements d'éclairage ne perturbent pas l'outil, mais les personnes ayant subi une rhinoplastie ont donné de petites erreurs. | Une version élargie de l'étude est ouverte au public, qui peut recevoir sa propre estimation d'âge biologique.
-- _Nouveauté selon l'article_ : Selon les chercheurs, c'est la première démonstration qu'une IA peut prédire directement la survie d'un cancer à partir d'une simple photo ; l'estimation de l'âge par photo existait déjà.
-- _Jargon_ : IA : expliquée comme intelligence artificielle dans la fiche | âge biologique : expliqué dans la fiche | biomarqueur : évité dans la fiche
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : phrase de 34 mots dans « decouverte », à couper : « Des chercheurs du Mass General Brigham Cancer Institute, aux États-Unis, ont créé une inte… » ; 4 chiffres dans « decouverte » : garde les 3 plus parlants
-
-
----
-
-## 8. Matériaux : une image 3D révèle une mosaïque cachée dans un cristal
-
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (5535 caractères) · https://www.sciencedaily.com/releases/2026/10/261023023731.htm
-
-**Actuel (publié)**
-
-- **Titre** : Matériaux : une image 3D révèle une mosaïque cachée dans un cristal
-- **Avant** : Depuis 40 ans, les chercheurs pensaient que les cuprates, des supraconducteurs à base de cuivre, avaient une structure cristalline uniforme. Ces matériaux conduisent l'électricité sans résistance, mais seulement à des températures très froides.
-- **Découverte** : Des chercheurs de l'université de Warwick, avec l'installation européenne de rayonnement synchrotron ESRF, ont observé l'intérieur du cristal avec une imagerie 3D avancée. Ils y ont trouvé un assemblage de différentes configurations atomiques, séparées par des frontières anormalement larges qui pourraient affaiblir la supraconductivité.
-- **Et après** : Ce résultat, publié dans Physical Review Letters, pourrait expliquer pourquoi certains supraconducteurs sont plus performants que d'autres. Il reste à le confirmer et à vérifier si ces frontières jouent bien ce rôle.
-- **Mots** : **Cuprates** → Famille de matériaux à base de cuivre capables de conduire le courant sans résistance à des températures relativement élevées, mais encore très froides.
-- **Type** : observation
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Supraconducteurs : une image 3D révèle des frontières qui pourraient freiner le courant
-- **Avant** : Pendant 40 ans, les théories sur les cuprates, des matériaux à base de cuivre qui conduisent l'électricité sans perte, supposaient une structure cristalline uniforme. Cette hypothèse ne prenait pas en compte la variété des structures internes de ces matériaux.
-- **Découverte** : Des chercheurs de l'université de Warwick, avec l'installation européenne de rayonnement synchrotron en France, ont reconstitué en 3D l'intérieur d'un cuprate. Ils y ont trouvé une mosaïque de deux arrangements atomiques voisins, séparés par des frontières des centaines de fois plus larges que prévu. Selon eux, ces frontières pourraient freiner le passage du courant.
-- **Et après** : Selon les chercheurs, ces structures pourraient expliquer les écarts de performance entre supraconducteurs et imposer de revoir certaines mesures anciennes. Il s'agit encore d'une hypothèse : elle doit être confirmée, et le phénomène reste à vérifier dans d'autres matériaux.
-- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans perte, à condition d'être refroidi très fort, utile pour les aimants et les réseaux électriques.
-- **Type** : laboratoire
-
-- _Défauts trouvés par le relecteur_ : [titre] « Supraconducteurs : une image 3D révèle des frontières cachées qui pourraient freiner le courant » → Le titre compte 13 mots, alors que la limite est de 12. | [jargon] « avec l'installation européenne ESRF en France » → Le sigle ESRF n'est pas expliqué. Il faut dire ce que c'est : une installation européenne de rayonnement synchrotron. | [non_soutenu] « Cette hypothèse ne permettait pas d'expliquer pourquoi certains matériaux fonctionnent mieux que d'autres. » → L'article ne dit pas que l'ancienne hypothèse était incapable d'expliquer les écarts de performance. Il dit seulement que la nouvelle piste pourrait les expliquer. | [mot] « Matériau qui conduit l'électricité sans aucune perte, en général seulement s'il est refroidi très fort, ce qui le rend utile pour les aimants et les réseaux électriques. » → La définition compte 27 mots, alors que la limite est de 25.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0025 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Supraconducteurs : une image 3D révèle des frontières cachées qui pourraient freiner le courant
-- **Avant** : Pendant 40 ans, les théories sur les cuprates, des matériaux à base de cuivre qui conduisent l'électricité sans perte, supposaient une structure cristalline uniforme. Cette hypothèse ne permettait pas d'expliquer pourquoi certains matériaux fonctionnent mieux que d'autres.
-- **Découverte** : Des chercheurs de l'université de Warwick, avec l'installation européenne ESRF en France, ont reconstitué en 3D l'intérieur d'un cuprate. Ils y ont trouvé une mosaïque de deux arrangements atomiques voisins, séparés par des frontières des centaines de fois plus larges que prévu. Selon eux, ces frontières pourraient freiner le passage du courant.
-- **Et après** : Selon les chercheurs, ces structures pourraient expliquer les écarts de performance entre supraconducteurs et imposer de revoir certaines mesures anciennes. Il s'agit encore d'une hypothèse : elle doit être confirmée, et le phénomène reste à vérifier dans d'autres matériaux.
-- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans aucune perte, en général seulement s'il est refroidi très fort, ce qui le rend utile pour les aimants et les réseaux électriques.
-- **Type** : laboratoire
-
-- _Faits relevés_ : Des chercheurs de l'université de Warwick (département de chimie) ont étudié les cuprates, des supraconducteurs à base de cuivre, étudiés depuis 40 ans. | Le matériau n'a pas une structure cristalline uniforme : il contient une mosaïque de zones à deux arrangements atomiques légèrement différents. | Les frontières entre ces zones sont des centaines de fois plus larges que prévu. | L'imagerie utilisée est une diffraction des rayons X 3D à balayage, réalisée avec l'installation européenne ESRF en France. | Les chercheurs pensent que ces frontières pourraient nuire à la supraconductivité au lieu de simplement coexister avec elle. | Les théories actuelles supposent une structure uniforme ; certaines mesures anciennes pourraient devoir être réinterprétées. | Les chercheurs soupçonnent que des structures similaires existent chez d'autres cuprates. | Les résultats sont publiés dans Physical Review Letters.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il dit que cette structure en mosaïque n'avait pas été vue, car les techniques classiques ne la révélaient pas, et que l'imagerie 3D permet de voir l'intérieur du cristal.
-- _Jargon_ : Cuprates : remplacé par « matériaux à base de cuivre » et expliqué en une phrase. | Supraconductivité : expliquée par « conduire l'électricité sans aucune résistance ». | Rayons X 3D : remplacé par « une imagerie 3D » ; le scanner médical est cité comme comparaison. | Frontières larges : décrites en mots simples.
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; sigles ou noms codés inconnus du public : ESRF → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; définition de « Supraconducteur » trop longue (27 mots, 25 au plus)
-
-
----
-
-## 9. Dinosaures : des fossiles suggèrent que le spinosaure vivait surtout dans l'eau
-
-Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261024221956.htm
-
-**Actuel (publié)**
-
-- **Titre** : Dinosaures : des fossiles suggèrent que le spinosaure vivait surtout dans l'eau
-- **Avant** : On savait que certains animaux étaient revenus vivre dans l'eau après avoir vécu sur terre. Mais il était difficile de dire lesquels y passaient vraiment la plus grande partie de leur vie.
-- **Découverte** : Des chercheurs de Yale ont analysé des milliers de mesures de fossiles grâce à l'apprentissage automatique. Leur analyse suggère que le spinosaure passait la plus grande partie de sa vie dans l'eau. Certains reptiles marins, longtemps considérés comme entièrement aquatiques, passaient en fait beaucoup de temps sur terre.
-- **Et après** : Ce résultat repose sur des mesures d'os et sur un calcul statistique. Il faudra le confirmer avec d'autres fossiles et d'autres méthodes.
-- **Mots** : **Apprentissage automatique** → Méthode informatique où un logiciel repère des régularités à partir de nombreux exemples.
-- **Type** : donnees
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Dinosaures : le spinosaure aurait passé presque tout son temps sous l'eau
-- **Avant** : Plusieurs dizaines de groupes de mammifères et de reptiles sont revenus vivre dans l'eau. Pour le spinosaure, les os donnent des indices contradictoires : mode de vie de phoque ou de héron ?
-- **Découverte** : Des chercheurs de l'université Yale ont analysé plus de 11 000 mesures sur des fossiles et des animaux actuels, à l'aide d'un logiciel qui repère des régularités. Ils concluent que le spinosaure, qui vivait il y a 113 à 94 millions d'années en Afrique du Nord, passait la grande majorité de son temps sous l'eau. En revanche, les mésosaures, petits reptiles marins, passaient beaucoup de temps sur terre.
-- **Et après** : Ces résultats pourraient aider à mieux comprendre comment le spinosaure chassait, un point qui reste débattu. Ce sont toutefois des estimations faites à partir de squelettes, pas une observation directe de la vie de ces animaux.
-- **Mots** : (aucun)
-- **Type** : donnees
-
-- _Défauts trouvés par le relecteur_ : [forme] « Les mésosaures, petits reptiles marins, passaient eux aussi beaucoup de temps sur terre. » → Le « eux aussi » suggère un parallèle avec le spinosaure, alors que l'article oppose les deux cas : le spinosaure passait l'essentiel de son temps sous l'eau, les mésosaures alternaient entre eau et terre. Le lien logique est faux. | [apres] « Ce sont des estimations faites à partir de squelettes, pas une observation directe de la vie de ces animaux. Les chercheurs reconnaissent que la façon dont le spinosaure chassait reste débattue. » → Le paragraphe « Et après » ne dit pas ce que ces résultats peuvent changer ; il ne donne que la limite.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0033 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Dinosaures : le spinosaure aurait passé presque tout son temps sous l'eau
-- **Avant** : Plusieurs dizaines de groupes de mammifères et de reptiles sont revenus vivre dans l'eau. Pour le spinosaure, les os donnent des indices contradictoires : mode de vie de phoque ou de héron ?
-- **Découverte** : Des chercheurs de l'université Yale ont analysé plus de 11 000 mesures sur des fossiles et des animaux actuels, à l'aide d'un logiciel qui repère des régularités. Ils concluent que le spinosaure, qui vivait il y a 113 à 94 millions d'années en Afrique du Nord, passait la grande majorité de son temps sous l'eau. Les mésosaures, petits reptiles marins, passaient eux aussi beaucoup de temps sur terre.
-- **Et après** : Ce sont des estimations faites à partir de squelettes, pas une observation directe de la vie de ces animaux. Les chercheurs reconnaissent que la façon dont le spinosaure chassait reste débattue.
-- **Mots** : (aucun)
-- **Type** : donnees
-
-- _Faits relevés_ : Des chercheurs de l'université Yale ont analysé plus de 11 000 mesures sur des fossiles et des animaux actuels. | Ils ont utilisé un logiciel d'apprentissage automatique, combiné à des méthodes classiques de paléontologie. | Le spinosaure, grand dinosaure, vivait il y a 113 à 94 millions d'années dans le nord de l'Afrique. | Selon l'auteur principal, le spinosaure passait la grande majorité de son temps immergé. | Les chercheurs précisent que la façon dont il chassait reste débattue. | Les mésosaures, petits reptiles marins de 290 à 274 millions d'années, passaient beaucoup de temps sur terre. | Leurs membres n'étaient pas adaptés à une vie entièrement dans l'eau, selon l'étude. | Les modèles s'appuient sur des squelettes et sur des animaux actuels, et permettent d'estimer des structures molles rarement conservées.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il présente une nouvelle analyse de plus de 11 000 mesures, qui estime la part de vie aquatique de plusieurs groupes anciens.
-- _Jargon_ : apprentissage automatique : expliqué en quelques mots dans la fiche | mésosaures : présenté comme de petits reptiles marins
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
-
-
----
-
-## 10. Dents : un liquide bloque les caries des jeunes enfants
-
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261025222339.htm
-
-**Actuel (publié)**
-
-- **Titre** : Dents : un liquide bloque les caries des jeunes enfants
-- **Avant** : Les caries des jeunes enfants se soignent en général par forage, pose d'un plombage, voire par une opération sous anesthésie générale. Un liquide au fluorure d'argent est déjà utilisé dans certains cas, mais son efficacité devait encore être prouvée à grande échelle.
-- **Découverte** : Un essai clinique de grande ampleur, mené sur 830 enfants de moins de 6 ans, montre que ce liquide, peint sur la dent en quelques secondes, arrête la progression de nombreuses caries. Aucune perceuse, aucune piqûre et aucune sédation ne sont nécessaires.
-- **Et après** : Ce traitement pourrait éviter à des milliers d'enfants des douleurs, des infections et des soins lourds. Une utilisation plus large, approuvée par l'agence américaine du médicament, reste à venir.
-- **Mots** : **Anesthésie générale** → Médicament qui endort complètement une personne pendant une opération, pour qu'elle ne sente ni ne se souvienne de rien.
-- **Type** : essai_clinique
-
 **Final après 2 relecture(s) (haiku)**
 
-- **Titre** : Dents : un liquide peint en secondes bloque les caries des jeunes enfants
-- **Avant** : Pour soigner une carie chez un jeune enfant, il faut en général forer la dent et la reboucher, parfois sous anesthésie générale. Un liquide à base d'argent et de fluor existait déjà, mais il manquait des preuves solides à grande échelle chez les enfants américains.
-- **Découverte** : Des chercheurs de l'université du Michigan ont testé une solution à 38 % de fluorure d'argent sur 830 enfants de moins de 6 ans. Appliqué à l'éponge tous les six mois, le liquide a arrêté la carie de plus de la moitié des dents de lait touchées. Le traitement ne demandait ni forage, ni piqûre, ni médicament pour endormir.
-- **Et après** : Ce traitement pourrait éviter à des enfants douleurs, infections et opérations, et permettre de les soigner plus tôt, avant un rendez-vous chez le dentiste. Mais la dent traitée noircit de façon définitive, et l'usage contre les caries n'est pas encore approuvé par l'autorité sanitaire américaine.
-- **Mots** : **Fluorure d'argent** → Liquide à base d'argent et de fluor, appliqué sur une carie pour combattre les bactéries et durcir la dent ; il la fait aussi noircir.
-- **Type** : essai_clinique
-
-- _Défauts trouvés par le relecteur_ : [titre] « Dents : un liquide peint en quelques secondes freine les caries des jeunes enfants » → Le titre compte 13 mots, au-delà de la limite de 12. | [forme] « Des chercheurs de l'université du Michigan ont testé ce liquide à 38 % sur 830 enfants de moins de 6 ans, dans des cabinets dentaires, des cabinets pédiatriques et des programmes d'éducation précoce. » → Phrase de 33 mots, à couper ; « ce liquide » désigne aussi une chose non précisée (une solution à 38 % de fluorure d'argent). | [jargon] « l'usage contre les caries n'est pas encore approuvé par la FDA » → Le sigle FDA n'est pas expliqué au lecteur ; il faut dire ce que c'est ou le remplacer par des mots simples. | [forme] « Appliqué à l'éponge tous les six mois, le liquide a arrêté la carie de plus de la moitié des dents de lait touchées, sans forage, piqûre ni médicament pour endormir. » → Phrase de 30 mots ou plus dans « decouverte », à couper en phrases plus courtes.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0056 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Dents : un liquide peint en quelques secondes freine les caries des jeunes enfants
-- **Avant** : Pour soigner une carie chez un jeune enfant, il faut en général forer la dent et la reboucher, parfois sous anesthésie générale. Un liquide à base d'argent et de fluor existait déjà, mais il manquait des preuves solides à grande échelle chez les enfants américains.
-- **Découverte** : Des chercheurs de l'université du Michigan ont testé ce liquide à 38 % sur 830 enfants de moins de 6 ans, dans des cabinets dentaires, des cabinets pédiatriques et des programmes d'éducation précoce. Appliqué à l'éponge tous les six mois, il a arrêté la carie de plus de la moitié des dents de lait touchées. Aucun forage, aucune piqûre et aucun médicament pour endormir n'étaient nécessaires.
-- **Et après** : Ce traitement pourrait éviter à des enfants douleurs, infections et opérations, et permettre de les soigner plus tôt, avant un rendez-vous chez le dentiste. Mais la dent traitée noircit de façon définitive, et l'usage contre les caries n'est pas encore approuvé par la FDA.
-- **Mots** : **Fluorure d'argent** → Liquide à base d'argent et de fluor, appliqué sur une carie pour combattre les bactéries et durcir la dent ; il la fait aussi noircir.
-- **Type** : essai_clinique
-
-- _Faits relevés_ : Le traitement est un liquide à base d'argent et de fluor (fluorure d'argent à 38 %), peint sur la dent avec un petit applicateur à éponge en quelques secondes. | L'essai de phase III a porté sur 830 enfants de moins de 6 ans, recrutés à Michigan, New York et Iowa. | Le traitement a été appliqué tous les six mois. | Il a arrêté la carie dans plus de la moitié des dents de lait touchées. | Aucun forage, aucune piqûre et aucune sédation n'étaient nécessaires. | La dent traitée noircit de façon définitive, surtout les dents de devant ; c'est surtout un défaut esthétique. | Le produit est approuvé par la FDA depuis 2014 contre la sensibilité dentaire ; son usage contre les caries est hors indication. | L'étude, dirigée par Margherita Fontana de l'université du Michigan, a commencé en 2018 et s'est poursuivie malgré la pandémie de Covid-19.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : le liquide est utilisé depuis des décennies dans de nombreux pays, et ce qui est nouveau est la preuve d'essais à grande échelle chez les enfants américains.
-- _Jargon_ : anesthésie générale : remplacé par « endormis complètement » | sédation : remplacé par « médicament pour endormir » | fluorure d'argent : mot à connaître
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; phrase de 33 mots dans « decouverte », à couper : « Des chercheurs de l'université du Michigan ont testé ce liquide à 38 % sur 830 enfants de … » ; sigles ou noms codés inconnus du public : FDA → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-
-
----
-
-## 11. Peinture : une couche se répare seule et freine la rouille
-
-Fil : tech · 1★ · source : Les Numériques · page lue : oui (4203 caractères) · https://www.lesnumeriques.com/science-espace/l-australie-affirme-avoir-cree-un-nouveau-type-de-peinture-auto-reparatrice-qui-ralentit-la-rouille-de-l-acier-de-600-fois-197-n262593.html
-
-**Actuel (publié)**
-
-- **Titre** : Peinture : une couche se répare seule et freine la rouille
-- **Avant** : Les peintures anticorrosion s'abîment dès qu'une rayure met l'acier à nu. Il faut donc les refaire régulièrement, comme pour la Tour Eiffel, repeinte environ tous les sept ans.
-- **Découverte** : Des chercheurs de l'Université du Queensland ajoutent à une peinture à l'eau une poudre de minuscules réservoirs. Ces réservoirs libèrent un anti-rouille lorsque la couche est abîmée. En laboratoire, l'acier protégé ne perd que 37 nanomètres par an, selon l'équipe.
-- **Et après** : Il reste à vérifier ce résultat sur un vrai pont ou une structure exposée aux intempéries. Pour l'instant, il s'agit d'un prototype de laboratoire, sans date ni prix annoncés.
-- **Mots** : **Inhibiteur de rouille** → Substance qui ralentit la formation de rouille sur le métal.
-- **Type** : prototype
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Peinture : une couche qui libère un anti-rouille quand elle est rayée
-- **Avant** : Les peintures anticorrosion s'abîment dès qu'une rayure met l'acier à nu, et il faut alors les refaire régulièrement. Ponts, navires et la Tour Eiffel sont repeints à intervalles réguliers, un chantier long et coûteux.
-- **Découverte** : Des chercheurs de l'Université du Queensland, en Australie, ont mélangé à une peinture à l'eau une poudre de minuscules réservoirs. Ces réservoirs gardent un anti-rouille enfermé tant que la peinture est intacte, puis le libèrent là où une fissure apparaît. En laboratoire, l'acier protégé se corrode de 37 nanomètres par an seulement, contre environ 25 000 nanomètres pour beaucoup de revêtements haute performance, selon des fabricants.
-- **Et après** : Cette peinture pourrait espacer les gros chantiers de repeinture sur les ponts et les structures métalliques. Mais les résultats viennent du laboratoire, sans test sur un vrai pont, et l'équipe doit encore réduire les coûts ; elle vise un produit commercial d'ici cinq ans.
+- **Titre** : IA : une simple photo du visage aide à estimer la survie de patients atteints de cancer
+- **Avant** : Avant un traitement lourd, les médecins jugent l'état de santé d'un patient surtout à l'intuition. Ils demandent parfois des examens longs et fatigants, difficiles pour les personnes âgées.
+- **Découverte** : Des chercheurs du Mass General Brigham Cancer Institute ont créé une IA entraînée sur plus de 42 millions de photos de visages, appelée FAHR-Face. Elle a donné naissance à deux outils : l'un estime l'âge biologique, l'autre prédit la survie de patients atteints de cancer. Dans un groupe à risque élevé, 52 % des patients sont morts dans les 90 jours.
+- **Et après** : Ces outils pourraient compléter l'avis des médecins et limiter certains examens. Ils doivent encore être vérifiés sur d'autres patients avant tout usage en clinique.
 - **Mots** : (aucun)
-- **Type** : prototype
+- **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : [mot] « Inhibiteur de corrosion » → Le mot à connaître n'apparaît pas dans le texte de la fiche. Il est retiré. | [comparaison] « contre environ 25 000 nanomètres annoncés pour des revêtements haute performance » → Deux chiffres sont mis en face sans dire qu'il s'agit d'une mesure de laboratoire comparée à des chiffres annoncés par des fabricants, ce qui explique l'écart. | [forme] « En laboratoire, l'acier protégé ne se corrode que de 37 nanomètres par an, alors que beaucoup de revêtements haute performance annoncent environ 25 000 nanomètres, selon des chiffres de fabricants. » → Phrase de 30 mots, à couper pour rester lisible. La phrase a été raccourcie en gardant les chiffres et la source de l'article.
+- _Défauts trouvés par le relecteur_ : [titre] « IA : une simple photo du visage estime la survie de patients atteints de cancer » → Titre de 14 mots, au-delà de 12. | [jargon] « FAHR-Face » → Nom codé inconnu du public, sans explication dans la fiche. | [comparaison] « Dans un groupe à risque élevé, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe à risque le plus faible. » → Le chiffre sur le modèle est trop nombreux dans la découverte (4 chiffres, le détail des 42 millions de photos et des deux outils se mélangent) ; à alléger. | [mot] « Modèle d'IA de base » → Ce mot n'apparaît pas dans le texte de la fiche. | [titre] « IA : une simple photo du visage aide à estimer la survie de patients atteints de cancer » → Titre de 16 mots, au-delà de la limite de 12 mots. | [jargon] « FAHR-Face » → Nom codé inconnu du public, non expliqué dans la fiche ; il n'aide pas le lecteur et doit être supprimé ou décrit. | [jargon] « FAHR-Face » → Le nom est répété dans la fiche sans être expliqué. | [non_soutenu] « Dans un groupe à risque élevé, 52 % des patients sont morts dans les 90 jours. » → Chiffre exact, mais sans comparaison avec le groupe à risque faible (2,1 %) ; le lecteur ne sait pas ce que ce chiffre signifie.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0050 $
+- _Défauts mesurés restants_ : titre de 16 mots : 12 au plus ; sigles ou noms codés inconnus du public : FAHR → écris ce que c'est (ou supprime le nom s'il n'aide pas) · coût 0.0021 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Peinture : une couche qui libère un anti-rouille quand elle est rayée
-- **Avant** : Les peintures anticorrosion s'abîment dès qu'une rayure met l'acier à nu, et il faut alors les refaire régulièrement. Ponts, navires et la Tour Eiffel sont repeints à intervalles réguliers, un chantier long et coûteux.
-- **Découverte** : Des chercheurs de l'Université du Queensland, en Australie, ont mélangé à une peinture à l'eau une poudre de minuscules réservoirs. Ces réservoirs gardent un anti-rouille enfermé tant que la peinture est intacte, puis le libèrent là où une fissure apparaît. En laboratoire, l'acier protégé ne se corrode que de 37 nanomètres par an, contre environ 25 000 nanomètres annoncés pour des revêtements haute performance.
-- **Et après** : Cette peinture pourrait espacer les gros chantiers de repeinture sur les ponts et les structures métalliques. Mais les résultats viennent du laboratoire, sans test sur un vrai pont, et l'équipe doit encore réduire les coûts ; elle vise un produit commercial d'ici cinq ans.
-- **Mots** : **Inhibiteur de corrosion** → Substance ajoutée à un métal ou à sa peinture pour ralentir son oxydation et sa rouille.
-- **Type** : prototype
+- **Titre** : IA : une simple photo du visage estime la survie de patients atteints de cancer
+- **Avant** : Avant un traitement lourd, les médecins jugent l'état de santé d'un patient surtout à l'intuition. Ils demandent parfois des examens longs et fatigants, difficiles pour les personnes âgées.
+- **Découverte** : Des chercheurs du Mass General Brigham Cancer Institute ont créé FAHR-Face, une IA entraînée sur plus de 42 millions de photos de visages. Elle a donné naissance à deux outils : l'un estime l'âge biologique, l'autre prédit la survie de patients atteints de cancer. Dans un groupe à risque élevé, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe à risque le plus faible.
+- **Et après** : Ces outils pourraient compléter l'avis des médecins et limiter certains examens. Ils doivent encore être vérifiés sur d'autres patients avant tout usage en clinique.
+- **Mots** : **Modèle d'IA de base** → Programme d'IA entraîné sur une très grande quantité de données, puis adapté à des tâches précises comme estimer l'âge ou le risque.
+- **Type** : demonstration
 
-- _Faits relevés_ : Des chercheurs de l'Université du Queensland, en Australie, mélangent une poudre à une peinture polyuréthane à base d'eau. | La poudre est faite de minuscules réservoirs qui contiennent un inhibiteur de rouille, le benzotriazole. | Tant que la peinture est intacte, l'inhibiteur reste enfermé ; une fissure acidifie le milieu, les réservoirs s'ouvrent et libèrent l'inhibiteur à cet endroit. | En laboratoire, l'acier protégé ne se corrode que de 37 nanomètres par an, contre environ 0,025 millimètre (25 000 nanomètres) annoncés pour des revêtements haute performance. | L'université parle de plus de 600 fois mieux ; ce rapport compare une mesure expérimentale à des chiffres déclarés par des fabricants. | Des plaques d'acier rayées exprès ont passé quatorze jours dans l'eau salée, sans rouille autour de l'entaille avec la formulation la plus efficace. | Une autre piste, avec des fibres végétales, permettrait de stocker trois fois plus d'inhibiteur et de multiplier la protection jusqu'à cinq fois. | Les prochaines étapes sont des essais à l'échelle pilote, avec un produit commercial visé d'ici cinq ans ; le benzotriazole reste une molécule persistante à surveiller.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il présente une peinture qui libère un anti-rouille seulement là où elle est abîmée, testée en laboratoire et comparée à des revêtements annoncés par des fabricants.
-- _Jargon_ : Inhibiteur de rouille : expliqué en quelques mots (anti-rouille) | Nanoconteneurs : remplacé par « minuscules réservoirs » | Réseaux métallo-organiques : remplacé par « une poudre de minuscules réservoirs » | Électrochimiques : remplacé par « mesures en laboratoire » | Nanocellulose : remplacé par « fibres végétales » | Benzotriazole : mot à connaître, cité sous son nom usuel
+- _Faits relevés_ : Une équipe du Mass General Brigham Cancer Institute a créé FAHR-Face, un modèle d'IA de base entraîné sur plus de 42 millions de photos de visages. | Deux outils en sont dérivés : FAHR-FaceAge, qui estime l'âge biologique, et FAHR-FaceSurvival, qui prédit la survie de patients atteints de cancer. | FAHR-FaceAge a une erreur moyenne de 5,1 ans sur l'âge réel, contre 6,92 ans pour un autre modèle. | Les personnes paraissant au moins 5 ans plus âgées que leur âge réel ont un risque de mortalité 21 % plus élevé. | FaceSurvival a été entraîné sur plus de 34 000 patients sous radiothérapie, puis testé sur deux autres groupes d'environ 4 000 et 5 000 patients. | Dans le groupe à risque le plus élevé, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe à risque le plus faible. | FaceAge n'est pas gêné par le maquillage, le lifting, les lunettes ou l'éclairage, mais se trompe un peu sur les photos après une rhinoplastie. | Selon l'équipe, des photos de qualité courante pourraient servir de marqueur non invasif de l'état de santé.
+- _Nouveauté selon l'article_ : Selon l'article, c'est la première démonstration qu'un modèle d'IA peut prédire directement la survie d'un cancer à partir d'une simple photo ; l'article précise « à notre connaissance ».
+- _Jargon_ : Modèle d'IA de base (foundation model) : mot à connaître, expliqué dans la fiche comme un modèle entraîné sur un très grand nombre de photos avant d'être adapté à des tâches précises. | Âge biologique : remplacé par « l'état réel du corps, qui peut être plus jeune ou plus vieux que l'âge de l'état civil ». | Radiothérapie : remplacée par « traitement par rayons ». | Biomarqueur : expliqué comme « signe mesurable de l'état de santé ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : mot à connaître « Inhibiteur de corrosion » absent du texte de la fiche : choisis un mot du texte ou aucun
+- _Alertes automatiques_ : titre de 14 mots : 12 au plus ; sigles ou noms codés inconnus du public : FAHR → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 4 chiffres dans « decouverte » : garde les 3 plus parlants ; mot à connaître « Modèle d'IA de base » absent du texte de la fiche : choisis un mot du texte ou aucun
 
 
 ---
 
-## 12. Fusées : une capsule largue un kit de survie depuis l'orbite
-
-Fil : tech · 2★ · source : New Atlas · page lue : oui (3115 caractères) · https://newatlas.com/military/usaf-spacex-capsule-survival-kit-from-orbit/
-
-**Actuel (publié)**
-
-- **Titre** : Fusées : une capsule largue un kit de survie depuis l'orbite
-- **Avant** : Les fusées servent surtout à placer des satellites ou des équipages en orbite. Pour livrer vite du matériel à des personnes isolées, il faut souvent un transport lent.
-- **Découverte** : Le 20 octobre 2026, une fusée Falcon 9 a emporté une capsule de fret Starfall, capable de transporter jusqu'à une tonne. Après sa rentrée dans l'atmosphère, un bouclier thermique, de petits propulseurs et un parachute l'ont guidée vers un atterrissage plus doux. Elle transportait une caisse de secours conçue pour rester stable pendant le voyage.
-- **Et après** : L'objectif est d'envoyer rapidement du matériel à des naufragés ou à des équipes isolées. Il reste à voir si ce système sera utilisé à grande échelle.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Sauvetage en mer : un test largue un radeau de survie depuis l'orbite
-- **Avant** : Un naufragé peut attendre des jours les secours, même si une fusée fait le tour de la Terre en seulement 90 minutes. Les garde-côtes américains larguent déjà des radeaux depuis des avions ; le laboratoire de l'armée de l'air américaine étudie l'envoi depuis l'orbite.
-- **Découverte** : Lors d'un test de l'armée de l'air américaine, une capsule de fret de SpaceX a largué un kit de survie depuis l'orbite. La capsule, lancée le 20 octobre 2026 par une fusée Falcon 9 depuis la Floride, peut transporter jusqu'à une tonne et atterrir doucement grâce à un parachute. Le kit contient un radeau gonflable, de l'eau douce produite sur place, des rations, une radio et des balises de détresse.
-- **Et après** : Le but est d'envoyer vite du matériel à des naufragés ou des équipes isolées, et à terme des dizaines de tonnes par lancement avec des fusées commerciales. Ce n'est pour l'instant qu'un test, et les résultats serviront à mettre au point ces systèmes.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « avec des fusées commerciales capables de transporter des dizaines de tonnes » → L'article dit seulement que le but est de trouver des moyens d'envoyer des dizaines de tonnes par lancement avec des fusées commerciales. Il ne dit pas que ces fusées en sont déjà capables. | [apres] « Le but est d'envoyer vite du matériel à des naufragés ou à des équipes isolées, et, un jour, de transporter des dizaines de tonnes par lancement avec des fusées commerciales. » → Phrase de 30 mots, trop longue pour le paragraphe « Et après ».
-
-- _Défauts mesurés restants_ : aucun · coût 0.0060 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Sauvetage en mer : un test largue un radeau de survie depuis l'orbite
-- **Avant** : Un naufragé peut attendre des jours les secours, même si une fusée fait le tour de la Terre en seulement 90 minutes. Les garde-côtes américains larguent déjà des radeaux depuis des avions ; le laboratoire de l'armée de l'air américaine étudie l'envoi depuis l'orbite.
-- **Découverte** : Lors d'un test de l'armée de l'air américaine, une capsule de fret de SpaceX a largué un kit de survie depuis l'orbite. La capsule, lancée le 20 octobre 2026 par une fusée Falcon 9 depuis la Floride, peut transporter jusqu'à une tonne et atterrir doucement grâce à un parachute. Le kit contient un radeau gonflable, de l'eau douce produite sur place, des rations, une radio et des balises de détresse.
-- **Et après** : Le but est d'envoyer vite du matériel à des naufragés ou à des équipes isolées, avec des fusées commerciales capables de transporter des dizaines de tonnes. Ce n'est pour l'instant qu'un test, et les résultats serviront à mettre au point ces systèmes.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Faits relevés_ : Le laboratoire de recherche de l'armée de l'air américaine (AFRL) a réalisé un test de largage depuis l'orbite. | La capsule de fret est une capsule de SpaceX, en forme de disque de 3,1 m de diamètre, qui peut transporter jusqu'à une tonne. | Le test a eu lieu le 20 octobre 2026, avec une fusée Falcon 9 décollée du Cap Canaveral, en Floride. | La capsule était équipée d'un bouclier thermique, de petits propulseurs à gaz froid et d'un parachute pour un atterrissage plus doux. | Le module transportait un radeau de survie gonflable UNI-PAC III, semblable à ceux que la garde côtière américaine largue depuis des avions. | Le kit contenait des balises de détresse, une unité de dessalement, de l'eau en bouteille, des rations militaires, une radio, une trousse de secours et une boussole. | Selon l'AFRL, les résultats serviront à développer des systèmes de livraison depuis l'orbite. | L'objectif à terme est d'envoyer des dizaines de tonnes de charge par lancement avec des fusées commerciales.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il parle de « la démonstration la plus spectaculaire à ce jour » du programme Rocket Cargo, alors que les largages de radeaux depuis des avions existent déjà.
-- _Jargon_ : Capsule de rentrée : remplacé par « capsule de fret » ou « capsule ». | Orbite : expliqué en quelques mots, comme une trajectoire autour de la Terre, dans l'espace. | Falcon 9 : nom de fusée gardé, présenté comme « une fusée de SpaceX ». | Dessalement : expliqué comme la production d'eau douce à partir d'eau de mer. | Gaz froid : remplacé par « petits propulseurs ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
-
-
----
-
-Coût total du test : 0.0503 $ · par fiche : 0.0050 $ · tokens moyens par fiche (rédaction + relecture) : entrée 5048, cache lu 12945, cache écrit 2015, sortie 8290
+Coût total du test : 0.0209 $ · par fiche : 0.0023 $ · tokens moyens par fiche (rédaction + relecture) : entrée 5132, cache lu 12940, cache écrit 2558, sortie 2722
