@@ -65,11 +65,16 @@ MODELE_PAR_DEFAUT = "haiku"
 # par fiche. PLAFOND_REDACTION borne le coût par passage : au-delà, les fiches gardent
 # le premier jet (déjà contrôlé comme avant).
 REDACTION = True
-PLAFOND_REDACTION = 0.05     # $ par passage
-# Le premier jet n'est plus qu'un brouillon (décision, thème, importance) puisque la fiche est
-# réécrite ensuite : on le fait réfléchir un peu moins pour compenser le coût de la réécriture.
-# Valeurs possibles : "low", "medium", "high" (= comme avant). Sans effet si REDACTION = False.
-EFFORT_PREMIER_JET = "medium"
+PLAFOND_REDACTION = 0.03     # $ par passage
+# Budget (décision de Maxime, 04/11/2026) : 2 € par mois au maximum pour l'agent.
+# 1) Réflexion cachée de Claude coupée partout (economie.py) : ≈ 2 fois moins cher.
+# 2) Garde-fou mensuel : l'agent note ce qu'il dépense (mémoire du tri, clé « _depenses »).
+#    - en avance sur le budget du mois (au prorata des jours) : pas de réécriture ni
+#      d'« À venir » à ce passage (fiches du premier jet seulement) ;
+#    - budget du mois atteint : aucun appel à Claude jusqu'au 1er du mois suivant.
+BUDGET_MOIS = 2.30           # $ ≈ 1,95 € (1 $ ≈ 0,85 €)
+MARGE_AVANCE = 0.10          # $ d'avance tolérée sur le prorata avant de passer en mode économie
+DEPENSES_DEPART = {"2026-11": 0.40}   # passages du 1er au 4/11 avant la mise en place du suivi
 # Décision de Maxime (03/11) : pas de fiche sur un article illisible ou trop court (moins de
 # TEXTE_MIN caractères lus) : ces fiches plafonnaient à 6-7/10. L'article n'est pas envoyé
 # à Claude (aucun coût) : s'il est prometteur, il attend 3 jours qu'une source lisible
@@ -90,6 +95,8 @@ from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 
 import feedparser
 import requests
+
+import economie
 
 import notifications
 import traduction
@@ -705,6 +712,7 @@ def preselectionner(client, modele_id, candidats: list[dict], k: int,
                        + ("\n".join(f"- {t.split(' — ')[0]}" for t in (deja or [])[:150]) or "(rien)")
                        + "\n\nArticles à trier :\n" + "\n".join(lignes)}],
             output_config={"format": {"type": "json_schema", "schema": SCHEMA_PRESELECTION}},
+            **economie.PARAMS,
         )
         u = rep.usage
         conso["in"], conso["out"] = u.input_tokens or 0, u.output_tokens or 0
@@ -815,6 +823,7 @@ def _appel_json(client, modele_id, consigne, contenu, schema, conso, max_tokens=
         model=modele_id, max_tokens=max_tokens, system=consigne,
         messages=[{"role": "user", "content": contenu}],
         output_config={"format": {"type": "json_schema", "schema": schema}},
+        **economie.PARAMS,
     )
     u = rep.usage
     conso["in"] += u.input_tokens or 0
@@ -881,6 +890,7 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
     seuil = (MAINTENANT - timedelta(days=8)).isoformat()
     memoire = {u: m for u, m in memoire.items() if u != "_attente" and isinstance(m, list) and m[2] >= seuil}
     memoire["_attente"] = ATTENTE
+    memoire["_depenses"] = DEPENSES
     try:
         json.dump(memoire, open(FICHIER_MEMOIRE_TRI, "w", encoding="utf-8"))
     except Exception:
@@ -1104,8 +1114,8 @@ def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, 
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
             article, sujets["science"], sujets["tech"])}],   # listes « déjà publié » en cache
-        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE},
-                       **({"effort": EFFORT_PREMIER_JET} if REDACTION and EFFORT_PREMIER_JET != "high" else {})},
+        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}},
+        **economie.PARAMS,
     )
     u = rep.usage
     conso = {"in": u.input_tokens or 0, "out": u.output_tokens or 0,
@@ -1250,6 +1260,49 @@ def enregistrer_attente() -> None:
         json.dump(m, open(FICHIER_MEMOIRE_TRI, "w", encoding="utf-8"))
     except Exception:
         pass
+
+
+DEPENSES: dict[str, float] = {}       # mois « AAAA-MM » → dépense de l'agent en $ (memoire_tri.json)
+
+
+def charger_depenses() -> None:
+    try:
+        m = json.load(open(FICHIER_MEMOIRE_TRI, encoding="utf-8")).get("_depenses") or {}
+        DEPENSES.update({k: float(v) for k, v in m.items()})
+    except Exception:
+        pass
+    for k, v in DEPENSES_DEPART.items():
+        DEPENSES[k] = max(DEPENSES.get(k, 0.0), v)
+
+
+def enregistrer_depense(cout: float) -> None:
+    mois = MAINTENANT.strftime("%Y-%m")
+    DEPENSES[mois] = round(DEPENSES.get(mois, 0.0) + cout, 4)
+    for k in sorted(DEPENSES)[:-3]:              # on garde les 3 derniers mois
+        DEPENSES.pop(k, None)
+    try:
+        try:
+            m = json.load(open(FICHIER_MEMOIRE_TRI, encoding="utf-8"))
+        except Exception:
+            m = {}
+        m["_depenses"] = DEPENSES
+        json.dump(m, open(FICHIER_MEMOIRE_TRI, "w", encoding="utf-8"))
+    except Exception:
+        pass
+
+
+def etat_budget() -> tuple[str, float, float]:
+    """Renvoie (« normal » | « economie » | « stop », dépensé ce mois, prorata du budget)."""
+    import calendar
+    mois = MAINTENANT.strftime("%Y-%m")
+    deja = DEPENSES.get(mois, 0.0)
+    jours = calendar.monthrange(MAINTENANT.year, MAINTENANT.month)[1]
+    prorata = BUDGET_MOIS * (MAINTENANT.day - 1 + MAINTENANT.hour / 24) / jours
+    if deja >= BUDGET_MOIS:
+        return "stop", deja, prorata
+    if deja > prorata + MARGE_AVANCE:
+        return "economie", deja, prorata
+    return "normal", deja, prorata
 
 
 def mettre_en_attente(art: dict, raison: str) -> None:
@@ -1437,6 +1490,17 @@ def main() -> int:
     except Exception:
         pass
     charger_attente()
+    charger_depenses()
+    mode_budget, depense_mois, prorata = etat_budget()
+    log(f"Budget du mois : {depense_mois:.2f} $ dépensés sur {BUDGET_MOIS:.2f} $ "
+        f"(prorata à ce jour : {prorata:.2f} $) → mode {mode_budget}")
+    if mode_budget == "stop":
+        log("⛔ Budget du mois atteint : aucun appel à Claude jusqu'au 1er du mois prochain.")
+        print(f"::warning::Budget du mois atteint ({depense_mois:.2f} $ / {BUDGET_MOIS:.2f} $) : passage sans nouvelle fiche")
+        return 0
+    redaction_active = REDACTION and mode_budget == "normal"
+    if REDACTION and not redaction_active:
+        log("💶 En avance sur le budget du mois : pas de réécriture ni d'« À venir » à ce passage.")
     for u, d in list(ATTENTE.items()):          # trop vieux : abandonné
         if d < (MAINTENANT - timedelta(days=ATTENTE_JOURS)).isoformat():
             db.marquer_ecarte(u, "illisible")
@@ -1588,7 +1652,7 @@ def main() -> int:
                 log(f"  ⚖ famille au plafond ({FAMILLE_DU_THEME.get(lignes[0]['theme'])}) : {art['title'][:70]}")
                 continue
             lignes = gardees
-            if REDACTION and art.get("page_lue"):
+            if redaction_active and art.get("page_lue"):
                 for l in lignes:
                     if cout_redaction[0] < PLAFOND_REDACTION:
                         cout_redaction[0] += ameliorer_fiche(client, modele, art, l)
@@ -1638,6 +1702,8 @@ def main() -> int:
     # --- Onglet « À venir » : événements datés repérés au tri + « C'est arrivé » (a_venir.py) ---
     familles_tech = {"mobile", "computing", "ai_software", "mobility", "aerospace", "energy_home", "gaming", "tech_other"}
     try:
+        if mode_budget != "normal":
+            raise RuntimeError("mode économie du budget")
         cout_avenir = a_venir.passage_agent(db, client, modele["id"], ajoutes, log, sans_et_apres, modele["prix"],
                                             set(FAMILLES_THEMES) - familles_tech, familles_tech, lire_debut_page)
     except Exception as ex:                      # l'onglet « À venir » ne doit jamais bloquer le passage
@@ -1650,6 +1716,7 @@ def main() -> int:
             + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad + cout_titres + cout_avenir + cout_red
 
     enregistrer_attente()
+    enregistrer_depense(cout)
     if ATTENTE:
         log(f"Sujets en attente d'une version lisible : {len(ATTENTE)}")
     log("\n" + "=" * 60)
@@ -1658,6 +1725,7 @@ def main() -> int:
         f"{len(ignores)} ignoré(s), {len(doublons)} doublon(s), {len(erreurs)} erreur(s)")
     log(f"Appels à Claude : {appels} — tokens : {conso['in']} entrée, {conso['cache_w']} mis en cache, "
         f"{conso['cache_r']} lus en cache, {conso['out']} sortie")
+    log(f"Budget du mois après ce passage : {DEPENSES.get(MAINTENANT.strftime('%Y-%m'), 0):.2f} $ sur {BUDGET_MOIS:.2f} $")
     log(f"Rédaction en deux temps (réécriture + relecture) : {cout_red:.4f} $")
     log(f"Articles illisibles ou de moins de {TEXTE_MIN} caractères, sans fiche (ni appel à Claude) : "
         f"{STATS.get('trop_courts', 0)}")

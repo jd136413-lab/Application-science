@@ -44,6 +44,8 @@ except Exception:                      # pragma: no cover
 
 import requests
 
+import economie
+
 import notifications
 
 CANDIDATS: list[dict] = []   # rempli par main.py pendant le tri des titres
@@ -176,6 +178,7 @@ def _appel(client, modele_id, consigne, contenu, schema, conso, max_tokens=2000)
         model=modele_id, max_tokens=max_tokens, system=consigne,
         messages=[{"role": "user", "content": contenu}],
         output_config={"format": {"type": "json_schema", "schema": schema}},
+        **economie.PARAMS,
     )
     conso["in"] += rep.usage.input_tokens or 0
     conso["out"] += rep.usage.output_tokens or 0

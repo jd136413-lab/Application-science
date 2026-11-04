@@ -27,6 +27,8 @@ import time
 
 import requests
 
+import economie
+
 CONSIGNE = """Tu relis les titres de NovaSTEM, une application gratuite qui présente les avancées scientifiques et technologiques à un large public (lycéens curieux, adultes sans formation scientifique).
 
 Chaque titre a la forme « Thème : phrase » (sujet + verbe conjugué au présent + complément), 12 mots au plus, sans point final.
@@ -98,6 +100,7 @@ def relire(client, fiches: list[dict], log) -> tuple[list[dict], float]:
                 system=[{"type": "text", "text": CONSIGNE, "cache_control": {"type": "ephemeral"}}],
                 messages=[{"role": "user", "content": json.dumps({"titres": lignes}, ensure_ascii=False)}],
                 output_config={"format": {"type": "json_schema", "schema": SCHEMA}},
+                **economie.PARAMS,
             )
             u = rep.usage
             t_in += (u.input_tokens or 0) + (getattr(u, "cache_read_input_tokens", 0) or 0) \
@@ -216,6 +219,7 @@ def corriger(db, client, log) -> int:
                                           if forcer else ""),
             messages=[{"role": "user", "content": json.dumps({"fiches": lignes}, ensure_ascii=False)}],
             output_config={"format": {"type": "json_schema", "schema": SCHEMA_CORRECTION}},
+            **economie.PARAMS,
         )
         t_in += rep.usage.input_tokens or 0
         t_out += rep.usage.output_tokens or 0
