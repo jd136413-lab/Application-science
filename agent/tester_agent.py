@@ -30,7 +30,9 @@ import economie
 import main as agent
 import prompt
 import redaction
+import doublons
 from consignes_v2 import REDACTION_B, TRI_B
+from consignes_v3 import REDACTION_C, TRI_C
 
 MODELE, PRIX = "claude-haiku-5-5", (0.10, 0.50)
 NB_NOUVEAUX = int(os.environ.get("NB_NOUVEAUX") or 8)
@@ -38,7 +40,11 @@ NB_DOUBLONS = int(os.environ.get("NB_DOUBLONS") or 6)
 NB_ECARTES = int(os.environ.get("NB_ECARTES") or 4)
 PLAFOND = float(os.environ.get("PLAFOND") or 0.5)
 DOUBLONS_CONNUS = ["amas d'étoiles ultra-denses", "troisième famille de magnétisme"]
-COUT = {"A": 0.0, "B": 0.0}
+V1, V2 = (os.environ.get("VERSIONS") or "B,C").split(",")
+# Version → (consigne de tri, consigne de rédaction, filtre strict des alertes)
+CONFIG = {"B": (TRI_B, REDACTION_B, False), "C": (TRI_C, REDACTION_C, True)}
+COUT = {V1: 0.0, V2: 0.0}
+DECALAGE = int(os.environ.get("DECALAGE") or 0)          # jeu neuf : on saute les articles du 1er essai
 
 
 def cout(u) -> float:
@@ -98,13 +104,8 @@ def message_b(art: dict, deja_b: str, alertes: list[str]) -> list[dict]:
 
 
 def juger(client, version: str, art: dict, ctx: dict) -> dict:
-    if version == "A":
-        systeme = prompt.SYSTEM_PROMPT_TRI
-        contenu = prompt.build_user_message(art, ctx["sujA"]["science"], ctx["sujA"]["tech"]) + \
-            [{"type": "text", "text": agent.CONSIGNE_TRI_SEUL}]
-    else:
-        systeme = TRI_B
-        contenu = message_b(art, ctx["dejaB"], ctx["alertes"].get(art["url"], []))
+    systeme = CONFIG[version][0]
+    contenu = message_b(art, ctx["dejaB"], ctx["alertes"][version].get(art["url"], []))
     for essai in range(3):
         try:
             rep = client.messages.create(
@@ -146,9 +147,9 @@ def main() -> int:
     db = agent.Supabase(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SECRET_KEY"])
     toutes = publiees(db)
     print(f"{len(toutes)} fiches publiées sur 30 jours", flush=True)
-    connus = [f for f in toutes if any(k.lower() in f["title"].lower() for k in DOUBLONS_CONNUS)]
-    nouveaux = [f for f in toutes if f not in connus][:NB_NOUVEAUX]
-    exclus = {f["id"] for f in nouveaux + connus}
+    connus = []     # 2e essai : plus de « doublons connus » (leurs originaux restent dans la liste)
+    nouveaux = toutes[DECALAGE:DECALAGE + NB_NOUVEAUX]
+    exclus = {f["id"] for f in nouveaux}
     deja = [f for f in toutes if f["id"] not in exclus]
     limite_a = datetime.now(timezone.utc).timestamp() - agent.JOURS_ANTI_DOUBLONS * 86400
     sujA = {"science": [], "tech": []}
@@ -169,7 +170,7 @@ def main() -> int:
     for f in connus:
         cas.append(("doublon connu (04/11)", "doublon", article(f["source_url"], f["source_name"]), f))
     vus = set()
-    for f in deja[len(deja) // 6:]:            # fiches pas trop récentes
+    for f in deja[len(deja) // 3:]:            # fiches plus anciennes que lors du 1er essai
         if len([c for c in cas if c[0] == "doublon (autre média)"]) >= NB_DOUBLONS:
             break
         for s in f.get("autres_sources") or []:
@@ -179,7 +180,7 @@ def main() -> int:
                 if len(a.get("text", "")) >= agent.TEXTE_MIN and a.get("page_lue"):
                     cas.append(("doublon (autre média)", f"doublon de « {f['title']} »", a, f))
                     break
-    for u in ecartes(db, NB_ECARTES):
+    for u in ecartes(db, NB_ECARTES + 6)[6:]:   # pas ceux du 1er essai
         if len([c for c in cas if c[0] == "écarté avant"]) >= NB_ECARTES:
             break
         a = article(u, re.sub(r"^https?://(www\.)?([^/]+).*", r"\2", u))
@@ -187,35 +188,38 @@ def main() -> int:
             cas.append(("écarté avant", "none", a, None))
     cas = [c for c in cas if len(c[2].get("text", "")) >= agent.TEXTE_MIN and c[2].get("page_lue")]
     print(f"{len(cas)} articles lisibles dans le jeu d'essai", flush=True)
-    ctx = {"sujA": sujA, "dejaB": deja_b, "alertes": {c[2]["url"]: alertes_doublon(c[2], deja) for c in cas}}
+    ctx = {"sujA": sujA, "dejaB": deja_b, "alertes": {}}
+    for v in (V1, V2):
+        doublons.STRICT = CONFIG[v][2]
+        ctx["alertes"][v] = {c[2]["url"]: doublons.alertes_doublon(c[2], deja) for c in cas}
 
     # 1) Décisions
     out = [f"# Essai A / B des consignes — {time.strftime('%d/%m/%Y %H:%M')} UTC\n",
-           "A = consignes actuelles · B = consignes réécrites + anti-doublons renforcé. Rien n'est publié.\n",
+           f"Versions comparées : {V1} et {V2}. Rien n'est publié.\n",
            "## 1. Décisions (tri et doublons)\n",
-           "| # | Catégorie | Article | Attendu | A | B | Alerte du programme (B) |", "|---|---|---|---|---|---|---|"]
+           f"| # | Catégorie | Article | Attendu | {V1} | {V2} | Alertes {V1} / {V2} |", "|---|---|---|---|---|---|---|"]
     decisions = {}
     for i, (cat, attendu, a, f) in enumerate(cas, 1):
-        if COUT["A"] + COUT["B"] > PLAFOND:
+        if sum(COUT.values()) > PLAFOND:
             out.append(f"\n_Plafond de coût atteint ({PLAFOND} $)._")
             break
-        da, db_ = juger(client, "A", a, ctx), juger(client, "B", a, ctx)
+        da, db_ = juger(client, V1, a, ctx), juger(client, V2, a, ctx)
         decisions[i] = (da, db_)
-        al = ctx["alertes"].get(a["url"]) or []
+        al = [f"{v} : " + "; ".join(ctx["alertes"][v].get(a["url"]) or ["—"]) for v in (V1, V2)]
         out.append(f"| {i} | {cat} | {a['source_name']} : {a['title'][:70]} | {attendu} | {resume_decision(da)} | "
-                   f"{resume_decision(db_)} | {('; '.join(al))[:160] or '—'} |")
+                   f"{resume_decision(db_)} | {(' / '.join(al))[:220]} |")
         print(f"  {i}/{len(cas)} · A={da.get('decision')} B={db_.get('decision')} · {COUT}", flush=True)
     out.append("\n**Explications** :\n")
     for i, (da, db_) in decisions.items():
-        out.append(f"- {i}. A : {da.get('explanation', '')} — B : {db_.get('explanation', '')}")
+        out.append(f"- {i}. {V1} : {da.get('explanation', '')} — {V2} : {db_.get('explanation', '')}")
 
     # 2) Rédaction des nouveaux (mêmes articles, même titre provisoire, consigne A puis B)
-    out.append("\n## 2. Rédaction (mêmes articles, consigne A puis B)\n")
+    out.append(f"\n## 2. Rédaction (mêmes articles, consigne {V1} puis {V2})\n")
     items = [(f"n{i}", a, f["feed"], {"title": f["title"], "importance": f["importance"], "type_etude": f.get("type_etude")})
              for i, (cat, _, a, f) in enumerate(cas, 1) if cat == "nouveau"]
     res = {}
-    for version, consigne in (("A", redaction.CONSIGNE), ("B", REDACTION_B)):
-        if COUT["A"] + COUT["B"] > PLAFOND or not items:
+    for version, consigne in ((V1, CONFIG[V1][1]), (V2, CONFIG[V2][1])):
+        if sum(COUT.values()) > PLAFOND or not items:
             break
         redaction.CONSIGNE = consigne
         r, c = redaction.rediger_lot(client, MODELE, PRIX, items, par_lot=False, log=lambda m: print(m, flush=True))
@@ -223,13 +227,13 @@ def main() -> int:
         res[version] = r
     for cid, a, fil, br in items:
         out.append(f"\n---\n\n### {cid[1:]}. {br['title']}\n\nSource : {a['source_name']} · {len(a['text'])} caractères · {a['url']}\n")
-        for v in ("A", "B"):
+        for v in (V1, V2):
             x = res.get(v, {}).get(cid) or {}
             out.append(bloc(f"Version {v} ({x.get('relectures', 0)} relecture(s), {x.get('cout', 0):.4f} $)", x.get("finale")))
             out.append(f"- _Défauts mesurés restants_ : {' ; '.join(x.get('restants') or []) or 'aucun'}\n")
-    out.append(f"\n---\n\n## Coût\n\nA : {COUT['A']:.4f} $ · B : {COUT['B']:.4f} $ · total : {COUT['A'] + COUT['B']:.4f} $\n")
+    out.append(f"\n---\n\n## Coût\n\n{V1} : {COUT[V1]:.4f} $ · {V2} : {COUT[V2]:.4f} $ · total : {sum(COUT.values()):.4f} $\n")
     os.makedirs("essai", exist_ok=True)
-    with open("essai/rapport_ab.md", "w", encoding="utf-8") as fh:
+    with open("essai/rapport_bc.md", "w", encoding="utf-8") as fh:
         fh.write("\n".join(out))
     print(f"Coût : {COUT}", flush=True)
     return 0
