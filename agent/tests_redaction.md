@@ -1,101 +1,101 @@
-# Test de la rédaction — 04/11/2026 08:35 UTC
+# Test de la rédaction — 04/11/2026 17:40 UTC
 
 Modèles : haiku · 5 fiches
 
 
 ---
 
-## 1. Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
+## 1. Espace : une collision géante laisse une traînée de poussière noire autour d'une étoile
 
-Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-jwst-may-have-found-where-heavy-black-hole-seeds-formed
-
-**Actuel (publié)**
-
-- **Titre** : Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
-- **Avant** : On pense que les trous noirs géants ont commencé par des graines plus petites, mais on ne sait pas où naissent ces trous noirs de taille moyenne. Ils sont très difficiles à repérer, et une détection directe a été rapportée en 2020.
-- **Découverte** : Des chercheurs de l'université Sapienza de Rome ont étudié des amas d'étoiles très serrées, repérés par le télescope James Webb dans deux galaxies très lointaines. Leur modèle repose sur les collisions entre étoiles et sur la matière perdue par leurs vents. Ce modèle prévoit des trous noirs pouvant atteindre environ 4 000 fois la masse du Soleil, et les amas de la galaxie la plus compacte donneraient les plus lourds, de 1 600 à 2 700 fois la masse du Soleil.
-- **Et après** : Si le modèle est juste, ces amas expliqueraient une partie de l'origine des trous noirs géants. Mais ce ne sont que des estimations : ces trous noirs n'ont pas été observés directement, et il faudra des mesures plus fines pour le confirmer.
-- **Mots** : (aucun)
-- **Type** : simulation
-
-- _Mesures automatiques_ : phrase de 40 mots dans « decouverte », à couper : « Ce modèle prévoit des trous noirs pouvant atteindre environ 4 000 fois la masse du Soleil,… »
-- _Ajoutée le_ : 2026-11-04T07:30:34.027763+00:00
-
-
----
-
-## 2. Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
-
-Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-vera-rubin-has-found-two-more-of-the-milky-ways-dim-satellites
+Fil : science · 2★ · source : Les Numériques · page lue : oui (2524 caractères) · https://www.lesnumeriques.com/astronomie-conquete-spatiale/une-gigantesque-structure-se-cache-dans-un-systeme-stellaire-voisin-et-elle-est-noire-comme-l-encre-n266812.html
 
 **Actuel (publié)**
 
-- **Titre** : Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
-- **Avant** : La Voie lactée est entourée de petits satellites très peu lumineux, traces de ses anciennes rencontres avec d'autres galaxies. On en connaît environ 65 galaxies naines et 40 amas d'étoiles, mais beaucoup restent invisibles.
-- **Découverte** : Des astronomes ont repéré Aquarius IV, probablement une petite galaxie très peu lumineuse, dans la zone externe de la Voie lactée. Ils ont aussi trouvé un amas d'étoiles vieux d'environ 9,2 milliards d'années, caché derrière une poussière épaisse vers le centre. Ses étoiles semblent venir d'une galaxie naine voisine, le Sagittaire, absorbée par la Voie lactée.
-- **Et après** : Ces détections montrent que le télescope peut trouver des objets très faibles, et il devrait en révéler beaucoup d'autres. Pour Aquarius IV, il faut encore des images plus profondes, car seule une petite partie de ses étoiles est visible.
+- **Titre** : Espace : une collision géante laisse une traînée de poussière noire autour d'une étoile
+- **Avant** : Autour de l'étoile Bêta Pictoris, Webb avait repéré en 2024 une étrange excroissance de poussière recourbée, mais on ignorait son origine et sa composition.
+- **Découverte** : Une équipe de l'université de l'Arizona a suivi cette traînée avec le télescope Hubble, sur six campagnes d'observation entre 2012 et 2025. Elle est composée presque uniquement de matière carbonée très sombre, en grains poreux. Les calculs suggèrent qu'elle résulte d'une collision entre deux corps de la taille de Pluton ou Charon, dont le choc a vaporisé le carbone avant qu'il ne se recondense en flocons.
+- **Et après** : Le système, vieux d'environ 23 millions d'années, ressemble à ce qu'a pu être le Système solaire jeune. Les chercheurs veulent maintenant comprendre comment de si fins grains poreux peuvent se former.
 - **Mots** : (aucun)
 - **Type** : observation
 
-- _Mesures automatiques_ : aucun défaut
-- _Ajoutée le_ : 2026-11-04T07:29:27.909249+00:00
+- _Mesures automatiques_ : titre de 13 mots : 12 au plus ; phrase de 31 mots dans « decouverte », à couper : « Les calculs suggèrent qu'elle résulte d'une collision entre deux corps de la taille de Plu… » ; affirmation absolue « on ignorait » : supprime-la ou attribue-la (« selon les chercheurs ») si l'article la fait ; « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
+- _Ajoutée le_ : 2026-11-04T17:24:36.537901+00:00
 
 
 ---
 
-## 3. Espace : une faille de Mars a glissé et causé un séisme
+## 2. Impression 3D : un filament recyclé rend les prothèses tactiles
 
-Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2662 caractères) · https://www.techno-science.net/fr/actualites/mars-valles-marineris-seisme-actif-29661
-
-**Actuel (publié)**
-
-- **Titre** : Espace : une faille de Mars a glissé et causé un séisme
-- **Avant** : Le canyon Valles Marineris, long d'environ 4 000 kilomètres, s'est formé il y a plusieurs milliards d'années. On se demandait si ses anciennes cassures bougeaient encore, car Mars n'a pas de plaques tectoniques comme la Terre.
-- **Découverte** : Une nouvelle analyse place l'origine d'un signal enregistré en août 2021 par la sonde InSight de la NASA dans l'ouest de Valles Marineris. Selon les modèles, la faille se trouverait entre 20 et 40 kilomètres sous la surface, et deux blocs de roche auraient glissé l'un contre l'autre. Un impact de météorite ou un glissement de terrain expliqueraient moins bien le signal.
-- **Et après** : Cela montre que les anciennes fractures de Mars ne sont pas toutes figées, ce qui aidera à reconstituer son histoire et à évaluer les risques des futures missions. Un seul séisme a été clairement attribué à cette région, et beaucoup de petites secousses ont pu passer inaperçues.
-- **Mots** : (aucun)
-- **Type** : observation
-
-- _Mesures automatiques_ : aucun défaut
-- _Ajoutée le_ : 2026-11-04T07:28:42.150706+00:00
-
-
----
-
-## 4. Drones : un cadre souple se déforme au choc et reste en vol
-
-Fil : tech · 1★ · source : ETH Zurich · page lue : oui (6000 caractères) · https://ethz.ch/en/news-and-events/eth-news/news/2026/11/new-flexible-drone-can-withstand-collisions.html
+Fil : tech · 1★ · source : 3D Printing Industry · page lue : oui (4685 caractères) · https://3dprintingindustry.com/news/recycled-filament-lets-3d-printed-prosthetics-use-touchscreens-256132/?utm_source=rss&utm_medium=rss&utm_campaign=recycled-filament-lets-3d-printed-prosthetics-use-touchscreens
 
 **Actuel (publié)**
 
-- **Titre** : Drones : un cadre souple se déforme au choc et reste en vol
-- **Avant** : Les drones à quatre hélices ont un corps central rigide, un modèle en place depuis plus d'un siècle. Un choc contre un mur peut les déstabiliser ou les casser.
-- **Découverte** : Des chercheurs de l'École polytechnique fédérale de Zurich ont conçu FlexiQuad, un drone à cadre souple en anneau, sans corps central. Le cadre se déforme à l'impact et absorbe une partie de l'énergie du choc, puis le drone continue de voler. Lors de tests de choc, il a été lancé contre des obstacles à environ 25 km/h. Cette vitesse était limitée surtout par l'espace nécessaire pour l'accélérer ; en vol, il peut atteindre 80 km/h.
-- **Et après** : Il pourrait servir à inspecter des cuves de navire ou à chercher des victimes dans des bâtiments effondrés. Il doit encore apprendre à se stabiliser seul après un choc et à se repérer, car les vibrations brouillent les caméras ; il n'est pas encore utilisable hors du laboratoire.
-- **Mots** : (aucun)
-- **Type** : prototype
-
-- _Mesures automatiques_ : « decouverte » a 4 phrases : 3 au plus ; phrase de 30 mots dans « apres », à couper : « Il doit encore apprendre à se stabiliser seul après un choc et à se repérer, car les vibra… »
-- _Ajoutée le_ : 2026-11-04T07:28:07.730216+00:00
-
-
----
-
-## 5. Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
-
-Fil : tech · 2★ · source : TechCrunch · page lue : oui (4692 caractères) · https://techcrunch.com/2026/11/03/orbital-matter-3d-printed-the-first-rigid-beam-in-the-vacuum-of-space/
-
-**Actuel (publié)**
-
-- **Titre** : Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
-- **Avant** : Les grandes structures spatiales, comme les panneaux solaires, sont pliées au lancement puis déployées en orbite. En 2023, une mission financée par la NASA a imprimé des poutres sous vide sur Terre, mais elle n'a jamais décollé.
-- **Découverte** : La start-up allemande Orbital Matter a lancé le satellite Replicator 2 lors d'une mission SpaceX, avec quatre imprimantes 3D à bord. Chaque imprimante durcit une résine à la lumière ultraviolette pour former une poutre rigide d'environ 50 centimètres. Une imprimante a eu une anomalie, mais la structure a tout de même déployé un panneau solaire souple.
-- **Et après** : Cela permettrait de construire en orbite de grandes structures pour les futurs satellites à forte puissance. Pour l'instant, la longueur est limitée par la résine emportée (50 centimètres), contre 100 mètres jugés possibles ; une mission prévue en 2028 doit tester une imprimante plus grande.
-- **Mots** : (aucun)
+- **Titre** : Impression 3D : un filament recyclé rend les prothèses tactiles
+- **Avant** : Les prothèses de main imprimées en 3D coûtent souvent cher et ne peuvent pas utiliser les écrans tactiles des téléphones et tablettes.
+- **Découverte** : À l'université de Guadalajara, au Mexique, des étudiants ont mis au point un filament d'impression fabriqué à partir de plastique recyclé et de nanomatériaux. Une main prothétique imprimée avec ce filament peut interagir avec les écrans tactiles. Le projet Filna, qui a remporté la première place de sa catégorie au concours Enactus Mexico 2026, vise aussi à rendre les prothèses moins chères.
+- **Et après** : Le filament doit encore gagner des fonctions, comme une fluorescence utile en médecine et la biodégradabilité. Le projet reste au stade de prototype étudiant, sans essai auprès de patients.
+- **Mots** : **Filament** → Fil de plastique fondu couche par couche par une imprimante 3D pour fabriquer un objet.
 - **Type** : demonstration
 
-- _Mesures automatiques_ : phrase de 29 mots dans « apres », à couper : « Pour l'instant, la longueur est limitée par la résine emportée (50 centimètres), contre 10… »
-- _Ajoutée le_ : 2026-11-04T07:27:29.481199+00:00
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-04T17:24:36.116632+00:00
+
+
+---
+
+## 3. Trous noirs : des amas d'étoiles ultra-denses pourraient fabriquer leurs graines géantes
+
+Fil : science · 2★ · source : Les Numériques · page lue : oui (3300 caractères) · https://www.lesnumeriques.com/astronomie-conquete-spatiale/james-webb-et-trous-noirs-supermassifs-et-si-leur-origine-venait-des-gemmes-cosmiques-deja-decouvertes-n266713.html
+
+**Actuel (publié)**
+
+- **Titre** : Trous noirs : des amas d'étoiles ultra-denses pourraient fabriquer leurs graines géantes
+- **Avant** : On ignore encore comment se sont formés les trous noirs supermassifs, si lourds qu'ils étaient déjà là très tôt dans l'Univers. Il manquait aussi un maillon, les trous noirs de taille intermédiaire.
+- **Découverte** : Une équipe dirigée par Viola Bocchi a modélisé des amas d'étoiles très compacts repérés par le télescope James-Webb, observés 460 millions d'années après le Big Bang. Dans les simulations, leurs étoiles entrent en collision en cascade et donnent naissance à des graines de 1 600 à 2 700 fois la masse du Soleil. Ces graines pourraient grossir rapidement pour devenir des trous noirs géants.
+- **Et après** : Les chercheurs n'ont pas vu directement ces trous noirs se former, et plusieurs paramètres des amas restent incertains. Une observation future devra confirmer cette piste.
+- **Mots** : **Trou noir supermassif** → Trou noir géant, qui pèse des millions à des milliards de fois la masse du Soleil et se trouve au centre des galaxies.
+- **Type** : simulation
+
+- _Mesures automatiques_ : mot à connaître « Trou noir supermassif » absent du texte de la fiche : choisis un mot du texte ou aucun
+- _Ajoutée le_ : 2026-11-04T17:24:14.192649+00:00
+
+
+---
+
+## 4. Magnétisme : une troisième famille de magnétisme confirmée par des rayons X
+
+Fil : science · 3★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104012256.htm
+
+**Actuel (publié)**
+
+- **Titre** : Magnétisme : une troisième famille de magnétisme confirmée par des rayons X
+- **Avant** : Depuis près de 90 ans, les physiciens rangent les matériaux magnétiques en deux familles : les ferromagnétiques, dont les spins sont alignés, et les antiferromagnétiques, dont les spins s'annulent. Certains matériaux récents ne rentraient dans aucune de ces cases.
+- **Découverte** : Une équipe du laboratoire SLAC, aux États-Unis, a apporté la preuve expérimentale d'une troisième famille, l'altermagnétisme, dans un matériau appelé tellurure de manganèse. Grâce à des rayons X spécialisés, les chercheurs ont mis en évidence la chiralité, une asymétrie de la structure magnétique, qui distingue ces matériaux des antiferromagnétiques classiques.
+- **Et après** : Ces matériaux pourraient servir à concevoir des mémoires informatiques, des dispositifs quantiques et des centres de calcul plus économes en énergie. Il faudra encore vérifier la découverte sur d'autres matériaux avant de songer à des applications concrètes.
+- **Mots** : **Antiferromagnétique** → Matériau dont les spins voisins pointent en sens opposés, ce qui annule son magnétisme global.
+- **Type** : laboratoire
+
+- _Mesures automatiques_ : phrase de 29 mots dans « avant », à couper : « Depuis près de 90 ans, les physiciens rangent les matériaux magnétiques en deux familles :… » ; sigles ou noms codés inconnus du public : SLAC → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Ajoutée le_ : 2026-11-04T17:24:02.769663+00:00
+
+
+---
+
+## 5. Temps : un chronomètre aux rayons X mesure des durées de quelques attosecondes
+
+Fil : science · 3★ · source : Nature · page lue : oui (1232 caractères) · https://www.nature.com/articles/d41586-026-03423-2
+
+**Actuel (publié)**
+
+- **Titre** : Temps : un chronomètre aux rayons X mesure des durées de quelques attosecondes
+- **Avant** : Mesurer des durées aussi courtes qu'une attoseconde, soit un milliardième de milliardième de seconde, était jusqu'ici très difficile avec des rayons X.
+- **Découverte** : Des chercheurs ont mis au point un système qui produit des impulsions de rayons X très brèves et sait les mesurer avec précision. Ce chronomètre ultra-rapide permet de suivre des phénomènes qui se déroulent en quelques attosecondes.
+- **Et après** : Ces impulsions pourraient permettre d'observer les électrons qui tournent autour des noyaux atomiques, un mouvement encore très peu étudié.
+- **Mots** : (aucun)
+- **Type** : laboratoire
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-04T17:23:58.248565+00:00
 
 
 ---
