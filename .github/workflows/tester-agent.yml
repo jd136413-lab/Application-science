@@ -1,6 +1,6 @@
 # Essai A / B des consignes de l'agent (04/11/2026), sans rien publier :
 # compare les consignes actuelles (A) et une version réécrite (B) sur un jeu
-# d'articles tiré de la base (lecture seule). Rapport : agent/essai/rapport_ab.md
+# d'articles tiré de la base (lecture seule). Rapport : agent/essai/rapport_bc.md
 # sur la branche testée. Lancé par Claude en poussant une branche « essai/… ».
 name: Essai des consignes A/B
 
@@ -31,12 +31,17 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           PLAFOND: "0.5"
+          VERSIONS: "B,C"
+          NB_NOUVEAUX: "10"
+          NB_DOUBLONS: "10"
+          NB_ECARTES: "6"
+          DECALAGE: "8"
         run: python tester_agent.py
       - name: Enregistrer le rapport sur la branche
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          [ -f agent/essai/rapport_ab.md ] && git add agent/essai/rapport_ab.md
-          git commit -m "Rapport de l'essai A/B [skip ci]" || exit 0
+          [ -f agent/essai/rapport_bc.md ] && git add agent/essai/rapport_bc.md
+          git commit -m "Rapport de l'essai B/C [skip ci]" || exit 0
           for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

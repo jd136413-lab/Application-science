@@ -21,11 +21,22 @@ Scientists Researchers Study Researchers University Universite Institute Science
 Mais Cette Elle Elles Ils Leur Leurs Sur Par Plus Comme NASA Google Apple Chine China""".split())
 
 
+# Version C : noms trop courants pour identifier une étude (instruments, lieux, agences)
+_TROP_COURANTS = set("""webb james-webb james hubble nasa esa spacex mars lune moon terre earth soleil sun
+chine china europe japon japan inde india amerique america etats-unis france allemagne germany
+rubin vera tesla apple google microsoft openai samsung huawei meta amazon nvidia intel""".split())
+STRICT = False   # True = filtre version C (essai du 04/11 au soir)
+
+
 def indices(texte: str) -> set[str]:
     """Indices d'identité : noms propres (hors mots courants) et nombres significatifs."""
     t = _norm(texte)
+    if STRICT:   # un mot à majuscule qui apparaît aussi en minuscule est un mot ordinaire (début de phrase)
+        bas = set(re.findall(r"\b[a-z][a-z\-]{3,}\b", t))
     t = re.sub(r"(?<=\d)[\s  ,.](?=\d{3}\b)", "", t)          # 1 600 / 1,600 → 1600
     mots = {m for m in re.findall(r"\b[A-Z][a-zA-Z\-]{3,}\b", t) if m not in _COMMUNS}
+    if STRICT:
+        mots = {m for m in mots if m.lower() not in bas and m.lower() not in _TROP_COURANTS}
     nombres = {n for n in re.findall(r"\b\d+(?:[.,]\d+)?\b", t) if len(n.replace(",", "").replace(".", "")) >= 3
                and not re.fullmatch(r"20[0-3]\d", n)}                     # années écartées
     return {m.lower() for m in mots} | {n.replace(",", ".") for n in nombres}

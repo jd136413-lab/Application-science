@@ -116,7 +116,7 @@ import redaction
 from anthropic import Anthropic
 
 from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
-from consignes_v2 import TRI_B
+from consignes_v3 import TRI_C
 import doublons
 from sources import SOURCES, TITRES_EXCLUS
 
@@ -679,10 +679,12 @@ SCHEMA_REPONSE = {
 
 # Le long document de classification est mis en cache par l'API :
 # payé en entier au 1er appel, puis environ 10 fois moins cher ensuite.
-# Consigne du tri : version 2 (consignes_v2.py, retenue après l'essai A/B du 04/11 :
-# 5 doublons sur 5 attrapés contre 3, et moins chère). L'ancienne reste pour REDACTION = False.
+# Consigne du tri : version C (consignes_v3.py). Essai A/B du 04/11 : B attrape 5 doublons sur 5
+# contre 3 pour l'ancienne. Essai B/C : mêmes 17 décisions, mais C est 1/3 plus courte, écarte les
+# étapes industrielles ordinaires et reçoit moins de fausses alertes. L'ancienne reste pour REDACTION = False.
 FICHES_DEJA: list[dict] = []          # fiches publiées des 30 derniers jours (+ celles du passage)
-SYSTEME = [{"type": "text", "text": TRI_B if REDACTION else SYSTEM_PROMPT,
+doublons.STRICT = True                # alertes « doublon probable » sans les noms trop courants (version C)
+SYSTEME = [{"type": "text", "text": TRI_C if REDACTION else SYSTEM_PROMPT,
             "cache_control": {"type": "ephemeral"}}]
 
 

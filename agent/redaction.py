@@ -268,7 +268,8 @@ def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict,
 
 
 # 04/11 : consigne de rédaction version 2 (consignes_v2.py), retenue après l'essai A/B
-# (8,4/10 contre 7,9 sur les mêmes articles, et moins chère). L'ancienne reste dans CONSIGNE_V1.
+# (8,4/10 contre 7,9 sur les mêmes articles, et moins chère) puis l'essai B/C (8,1 contre 7,8 pour
+# la version C, plus courte mais qui laissait passer plus de jargon). L'ancienne reste dans CONSIGNE_V1.
 CONSIGNE_V1 = CONSIGNE
 from consignes_v2 import REDACTION_B as CONSIGNE  # noqa: E402
 
