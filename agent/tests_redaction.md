@@ -1,484 +1,466 @@
-# Test de la rédaction — 03/11/2026 19:57 UTC
+# Test de la rédaction — 04/11/2026 17:21 UTC
 
 Modèles : haiku · 12 fiches
 
 
 ---
 
-## 1. Internet : une équipe chinoise atteint 3,2 pétabits par seconde
+## 1. Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
 
-Fil : tech · 2★ · source : Tom's Hardware · page lue : oui (2446 caractères) · https://www.tomshardware.com/networking/3-2-pb-s-real-time-optical-fiber-transfer-speed-world-record-claimed-by-chinese-team-speed-fast-enough-to-download-more-than-20-000-4k-movies-in-one-second
+Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-jwst-may-have-found-where-heavy-black-hole-seeds-formed
 
 **Actuel (publié)**
 
-- **Titre** : Internet : une équipe chinoise atteint 3,2 pétabits par seconde
-- **Avant** : Jusqu'ici, le record de vitesse hors laboratoire était de 2,5 pétabits par seconde, obtenu par la même équipe plus tôt cette année avec une fibre à 24 cœurs.
-- **Découverte** : Une équipe chinoise annonce un transfert de données en temps réel à 3,2 pétabits par seconde, un nouveau record de débit sur fibre optique. Le débit dépasse nettement celui de la précédente performance hors laboratoire de la même équipe.
-- **Et après** : Ce record est annoncé par l'équipe et doit encore être confirmé par d'autres chercheurs. Il reste à voir si cette technique pourra sortir des laboratoires pour accélérer réellement les réseaux de données.
-- **Mots** : **Pétabit** → Unité de mesure valant mille milliards de bits, soit un million de milliards d'informations.
-- **Type** : demonstration
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Internet : une fibre optique transporte 3,2 millions de gigabits par seconde
-- **Avant** : Le record de débit hors laboratoire était jusqu'ici de 2,5 pétabits (2,5 millions de gigabits) par seconde, établi par la même équipe plus tôt cette année. Les records de laboratoire atteignent davantage, mais reposent souvent sur des traitements expérimentaux.
-- **Découverte** : Des chercheurs chinois ont transmis 3,2 pétabits (3,2 millions de gigabits) par seconde en temps réel, dans une fibre optique à plusieurs cœurs. Ils ont combiné plusieurs cœurs de fibre et trois plages de lumière, avec du matériel conforme aux normes commerciales. Selon la source, si ce débit était un jour déployé, il pourrait permettre à 3,2 millions de foyers d'utiliser en même temps une connexion d'un gigabit.
-- **Et après** : Cette technique pourrait un jour accélérer de vrais réseaux, car elle utilise du matériel commercial. Aucune date de déploiement n'est donnée, et il reste à voir si elle sortira des laboratoires.
+- **Titre** : Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
+- **Avant** : On pense que les trous noirs géants ont commencé par des graines plus petites, mais on ne sait pas où naissent ces trous noirs de taille moyenne. Ils sont très difficiles à repérer, et une détection directe a été rapportée en 2020.
+- **Découverte** : Des chercheurs de l'université Sapienza de Rome ont étudié des amas d'étoiles très serrées, repérés par le télescope James Webb dans deux galaxies très lointaines. Leur modèle repose sur les collisions entre étoiles et sur la matière perdue par leurs vents. Ce modèle prévoit des trous noirs pouvant atteindre environ 4 000 fois la masse du Soleil, et les amas de la galaxie la plus compacte donneraient les plus lourds, de 1 600 à 2 700 fois la masse du Soleil.
+- **Et après** : Si le modèle est juste, ces amas expliqueraient une partie de l'origine des trous noirs géants. Mais ce ne sont que des estimations : ces trous noirs n'ont pas été observés directement, et il faudra des mesures plus fines pour le confirmer.
 - **Mots** : (aucun)
-- **Type** : demonstration
+- **Type** : simulation
 
-- _Défauts trouvés par le relecteur_ : [jargon] « Le record de débit hors laboratoire était jusqu'ici de 2,5 pétabits par seconde » → Le pétabit est une unité savante non convertie. Il faut ajouter l'équivalent en gigabits, comme le titre le fait. | [jargon] « Des chercheurs chinois ont transmis 3,2 pétabits par seconde en temps réel » → Le pétabit est une unité savante non convertie dans le corps de la fiche. | [non_soutenu] « ce débit suffirait à faire utiliser ensemble une connexion d'un gigabit à 3,2 millions de foyers » → L'article dit que ce débit pourrait permettre cela si et quand il serait déployé. La fiche présente un usage futur comme acquis. | [forme] « Selon l'article, cette technique pourrait un jour accélérer de vrais réseaux » → La phrase parle de l'article au lieu des faits. | [comparaison] « dans une fibre optique à 24 cœurs » → Le nombre de cœurs (24) est un chiffre technique qui s'ajoute aux autres chiffres de la section sans apporter de repère pour le lecteur ; la fiche garde trois chiffres parlants.
+**Final après 2 relecture(s) (haiku, lot)**
 
-- _Défauts mesurés restants_ : aucun · coût 0.0058 $
+- **Titre** : Trous noirs : des amas d'étoiles jeunes pourraient en fabriquer de taille moyenne
+- **Avant** : Les trous noirs géants au centre des galaxies auraient grandi à partir de petits germes, dont il fallait expliquer la croissance. Les preuves de trous noirs de taille intermédiaire restaient rares, et leur origine était mal connue.
+- **Découverte** : Des chercheurs ont repéré avec le télescope James Webb de jeunes amas d'étoiles très denses, présents moins de 600 millions d'années après le Big Bang. Leur modèle, fondé sur les collisions d'étoiles et la perte de matière par les vents d'étoiles, donne des trous noirs intermédiaires dans ces amas. Dans Cosmic Gems, ils pèseraient environ 1 600 à 2 700 fois la masse du Soleil.
+- **Et après** : Cela pourrait expliquer comment les trous noirs géants ont eu le temps de grandir si tôt dans l'Univers. Ce ne sont que des calculs sur un modèle, à confirmer, et dans la seconde galaxie les trous noirs seraient plus légers, de 180 à 810 masses solaires.
+- **Mots** : (aucun)
+- **Type** : simulation
+
+- _Défauts trouvés par le relecteur_ : [apres] « Ce sont des calculs, pas des observations directes de trous noirs, et les résultats dépendent d'hypothèses sur la densité des amas. » → Le paragraphe ne donne pas la limite principale tirée de l'étude : les masses viennent d'un modèle de calcul, et l'autre galaxie étudiée donne des trous noirs plus légers. | [mot] « Trou noir intermédiaire » → Ce mot à connaître n'apparaît pas dans le texte de la fiche, il est donc retiré. | [apres] « Ce sont des calculs sur un modèle, non des observations directes, et dans la seconde galaxie étudiée les amas donneraient des trous noirs plus légers, de 180 à 810 masses solaires. » → Phrase de 31 mots, à couper en deux. | [apres] « Ce sont des calculs sur un modèle, non des observations directes » → La limite principale n'est pas assez nette : il faut dire que ce sont des calculs à confirmer par des observations.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0042 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Internet : une fibre optique transporte 3,2 millions de gigabits par seconde
-- **Avant** : Le record de débit hors laboratoire était jusqu'ici de 2,5 pétabits par seconde, établi par la même équipe plus tôt cette année. Les records de laboratoire atteignent davantage, mais reposent souvent sur des traitements expérimentaux.
-- **Découverte** : Des chercheurs chinois ont transmis 3,2 pétabits par seconde en temps réel, dans une fibre optique à 24 cœurs. Ils ont combiné plusieurs cœurs de fibre et trois plages de lumière, avec du matériel conforme aux normes commerciales. Selon la source, ce débit suffirait à faire utiliser ensemble une connexion d'un gigabit à 3,2 millions de foyers.
-- **Et après** : Selon l'article, cette technique pourrait un jour accélérer de vrais réseaux, puisqu'elle utilise du matériel commercial. Aucune date de déploiement n'est donnée, et il reste à voir si elle sortira des laboratoires.
-- **Mots** : (aucun)
-- **Type** : demonstration
+- **Titre** : Trous noirs : des amas d'étoiles jeunes pourraient en fabriquer de taille moyenne
+- **Avant** : Les trous noirs géants au centre des galaxies auraient grandi à partir de petits germes, dont il fallait expliquer la croissance. Les preuves de trous noirs de taille intermédiaire restaient rares, et leur origine était mal connue.
+- **Découverte** : Des chercheurs ont repéré avec le télescope James Webb de jeunes amas d'étoiles très denses, présents moins de 600 millions d'années après le Big Bang. Leur modèle, fondé sur les collisions d'étoiles et la perte de matière par les vents d'étoiles, donne des trous noirs intermédiaires dans ces amas. Dans Cosmic Gems, ils pèseraient environ 1 600 à 2 700 fois la masse du Soleil.
+- **Et après** : Cela pourrait expliquer comment les trous noirs géants ont eu le temps de grandir si tôt dans l'Univers. Ce sont des calculs, pas des observations directes de trous noirs, et les résultats dépendent d'hypothèses sur la densité des amas.
+- **Mots** : **Trou noir intermédiaire** → Objet d'environ 100 à 100 000 fois la masse du Soleil, entre les petits trous noirs d'étoiles et les géants au centre des galaxies.
+- **Type** : simulation
 
-- _Faits relevés_ : Une équipe atteint 3,2 pétabits par seconde en transmission en temps réel, selon l'article. | Le test utilise une fibre optique à 24 cœurs, avec du matériel conforme aux normes commerciales. | Le record précédent hors laboratoire était de 2,5 pétabits par seconde, par la même équipe plus tôt cette année. | L'amélioration atteint près de 30 % en un an, selon l'article. | La technique combine le multiplexage spatial et la transmission sur trois plages de lumière (S, C et L). | Les difficultés principales étaient les interférences entre cœurs de fibre et la gestion des trois plages de lumière. | Selon la source, ce débit équivaudrait à 3,2 millions de foyers utilisant ensemble une connexion d'un gigabit. | Des records de laboratoire atteignent 5,29 pétabits par seconde, mais avec des traitements du signal expérimentaux et des équipements de laboratoire.
-- _Nouveauté selon l'article_ : Selon l'article, c'est un record mondial de transmission en temps réel, qui dépasse de près de 30 % le record hors laboratoire de la même équipe ; les records de laboratoire, eux, étaient déjà plus élevés.
-- _Jargon_ : Pétabit : remplacé par « millions de gigabits par seconde » dans le titre et « millions de foyers » dans le texte. | Multiplexage spatial et bandes S+C+L : expliqués en quelques mots (plusieurs cœurs de fibre et plusieurs plages de lumière).
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
 
 
 ---
 
-## 2. Poumon : deux traitements combinés réduisent de 58 % le risque de décès
+## 2. Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
 
-Fil : science · 3★ · source : Le Monde Sciences · page lue : NON (0 caractères) · https://www.lemonde.fr/sciences/article/2026/10/26/cancers-du-poumon-a-petites-cellules-une-nouvelle-immunotherapie-permet-un-gain-de-survie-jamais-vu_6800675_1650684.html
-
-**Actuel (publié)**
-
-- **Titre** : Poumon : deux traitements combinés réduisent de 58 % le risque de décès
-- **Avant** : Le cancer du poumon à petites cellules est très agressif, et ses formes avancées se soignent mal. L'immunothérapie, qui aide le système immunitaire à attaquer les tumeurs, existe déjà mais ne suffit pas toujours.
-- **Découverte** : Chez des patients aux formes avancées, des chercheurs ont associé une immunothérapie innovante à une immunothérapie classique, sans attendre la rechute. Le risque de décès des patients recevant cette combinaison baisse de 58 %, selon les résultats rapportés.
-- **Et après** : Ces résultats doivent être confirmés sur davantage de patients, et les effets secondaires doivent être surveillés. L'article ne précise pas encore quand ce traitement sera accessible à tous les malades.
-- **Mots** : **Immunothérapie** → Traitement qui aide le système immunitaire à reconnaître et attaquer les cellules cancéreuses.
-- **Type** : essai_clinique
-
-_Article illisible : pas de réécriture._
-
-
----
-
-## 3. Cancer : un médicament réduit d'un tiers le risque de décès
-
-Fil : science · 2★ · source : STAT News (santé) · page lue : oui (1424 caractères) · https://www.statnews.com/2026/10/26/merck-kelun-sac-tmt-endometrial-cancer-study-esmo-2026/?utm_campaign=rss
+Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-vera-rubin-has-found-two-more-of-the-milky-ways-dim-satellites
 
 **Actuel (publié)**
 
-- **Titre** : Cancer : un médicament réduit d'un tiers le risque de décès
-- **Avant** : Le cancer de l'endomètre, qui touche la paroi interne de l'utérus, est un cancer gynécologique fréquent. Lorsqu'il est avancé, il reste difficile à soigner.
-- **Découverte** : Dans un essai randomisé de phase 3, les patientes traitées par le sac-TMT ont un risque de décès réduit d'un tiers. Ces résultats ont été présentés lors d'un congrès médical.
-- **Et après** : Le médicament est déjà autorisé en Chine, mais il doit encore être évalué aux États-Unis et en Europe. Merck mène 18 études de phase 3 avec ce produit.
-- **Mots** : **Chimiothérapie ciblée** → Traitement anticancéreux qui vise surtout les cellules tumorales en leur apportant une substance toxique. ; **Essai randomisé** → Essai où les patients sont répartis au hasard entre plusieurs traitements, pour comparer leurs effets.
-- **Type** : essai_clinique
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Cancer : une chimiothérapie ciblée réduit d'un tiers le risque de décès
-- **Avant** : Le cancer de l'endomètre touche la paroi interne de l'utérus et fait partie des cancers gynécologiques fréquents. Ici, il s'agit de formes avancées de ce cancer.
-- **Découverte** : Merck et l'entreprise chinoise Kelun-Biotech ont testé le sacituzumab tirumotecan, une chimiothérapie ciblée. Dans un essai de phase 3, une grande étude menée avant une demande d'autorisation. Le risque de décès a baissé d'un tiers chez des patientes atteintes d'un cancer de l'endomètre avancé. Les résultats ont été présentés.
-- **Et après** : Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe, où il doit encore prouver son efficacité. Merck mène 18 études de phase 3 dans le monde pour obtenir ces autorisations, car son médicament phare Keytruda perdra sa protection par brevet en 2028.
-- **Mots** : **Chimiothérapie ciblée** → Traitement anticancéreux qui vise surtout les cellules tumorales, en limitant les effets sur le reste du corps.
-- **Type** : essai_clinique
-
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « pour lesquelles les laboratoires développent de nouveaux traitements » → L'article ne dit pas que les laboratoires développent de nouveaux traitements pour ces formes avancées. Cette affirmation n'est pas dans la source. | [jargon] « Merck et l'entreprise chinoise Kelun-Biotech ont testé le sac-TMT » → Le sigle TMT est un nom codé inconnu du public. L'article donne le nom complet, sacituzumab tirumotecan, ce qui permet de l'expliquer. | [forme] « Dans un essai de phase 3, la grande étude qui précède une demande d'autorisation, le risque de décès a baissé d'un tiers » → Phrase de 30 mots, à couper. | [forme] « Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe : Merck y mène 18 études de phase 3, dont 10 sur des cancers féminins. » → Phrase de 30 mots, à couper. Le paragraphe « apres » contient aussi trois phrases au lieu de deux. | [jargon] « Keytruda perdra sa protection par brevet en 2028 » → Keytruda est un nom de médicament inconnu du public. Il n'est pas expliqué dans le texte. | [forme] « Dans un essai de phase 3, c'est-à-dire une grande étude qui précède une demande d'autorisation, le risque de décès a baissé d'un tiers chez des patientes au cancer de l'endomètre avancé. » → Phrase de 31 mots, trop longue pour une fiche ; à couper. | [jargon] « dit sac-TMT » → Le sigle TMT est un nom codé inconnu du public ; il n'aide pas le lecteur et doit être supprimé. | [non_soutenu] « où Merck mène 18 études de phase 3 » → L'article dit que les 18 études sont mondiales (pour obtenir les autorisations hors de Chine), pas qu'elles ont lieu en Europe ; la fiche laisse croire le contraire.
-
-- _Défauts mesurés restants_ : « decouverte » a 4 phrases : 3 au plus · coût 0.0076 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Cancer : une chimiothérapie ciblée réduit d'un tiers le risque de décès
-- **Avant** : Le cancer de l'endomètre touche la paroi interne de l'utérus et fait partie des cancers gynécologiques fréquents. Ici, il s'agit de formes avancées, pour lesquelles les laboratoires développent de nouveaux traitements.
-- **Découverte** : Merck et l'entreprise chinoise Kelun-Biotech ont testé le sac-TMT, une chimiothérapie ciblée. Dans un essai de phase 3, la grande étude qui précède une demande d'autorisation, le risque de décès a baissé d'un tiers chez des patientes au cancer de l'endomètre avancé. Les résultats ont été présentés.
-- **Et après** : Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe : Merck y mène 18 études de phase 3, dont 10 sur des cancers féminins. Le groupe en a besoin, car Keytruda perdra sa protection par brevet en 2028.
-- **Mots** : **Chimiothérapie ciblée** → Traitement anticancéreux qui vise surtout les cellules tumorales, en limitant les effets sur le reste du corps.
-- **Type** : essai_clinique
-
-- _Faits relevés_ : Merck et l'entreprise chinoise Kelun-Biotech ont mis au point le médicament sac-TMT. | Le sac-TMT est une chimiothérapie ciblée. | L'essai de phase 3 porte sur des patientes atteintes d'un cancer de l'endomètre avancé. | Le risque de décès est réduit d'un tiers, selon les résultats présentés. | Le médicament a déjà montré des bénéfices pour plusieurs cancers dans des études menées par Kelun en Chine. | Le sac-TMT est autorisé en Chine, mais pas encore aux États-Unis ni en Europe. | Merck mène 18 études de phase 3 avec ce médicament, dont 10 sur des cancers féminins. | Keytruda, le médicament phare de Merck, perdra sa protection par brevet en 2028.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il rapporte qu'un essai a montré une baisse d'un tiers du risque de décès, et que le médicament était déjà autorisé en Chine.
-- _Jargon_ : Chimiothérapie ciblée : expliqué dans le texte et en mot à connaître. | Phase 3 : expliqué en quelques mots dans la découverte (grande étude qui précède une demande d'autorisation). | Brevet : remplacé par « protection par brevet », expliqué comme la protection juridique qui empêche les copies.
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : phrase de 30 mots dans « decouverte », à couper : « Dans un essai de phase 3, la grande étude qui précède une demande d'autorisation, le risqu… » ; phrase de 30 mots dans « apres », à couper : « Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe : Me… » ; sigles ou noms codés inconnus du public : TMT → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-
-
----
-
-## 4. Muscles : des ciseaux à ADN modifient un gène dans des muscles humains
-
-Fil : science · 2★ · source : Cell · page lue : NON (0 caractères) · https://www.cell.com/cell/fulltext/S0092-8674(26)01206-7?rss=yes
-
-**Actuel (publié)**
-
-- **Titre** : Muscles : des ciseaux à ADN modifient un gène dans des muscles humains
-- **Avant** : La dystrophie de Duchenne est une maladie génétique grave qui affaiblit les muscles. Jusque-là, les traitements ne corrigeaient pas directement le gène défaillant.
-- **Découverte** : Chez des souris humanisées et des primates, une seule injection restaure la dystrophine et la correction reste stable. Lors du premier essai chez l'humain, les analyses montrent une modification du gène dans le muscle, mais une forte dose provoque une complication immunitaire mortelle.
-- **Et après** : Le risque immunitaire doit être nettement réduit avant d'élargir ces traitements. Les résultats restent préliminaires et portent sur peu de patients.
-- **Mots** : **CRISPR** → Outil de modification ciblée de l'ADN, qui utilise une protéine capable de couper un gène précis. ; **Dystrophine** → Protéine des fibres musculaires dont l'absence provoque la dystrophie de Duchenne.
-- **Type** : essai_clinique
-
-_Article illisible : pas de réécriture._
-
-
----
-
-## 5. IA : un virus dessiné par ordinateur attaque une bactérie
-
-Fil : tech · 2★ · source : Les Numériques · page lue : oui (3266 caractères) · https://www.lesnumeriques.com/intelligence-artificielle/si-ca-marche-c-est-incroyable-un-patient-que-les-antibiotiques-ne-soignaient-plus-a-recu-le-tout-premier-virus-concu-par-ia-n263803.html
-
-**Actuel (publié)**
-
-- **Titre** : IA : un virus dessiné par ordinateur attaque une bactérie
-- **Avant** : Les bactériophages, virus qui ne s'attaquent qu'aux bactéries, se choisissent dans la nature. Trouver celui qui reconnaît la souche d'un malade prend parfois des semaines.
-- **Découverte** : Une IA a redessiné le gène d'un virus connu pour qu'il reconnaisse une bactérie résistante, puis le virus a été fabriqué en laboratoire. Selon l'entreprise, 69,9 % des virus conçus étaient viables, contre 4,8 % pour des mutations au hasard, et le mélange a détruit la bactérie du patient en éprouvette.
-- **Et après** : Un patient a reçu ce traitement sous usage compassionnel, mais son issue n'est pas connue et le rapport n'est pas encore évalué par des pairs. Il reste à prouver l'efficacité et la sécurité sur d'autres malades.
-- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries, sans toucher aux cellules humaines.
-- **Type** : demonstration
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Intelligence artificielle : un virus dessiné par IA tue en éprouvette une bactérie
-- **Avant** : Des virus appelés bactériophages s'attaquent aux seules bactéries et servent contre les infections résistantes. Trouver celui qui agit sur la bactérie d'un malade peut prendre des semaines, parfois des mois.
-- **Découverte** : Une start-up américaine, Radical Numerics, a fait réécrire par son IA un virus connu depuis 1945, qui s'attaque à une bactérie intestinale. Selon l'entreprise, 69,9 % des virus conçus étaient viables, contre 4,8 % avec des changements au hasard. Le mélange a détruit la bactérie du malade en éprouvette avant d'être donné au patient.
-- **Et après** : Selon l'entreprise, la méthode pourrait raccourcir la recherche d'un virus adapté. Les observations portent sur un seul patient : son état n'est pas connu et les résultats ne sont pas encore vérifiés par d'autres chercheurs.
-- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries et ignore les cellules humaines ; on s'en sert contre les infections résistantes.
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [jargon] « a fait réécrire par son IA un virus connu, le T7, pour qu'il s'accroche » → Le sigle T7 n'est ni expliqué ni remplacé par des mots simples. L'article dit que c'est un phage de la bactérie Escherichia coli, documenté depuis 1945. | [non_soutenu] « Ce cas reste unique » → L'article ne dit pas que le cas est unique. Il dit seulement que les observations portent sur un seul patient et ne permettent pas d'établir la sécurité ni l'efficacité. | [titre] « Intelligence artificielle : un virus créé sur ordinateur détruit la bactérie d'un patient » → Le titre laisse croire que le virus a détruit la bactérie dans le corps du patient. L'article dit seulement que le mélange a détruit l'isolat en éprouvette, avant d'être administré. | [forme] « Une start-up américaine, Radical Numerics, a fait réécrire par son IA un virus connu depuis 1945, qui s'attaque à une bactérie intestinale, pour qu'il s'accroche à la bactérie d'un patient. » → Phrase de 30 mots, trop longue pour la fiche.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0043 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Intelligence artificielle : un virus créé sur ordinateur détruit la bactérie d'un patient
-- **Avant** : Des virus appelés bactériophages s'attaquent aux seules bactéries et servent contre les infections résistantes. Trouver celui qui agit sur la bactérie d'un malade peut prendre des semaines, parfois des mois.
-- **Découverte** : Une start-up américaine, Radical Numerics, a fait réécrire par son IA un virus connu, le T7, pour qu'il s'accroche à la bactérie d'un patient. Selon l'entreprise, 69,9 % des virus conçus étaient viables, contre 4,8 % avec des changements au hasard. Le mélange a détruit la bactérie du malade en laboratoire avant d'être donné au patient.
-- **Et après** : Selon l'entreprise, la méthode pourrait raccourcir la recherche d'un virus adapté. Ce cas reste unique : l'état du patient n'est pas connu et les résultats ne sont pas encore vérifiés par d'autres chercheurs.
-- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries et ignore les cellules humaines ; on s'en sert contre les infections résistantes.
-- **Type** : demonstration
-
-- _Faits relevés_ : Une start-up de San Francisco, Radical Numerics, a fait dessiner un virus par son IA, Omnii-1, pour un patient avec une infection bactérienne résistante aux antibiotiques. | Le virus dessiné est un dérivé du T7, un bactériophage d'Escherichia coli documenté depuis 1945. | L'IA a réécrit le gène gp17, la fibre qui agrippe la bactérie, avec 11 à 15 changements. | Selon l'entreprise, 69,9 % des variantes proposées ont donné un virus viable, contre 4,8 % pour des mutations au hasard. | Sur 6 694 variantes actives mesurées, 2 161 surpassaient le phage d'origine. | Le cocktail a détruit l'isolat bactérien du patient en éprouvette, puis a été administré sous usage compassionnel. | L'entreprise refuse de dire si le patient va mieux, invoquant la confidentialité. | Le rapport technique, publié le 20 octobre 2026, n'a pas encore été évalué par des pairs.
-- _Nouveauté selon l'article_ : Selon l'entreprise, c'est une première mondiale : un virus conçu par IA a été administré à un patient ; l'article rapporte cette revendication sans la confirmer.
-- _Jargon_ : bactériophage : mot à connaître, expliqué dans mots | gène gp17 : remplacé par « le gène qui fabrique la fibre de fixation du virus » | isolat : remplacé par « la bactérie du patient » | usage compassionnel : expliqué comme « un traitement donné hors essai, faute d'autre solution »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : sigles ou noms codés inconnus du public : T7 → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-
-
----
-
-## 6. Désert : des ultrasons libèrent l'eau captée dans l'air
-
-Fil : tech · 1★ · source : Journal du Geek · page lue : oui (3197 caractères) · https://www.journaldugeek.com/2026/10/26/le-mit-accelere-la-collecte-deau-dans-le-desert-grace-aux-ultrasons/
-
-**Actuel (publié)**
-
-- **Titre** : Désert : des ultrasons libèrent l'eau captée dans l'air
-- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau reste piégée et il faut souvent attendre longtemps, parfois des jours, pour la récupérer.
-- **Découverte** : Des chercheurs du MIT ont conçu un appareil dont un anneau en céramique vibre sous tension électrique, à des fréquences ultrasonores. Ces vibrations rompent les liaisons faibles qui retiennent l'eau, et des buses la dirigent vers des récipients de collecte.
-- **Et après** : Le système n'attend plus le soleil pour faire sortir l'eau. Il reste à vérifier sa consommation d'énergie et ses performances hors du laboratoire.
-- **Mots** : **Ultrasons** → Ondes sonores dont la fréquence est trop aiguë pour être entendue par l'oreille humaine.
-- **Type** : prototype
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Eau : des ultrasons extraient l'eau d'un matériau en quelques minutes
-- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau y reste piégée : selon les systèmes, la libérer prend des dizaines de minutes, des heures, voire des jours.
-- **Découverte** : Des chercheurs de l'institut de technologie du Massachusetts, aux États-Unis, ont conçu un appareil où un anneau en céramique vibre sous tension électrique, à des fréquences ultrasonores. Ces vibrations rompent les liens faibles qui retiennent l'eau, et des buses la dirigent vers des récipients de collecte. Sur de petits échantillons, quelques minutes ont suffi à les assécher ; selon les calculs des chercheurs, l'extraction seule est 45 fois plus efficace qu'avec la chaleur solaire.
-- **Et après** : Le système pourrait enchaîner plusieurs collectes par jour au lieu d'attendre le soleil, et potentiellement recueillir davantage d'eau avec le même équipement. Mais aucun volume quotidien n'est annoncé, l'appareil consomme de l'électricité et le matériau doit se recharger assez vite en humidité entre deux passages.
-- **Mots** : **Ultrasons** → Ondes sonores trop aiguës pour être entendues, utilisées ici pour faire vibrer le matériau et en chasser l'eau.
-- **Type** : prototype
-
-- _Défauts trouvés par le relecteur_ : [jargon] « des chercheurs du MIT, une université américaine » → Le sigle MIT n'est pas expliqué ; il faut dire ce que c'est. | [comparaison] « soit 45 fois plus efficace que la chaleur solaire, selon les calculs des chercheurs » → Le chiffre concerne seulement l'extraction pour ce matériau, pas une installation complète ; ce cadre manque. | [forme] « Sur de petits échantillons saturés d'eau » → Le fait des petits échantillons est répété dans « apres » ; il ne doit être dit qu'une fois. | [forme] « Sur de petits échantillons saturés d'eau, quelques minutes ont suffi à les assécher ; selon les calculs des chercheurs, l'extraction est 45 fois plus efficace qu'avec la chaleur solaire pour ce même matériau, mais ce chiffre ne concerne que l'extraction. » → Phrase de 40 mots, trop longue pour être lue facilement. Elle est coupée et raccourcie en gardant la précision que le chiffre de 45 fois ne concerne que l'extraction.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0055 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Eau : des ultrasons extraient l'eau d'un matériau en quelques minutes
-- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau y reste piégée : selon les systèmes, la libérer prend des dizaines de minutes, des heures, voire des jours.
-- **Découverte** : Des chercheurs du MIT, une université américaine, ont conçu un appareil où un anneau en céramique vibre sous tension électrique, à des fréquences ultrasonores. Ces vibrations rompent les liens faibles qui retiennent l'eau, et des buses la dirigent vers des récipients de collecte. Sur de petits échantillons saturés d'eau, quelques minutes ont suffi à les assécher, soit 45 fois plus efficace que la chaleur solaire, selon les calculs des chercheurs.
-- **Et après** : Le système pourrait enchaîner plusieurs collectes par jour au lieu d'attendre le soleil, donc recueillir davantage d'eau avec le même équipement. Mais les tests portent sur de petits échantillons, aucun volume quotidien n'est annoncé et l'appareil consomme de l'électricité.
-- **Mots** : **Ultrasons** → Ondes sonores trop aiguës pour être entendues, utilisées ici pour faire vibrer le matériau et en chasser l'eau.
-- **Type** : prototype
-
-- _Faits relevés_ : Des chercheurs du MIT ont mis au point un appareil qui extrait l'eau de matériaux absorbants grâce à des ultrasons. | Un anneau plat en céramique vibre quand on lui applique une tension électrique. | Un second anneau à minuscules buses dirige l'eau vers des récipients de collecte. | Les ultrasons ont une fréquence supérieure à 20 kilohertz et sont inaudibles pour l'être humain. | Sur de petits échantillons saturés d'eau, quelques minutes ont suffi à les assécher. | Selon les calculs des chercheurs, l'extraction est 45 fois plus efficace qu'avec la chaleur solaire pour ce matériau. | L'appareil consomme de l'électricité ; une petite cellule solaire et un déclenchement automatique sont envisagés. | Aucun volume quotidien d'eau n'est annoncé pour un équipement domestique dont chaque élément aurait la taille d'une fenêtre.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : les matériaux absorbants capteurs d'humidité existaient déjà, et la nouveauté est l'extraction rapide de l'eau par ultrasons, testée sur de petits échantillons.
-- _Jargon_ : Ultrasons : mot à connaître, expliqué dans la fiche | Matériau absorbant : expliqué en quelques mots (capte l'eau de l'air) | Interactions faibles : remplacé par « liens faibles »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : sigles ou noms codés inconnus du public : MIT → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; répétition entre « decouverte » et « apres » : « sur de petits échantillons » (dis-le une seule fois)
-
-
----
-
-## 7. IA : une photo du visage prédit les chances de survie au cancer
-
-Fil : tech · 1★ · source : New Atlas · page lue : oui (4586 caractères) · https://newatlas.com/medical/photo-predict-cancer-treatment-faceage-facesurvival/
-
-**Actuel (publié)**
-
-- **Titre** : IA : une photo du visage prédit les chances de survie au cancer
-- **Avant** : Avant un traitement lourd, les médecins jugent l'état de santé d'un patient à l'intuition, ou leur demandent des examens longs et fatigants.
-- **Découverte** : Une équipe de Mass General Brigham a créé FAHR-Face, un modèle d'IA entraîné sur plus de 42 millions de photos de visages. Il estime l'âge biologique et les chances de survie à partir d'une seule photo.
-- **Et après** : Cet outil pourrait compléter l'avis des médecins et limiter certains tests. Il doit encore être vérifié sur d'autres patients avant tout usage en clinique.
-- **Mots** : **Âge biologique** → Âge réel du corps, qui peut être plus jeune ou plus vieux que l'âge indiqué par le calendrier.
-- **Type** : demonstration
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Cancer : une IA lit une photo du visage pour estimer la survie
-- **Avant** : Aujourd'hui, les médecins jugent surtout à l'intuition la capacité d'un patient à supporter un traitement lourd, et les personnes âgées passent parfois des examens éprouvants. Un autre outil d'IA estimait déjà l'âge réel des personnes avec une erreur moyenne de 6,92 ans.
-- **Découverte** : Des chercheurs américains ont créé une intelligence artificielle (IA) qui estime l'âge biologique d'une personne et ses chances de survie à partir d'une seule photo du visage. Entraînée sur des millions de photos, elle a été adaptée en deux outils, dont un prédit la survie de patients atteints de cancer. Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque.
-- **Et après** : Ce type d'outil pourrait compléter l'avis des médecins et réduire certains examens lourds pour les patients âgés. Il s'agit pour l'instant d'une étude de recherche, et une version élargie au public est en cours.
+- **Titre** : Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
+- **Avant** : La Voie lactée est entourée de petits satellites très peu lumineux, traces de ses anciennes rencontres avec d'autres galaxies. On en connaît environ 65 galaxies naines et 40 amas d'étoiles, mais beaucoup restent invisibles.
+- **Découverte** : Des astronomes ont repéré Aquarius IV, probablement une petite galaxie très peu lumineuse, dans la zone externe de la Voie lactée. Ils ont aussi trouvé un amas d'étoiles vieux d'environ 9,2 milliards d'années, caché derrière une poussière épaisse vers le centre. Ses étoiles semblent venir d'une galaxie naine voisine, le Sagittaire, absorbée par la Voie lactée.
+- **Et après** : Ces détections montrent que le télescope peut trouver des objets très faibles, et il devrait en révéler beaucoup d'autres. Pour Aquarius IV, il faut encore des images plus profondes, car seule une petite partie de ses étoiles est visible.
 - **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [forme] « Des chercheurs du Mass General Brigham Cancer Institute, aux États-Unis, ont créé une intelligence artificielle (IA) qui estime l'âge biologique d'une personne et ses chances de survie à partir d'une seule photo du visage. » → Phrase de 34 mots, trop longue pour la fiche (30 mots au plus). | [forme] « Entraînée sur plus de 42 millions de photos, elle a été adaptée en deux outils, dont un prédit la survie de patients atteints de cancer. Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque. » → Quatre chiffres dans le paragraphe « decouverte » : le chiffre 42 millions est le moins utile, il est retiré. | [non_soutenu] « le test élargi au public ne remplace pas un avis médical » → L'article ne dit pas que ce test ne remplace pas un avis médical ; la limite doit venir de l'étude elle-même (étude de recherche).
-
-- _Défauts mesurés restants_ : aucun · coût 0.0047 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Cancer : une IA lit une photo du visage pour estimer la survie
-- **Avant** : Aujourd'hui, les médecins jugent surtout à l'intuition la capacité d'un patient à supporter un traitement lourd, et les personnes âgées passent parfois des examens éprouvants. Un autre outil d'IA estimait déjà l'âge réel des personnes avec une erreur moyenne de 6,92 ans.
-- **Découverte** : Des chercheurs du Mass General Brigham Cancer Institute, aux États-Unis, ont créé une intelligence artificielle (IA) qui estime l'âge biologique d'une personne et ses chances de survie à partir d'une seule photo du visage. Entraînée sur plus de 42 millions de photos, elle a été adaptée en deux outils, dont un prédit la survie de patients atteints de cancer. Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque.
-- **Et après** : Ce type d'outil pourrait compléter l'avis des médecins et réduire certains examens lourds pour les patients âgés. Il s'agit pour l'instant d'une étude de recherche, et le test élargi au public ne remplace pas un avis médical.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Faits relevés_ : Des chercheurs du Mass General Brigham Cancer Institute ont créé l'outil FAHR-Face, une IA entraînée sur plus de 42 millions de photos de visages. | L'outil estime l'âge biologique d'une personne, c'est-à-dire l'état physique lié au vieillissement, à partir d'une seule photo. | Un second outil, FAHR-FaceSurvival, prédit la survie de patients atteints de cancer ; il a été entraîné sur plus de 34 000 patients sous radiothérapie, et sur deux autres groupes de près de 4 000 et 5 000 patients. | Les patients qui paraissaient de plus de 5 ans plus âgés que leur âge réel avaient un risque de mortalité supérieur de 21 % à ceux qui paraissaient de leur âge. | Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque. | L'erreur moyenne de FAHR-FaceAge pour l'âge réel est de 5,1 ans, contre 6,92 ans pour un autre modèle. | Les maquillages, lunettes et changements d'éclairage ne perturbent pas l'outil, mais les personnes ayant subi une rhinoplastie ont donné de petites erreurs. | Une version élargie de l'étude est ouverte au public, qui peut recevoir sa propre estimation d'âge biologique.
-- _Nouveauté selon l'article_ : Selon les chercheurs, c'est la première démonstration qu'une IA peut prédire directement la survie d'un cancer à partir d'une simple photo ; l'estimation de l'âge par photo existait déjà.
-- _Jargon_ : IA : expliquée comme intelligence artificielle dans la fiche | âge biologique : expliqué dans la fiche | biomarqueur : évité dans la fiche
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : phrase de 34 mots dans « decouverte », à couper : « Des chercheurs du Mass General Brigham Cancer Institute, aux États-Unis, ont créé une inte… » ; 4 chiffres dans « decouverte » : garde les 3 plus parlants
-
-
----
-
-## 8. Matériaux : une image 3D révèle une mosaïque cachée dans un cristal
-
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (5535 caractères) · https://www.sciencedaily.com/releases/2026/10/261023023731.htm
-
-**Actuel (publié)**
-
-- **Titre** : Matériaux : une image 3D révèle une mosaïque cachée dans un cristal
-- **Avant** : Depuis 40 ans, les chercheurs pensaient que les cuprates, des supraconducteurs à base de cuivre, avaient une structure cristalline uniforme. Ces matériaux conduisent l'électricité sans résistance, mais seulement à des températures très froides.
-- **Découverte** : Des chercheurs de l'université de Warwick, avec l'installation européenne de rayonnement synchrotron ESRF, ont observé l'intérieur du cristal avec une imagerie 3D avancée. Ils y ont trouvé un assemblage de différentes configurations atomiques, séparées par des frontières anormalement larges qui pourraient affaiblir la supraconductivité.
-- **Et après** : Ce résultat, publié dans Physical Review Letters, pourrait expliquer pourquoi certains supraconducteurs sont plus performants que d'autres. Il reste à le confirmer et à vérifier si ces frontières jouent bien ce rôle.
-- **Mots** : **Cuprates** → Famille de matériaux à base de cuivre capables de conduire le courant sans résistance à des températures relativement élevées, mais encore très froides.
 - **Type** : observation
 
-**Final après 1 relecture(s) (haiku)**
+**Final après 2 relecture(s) (haiku, lot)**
 
-- **Titre** : Supraconducteurs : une image 3D révèle des frontières qui pourraient freiner le courant
-- **Avant** : Pendant 40 ans, les théories sur les cuprates, des matériaux à base de cuivre qui conduisent l'électricité sans perte, supposaient une structure cristalline uniforme. Cette hypothèse ne prenait pas en compte la variété des structures internes de ces matériaux.
-- **Découverte** : Des chercheurs de l'université de Warwick, avec l'installation européenne de rayonnement synchrotron en France, ont reconstitué en 3D l'intérieur d'un cuprate. Ils y ont trouvé une mosaïque de deux arrangements atomiques voisins, séparés par des frontières des centaines de fois plus larges que prévu. Selon eux, ces frontières pourraient freiner le passage du courant.
-- **Et après** : Selon les chercheurs, ces structures pourraient expliquer les écarts de performance entre supraconducteurs et imposer de revoir certaines mesures anciennes. Il s'agit encore d'une hypothèse : elle doit être confirmée, et le phénomène reste à vérifier dans d'autres matériaux.
-- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans perte, à condition d'être refroidi très fort, utile pour les aimants et les réseaux électriques.
+- **Titre** : Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
+- **Avant** : Les astronomes connaissent environ 65 petites galaxies et 40 amas d'étoiles qui gravitent autour de la Voie lactée. Ils soupçonnent qu'il en reste beaucoup d'autres, difficiles à détecter.
+- **Découverte** : Le télescope Vera Rubin Observatory a repéré deux nouveaux compagnons de la Voie lactée. Le premier, Aquarius IV, est probablement une galaxie naine ultra-faible, avec très peu d'étoiles détectées. Le second est probablement un amas globulaire, un groupe dense d'étoiles, caché derrière la poussière du centre de notre galaxie.
+- **Et après** : Ces satellites aideront à retracer comment la Voie lactée a absorbé de plus petites galaxies au fil du temps. La limite : seules quelques étoiles d'Aquarius IV ont été détectées, donc sa nature exacte reste à confirmer par des observations plus profondes.
+- **Mots** : **Galaxie naine** → Petit système d'étoiles peu lumineux, satellite d'un astre plus grand comme la Voie lactée, qui contient souvent beaucoup de matière noire.
+- **Type** : observation
+
+- _Défauts trouvés par le relecteur_ : [jargon] « Le second, Rubin-GC1, est un amas globulaire caché derrière la poussière du centre de notre galaxie. » → Le nom codé Rubin-GC1 n'aide pas le lecteur, et « amas globulaire » n'est ni expliqué ni remplacé par des mots simples. | [non_soutenu] « et les résultats n'ont pas encore été vérifiés par d'autres équipes » → L'article ne dit pas que les résultats ont été vérifiés ou non par d'autres équipes. La limite réelle est que peu d'étoiles ont été détectées jusqu'ici. | [apres] « Il faudra des observations plus profondes pour confirmer la nature d'Aquarius IV, qui n'a été repérée que grâce à un petit nombre d'étoiles. » → Le paragraphe « Et après » ne dit pas clairement la limite principale : seules quelques étoiles d'Aquarius IV ont été détectées, donc sa nature reste à confirmer. | [non_soutenu] « Le second est un amas globulaire, un groupe dense d'étoiles, caché derrière la poussière du centre de notre galaxie. » → L'article dit que Rubin-GC1 est « most likely » un amas globulaire très peu lumineux : la certitude affirmée dans la fiche est une déformation. | [mot] « Petite galaxie peu lumineuse, qui tourne autour d'une galaxie plus grande comme la Voie lactée et contient souvent beaucoup de matière noire. » → La définition reprend le mot « galaxie » de l'expression à expliquer.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0020 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
+- **Avant** : Les astronomes connaissent environ 65 petites galaxies et 40 amas d'étoiles qui gravitent autour de la Voie lactée. Ils soupçonnent qu'il en reste beaucoup d'autres, difficiles à détecter.
+- **Découverte** : Le télescope Vera Rubin Observatory a repéré deux nouveaux compagnons de la Voie lactée. Le premier, Aquarius IV, est probablement une galaxie naine ultra-faible, avec très peu d'étoiles détectées. Le second, Rubin-GC1, est un amas globulaire caché derrière la poussière du centre de notre galaxie.
+- **Et après** : Ces satellites aideront à retracer comment la Voie lactée a absorbé de plus petites galaxies au fil du temps. Il faudra des observations plus profondes pour confirmer la nature d'Aquarius IV, et les résultats n'ont pas encore été vérifiés par d'autres équipes.
+- **Mots** : **Galaxie naine** → Petite galaxie peu lumineuse, qui tourne autour d'une galaxie plus grande comme la Voie lactée et contient souvent beaucoup de matière noire.
+- **Type** : observation
+
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+
+
+---
+
+## 3. Espace : une faille de Mars a glissé et causé un séisme
+
+Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2469 caractères) · https://www.techno-science.net/fr/actualites/mars-valles-marineris-seisme-actif-29661
+
+**Actuel (publié)**
+
+- **Titre** : Espace : une faille de Mars a glissé et causé un séisme
+- **Avant** : Le canyon Valles Marineris, long d'environ 4 000 kilomètres, s'est formé il y a plusieurs milliards d'années. On se demandait si ses anciennes cassures bougeaient encore, car Mars n'a pas de plaques tectoniques comme la Terre.
+- **Découverte** : Une nouvelle analyse place l'origine d'un signal enregistré en août 2021 par la sonde InSight de la NASA dans l'ouest de Valles Marineris. Selon les modèles, la faille se trouverait entre 20 et 40 kilomètres sous la surface, et deux blocs de roche auraient glissé l'un contre l'autre. Un impact de météorite ou un glissement de terrain expliqueraient moins bien le signal.
+- **Et après** : Cela montre que les anciennes fractures de Mars ne sont pas toutes figées, ce qui aidera à reconstituer son histoire et à évaluer les risques des futures missions. Un seul séisme a été clairement attribué à cette région, et beaucoup de petites secousses ont pu passer inaperçues.
+- **Mots** : (aucun)
+- **Type** : observation
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Espace : un séisme sur Mars révèle qu'une vieille faille bouge encore
+- **Avant** : Le grand canyon Valles Marineris s'est formé il y a plusieurs milliards d'années, par étirement et fracture de la croûte. On peut se demander si ses anciennes cassures évoluent encore.
+- **Découverte** : Une nouvelle analyse du séisme détecté en août 2021 par la sonde InSight de la NASA situe son origine près de Valles Marineris. Selon leurs calculs, deux blocs de roche ont glissé horizontalement l'un contre l'autre, à environ 20 à 40 kilomètres sous la surface. Les autres causes possibles, comme un impact ou un glissement de terrain, expliquent moins bien le signal.
+- **Et après** : Cet événement montre que les anciennes fractures de Mars ne sont pas toutes figées, ce qui aide à reconstituer son histoire. Pour l'instant, un seul séisme est attribué à cette région, et de petites secousses ont pu passer inaperçues.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Défauts trouvés par le relecteur_ : [absolu] « On ignorait encore si ses anciennes cassures évoluent toujours. » → L'article dit seulement « on peut donc se demander si ces anciennes cassures évoluent toujours » : « on ignorait » est une affirmation absolue non soutenue. | [non_soutenu] « Deux blocs de roche, à 20 à 40 kilomètres sous la surface, ont glissé horizontalement l'un contre l'autre. » → L'article dit que la profondeur est « probablement » de 20 à 40 km « selon les modèles » : la fiche la présente comme certaine. | [comparaison] « le séisme détecté le 25 août 2021 » → Quatre chiffres dans « decouverte » : trop de dates et de nombres. On garde les trois plus parlants (2021, 20 et 40). | [forme] « Cet événement montre que les anciennes fractures de Mars ne sont pas toutes figées, ce qui aide à reconstituer son histoire et à mieux connaître les risques pour de futures missions. Un seul séisme est pour l'instant attribué à cette région, et de petites secousses ont pu passer inaperçues. » → La phrase principale fait 31 mots : elle doit être coupée pour rester sous 30 mots.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0011 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : un séisme sur Mars révèle qu'une vieille faille bouge encore
+- **Avant** : Le grand canyon Valles Marineris s'est formé il y a plusieurs milliards d'années, par étirement et fracture de la croûte. On ignorait encore si ses anciennes cassures évoluent toujours.
+- **Découverte** : Une nouvelle analyse du séisme détecté le 25 août 2021 par la sonde InSight de la NASA situe son origine près de Valles Marineris. Deux blocs de roche, à 20 à 40 kilomètres sous la surface, ont glissé horizontalement l'un contre l'autre. Les autres causes possibles, comme un impact ou un glissement de terrain, expliquent moins bien le signal.
+- **Et après** : Cet événement montre que les anciennes fractures de Mars ne sont pas toutes figées, ce qui aide à reconstituer son histoire et à mieux connaître les risques pour de futures missions. Un seul séisme est pour l'instant attribué à cette région, et de petites secousses ont pu passer inaperçues.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+
+
+---
+
+## 4. Drones : un cadre souple se déforme au choc et reste en vol
+
+Fil : tech · 1★ · source : ETH Zurich · page lue : oui (6000 caractères) · https://ethz.ch/en/news-and-events/eth-news/news/2026/11/new-flexible-drone-can-withstand-collisions.html
+
+**Actuel (publié)**
+
+- **Titre** : Drones : un cadre souple se déforme au choc et reste en vol
+- **Avant** : Les drones à quatre hélices ont un corps central rigide, un modèle en place depuis plus d'un siècle. Un choc contre un mur peut les déstabiliser ou les casser.
+- **Découverte** : Des chercheurs de l'École polytechnique fédérale de Zurich ont conçu FlexiQuad, un drone à cadre souple en anneau, sans corps central. Le cadre se déforme à l'impact et absorbe une partie de l'énergie du choc, puis le drone continue de voler. Lors de tests de choc, il a été lancé contre des obstacles à environ 25 km/h. Cette vitesse était limitée surtout par l'espace nécessaire pour l'accélérer ; en vol, il peut atteindre 80 km/h.
+- **Et après** : Il pourrait servir à inspecter des cuves de navire ou à chercher des victimes dans des bâtiments effondrés. Il doit encore apprendre à se stabiliser seul après un choc et à se repérer, car les vibrations brouillent les caméras ; il n'est pas encore utilisable hors du laboratoire.
+- **Mots** : (aucun)
+- **Type** : prototype
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Drones : un cadre souple encaisse les chocs et reste en vol
+- **Avant** : Les drones à quatre rotors ont un corps central rigide, très précis mais fragile. Au moindre contact avec un mur ou un obstacle, ils peuvent perdre l'équilibre ou se briser.
+- **Découverte** : Des chercheurs de l'École polytechnique fédérale de Zurich ont conçu FlexiQuad, un drone dont le cadre en anneau se déforme au choc, sans corps central. Lors de tests, le drone a heurté des obstacles à environ 25 km/h et a pu continuer à voler. Selon les chercheurs, il peut aussi voler jusqu'à 80 km/h.
+- **Et après** : Le drone pourrait servir à inspecter des lieux encombrés, à secourir des personnes dans des bâtiments effondrés ou à mesurer l'environnement dans des forêts denses. Il doit encore apprendre à mieux percevoir son environnement et à naviguer seul avant de sortir du laboratoire.
+- **Mots** : (aucun)
+- **Type** : prototype
+
+- _Défauts trouvés par le relecteur_ : [jargon] « ETH Zurich » → Le sigle ETH n'est pas expliqué. Il faut écrire le nom complet de l'école, l'École polytechnique fédérale de Zurich.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0009 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Drones : un cadre souple encaisse les chocs et reste en vol
+- **Avant** : Les drones à quatre rotors ont un corps central rigide, très précis mais fragile. Au moindre contact avec un mur ou un obstacle, ils peuvent perdre l'équilibre ou se briser.
+- **Découverte** : Des chercheurs de l'ETH Zurich ont conçu FlexiQuad, un drone dont le cadre en anneau se déforme au choc, sans corps central. Lors de tests, le drone a heurté des obstacles à environ 25 km/h et a pu continuer à voler. Selon les chercheurs, il peut aussi voler jusqu'à 80 km/h.
+- **Et après** : Le drone pourrait servir à inspecter des lieux encombrés, à secourir des personnes dans des bâtiments effondrés ou à mesurer l'environnement dans des forêts denses. Il doit encore apprendre à mieux percevoir son environnement et à naviguer seul avant de sortir du laboratoire.
+- **Mots** : (aucun)
+- **Type** : prototype
+
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+
+
+---
+
+## 5. Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
+
+Fil : tech · 2★ · source : TechCrunch · page lue : oui (4692 caractères) · https://techcrunch.com/2026/11/03/orbital-matter-3d-printed-the-first-rigid-beam-in-the-vacuum-of-space/
+
+**Actuel (publié)**
+
+- **Titre** : Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
+- **Avant** : Les grandes structures spatiales, comme les panneaux solaires, sont pliées au lancement puis déployées en orbite. En 2023, une mission financée par la NASA a imprimé des poutres sous vide sur Terre, mais elle n'a jamais décollé.
+- **Découverte** : La start-up allemande Orbital Matter a lancé le satellite Replicator 2 lors d'une mission SpaceX, avec quatre imprimantes 3D à bord. Chaque imprimante durcit une résine à la lumière ultraviolette pour former une poutre rigide d'environ 50 centimètres. Une imprimante a eu une anomalie, mais la structure a tout de même déployé un panneau solaire souple.
+- **Et après** : Cela permettrait de construire en orbite de grandes structures pour les futurs satellites à forte puissance. Pour l'instant, la longueur est limitée par la résine emportée (50 centimètres), contre 100 mètres jugés possibles ; une mission prévue en 2028 doit tester une imprimante plus grande.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Espace : un satellite fabrique une poutre rigide de 50 cm en orbite
+- **Avant** : Aujourd'hui, les grands panneaux solaires et miroirs de télescope sont pliés au lancement puis déployés en orbite, une opération délicate. Les impressions 3D en apesanteur se limitaient jusqu'ici à l'intérieur de la station spatiale.
+- **Découverte** : La société allemande Orbital Matter a imprimé une poutre rigide de 50 cm en orbite, avec un petit satellite lancé à l'été 2026. Quatre imprimantes à bord fabriquent la poutre en faisant sortir une résine plastique, durcie par une lumière ultraviolette. Selon la société, c'est une première pour un satellite en vol libre.
+- **Et après** : Cette technique pourrait permettre de construire en orbite des structures plus grandes que ce que les fusées peuvent transporter. Mais la poutre ne mesure que 50 cm, une imprimante est tombée en panne, et la version plus grande n'est prévue qu'en 2028.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : [forme] « avec un petit satellite lancé cet été » → « cet été » est une date relative au moment de la publication. L'article indique « this summer » dans un texte daté de novembre 2026, ce qui permet d'écrire la date exacte.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0017 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : un satellite fabrique une poutre rigide de 50 cm en orbite
+- **Avant** : Aujourd'hui, les grands panneaux solaires et miroirs de télescope sont pliés au lancement puis déployés en orbite, une opération délicate. Les impressions 3D en apesanteur se limitaient jusqu'ici à l'intérieur de la station spatiale.
+- **Découverte** : La société allemande Orbital Matter a imprimé une poutre rigide de 50 cm en orbite, avec un petit satellite lancé cet été. Quatre imprimantes à bord fabriquent la poutre en faisant sortir une résine plastique, durcie par une lumière ultraviolette. Selon la société, c'est une première pour un satellite en vol libre.
+- **Et après** : Cette technique pourrait permettre de construire en orbite des structures plus grandes que ce que les fusées peuvent transporter. Mais la poutre ne mesure que 50 cm, une imprimante est tombée en panne, et la version plus grande n'est prévue qu'en 2028.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+
+
+---
+
+## 6. Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
+
+Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (2907 caractères) · https://www.tomshardware.com/tech-industry/data-centers/china-deploys-worlds-first-800-volt-dc-power-system-for-massive-ai-data-center-seeks-to-quench-power-needs-with-higher-conversion-and-efficiency-inside-a-smaller-footprint
+
+**Actuel (publié)**
+
+- **Titre** : Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
+- **Avant** : Dans un centre de calcul, le courant passe par plusieurs étapes de conversion avant d'alimenter les serveurs, ce qui fait perdre de l'énergie et prend beaucoup de place.
+- **Découverte** : À Ulanqab, en Chine, l'entreprise Envision a mis en service son système Dubhe, qui transforme directement le courant alternatif moyenne tension de 10 000 volts en courant continu de 800 volts. Moins d'étapes signifie un meilleur rendement et des appareils de conversion nettement plus petits. Le système alimente déjà une partie du centre de calcul Galaxy AI.
+- **Et après** : Envision veut à terme alimenter jusqu'à un million d'accélérateurs d'IA sur ce site, et utiliser la même technique dans son projet Mission Gobi, qui vise 5 gigawatts de centres de calcul verts dans les déserts d'ici 2030. Les performances ne sont pour l'instant données que par l'entreprise elle-même.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Centres de calcul : une alimentation plus simple alimente déjà une ferme d'IA
+- **Avant** : Les centres de calcul d'IA consomment beaucoup d'électricité. Avant d'arriver aux puces, le courant du réseau passe aujourd'hui par plusieurs étapes de conversion.
+- **Découverte** : Le groupe chinois Envision Energy dit avoir installé un système à Ulanqab. Il convertit directement le courant du réseau, de 10 000 volts, en courant continu de 800 volts, avec un transformateur électronique et des batteries. Selon l'entreprise, le système est plus compact, utilise moins de cuivre et absorbe les pics de charge des puces d'IA.
+- **Et après** : Selon l'entreprise, ce système permettrait de placer plus de puces d'IA dans un même espace. Le campus doit atteindre une puissance de 3 milliards de watts, mais les performances ne sont annoncées que par le constructeur, sans test indépendant.
+- **Mots** : **Transformateur électronique** → Appareil électronique qui change la tension du courant pour l'adapter aux appareils alimentés.
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : [titre] « Centres de calcul : une alimentation électrique plus simple sert déjà une ferme d'IA en Chine » → Le titre compte 15 mots, au-delà de 12. Il ne dit pas assez concrètement ce qui a été fait. | [forme] « Le groupe chinois Envision Energy dit avoir installé, à Ulanqab, un système qui convertit directement le courant moyenne tension du réseau (10 kV) en courant continu de 800 volts. Un transformateur électronique et des batteries assurent cette alimentation et absorbent les pics de charge des puces d'IA. Selon l'entreprise, le système est plus compact et utilise moins de cuivre. » → La phrase de 29 mots est trop longue. Le texte dit aussi « moyenne tension » et « 10 kV », des termes techniques non expliqués. | [jargon] « convertit directement le courant moyenne tension du réseau (10 kV) » → « Moyenne tension » et l'unité « kV » ne sont ni remplacés ni expliqués. L'article donne 10 kV, soit 10 000 volts. | [jargon] « Le campus doit atteindre 3 GW » → L'unité « GW » n'est pas expliquée. L'article indique 3 GW, soit 3 milliards de watts. | [mot] « Transformateur à semi-conducteurs » → Ce terme n'apparaît pas dans le texte, qui parle de « transformateur électronique ». La définition reste aussi trop vague pour un mot à connaître.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0022 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Centres de calcul : une alimentation électrique plus simple sert déjà une ferme d'IA en Chine
+- **Avant** : Les centres de calcul d'IA consomment beaucoup d'électricité. Avant d'arriver aux puces, le courant du réseau passe aujourd'hui par plusieurs étapes de conversion.
+- **Découverte** : Le groupe chinois Envision Energy dit avoir installé, à Ulanqab, un système qui convertit directement le courant moyenne tension du réseau (10 kV) en courant continu de 800 volts. Un transformateur électronique et des batteries assurent cette alimentation et absorbent les pics de charge des puces d'IA. Selon l'entreprise, le système est plus compact et utilise moins de cuivre.
+- **Et après** : Selon l'entreprise, ce système permettrait de placer plus de puces d'IA dans un même espace. Le campus doit atteindre 3 GW, mais les performances ne sont annoncées que par le constructeur, sans test indépendant.
+- **Mots** : **Transformateur à semi-conducteurs** → Transformateur électronique qui change la tension du courant sans gros bobinage de cuivre, utilisé pour adapter l'électricité aux appareils.
+- **Type** : demonstration
+
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+
+
+---
+
+## 7. Cancer : des cellules du patient font reculer des tumeurs de la peau
+
+Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04743-6
+
+**Actuel (publié)**
+
+- **Titre** : Cancer : des cellules du patient font reculer des tumeurs de la peau
+- **Avant** : Quand un mélanome ne répond plus à l'immunothérapie, les options restent rares. La thérapie cellulaire classique exige d'opérer pour prélever la tumeur et de donner de fortes doses d'une protéine stimulante, l'IL-2, aux effets indésirables importants.
+- **Découverte** : Les chercheurs ont modifié les cellules immunitaires extraites de la tumeur de chaque patient pour qu'elles produisent elles-mêmes l'IL-15, une protéine stimulante, uniquement lorsqu'on leur donne un médicament, l'acétazolamide. Sur 15 patients traités à la dose retenue, 10 ont vu leur tumeur reculer, dont 2 avec une réponse complète. Aucun décès lié au traitement n'a été observé parmi les 37 patients traités.
+- **Et après** : L'analyse regroupe deux petits essais et n'était pas prévue au départ, donc les résultats restent préliminaires. Une étude pivot plus large est en cours, et le premier patient a eu un gonflement du cerveau qui a obligé à baisser les doses.
+- **Mots** : (aucun)
+- **Type** : essai_clinique
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Cancer : des cellules modifiées réduisent des mélanomes chez 10 malades sur 15
+- **Avant** : Les mélanomes qui résistent à l'immunothérapie ont peu de solutions. Les traitements par cellules du patient existants exigent une chirurgie et de fortes doses d'une substance aux effets secondaires lourds.
+- **Découverte** : Des chercheurs ont modifié les cellules de défense prélevées dans la tumeur de chaque patient, pour qu'elles produisent une substance activée par un médicament, l'acétazolamide. Sur 15 patients traités à la dose retenue, la tumeur a reculé chez 10, dont 2 ont totalement disparu. Aucun décès lié au traitement n'a été observé, mais un patient a eu un gonflement du cerveau au début de l'essai.
+- **Et après** : Cette approche pourrait offrir une option aux malades dont l'immunothérapie ne marche plus, sans les fortes doses d'une substance très toxique. Mais il s'agit de petits essais, sans groupe témoin, et un essai plus large est en cours pour confirmer ces résultats.
+- **Mots** : **Immunothérapie** → Traitement qui aide le système de défense du corps à reconnaître et détruire les cellules cancéreuses.
+- **Type** : essai_clinique
+
+- _Défauts trouvés par le relecteur_ : aucun
+
+- _Défauts mesurés restants_ : aucun · coût 0.0026 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Cancer : des cellules modifiées réduisent des mélanomes chez 10 malades sur 15
+- **Avant** : Les mélanomes qui résistent à l'immunothérapie ont peu de solutions. Les traitements par cellules du patient existants exigent une chirurgie et de fortes doses d'une substance aux effets secondaires lourds.
+- **Découverte** : Des chercheurs ont modifié les cellules de défense prélevées dans la tumeur de chaque patient, pour qu'elles produisent une substance activée par un médicament, l'acétazolamide. Sur 15 patients traités à la dose retenue, la tumeur a reculé chez 10, dont 2 ont totalement disparu. Aucun décès lié au traitement n'a été observé, mais un patient a eu un gonflement du cerveau au début de l'essai.
+- **Et après** : Cette approche pourrait offrir une option aux malades dont l'immunothérapie ne marche plus, sans les fortes doses d'une substance très toxique. Mais il s'agit de petits essais, sans groupe témoin, et un essai plus large est en cours pour confirmer ces résultats.
+- **Mots** : **Immunothérapie** → Traitement qui aide le système de défense du corps à reconnaître et détruire les cellules cancéreuses.
+- **Type** : essai_clinique
+
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
+
+
+---
+
+## 8. Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
+
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (5127 caractères) · https://www.sciencedaily.com/releases/2026/11/261102075903.htm
+
+**Actuel (publié)**
+
+- **Titre** : Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
+- **Avant** : Les Nucléobases forment les lettres du code génétique de l'ADN et de l'ARN. On ignorait encore si ces cinq lettres existaient déjà dans l'espace, avant la naissance de la Terre.
+- **Découverte** : Des chercheurs japonais ont analysé des échantillons rapportés de l'astéroïde Ryugu par la sonde Hayabusa2, en 2020. Ils y ont trouvé les cinq Nucléobases, en quantités à peu près comparables dans deux échantillons. L'uracile avait déjà été repéré en 2023 ; cette fois, les cinq sont confirmées dans une roche restée presque intacte depuis la formation du Système solaire.
+- **Et après** : Ces molécules ont pu être répandues dans tout le Système solaire et livrées à la Terre primitive par les astéroïdes. Les chercheurs comparent maintenant ces échantillons à des météorites pour retracer l'histoire chimique de ces roches très anciennes.
+- **Mots** : **Nucléobase** → Molécule contenant de l'azote qui forme une lettre du code génétique de l'ADN ou de l'ARN.
+- **Type** : donnees
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Espace : un astéroïde contient cinq « lettres » de l'ADN
+- **Avant** : Les « lettres » de l'ADN et de l'ARN sont des molécules qui permettent de coder l'information génétique. On savait déjà que des météorites et des échantillons de l'astéroïde Bennu en contenaient, mais dans Ryugu, seule l'uracile avait été trouvée en 2023.
+- **Découverte** : Des chercheurs japonais ont analysé des échantillons de l'astéroïde Ryugu, rapportés sur Terre en 2020 par la mission Hayabusa2. Ils y ont trouvé les cinq molécules de base de l'ADN et de l'ARN, dans deux échantillons. Les échantillons ont été protégés de toute contamination terrestre pendant l'analyse.
+- **Et après** : Selon les chercheurs, ces molécules ont pu se former dans l'espace et être apportées sur la Terre primitive par des astéroïdes. Il ne s'agit que de deux échantillons, et rien ne prouve encore qu'elles ont joué un rôle dans l'apparition de la vie.
+- **Mots** : (aucun)
 - **Type** : laboratoire
 
-- _Défauts trouvés par le relecteur_ : [titre] « Supraconducteurs : une image 3D révèle des frontières cachées qui pourraient freiner le courant » → Le titre compte 13 mots, alors que la limite est de 12. | [jargon] « avec l'installation européenne ESRF en France » → Le sigle ESRF n'est pas expliqué. Il faut dire ce que c'est : une installation européenne de rayonnement synchrotron. | [non_soutenu] « Cette hypothèse ne permettait pas d'expliquer pourquoi certains matériaux fonctionnent mieux que d'autres. » → L'article ne dit pas que l'ancienne hypothèse était incapable d'expliquer les écarts de performance. Il dit seulement que la nouvelle piste pourrait les expliquer. | [mot] « Matériau qui conduit l'électricité sans aucune perte, en général seulement s'il est refroidi très fort, ce qui le rend utile pour les aimants et les réseaux électriques. » → La définition compte 27 mots, alors que la limite est de 25.
+- _Défauts trouvés par le relecteur_ : [titre] « Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN » → Le titre compte 14 mots, au-delà de la limite de 12. | [mot] « Nucléobase » → Le mot à connaître n'apparaît pas dans le texte de la fiche. | [forme] « l'article ne montre pas que ces molécules ont joué un rôle dans l'apparition de la vie » → La phrase parle de l'article au lieu des faits.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0025 $
+- _Défauts mesurés restants_ : aucun · coût 0.0013 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Supraconducteurs : une image 3D révèle des frontières cachées qui pourraient freiner le courant
-- **Avant** : Pendant 40 ans, les théories sur les cuprates, des matériaux à base de cuivre qui conduisent l'électricité sans perte, supposaient une structure cristalline uniforme. Cette hypothèse ne permettait pas d'expliquer pourquoi certains matériaux fonctionnent mieux que d'autres.
-- **Découverte** : Des chercheurs de l'université de Warwick, avec l'installation européenne ESRF en France, ont reconstitué en 3D l'intérieur d'un cuprate. Ils y ont trouvé une mosaïque de deux arrangements atomiques voisins, séparés par des frontières des centaines de fois plus larges que prévu. Selon eux, ces frontières pourraient freiner le passage du courant.
-- **Et après** : Selon les chercheurs, ces structures pourraient expliquer les écarts de performance entre supraconducteurs et imposer de revoir certaines mesures anciennes. Il s'agit encore d'une hypothèse : elle doit être confirmée, et le phénomène reste à vérifier dans d'autres matériaux.
-- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans aucune perte, en général seulement s'il est refroidi très fort, ce qui le rend utile pour les aimants et les réseaux électriques.
+- **Titre** : Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
+- **Avant** : Les « lettres » de l'ADN et de l'ARN sont des molécules qui permettent de coder l'information génétique. On savait déjà que des météorites et des échantillons de l'astéroïde Bennu en contenaient, mais dans Ryugu, seule l'uracile avait été trouvée en 2023.
+- **Découverte** : Des chercheurs japonais ont analysé des échantillons de l'astéroïde Ryugu, rapportés sur Terre en 2020 par la mission Hayabusa2. Ils y ont trouvé les cinq molécules de base de l'ADN et de l'ARN, dans deux échantillons. Les échantillons ont été protégés de toute contamination terrestre pendant l'analyse.
+- **Et après** : Selon les chercheurs, ces molécules ont pu se former dans l'espace et être apportées sur la Terre primitive par des astéroïdes. Il s'agit d'analyses de deux échantillons seulement, et l'article ne montre pas que ces molécules ont joué un rôle dans l'apparition de la vie.
+- **Mots** : **Nucléobase** → Molécule contenant de l'azote qui forme les « lettres » du code génétique dans l'ADN et l'ARN.
 - **Type** : laboratoire
 
-- _Faits relevés_ : Des chercheurs de l'université de Warwick (département de chimie) ont étudié les cuprates, des supraconducteurs à base de cuivre, étudiés depuis 40 ans. | Le matériau n'a pas une structure cristalline uniforme : il contient une mosaïque de zones à deux arrangements atomiques légèrement différents. | Les frontières entre ces zones sont des centaines de fois plus larges que prévu. | L'imagerie utilisée est une diffraction des rayons X 3D à balayage, réalisée avec l'installation européenne ESRF en France. | Les chercheurs pensent que ces frontières pourraient nuire à la supraconductivité au lieu de simplement coexister avec elle. | Les théories actuelles supposent une structure uniforme ; certaines mesures anciennes pourraient devoir être réinterprétées. | Les chercheurs soupçonnent que des structures similaires existent chez d'autres cuprates. | Les résultats sont publiés dans Physical Review Letters.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il dit que cette structure en mosaïque n'avait pas été vue, car les techniques classiques ne la révélaient pas, et que l'imagerie 3D permet de voir l'intérieur du cristal.
-- _Jargon_ : Cuprates : remplacé par « matériaux à base de cuivre » et expliqué en une phrase. | Supraconductivité : expliquée par « conduire l'électricité sans aucune résistance ». | Rayons X 3D : remplacé par « une imagerie 3D » ; le scanner médical est cité comme comparaison. | Frontières larges : décrites en mots simples.
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; sigles ou noms codés inconnus du public : ESRF → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; définition de « Supraconducteur » trop longue (27 mots, 25 au plus)
 
 
 ---
 
-## 9. Dinosaures : des fossiles suggèrent que le spinosaure vivait surtout dans l'eau
+## 9. Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
 
-Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261024221956.htm
+Fil : science · 1★ · source : The Quantum Insider · page lue : oui (5138 caractères) · https://thequantuminsider.com/2026/11/03/experiment-supports-theoretical-path-to-topological-quantum-computing/
 
 **Actuel (publié)**
 
-- **Titre** : Dinosaures : des fossiles suggèrent que le spinosaure vivait surtout dans l'eau
-- **Avant** : On savait que certains animaux étaient revenus vivre dans l'eau après avoir vécu sur terre. Mais il était difficile de dire lesquels y passaient vraiment la plus grande partie de leur vie.
-- **Découverte** : Des chercheurs de Yale ont analysé des milliers de mesures de fossiles grâce à l'apprentissage automatique. Leur analyse suggère que le spinosaure passait la plus grande partie de sa vie dans l'eau. Certains reptiles marins, longtemps considérés comme entièrement aquatiques, passaient en fait beaucoup de temps sur terre.
-- **Et après** : Ce résultat repose sur des mesures d'os et sur un calcul statistique. Il faudra le confirmer avec d'autres fossiles et d'autres méthodes.
-- **Mots** : **Apprentissage automatique** → Méthode informatique où un logiciel repère des régularités à partir de nombreux exemples.
-- **Type** : donnees
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Dinosaures : le spinosaure aurait passé presque tout son temps sous l'eau
-- **Avant** : Plusieurs dizaines de groupes de mammifères et de reptiles sont revenus vivre dans l'eau. Pour le spinosaure, les os donnent des indices contradictoires : mode de vie de phoque ou de héron ?
-- **Découverte** : Des chercheurs de l'université Yale ont analysé plus de 11 000 mesures sur des fossiles et des animaux actuels, à l'aide d'un logiciel qui repère des régularités. Ils concluent que le spinosaure, qui vivait il y a 113 à 94 millions d'années en Afrique du Nord, passait la grande majorité de son temps sous l'eau. En revanche, les mésosaures, petits reptiles marins, passaient beaucoup de temps sur terre.
-- **Et après** : Ces résultats pourraient aider à mieux comprendre comment le spinosaure chassait, un point qui reste débattu. Ce sont toutefois des estimations faites à partir de squelettes, pas une observation directe de la vie de ces animaux.
+- **Titre** : Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
+- **Avant** : Les ordinateurs quantiques font beaucoup d'erreurs. Une piste consiste à utiliser des états quantiques censés mieux résister aux perturbations, mais ils n'avaient pas encore été vérifiés dans un montage réel.
+- **Découverte** : Des physiciens de l'université de Cologne ont étudié une jonction Josephson posée sur un isolant topologique, un matériau isolant à l'intérieur mais conducteur à sa surface. En mesurant les états quantiques de cette jonction, ils ont observé des états d'Andreev répartis comme la théorie le prévoit. Sous champ magnétique, ces états se concentrent aussi dans les zones attendues.
+- **Et après** : La question clé reste ouverte : il faut encore prouver que l'écart d'énergie se referme puis se rouvre, signe de la phase protégée. Pour cela, les chercheurs doivent améliorer la précision de leurs mesures, prochaine étape de leur travail.
 - **Mots** : (aucun)
-- **Type** : donnees
+- **Type** : observation
 
-- _Défauts trouvés par le relecteur_ : [forme] « Les mésosaures, petits reptiles marins, passaient eux aussi beaucoup de temps sur terre. » → Le « eux aussi » suggère un parallèle avec le spinosaure, alors que l'article oppose les deux cas : le spinosaure passait l'essentiel de son temps sous l'eau, les mésosaures alternaient entre eau et terre. Le lien logique est faux. | [apres] « Ce sont des estimations faites à partir de squelettes, pas une observation directe de la vie de ces animaux. Les chercheurs reconnaissent que la façon dont le spinosaure chassait reste débattue. » → Le paragraphe « Et après » ne dit pas ce que ces résultats peuvent changer ; il ne donne que la limite.
+**Final après 1 relecture(s) (haiku, lot)**
 
-- _Défauts mesurés restants_ : aucun · coût 0.0033 $
+- **Titre** : Ordinateurs quantiques : des physiciens observent des états prévus par la théorie
+- **Avant** : Les ordinateurs quantiques stockent l'information dans des états très fragiles, facilement perturbés. Une piste consiste à utiliser des états plus résistants aux perturbations locales, mais leur existence restait à démontrer dans un matériau réel.
+- **Découverte** : Des physiciens de l'université de Cologne ont étudié une structure formée de deux supraconducteurs reliés par une zone non supraconductrice. Ils ont observé des états quantiques qui se comportent comme la théorie le prévoit, y compris sous l'effet d'un champ magnétique. Les résultats concordent avec un modèle de 2008 et avec des simulations numériques.
+- **Et après** : Si ces états sont bien protégés, ils pourraient aider à fabriquer des bits quantiques plus fiables. La transition attendue n'est pas encore confirmée : il faut des mesures plus précises.
+- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans perte, en général seulement lorsqu'il est refroidi très fortement.
+- **Type** : laboratoire
+
+- _Défauts trouvés par le relecteur_ : [titre] « Ordinateurs quantiques : une piste pour des calculs moins sujets aux erreurs se confirme en laboratoire » → Le titre compte 15 mots, au-delà de la limite de 12. Il annonce aussi une confirmation que l'article ne établit pas : la transition vers la supraconductivité topologique reste à confirmer.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0011 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Dinosaures : le spinosaure aurait passé presque tout son temps sous l'eau
-- **Avant** : Plusieurs dizaines de groupes de mammifères et de reptiles sont revenus vivre dans l'eau. Pour le spinosaure, les os donnent des indices contradictoires : mode de vie de phoque ou de héron ?
-- **Découverte** : Des chercheurs de l'université Yale ont analysé plus de 11 000 mesures sur des fossiles et des animaux actuels, à l'aide d'un logiciel qui repère des régularités. Ils concluent que le spinosaure, qui vivait il y a 113 à 94 millions d'années en Afrique du Nord, passait la grande majorité de son temps sous l'eau. Les mésosaures, petits reptiles marins, passaient eux aussi beaucoup de temps sur terre.
-- **Et après** : Ce sont des estimations faites à partir de squelettes, pas une observation directe de la vie de ces animaux. Les chercheurs reconnaissent que la façon dont le spinosaure chassait reste débattue.
-- **Mots** : (aucun)
-- **Type** : donnees
+- **Titre** : Ordinateurs quantiques : une piste pour des calculs moins sujets aux erreurs se confirme en laboratoire
+- **Avant** : Les ordinateurs quantiques stockent l'information dans des états très fragiles, facilement perturbés. Une piste consiste à utiliser des états plus résistants aux perturbations locales, mais leur existence restait à démontrer dans un matériau réel.
+- **Découverte** : Des physiciens de l'université de Cologne ont étudié une structure formée de deux supraconducteurs reliés par une zone non supraconductrice. Ils ont observé des états quantiques qui se comportent comme la théorie le prévoit, y compris sous l'effet d'un champ magnétique. Les résultats concordent avec un modèle de 2008 et avec des simulations numériques.
+- **Et après** : Si ces états sont bien protégés, ils pourraient aider à fabriquer des bits quantiques plus fiables. La transition attendue n'est pas encore confirmée : il faut des mesures plus précises.
+- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans perte, en général seulement lorsqu'il est refroidi très fortement.
+- **Type** : laboratoire
 
-- _Faits relevés_ : Des chercheurs de l'université Yale ont analysé plus de 11 000 mesures sur des fossiles et des animaux actuels. | Ils ont utilisé un logiciel d'apprentissage automatique, combiné à des méthodes classiques de paléontologie. | Le spinosaure, grand dinosaure, vivait il y a 113 à 94 millions d'années dans le nord de l'Afrique. | Selon l'auteur principal, le spinosaure passait la grande majorité de son temps immergé. | Les chercheurs précisent que la façon dont il chassait reste débattue. | Les mésosaures, petits reptiles marins de 290 à 274 millions d'années, passaient beaucoup de temps sur terre. | Leurs membres n'étaient pas adaptés à une vie entièrement dans l'eau, selon l'étude. | Les modèles s'appuient sur des squelettes et sur des animaux actuels, et permettent d'estimer des structures molles rarement conservées.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il présente une nouvelle analyse de plus de 11 000 mesures, qui estime la part de vie aquatique de plusieurs groupes anciens.
-- _Jargon_ : apprentissage automatique : expliqué en quelques mots dans la fiche | mésosaures : présenté comme de petits reptiles marins
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
 
 
 ---
 
-## 10. Dents : un liquide bloque les caries des jeunes enfants
+## 10. Voitures : une berline chinoise roule à l'alcool de bois
 
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261025222339.htm
+Fil : tech · 1★ · source : CnEVPost (véhicules électriques, Chine) · page lue : oui (3449 caractères) · https://cnevpost.com/2026/11/03/geely-launches-xingyao-6-ef-methanol-hybrid-sedan/
 
 **Actuel (publié)**
 
-- **Titre** : Dents : un liquide bloque les caries des jeunes enfants
-- **Avant** : Les caries des jeunes enfants se soignent en général par forage, pose d'un plombage, voire par une opération sous anesthésie générale. Un liquide au fluorure d'argent est déjà utilisé dans certains cas, mais son efficacité devait encore être prouvée à grande échelle.
-- **Découverte** : Un essai clinique de grande ampleur, mené sur 830 enfants de moins de 6 ans, montre que ce liquide, peint sur la dent en quelques secondes, arrête la progression de nombreuses caries. Aucune perceuse, aucune piqûre et aucune sédation ne sont nécessaires.
-- **Et après** : Ce traitement pourrait éviter à des milliers d'enfants des douleurs, des infections et des soins lourds. Une utilisation plus large, approuvée par l'agence américaine du médicament, reste à venir.
-- **Mots** : **Anesthésie générale** → Médicament qui endort complètement une personne pendant une opération, pour qu'elle ne sente ni ne se souvienne de rien.
-- **Type** : essai_clinique
+- **Titre** : Voitures : une berline chinoise roule à l'alcool de bois
+- **Avant** : Jusqu'ici, les voitures hybrides roulaient à l'essence ou à l'électricité, et aucune berline familiale produite en série ne pouvait rouler au méthanol. Ce carburant restait donc réservé à des usages peu répandus pour les particuliers.
+- **Découverte** : Geely a lancé la Xingyao 6 EF, une berline qui roule au méthanol, à l'essence ou à l'électricité, avec un mélange libre dans le même réservoir. Son moteur au méthanol atteint un rendement de 48,15 %, selon le constructeur, le plus élevé parmi les moteurs au méthanol produits en série. Un capteur mesure en temps réel le mélange pour régler l'injection et l'allumage, et le démarrage à froid est annoncé jusqu'à environ -40 °C.
+- **Et après** : Les prix promotionnels, de 76 800 à 96 800 yuans, sont limités dans le temps, le prix officiel allant de 86 800 à 106 800 yuans. Le constructeur la présente comme un complément aux voitures électriques, surtout pour les climats froids et les longs trajets.
+- **Mots** : **Méthanol** → Alcool liquide qui peut servir de carburant seul ou mélangé à l'essence, dans un moteur adapté.
+- **Type** : en_vente
 
-**Final après 2 relecture(s) (haiku)**
+**Final après 1 relecture(s) (haiku, lot)**
 
-- **Titre** : Dents : un liquide peint en secondes bloque les caries des jeunes enfants
-- **Avant** : Pour soigner une carie chez un jeune enfant, il faut en général forer la dent et la reboucher, parfois sous anesthésie générale. Un liquide à base d'argent et de fluor existait déjà, mais il manquait des preuves solides à grande échelle chez les enfants américains.
-- **Découverte** : Des chercheurs de l'université du Michigan ont testé une solution à 38 % de fluorure d'argent sur 830 enfants de moins de 6 ans. Appliqué à l'éponge tous les six mois, le liquide a arrêté la carie de plus de la moitié des dents de lait touchées. Le traitement ne demandait ni forage, ni piqûre, ni médicament pour endormir.
-- **Et après** : Ce traitement pourrait éviter à des enfants douleurs, infections et opérations, et permettre de les soigner plus tôt, avant un rendez-vous chez le dentiste. Mais la dent traitée noircit de façon définitive, et l'usage contre les caries n'est pas encore approuvé par l'autorité sanitaire américaine.
-- **Mots** : **Fluorure d'argent** → Liquide à base d'argent et de fluor, appliqué sur une carie pour combattre les bactéries et durcir la dent ; il la fait aussi noircir.
-- **Type** : essai_clinique
+- **Titre** : Voitures : une berline chinoise roule au méthanol, seul ou mélangé à l'essence
+- **Avant** : Le méthanol, un alcool utilisable comme carburant, restait peu présent dans les voitures particulières. Geely veut offrir davantage d'options énergétiques pour les climats froids et les longs trajets.
+- **Découverte** : Le constructeur chinois Geely a lancé la berline Xingyao 6, qui roule au méthanol, à l'essence ou à l'électricité. Elle accepte n'importe quel mélange de méthanol et d'essence dans le même réservoir, qu'un capteur mesure en temps réel pour régler le moteur. Selon Geely, son moteur au méthanol transforme 48,15 % de l'énergie du carburant en mouvement, le meilleur rendement des moteurs au méthanol de série.
+- **Et après** : Geely la présente comme un complément aux voitures électriques pour les régions froides et les longs trajets. Il faut encore trouver du méthanol, et le prix de 76 800 yuans (environ 9 200 €) n'est qu'une offre limitée.
+- **Mots** : (aucun)
+- **Type** : en_vente
 
-- _Défauts trouvés par le relecteur_ : [titre] « Dents : un liquide peint en quelques secondes freine les caries des jeunes enfants » → Le titre compte 13 mots, au-delà de la limite de 12. | [forme] « Des chercheurs de l'université du Michigan ont testé ce liquide à 38 % sur 830 enfants de moins de 6 ans, dans des cabinets dentaires, des cabinets pédiatriques et des programmes d'éducation précoce. » → Phrase de 33 mots, à couper ; « ce liquide » désigne aussi une chose non précisée (une solution à 38 % de fluorure d'argent). | [jargon] « l'usage contre les caries n'est pas encore approuvé par la FDA » → Le sigle FDA n'est pas expliqué au lecteur ; il faut dire ce que c'est ou le remplacer par des mots simples. | [forme] « Appliqué à l'éponge tous les six mois, le liquide a arrêté la carie de plus de la moitié des dents de lait touchées, sans forage, piqûre ni médicament pour endormir. » → Phrase de 30 mots ou plus dans « decouverte », à couper en phrases plus courtes.
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « Les voitures électriques sont moins pratiques dans les régions froides et sur les longs trajets. » → L'article ne dit pas que les voitures électriques sont moins pratiques ; il dit seulement que Geely veut offrir davantage d'options énergétiques pour les climats froids et les longs trajets. | [jargon] « la berline Xingyao 6 EF » → Le sigle « EF » (E-fuel) n'est ni expliqué ni remplacé ; il n'aide pas le lecteur, on le supprime. | [mot] « Méthanol » → Le méthanol est déjà expliqué dans le paragraphe « Avant » (alcool utilisable comme carburant) ; ce n'est pas un mot à connaître utile ici.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0056 $
+- _Défauts mesurés restants_ : aucun · coût 0.0017 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Dents : un liquide peint en quelques secondes freine les caries des jeunes enfants
-- **Avant** : Pour soigner une carie chez un jeune enfant, il faut en général forer la dent et la reboucher, parfois sous anesthésie générale. Un liquide à base d'argent et de fluor existait déjà, mais il manquait des preuves solides à grande échelle chez les enfants américains.
-- **Découverte** : Des chercheurs de l'université du Michigan ont testé ce liquide à 38 % sur 830 enfants de moins de 6 ans, dans des cabinets dentaires, des cabinets pédiatriques et des programmes d'éducation précoce. Appliqué à l'éponge tous les six mois, il a arrêté la carie de plus de la moitié des dents de lait touchées. Aucun forage, aucune piqûre et aucun médicament pour endormir n'étaient nécessaires.
-- **Et après** : Ce traitement pourrait éviter à des enfants douleurs, infections et opérations, et permettre de les soigner plus tôt, avant un rendez-vous chez le dentiste. Mais la dent traitée noircit de façon définitive, et l'usage contre les caries n'est pas encore approuvé par la FDA.
-- **Mots** : **Fluorure d'argent** → Liquide à base d'argent et de fluor, appliqué sur une carie pour combattre les bactéries et durcir la dent ; il la fait aussi noircir.
-- **Type** : essai_clinique
+- **Titre** : Voitures : une berline chinoise roule au méthanol, seul ou mélangé à l'essence
+- **Avant** : Le méthanol, un alcool utilisable comme carburant, restait peu présent dans les voitures particulières. Les voitures électriques sont moins pratiques dans les régions froides et sur les longs trajets.
+- **Découverte** : Le constructeur chinois Geely a lancé la berline Xingyao 6 EF, qui roule au méthanol, à l'essence ou à l'électricité. Elle accepte n'importe quel mélange de méthanol et d'essence dans le même réservoir, qu'un capteur mesure en temps réel pour régler le moteur. Selon Geely, son moteur au méthanol transforme 48,15 % de l'énergie du carburant en mouvement, le meilleur rendement des moteurs au méthanol de série.
+- **Et après** : Geely la présente comme un complément aux voitures électriques pour les régions froides et les longs trajets. Il faut encore trouver du méthanol, et le prix de 76 800 yuans (environ 9 200 €) n'est qu'une offre limitée.
+- **Mots** : **Méthanol** → Alcool liquide qui peut servir de carburant, seul ou mélangé à l'essence, dans un moteur prévu pour cela.
+- **Type** : en_vente
 
-- _Faits relevés_ : Le traitement est un liquide à base d'argent et de fluor (fluorure d'argent à 38 %), peint sur la dent avec un petit applicateur à éponge en quelques secondes. | L'essai de phase III a porté sur 830 enfants de moins de 6 ans, recrutés à Michigan, New York et Iowa. | Le traitement a été appliqué tous les six mois. | Il a arrêté la carie dans plus de la moitié des dents de lait touchées. | Aucun forage, aucune piqûre et aucune sédation n'étaient nécessaires. | La dent traitée noircit de façon définitive, surtout les dents de devant ; c'est surtout un défaut esthétique. | Le produit est approuvé par la FDA depuis 2014 contre la sensibilité dentaire ; son usage contre les caries est hors indication. | L'étude, dirigée par Margherita Fontana de l'université du Michigan, a commencé en 2018 et s'est poursuivie malgré la pandémie de Covid-19.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : le liquide est utilisé depuis des décennies dans de nombreux pays, et ce qui est nouveau est la preuve d'essais à grande échelle chez les enfants américains.
-- _Jargon_ : anesthésie générale : remplacé par « endormis complètement » | sédation : remplacé par « médicament pour endormir » | fluorure d'argent : mot à connaître
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; phrase de 33 mots dans « decouverte », à couper : « Des chercheurs de l'université du Michigan ont testé ce liquide à 38 % sur 830 enfants de … » ; sigles ou noms codés inconnus du public : FDA → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
 
 
 ---
 
-## 11. Peinture : une couche se répare seule et freine la rouille
+## 11. Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
 
-Fil : tech · 1★ · source : Les Numériques · page lue : oui (4203 caractères) · https://www.lesnumeriques.com/science-espace/l-australie-affirme-avoir-cree-un-nouveau-type-de-peinture-auto-reparatrice-qui-ralentit-la-rouille-de-l-acier-de-600-fois-197-n262593.html
+Fil : tech · 1★ · source : Tech Xplore · page lue : NON (0 caractères) · https://techxplore.com/news/2026-11-infrared-transparent-aerogel-boosts-subambient.html
 
 **Actuel (publié)**
 
-- **Titre** : Peinture : une couche se répare seule et freine la rouille
-- **Avant** : Les peintures anticorrosion s'abîment dès qu'une rayure met l'acier à nu. Il faut donc les refaire régulièrement, comme pour la Tour Eiffel, repeinte environ tous les sept ans.
-- **Découverte** : Des chercheurs de l'Université du Queensland ajoutent à une peinture à l'eau une poudre de minuscules réservoirs. Ces réservoirs libèrent un anti-rouille lorsque la couche est abîmée. En laboratoire, l'acier protégé ne perd que 37 nanomètres par an, selon l'équipe.
-- **Et après** : Il reste à vérifier ce résultat sur un vrai pont ou une structure exposée aux intempéries. Pour l'instant, il s'agit d'un prototype de laboratoire, sans date ni prix annoncés.
-- **Mots** : **Inhibiteur de rouille** → Substance qui ralentit la formation de rouille sur le métal.
-- **Type** : prototype
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Peinture : une couche qui libère un anti-rouille quand elle est rayée
-- **Avant** : Les peintures anticorrosion s'abîment dès qu'une rayure met l'acier à nu, et il faut alors les refaire régulièrement. Ponts, navires et la Tour Eiffel sont repeints à intervalles réguliers, un chantier long et coûteux.
-- **Découverte** : Des chercheurs de l'Université du Queensland, en Australie, ont mélangé à une peinture à l'eau une poudre de minuscules réservoirs. Ces réservoirs gardent un anti-rouille enfermé tant que la peinture est intacte, puis le libèrent là où une fissure apparaît. En laboratoire, l'acier protégé se corrode de 37 nanomètres par an seulement, contre environ 25 000 nanomètres pour beaucoup de revêtements haute performance, selon des fabricants.
-- **Et après** : Cette peinture pourrait espacer les gros chantiers de repeinture sur les ponts et les structures métalliques. Mais les résultats viennent du laboratoire, sans test sur un vrai pont, et l'équipe doit encore réduire les coûts ; elle vise un produit commercial d'ici cinq ans.
+- **Titre** : Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
+- **Avant** : Pour se rafraîchir sans électricité, certains matériaux renvoient la chaleur vers le ciel, mais le jour le soleil réduit beaucoup leur efficacité.
+- **Découverte** : Des chercheurs de la City University of Hong Kong ont conçu un nouvel aérogel, un matériau très léger et poreux, transparent aux infrarouges. Associé aux matériaux de refroidissement de jour, il améliore leurs performances de jusqu'à 5,2 °C. Il laisse passer la chaleur infrarouge que le matériau doit évacuer vers le ciel.
+- **Et après** : Le gain atteint jusqu'à 5,2 °C selon les résultats annoncés, mais l'article ne précise ni les conditions des essais ni la date de mise sur le marché.
 - **Mots** : (aucun)
 - **Type** : prototype
 
-- _Défauts trouvés par le relecteur_ : [mot] « Inhibiteur de corrosion » → Le mot à connaître n'apparaît pas dans le texte de la fiche. Il est retiré. | [comparaison] « contre environ 25 000 nanomètres annoncés pour des revêtements haute performance » → Deux chiffres sont mis en face sans dire qu'il s'agit d'une mesure de laboratoire comparée à des chiffres annoncés par des fabricants, ce qui explique l'écart. | [forme] « En laboratoire, l'acier protégé ne se corrode que de 37 nanomètres par an, alors que beaucoup de revêtements haute performance annoncent environ 25 000 nanomètres, selon des chiffres de fabricants. » → Phrase de 30 mots, à couper pour rester lisible. La phrase a été raccourcie en gardant les chiffres et la source de l'article.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0050 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Peinture : une couche qui libère un anti-rouille quand elle est rayée
-- **Avant** : Les peintures anticorrosion s'abîment dès qu'une rayure met l'acier à nu, et il faut alors les refaire régulièrement. Ponts, navires et la Tour Eiffel sont repeints à intervalles réguliers, un chantier long et coûteux.
-- **Découverte** : Des chercheurs de l'Université du Queensland, en Australie, ont mélangé à une peinture à l'eau une poudre de minuscules réservoirs. Ces réservoirs gardent un anti-rouille enfermé tant que la peinture est intacte, puis le libèrent là où une fissure apparaît. En laboratoire, l'acier protégé ne se corrode que de 37 nanomètres par an, contre environ 25 000 nanomètres annoncés pour des revêtements haute performance.
-- **Et après** : Cette peinture pourrait espacer les gros chantiers de repeinture sur les ponts et les structures métalliques. Mais les résultats viennent du laboratoire, sans test sur un vrai pont, et l'équipe doit encore réduire les coûts ; elle vise un produit commercial d'ici cinq ans.
-- **Mots** : **Inhibiteur de corrosion** → Substance ajoutée à un métal ou à sa peinture pour ralentir son oxydation et sa rouille.
-- **Type** : prototype
-
-- _Faits relevés_ : Des chercheurs de l'Université du Queensland, en Australie, mélangent une poudre à une peinture polyuréthane à base d'eau. | La poudre est faite de minuscules réservoirs qui contiennent un inhibiteur de rouille, le benzotriazole. | Tant que la peinture est intacte, l'inhibiteur reste enfermé ; une fissure acidifie le milieu, les réservoirs s'ouvrent et libèrent l'inhibiteur à cet endroit. | En laboratoire, l'acier protégé ne se corrode que de 37 nanomètres par an, contre environ 0,025 millimètre (25 000 nanomètres) annoncés pour des revêtements haute performance. | L'université parle de plus de 600 fois mieux ; ce rapport compare une mesure expérimentale à des chiffres déclarés par des fabricants. | Des plaques d'acier rayées exprès ont passé quatorze jours dans l'eau salée, sans rouille autour de l'entaille avec la formulation la plus efficace. | Une autre piste, avec des fibres végétales, permettrait de stocker trois fois plus d'inhibiteur et de multiplier la protection jusqu'à cinq fois. | Les prochaines étapes sont des essais à l'échelle pilote, avec un produit commercial visé d'ici cinq ans ; le benzotriazole reste une molécule persistante à surveiller.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il présente une peinture qui libère un anti-rouille seulement là où elle est abîmée, testée en laboratoire et comparée à des revêtements annoncés par des fabricants.
-- _Jargon_ : Inhibiteur de rouille : expliqué en quelques mots (anti-rouille) | Nanoconteneurs : remplacé par « minuscules réservoirs » | Réseaux métallo-organiques : remplacé par « une poudre de minuscules réservoirs » | Électrochimiques : remplacé par « mesures en laboratoire » | Nanocellulose : remplacé par « fibres végétales » | Benzotriazole : mot à connaître, cité sous son nom usuel
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : mot à connaître « Inhibiteur de corrosion » absent du texte de la fiche : choisis un mot du texte ou aucun
+_Article illisible ou trop court : pas de fiche (comme dans l'agent)._
 
 
 ---
 
-## 12. Fusées : une capsule largue un kit de survie depuis l'orbite
+## 12. Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
 
-Fil : tech · 2★ · source : New Atlas · page lue : oui (3115 caractères) · https://newatlas.com/military/usaf-spacex-capsule-survival-kit-from-orbit/
+Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04710-1
 
 **Actuel (publié)**
 
-- **Titre** : Fusées : une capsule largue un kit de survie depuis l'orbite
-- **Avant** : Les fusées servent surtout à placer des satellites ou des équipages en orbite. Pour livrer vite du matériel à des personnes isolées, il faut souvent un transport lent.
-- **Découverte** : Le 20 octobre 2026, une fusée Falcon 9 a emporté une capsule de fret Starfall, capable de transporter jusqu'à une tonne. Après sa rentrée dans l'atmosphère, un bouclier thermique, de petits propulseurs et un parachute l'ont guidée vers un atterrissage plus doux. Elle transportait une caisse de secours conçue pour rester stable pendant le voyage.
-- **Et après** : L'objectif est d'envoyer rapidement du matériel à des naufragés ou à des équipes isolées. Il reste à voir si ce système sera utilisé à grande échelle.
+- **Titre** : Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
+- **Avant** : Contre le cancer du côlon, certaines formes ne répondaient pas aux immunothérapies de première génération, et une partie des malades rechutaient après l'opération.
+- **Découverte** : Dans l'essai UNICORN, 56 patients avec un cancer du côlon opérable ont reçu une courte cure avant la chirurgie. Chez les cancers jusque-là résistants, le duo botensilimab et balstilimab a fait presque disparaître la tumeur chez 36 % des patients, contre 0 % avec le seul botensilimab. Dans l'autre type de cancer étudié, le même duo a obtenu ce résultat chez 100 % des patients.
+- **Et après** : Chaque groupe ne comptait que 14 patients et plus de la moitié des malades traités par le duo ont eu des effets indésirables liés au système immunitaire, comme un syndrome grippal ou la diarrhée. Il faudra un essai plus large pour confirmer ces résultats avant tout usage courant.
 - **Mots** : (aucun)
-- **Type** : demonstration
+- **Type** : essai_clinique
 
-**Final après 2 relecture(s) (haiku)**
+**Final après 1 relecture(s) (haiku, lot)**
 
-- **Titre** : Sauvetage en mer : un test largue un radeau de survie depuis l'orbite
-- **Avant** : Un naufragé peut attendre des jours les secours, même si une fusée fait le tour de la Terre en seulement 90 minutes. Les garde-côtes américains larguent déjà des radeaux depuis des avions ; le laboratoire de l'armée de l'air américaine étudie l'envoi depuis l'orbite.
-- **Découverte** : Lors d'un test de l'armée de l'air américaine, une capsule de fret de SpaceX a largué un kit de survie depuis l'orbite. La capsule, lancée le 20 octobre 2026 par une fusée Falcon 9 depuis la Floride, peut transporter jusqu'à une tonne et atterrir doucement grâce à un parachute. Le kit contient un radeau gonflable, de l'eau douce produite sur place, des rations, une radio et des balises de détresse.
-- **Et après** : Le but est d'envoyer vite du matériel à des naufragés ou des équipes isolées, et à terme des dizaines de tonnes par lancement avec des fusées commerciales. Ce n'est pour l'instant qu'un test, et les résultats serviront à mettre au point ces systèmes.
+- **Titre** : Cancer du côlon : deux anticorps réduisent presque toute la tumeur avant chirurgie
+- **Avant** : Chez les tumeurs du côlon avec une anomalie de réparation de l'ADN, les traitements d'immunothérapie agissent bien. Les autres tumeurs du côlon y résistent en général, et les résultats des traitements à deux anticorps restaient modestes.
+- **Découverte** : Des chercheurs ont testé deux anticorps donnés pendant une courte période avant l'opération, chez 56 patients atteints d'un cancer du côlon. Avec les deux anticorps ensemble, la tumeur a été réduite à moins de 10 % chez tous les patients avec l'anomalie, et chez 5 des patients sans elle. Avec un seul anticorps, aucun patient sans l'anomalie n'a obtenu cette réduction.
+- **Et après** : Cette option pourrait aider des malades dont la tumeur résiste aux traitements actuels avant la chirurgie. Mais l'essai reste petit, 15 patients sur 28 ont eu des effets indésirables liés à l'immunothérapie, et il est toujours en cours.
 - **Mots** : (aucun)
-- **Type** : demonstration
+- **Type** : essai_clinique
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « avec des fusées commerciales capables de transporter des dizaines de tonnes » → L'article dit seulement que le but est de trouver des moyens d'envoyer des dizaines de tonnes par lancement avec des fusées commerciales. Il ne dit pas que ces fusées en sont déjà capables. | [apres] « Le but est d'envoyer vite du matériel à des naufragés ou à des équipes isolées, et, un jour, de transporter des dizaines de tonnes par lancement avec des fusées commerciales. » → Phrase de 30 mots, trop longue pour le paragraphe « Et après ».
+- _Défauts trouvés par le relecteur_ : [non_soutenu] « contre aucun avec un seul anticorps » → Le chiffre de 0 % vaut seulement pour les tumeurs sans l'anomalie avec un seul anticorps. Avec un seul anticorps, les tumeurs avec l'anomalie ont déjà atteint 36 %, ce que la fiche ne dit pas. | [comparaison] « Chez les 14 patients avec l'anomalie, la tumeur a été réduite à moins de 10 % chez tous. Chez les 14 autres, sans l'anomalie, cette réduction a concerné 5 patients » → La fiche accumule cinq chiffres dans un seul paragraphe, et le lien entre le groupe et le traitement n'est pas précisé. Trois chiffres suffisent pour comprendre le résultat.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0060 $
+- _Défauts mesurés restants_ : aucun · coût 0.0029 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Sauvetage en mer : un test largue un radeau de survie depuis l'orbite
-- **Avant** : Un naufragé peut attendre des jours les secours, même si une fusée fait le tour de la Terre en seulement 90 minutes. Les garde-côtes américains larguent déjà des radeaux depuis des avions ; le laboratoire de l'armée de l'air américaine étudie l'envoi depuis l'orbite.
-- **Découverte** : Lors d'un test de l'armée de l'air américaine, une capsule de fret de SpaceX a largué un kit de survie depuis l'orbite. La capsule, lancée le 20 octobre 2026 par une fusée Falcon 9 depuis la Floride, peut transporter jusqu'à une tonne et atterrir doucement grâce à un parachute. Le kit contient un radeau gonflable, de l'eau douce produite sur place, des rations, une radio et des balises de détresse.
-- **Et après** : Le but est d'envoyer vite du matériel à des naufragés ou à des équipes isolées, avec des fusées commerciales capables de transporter des dizaines de tonnes. Ce n'est pour l'instant qu'un test, et les résultats serviront à mettre au point ces systèmes.
+- **Titre** : Cancer du côlon : deux anticorps réduisent presque toute la tumeur avant chirurgie
+- **Avant** : Chez les tumeurs du côlon avec une anomalie de réparation de l'ADN, les traitements d'immunothérapie agissent bien. Les autres tumeurs du côlon y résistent en général, et les résultats des traitements à deux anticorps restaient modestes.
+- **Découverte** : Des chercheurs ont testé deux anticorps donnés pendant une courte période avant l'opération, chez 56 patients atteints d'un cancer du côlon. Chez les 14 patients avec l'anomalie, la tumeur a été réduite à moins de 10 % chez tous. Chez les 14 autres, sans l'anomalie, cette réduction a concerné 5 patients, contre aucun avec un seul anticorps.
+- **Et après** : Cette option pourrait aider des malades dont la tumeur résiste aux traitements actuels avant la chirurgie. Mais l'essai reste petit, 15 patients sur 28 ont eu des effets indésirables liés à l'immunothérapie, et il est toujours en cours.
 - **Mots** : (aucun)
-- **Type** : demonstration
+- **Type** : essai_clinique
 
-- _Faits relevés_ : Le laboratoire de recherche de l'armée de l'air américaine (AFRL) a réalisé un test de largage depuis l'orbite. | La capsule de fret est une capsule de SpaceX, en forme de disque de 3,1 m de diamètre, qui peut transporter jusqu'à une tonne. | Le test a eu lieu le 20 octobre 2026, avec une fusée Falcon 9 décollée du Cap Canaveral, en Floride. | La capsule était équipée d'un bouclier thermique, de petits propulseurs à gaz froid et d'un parachute pour un atterrissage plus doux. | Le module transportait un radeau de survie gonflable UNI-PAC III, semblable à ceux que la garde côtière américaine largue depuis des avions. | Le kit contenait des balises de détresse, une unité de dessalement, de l'eau en bouteille, des rations militaires, une radio, une trousse de secours et une boussole. | Selon l'AFRL, les résultats serviront à développer des systèmes de livraison depuis l'orbite. | L'objectif à terme est d'envoyer des dizaines de tonnes de charge par lancement avec des fusées commerciales.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il parle de « la démonstration la plus spectaculaire à ce jour » du programme Rocket Cargo, alors que les largages de radeaux depuis des avions existent déjà.
-- _Jargon_ : Capsule de rentrée : remplacé par « capsule de fret » ou « capsule ». | Orbite : expliqué en quelques mots, comme une trajectoire autour de la Terre, dans l'espace. | Falcon 9 : nom de fusée gardé, présenté comme « une fusée de SpaceX ». | Dessalement : expliqué comme la production d'eau douce à partir d'eau de mer. | Gaz froid : remplacé par « petits propulseurs ».
 - _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
 
 
 ---
 
-Coût total du test : 0.0503 $ · par fiche : 0.0050 $ · tokens moyens par fiche (rédaction + relecture) : entrée 5048, cache lu 12945, cache écrit 2015, sortie 8290
+Coût total du test : 0.0217 $ · par fiche : 0.0020 $ · tokens moyens par fiche (rédaction + relecture) : entrée 4691, cache lu 11124, cache écrit 2355, sortie 5863
