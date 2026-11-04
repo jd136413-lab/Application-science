@@ -267,6 +267,11 @@ def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict,
     return None, conso
 
 
+# 04/11 : consigne de rédaction version 2 (consignes_v2.py), retenue après l'essai A/B
+# (8,4/10 contre 7,9 sur les mêmes articles, et moins chère). L'ancienne reste dans CONSIGNE_V1.
+CONSIGNE_V1 = CONSIGNE
+from consignes_v2 import REDACTION_B as CONSIGNE  # noqa: E402
+
 CONSIGNE_RELECTURE = """Tu es le relecteur le plus exigeant de NovaSTEM, une application qui explique les avancées scientifiques et technologiques à des lecteurs non spécialistes. Un rédacteur a écrit une fiche ; tu NE l'as PAS écrite et tu ne lui fais pas confiance. Compare-la phrase par phrase à l'article source, seule base de faits autorisée.
 
 Cherche UNIQUEMENT ces défauts précis (un défaut = une ligne dans "problemes") :

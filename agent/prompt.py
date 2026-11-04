@@ -338,7 +338,15 @@ def _reprise(article: dict) -> str:
     return f"Même sujet aussi repris par {len(autres)} autre(s) source(s) : {', '.join(autres[:8])}\n"
 
 
-def build_user_message(article: dict, sujets_science: list[str], sujets_tech: list[str]) -> list[dict]:
+def _alertes(alertes: list[str] | None) -> str:
+    if not alertes:
+        return ""
+    return ("⚠ DOUBLON PROBABLE signalé par le programme (indices d'identité communs) avec :\n- "
+            + "\n- ".join(alertes) + "\n")
+
+
+def build_user_message(article: dict, sujets_science: list[str], sujets_tech: list[str],
+                       alertes: list[str] | None = None) -> list[dict]:
     """Construit le message envoyé à Claude pour un article.
     Les listes « déjà publié » sont identiques d'un article à l'autre pendant un passage :
     elles sont mises en cache (lues environ 10 fois moins cher), ce qui compense la
@@ -353,7 +361,7 @@ Déjà publié — fil Technologies (sujets récents) :
 Source (média) : {article['source_name']}
 Titre d'origine : {article['title']}
 Date : {article['published_at'].strftime('%Y-%m-%d')}
-{_reprise(article)}Texte de l'article{" (page lue)" if article.get("page_lue") else " (extrait du flux)"} :
+{_reprise(article)}{_alertes(alertes)}Texte de l'article{" (page lue)" if article.get("page_lue") else " (extrait du flux)"} :
 {article['text']}
 """
     return [

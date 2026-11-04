@@ -27,7 +27,7 @@ AGE_MAX_JOURS = 30
 
 # Combien de jours de titres déjà publiés on montre à Claude
 # pour détecter les doublons.
-JOURS_ANTI_DOUBLONS = 21
+JOURS_ANTI_DOUBLONS = 30   # 04/11 : 30 jours (essai A/B)
 
 # Présélection : avant de résumer, Claude lit en un seul appel (très bon marché)
 # les titres de tous les candidats récents et les classe du plus prometteur
@@ -115,7 +115,9 @@ import a_venir
 import redaction
 from anthropic import Anthropic
 
-from prompt import SYSTEM_PROMPT, SYSTEM_PROMPT_TRI, THEMES, TECH_THEMES, build_user_message
+from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
+from consignes_v2 import TRI_B
+import doublons
 from sources import SOURCES, TITRES_EXCLUS
 
 MAINTENANT = datetime.now(timezone.utc)
@@ -229,7 +231,7 @@ class Supabase:
     def sujets_recents(self, feed: str) -> list[str]:
         depuis = (MAINTENANT - timedelta(days=JOURS_ANTI_DOUBLONS)).isoformat()
         r = requests.get(self.base, headers=self.headers, timeout=30, params={
-            "select": "title,summary", "created_at": f"gte.{depuis}", "feed": f"eq.{feed}",
+            "select": "title,summary,decouverte,source_name", "created_at": f"gte.{depuis}", "feed": f"eq.{feed}",
             "order": "created_at.desc", "limit": "300"})
         if r.status_code == 400 and "feed" in r.text:
             raise RuntimeError("colonne « feed » absente : lance d'abord "
@@ -237,8 +239,13 @@ class Supabase:
         r.raise_for_status()
         sujets = []
         for x in r.json():
-            debut = " ".join((x.get("summary") or "").split()[:14])
-            sujets.append(f"{x['title']} — {debut}…")
+            FICHES_DEJA.append(x)                  # pour l'anti-doublon gratuit (doublons.py)
+            if REDACTION:   # liste « déjà publié » avec source et indices d'identité (essai A/B, 04/11)
+                ident = " ".join((x.get("decouverte") or x.get("summary") or "").split()[:30])
+                sujets.append(f"{x['title']} — source : {x.get('source_name', '')} — {ident}…")
+            else:
+                debut = " ".join((x.get("summary") or "").split()[:14])
+                sujets.append(f"{x['title']} — {debut}…")
         return sujets
 
     def fiches_recentes(self) -> list[dict]:
@@ -672,7 +679,10 @@ SCHEMA_REPONSE = {
 
 # Le long document de classification est mis en cache par l'API :
 # payé en entier au 1er appel, puis environ 10 fois moins cher ensuite.
-SYSTEME = [{"type": "text", "text": SYSTEM_PROMPT_TRI if REDACTION else SYSTEM_PROMPT,
+# Consigne du tri : version 2 (consignes_v2.py, retenue après l'essai A/B du 04/11 :
+# 5 doublons sur 5 attrapés contre 3, et moins chère). L'ancienne reste pour REDACTION = False.
+FICHES_DEJA: list[dict] = []          # fiches publiées des 30 derniers jours (+ celles du passage)
+SYSTEME = [{"type": "text", "text": TRI_B if REDACTION else SYSTEM_PROMPT,
             "cache_control": {"type": "ephemeral"}}]
 
 
@@ -1142,7 +1152,7 @@ def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, 
         max_tokens=8000,   # le modèle peut réfléchir avant la fiche
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
-            article, sujets["science"], sujets["tech"]) + ([{"type": "text", "text": CONSIGNE_TRI_SEUL}] if REDACTION else [])}],
+            article, sujets["science"], sujets["tech"], doublons.alertes_doublon(article, FICHES_DEJA) if REDACTION else None)}],
         output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}, "effort": economie.EFFORT_TRI},
         **economie.PARAMS_TRI,
     )
@@ -1677,7 +1687,8 @@ def main() -> int:
                 # Rédaction différée : toutes les fiches retenues sont rédigées ensemble après le tri
                 for l in lignes:
                     equilibre.ajouter(l["feed"], l.get("family") or FAMILLE_DU_THEME.get(l["theme"]))
-                    sujets[l["feed"]].insert(0, l["title"])
+                    sujets[l["feed"]].insert(0, f"{l['title']} — source : {art['source_name']} — (publiée à ce passage)")
+                    FICHES_DEJA.append({"title": l["title"], "summary": art.get("text", "")[:800], "decouverte": ""})
                 nb_articles += 1
                 decisions[decision] += 1
                 for f in {l["feed"] for l in lignes}:
