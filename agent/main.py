@@ -1045,6 +1045,22 @@ def lire_page(art: dict, n: int = 6000) -> None:
         if sum(len(x) for x in morceaux) > n:
             break
     texte = nettoyer_texte(" ".join(morceaux), n)
+    # Lecture améliorée (04/11) : extracteur spécialisé (trafilatura), qui sait isoler le corps
+    # de l'article sur bien plus de sites que la lecture « maison » ci-dessus. On garde le plus
+    # riche des deux ; la lecture maison reste en secours si trafilatura échoue.
+    art["lecture"] = "maison"
+    try:
+        import trafilatura
+        tf = trafilatura.extract(page, url=art.get("url"), include_comments=False, include_tables=False,
+                                 favor_recall=True, deduplicate=True) or ""
+        tf = nettoyer_texte(tf.replace("\n", " "), n)
+        if len(tf) >= 400 and len(tf) >= 0.8 * len(texte):
+            if len(desc) >= 40 and desc[:60] not in tf:
+                tf = nettoyer_texte(desc + " " + tf, n)
+            texte = tf
+            art["lecture"] = "trafilatura"
+    except Exception:
+        pass
     if len(texte) > len(art.get("text", "")):
         art["text"] = texte
         art["page_lue"] = True
