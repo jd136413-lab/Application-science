@@ -711,8 +711,8 @@ def preselectionner(client, modele_id, candidats: list[dict], k: int,
                        "Déjà publié ces derniers jours (titres) :\n"
                        + ("\n".join(f"- {t.split(' — ')[0]}" for t in (deja or [])[:150]) or "(rien)")
                        + "\n\nArticles à trier :\n" + "\n".join(lignes)}],
-            output_config={"format": {"type": "json_schema", "schema": SCHEMA_PRESELECTION}},
-            **economie.PARAMS,
+            output_config={"format": {"type": "json_schema", "schema": SCHEMA_PRESELECTION}, "effort": economie.EFFORT_TRI},
+            **economie.PARAMS_TRI,
         )
         u = rep.usage
         conso["in"], conso["out"] = u.input_tokens or 0, u.output_tokens or 0
@@ -822,8 +822,8 @@ def _appel_json(client, modele_id, consigne, contenu, schema, conso, max_tokens=
     rep = client.messages.create(
         model=modele_id, max_tokens=max_tokens, system=consigne,
         messages=[{"role": "user", "content": contenu}],
-        output_config={"format": {"type": "json_schema", "schema": schema}},
-        **economie.PARAMS,
+        output_config={"format": {"type": "json_schema", "schema": schema}, "effort": economie.EFFORT_TRI},
+        **economie.PARAMS_TRI,
     )
     u = rep.usage
     conso["in"] += u.input_tokens or 0
@@ -1114,8 +1114,8 @@ def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, 
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
             article, sujets["science"], sujets["tech"])}],   # listes « déjà publié » en cache
-        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}},
-        **economie.PARAMS,
+        output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}, "effort": economie.EFFORT_TRI},
+        **economie.PARAMS_TRI,
     )
     u = rep.usage
     conso = {"in": u.input_tokens or 0, "out": u.output_tokens or 0,

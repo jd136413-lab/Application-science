@@ -13,5 +13,12 @@
 
 REFLEXION = False
 
+# Exception pour le TRI (présélection, regroupement par sujet, décision et anti-doublons) :
+# sans réflexion, 2 doublons sur 5 sont passés le 04/11 au soir. Éviter les doublons est la
+# priorité n° 1 de Maxime : la réflexion y est rallumée, en effort « low » pour limiter le coût.
+REFLEXION_TRI = True
+
 # Paramètre ajouté à chaque appel client.messages.create(...)
 PARAMS = {} if REFLEXION else {"thinking": {"type": "disabled"}}
+PARAMS_TRI = {} if REFLEXION_TRI else {"thinking": {"type": "disabled"}}
+EFFORT_TRI = "low"
