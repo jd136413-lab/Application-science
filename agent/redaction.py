@@ -571,6 +571,9 @@ def rediger_complet(client, modele_id: str, prix: tuple, art: dict, fil: str, br
                 finale = r
         if finale is not None:
             finale = dict(finale)
+            # Titre encore trop long ou invalide : on reprend le titre du premier jet s'il est valide
+            if not titre_valide(str(finale.get("title", ""))) and titre_valide(str(brouillon.get("title", ""))):
+                finale["title"] = brouillon["title"]
             for k in ("avant", "decouverte", "apres"):
                 finale[k] = euros(finale.get(k, ""))
         if any("non latins" in a for a in alertes(finale)):
