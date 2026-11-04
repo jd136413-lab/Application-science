@@ -115,7 +115,7 @@ import a_venir
 import redaction
 from anthropic import Anthropic
 
-from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
+from prompt import SYSTEM_PROMPT, SYSTEM_PROMPT_TRI, THEMES, TECH_THEMES, build_user_message
 from sources import SOURCES, TITRES_EXCLUS
 
 MAINTENANT = datetime.now(timezone.utc)
@@ -672,7 +672,8 @@ SCHEMA_REPONSE = {
 
 # Le long document de classification est mis en cache par l'API :
 # payé en entier au 1er appel, puis environ 10 fois moins cher ensuite.
-SYSTEME = [{"type": "text", "text": SYSTEM_PROMPT, "cache_control": {"type": "ephemeral"}}]
+SYSTEME = [{"type": "text", "text": SYSTEM_PROMPT_TRI if REDACTION else SYSTEM_PROMPT,
+            "cache_control": {"type": "ephemeral"}}]
 
 
 SCHEMA_PRESELECTION = {

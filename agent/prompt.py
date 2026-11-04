@@ -312,6 +312,19 @@ ne sont PAS des doublons. Indique le titre concerné dans "duplicate_of".
 
 SYSTEM_PROMPT = CLASSIFICATION + "\n\n" + REGLES_APP
 
+# Version « tri seulement » (04/11) : quand la fiche est rédigée ensuite par redaction.py,
+# l'appel de décision n'écrit plus les paragraphes. On retire donc les règles d'écriture des
+# paragraphes (écriture, qualité, avant, découverte, après, mots, fiches modèles), qui ne
+# servaient plus et coûtaient des tokens. On garde tout ce qui sert au tri : décision,
+# doublons, formule du titre (titre provisoire), type d'étude, thème, importance, format.
+_DEBUT = REGLES_APP.index("- Écriture (maquette 33)")
+_FIN = REGLES_APP.index("- type_etude : la nature de la preuve")
+REGLES_TRI = (REGLES_APP[:_DEBUT]
+              + "- avant, decouverte, apres : laisse-les vides (\"\") ; mots : liste vide ([]). "
+                "La fiche sera rédigée ensuite par un autre rédacteur.\n"
+              + REGLES_APP[_FIN:])
+SYSTEM_PROMPT_TRI = CLASSIFICATION + "\n\n" + REGLES_TRI
+
 
 def _liste(sujets: list[str]) -> str:
     return "\n".join(f"- {t}" for t in sujets) if sujets else "(rien pour l'instant)"
