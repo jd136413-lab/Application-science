@@ -66,6 +66,13 @@ MODELE_PAR_DEFAUT = "haiku"
 # le premier jet (déjà contrôlé comme avant).
 REDACTION = True
 PLAFOND_REDACTION = 0.03     # $ par passage
+# 04/11 : avec la réécriture, le premier appel ne fait plus que TRIER (décision, thème,
+# importance, type d'étude, titre provisoire) : il n'écrit plus la fiche, qui était refaite
+# ensuite (double travail). Toutes les fiches retenues sont ensuite rédigées ensemble par le
+# « traitement par lot » d'Anthropic (−50 %), attente au plus ATTENTE_LOT secondes en tout ;
+# au-delà, fin en appels directs (prix normal) pour ne pas retarder les fiches.
+PAR_LOT = True
+ATTENTE_LOT = 900
 # Budget (décision de Maxime, 04/11/2026) : 2 € par mois au maximum pour l'agent.
 # 1) Réflexion cachée de Claude coupée partout (economie.py) : ≈ 2 fois moins cher.
 # 2) Garde-fou mensuel : l'agent note ce qu'il dépense (mémoire du tri, clé « _depenses »).
@@ -1045,6 +1052,22 @@ def lire_page(art: dict, n: int = 6000) -> None:
         if sum(len(x) for x in morceaux) > n:
             break
     texte = nettoyer_texte(" ".join(morceaux), n)
+    # Lecture améliorée (04/11) : extracteur spécialisé (trafilatura), qui sait isoler le corps
+    # de l'article sur bien plus de sites que la lecture « maison » ci-dessus. On garde le plus
+    # riche des deux ; la lecture maison reste en secours si trafilatura échoue.
+    art["lecture"] = "maison"
+    try:
+        import trafilatura
+        tf = trafilatura.extract(page, url=art.get("url"), include_comments=False, include_tables=False,
+                                 favor_recall=True, deduplicate=True) or ""
+        tf = nettoyer_texte(tf.replace("\n", " "), n)
+        if len(tf) >= 400 and len(tf) >= 0.8 * len(texte):
+            if len(desc) >= 40 and desc[:60] not in tf:
+                tf = nettoyer_texte(desc + " " + tf, n)
+            texte = tf
+            art["lecture"] = "trafilatura"
+    except Exception:
+        pass
     if len(texte) > len(art.get("text", "")):
         art["text"] = texte
         art["page_lue"] = True
@@ -1107,13 +1130,16 @@ def lire_debut_page(art: dict) -> None:
         lire_page(art, 1800)
 
 
+CONSIGNE_TRI_SEUL = """MODE TRI SEULEMENT (prioritaire sur la partie C) : la fiche sera rédigée ensuite par un autre rédacteur. Pour chaque fil retenu, remplis seulement "title" (titre provisoire, qui respecte la formule), "theme", "importance" et "type_etude" ; laisse "avant", "decouverte" et "apres" vides ("") et "mots" vide ([]). La décision, les doublons et le barème d'importance restent exactement les mêmes."""
+
+
 def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, dict, str]:
     rep = client.messages.create(
         model=modele_id,
         max_tokens=8000,   # le modèle peut réfléchir avant la fiche
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
-            article, sujets["science"], sujets["tech"])}],   # listes « déjà publié » en cache
+            article, sujets["science"], sujets["tech"]) + ([{"type": "text", "text": CONSIGNE_TRI_SEUL}] if REDACTION else [])}],
         output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}, "effort": economie.EFFORT_TRI},
         **economie.PARAMS_TRI,
     )
@@ -1318,7 +1344,7 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     apres = sans_publication(sans_et_apres(" ".join(str(fiche.get("apres", "")).split())))
     # Résumé d'un seul tenant, gardé pour les anciennes versions de l'app et la page de partage.
     resume = " ".join(x for x in (avant, decouverte, apres) if x) or str(fiche.get("summary", "")).strip()
-    if not titre or not resume:
+    if not titre or (not resume and not REDACTION):
         raise ValueError(f"fiche {FIL_NOM[feed]} sans titre ou sans résumé")
     mots = mots_valides(fiche.get("mots") or [], " ".join((titre, avant, decouverte, apres)))
 
@@ -1350,24 +1376,18 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     }
 
 
-def ameliorer_fiche(client, modele: dict, art: dict, ligne: dict) -> float:
-    """Rédaction en deux temps (redaction.rediger_complet) : réécriture puis relecture critique
-    (une 2e relecture seulement si des défauts mesurables restent).
-    Modifie `ligne` sur place (titre, paragraphes, mots, type d'étude). Renvoie le coût ($).
-    Ne lève jamais d'erreur : en cas de souci, la fiche garde le premier jet."""
-    fil = ligne["feed"]
-    res = redaction.rediger_complet(client, modele["id"], modele["prix"], art, fil, ligne)
-    total = res["cout"]
-    finale, d = res["finale"], res["redacteur"]
-    if not finale:
-        log(f"  ✎ réécriture impossible ({res['diag'][:80]}) : premier jet gardé")
-        return total
+def appliquer_redaction(ligne: dict, res: dict | None) -> bool:
+    """Reporte sur la fiche le résultat de redaction.rediger_lot. Faux si la rédaction a échoué."""
+    if not res or not res.get("finale"):
+        log(f"  ✖ rédaction impossible ({(res or {}).get('diag', '')[:80]}) : « {ligne['title'][:60]} »")
+        return False
+    finale, d, fil = res["finale"], res["redacteur"], ligne["feed"]
     titre = " ".join(str(finale.get("title", "")).split()).rstrip(".")
     avant = sans_publication(" ".join(str(finale.get("avant", "")).split()))
     decouverte = sans_publication(" ".join(str(finale.get("decouverte", "")).split()))
     apres = sans_publication(sans_et_apres(" ".join(str(finale.get("apres", "")).split())))
     if not titre or not decouverte:
-        return total
+        return False
     ancien = ligne["title"]
     ligne.update({
         "title": titre, "avant": avant or None, "decouverte": decouverte, "apres": apres or None,
@@ -1378,9 +1398,10 @@ def ameliorer_fiche(client, modele: dict, art: dict, ligne: dict) -> float:
         ligne["type_etude"] = d["type_etude"]
     elif d.get("type_etude") == "aucun":          # preuve mathématique, travail théorique : pas de badge
         ligne["type_etude"] = None
-    log(f"  ✎ réécrite, {res['relectures']} relecture(s), {len(res['problemes'])} défaut(s) corrigé(s)"
-        f"{', reste : ' + ' ; '.join(res['restants'])[:120] if res['restants'] else ''} : « {ancien[:50]} » → « {titre[:60]} »")
-    return total
+    log(f"  ✎ rédigée{' (lot)' if res.get('lot') else ''}, {res['relectures']} relecture(s), "
+        f"{len(res['problemes'])} défaut(s) corrigé(s), {res['cout']:.4f} $"
+        f"{', reste : ' + ' ; '.join(res['restants'])[:120] if res['restants'] else ''} : « {ancien[:45]} » → « {titre[:60]} »")
+    return True
 
 
 COLONNES_005 = ("avant", "decouverte", "apres", "mots", "type_etude")
@@ -1500,7 +1521,7 @@ def main() -> int:
         return 0
     redaction_active = REDACTION and mode_budget == "normal"
     if REDACTION and not redaction_active:
-        log("💶 En avance sur le budget du mois : pas de réécriture ni d'« À venir » à ce passage.")
+        log("💶 En avance sur le budget du mois : rédaction sans relecture et sans « À venir » à ce passage.")
     for u, d in list(ATTENTE.items()):          # trop vieux : abandonné
         if d < (MAINTENANT - timedelta(days=ATTENTE_JOURS)).isoformat():
             db.marquer_ecarte(u, "illisible")
@@ -1524,6 +1545,7 @@ def main() -> int:
     ignores, doublons, erreurs = [], [], []
     conso = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
     cout_redaction = [0.0]             # coût de la rédaction en deux temps ($)
+    a_rediger = []                     # (article, fiches, explication) retenus, rédigés après le tri
     appels = 0
     a_venir.preparer_attendus(db, log)      # événements du moment : articles prioritaires
     if PRESELECTION:
@@ -1652,12 +1674,19 @@ def main() -> int:
                 log(f"  ⚖ famille au plafond ({FAMILLE_DU_THEME.get(lignes[0]['theme'])}) : {art['title'][:70]}")
                 continue
             lignes = gardees
-            if redaction_active and art.get("page_lue"):
+            if REDACTION:
+                # Rédaction différée : toutes les fiches retenues sont rédigées ensemble après le tri
                 for l in lignes:
-                    if cout_redaction[0] < PLAFOND_REDACTION:
-                        cout_redaction[0] += ameliorer_fiche(client, modele, art, l)
-                    else:
-                        log("  ✎ plafond de la rédaction atteint : premier jet gardé")
+                    equilibre.ajouter(l["feed"], l.get("family") or FAMILLE_DU_THEME.get(l["theme"]))
+                    sujets[l["feed"]].insert(0, l["title"])
+                nb_articles += 1
+                decisions[decision] += 1
+                for f in {l["feed"] for l in lignes}:
+                    par_fil[f] = par_fil.get(f, 0) + 1
+                a_rediger.append((art, lignes, explication))
+                log(f"  ✓ retenu ({' + '.join(FIL_NOM[l['feed']] for l in lignes)}, "
+                    f"{lignes[0]['importance']}★) : {lignes[0]['title'][:70]}")
+                continue
             for l in lignes:
                 l["_qualite"] = controle_qualite(l, art)
             if any(trop_pauvre(l["_qualite"], art) for l in lignes):
@@ -1691,6 +1720,35 @@ def main() -> int:
             erreurs.append((art, msg))
             log(f"  ✖ erreur    : {art['title'][:70]} → {msg}")
             time.sleep(1)
+
+    # --- Rédaction de toutes les fiches retenues (réécriture + relecture), par lot ---
+    if a_rediger:
+        items = [(f"f{k}-{j}", art, l["feed"], l) for k, (art, lignes, _) in enumerate(a_rediger)
+                 for j, l in enumerate(lignes)]
+        log(f"\n✎ Rédaction de {len(items)} fiche(s){' par lot' if PAR_LOT else ''}…")
+        resultats, c = redaction.rediger_lot(client, modele["id"], modele["prix"], items, par_lot=PAR_LOT,
+                                             relectures_max=2 if redaction_active else 0,
+                                             plafond=PLAFOND_REDACTION, attente_lot=ATTENTE_LOT, log=log)
+        cout_redaction[0] += c
+        for k, (art, lignes, explication) in enumerate(a_rediger):
+            pretes = [l for j, l in enumerate(lignes) if appliquer_redaction(l, resultats.get(f"f{k}-{j}"))]
+            if not pretes:
+                erreurs.append((art, "rédaction impossible"))   # pas écarté : repris au prochain passage
+                continue
+            for l in pretes:
+                l["_qualite"] = controle_qualite(l, art)
+            ATTENTE.pop(art["url"], None)
+            completer_image(art)
+            for ligne in pretes:
+                if db.inserer(ligne) == "doublon":
+                    doublons.append((art, f"même lien déjà dans {FIL_NOM[ligne['feed']]}"))
+                    continue
+                ligne["explication"] = explication
+                if ligne["_qualite"]:
+                    log(f"  ⚠ qualité : {' ; '.join(ligne['_qualite'])}")
+                ajoutes.append(ligne)
+                log(f"  ✔ {FIL_NOM[ligne['feed']]:<12} [{ligne['importance']}★ {ligne['theme']}"
+                    f"{' 📷' if ligne['image_url'] else ''}] : {ligne['title']}")
 
     # --- Relecture des titres (« test du passant », titres.py), avant traductions et notifications ---
     nb_titres, cout_titres = titres.passage_agent(db, client, ajoutes, log)

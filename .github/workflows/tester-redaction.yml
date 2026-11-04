@@ -23,7 +23,7 @@ permissions:
 jobs:
   tester:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -43,7 +43,9 @@ jobs:
           NB: ${{ inputs.nb || '12' }}
           # Lot de fiches testé (décalage dans les fiches publiées, de la plus récente à la plus ancienne)
           TITRES: ""
-          DECALAGE: "86"
+          DECALAGE: "0"
+          PAR_LOT: "1"
+          TRI_SEUL: "1"
           REDACTION_EFFORT: "low"
           PLAFOND: "1.0"
         run: python tester_redaction.py

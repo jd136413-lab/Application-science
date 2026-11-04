@@ -221,8 +221,9 @@ def _json(texte: str) -> dict:
 
 def message(art: dict, fil: str, brouillon: dict) -> str:
     jet = {k: brouillon.get(k) for k in ("title", "avant", "decouverte", "apres", "mots", "type_etude")}
-    if os.environ.get("SANS_BROUILLON"):
-        jet_txt = f"Premier jet : aucun (écris à partir de l'article). Titre d'un collègue, pour info : {brouillon.get('title', '')}\n\n"
+    if os.environ.get("SANS_BROUILLON") or not brouillon.get("decouverte"):
+        jet_txt = (f"Premier jet : aucun (écris à partir de l'article). Titre provisoire du trieur, pour info : "
+                   f"{brouillon.get('title', '')}\n\n")
     else:
         jet_txt = f"Premier jet (à améliorer, pas à recopier) :\n{json.dumps(jet, ensure_ascii=False)}\n\n"
     return (f"Fil : {'Sciences' if fil == 'science' else 'Technologies'}\n"
@@ -534,55 +535,195 @@ def euros(texte: str) -> str:
     return texte
 
 
-def rediger_complet(client, modele_id: str, prix: tuple, art: dict, fil: str, brouillon: dict) -> dict:
-    """Chaîne complète, identique en test et dans l'agent (03/11) :
-    1. réécriture ; 2. relecture critique (avec les défauts mesurés) ;
-    3. si des défauts MESURABLES restent, une 2e relecture (seulement dans ce cas) ;
-    4. titre de secours et garde-fou anti-caractères étrangers.
-    Renvoie {"finale", "redacteur", "problemes", "restants", "relectures", "cout", "jetons", "diag"} ;
-    "finale" vaut None si la réécriture a échoué (on garde alors le premier jet)."""
-    jetons = {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}
+# ---------------------------------------------------------------------
+# Chaîne complète, par lot (04/11) : toutes les fiches d'un passage sont envoyées
+# ensemble au « traitement par lot » d'Anthropic (Message Batches API), facturé
+# 50 % moins cher. Les réponses arrivent en général en quelques minutes ; au-delà
+# de l'attente maximale, on annule et on termine par des appels directs (prix normal).
+# ---------------------------------------------------------------------
 
-    def compter(c):
-        for k in jetons:
-            jetons[k] += c.get(k, 0)
+def _texte(m) -> str:
+    return "".join(b.text for b in m.content if getattr(b, "type", "") == "text")
 
-    res = {"finale": None, "redacteur": None, "problemes": [], "restants": [], "relectures": 0, "diag": ""}
-    d, c = rediger(client, modele_id, art, fil, brouillon)
-    compter(c)
-    if d:
-        res["redacteur"] = d
-        candidats = d.get("titres_candidats") or []
-        finale = d
-        for _ in range(2):
-            avant_rel = verifications(finale)
-            if res["relectures"] and not avant_rel:
+
+def _params_redaction(modele_id: str, art: dict, fil: str, brouillon: dict) -> dict:
+    return dict(model=modele_id, max_tokens=16000,
+                system=[{"type": "text", "text": CONSIGNE, "cache_control": {"type": "ephemeral"}}],
+                messages=[{"role": "user", "content": message(art, fil, brouillon)}],
+                output_config={"format": {"type": "json_schema", "schema": schema(fil)}, "effort": EFFORT},
+                **economie.PARAMS_REDACTION)
+
+
+def _params_relecture(modele_id: str, art: dict, fil: str, fiche: dict) -> dict:
+    a_relire = {k: fiche.get(k) for k in ("title", "avant", "decouverte", "apres", "mots")}
+    mesures = verifications(fiche)
+    mesures_txt = ("Défauts MESURÉS automatiquement (certains : liste-les et corrige-les tous) :\n- "
+                   + "\n- ".join(mesures) + "\n\n") if mesures else ""
+    contenu = (f"Fil : {'Sciences' if fil == 'science' else 'Technologies'}\n\n"
+               f"Fiche à relire :\n{json.dumps(a_relire, ensure_ascii=False)}\n\n{mesures_txt}"
+               f"Article source — {art.get('source_name', '')} — titre d'origine : {art.get('title', '')}\n"
+               f"{art.get('text', '')}")
+    return dict(model=modele_id, max_tokens=16000,
+                system=[{"type": "text", "text": CONSIGNE_RELECTURE, "cache_control": {"type": "ephemeral"}}],
+                messages=[{"role": "user", "content": contenu}],
+                output_config={"format": {"type": "json_schema", "schema": SCHEMA_RELECTURE}, "effort": EFFORT},
+                **economie.PARAMS_REDACTION)
+
+
+def _lire_redaction(texte: str) -> dict | None:
+    d = _json(texte)
+    if d.get("title") and d.get("decouverte"):
+        d["title"] = " ".join(str(d["title"]).split()).rstrip(".")
+        return d
+    return None
+
+
+def _lire_relecture(texte: str, fiche: dict) -> dict | None:
+    d = _json(texte)
+    if not (d.get("title") and d.get("decouverte")):
+        return None
+    d["title"] = " ".join(str(d["title"]).split()).rstrip(".")
+    corrigee = dict(fiche)
+    for k in ("title", "avant", "decouverte", "apres", "mots"):
+        corrigee[k] = d.get(k, fiche.get(k))
+    corrigee["problemes"] = d.get("problemes") or []
+    return corrigee
+
+
+def _appeler(client, demandes: dict, par_lot: bool, attente: float, log) -> tuple[dict, float]:
+    """Envoie les demandes {id: paramètres}. Renvoie ({id: (texte, usage, par_lot, arrêt)}, secondes d'attente).
+    Par lot si possible (−50 %) ; ce qui n'est pas revenu à temps est fait en appel direct."""
+    import time
+    res, attendu = {}, 0.0
+    if par_lot and demandes and attente > 0:
+        debut = time.time()
+        try:
+            lot = client.messages.batches.create(
+                requests=[{"custom_id": cid, "params": p} for cid, p in demandes.items()])
+            while lot.processing_status != "ended" and time.time() - debut < attente:
+                time.sleep(15)
+                lot = client.messages.batches.retrieve(lot.id)
+            if lot.processing_status != "ended":
+                log(f"  ⌛ lot trop lent ({int(time.time() - debut)} s) : annulé, fin en appels directs")
+                client.messages.batches.cancel(lot.id)
+                for _ in range(12):
+                    time.sleep(5)
+                    lot = client.messages.batches.retrieve(lot.id)
+                    if lot.processing_status == "ended":
+                        break
+            if lot.processing_status == "ended":
+                for r in client.messages.batches.results(lot.id):
+                    if r.result.type == "succeeded":
+                        m = r.result.message
+                        res[r.custom_id] = (_texte(m), m.usage, True, m.stop_reason)
+        except Exception as ex:
+            log(f"  ⚠ traitement par lot impossible ({ex.__class__.__name__}: {str(ex)[:120]}) : appels directs")
+        attendu = time.time() - debut
+    for cid, p in demandes.items():
+        if cid in res:
+            continue
+        for essai in range(3):
+            try:
+                m = client.messages.create(**p)
+                res[cid] = (_texte(m), m.usage, False, m.stop_reason)
                 break
-            r, c = relire(client, modele_id, art, fil, finale)
-            compter(c)
-            if not r:
-                res["diag"] = c.get("diag", "")
-                break
-            res["relectures"] += 1
-            res["problemes"] += r.get("problemes") or []
-            choisir_titre(r, candidats)
+            except Exception as ex:
+                res[cid] = ("", None, False, f"{ex.__class__.__name__}: {str(ex)[:200]}")
+                time.sleep(10 * (essai + 1))
+    return res, attendu
+
+
+def rediger_lot(client, modele_id: str, prix: tuple, items: list, par_lot: bool = False,
+                relectures_max: int = 2, plafond: float | None = None, attente_lot: float = 600,
+                log=print) -> tuple[dict, float]:
+    """items : liste de (id, article, fil, brouillon). Pour chaque fiche : réécriture, puis
+    relecture critique (avec les défauts mesurés), puis 2e relecture seulement s'il reste des
+    défauts mesurables ; enfin titre de secours, euros, garde-fou anti-caractères étrangers.
+    Renvoie ({id: résultat}, coût total en $). Résultat : {"finale", "redacteur", "problemes",
+    "restants", "relectures", "cout", "jetons", "diag", "lot"} ; "finale" = None si échec."""
+    total = [0.0]
+    out = {cid: {"finale": None, "redacteur": None, "problemes": [], "restants": [], "relectures": 0,
+                 "diag": "", "cout": 0.0, "lot": False,
+                 "jetons": {"in": 0, "out": 0, "cache_w": 0, "cache_r": 0}} for cid, *_ in items}
+    info = {cid: (art, fil, br) for cid, art, fil, br in items}
+    reste = [attente_lot]
+
+    def compter(cid, usage, lot):
+        if usage is None:
+            return
+        j = out[cid]["jetons"]
+        t = {"in": usage.input_tokens or 0, "out": usage.output_tokens or 0,
+             "cache_w": getattr(usage, "cache_creation_input_tokens", 0) or 0,
+             "cache_r": getattr(usage, "cache_read_input_tokens", 0) or 0}
+        for k in j:
+            j[k] += t[k]
+        c = ((t["in"] + t["cache_w"] * 1.25 + t["cache_r"] * 0.1) * prix[0] + t["out"] * prix[1]) / 1e6
+        c *= 0.5 if lot else 1.0
+        out[cid]["cout"] += c
+        out[cid]["lot"] = out[cid]["lot"] or lot
+        total[0] += c
+
+    def tour(demandes):
+        r, attendu = _appeler(client, demandes, par_lot, reste[0], log)
+        reste[0] -= attendu
+        return r
+
+    # 1) Réécriture (avec un 2e essai direct si la réponse est inutilisable)
+    rep = tour({cid: _params_redaction(modele_id, art, fil, br) for cid, (art, fil, br) in info.items()})
+    finales = {}
+    for cid, (texte, usage, lot, arret) in rep.items():
+        compter(cid, usage, lot)
+        d = _lire_redaction(texte)
+        if d is None:
+            art, fil, br = info[cid]
+            r2, _ = _appeler(client, {cid: _params_redaction(modele_id, art, fil, br)}, False, 0, log)
+            texte, usage, lot, arret = r2[cid]
+            compter(cid, usage, lot)
+            d = _lire_redaction(texte)
+        if d is None:
+            out[cid]["diag"] = f"arrêt={arret}, {len(texte)} caractères"
+            continue
+        out[cid]["redacteur"] = d
+        finales[cid] = d
+    # 2) Relectures
+    for n in range(relectures_max):
+        if plafond is not None and total[0] >= plafond:
+            log(f"  ✎ plafond de la rédaction atteint ({total[0]:.4f} $) : pas d'autre relecture")
+            break
+        a_relire = [cid for cid in finales if n == 0 or verifications(finales[cid])]
+        if not a_relire:
+            break
+        avant = {cid: verifications(finales[cid]) for cid in a_relire}
+        rep = tour({cid: _params_relecture(modele_id, info[cid][0], info[cid][1], finales[cid]) for cid in a_relire})
+        for cid, (texte, usage, lot, arret) in rep.items():
+            compter(cid, usage, lot)
+            r = _lire_relecture(texte, finales[cid])
+            if r is None:
+                out[cid]["diag"] = f"relecture : arrêt={arret}"
+                continue
+            out[cid]["relectures"] += 1
+            out[cid]["problemes"] += r.get("problemes") or []
+            choisir_titre(r, out[cid]["redacteur"].get("titres_candidats") or [])
             # on garde la version relue sauf si elle a PLUS de défauts mesurables
-            if res["relectures"] == 1 or len(verifications(r)) <= len(avant_rel):
-                finale = r
-        if finale is not None:
-            finale = dict(finale)
-            # Titre encore trop long ou invalide : on reprend le titre du premier jet s'il est valide
-            if not titre_valide(str(finale.get("title", ""))) and titre_valide(str(brouillon.get("title", ""))):
-                finale["title"] = brouillon["title"]
-            for k in ("avant", "decouverte", "apres"):
-                finale[k] = euros(finale.get(k, ""))
+            if n == 0 or len(verifications(r)) <= len(avant[cid]):
+                finales[cid] = r
+    # 3) Finitions gratuites
+    for cid, finale in finales.items():
+        br, d = info[cid][2], out[cid]["redacteur"]
+        finale = dict(finale)
+        if not titre_valide(str(finale.get("title", ""))) and titre_valide(str(br.get("title", ""))):
+            finale["title"] = br["title"]
+        for k in ("avant", "decouverte", "apres"):
+            finale[k] = euros(finale.get(k, ""))
         if any("non latins" in a for a in alertes(finale)):
             finale = d if not any("non latins" in a for a in alertes(d)) else None
-        res["finale"] = finale
-        res["restants"] = verifications(finale) if finale else []
-    else:
-        res["diag"] = c.get("diag", "")
-    res["jetons"] = jetons
-    res["cout"] = ((jetons["in"] + jetons["cache_w"] * 1.25 + jetons["cache_r"] * 0.1) * prix[0]
-                   + jetons["out"] * prix[1]) / 1e6
-    return res
+        out[cid]["finale"] = finale
+        out[cid]["restants"] = verifications(finale) if finale else []
+    return out, total[0]
+
+
+def rediger_complet(client, modele_id: str, prix: tuple, art: dict, fil: str, brouillon: dict) -> dict:
+    """Une seule fiche, appels directs (tests). Même chaîne que rediger_lot."""
+    res, _ = rediger_lot(client, modele_id, prix, [("f", art, fil, brouillon)],
+                         par_lot=bool(os.environ.get("PAR_LOT")))
+    return res["f"]

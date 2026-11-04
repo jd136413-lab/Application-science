@@ -47,7 +47,7 @@ concurrency:
 jobs:
   collecte:
     runs-on: ubuntu-latest
-    timeout-minutes: 25   # 160 sources à lire
+    timeout-minutes: 45   # 160 sources à lire + attente du traitement par lot (15 min max)
     steps:
       - uses: actions/checkout@v4
         with:
