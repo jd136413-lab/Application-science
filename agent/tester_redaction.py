@@ -74,6 +74,10 @@ def main() -> int:
                    f"source : {f['source_name']} · page lue : {'oui' if art.get('page_lue') else 'NON'} "
                    f"({len(art.get('text', ''))} caractères) · {f['source_url']}\n")
         out.append(bloc("Actuel (publié)", f))
+        if os.environ.get("LECTURE_SEULE"):          # relire les fiches publiées, sans appel à Claude
+            out.append(f"- _Mesures automatiques_ : {' ; '.join(redaction.verifications(f)) or 'aucun défaut'}\n"
+                       f"- _Ajoutée le_ : {f.get('created_at')}\n")
+            continue
         if not art.get("text"):
             out.append("_Article illisible : pas de réécriture._\n")
             continue

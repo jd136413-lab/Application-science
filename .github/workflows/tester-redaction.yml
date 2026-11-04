@@ -40,10 +40,11 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           MODELES: ${{ inputs.modeles || vars.TEST_MODELES || 'haiku' }}
-          NB: ${{ inputs.nb || '12' }}
+          NB: "5"
           # Lot de fiches testé (décalage dans les fiches publiées, de la plus récente à la plus ancienne)
           TITRES: ""
-          DECALAGE: "86"
+          DECALAGE: "0"
+          LECTURE_SEULE: "1"
           REDACTION_EFFORT: "low"
           PLAFOND: "1.0"
         run: python tester_redaction.py
