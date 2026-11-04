@@ -25,6 +25,12 @@ COMPLETER_PAR_PASSAGE = 6  # anciennes cartes sans infos pratiques complétées 
 HORIZON_JOURS = 540        # on ignore ce qui est prévu à plus de 18 mois
 PART_MAX_FAMILLE = 0.25    # comme les fils : un domaine ≤ 25 % des événements à venir, sauf ★★★ et plus
 MIN_PAR_FAMILLE = 2        # au début (peu d'événements), chaque domaine a droit à 2 événements
+# Rythme des nouvelles cartes (choix de Maxime, 04/11) : 5 à 8 par semaine. Les événements
+# ★★★ et plus passent TOUJOURS, quotas pleins ou non ; les quotas trient les autres.
+SEMAINE_MAX = 8            # nouvelles cartes sur 7 jours glissants
+PASSAGE_MAX = 2            # nouvelles cartes par passage de l'agent
+DOMAINE_SEMAINE_MAX = 2    # nouvelles cartes d'un même domaine sur 7 jours
+FIL_SEMAINE_MAX = 5        # nouvelles cartes d'un même fil (Sciences / Technologies) sur 7 jours
 LANCEMENTS_MAX = 3         # lancements spatiaux ajoutés au plus par passage
 LANCEMENTS_JOURS = 120     # on regarde les lancements des 4 prochains mois
 FICHIER_CALENDRIER = "calendrier_a_venir.json"   # événements connus longtemps à l'avance
@@ -443,6 +449,53 @@ def calendrier(db, existants: list[dict], futurs: list[dict], aujourd_hui: date,
     return n
 
 
+class Quota:
+    """Rythme des nouvelles cartes : compte ce qui a été ajouté ces 7 derniers jours."""
+
+    def __init__(self, db, log):
+        self.passage, self.semaine, self.familles, self.fils, self.ok = 0, 0, {}, {}, True
+        try:
+            depuis = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+            r = requests.get(_url(db), headers=db.headers, timeout=30, params={
+                "select": "family,feed", "created_at": f"gte.{depuis}", "limit": "200"})
+            r.raise_for_status()
+            for e in r.json():
+                self.compter(e.get("family"), e.get("feed"), passage=False)
+            log(f"À venir : {self.semaine} nouvelle(s) carte(s) sur 7 jours (rythme visé 5 à {SEMAINE_MAX})")
+        except Exception as ex:
+            self.ok = False
+            log(f"  ⚠ À venir : rythme de la semaine inconnu ({str(ex)[:60]}) : {PASSAGE_MAX} carte(s) au plus")
+
+    def compter(self, famille, fil, passage=True):
+        self.semaine += 1
+        self.passage += passage
+        self.familles[famille] = self.familles.get(famille, 0) + 1
+        self.fils[fil] = self.fils.get(fil, 0) + 1
+
+    def plein(self) -> bool:
+        """Plus de place pour les cartes ordinaires (★★ et moins) à ce passage."""
+        return self.passage >= PASSAGE_MAX or (self.ok and self.semaine >= SEMAINE_MAX)
+
+    def accepte(self, famille, fil, importance: int) -> str:
+        """Renvoie "" si la carte peut entrer, sinon la raison du refus."""
+        if importance >= 3:
+            return ""
+        if self.passage >= PASSAGE_MAX:
+            return f"déjà {PASSAGE_MAX} nouvelles cartes à ce passage"
+        if not self.ok:
+            return ""
+        if self.semaine >= SEMAINE_MAX:
+            return f"déjà {SEMAINE_MAX} nouvelles cartes cette semaine"
+        if self.familles.get(famille, 0) >= DOMAINE_SEMAINE_MAX:
+            return f"déjà {DOMAINE_SEMAINE_MAX} cartes de ce domaine cette semaine"
+        if self.fils.get(fil, 0) >= FIL_SEMAINE_MAX:
+            return f"fil déjà à {FIL_SEMAINE_MAX} cartes cette semaine"
+        return ""
+
+
+QUOTA: Quota | None = None
+
+
 def place_libre(futurs: list[dict], famille: str | None, importance: int) -> bool:
     """Plafond par domaine (choix de Maxime, 01/11) : un domaine ne dépasse pas 25 % des
     événements à venir, sauf pour les événements ★★★ et plus (toujours acceptés)."""
@@ -608,12 +661,18 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
         }
         if not ligne["title"] or not place_libre(futurs, ligne["family"], ligne["importance"]):
             continue
+        refus = QUOTA.accepte(ligne["family"], ligne["feed"], ligne["importance"]) if QUOTA else ""
+        if refus:
+            log(f"  · À venir : lancement « {ligne['title'][:50]} » pas ajouté ({refus})")
+            continue
         try:
             cree = _inserer(db, ligne)
             if cree:
                 futurs.append(cree)
                 existants.append(cree)
                 n += 1
+                if QUOTA:
+                    QUOTA.compter(ligne["family"], ligne["feed"])
                 log(f"  🚀 À venir : {q['event_date']} ({q['precision']}) — {ligne['title']}")
         except Exception as ex:
             log(f"  ⚠ À venir : lancement non ajouté ({str(ex)[:80]})")
@@ -712,6 +771,8 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
     if not NOUVELLES_COLONNES:
         log("ℹ À venir : infos pratiques en attente (lancer database/migration_011_a_venir_pratique.sql).")
     nouveaux = maj = arrives = 0
+    global QUOTA
+    QUOTA = Quota(db, log)
     urls = {e["source_url"] for e in existants}
     futurs = [e for e in existants if e["event_date"] >= aujourd_hui.isoformat()]
     # --- 0) Événements connus à l'avance + prochains lancements spatiaux ---
@@ -738,7 +799,8 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
         st = {"reporte": ", reporté", "annule": ", annulé"}.get(e.get("statut") or "", "")
         return f"{e['event_date']}{' ' + t if t else ''}{' ' + str(e.get('event_time')) + ' heure de Paris' if e.get('event_time') else ''}{st}"
 
-    for art in choix[:MAX_PAR_PASSAGE]:
+    # Quotas pleins : on n'examine que quelques articles, pour ne pas rater un grand événement (★★★)
+    for art in choix[:3 if QUOTA.plein() else MAX_PAR_PASSAGE]:
         try:
             lire_debut_page(art)
             liste = "\n".join(f"{k}. {e['title']} ({quand_txt(e)})" for k, e in enumerate(futurs)) or "(aucun)"
@@ -796,9 +858,14 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
             if not place_libre(futurs, fam, ligne["importance"]):
                 log(f"  · À venir : « {ligne['title'][:60]} » écarté (domaine déjà à 25 %)")
                 continue
+            refus = QUOTA.accepte(fam, feed, ligne["importance"])
+            if refus:
+                log(f"  · À venir : « {ligne['title'][:60]} » pas ajouté ({refus})")
+                continue
             cree = _inserer(db, ligne)
             if cree:
                 futurs.append(cree)
+                QUOTA.compter(fam, feed)
             urls.add(art["url"])
             nouveaux += 1
             log(f"  📅 À venir : {d} {ligne['type']} — {ligne['title']}")
