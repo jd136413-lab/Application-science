@@ -105,6 +105,10 @@ class _EcranMagazineState extends State<EcranMagazine> {
   void _allerNouveautes() {
     final f = filDemande;
     filDemande = null;
+    // Notification touchée : les nouvelles avancées viennent d'arriver, on les télécharge
+    // tout de suite (sinon l'écran « Nouveau pour vous » restait vide jusqu'au rafraîchissement).
+    unawaited(filsAvancees.mettreAJour('science'));
+    unawaited(filsAvancees.mettreAJour('tech'));
     setState(() {
       if (f == 'science' || f == 'tech') _fil = f!;
     });
@@ -818,7 +822,8 @@ class EcranNouveautesMag extends StatelessWidget {
                     style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
             ],
             liste: l,
-            vide: tr('Vous êtes à jour'),
+            // Pendant le téléchargement : « Mise à jour… » plutôt que « Vous êtes à jour »
+            vide: filsAvancees.enCours.contains(fil) ? tr('Mise à jour…') : tr('Vous êtes à jour'),
           );
         },
       );
