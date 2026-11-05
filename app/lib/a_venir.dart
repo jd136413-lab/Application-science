@@ -523,6 +523,98 @@ class PastilleJours extends StatelessWidget {
   }
 }
 
+/// Icône de ce qui se passe, devant le type (maquette 83 C).
+const Map<String, String> iconesTypes = {
+  'lancement': '🚀',
+  'arrivee': '🛰️',
+  'ciel': '🌠',
+  'sortie': '📦',
+  'presentation': '🎤',
+  'salon': '🏛️',
+  'sommet': '🌍',
+  'resultats': '📊',
+  'decision': '⚖️',
+  'prix': '🏆',
+  'mise_en_service': '⚡',
+  'essai': '✈️',
+  'evenement': '📅',
+  'annonce': '📣',
+};
+
+String iconeEvenement(Evenement e) {
+  if (e.type == 'sortie' && e.famille == 'gaming') return '🎮';
+  return iconesTypes[e.type] ?? '📅';
+}
+
+/// Titre de la liste : sans le thème du début (« Ciel : la pluie… » → « La pluie… »),
+/// le type et l'icône le disent déjà (maquette 83 C). Le détail garde le titre complet.
+String titreCourt(String titre) {
+  final i = titre.indexOf(' : ');
+  if (i <= 0 || titre.substring(0, i).split(' ').length > 3) return titre;
+  final reste = titre.substring(i + 3).trim();
+  if (reste.isEmpty) return titre;
+  return reste[0].toUpperCase() + reste.substring(1);
+}
+
+/// Vignette « compte à rebours » : gros chiffre + « jours » (maquette 83 C).
+class VignetteJours extends StatelessWidget {
+  final Evenement e;
+  const VignetteJours(this.e, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final f = e.fam;
+    final d = jourLocal(e);
+    String grand, petit;
+    if (e.precision != 'jour' && e.jours > 1) {
+      final m = _mois(d, court: true).replaceAll('.', '');
+      if (e.precision == 'avant') {
+        grand = '≤';
+        petit = m;
+      } else {
+        grand = m;
+        petit = '${d.year}';
+      }
+    } else if (e.enCours) {
+      grand = '●';
+      petit = tr('EN COURS');
+    } else if (e.jours <= 0) {
+      grand = tr('AUJ.');
+      petit = '';
+    } else if (e.jours == 1) {
+      grand = tr('DEMAIN');
+      petit = '';
+    } else {
+      grand = '${e.jours}';
+      petit = tr('jours');
+    }
+    final long = grand.length > 3;
+    return Container(
+      width: 50,
+      height: 54,
+      decoration: BoxDecoration(color: f.couleur, borderRadius: BorderRadius.circular(15)),
+      padding: const EdgeInsets.symmetric(horizontal: 3),
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(grand,
+              maxLines: 1,
+              style: police(policeTitres, taille: long ? 13 : 22, graisse: FontWeight.w800, couleur: f.icone, hauteur: 1)),
+        ),
+        if (petit.isNotEmpty) ...[
+          const SizedBox(height: 2),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(petit,
+                maxLines: 1,
+                style: police(policeTexte, taille: 10, graisse: FontWeight.w700, couleur: f.icone, hauteur: 1)),
+          ),
+        ],
+      ]),
+    );
+  }
+}
+
 class LigneEvenement extends StatelessWidget {
   final Evenement e;
   const LigneEvenement(this.e, {super.key});
@@ -540,18 +632,30 @@ class LigneEvenement extends StatelessWidget {
         onTap: () => ouvrirEvenement(context, e),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(12, 12, 4, 12),
-          child: Row(children: [
-            PastilleJours(e),
+          // Maquette 83 C : compte à rebours, icône + type + date, titre court, pourquoi ça compte.
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            VignetteJours(e),
             const SizedBox(width: 12),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('${tr(nomsTypes[e.type] ?? 'Événement').toUpperCase()} · ${dateEvenement(e)}',
+                Text('${iconeEvenement(e)} ${tr(nomsTypes[e.type] ?? 'Événement')} · ${dateEvenement(e)}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: police(policeTexte, taille: 11.5, graisse: FontWeight.w800, couleur: encre)),
                 const SizedBox(height: 3),
                 TexteArticle(e.titre,
-                    style: police(policeTitres, taille: 15, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.2)
+                    nettoyer: titreCourt,
+                    style: police(policeTitres, taille: 15.5, graisse: FontWeight.w700, couleur: p.texte, hauteur: 1.2)
                         .copyWith(decoration: e.annule ? TextDecoration.lineThrough : null)),
-                ...ligneCarte(context, e),
+                // Annulé, reporté ou visibilité dans le ciel : l'information la plus utile d'abord.
+                ...ligneCarte(context, e, statutSeulement: true),
+                if (!e.annule && !e.reporte && (e.pourquoi ?? '').isNotEmpty) ...[
+                  const SizedBox(height: 3),
+                  TexteArticle(e.pourquoi!,
+                      maxLines: 2,
+                      style: police(policeTexte, taille: 12, couleur: p.texteDiscret, hauteur: 1.3)),
+                ] else if (!e.annule && !e.reporte && e.type != 'ciel')
+                  ...ligneCarte(context, e),
               ]),
             ),
             IconButton(
@@ -699,7 +803,9 @@ const _bleuFond = Color(0xFFEEF0FA), _bleuTexte = Color(0xFF2F3E66);
     estSombre(context) ? (Color.lerp(texte, Colors.black, 0.55)!, Color.lerp(fond, Colors.white, 0.3)!) : (fond, texte);
 
 /// Ligne pratique sous le titre d'une carte de la liste : visibilité (ciel), statut, heure ou lieu.
-List<Widget> ligneCarte(BuildContext context, Evenement e) {
+/// [statutSeulement] : seulement annulé, reporté ou visibilité (sinon rien).
+List<Widget> ligneCarte(BuildContext context, Evenement e, {bool statutSeulement = false}) {
+  if (statutSeulement && !e.annule && !e.reporte && e.type != 'ciel') return const [];
   final p = palette(context);
   String? texte;
   Color couleur = p.texteDiscret;

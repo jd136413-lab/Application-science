@@ -6851,6 +6851,27 @@ ko 예정
 id Segera
 vi Sắp tới
 
+@ jours
+en days
+es días
+pt dias
+de Tage
+it giorni
+nl dagen
+pl dni
+ru дн.
+uk дн.
+tr gün
+ar أيام
+hi दिन
+bn দিন
+ur دن
+zh 天
+ja 日
+ko 일
+id hari
+vi ngày
+
 @ AUJ.
 en TODAY
 es HOY
