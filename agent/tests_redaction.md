@@ -1,11 +1,106 @@
-# Test de la rédaction — 05/11/2026 07:54 UTC
+# Test de la rédaction — 05/11/2026 18:01 UTC
 
-Modèles : haiku · 45 fiches
+Modèles : haiku · 40 fiches
 
 
 ---
 
-## 1. Cancer du poumon : la tumeur presque détruite chez 7 malades sur 10
+## 1. Muscles : un composé double l'action d'une protéine réparatrice chez la souris
+
+Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104005226.htm
+
+**Actuel (publié)**
+
+- **Titre** : Muscles : un composé double l'action d'une protéine réparatrice chez la souris
+- **Avant** : Avec l'âge, les muscles se réparent moins bien. Une protéine clé de la réparation peut être abîmée par des modifications chimiques, ce qui peut l'empêcher de réveiller les cellules qui réparent les fibres musculaires.
+- **Découverte** : Une équipe de l'université de Kyushu, au Japon, a identifié un composé qui protège cette protéine et renforce son action. Ajouté à raison d'une molécule pour 8 000 molécules de protéine, il a plus que doublé la capacité de celle-ci à se fixer à son récepteur. Il la protège aussi des modifications chimiques liées à l'âge.
+- **Et après** : Cette piste pourrait aider à limiter la perte musculaire et à conserver la force avec l'âge. Pour l'instant, les résultats viennent d'expériences en laboratoire et de premiers essais chez la souris.
+- **Mots** : (aucun)
+- **Type** : laboratoire
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T17:40:47.658656+00:00
+
+
+---
+
+## 2. Mars : un gaz sortant de fissures suggère une activité volcanique endormie
+
+Fil : science · 2★ · source : ESA · page lue : oui (4726 caractères) · https://www.esa.int/articles/news-media/news/european-orbiter-detects-hints-of-volcanic-activity-on-mars
+
+**Actuel (publié)**
+
+- **Titre** : Mars : un gaz sortant de fissures suggère une activité volcanique endormie
+- **Avant** : Les volcans de Mars sont parmi les plus grands du Système solaire, mais on ne sait pas s'ils sont encore actifs. Aucune coulée de lave ni éruption n'y a jamais été observée.
+- **Découverte** : Une équipe internationale dirigée par Alexander Trokhimovskiy a repéré du chlorure d'hydrogène au-dessus de fissures du volcan Alba Mons, au début de l'été martien. Ce gaz, mesuré par le satellite européen ExoMars Trace Gas Orbiter, apparaît à un moment où il devrait disparaître. Les images de la caméra CaSSIS montrent des fissures fraîches, parfois longues de plusieurs centaines de mètres.
+- **Et après** : Si cette hypothèse se confirme, Mars garderait une chaleur interne suffisante pour un volcanisme récent, et peut-être actuel. La limite est importante : le gaz n'a pas été relié de façon certaine à une roche fondue, et l'équipe n'a pas observé d'éruption.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T17:40:47.242835+00:00
+
+
+---
+
+## 3. Matériaux : des liens moléculaires souples donnent des cristaux à structure inédite
+
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104012248.htm
+
+**Actuel (publié)**
+
+- **Titre** : Matériaux : des liens moléculaires souples donnent des cristaux à structure inédite
+- **Avant** : Pour créer des matériaux sur mesure, les chercheurs doivent contrôler comment les particules minuscules se collent entre elles. Depuis environ vingt ans, les chercheurs pensaient qu'il fallait des liens rigides, faute de quoi l'assemblage échouait.
+- **Découverte** : Des chercheurs du Massachusetts Institute of Technology, une université américaine, ont utilisé des molécules connectrices très souples, qui se plient. Avec ces liens, les particules s'assemblent, selon les chercheurs, en structures ordonnées jamais observées auparavant. Selon Rob Macfarlane, professeur dans cette université, la souplesse et les charges électriques des connecteurs peuvent déterminer la structure obtenue.
+- **Et après** : Cette méthode pourrait permettre de concevoir des matériaux aux propriétés choisies, pour l'électronique, la médecine, l'énergie ou l'agriculture. Mais il s'agit d'une approche nouvelle, et les applications concrètes restent à démontrer.
+- **Mots** : (aucun)
+- **Type** : laboratoire
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T17:40:46.862316+00:00
+
+
+---
+
+## 4. Robots : des cellules nerveuses vivantes dirigent un chien robot vers une cible
+
+Fil : tech · 1★ · source : Techno-Science.net · page lue : oui (2288 caractères) · https://www.techno-science.net/fr/actualites/chien-robot-neurones-humains-puce-29686
+
+**Actuel (publié)**
+
+- **Titre** : Robots : des cellules nerveuses vivantes dirigent un chien robot vers une cible
+- **Avant** : Un ordinateur habituel fonctionne uniquement avec de l'électronique. Des chercheurs testent une autre approche : utiliser un petit réseau de neurones vivants pour piloter une machine.
+- **Découverte** : Des chercheurs de l'entreprise australienne Cortical Labs ont relié un chien robot à une puce portant des cellules nerveuses cultivées en laboratoire, issues de cellules souches humaines. La puce envoie des impulsions électriques à ces cellules, qui répondent par leurs propres signaux ; un programme transforme ces réponses en déplacements. Dans une démonstration, le robot a été dirigé vers une cible dans une situation simple.
+- **Et après** : Ces systèmes pourraient un jour s'adapter à de nouvelles situations en consommant peu d'énergie. Mais ce n'est pas encore démontré dans des applications réelles, et les neurones ne forment pas un cerveau entier.
+- **Mots** : **Cellules souches** → Éléments de l'organisme capables de se transformer en différents types de tissus, par exemple en neurones spécialisés comme ceux du système nerveux.
+- **Type** : demonstration
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T17:40:46.462662+00:00
+
+
+---
+
+## 5. Montres connectées : une IA repère 66 % des hypertensions sans brassard
+
+Fil : tech · 2★ · source : Nature · page lue : oui (2713 caractères) · https://www.nature.com/articles/s41586-026-11336-3
+
+**Actuel (publié)**
+
+- **Titre** : Montres connectées : une IA repère 66 % des hypertensions sans brassard
+- **Avant** : L'hypertension, une tension artérielle trop élevée, touche plus de la moitié des adultes concernés qui l'ignorent. Une seule mesure au cabinet médical rate près de la moitié des personnes malades.
+- **Découverte** : Des chercheurs ont testé une intelligence artificielle sur une montre connectée grand public, auprès de 196 personnes sans maladie cardiovasculaire connue. La montre mesure le pouls au poignet et les mouvements, sans brassard ni calibrage. Sur une semaine de mesures, elle a repéré 66 % des hypertensions et reconnu 90 % des personnes saines.
+- **Et après** : Cette méthode pourrait signaler des personnes à risque sans appareil spécial, pour les orienter vers un médecin. Mais elle ne pose pas le diagnostic : un brassard reste nécessaire pour confirmer, et l'étude reste limitée à 196 participants.
+- **Mots** : (aucun)
+- **Type** : prototype
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T17:40:45.975867+00:00
+
+
+---
+
+## 6. Cancer du poumon : la tumeur presque détruite chez 7 malades sur 10
 
 Fil : science · 1★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04745-4
 
@@ -24,7 +119,7 @@ Fil : science · 1★ · source : Nature Medicine · page lue : oui (6000 caract
 
 ---
 
-## 2. Obésité : une molécule naturelle trouvée par IA réduit l'appétit des animaux
+## 7. Obésité : une molécule naturelle trouvée par IA réduit l'appétit des animaux
 
 Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104004909.htm
 
@@ -43,7 +138,7 @@ Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 ---
 
-## 3. Épilepsie : chez trois malades, les crises baissent de plus de 90 %
+## 8. Épilepsie : chez trois malades, les crises baissent de plus de 90 %
 
 Fil : science · 2★ · source : Nature · page lue : oui (3550 caractères) · https://www.nature.com/articles/d41586-026-03566-2
 
@@ -62,7 +157,7 @@ Fil : science · 2★ · source : Nature · page lue : oui (3550 caractères) ·
 
 ---
 
-## 4. Espace : un drone détourne son atterrissage simulé vers une zone plus sûre
+## 9. Espace : un drone détourne son atterrissage simulé vers une zone plus sûre
 
 Fil : tech · 1★ · source : NASA · page lue : oui (3796 caractères) · https://www.nasa.gov/centers-and-facilities/armstrong/nasa-navigation-experiment-shows-promise-for-planetary-landings/
 
@@ -81,9 +176,9 @@ Fil : tech · 1★ · source : NASA · page lue : oui (3796 caractères) · http
 
 ---
 
-## 5. Intelligence artificielle : des programmes planifient et réalisent des expériences sur l'ADN
+## 10. Intelligence artificielle : des programmes planifient et réalisent des expériences sur l'ADN
 
-Fil : tech · 2★ · source : Nature · page lue : oui (1892 caractères) · https://www.nature.com/articles/d41586-026-03270-1
+Fil : tech · 2★ · source : Nature · page lue : oui (1695 caractères) · https://www.nature.com/articles/d41586-026-03270-1
 
 **Actuel (publié)**
 
@@ -100,7 +195,7 @@ Fil : tech · 2★ · source : Nature · page lue : oui (1892 caractères) · ht
 
 ---
 
-## 6. Espace : une collision géante laisse une traînée de poussière noire autour d'une étoile
+## 11. Espace : une collision géante laisse une traînée de poussière noire autour d'une étoile
 
 Fil : science · 2★ · source : Les Numériques · page lue : oui (2524 caractères) · https://www.lesnumeriques.com/astronomie-conquete-spatiale/une-gigantesque-structure-se-cache-dans-un-systeme-stellaire-voisin-et-elle-est-noire-comme-l-encre-n266812.html
 
@@ -119,7 +214,7 @@ Fil : science · 2★ · source : Les Numériques · page lue : oui (2524 caract
 
 ---
 
-## 7. Impression 3D : un filament recyclé rend les prothèses tactiles
+## 12. Impression 3D : un filament recyclé rend les prothèses tactiles
 
 Fil : tech · 1★ · source : 3D Printing Industry · page lue : oui (4685 caractères) · https://3dprintingindustry.com/news/recycled-filament-lets-3d-printed-prosthetics-use-touchscreens-256132/?utm_source=rss&utm_medium=rss&utm_campaign=recycled-filament-lets-3d-printed-prosthetics-use-touchscreens
 
@@ -138,7 +233,7 @@ Fil : tech · 1★ · source : 3D Printing Industry · page lue : oui (4685 cara
 
 ---
 
-## 8. Trous noirs : des amas d'étoiles ultra-denses pourraient fabriquer leurs graines géantes
+## 13. Trous noirs : des amas d'étoiles ultra-denses pourraient fabriquer leurs graines géantes
 
 Fil : science · 2★ · source : Les Numériques · page lue : oui (3300 caractères) · https://www.lesnumeriques.com/astronomie-conquete-spatiale/james-webb-et-trous-noirs-supermassifs-et-si-leur-origine-venait-des-gemmes-cosmiques-deja-decouvertes-n266713.html
 
@@ -157,7 +252,7 @@ Fil : science · 2★ · source : Les Numériques · page lue : oui (3300 caract
 
 ---
 
-## 9. Magnétisme : une troisième famille de magnétisme confirmée par des rayons X
+## 14. Magnétisme : une troisième famille de magnétisme confirmée par des rayons X
 
 Fil : science · 3★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104012256.htm
 
@@ -176,7 +271,7 @@ Fil : science · 3★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 ---
 
-## 10. Temps : un chronomètre aux rayons X mesure des durées de quelques attosecondes
+## 15. Temps : un chronomètre aux rayons X mesure des durées de quelques attosecondes
 
 Fil : science · 3★ · source : Nature · page lue : oui (1014 caractères) · https://www.nature.com/articles/d41586-026-03423-2
 
@@ -195,7 +290,7 @@ Fil : science · 3★ · source : Nature · page lue : oui (1014 caractères) ·
 
 ---
 
-## 11. Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
+## 16. Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
 
 Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-jwst-may-have-found-where-heavy-black-hole-seeds-formed
 
@@ -214,7 +309,7 @@ Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caract�
 
 ---
 
-## 12. Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
+## 17. Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
 
 Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-vera-rubin-has-found-two-more-of-the-milky-ways-dim-satellites
 
@@ -233,7 +328,7 @@ Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caract�
 
 ---
 
-## 13. Espace : une faille de Mars a glissé et causé un séisme
+## 18. Espace : une faille de Mars a glissé et causé un séisme
 
 Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2662 caractères) · https://www.techno-science.net/fr/actualites/mars-valles-marineris-seisme-actif-29661
 
@@ -252,7 +347,7 @@ Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2662 car
 
 ---
 
-## 14. Drones : un cadre souple se déforme au choc et reste en vol
+## 19. Drones : un cadre souple se déforme au choc et reste en vol
 
 Fil : tech · 1★ · source : ETH Zurich · page lue : oui (6000 caractères) · https://ethz.ch/en/news-and-events/eth-news/news/2026/11/new-flexible-drone-can-withstand-collisions.html
 
@@ -271,9 +366,9 @@ Fil : tech · 1★ · source : ETH Zurich · page lue : oui (6000 caractères) �
 
 ---
 
-## 15. Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
+## 20. Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
 
-Fil : tech · 2★ · source : TechCrunch · page lue : oui (4699 caractères) · https://techcrunch.com/2026/11/03/orbital-matter-3d-printed-the-first-rigid-beam-in-the-vacuum-of-space/
+Fil : tech · 2★ · source : TechCrunch · page lue : oui (4687 caractères) · https://techcrunch.com/2026/11/03/orbital-matter-3d-printed-the-first-rigid-beam-in-the-vacuum-of-space/
 
 **Actuel (publié)**
 
@@ -290,7 +385,7 @@ Fil : tech · 2★ · source : TechCrunch · page lue : oui (4699 caractères) �
 
 ---
 
-## 16. Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
+## 21. Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
 
 Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (1607 caractères) · https://www.tomshardware.com/tech-industry/data-centers/china-deploys-worlds-first-800-volt-dc-power-system-for-massive-ai-data-center-seeks-to-quench-power-needs-with-higher-conversion-and-efficiency-inside-a-smaller-footprint
 
@@ -309,7 +404,7 @@ Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (1607 caractère
 
 ---
 
-## 17. Cancer : des cellules du patient font reculer des tumeurs de la peau
+## 22. Cancer : des cellules du patient font reculer des tumeurs de la peau
 
 Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04743-6
 
@@ -328,9 +423,9 @@ Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caract
 
 ---
 
-## 18. Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
+## 23. Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
 
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (4328 caractères) · https://www.sciencedaily.com/releases/2026/11/261102075903.htm
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (4352 caractères) · https://www.sciencedaily.com/releases/2026/11/261102075903.htm
 
 **Actuel (publié)**
 
@@ -347,7 +442,7 @@ Fil : science · 2★ · source : ScienceDaily · page lue : oui (4328 caractèr
 
 ---
 
-## 19. Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
+## 24. Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
 
 Fil : science · 1★ · source : The Quantum Insider · page lue : oui (4545 caractères) · https://thequantuminsider.com/2026/11/03/experiment-supports-theoretical-path-to-topological-quantum-computing/
 
@@ -366,7 +461,7 @@ Fil : science · 1★ · source : The Quantum Insider · page lue : oui (4545 ca
 
 ---
 
-## 20. Voitures : une berline chinoise roule à l'alcool de bois
+## 25. Voitures : une berline chinoise roule à l'alcool de bois
 
 Fil : tech · 1★ · source : CnEVPost (véhicules électriques, Chine) · page lue : oui (3864 caractères) · https://cnevpost.com/2026/11/03/geely-launches-xingyao-6-ef-methanol-hybrid-sedan/
 
@@ -385,7 +480,7 @@ Fil : tech · 1★ · source : CnEVPost (véhicules électriques, Chine) · page
 
 ---
 
-## 21. Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
+## 26. Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
 
 Fil : tech · 1★ · source : Tech Xplore · page lue : NON (0 caractères) · https://techxplore.com/news/2026-11-infrared-transparent-aerogel-boosts-subambient.html
 
@@ -404,7 +499,7 @@ Fil : tech · 1★ · source : Tech Xplore · page lue : NON (0 caractères) · 
 
 ---
 
-## 22. Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
+## 27. Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
 
 Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04710-1
 
@@ -423,7 +518,7 @@ Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caract
 
 ---
 
-## 23. Étoiles : des astronomes repèrent un probable compagnon d'une étoile géante
+## 28. Étoiles : des astronomes repèrent un probable compagnon d'une étoile géante
 
 Fil : science · 2★ · source : Pour la Science · page lue : oui (6000 caractères) · https://www.pourlascience.fr/sd/astrophysique/la-preuve-la-plus-solide-a-ce-jour-pour-le-compagnon-de-betelgeuse-29610.php
 
@@ -442,7 +537,7 @@ Fil : science · 2★ · source : Pour la Science · page lue : oui (6000 caract
 
 ---
 
-## 24. Électricité : un centre de calcul chinois fonctionne désormais avec un courant stable
+## 29. Électricité : un centre de calcul chinois fonctionne désormais avec un courant stable
 
 Fil : tech · 1★ · source : pv magazine (solaire) · page lue : oui (3533 caractères) · https://www.pv-magazine.com/2026/11/02/envision-claims-world-first-with-800-v-dc-architecture-for-ai-data-center/
 
@@ -461,7 +556,7 @@ Fil : tech · 1★ · source : pv magazine (solaire) · page lue : oui (3533 car
 
 ---
 
-## 25. Dinosaures : des chercheurs trouvent des restes de cellules sanguines dans un os
+## 30. Dinosaures : des chercheurs trouvent des restes de cellules sanguines dans un os
 
 Fil : science · 2★ · source : New Atlas · page lue : oui (5922 caractères) · https://newatlas.com/biology/fossilized-blood-cells-dinosaur-bone/
 
@@ -480,7 +575,7 @@ Fil : science · 2★ · source : New Atlas · page lue : oui (5922 caractères)
 
 ---
 
-## 26. Cellules : une pression desserre l'ADN de cellules de peau de souris
+## 31. Cellules : une pression desserre l'ADN de cellules de peau de souris
 
 Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2694 caractères) · https://www.techno-science.net/fr/actualites/pression-peau-souris-neurones-crispra-29644
 
@@ -499,7 +594,7 @@ Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2694 car
 
 ---
 
-## 27. Archéologie : un bâtiment égyptien de 2 600 ans repéré par satellite
+## 32. Archéologie : un bâtiment égyptien de 2 600 ans repéré par satellite
 
 Fil : science · 2★ · source : Live Science · page lue : oui (2906 caractères) · https://www.livescience.com/archaeology/ancient-egyptians/buried-for-2-600-years-beneath-nile-mud-a-massive-ancient-egyptian-complex-was-just-found-from-space
 
@@ -518,7 +613,7 @@ Fil : science · 2★ · source : Live Science · page lue : oui (2906 caractèr
 
 ---
 
-## 28. Préhistoire : les Européens d'il y a 30 000 ans étaient plus liés
+## 33. Préhistoire : les Européens d'il y a 30 000 ans étaient plus liés
 
 Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261031221153.htm
 
@@ -537,7 +632,7 @@ Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 ---
 
-## 29. Laboratoires : un appareil refroidi repère trois fois mieux les molécules
+## 34. Laboratoires : un appareil refroidi repère trois fois mieux les molécules
 
 Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (168 caractères) · https://pandaily.com/ciqtek-cryohe-cryogenic-nmr-probe-20k-3x-sensitivity-can-s-solid-state-nmr-spectrometer
 
@@ -556,7 +651,7 @@ Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (168 caractèr
 
 ---
 
-## 30. Satellites : un petit satellite relie la Terre par un faisceau laser
+## 35. Satellites : un petit satellite relie la Terre par un faisceau laser
 
 Fil : tech · 2★ · source : ESA · page lue : oui (4174 caractères) · https://www.esa.int/Applications/Connectivity_and_Secure_Communications/CubeSat_achieves_challenging_laser_link_to_ground
 
@@ -575,7 +670,7 @@ Fil : tech · 2★ · source : ESA · page lue : oui (4174 caractères) · https
 
 ---
 
-## 31. Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
+## 36. Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
 
 Fil : science · 1★ · source : Communications Physics · page lue : oui (2974 caractères) · https://www.nature.com/articles/s42005-026-02928-6
 
@@ -594,7 +689,7 @@ Fil : science · 1★ · source : Communications Physics · page lue : oui (2974
 
 ---
 
-## 32. Paludisme : des chercheurs lisent l'ADN complet de trois parasites
+## 37. Paludisme : des chercheurs lisent l'ADN complet de trois parasites
 
 Fil : science · 2★ · source : PLOS Pathogens · page lue : oui (6000 caractères) · https://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1014754
 
@@ -613,7 +708,7 @@ Fil : science · 2★ · source : PLOS Pathogens · page lue : oui (6000 caract�
 
 ---
 
-## 33. Espace : la poussière de Mars est assez fine pour atteindre les poumons
+## 38. Espace : la poussière de Mars est assez fine pour atteindre les poumons
 
 Fil : science · 1★ · source : NASA JPL · page lue : oui (6000 caractères) · https://www.jpl.nasa.gov/news/nasas-perseverance-offers-clues-to-protect-crews-from-mars-dust
 
@@ -632,7 +727,7 @@ Fil : science · 1★ · source : NASA JPL · page lue : oui (6000 caractères) 
 
 ---
 
-## 34. Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
+## 39. Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
 
 Fil : tech · 1★ · source : MIT News · page lue : oui (6000 caractères) · https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102
 
@@ -651,7 +746,7 @@ Fil : tech · 1★ · source : MIT News · page lue : oui (6000 caractères) · 
 
 ---
 
-## 35. Internet : une fibre envoie 128 000 milliards de bits par seconde
+## 40. Internet : une fibre envoie 128 000 milliards de bits par seconde
 
 Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (181 caractères) · https://pandaily.com/china-telecom-yofc-zte-1000km-hollow-core-fiber-bidirectional-real-time-transmission-800g-128tbps
 
@@ -666,196 +761,6 @@ Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (181 caractèr
 
 - _Mesures automatiques_ : phrase de 31 mots dans « decouverte », à couper : « Des équipes de China Telecom, YOFC et ZTE ont fait passer 800 gigabits par seconde sur cha… » ; sigles ou noms codés inconnus du public : YOFC, ZTE → écris ce que c'est (ou supprime le nom s'il n'aide pas)
 - _Ajoutée le_ : 2026-11-02T07:25:23.862055+00:00
-
-
----
-
-## 36. Drones : un étudiant atteint 790 km/h avec un petit avion à réaction
-
-Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (4156 caractères) · https://www.tomshardware.com/tech-industry/drones/college-student-unofficially-breaks-world-record-for-fastest-jet-powered-drone-with-491-mph-aircraft-built-in-his-dorm-reaper-aims-to-grab-the-usd800-000-boom-prize
-
-**Actuel (publié)**
-
-- **Titre** : Drones : un étudiant atteint 790 km/h avec un petit avion à réaction
-- **Avant** : Les drones à réaction, petits avions sans pilote équipés d'un moteur à réaction, étaient jusque-là moins rapides que ce nouvel appareil, selon la source.
-- **Découverte** : Un étudiant d'une université américaine a construit son avion télécommandé dans sa chambre d'étudiant. L'appareil a atteint 790 km/h, soit 491 mph, ce que la source présente comme un record.
-- **Et après** : L'étudiant vise un prix de 800 000 dollars récompensant le plus rapide avion télécommandé à réaction. Pour l'instant, ce record n'est pas officiel.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Mesures automatiques_ : « selon la source » parle de la source : écris « selon les chercheurs » ou « selon l'entreprise » ; prix sans équivalent approximatif en euros : ajoute-le (1 $ ≈ 0,85 €)
-- _Ajoutée le_ : 2026-11-01T17:26:03.320137+00:00
-
-
----
-
-## 37. Océan : une étoile de mer laisse souvent du corail vivant
-
-Fil : science · 1★ · source : ScienceDaily · page lue : oui (5611 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002957.htm
-
-**Actuel (publié)**
-
-- **Titre** : Océan : une étoile de mer laisse souvent du corail vivant
-- **Avant** : On voyait surtout l'étoile de mer à épines comme une menace pour les récifs, car ses explosions de population ont causé de gros dégâts sur la Grande Barrière de corail depuis les années 1960.
-- **Découverte** : Des chercheurs de l'université de Sydney ont examiné les traces de repas laissées sur des coraux près de la station One Tree Island. Environ 75 % des repas observés laissaient du tissu vivant sur le corail. En mangeant les coraux qui dominent et poussent vite, l'étoile laisse de la place aux espèces plus lentes.
-- **Et après** : Les chercheurs restent prudents : cet effet bénéfique est surtout possible quand les populations d'étoiles sont maintenues sous contrôle. L'impact réel sur la variété des coraux reste à mesurer sur une zone plus large.
-- **Mots** : (aucun)
-- **Type** : terrain
-
-- _Mesures automatiques_ : phrase de 34 mots dans « avant », à couper : « On voyait surtout l'étoile de mer à épines comme une menace pour les récifs, car ses explo… »
-- _Ajoutée le_ : 2026-11-01T17:25:45.46085+00:00
-
-
----
-
-## 38. Satellites : une IA de Google écrit un poème depuis l'espace
-
-Fil : tech · 2★ · source : Clubic · page lue : oui (6000 caractères) · https://www.clubic.com/actualite-637000-un-satellite-une-ia-et-un-poeme-google-vient-de-reussir-une-experience-assez-folle-dans-l-espace.html
-
-**Actuel (publié)**
-
-- **Titre** : Satellites : une IA de Google écrit un poème depuis l'espace
-- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont jusqu'ici installés sur Terre. En novembre 2025, Google a présenté son projet Suncatcher, qui vise à en installer en orbite.
-- **Découverte** : Google a lancé le 1er octobre un satellite de la taille d'un réfrigérateur, équipé de quatre puces d'IA, par une fusée Falcon 9 de SpaceX. Le modèle Gemma 4 a produit en orbite un haïku, la première réponse d'IA jamais générée par une puce de centre de données dans l'espace. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
-- **Et après** : Ce n'est encore qu'un prototype qui ne tourne que par courtes séquences. Google veut un jour alimenter des centres de données en orbite grâce à l'énergie du Soleil, ce qui reste à prouver à grande échelle.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Mesures automatiques_ : aucun défaut
-- _Ajoutée le_ : 2026-11-01T17:25:31.091585+00:00
-
-
----
-
-## 39. Momification : une plante du désert entrait dans l'embaumement égyptien
-
-Fil : science · 2★ · source : Phys.org · page lue : NON (0 caractères) · https://phys.org/news/2026-10-year-mummy-yields-molecular-evidence.html
-
-**Actuel (publié)**
-
-- **Titre** : Momification : une plante du désert entrait dans l'embaumement égyptien
-- **Avant** : On savait que les Égyptiens anciens employaient diverses substances pour conserver les corps, mais la composition exacte de ces mélanges restait mal connue.
-- **Découverte** : Une équipe de l'université de Marbourg a analysé une tête momifiée vieille d'environ 2 700 ans. Elle y a trouvé des traces moléculaires d'aloès, une plante grasse du désert, ce qui constitue la première preuve de ce type. Les chercheurs ont combiné analyse de produits naturels, égyptologie et histoire de la pharmacie.
-- **Et après** : Ce résultat permet de mieux comprendre les recettes d'embaumement et les savoirs des anciens Égyptiens. Il reste à vérifier cette découverte sur d'autres momies.
-- **Mots** : **Aloès** → Plante grasse et épineuse originaire d'Afrique et d'Arabie, dont le suc est utilisé depuis très longtemps.
-- **Type** : donnees
-
-- _Mesures automatiques_ : aucun défaut
-- _Ajoutée le_ : 2026-11-01T17:25:11.209042+00:00
-
-
----
-
-## 40. Archéologie : un mur de 4 000 ans révèle une défense ancienne
-
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030003022.htm
-
-**Actuel (publié)**
-
-- **Titre** : Archéologie : un mur de 4 000 ans révèle une défense ancienne
-- **Avant** : Jusqu'ici, on connaissait peu de constructions militaires très anciennes en Afrique du Nord, en dehors de la vallée du Nil. Le site d'Oued Beht, au Maroc, était déjà connu pour un vaste complexe agricole vieux de plus de 5 000 ans.
-- **Découverte** : Des archéologues ont fouillé le site d'Oued Beht, dans le nord-ouest du Maroc, en 2023. Ils y ont mis au jour une grande construction en forme de mur, sans doute destinée à se défendre. Elle date d'environ 4 000 à 3 500 ans, ce qui en fait la plus ancienne de ce type connue dans la région hors de la vallée du Nil.
-- **Et après** : Les chercheurs veulent maintenant savoir qui a bâti ce mur et contre quelle menace. Ils pensent qu'il répondait surtout à des rivalités pour la terre et les ressources, et il doit encore être confirmé par d'autres sites.
-- **Mots** : (aucun)
-- **Type** : terrain
-
-- _Mesures automatiques_ : phrase de 29 mots dans « decouverte », à couper : « Elle date d'environ 4 000 à 3 500 ans, ce qui en fait la plus ancienne de ce type connue d… »
-- _Ajoutée le_ : 2026-11-01T17:25:02.124751+00:00
-
-
----
-
-## 41. Ancêtres : un fossile de singe découvert en Égypte bouscule nos origines
-
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261031011638.htm
-
-**Actuel (publié)**
-
-- **Titre** : Ancêtres : un fossile de singe découvert en Égypte bouscule nos origines
-- **Avant** : Les chercheurs pensaient que les premiers grands singes, dont la lignée de l'humain, étaient apparus surtout en Afrique de l'Est. Aucun fossile certain de singe de cette époque n'avait été trouvé en Afrique du Nord.
-- **Découverte** : Une équipe internationale décrit une nouvelle espèce, Masripithecus moghraensis, à partir de restes trouvés à Wadi Moghra, dans le nord de l'Égypte. Âgé de 17 à 18 millions d'années, ce fossile est le premier singe certain découvert en Afrique du Nord. L'étude est publiée dans la revue Science.
-- **Et après** : Les chercheurs suggèrent que le nord de l'Afrique et le Moyen-Orient ont pu jouer un rôle central dans l'origine des grands singes, dont la lignée humaine. D'autres fossiles seront nécessaires pour confirmer cette hypothèse.
-- **Mots** : (aucun)
-- **Type** : terrain
-
-- _Mesures automatiques_ : « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
-- _Ajoutée le_ : 2026-11-01T14:07:26.804087+00:00
-
-
----
-
-## 42. Bactéries : une cellule s'autodétruit pour bloquer un virus
-
-Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261029072123.htm
-
-**Actuel (publié)**
-
-- **Titre** : Bactéries : une cellule s'autodétruit pour bloquer un virus
-- **Avant** : Les défenses connues des bactéries gardent en général une toxine mortelle sous contrôle jusqu'à l'arrivée d'un virus. Ce nouveau système fonctionne presque à l'inverse.
-- **Découverte** : Des chercheurs du Gladstone Institutes décrivent un type de défense bactérienne inédit, les « rétrons de type VI ». Ici, de l'ADN fabriqué au début de l'infection active la toxine, et la bactérie infectée se détruit, ce qui empêche le virus de se multiplier et de se propager aux cellules voisines.
-- **Et après** : Les chercheurs veulent comprendre en détail ce mécanisme en plusieurs étapes. Ils pensent qu'il pourrait inspirer de nouveaux outils de modification de l'ADN, capables de corriger certaines mutations avec plus de précision, mais ces outils restent à développer.
-- **Mots** : **Rétron** → Petite structure naturelle des bactéries, formée d'ADN fabriqué à partir d'ARN et de protéines, qui intervient dans leur défense.
-- **Type** : cellules
-
-- _Mesures automatiques_ : phrase de 32 mots dans « decouverte », à couper : « Ici, de l'ADN fabriqué au début de l'infection active la toxine, et la bactérie infectée s… »
-- _Ajoutée le_ : 2026-11-01T14:07:16.818086+00:00
-
-
----
-
-## 43. Électronique : un moteur d'une seule molécule tourne avec du courant
-
-Fil : tech · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002940.htm
-
-**Actuel (publié)**
-
-- **Titre** : Électronique : un moteur d'une seule molécule tourne avec du courant
-- **Avant** : Les moteurs moléculaires alimentés directement par l'électricité, apparus en 2011, fonctionnaient sur des surfaces et demandaient la pointe d'un microscope pour bouger.
-- **Découverte** : Des chercheurs ont fabriqué un moteur formé d'une seule molécule en forme de spirale, inspiré de la vis d'Archimède. Il tourne quand le courant le traverse, change de sens quand on inverse la tension, et sa rotation peut multiplier la conductivité électrique jusqu'à 100 fois.
-- **Et après** : Il s'agit d'un prototype de laboratoire, encore loin d'un usage concret ; l'idée pourrait ouvrir la voie à de très petites machines et à des circuits électroniques moléculaires.
-- **Mots** : **Vis d'Archimède** → Machine très ancienne formée d'une spirale qui tourne, utilisée depuis longtemps pour faire monter l'eau.
-- **Type** : prototype
-
-- _Mesures automatiques_ : aucun défaut
-- _Ajoutée le_ : 2026-11-01T14:06:15.778372+00:00
-
-
----
-
-## 44. Univers : des chocs d'atomes d'oxygène recréent la matière du Big Bang
-
-Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002935.htm
-
-**Actuel (publié)**
-
-- **Titre** : Univers : des chocs d'atomes d'oxygène recréent la matière du Big Bang
-- **Avant** : Les chercheurs savaient recréer la matière des tout premiers instants de l'univers en écrasant de très gros noyaux atomiques à très haute énergie. Ils pensaient qu'il fallait des collisions puissantes pour y parvenir.
-- **Découverte** : Dans l'expérience STAR, menée au collisionneur RHIC aux États-Unis, des noyaux d'oxygène sont lancés presque à la vitesse de la lumière puis se percutent. Les particules qui traversent la matière ainsi créée perdent de l'énergie, un signe typique de ce plasma, et ce signal apparaît à des énergies plus basses que celles déjà démontrées.
-- **Et après** : Les résultats, publiés dans Physical Review Letters, fixent une nouvelle limite inférieure des conditions nécessaires à cette matière. Les chercheurs veulent maintenant préciser ce qu'il faut pour la créer, en comparant ces mesures à celles du LHC du CERN.
-- **Mots** : **Plasma de quarks et de gluons** → État de la matière extrêmement chaud et dense, qui existait quelques instants après le Big Bang.
-- **Type** : observation
-
-- _Mesures automatiques_ : phrase de 30 mots dans « decouverte », à couper : « Les particules qui traversent la matière ainsi créée perdent de l'énergie, un signe typiqu… » ; sigles ou noms codés inconnus du public : LHC, RHIC, STAR → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-- _Ajoutée le_ : 2026-11-01T14:06:05.332368+00:00
-
-
----
-
-## 45. IA : une IA injecte un médicament dans le cerveau d'une souris vivante
-
-Fil : tech · 1★ · source : Wired · page lue : oui (5327 caractères) · https://www.wired.com/story/an-ai-agent-did-brain-surgery-on-live-mouse/
-
-**Actuel (publié)**
-
-- **Titre** : IA : une IA injecte un médicament dans le cerveau d'une souris vivante
-- **Avant** : Jusqu'ici, les IA aidaient surtout à concevoir des expériences ou à analyser leurs résultats. Les injections dans le cerveau des souris étaient faites à la main par des chercheurs.
-- **Découverte** : Une startup américaine a relié un agent IA à un bras robotisé, une seringue et une caméra. L'IA a choisi une thérapie génique, observé la souris et réalisé l'injection, après quelques étapes supplémentaires.
-- **Et après** : Il s'agit d'une seule souris, présentée par le fondateur de la startup, sans étude publiée dans les informations disponibles. Les chercheurs veulent maintenant connecter leurs IA à de vrais laboratoires pour tester la méthode à plus grande échelle.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Mesures automatiques_ : aucun défaut
-- _Ajoutée le_ : 2026-11-01T14:05:55.035796+00:00
 
 
 ---
