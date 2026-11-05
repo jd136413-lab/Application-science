@@ -683,6 +683,7 @@ SCHEMA_REPONSE = {
 # contre 3 pour l'ancienne. Essai B/C : mêmes 17 décisions, mais C est 1/3 plus courte, écarte les
 # étapes industrielles ordinaires et reçoit moins de fausses alertes. L'ancienne reste pour REDACTION = False.
 FICHES_DEJA: list[dict] = []          # fiches publiées des 30 derniers jours (+ celles du passage)
+SUJETS_PASSAGE: list[str] = []        # fiches retenues pendant ce passage (hors cache)
 doublons.STRICT = True                # alertes « doublon probable » sans les noms trop courants (version C)
 SYSTEME = [{"type": "text", "text": TRI_C if REDACTION else SYSTEM_PROMPT,
             "cache_control": {"type": "ephemeral"}}]
@@ -1154,7 +1155,8 @@ def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, 
         max_tokens=8000,   # le modèle peut réfléchir avant la fiche
         system=SYSTEME,
         messages=[{"role": "user", "content": build_user_message(
-            article, sujets["science"], sujets["tech"], doublons.alertes_doublon(article, FICHES_DEJA) if REDACTION else None)}],
+            article, sujets["science"], sujets["tech"], doublons.alertes_doublon(article, FICHES_DEJA) if REDACTION else None,
+            SUJETS_PASSAGE)}],
         output_config={"format": {"type": "json_schema", "schema": SCHEMA_REPONSE}, "effort": economie.EFFORT_TRI},
         **economie.PARAMS_TRI,
     )
@@ -1689,7 +1691,7 @@ def main() -> int:
                 # Rédaction différée : toutes les fiches retenues sont rédigées ensemble après le tri
                 for l in lignes:
                     equilibre.ajouter(l["feed"], l.get("family") or FAMILLE_DU_THEME.get(l["theme"]))
-                    sujets[l["feed"]].insert(0, f"{l['title']} — source : {art['source_name']} — (publiée à ce passage)")
+                    SUJETS_PASSAGE.append(f"[{FIL_NOM[l['feed']]}] {l['title']} — source : {art['source_name']}")
                     FICHES_DEJA.append({"title": l["title"], "summary": art.get("text", "")[:800], "decouverte": ""})
                 nb_articles += 1
                 decisions[decision] += 1

@@ -346,7 +346,7 @@ def _alertes(alertes: list[str] | None) -> str:
 
 
 def build_user_message(article: dict, sujets_science: list[str], sujets_tech: list[str],
-                       alertes: list[str] | None = None) -> list[dict]:
+                       alertes: list[str] | None = None, du_passage: list[str] | None = None) -> list[dict]:
     """Construit le message envoyé à Claude pour un article.
     Les listes « déjà publié » sont identiques d'un article à l'autre pendant un passage :
     elles sont mises en cache (lues environ 10 fois moins cher), ce qui compense la
@@ -357,7 +357,10 @@ def build_user_message(article: dict, sujets_science: list[str], sujets_tech: li
 Déjà publié — fil Technologies (sujets récents) :
 {_liste(sujets_tech)}
 """
-    nouvel = f"""Nouvel article :
+    # Fiches retenues pendant CE passage : hors du bloc en cache, sinon le cache serait réécrit
+    # (1,25 × le prix) à chaque nouvelle fiche (constaté le 05/11 : 100 000 tokens réécrits).
+    passage = ("Déjà retenu pendant ce passage (compte aussi pour les doublons) :\n" + _liste(du_passage) + "\n\n") if du_passage else ""
+    nouvel = passage + f"""Nouvel article :
 Source (média) : {article['source_name']}
 Titre d'origine : {article['title']}
 Date : {article['published_at'].strftime('%Y-%m-%d')}
