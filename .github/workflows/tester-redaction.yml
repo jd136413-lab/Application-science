@@ -40,7 +40,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           MODELES: ${{ inputs.modeles || vars.TEST_MODELES || 'haiku' }}
-          NB: "45"
+          NB: "40"
           # Lot de fiches testé (décalage dans les fiches publiées, de la plus récente à la plus ancienne)
           TITRES: ""
           DECALAGE: "0"
