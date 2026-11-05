@@ -89,6 +89,11 @@ DEPENSES_DEPART = {"2026-11": 0.40}   # passages du 1er au 4/11 avant la mise en
 # à Claude (aucun coût) : s'il est prometteur, il attend 3 jours qu'une source lisible
 # parle du même sujet ; sinon il est écarté.
 TEXTE_MIN = 1500
+# Leviers 1 et 2 (05/11) : jusqu'à NB_COMPLEMENTS autres articles du même sujet sont lus
+# (gratuit) et donnés au rédacteur pour compléter les faits ; il faut au total au moins
+# TEXTE_RICHE caractères (article principal + compléments), sinon pas de fiche.
+NB_COMPLEMENTS = 2
+TEXTE_RICHE = 2500
 # ---------------------------------------------------------------------
 
 import html
@@ -1140,6 +1145,38 @@ def lire_meilleure_version(art: dict, db=None) -> None:
         lire_page(art)
 
 
+def lire_complements(art: dict) -> None:
+    """Levier 1 (05/11, gratuit) : lit jusqu'à NB_COMPLEMENTS autres articles du MÊME sujet
+    (trouvés par le regroupement) pour donner plus de faits au rédacteur.
+    Résultat dans art["_complements"] = [(nom du média, texte)]."""
+    art["_complements"] = []
+    vus = {art["url"]}
+    autres = [m for m in art.get("_membres") or [] if m.get("url") and m["url"] not in vus
+              and _hote(m["url"]) not in HOTES_BLOQUES and m.get("source_name") != art.get("source_name")]
+    for m in sorted(autres, key=lambda m: -len(m.get("text", ""))):
+        if len(art["_complements"]) >= NB_COMPLEMENTS:
+            break
+        essai = {k: v for k, v in m.items() if not k.startswith("_")}
+        try:
+            lire_page(essai)
+        except Exception:
+            continue
+        if essai.get("page_lue") and len(essai.get("text", "")) >= 800:
+            art["_complements"].append((essai.get("source_name", "?"), essai["text"][:3500]))
+            vus.add(m["url"])
+    if art["_complements"]:
+        log(f"  + {len(art['_complements'])} autre(s) source(s) lue(s) : {', '.join(n for n, _ in art['_complements'])}")
+
+
+def texte_pour_redaction(art: dict) -> dict:
+    """Article donné au rédacteur : texte principal + autres sources du même sujet."""
+    if not art.get("_complements"):
+        return art
+    texte = art.get("text", "") + "".join(
+        f"\n\n--- Autre source sur le même sujet : {n} ---\n{t}" for n, t in art["_complements"])
+    return dict(art, text=texte)
+
+
 def lire_debut_page(art: dict) -> None:
     """Ancienne lecture courte, gardée pour « À venir » (même coût qu'avant)."""
     if len(art.get("text", "")) < 700:
@@ -1623,8 +1660,12 @@ def main() -> int:
                 log(f"  ⏳ toujours en attente d'une version lisible : {art['title'][:70]}")
                 continue                            # pas d'appel à Claude : rien de neuf à lire
             longueur = len(art.get("text", "")) if art.get("page_lue") else 0
-            if longueur < TEXTE_MIN:
-                raison = (f"article trop court ({longueur} caractères)" if art.get("page_lue")
+            if longueur >= TEXTE_MIN:
+                lire_complements(art)
+            total = longueur + sum(len(t) for _, t in art.get("_complements", []))
+            if longueur < TEXTE_MIN or total < TEXTE_RICHE:
+                raison = (f"article trop court ({longueur} caractères"
+                          f"{f', {total} avec les autres sources' if total > longueur else ''})" if art.get("page_lue")
                           else f"page illisible ({art.get('statut_page', '?')})")
                 if art.get("note_pre", 0) >= 2:
                     if art["url"] not in ATTENTE:
@@ -1737,7 +1778,7 @@ def main() -> int:
 
     # --- Rédaction de toutes les fiches retenues (réécriture + relecture), par lot ---
     if a_rediger:
-        items = [(f"f{k}-{j}", art, l["feed"], l) for k, (art, lignes, _) in enumerate(a_rediger)
+        items = [(f"f{k}-{j}", texte_pour_redaction(art), l["feed"], l) for k, (art, lignes, _) in enumerate(a_rediger)
                  for j, l in enumerate(lignes)]
         log(f"\n✎ Rédaction de {len(items)} fiche(s){' par lot' if PAR_LOT else ''}…")
         resultats, c = redaction.rediger_lot(client, modele["id"], modele["prix"], items, par_lot=PAR_LOT,

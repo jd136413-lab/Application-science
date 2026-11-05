@@ -1,0 +1,47 @@
+# Essai A / B des consignes de l'agent (04/11/2026), sans rien publier :
+# compare les consignes actuelles (A) et une version réécrite (B) sur un jeu
+# d'articles tiré de la base (lecture seule). Rapport : agent/essai/rapport_leviers.md
+# sur la branche testée. Lancé par Claude en poussant une branche « essai/… ».
+name: Essai des leviers
+
+on:
+  push:
+    branches: ["essai-leviers/**"]
+
+permissions:
+  contents: write
+
+jobs:
+  essai:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: agent/requirements.txt
+      - name: Installer les dépendances
+        run: pip install -r agent/requirements.txt
+      - name: Essai A / B (rapport seulement)
+        working-directory: agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          PLAFOND: "0.5"
+          VERSIONS: "B,C"
+          NB_NOUVEAUX: "10"
+          NB_DOUBLONS: "10"
+          NB_ECARTES: "6"
+          DECALAGE: "8"
+        run: python tester_leviers.py
+      - name: Enregistrer le rapport sur la branche
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          [ -f agent/essai/rapport_leviers.md ] && git add agent/essai/rapport_leviers.md
+          git commit -m "Rapport de l'essai des leviers [skip ci]" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

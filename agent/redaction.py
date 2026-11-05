@@ -486,6 +486,53 @@ def verifications(fiche: dict) -> list[str]:
         racine = str((m or {}).get("mot", "")).lower()[:5]
         if racine and racine not in textes.lower():
             v.append(f"mot à connaître « {m.get('mot')} » absent du texte de la fiche : choisis un mot du texte ou aucun")
+    if VERIFS_V2:
+        v += _verifications_v2(fiche)
+    return v
+
+
+# Levier 3 (05/11) : défauts répétitifs vus sur les fiches réelles, repérés sans IA.
+VERIFS_V2 = True
+_CREUX = re.compile(r"\b(?:inédite?s?|jamais vue?s?|sans précédent|révolutionnaire|prometteu(?:r|se)s?|"
+                    r"spectaculaire|incroyable|unique au monde)\b", re.I)
+_CHIMIE = re.compile(r"\b(?:chlorure|oxyde|dioxyde|sulfure|sulfate|nitrure|nitrate|carbure|carbonate|hydrure|"
+                     r"hydroxyde|tellurure|séléniure|fluorure|bromure|phosphate|silicate)\s+d[e']\s*\w+", re.I)
+_DOMAINES = re.compile(r"\b(?:électronique|médecine|santé|énergie|agriculture|industrie|environnement|"
+                       r"informatique|télécommunications|transports?|aéronautique|cosmétique|construction)\b", re.I)
+_PAS_NOMS = {"Selon", "Mais", "Les", "Des", "Une", "Un", "Le", "La", "Ce", "Cette", "Ces", "Pour", "Avec", "Dans",
+             "Sur", "Chez", "Elle", "Il", "Ils", "Elles", "On", "En", "Au", "Aux", "Si", "Lors", "Après", "Avant",
+             "Pendant", "Depuis", "Comme", "Son", "Sa", "Ses", "Leur", "Leurs", "Cet", "Plus", "Quand", "Grâce"}
+
+
+def _verifications_v2(fiche: dict) -> list[str]:
+    v = []
+    corps = " ".join(str(fiche.get(k, "")) for k in ("avant", "decouverte", "apres"))
+    tout = str(fiche.get("title", "")) + " " + corps
+    # Noms propres en série (hors début de phrase) : missions, instruments, lieux, chercheurs
+    noms = []
+    for ph in _phrases(corps):
+        mots = ph.split()
+        for i, m in enumerate(mots[1:], 1):
+            m2 = m.strip(",.;:()«»\"'")
+            if len(m2) >= 3 and m2[0].isupper() and not m2.isupper() and m2 not in _PAS_NOMS \
+                    and not mots[i - 1].endswith((".", ":")):
+                noms.append(m2)
+    distincts = list(dict.fromkeys(noms))
+    if len(distincts) >= 5:
+        v.append(f"{len(distincts)} noms propres ({', '.join(distincts[:6])}) : garde seulement les plus utiles "
+                 "(université, entreprise connue) et décris les autres (« un satellite européen », « un grand volcan »)")
+    m = _CREUX.search(tout)
+    if m and "selon" not in tout[max(0, m.start() - 60):m.start()].lower():
+        v.append(f"mot creux « {m.group(0)} » : dis concrètement ce qui est nouveau (quoi, combien) au lieu de qualifier")
+    m = _CHIMIE.search(corps)
+    if m and not re.match(r"\s*(?:\(|, (?:un|une|c'est|soit)\b|—|-)", corps[m.end():m.end() + 40]):
+        v.append(f"nom chimique « {m.group(0)} » : dis ce que c'est en mots simples (« un gaz acide », « un métal »)")
+    apres = str(fiche.get("apres", ""))
+    if re.search(r"\b(?:cette|l')\s*hypothèse\b", apres, re.I) and "hypoth" not in \
+            (str(fiche.get("avant", "")) + str(fiche.get("decouverte", ""))).lower():
+        v.append("« apres » parle d'une hypothèse jamais présentée : nomme l'idée elle-même")
+    if len(set(x.lower() for x in _DOMAINES.findall(apres))) >= 3:
+        v.append("« apres » énumère des domaines (électronique, médecine, énergie…) : dis UN usage concret tiré de l'article, ou rien")
     return v
 
 
