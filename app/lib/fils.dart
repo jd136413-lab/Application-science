@@ -34,7 +34,18 @@ class FilsAvancees extends ChangeNotifier {
     }();
   }
 
+  final Map<String, DateTime> _misAJourLe = {};
+
+  /// Retour dans l'app (elle était en arrière-plan) : fils mis à jour s'ils ont plus de 10 minutes.
+  void rafraichirSiAncien() {
+    for (final fil in _demarres) {
+      final t = _misAJourLe[fil];
+      if (t == null || DateTime.now().difference(t) > const Duration(minutes: 10)) unawaited(mettreAJour(fil));
+    }
+  }
+
   Future<void> mettreAJour(String fil, {bool complet = false}) async {
+    _misAJourLe[fil] = DateTime.now();
     enCours.add(fil);
     erreurs.remove(fil);
     notifyListeners();

@@ -16,6 +16,7 @@ import 'coquille.dart';
 import 'detail.dart';
 import 'donnees.dart';
 import 'etat.dart';
+import 'fils.dart';
 import 'langues.dart';
 import 'memoire.dart';
 import 'modele.dart';
@@ -71,7 +72,11 @@ class _AppNovaStemState extends State<AppNovaStem> {
     stat('ouverture', valeur: etat.langue); // statistiques anonymes
     unawaited(statsActivite()); // utilisateurs par langue (une fois par jour et par mois)
     // App restée ouverte en arrière-plan plusieurs jours : comptée aussi à son retour.
-    _cycle ??= AppLifecycleListener(onResume: () => unawaited(statsActivite()));
+    // Retour dans l'app après un moment : nouvelles avancées téléchargées sans tirer la liste.
+    _cycle ??= AppLifecycleListener(onResume: () {
+      unawaited(statsActivite());
+      filsAvancees.rafraichirSiAncien();
+    });
     unawaited(limiterImages()); // images gardées : 100 Mo au plus
     unawaited(etat.verifierDemandeAvis());
     demandeOuverture.addListener(_ouvrirDepuisNotification);
