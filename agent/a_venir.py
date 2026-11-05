@@ -296,6 +296,18 @@ def _instant(d: str, heure: str, fuseau: str) -> datetime | None:
         return None
 
 
+def _date_valide(texte: str, aujourd_hui: date) -> date | None:
+    """Date d'un événement à venir : « AAAA-MM-JJ », entre aujourd'hui et l'horizon (18 mois).
+    Remise le 05/11 : elle avait disparu le 02/11, et plus aucune carte ne venait des articles."""
+    try:
+        d = date.fromisoformat(texte.strip()[:10])
+    except Exception:
+        return None
+    if d < aujourd_hui or d > aujourd_hui + timedelta(days=HORIZON_JOURS):
+        return None
+    return d
+
+
 def _fin_valide(texte: str, debut: date) -> str | None:
     try:
         f = date.fromisoformat(texte.strip()[:10])
