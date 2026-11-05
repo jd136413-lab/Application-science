@@ -94,6 +94,10 @@ TEXTE_MIN = 1500
 # TEXTE_RICHE caractères (article principal + compléments), sinon pas de fiche.
 NB_COMPLEMENTS = 2
 TEXTE_RICHE = 2500
+# Essai du 05/11 : sur des articles déjà longs (5 000 caractères et plus), les autres sources
+# n'amélioraient pas la fiche (8,3 contre 8,3) et ajoutaient des détails superflus : on ne les
+# lit que si l'article principal fait moins de TEXTE_COMPLEMENTS caractères.
+TEXTE_COMPLEMENTS = 4000
 # ---------------------------------------------------------------------
 
 import html
@@ -1660,8 +1664,8 @@ def main() -> int:
                 log(f"  ⏳ toujours en attente d'une version lisible : {art['title'][:70]}")
                 continue                            # pas d'appel à Claude : rien de neuf à lire
             longueur = len(art.get("text", "")) if art.get("page_lue") else 0
-            if longueur >= TEXTE_MIN:
-                lire_complements(art)
+            if TEXTE_MIN <= longueur < TEXTE_COMPLEMENTS:
+                lire_complements(art)        # essai du 05/11 : utile seulement quand l'article est court
             total = longueur + sum(len(t) for _, t in art.get("_complements", []))
             if longueur < TEXTE_MIN or total < TEXTE_RICHE:
                 raison = (f"article trop court ({longueur} caractères"

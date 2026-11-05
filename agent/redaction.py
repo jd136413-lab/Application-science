@@ -501,7 +501,11 @@ _DOMAINES = re.compile(r"\b(?:électronique|médecine|santé|énergie|agricultur
                        r"informatique|télécommunications|transports?|aéronautique|cosmétique|construction)\b", re.I)
 _PAS_NOMS = {"Selon", "Mais", "Les", "Des", "Une", "Un", "Le", "La", "Ce", "Cette", "Ces", "Pour", "Avec", "Dans",
              "Sur", "Chez", "Elle", "Il", "Ils", "Elles", "On", "En", "Au", "Aux", "Si", "Lors", "Après", "Avant",
-             "Pendant", "Depuis", "Comme", "Son", "Sa", "Ses", "Leur", "Leurs", "Cet", "Plus", "Quand", "Grâce"}
+             "Pendant", "Depuis", "Comme", "Son", "Sa", "Ses", "Leur", "Leurs", "Cet", "Plus", "Quand", "Grâce",
+             # noms connus de tous (essai du 05/11) : ne comptent pas comme des noms obscurs
+             "Terre", "Soleil", "Lune", "Mars", "Vénus", "Jupiter", "Saturne", "Neptune", "Uranus", "Mercure",
+             "Pluton", "Système", "Voie", "Europe", "Afrique", "Asie", "Amérique", "Sud", "Nord", "Est", "Ouest",
+             "Néandertal", "Néandertalien", "Néandertaliens", "France", "Chine", "Japon", "Inde", "Internet", "Moyen-Orient"}
 
 
 def _verifications_v2(fiche: dict) -> list[str]:
