@@ -1,11 +1,106 @@
-# Test de la rédaction — 04/11/2026 17:40 UTC
+# Test de la rédaction — 05/11/2026 07:54 UTC
 
-Modèles : haiku · 5 fiches
+Modèles : haiku · 45 fiches
 
 
 ---
 
-## 1. Espace : une collision géante laisse une traînée de poussière noire autour d'une étoile
+## 1. Cancer du poumon : la tumeur presque détruite chez 7 malades sur 10
+
+Fil : science · 1★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04745-4
+
+**Actuel (publié)**
+
+- **Titre** : Cancer du poumon : la tumeur presque détruite chez 7 malades sur 10
+- **Avant** : Après l'opération d'un cancer du poumon, 30 à 70 % des patients voient la maladie revenir. Les traitements avant opération existants font reculer la tumeur chez environ un tiers à la moitié des malades.
+- **Découverte** : Des chercheurs chinois ont testé l'ivonescimab, un anticorps qui bloque deux cibles à la fois, avant l'opération. Dans le groupe avec chimiothérapie, 47 patients sur 67 ont eu une réponse majeure, avec presque toute la tumeur morte. Les effets indésirables graves touchaient environ un patient sur trois, sans décès lié au traitement.
+- **Et après** : Ce traitement pourrait, s'il est confirmé, réduire les risques de rechute après opération. Mais l'étude est petite, sans groupe témoin comparatif, et la survie globale n'est pas encore connue.
+- **Mots** : (aucun)
+- **Type** : essai_clinique
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T07:40:25.956827+00:00
+
+
+---
+
+## 2. Obésité : une molécule naturelle trouvée par IA réduit l'appétit des animaux
+
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104004909.htm
+
+**Actuel (publié)**
+
+- **Titre** : Obésité : une molécule naturelle trouvée par IA réduit l'appétit des animaux
+- **Avant** : Les médicaments comme l'Ozempic, dont le principe actif est la semaglutide, imitent une hormone qui agit dans tout le corps. Ils peuvent provoquer nausées, constipation et perte de muscle.
+- **Découverte** : Des chercheurs de l'université Stanford, aux États-Unis, ont fait analyser par un programme d'intelligence artificielle environ 20 000 gènes humains, les instructions qui fabriquent les protéines du corps. Le programme a repéré une molécule naturelle prometteuse. Chez des animaux, elle a réduit la quantité de nourriture mangée jusqu'à 50 %.
+- **Et après** : Si les essais chez l'humain confirment la sécurité et l'efficacité, cette molécule pourrait offrir un traitement contre l'obésité plus ciblé, avec moins d'effets digestifs. Mais tout reste à prouver : les résultats viennent seulement d'animaux.
+- **Mots** : (aucun)
+- **Type** : animal
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T07:40:25.363276+00:00
+
+
+---
+
+## 3. Épilepsie : chez trois malades, les crises baissent de plus de 90 %
+
+Fil : science · 2★ · source : Nature · page lue : oui (3550 caractères) · https://www.nature.com/articles/d41586-026-03566-2
+
+**Actuel (publié)**
+
+- **Titre** : Épilepsie : chez trois malades, les crises baissent de plus de 90 %
+- **Avant** : Certaines épilepsies ne répondent plus à deux médicaments anti-crises ou plus. Chez les malades touchés par une cicatrice dans l'hippocampe, une région du cerveau, les crises reviennent sans cesse.
+- **Découverte** : Des chercheurs de l'hôpital Xuanwu, à Pékin, ont testé une thérapie génique chez trois adultes épileptiques dont les crises résistaient aux médicaments. Un virus transporte dans la zone à l'origine des crises un gène qui rend les neurones sensibles à la clozapine, médicament qui, pris ensuite, réduit leur activité. Chez les trois malades, les crises ont baissé de plus de 90 % par mois, sans effet secondaire grave.
+- **Et après** : Ce traitement pourrait aider des malades dont les médicaments ne suffisent plus, et sa puissance peut être réglée avec la dose de médicament. Mais l'essai ne porte que sur trois personnes, et la clozapine, à forte dose, est liée à des problèmes cardiaques.
+- **Mots** : (aucun)
+- **Type** : essai_clinique
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T07:40:25.129912+00:00
+
+
+---
+
+## 4. Espace : un drone détourne son atterrissage simulé vers une zone plus sûre
+
+Fil : tech · 1★ · source : NASA · page lue : oui (3796 caractères) · https://www.nasa.gov/centers-and-facilities/armstrong/nasa-navigation-experiment-shows-promise-for-planetary-landings/
+
+**Actuel (publié)**
+
+- **Titre** : Espace : un drone détourne son atterrissage simulé vers une zone plus sûre
+- **Avant** : Pour se poser sans accident sur la Lune ou sur Mars, un vaisseau doit repérer seul un endroit sûr. En 2019 et 2020, des vols avaient déjà testé une partie de ce système.
+- **Découverte** : Des ingénieurs du centre spatial Johnson de la NASA, à Houston, ont développé ce système de guidage. Le 27 août, un petit drone l'a emporté au-dessus d'un lac à sec de Californie pour simuler une descente lunaire. Le système dresse une carte détaillée du relief à partir de capteurs laser, repère les zones sûres, et envoie le drone ailleurs si le site visé est dangereux.
+- **Et après** : Selon la NASA, ce guidage pourrait aider les atterrisseurs robotisés et habités sur la Lune et sur Mars. Mais il s'agit encore d'une simulation : un test à grande échelle reste à faire, et le logiciel n'est pas encore disponible.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T07:40:24.594656+00:00
+
+
+---
+
+## 5. Intelligence artificielle : des programmes planifient et réalisent des expériences sur l'ADN
+
+Fil : tech · 2★ · source : Nature · page lue : oui (1892 caractères) · https://www.nature.com/articles/d41586-026-03270-1
+
+**Actuel (publié)**
+
+- **Titre** : Intelligence artificielle : des programmes planifient et réalisent des expériences sur l'ADN
+- **Avant** : Les IA peuvent déjà analyser des données et proposer des molécules en quelques minutes. Mais tester ces molécules en laboratoire prend souvent des semaines ou des mois, et demande beaucoup de travail humain.
+- **Découverte** : Une équipe de recherche a présenté AutoDNA, un laboratoire où des programmes d'IA, appelés agents, prévoient des expériences sur l'ADN. Ces programmes pilotent eux-mêmes les appareils, en enchaînant plusieurs étapes, avec peu d'intervention humaine.
+- **Et après** : Cela pourrait raccourcir le délai entre proposer une expérience et la réaliser, en biologie. Pour l'instant, la méthode ne porte que sur des expériences d'ADN.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-05T07:40:23.796028+00:00
+
+
+---
+
+## 6. Espace : une collision géante laisse une traînée de poussière noire autour d'une étoile
 
 Fil : science · 2★ · source : Les Numériques · page lue : oui (2524 caractères) · https://www.lesnumeriques.com/astronomie-conquete-spatiale/une-gigantesque-structure-se-cache-dans-un-systeme-stellaire-voisin-et-elle-est-noire-comme-l-encre-n266812.html
 
@@ -24,7 +119,7 @@ Fil : science · 2★ · source : Les Numériques · page lue : oui (2524 caract
 
 ---
 
-## 2. Impression 3D : un filament recyclé rend les prothèses tactiles
+## 7. Impression 3D : un filament recyclé rend les prothèses tactiles
 
 Fil : tech · 1★ · source : 3D Printing Industry · page lue : oui (4685 caractères) · https://3dprintingindustry.com/news/recycled-filament-lets-3d-printed-prosthetics-use-touchscreens-256132/?utm_source=rss&utm_medium=rss&utm_campaign=recycled-filament-lets-3d-printed-prosthetics-use-touchscreens
 
@@ -43,7 +138,7 @@ Fil : tech · 1★ · source : 3D Printing Industry · page lue : oui (4685 cara
 
 ---
 
-## 3. Trous noirs : des amas d'étoiles ultra-denses pourraient fabriquer leurs graines géantes
+## 8. Trous noirs : des amas d'étoiles ultra-denses pourraient fabriquer leurs graines géantes
 
 Fil : science · 2★ · source : Les Numériques · page lue : oui (3300 caractères) · https://www.lesnumeriques.com/astronomie-conquete-spatiale/james-webb-et-trous-noirs-supermassifs-et-si-leur-origine-venait-des-gemmes-cosmiques-deja-decouvertes-n266713.html
 
@@ -62,7 +157,7 @@ Fil : science · 2★ · source : Les Numériques · page lue : oui (3300 caract
 
 ---
 
-## 4. Magnétisme : une troisième famille de magnétisme confirmée par des rayons X
+## 9. Magnétisme : une troisième famille de magnétisme confirmée par des rayons X
 
 Fil : science · 3★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104012256.htm
 
@@ -81,9 +176,9 @@ Fil : science · 3★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 ---
 
-## 5. Temps : un chronomètre aux rayons X mesure des durées de quelques attosecondes
+## 10. Temps : un chronomètre aux rayons X mesure des durées de quelques attosecondes
 
-Fil : science · 3★ · source : Nature · page lue : oui (1232 caractères) · https://www.nature.com/articles/d41586-026-03423-2
+Fil : science · 3★ · source : Nature · page lue : oui (1014 caractères) · https://www.nature.com/articles/d41586-026-03423-2
 
 **Actuel (publié)**
 
@@ -96,6 +191,671 @@ Fil : science · 3★ · source : Nature · page lue : oui (1232 caractères) ·
 
 - _Mesures automatiques_ : aucun défaut
 - _Ajoutée le_ : 2026-11-04T17:23:58.248565+00:00
+
+
+---
+
+## 11. Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
+
+Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-jwst-may-have-found-where-heavy-black-hole-seeds-formed
+
+**Actuel (publié)**
+
+- **Titre** : Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
+- **Avant** : On pense que les trous noirs géants ont commencé par des graines plus petites, mais on ne sait pas où naissent ces trous noirs de taille moyenne. Ils sont très difficiles à repérer, et une détection directe a été rapportée en 2020.
+- **Découverte** : Des chercheurs de l'université Sapienza de Rome ont étudié des amas d'étoiles très serrées, repérés par le télescope James Webb dans deux galaxies très lointaines. Leur modèle repose sur les collisions entre étoiles et sur la matière perdue par leurs vents. Ce modèle prévoit des trous noirs pouvant atteindre environ 4 000 fois la masse du Soleil, et les amas de la galaxie la plus compacte donneraient les plus lourds, de 1 600 à 2 700 fois la masse du Soleil.
+- **Et après** : Si le modèle est juste, ces amas expliqueraient une partie de l'origine des trous noirs géants. Mais ce ne sont que des estimations : ces trous noirs n'ont pas été observés directement, et il faudra des mesures plus fines pour le confirmer.
+- **Mots** : (aucun)
+- **Type** : simulation
+
+- _Mesures automatiques_ : phrase de 40 mots dans « decouverte », à couper : « Ce modèle prévoit des trous noirs pouvant atteindre environ 4 000 fois la masse du Soleil,… »
+- _Ajoutée le_ : 2026-11-04T07:30:34.027763+00:00
+
+
+---
+
+## 12. Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
+
+Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-vera-rubin-has-found-two-more-of-the-milky-ways-dim-satellites
+
+**Actuel (publié)**
+
+- **Titre** : Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
+- **Avant** : La Voie lactée est entourée de petits satellites très peu lumineux, traces de ses anciennes rencontres avec d'autres galaxies. On en connaît environ 65 galaxies naines et 40 amas d'étoiles, mais beaucoup restent invisibles.
+- **Découverte** : Des astronomes ont repéré Aquarius IV, probablement une petite galaxie très peu lumineuse, dans la zone externe de la Voie lactée. Ils ont aussi trouvé un amas d'étoiles vieux d'environ 9,2 milliards d'années, caché derrière une poussière épaisse vers le centre. Ses étoiles semblent venir d'une galaxie naine voisine, le Sagittaire, absorbée par la Voie lactée.
+- **Et après** : Ces détections montrent que le télescope peut trouver des objets très faibles, et il devrait en révéler beaucoup d'autres. Pour Aquarius IV, il faut encore des images plus profondes, car seule une petite partie de ses étoiles est visible.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-04T07:29:27.909249+00:00
+
+
+---
+
+## 13. Espace : une faille de Mars a glissé et causé un séisme
+
+Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2662 caractères) · https://www.techno-science.net/fr/actualites/mars-valles-marineris-seisme-actif-29661
+
+**Actuel (publié)**
+
+- **Titre** : Espace : une faille de Mars a glissé et causé un séisme
+- **Avant** : Le canyon Valles Marineris, long d'environ 4 000 kilomètres, s'est formé il y a plusieurs milliards d'années. On se demandait si ses anciennes cassures bougeaient encore, car Mars n'a pas de plaques tectoniques comme la Terre.
+- **Découverte** : Une nouvelle analyse place l'origine d'un signal enregistré en août 2021 par la sonde InSight de la NASA dans l'ouest de Valles Marineris. Selon les modèles, la faille se trouverait entre 20 et 40 kilomètres sous la surface, et deux blocs de roche auraient glissé l'un contre l'autre. Un impact de météorite ou un glissement de terrain expliqueraient moins bien le signal.
+- **Et après** : Cela montre que les anciennes fractures de Mars ne sont pas toutes figées, ce qui aidera à reconstituer son histoire et à évaluer les risques des futures missions. Un seul séisme a été clairement attribué à cette région, et beaucoup de petites secousses ont pu passer inaperçues.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-04T07:28:42.150706+00:00
+
+
+---
+
+## 14. Drones : un cadre souple se déforme au choc et reste en vol
+
+Fil : tech · 1★ · source : ETH Zurich · page lue : oui (6000 caractères) · https://ethz.ch/en/news-and-events/eth-news/news/2026/11/new-flexible-drone-can-withstand-collisions.html
+
+**Actuel (publié)**
+
+- **Titre** : Drones : un cadre souple se déforme au choc et reste en vol
+- **Avant** : Les drones à quatre hélices ont un corps central rigide, un modèle en place depuis plus d'un siècle. Un choc contre un mur peut les déstabiliser ou les casser.
+- **Découverte** : Des chercheurs de l'École polytechnique fédérale de Zurich ont conçu FlexiQuad, un drone à cadre souple en anneau, sans corps central. Le cadre se déforme à l'impact et absorbe une partie de l'énergie du choc, puis le drone continue de voler. Lors de tests de choc, il a été lancé contre des obstacles à environ 25 km/h. Cette vitesse était limitée surtout par l'espace nécessaire pour l'accélérer ; en vol, il peut atteindre 80 km/h.
+- **Et après** : Il pourrait servir à inspecter des cuves de navire ou à chercher des victimes dans des bâtiments effondrés. Il doit encore apprendre à se stabiliser seul après un choc et à se repérer, car les vibrations brouillent les caméras ; il n'est pas encore utilisable hors du laboratoire.
+- **Mots** : (aucun)
+- **Type** : prototype
+
+- _Mesures automatiques_ : « decouverte » a 4 phrases : 3 au plus ; phrase de 30 mots dans « apres », à couper : « Il doit encore apprendre à se stabiliser seul après un choc et à se repérer, car les vibra… »
+- _Ajoutée le_ : 2026-11-04T07:28:07.730216+00:00
+
+
+---
+
+## 15. Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
+
+Fil : tech · 2★ · source : TechCrunch · page lue : oui (4699 caractères) · https://techcrunch.com/2026/11/03/orbital-matter-3d-printed-the-first-rigid-beam-in-the-vacuum-of-space/
+
+**Actuel (publié)**
+
+- **Titre** : Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
+- **Avant** : Les grandes structures spatiales, comme les panneaux solaires, sont pliées au lancement puis déployées en orbite. En 2023, une mission financée par la NASA a imprimé des poutres sous vide sur Terre, mais elle n'a jamais décollé.
+- **Découverte** : La start-up allemande Orbital Matter a lancé le satellite Replicator 2 lors d'une mission SpaceX, avec quatre imprimantes 3D à bord. Chaque imprimante durcit une résine à la lumière ultraviolette pour former une poutre rigide d'environ 50 centimètres. Une imprimante a eu une anomalie, mais la structure a tout de même déployé un panneau solaire souple.
+- **Et après** : Cela permettrait de construire en orbite de grandes structures pour les futurs satellites à forte puissance. Pour l'instant, la longueur est limitée par la résine emportée (50 centimètres), contre 100 mètres jugés possibles ; une mission prévue en 2028 doit tester une imprimante plus grande.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : phrase de 29 mots dans « apres », à couper : « Pour l'instant, la longueur est limitée par la résine emportée (50 centimètres), contre 10… »
+- _Ajoutée le_ : 2026-11-04T07:27:29.481199+00:00
+
+
+---
+
+## 16. Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
+
+Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (1607 caractères) · https://www.tomshardware.com/tech-industry/data-centers/china-deploys-worlds-first-800-volt-dc-power-system-for-massive-ai-data-center-seeks-to-quench-power-needs-with-higher-conversion-and-efficiency-inside-a-smaller-footprint
+
+**Actuel (publié)**
+
+- **Titre** : Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
+- **Avant** : Dans un centre de calcul, le courant passe par plusieurs étapes de conversion avant d'alimenter les serveurs, ce qui fait perdre de l'énergie et prend beaucoup de place.
+- **Découverte** : À Ulanqab, en Chine, l'entreprise Envision a mis en service son système Dubhe, qui transforme directement le courant alternatif moyenne tension de 10 000 volts en courant continu de 800 volts. Moins d'étapes signifie un meilleur rendement et des appareils de conversion nettement plus petits. Le système alimente déjà une partie du centre de calcul Galaxy AI.
+- **Et après** : Envision veut à terme alimenter jusqu'à un million d'accélérateurs d'IA sur ce site, et utiliser la même technique dans son projet Mission Gobi, qui vise 5 gigawatts de centres de calcul verts dans les déserts d'ici 2030. Les performances ne sont pour l'instant données que par l'entreprise elle-même.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : phrase de 31 mots dans « decouverte », à couper : « À Ulanqab, en Chine, l'entreprise Envision a mis en service son système Dubhe, qui transfo… » ; phrase de 37 mots dans « apres », à couper : « Envision veut à terme alimenter jusqu'à un million d'accélérateurs d'IA sur ce site, et ut… » ; sigles ou noms codés inconnus du public : AI → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Ajoutée le_ : 2026-11-03T17:27:26.697318+00:00
+
+
+---
+
+## 17. Cancer : des cellules du patient font reculer des tumeurs de la peau
+
+Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04743-6
+
+**Actuel (publié)**
+
+- **Titre** : Cancer : des cellules du patient font reculer des tumeurs de la peau
+- **Avant** : Quand un mélanome ne répond plus à l'immunothérapie, les options restent rares. La thérapie cellulaire classique exige d'opérer pour prélever la tumeur et de donner de fortes doses d'une protéine stimulante, l'IL-2, aux effets indésirables importants.
+- **Découverte** : Les chercheurs ont modifié les cellules immunitaires extraites de la tumeur de chaque patient pour qu'elles produisent elles-mêmes l'IL-15, une protéine stimulante, uniquement lorsqu'on leur donne un médicament, l'acétazolamide. Sur 15 patients traités à la dose retenue, 10 ont vu leur tumeur reculer, dont 2 avec une réponse complète. Aucun décès lié au traitement n'a été observé parmi les 37 patients traités.
+- **Et après** : L'analyse regroupe deux petits essais et n'était pas prévue au départ, donc les résultats restent préliminaires. Une étude pivot plus large est en cours, et le premier patient a eu un gonflement du cerveau qui a obligé à baisser les doses.
+- **Mots** : (aucun)
+- **Type** : essai_clinique
+
+- _Mesures automatiques_ : phrase de 29 mots dans « decouverte », à couper : « Les chercheurs ont modifié les cellules immunitaires extraites de la tumeur de chaque pati… » ; 5 chiffres dans « decouverte » : garde les 3 plus parlants
+- _Ajoutée le_ : 2026-11-03T17:27:14.422537+00:00
+
+
+---
+
+## 18. Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
+
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (4328 caractères) · https://www.sciencedaily.com/releases/2026/11/261102075903.htm
+
+**Actuel (publié)**
+
+- **Titre** : Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
+- **Avant** : Les Nucléobases forment les lettres du code génétique de l'ADN et de l'ARN. On ignorait encore si ces cinq lettres existaient déjà dans l'espace, avant la naissance de la Terre.
+- **Découverte** : Des chercheurs japonais ont analysé des échantillons rapportés de l'astéroïde Ryugu par la sonde Hayabusa2, en 2020. Ils y ont trouvé les cinq Nucléobases, en quantités à peu près comparables dans deux échantillons. L'uracile avait déjà été repéré en 2023 ; cette fois, les cinq sont confirmées dans une roche restée presque intacte depuis la formation du Système solaire.
+- **Et après** : Ces molécules ont pu être répandues dans tout le Système solaire et livrées à la Terre primitive par les astéroïdes. Les chercheurs comparent maintenant ces échantillons à des météorites pour retracer l'histoire chimique de ces roches très anciennes.
+- **Mots** : **Nucléobase** → Molécule contenant de l'azote qui forme une lettre du code génétique de l'ADN ou de l'ARN.
+- **Type** : donnees
+
+- _Mesures automatiques_ : titre de 14 mots : 12 au plus ; affirmation absolue « On ignorait » : supprime-la ou attribue-la (« selon les chercheurs ») si l'article la fait ; « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
+- _Ajoutée le_ : 2026-11-03T17:26:50.374902+00:00
+
+
+---
+
+## 19. Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
+
+Fil : science · 1★ · source : The Quantum Insider · page lue : oui (4545 caractères) · https://thequantuminsider.com/2026/11/03/experiment-supports-theoretical-path-to-topological-quantum-computing/
+
+**Actuel (publié)**
+
+- **Titre** : Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
+- **Avant** : Les ordinateurs quantiques font beaucoup d'erreurs. Une piste consiste à utiliser des états quantiques censés mieux résister aux perturbations, mais ils n'avaient pas encore été vérifiés dans un montage réel.
+- **Découverte** : Des physiciens de l'université de Cologne ont étudié une jonction Josephson posée sur un isolant topologique, un matériau isolant à l'intérieur mais conducteur à sa surface. En mesurant les états quantiques de cette jonction, ils ont observé des états d'Andreev répartis comme la théorie le prévoit. Sous champ magnétique, ces états se concentrent aussi dans les zones attendues.
+- **Et après** : La question clé reste ouverte : il faut encore prouver que l'écart d'énergie se referme puis se rouvre, signe de la phase protégée. Pour cela, les chercheurs doivent améliorer la précision de leurs mesures, prochaine étape de leur travail.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-03T17:26:34.226491+00:00
+
+
+---
+
+## 20. Voitures : une berline chinoise roule à l'alcool de bois
+
+Fil : tech · 1★ · source : CnEVPost (véhicules électriques, Chine) · page lue : oui (3864 caractères) · https://cnevpost.com/2026/11/03/geely-launches-xingyao-6-ef-methanol-hybrid-sedan/
+
+**Actuel (publié)**
+
+- **Titre** : Voitures : une berline chinoise roule à l'alcool de bois
+- **Avant** : Jusqu'ici, les voitures hybrides roulaient à l'essence ou à l'électricité, et aucune berline familiale produite en série ne pouvait rouler au méthanol. Ce carburant restait donc réservé à des usages peu répandus pour les particuliers.
+- **Découverte** : Geely a lancé la Xingyao 6 EF, une berline qui roule au méthanol, à l'essence ou à l'électricité, avec un mélange libre dans le même réservoir. Son moteur au méthanol atteint un rendement de 48,15 %, selon le constructeur, le plus élevé parmi les moteurs au méthanol produits en série. Un capteur mesure en temps réel le mélange pour régler l'injection et l'allumage, et le démarrage à froid est annoncé jusqu'à environ -40 °C.
+- **Et après** : Les prix promotionnels, de 76 800 à 96 800 yuans, sont limités dans le temps, le prix officiel allant de 86 800 à 106 800 yuans. Le constructeur la présente comme un complément aux voitures électriques, surtout pour les climats froids et les longs trajets.
+- **Mots** : **Méthanol** → Alcool liquide qui peut servir de carburant seul ou mélangé à l'essence, dans un moteur adapté.
+- **Type** : en_vente
+
+- _Mesures automatiques_ : sigles ou noms codés inconnus du public : EF → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; prix sans équivalent approximatif en euros : ajoute-le (1 $ ≈ 0,85 €) ; « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
+- _Ajoutée le_ : 2026-11-03T17:26:20.288099+00:00
+
+
+---
+
+## 21. Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
+
+Fil : tech · 1★ · source : Tech Xplore · page lue : NON (0 caractères) · https://techxplore.com/news/2026-11-infrared-transparent-aerogel-boosts-subambient.html
+
+**Actuel (publié)**
+
+- **Titre** : Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
+- **Avant** : Pour se rafraîchir sans électricité, certains matériaux renvoient la chaleur vers le ciel, mais le jour le soleil réduit beaucoup leur efficacité.
+- **Découverte** : Des chercheurs de la City University of Hong Kong ont conçu un nouvel aérogel, un matériau très léger et poreux, transparent aux infrarouges. Associé aux matériaux de refroidissement de jour, il améliore leurs performances de jusqu'à 5,2 °C. Il laisse passer la chaleur infrarouge que le matériau doit évacuer vers le ciel.
+- **Et après** : Le gain atteint jusqu'à 5,2 °C selon les résultats annoncés, mais l'article ne précise ni les conditions des essais ni la date de mise sur le marché.
+- **Mots** : (aucun)
+- **Type** : prototype
+
+- _Mesures automatiques_ : « apres » parle de l'intérêt de l'entreprise (« marché ») : dis plutôt ce que ça change pour les malades, les utilisateurs ou la science
+- _Ajoutée le_ : 2026-11-03T07:27:22.638695+00:00
+
+
+---
+
+## 22. Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
+
+Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04710-1
+
+**Actuel (publié)**
+
+- **Titre** : Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
+- **Avant** : Contre le cancer du côlon, certaines formes ne répondaient pas aux immunothérapies de première génération, et une partie des malades rechutaient après l'opération.
+- **Découverte** : Dans l'essai UNICORN, 56 patients avec un cancer du côlon opérable ont reçu une courte cure avant la chirurgie. Chez les cancers jusque-là résistants, le duo botensilimab et balstilimab a fait presque disparaître la tumeur chez 36 % des patients, contre 0 % avec le seul botensilimab. Dans l'autre type de cancer étudié, le même duo a obtenu ce résultat chez 100 % des patients.
+- **Et après** : Chaque groupe ne comptait que 14 patients et plus de la moitié des malades traités par le duo ont eu des effets indésirables liés au système immunitaire, comme un syndrome grippal ou la diarrhée. Il faudra un essai plus large pour confirmer ces résultats avant tout usage courant.
+- **Mots** : (aucun)
+- **Type** : essai_clinique
+
+- _Mesures automatiques_ : phrase de 34 mots dans « apres », à couper : « Chaque groupe ne comptait que 14 patients et plus de la moitié des malades traités par le … » ; sigles ou noms codés inconnus du public : UNICORN → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; 4 chiffres dans « decouverte » : garde les 3 plus parlants
+- _Ajoutée le_ : 2026-11-03T07:27:05.056926+00:00
+
+
+---
+
+## 23. Étoiles : des astronomes repèrent un probable compagnon d'une étoile géante
+
+Fil : science · 2★ · source : Pour la Science · page lue : oui (6000 caractères) · https://www.pourlascience.fr/sd/astrophysique/la-preuve-la-plus-solide-a-ce-jour-pour-le-compagnon-de-betelgeuse-29610.php
+
+**Actuel (publié)**
+
+- **Titre** : Étoiles : des astronomes repèrent un probable compagnon d'une étoile géante
+- **Avant** : Depuis plus d'un siècle, on soupçonne Bételgeuse d'avoir une étoile compagne, sans preuve solide. En 2024, une variation de sa lumière laissait supposer un compagnon, mais les premières recherches n'avaient rien détecté.
+- **Découverte** : Une équipe de Miguel Montargès, de l'Observatoire de Paris, a observé l'étoile en décembre 2024 avec le Very Large Telescope, au Chili, à la date et à l'endroit prévus. Elle y a repéré une source faible, baptisée Bételgeuse B, avec un signal environ quatre fois plus net que celui de la tentative précédente. Selon leur estimation, ce compagnon ferait entre 2,6 et 3,1 fois la masse du Soleil, soit une jeune étoile bleu-blanc.
+- **Et après** : Les chercheurs parlent encore d'un candidat : il faudra revoir l'étoile vers 2027, de l'autre côté de sa course, pour écarter un objet situé seulement par hasard dans la même direction. Si la détection se confirme, la période de révolution calculée, d'environ 5,5 à 5,9 ans, correspondra bien à la variation observée.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Mesures automatiques_ : phrase de 29 mots dans « decouverte », à couper : « Une équipe de Miguel Montargès, de l'Observatoire de Paris, a observé l'étoile en décembre… » ; phrase de 31 mots dans « apres », à couper : « Les chercheurs parlent encore d'un candidat : il faudra revoir l'étoile vers 2027, de l'au… »
+- _Ajoutée le_ : 2026-11-03T07:26:48.841266+00:00
+
+
+---
+
+## 24. Électricité : un centre de calcul chinois fonctionne désormais avec un courant stable
+
+Fil : tech · 1★ · source : pv magazine (solaire) · page lue : oui (3533 caractères) · https://www.pv-magazine.com/2026/11/02/envision-claims-world-first-with-800-v-dc-architecture-for-ai-data-center/
+
+**Actuel (publié)**
+
+- **Titre** : Électricité : un centre de calcul chinois fonctionne désormais avec un courant stable
+- **Avant** : Les centres de calcul pour l'IA convertissent le courant alternatif en continu près des serveurs, ce qui limite la puissance qu'on peut installer dans un même espace.
+- **Découverte** : Envision Energy a mis en service à Ulanqab, en Chine, un système qui relie un transformateur électronique à des batteries et alimente les serveurs en 800 volts continus. Un logiciel ajuste en temps réel l'énergie fournie aux processeurs graphiques, en quelques millisecondes, selon l'entreprise.
+- **Et après** : Le campus Galaxy, qui vise 3 GW et plus de 80 % d'énergie renouvelable, a commencé à fonctionner en août 2026. Les performances annoncées, comme un rendement de 98,5 %, n'ont pas été vérifiées indépendamment.
+- **Mots** : **Transformateur** → Appareil qui change la tension du courant électrique, ici sans pièce mobile grâce à l'électronique de puissance.
+- **Type** : demonstration
+
+- _Mesures automatiques_ : sigles ou noms codés inconnus du public : GW → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
+- _Ajoutée le_ : 2026-11-03T07:26:31.072392+00:00
+
+
+---
+
+## 25. Dinosaures : des chercheurs trouvent des restes de cellules sanguines dans un os
+
+Fil : science · 2★ · source : New Atlas · page lue : oui (5922 caractères) · https://newatlas.com/biology/fossilized-blood-cells-dinosaur-bone/
+
+**Actuel (publié)**
+
+- **Titre** : Dinosaures : des chercheurs trouvent des restes de cellules sanguines dans un os
+- **Avant** : On pensait que les molécules du sang ne pouvaient pas survivre dans les os de dinosaures pendant des millions d'années, car la matière d'origine est remplacée par des minéraux. Les affirmations contraires restaient très discutées, à cause du risque de contamination.
+- **Découverte** : Dans une patte arrière d'un théropode d'environ 3 mètres de long, mort il y a 115 millions d'années, une équipe internationale dirigée par Kliti Grice, de l'université Curtin, a identifié de l'hème, la partie du sang qui transporte l'oxygène. Des formes arrondies, logées dans les anciens canaux des vaisseaux sanguins, ressemblent à des globules rouges fossilisés et contiennent une signature chimique compatible avec cette molécule. Les chercheurs ont combiné microscopie et plusieurs analyses chimiques pour renforcer cette interprétation.
+- **Et après** : Les chercheurs n'ont pas trouvé de trace de la protéine de l'hémoglobine, et une contamination par des microbes ne peut pas être totalement exclue. D'autres analyses seront nécessaires pour comprendre le fonctionnement de ces cellules.
+- **Mots** : **Hème** → Partie de l'hémoglobine contenant du fer, qui permet au sang de transporter l'oxygène.
+- **Type** : terrain
+
+- _Mesures automatiques_ : phrase de 29 mots dans « avant », à couper : « On pensait que les molécules du sang ne pouvaient pas survivre dans les os de dinosaures p… » ; phrase de 39 mots dans « decouverte », à couper : « Dans une patte arrière d'un théropode d'environ 3 mètres de long, mort il y a 115 millions… » ; « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
+- _Ajoutée le_ : 2026-11-03T07:26:11.867586+00:00
+
+
+---
+
+## 26. Cellules : une pression desserre l'ADN de cellules de peau de souris
+
+Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2694 caractères) · https://www.techno-science.net/fr/actualites/pression-peau-souris-neurones-crispra-29644
+
+**Actuel (publié)**
+
+- **Titre** : Cellules : une pression desserre l'ADN de cellules de peau de souris
+- **Avant** : On savait qu'on peut changer le rôle d'une cellule en activant certaines de ses instructions génétiques. Mais l'ADN, très serré dans le noyau, rend certains gènes difficiles à atteindre.
+- **Découverte** : Des chercheurs de l'Université de Californie à Los Angeles ont fait passer des cellules de peau de souris dans des canaux plus étroits que leur noyau. Pendant quelques millisecondes, le noyau est comprimé et son ADN se desserre. Combinée à un outil qui active des gènes existants sans les couper, cette pression fait passer la part de cellules devenues nerveuses d'environ 3 % à environ 10 %.
+- **Et après** : Ces résultats portent sur des cellules de souris cultivées en laboratoire, et la méthode doit encore être testée sur d'autres types de cellules. Son intérêt pour l'humain reste à démontrer.
+- **Mots** : **CRISPRa** → Outil qui active des gènes déjà présents dans une cellule, sans couper l'ADN.
+- **Type** : cellules
+
+- _Mesures automatiques_ : phrase de 29 mots dans « decouverte », à couper : « Combinée à un outil qui active des gènes existants sans les couper, cette pression fait pa… » ; mot à connaître « CRISPRa » absent du texte de la fiche : choisis un mot du texte ou aucun
+- _Ajoutée le_ : 2026-11-02T17:27:05.454954+00:00
+
+
+---
+
+## 27. Archéologie : un bâtiment égyptien de 2 600 ans repéré par satellite
+
+Fil : science · 2★ · source : Live Science · page lue : oui (2906 caractères) · https://www.livescience.com/archaeology/ancient-egyptians/buried-for-2-600-years-beneath-nile-mud-a-massive-ancient-egyptian-complex-was-just-found-from-space
+
+**Actuel (publié)**
+
+- **Titre** : Archéologie : un bâtiment égyptien de 2 600 ans repéré par satellite
+- **Avant** : Buto était l'une des villes les plus sacrées de l'Égypte ancienne, mais une grande partie de ses vestiges restait cachée sous les dépôts de boue du Nil.
+- **Découverte** : Des chercheurs ont utilisé un radar satellite et des mesures électriques du sol pour repérer une structure vieille de 2 600 ans, sans fouille préalable. Les relevés montrent des murs enfouis, et ce qui se trouve sous ces murs est la vraie surprise de l'étude.
+- **Et après** : Les archéologues veulent maintenant fouiller le site pour dater précisément le complexe et comprendre à quoi il servait. Les images ne disent pas encore quel était son usage exact.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-02T17:26:43.402214+00:00
+
+
+---
+
+## 28. Préhistoire : les Européens d'il y a 30 000 ans étaient plus liés
+
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261031221153.htm
+
+**Actuel (publié)**
+
+- **Titre** : Préhistoire : les Européens d'il y a 30 000 ans étaient plus liés
+- **Avant** : On pensait que les groupes humains de l'est et de l'ouest de l'Europe, à l'époque glaciaire, vivaient largement isolés les uns des autres. Les anciennes preuves génétiques montraient deux grandes lignées bien distinctes.
+- **Découverte** : Une équipe internationale dirigée par l'université de Vienne a analysé de l'ADN ancien, extrait de rares restes humains et de traces génétiques conservées dans des sédiments de grottes. En combinant ces données avec des analyses déjà existantes, elle révèle des liens entre des populations séparées par de très grandes distances.
+- **Et après** : Les chercheurs ont aussi repéré des signes que certaines populations du sud-ouest de l'Europe ont gardé leur héritage génétique propre. Ces résultats, publiés dans la revue Science Advances, devront être confirmés par d'autres équipes.
+- **Mots** : **Gravettien** → Grande culture préhistorique qui a couvert une bonne partie de l'Europe il y a environ 34 000 à 25 000 ans.
+- **Type** : donnees
+
+- _Mesures automatiques_ : « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…) ; mot à connaître « Gravettien » absent du texte de la fiche : choisis un mot du texte ou aucun
+- _Ajoutée le_ : 2026-11-02T17:26:33.737245+00:00
+
+
+---
+
+## 29. Laboratoires : un appareil refroidi repère trois fois mieux les molécules
+
+Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (168 caractères) · https://pandaily.com/ciqtek-cryohe-cryogenic-nmr-probe-20k-3x-sensitivity-can-s-solid-state-nmr-spectrometer
+
+**Actuel (publié)**
+
+- **Titre** : Laboratoires : un appareil refroidi repère trois fois mieux les molécules
+- **Avant** : Les appareils d'analyse par résonance magnétique nucléaire, utilisés pour identifier la structure des molécules, fonctionnaient surtout avec des sondes à température ambiante. Leur sensibilité restait donc limitée.
+- **Découverte** : L'entreprise chinoise CIQTEK lance CryoHe, une sonde dont la bobine est refroidie à environ 20 kelvins, soit −253 °C. Elle offre une sensibilité environ trois fois supérieure à celle d'une sonde à température ambiante. C'est la première sonde cryogénique de ce type commercialisée en Chine.
+- **Et après** : Le spectromètre CAN-S, destiné à l'analyse des matériaux solides, est lancé en même temps. Les laboratoires pourraient ainsi analyser plus finement des échantillons difficiles à observer. Ces performances sont annoncées par l'entreprise et restent à vérifier en conditions réelles.
+- **Mots** : **Cryogénie** → Ensemble des techniques permettant de refroidir un appareil à des températures très basses, proches du zéro absolu.
+- **Type** : en_vente
+
+- _Mesures automatiques_ : « apres » a 3 phrases : 2 au plus ; sigles ou noms codés inconnus du public : CAN, CIQTEK → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; phrase vide ou incomplète dans « avant » : « Leur sensibilité restait donc limitée. »
+- _Ajoutée le_ : 2026-11-02T17:26:10.345713+00:00
+
+
+---
+
+## 30. Satellites : un petit satellite relie la Terre par un faisceau laser
+
+Fil : tech · 2★ · source : ESA · page lue : oui (4174 caractères) · https://www.esa.int/Applications/Connectivity_and_Secure_Communications/CubeSat_achieves_challenging_laser_link_to_ground
+
+**Actuel (publié)**
+
+- **Titre** : Satellites : un petit satellite relie la Terre par un faisceau laser
+- **Avant** : Les satellites communiquent le plus souvent avec le sol par ondes radio. Les liaisons laser, plus rapides, restent rares sur les petits satellites.
+- **Découverte** : Le CubeSat ERMIS-3, de format 8U et développé par l'université d'Athènes, a établi une liaison laser avec une station au sol en Grèce. C'est la première liaison optique du pays avec un satellite en orbite basse. Le lien a été réalisé quelques semaines après la mise en service du satellite, avec des terminaux optiques de la société lituanienne Astrolight.
+- **Et après** : Les chercheurs veulent confirmer que ce type de communication fonctionne sur de petits satellites. Le faisceau doit rester précis alors que le satellite file à plusieurs kilomètres par seconde, et les nuages peuvent couper le lien.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : sigles ou noms codés inconnus du public : ERMIS → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Ajoutée le_ : 2026-11-02T17:26:00.101337+00:00
+
+
+---
+
+## 31. Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
+
+Fil : science · 1★ · source : Communications Physics · page lue : oui (2974 caractères) · https://www.nature.com/articles/s42005-026-02928-6
+
+**Actuel (publié)**
+
+- **Titre** : Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
+- **Avant** : On savait que le nickelate La3Ni2O7 devient supraconducteur sous très forte pression, vers -193 °C, mais le mécanisme responsable restait débattu.
+- **Découverte** : Des chercheurs ont simulé sur ordinateur un modèle de ce matériau à deux couches. Ils montrent que l'appariement des électrons vient surtout de la division de certaines orbitales électroniques, puis que l'hybridation avec une autre orbitale redistribue ces paires.
+- **Et après** : Il s'agit d'un modèle théorique qui doit être confirmé par des expériences ; pour l'instant, le matériau ne fonctionne qu'à très haute pression.
+- **Mots** : **Supraconductivité** → État d'un matériau qui laisse passer l'électricité sans aucune résistance, donc sans perte d'énergie.
+- **Type** : simulation
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-02T07:26:18.771679+00:00
+
+
+---
+
+## 32. Paludisme : des chercheurs lisent l'ADN complet de trois parasites
+
+Fil : science · 2★ · source : PLOS Pathogens · page lue : oui (6000 caractères) · https://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1014754
+
+**Actuel (publié)**
+
+- **Titre** : Paludisme : des chercheurs lisent l'ADN complet de trois parasites
+- **Avant** : On savait lire le génome du parasite du paludisme le plus meurtrier, mais les autres espèces restaient mal connues. Elles sont difficiles à cultiver en laboratoire, et les prélèvements contiennent très peu de parasites.
+- **Découverte** : Des chercheurs ont reconstruit les génomes complets de trois espèces de parasites directement à partir de sang de malades. Ils ont combiné des techniques de lecture de l'ADN capables de travailler avec très peu de matière. Les extrémités des chromosomes, jusque-là illisibles, sont désormais visibles, avec des familles de gènes sans doute liées aux relations entre parasite et hôte.
+- **Et après** : Ces génomes de référence doivent aider à comprendre comment ces espèces persistent, se transmettent et échappent au système immunitaire. Les chercheurs veulent ainsi mieux intégrer ces espèces longtemps négligées dans les efforts mondiaux pour éliminer le paludisme.
+- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, codée dans son ADN.
+- **Type** : donnees
+
+- _Mesures automatiques_ : « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
+- _Ajoutée le_ : 2026-11-02T07:26:08.323622+00:00
+
+
+---
+
+## 33. Espace : la poussière de Mars est assez fine pour atteindre les poumons
+
+Fil : science · 1★ · source : NASA JPL · page lue : oui (6000 caractères) · https://www.jpl.nasa.gov/news/nasas-perseverance-offers-clues-to-protect-crews-from-mars-dust
+
+**Actuel (publié)**
+
+- **Titre** : Espace : la poussière de Mars est assez fine pour atteindre les poumons
+- **Avant** : On savait que la poussière de la Lune avait abîmé les visières et les joints des combinaisons d'Apollo, mais on connaissait mal le comportement de la poussière martienne sur les équipements.
+- **Découverte** : Le robot Perseverance a mesuré pendant environ 1 645 jours martiens les fines et ultrafines particules de poussière collées à des échantillons de matériaux de combinaison emportés à bord. Certaines sont assez petites pour pénétrer dans les poumons et passer dans le sang. Ces résultats seront publiés dans la revue PNAS.
+- **Et après** : Ces données pourraient aider à concevoir des combinaisons et des habitats mieux protégés, ainsi que des méthodes de nettoyage et des normes de santé pour les futures missions vers Mars. Il reste à vérifier ces résultats dans des conditions réelles avec des astronautes.
+- **Mots** : (aucun)
+- **Type** : donnees
+
+- _Mesures automatiques_ : phrase de 31 mots dans « avant », à couper : « On savait que la poussière de la Lune avait abîmé les visières et les joints des combinais… » ; phrase de 29 mots dans « decouverte », à couper : « Le robot Perseverance a mesuré pendant environ 1 645 jours martiens les fines et ultrafine… » ; phrase de 30 mots dans « apres », à couper : « Ces données pourraient aider à concevoir des combinaisons et des habitats mieux protégés, … » ; sigles ou noms codés inconnus du public : PNAS → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Ajoutée le_ : 2026-11-02T07:25:49.696942+00:00
+
+
+---
+
+## 34. Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
+
+Fil : tech · 1★ · source : MIT News · page lue : oui (6000 caractères) · https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102
+
+**Actuel (publié)**
+
+- **Titre** : Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
+- **Avant** : Les poissons d'élevage sont exposés à des maladies qui causent de lourdes pertes dans l'aquaculture. Il faut donc des outils de vaccination adaptés à l'eau.
+- **Découverte** : Des chercheurs du MIT ont conçu de minuscules aiguilles imperméables, en soie de qualité alimentaire et recouvertes d'une fine couche de shellac. Leur pointe creuse peut transporter le vaccin, et l'aiguille pénètre légèrement la peau du poisson avant de se décomposer.
+- **Et après** : Les chercheurs veulent offrir une méthode plus sûre et plus efficace pour vacciner les poissons d'élevage. Il reste à vérifier ces résultats à plus grande échelle avant tout usage dans les fermes.
+- **Mots** : **Shellac** → Résine naturelle, produite par des insectes, utilisée comme vernis alimentaire pour rendre une surface imperméable.
+- **Type** : prototype
+
+- _Mesures automatiques_ : sigles ou noms codés inconnus du public : MIT → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Ajoutée le_ : 2026-11-02T07:25:36.654031+00:00
+
+
+---
+
+## 35. Internet : une fibre envoie 128 000 milliards de bits par seconde
+
+Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (181 caractères) · https://pandaily.com/china-telecom-yofc-zte-1000km-hollow-core-fiber-bidirectional-real-time-transmission-800g-128tbps
+
+**Actuel (publié)**
+
+- **Titre** : Internet : une fibre envoie 128 000 milliards de bits par seconde
+- **Avant** : Les liaisons Internet longue distance utilisent surtout des fibres en verre plein, dont le débit et la rapidité du signal sont déjà bien connus.
+- **Découverte** : Des équipes de China Telecom, YOFC et ZTE ont fait passer 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens, sur une fibre de 1 007 km. Le total atteint 128 000 milliards de bits par seconde.
+- **Et après** : Cette technique vise des réseaux plus rapides et plus réactifs, mais l'essai reste une démonstration et les conditions d'exploitation commerciale ne sont pas précisées.
+- **Mots** : **Fibre creuse** → Fibre optique dont le cœur est rempli d'air, ce qui permet à la lumière de voyager plus vite que dans le verre.
+- **Type** : demonstration
+
+- _Mesures automatiques_ : phrase de 31 mots dans « decouverte », à couper : « Des équipes de China Telecom, YOFC et ZTE ont fait passer 800 gigabits par seconde sur cha… » ; sigles ou noms codés inconnus du public : YOFC, ZTE → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Ajoutée le_ : 2026-11-02T07:25:23.862055+00:00
+
+
+---
+
+## 36. Drones : un étudiant atteint 790 km/h avec un petit avion à réaction
+
+Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (4156 caractères) · https://www.tomshardware.com/tech-industry/drones/college-student-unofficially-breaks-world-record-for-fastest-jet-powered-drone-with-491-mph-aircraft-built-in-his-dorm-reaper-aims-to-grab-the-usd800-000-boom-prize
+
+**Actuel (publié)**
+
+- **Titre** : Drones : un étudiant atteint 790 km/h avec un petit avion à réaction
+- **Avant** : Les drones à réaction, petits avions sans pilote équipés d'un moteur à réaction, étaient jusque-là moins rapides que ce nouvel appareil, selon la source.
+- **Découverte** : Un étudiant d'une université américaine a construit son avion télécommandé dans sa chambre d'étudiant. L'appareil a atteint 790 km/h, soit 491 mph, ce que la source présente comme un record.
+- **Et après** : L'étudiant vise un prix de 800 000 dollars récompensant le plus rapide avion télécommandé à réaction. Pour l'instant, ce record n'est pas officiel.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : « selon la source » parle de la source : écris « selon les chercheurs » ou « selon l'entreprise » ; prix sans équivalent approximatif en euros : ajoute-le (1 $ ≈ 0,85 €)
+- _Ajoutée le_ : 2026-11-01T17:26:03.320137+00:00
+
+
+---
+
+## 37. Océan : une étoile de mer laisse souvent du corail vivant
+
+Fil : science · 1★ · source : ScienceDaily · page lue : oui (5611 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002957.htm
+
+**Actuel (publié)**
+
+- **Titre** : Océan : une étoile de mer laisse souvent du corail vivant
+- **Avant** : On voyait surtout l'étoile de mer à épines comme une menace pour les récifs, car ses explosions de population ont causé de gros dégâts sur la Grande Barrière de corail depuis les années 1960.
+- **Découverte** : Des chercheurs de l'université de Sydney ont examiné les traces de repas laissées sur des coraux près de la station One Tree Island. Environ 75 % des repas observés laissaient du tissu vivant sur le corail. En mangeant les coraux qui dominent et poussent vite, l'étoile laisse de la place aux espèces plus lentes.
+- **Et après** : Les chercheurs restent prudents : cet effet bénéfique est surtout possible quand les populations d'étoiles sont maintenues sous contrôle. L'impact réel sur la variété des coraux reste à mesurer sur une zone plus large.
+- **Mots** : (aucun)
+- **Type** : terrain
+
+- _Mesures automatiques_ : phrase de 34 mots dans « avant », à couper : « On voyait surtout l'étoile de mer à épines comme une menace pour les récifs, car ses explo… »
+- _Ajoutée le_ : 2026-11-01T17:25:45.46085+00:00
+
+
+---
+
+## 38. Satellites : une IA de Google écrit un poème depuis l'espace
+
+Fil : tech · 2★ · source : Clubic · page lue : oui (6000 caractères) · https://www.clubic.com/actualite-637000-un-satellite-une-ia-et-un-poeme-google-vient-de-reussir-une-experience-assez-folle-dans-l-espace.html
+
+**Actuel (publié)**
+
+- **Titre** : Satellites : une IA de Google écrit un poème depuis l'espace
+- **Avant** : Les centres de données qui font tourner les intelligences artificielles sont jusqu'ici installés sur Terre. En novembre 2025, Google a présenté son projet Suncatcher, qui vise à en installer en orbite.
+- **Découverte** : Google a lancé le 1er octobre un satellite de la taille d'un réfrigérateur, équipé de quatre puces d'IA, par une fusée Falcon 9 de SpaceX. Le modèle Gemma 4 a produit en orbite un haïku, la première réponse d'IA jamais générée par une puce de centre de données dans l'espace. Pour éviter la surchauffe, les puces ne tournent que quinze minutes d'affilée.
+- **Et après** : Ce n'est encore qu'un prototype qui ne tourne que par courtes séquences. Google veut un jour alimenter des centres de données en orbite grâce à l'énergie du Soleil, ce qui reste à prouver à grande échelle.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-01T17:25:31.091585+00:00
+
+
+---
+
+## 39. Momification : une plante du désert entrait dans l'embaumement égyptien
+
+Fil : science · 2★ · source : Phys.org · page lue : NON (0 caractères) · https://phys.org/news/2026-10-year-mummy-yields-molecular-evidence.html
+
+**Actuel (publié)**
+
+- **Titre** : Momification : une plante du désert entrait dans l'embaumement égyptien
+- **Avant** : On savait que les Égyptiens anciens employaient diverses substances pour conserver les corps, mais la composition exacte de ces mélanges restait mal connue.
+- **Découverte** : Une équipe de l'université de Marbourg a analysé une tête momifiée vieille d'environ 2 700 ans. Elle y a trouvé des traces moléculaires d'aloès, une plante grasse du désert, ce qui constitue la première preuve de ce type. Les chercheurs ont combiné analyse de produits naturels, égyptologie et histoire de la pharmacie.
+- **Et après** : Ce résultat permet de mieux comprendre les recettes d'embaumement et les savoirs des anciens Égyptiens. Il reste à vérifier cette découverte sur d'autres momies.
+- **Mots** : **Aloès** → Plante grasse et épineuse originaire d'Afrique et d'Arabie, dont le suc est utilisé depuis très longtemps.
+- **Type** : donnees
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-01T17:25:11.209042+00:00
+
+
+---
+
+## 40. Archéologie : un mur de 4 000 ans révèle une défense ancienne
+
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030003022.htm
+
+**Actuel (publié)**
+
+- **Titre** : Archéologie : un mur de 4 000 ans révèle une défense ancienne
+- **Avant** : Jusqu'ici, on connaissait peu de constructions militaires très anciennes en Afrique du Nord, en dehors de la vallée du Nil. Le site d'Oued Beht, au Maroc, était déjà connu pour un vaste complexe agricole vieux de plus de 5 000 ans.
+- **Découverte** : Des archéologues ont fouillé le site d'Oued Beht, dans le nord-ouest du Maroc, en 2023. Ils y ont mis au jour une grande construction en forme de mur, sans doute destinée à se défendre. Elle date d'environ 4 000 à 3 500 ans, ce qui en fait la plus ancienne de ce type connue dans la région hors de la vallée du Nil.
+- **Et après** : Les chercheurs veulent maintenant savoir qui a bâti ce mur et contre quelle menace. Ils pensent qu'il répondait surtout à des rivalités pour la terre et les ressources, et il doit encore être confirmé par d'autres sites.
+- **Mots** : (aucun)
+- **Type** : terrain
+
+- _Mesures automatiques_ : phrase de 29 mots dans « decouverte », à couper : « Elle date d'environ 4 000 à 3 500 ans, ce qui en fait la plus ancienne de ce type connue d… »
+- _Ajoutée le_ : 2026-11-01T17:25:02.124751+00:00
+
+
+---
+
+## 41. Ancêtres : un fossile de singe découvert en Égypte bouscule nos origines
+
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261031011638.htm
+
+**Actuel (publié)**
+
+- **Titre** : Ancêtres : un fossile de singe découvert en Égypte bouscule nos origines
+- **Avant** : Les chercheurs pensaient que les premiers grands singes, dont la lignée de l'humain, étaient apparus surtout en Afrique de l'Est. Aucun fossile certain de singe de cette époque n'avait été trouvé en Afrique du Nord.
+- **Découverte** : Une équipe internationale décrit une nouvelle espèce, Masripithecus moghraensis, à partir de restes trouvés à Wadi Moghra, dans le nord de l'Égypte. Âgé de 17 à 18 millions d'années, ce fossile est le premier singe certain découvert en Afrique du Nord. L'étude est publiée dans la revue Science.
+- **Et après** : Les chercheurs suggèrent que le nord de l'Afrique et le Moyen-Orient ont pu jouer un rôle central dans l'origine des grands singes, dont la lignée humaine. D'autres fossiles seront nécessaires pour confirmer cette hypothèse.
+- **Mots** : (aucun)
+- **Type** : terrain
+
+- _Mesures automatiques_ : « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
+- _Ajoutée le_ : 2026-11-01T14:07:26.804087+00:00
+
+
+---
+
+## 42. Bactéries : une cellule s'autodétruit pour bloquer un virus
+
+Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261029072123.htm
+
+**Actuel (publié)**
+
+- **Titre** : Bactéries : une cellule s'autodétruit pour bloquer un virus
+- **Avant** : Les défenses connues des bactéries gardent en général une toxine mortelle sous contrôle jusqu'à l'arrivée d'un virus. Ce nouveau système fonctionne presque à l'inverse.
+- **Découverte** : Des chercheurs du Gladstone Institutes décrivent un type de défense bactérienne inédit, les « rétrons de type VI ». Ici, de l'ADN fabriqué au début de l'infection active la toxine, et la bactérie infectée se détruit, ce qui empêche le virus de se multiplier et de se propager aux cellules voisines.
+- **Et après** : Les chercheurs veulent comprendre en détail ce mécanisme en plusieurs étapes. Ils pensent qu'il pourrait inspirer de nouveaux outils de modification de l'ADN, capables de corriger certaines mutations avec plus de précision, mais ces outils restent à développer.
+- **Mots** : **Rétron** → Petite structure naturelle des bactéries, formée d'ADN fabriqué à partir d'ARN et de protéines, qui intervient dans leur défense.
+- **Type** : cellules
+
+- _Mesures automatiques_ : phrase de 32 mots dans « decouverte », à couper : « Ici, de l'ADN fabriqué au début de l'infection active la toxine, et la bactérie infectée s… »
+- _Ajoutée le_ : 2026-11-01T14:07:16.818086+00:00
+
+
+---
+
+## 43. Électronique : un moteur d'une seule molécule tourne avec du courant
+
+Fil : tech · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002940.htm
+
+**Actuel (publié)**
+
+- **Titre** : Électronique : un moteur d'une seule molécule tourne avec du courant
+- **Avant** : Les moteurs moléculaires alimentés directement par l'électricité, apparus en 2011, fonctionnaient sur des surfaces et demandaient la pointe d'un microscope pour bouger.
+- **Découverte** : Des chercheurs ont fabriqué un moteur formé d'une seule molécule en forme de spirale, inspiré de la vis d'Archimède. Il tourne quand le courant le traverse, change de sens quand on inverse la tension, et sa rotation peut multiplier la conductivité électrique jusqu'à 100 fois.
+- **Et après** : Il s'agit d'un prototype de laboratoire, encore loin d'un usage concret ; l'idée pourrait ouvrir la voie à de très petites machines et à des circuits électroniques moléculaires.
+- **Mots** : **Vis d'Archimède** → Machine très ancienne formée d'une spirale qui tourne, utilisée depuis longtemps pour faire monter l'eau.
+- **Type** : prototype
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-01T14:06:15.778372+00:00
+
+
+---
+
+## 44. Univers : des chocs d'atomes d'oxygène recréent la matière du Big Bang
+
+Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261030002935.htm
+
+**Actuel (publié)**
+
+- **Titre** : Univers : des chocs d'atomes d'oxygène recréent la matière du Big Bang
+- **Avant** : Les chercheurs savaient recréer la matière des tout premiers instants de l'univers en écrasant de très gros noyaux atomiques à très haute énergie. Ils pensaient qu'il fallait des collisions puissantes pour y parvenir.
+- **Découverte** : Dans l'expérience STAR, menée au collisionneur RHIC aux États-Unis, des noyaux d'oxygène sont lancés presque à la vitesse de la lumière puis se percutent. Les particules qui traversent la matière ainsi créée perdent de l'énergie, un signe typique de ce plasma, et ce signal apparaît à des énergies plus basses que celles déjà démontrées.
+- **Et après** : Les résultats, publiés dans Physical Review Letters, fixent une nouvelle limite inférieure des conditions nécessaires à cette matière. Les chercheurs veulent maintenant préciser ce qu'il faut pour la créer, en comparant ces mesures à celles du LHC du CERN.
+- **Mots** : **Plasma de quarks et de gluons** → État de la matière extrêmement chaud et dense, qui existait quelques instants après le Big Bang.
+- **Type** : observation
+
+- _Mesures automatiques_ : phrase de 30 mots dans « decouverte », à couper : « Les particules qui traversent la matière ainsi créée perdent de l'énergie, un signe typiqu… » ; sigles ou noms codés inconnus du public : LHC, RHIC, STAR → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Ajoutée le_ : 2026-11-01T14:06:05.332368+00:00
+
+
+---
+
+## 45. IA : une IA injecte un médicament dans le cerveau d'une souris vivante
+
+Fil : tech · 1★ · source : Wired · page lue : oui (5327 caractères) · https://www.wired.com/story/an-ai-agent-did-brain-surgery-on-live-mouse/
+
+**Actuel (publié)**
+
+- **Titre** : IA : une IA injecte un médicament dans le cerveau d'une souris vivante
+- **Avant** : Jusqu'ici, les IA aidaient surtout à concevoir des expériences ou à analyser leurs résultats. Les injections dans le cerveau des souris étaient faites à la main par des chercheurs.
+- **Découverte** : Une startup américaine a relié un agent IA à un bras robotisé, une seringue et une caméra. L'IA a choisi une thérapie génique, observé la souris et réalisé l'injection, après quelques étapes supplémentaires.
+- **Et après** : Il s'agit d'une seule souris, présentée par le fondateur de la startup, sans étude publiée dans les informations disponibles. Les chercheurs veulent maintenant connecter leurs IA à de vrais laboratoires pour tester la méthode à plus grande échelle.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-01T14:05:55.035796+00:00
 
 
 ---
