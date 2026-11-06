@@ -1,11 +1,201 @@
-# Test de la rédaction — 05/11/2026 18:01 UTC
+# Test de la rédaction — 06/11/2026 18:03 UTC
 
 Modèles : haiku · 40 fiches
 
 
 ---
 
-## 1. Muscles : un composé double l'action d'une protéine réparatrice chez la souris
+## 1. Espace : la glace d'une comète venue d'ailleurs ressemble à nos glaces
+
+Fil : science · 2★ · source : Universe Today · page lue : oui (5650 caractères) · https://www.universetoday.com/articles/interstellar-visitor-3iatlas-shows-water-ice-behaves-the-same-across-alien-star-systems
+
+**Actuel (publié)**
+
+- **Titre** : Espace : la glace d'une comète venue d'ailleurs ressemble à nos glaces
+- **Avant** : On sait repérer l'eau gelée dans les comètes de notre système grâce à la lumière infrarouge. Mais les signaux mesurés sur un visiteur venu d'un autre système solaire étaient affaiblis, et leur origine restait discutée.
+- **Découverte** : Des chercheurs de la NASA et d'un institut de recherche américain ont observé la troisième comète venue d'un autre système solaire avec le grand télescope spatial infrarouge. La glace d'eau y est mêlée à de fines poussières sombres, si bien que la lumière la traverse peu. Après son périhélie, c'est-à-dire son passage au plus près du Soleil, ils détectent aussi de la glace cristalline.
+- **Et après** : Cette glace ressemble à celle de certains objets glacés au-delà de Neptune, ce qui suggère une composition proche de celle de notre propre système solaire. Ce n'est qu'une seule comète, observée à trois moments de son passage.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-06T17:32:38.550028+00:00
+
+
+---
+
+## 2. Vieillissement : une bactérie de l'intestin améliore les capacités de souris âgées
+
+Fil : science · 2★ · source : Pour la Science · page lue : oui (4312 caractères) · https://www.pourlascience.fr/sd/biologie/une-bacterie-du-microbiote-intestinal-ralentit-le-vieillissement-29748.php
+
+**Actuel (publié)**
+
+- **Titre** : Vieillissement : une bactérie de l'intestin améliore les capacités de souris âgées
+- **Avant** : Avec l'âge, l'équilibre des bactéries de l'intestin se dérègle. Le système immunitaire s'enflamme alors plus facilement, et les bactéries capables de freiner cette inflammation restaient mal identifiées.
+- **Découverte** : Des chercheurs de l'Académie des sciences chinoises, à Pékin, ont analysé le microbiote de plus de 1 700 personnes. Une bactérie intestinale, de la famille des bifidobactéries, est d'autant plus présente que l'âge biologique est bas, et son abondance baisse avec l'âge. Le composé qu'elle fabrique, donné à des souris âgées, a amélioré leurs capacités motrices et cognitives.
+- **Et après** : Ce composé pourrait un jour être proposé dans des soins anti-âge, selon les chercheurs. Mais les résultats viennent de souris, et il faudra les vérifier chez l'humain.
+- **Mots** : **Microbiote** → Ensemble des micro-organismes, surtout des bactéries, qui vivent dans notre corps, notamment dans l'intestin.
+- **Type** : animal
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-06T17:32:38.068797+00:00
+
+
+---
+
+## 3. Santé : la façon de marcher révèle l'âge, le poids et la fragilité
+
+Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04724-9
+
+**Actuel (publié)**
+
+- **Titre** : Santé : la façon de marcher révèle l'âge, le poids et la fragilité
+- **Avant** : Aujourd'hui, la marche sert surtout à repérer une maladie précise, comme la maladie de Parkinson ou un accident vasculaire cérébral. Les mesures classiques, comme la vitesse ou la longueur du pas, captent mal les détails du mouvement.
+- **Découverte** : Des chercheurs ont filmé 3 328 adultes avec une seule caméra, pendant des exercices de mouvement. Un modèle d'intelligence artificielle a appris à relier ces mouvements à de nombreuses données de santé. Il prédit l'indice de masse corporelle, qui relie poids et taille, ainsi que 1 887 caractéristiques de santé sur 3 210 testées.
+- **Et après** : Selon les auteurs, la marche pourrait devenir un signe vital simple et passif, mesuré en routine. Mais l'étude ne porte que sur 3 328 adultes suivis dans un seul programme de recherche.
+- **Mots** : (aucun)
+- **Type** : humain
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-06T17:32:37.602588+00:00
+
+
+---
+
+## 4. Électricité : une centrale chinoise stocke de l'air froid, environ 30 000 foyers
+
+Fil : tech · 2★ · source : pv magazine (solaire) · page lue : oui (3984 caractères) · https://www.pv-magazine.com/2026/11/06/worlds-largest-liquid-air-storage-facility-comes-online-in-china/
+
+**Actuel (publié)**
+
+- **Titre** : Électricité : une centrale chinoise stocke de l'air froid, environ 30 000 foyers
+- **Avant** : Le solaire et l'éolien produisent parfois plus d'électricité que le réseau n'en consomme, et ce surplus doit être stocké pour être restitué plus tard. Les batteries au lithium dominent, mais d'autres solutions de stockage longue durée sont encore en développement.
+- **Découverte** : Une installation située dans le nord-ouest de la Chine, développée par un groupe public chinois avec l'Académie chinoise des sciences, est raccordée au réseau depuis fin octobre. Elle refroidit de l'air jusqu'à environ -194 °C pour le transformer en liquide, puis le stocke dans des réservoirs isolés. Sa puissance est de 60 mégawatts, avec une capacité de stockage de 600 mégawattheures.
+- **Et après** : Ce procédé peut stocker l'électricité solaire et éolienne excédentaire et la restituer aux heures de forte demande. Ces résultats restent des estimations du développeur, à confirmer sur plusieurs années d'exploitation, pour une installation de démonstration sur un seul site.
+- **Mots** : **Mégawattheure** → Unité d'énergie : la quantité d'électricité fournie par une puissance d'un million de watts pendant une heure.
+- **Type** : demonstration
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-06T17:32:37.141393+00:00
+
+
+---
+
+## 5. Solaire : une cellule convertit 35,31 % de la lumière en électricité
+
+Fil : tech · 2★ · source : pv magazine (solaire) · page lue : oui (6000 caractères) · https://www.pv-magazine.com/2026/11/06/longi-achieves-35-31-efficiency-in-perovskite-silicon-tandem-solar-cell-based-on-self-assembled-molecules/
+
+**Actuel (publié)**
+
+- **Titre** : Solaire : une cellule convertit 35,31 % de la lumière en électricité
+- **Avant** : Les cellules solaires au silicium, les plus répandues, ont un rendement limité. Pour aller plus loin, on superpose une couche de pérovskite au silicium, mais la surface de contact entre les deux reste difficile à maîtriser.
+- **Découverte** : Des chercheurs de l'entreprise chinoise Longi ont conçu une nouvelle couche de molécules qui se dépose uniformément, même sur une surface en pyramides. Leur meilleur prototype transforme 35,31 % de la lumière en électricité, et un centre public chinois de contrôle des produits solaires en certifie 35,25 %. Après un long test de fonctionnement, la cellule garde 94 % de son rendement de départ.
+- **Et après** : Cette piste pourrait rendre les panneaux solaires plus efficaces sur la même surface. Il s'agit cependant d'un prototype testé en laboratoire, et non d'un produit.
+- **Mots** : **Pérovskite** → Famille de matériaux cristallins qui absorbent bien la lumière du soleil et la transforment en électricité.
+- **Type** : prototype
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-06T17:32:36.817429+00:00
+
+
+---
+
+## 6. Archéologie : des traces de cannabis vieilles de 2 800 ans en Sibérie
+
+Fil : science · 2★ · source : Live Science · page lue : oui (3148 caractères) · https://www.livescience.com/archaeology/2-800-year-old-tomb-in-siberia-has-evidence-of-the-earliest-use-of-cannabis-possibly-as-a-way-to-calm-human-sacrifice-victims
+
+**Actuel (publié)**
+
+- **Titre** : Archéologie : des traces de cannabis vieilles de 2 800 ans en Sibérie
+- **Avant** : On ne sait pas trop quand les humains ont commencé à consommer du cannabis pour ses effets. Le plus ancien cas connu, en Chine, remontait à environ 500 avant notre ère.
+- **Découverte** : Des archéologues ont fouillé une tombe royale à Tunnug, en Sibérie, datée entre 800 et 760 avant notre ère. Ils y ont trouvé plus de 1 000 graines de cannabis et des traces de la substance qui fait planer dans des cheveux de momies. Les chevaux et les sacrifices humains probables suggèrent un rituel funéraire.
+- **Et après** : Selon les chercheurs, le cannabis aurait pu servir à calmer les victimes d'un sacrifice, ce qui suggère un usage ancien lié aux rites funéraires. Ce n'est qu'une seule tombe, et on ne sait ni quelle quantité de drogue a été consommée, ni si les personnes sacrifiées en ont vraiment pris.
+- **Mots** : (aucun)
+- **Type** : terrain
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-06T07:41:18.789286+00:00
+
+
+---
+
+## 7. Évolution humaine : des protéines de dents relient une espèce ancienne aux Asiatiques
+
+Fil : science · 3★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261102202836.htm
+
+**Actuel (publié)**
+
+- **Titre** : Évolution humaine : des protéines de dents relient une espèce ancienne aux Asiatiques
+- **Avant** : Pendant longtemps, on pensait qu'Homo erectus, une espèce humaine ancienne, était une impasse de l'évolution, sans descendants. Les fossiles trop anciens ne livrent pas d'ADN, ce qui rendait difficile de vérifier leurs liens avec les autres humains.
+- **Découverte** : Des chercheurs chinois ont extrait des protéines de l'émail de six dents d'Homo erectus vieilles d'environ 400 000 ans, trouvées en Chine. Une variante présente chez les Dénisoviens se retrouve chez 21 % des habitants des Philippines. Selon l'étude, elle serait passée par des croisements entre ces groupes anciens, puis aux populations actuelles d'Asie du Sud-Est.
+- **Et après** : Cette découverte montre que les croisements entre groupes humains anciens étaient fréquents, et non rares. Les effets de cette variante sur la santé restent inconnus, et d'autres fossiles devront être étudiés pour confirmer ce lien.
+- **Mots** : **Dénisovien** → Membre d'un groupe humain ancien, cousin des Néandertaliens, connu surtout grâce à quelques os et dents trouvés dans une grotte de Sibérie.
+- **Type** : laboratoire
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-06T07:41:18.545397+00:00
+
+
+---
+
+## 8. Cybersécurité : des agents IA trouvent 948 failles dans le système Linux
+
+Fil : tech · 2★ · source : Clubic · page lue : oui (4810 caractères) · https://www.clubic.com/actualite-637807-l-ia-d-openai-decouvre-948-failles-dans-linux-et-developpe-des-strategies-d-exploitation-inedites.html
+
+**Actuel (publié)**
+
+- **Titre** : Cybersécurité : des agents IA trouvent 948 failles dans le système Linux
+- **Avant** : Un logiciel peut contenir des erreurs que des pirates exploitent pour prendre le contrôle d'un ordinateur. Repérer ces failles est une chose, mais prouver qu'elles permettent vraiment cette prise de contrôle en est une autre.
+- **Découverte** : OpenAI a conçu une chaîne d'agents IA qui cherche les failles du noyau Linux, le cœur du système, puis réussit à les exploiter pour obtenir les droits administrateur. Au total, 948 failles distinctes ont été trouvées lors d'une expérience menée à la mi-octobre. Les agents ont aussi préparé des correctifs, dont plusieurs centaines ont été transmis aux responsables de Linux.
+- **Et après** : Ces résultats montrent que l'IA peut repérer et exploiter des failles de sécurité, et préparer des correctifs. Mais un attaquant doit déjà avoir un accès à la machine, et l'afflux de signalements automatiques complique le travail des équipes de maintenance.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : aucun défaut
+- _Ajoutée le_ : 2026-11-06T07:41:17.949933+00:00
+
+
+---
+
+## 9. Voitures : un constructeur chinois annonce 500 km/h sur une autoroute fermée
+
+Fil : tech · 2★ · source : Presse-citron · page lue : oui (5685 caractères) · https://www.presse-citron.net/du-jamais-vu-byd-privatise-une-autoroute-et-depasse-500-km-h-en-voiture-electrique-un-record/
+
+**Actuel (publié)**
+
+- **Titre** : Voitures : un constructeur chinois annonce 500 km/h sur une autoroute fermée
+- **Avant** : Les voitures électriques de série roulent rarement au-delà de 300 km/h. Le record des voitures homologuées route était jusqu'ici détenu par une Bugatti, à moins de 500 km/h.
+- **Découverte** : Le constructeur chinois BYD affirme que sa voiture électrique de luxe a dépassé 500 km/h le 1er novembre sur une portion d'autoroute fermée près d'Abu Dhabi. Pilotée par un pilote allemand, la voiture a 3019 chevaux et quatre moteurs électriques. BYD n'a pas encore publié le chiffre exact.
+- **Et après** : Si le chiffre est confirmé, la voiture battrait le record des voitures homologuées route. Il s'agit d'une démonstration sur une seule portion d'autoroute, pas d'un produit de série.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Mesures automatiques_ : sigles ou noms codés inconnus du public : BYD → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Ajoutée le_ : 2026-11-06T07:41:17.391792+00:00
+
+
+---
+
+## 10. Espace : une fusée de la NASA perce un trou dans l'atmosphère
+
+Fil : science · 2★ · source : Clubic · page lue : oui (6000 caractères) · https://www.clubic.com/actualite-637822-artemis-ii-a-perce-un-trou-dans-la-haute-atmosphere-avec-un-risque-pour-le-gps.html
+
+**Actuel (publié)**
+
+- **Titre** : Espace : une fusée de la NASA perce un trou dans l'atmosphère
+- **Avant** : Les signaux GPS traversent une couche de l'atmosphère, l'ionosphère, dont la densité d'électrons varie. Ces variations faussent la position calculée, et les corrections existantes ne suppriment pas les perturbations rapides et localisées.
+- **Découverte** : Des chercheurs de l'université Cheng Kung à Taïwan et du centre Goddard de la NASA ont analysé les données de plus de 3 500 stations au sol. Le moteur d'Orion, allumé à environ 185 kilomètres d'altitude, a créé une zone de densité d'électrons modifiée. Elle s'étire sur plus de 5 000 kilomètres au-dessus de l'Amérique du Nord.
+- **Et après** : Ces variations pourraient, selon les chercheurs, fausser la position des voitures autonomes et des drones. L'effet d'un allumage reste localisé et court, contrairement à une tempête solaire ; l'équipe juge crucial de mieux le surveiller avant les prochaines missions vers la Lune et Mars.
+- **Mots** : **Ionosphère** → Couche de l'atmosphère, située à partir d'environ 50 kilomètres d'altitude, remplie de particules électriquement chargées appelées électrons libres.
+- **Type** : observation
+
+- _Mesures automatiques_ : phrase de 29 mots dans « apres », à couper : « L'effet d'un allumage reste localisé et court, contrairement à une tempête solaire ; l'équ… »
+- _Ajoutée le_ : 2026-11-06T07:41:16.696652+00:00
+
+
+---
+
+## 11. Muscles : un composé double l'action d'une protéine réparatrice chez la souris
 
 Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104005226.htm
 
@@ -24,7 +214,7 @@ Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 ---
 
-## 2. Mars : un gaz sortant de fissures suggère une activité volcanique endormie
+## 12. Mars : un gaz sortant de fissures suggère une activité volcanique endormie
 
 Fil : science · 2★ · source : ESA · page lue : oui (4726 caractères) · https://www.esa.int/articles/news-media/news/european-orbiter-detects-hints-of-volcanic-activity-on-mars
 
@@ -43,7 +233,7 @@ Fil : science · 2★ · source : ESA · page lue : oui (4726 caractères) · ht
 
 ---
 
-## 3. Matériaux : des liens moléculaires souples donnent des cristaux à structure inédite
+## 13. Matériaux : des liens moléculaires souples donnent des cristaux à structure inédite
 
 Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104012248.htm
 
@@ -62,7 +252,7 @@ Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 ---
 
-## 4. Robots : des cellules nerveuses vivantes dirigent un chien robot vers une cible
+## 14. Robots : des cellules nerveuses vivantes dirigent un chien robot vers une cible
 
 Fil : tech · 1★ · source : Techno-Science.net · page lue : oui (2288 caractères) · https://www.techno-science.net/fr/actualites/chien-robot-neurones-humains-puce-29686
 
@@ -81,7 +271,7 @@ Fil : tech · 1★ · source : Techno-Science.net · page lue : oui (2288 caract
 
 ---
 
-## 5. Montres connectées : une IA repère 66 % des hypertensions sans brassard
+## 15. Montres connectées : une IA repère 66 % des hypertensions sans brassard
 
 Fil : tech · 2★ · source : Nature · page lue : oui (2713 caractères) · https://www.nature.com/articles/s41586-026-11336-3
 
@@ -100,7 +290,7 @@ Fil : tech · 2★ · source : Nature · page lue : oui (2713 caractères) · ht
 
 ---
 
-## 6. Cancer du poumon : la tumeur presque détruite chez 7 malades sur 10
+## 16. Cancer du poumon : la tumeur presque détruite chez 7 malades sur 10
 
 Fil : science · 1★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04745-4
 
@@ -119,7 +309,7 @@ Fil : science · 1★ · source : Nature Medicine · page lue : oui (6000 caract
 
 ---
 
-## 7. Obésité : une molécule naturelle trouvée par IA réduit l'appétit des animaux
+## 17. Obésité : une molécule naturelle trouvée par IA réduit l'appétit des animaux
 
 Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104004909.htm
 
@@ -138,9 +328,9 @@ Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 ---
 
-## 8. Épilepsie : chez trois malades, les crises baissent de plus de 90 %
+## 18. Épilepsie : chez trois malades, les crises baissent de plus de 90 %
 
-Fil : science · 2★ · source : Nature · page lue : oui (3550 caractères) · https://www.nature.com/articles/d41586-026-03566-2
+Fil : science · 2★ · source : Nature · page lue : oui (4269 caractères) · https://www.nature.com/articles/d41586-026-03566-2
 
 **Actuel (publié)**
 
@@ -157,7 +347,7 @@ Fil : science · 2★ · source : Nature · page lue : oui (3550 caractères) ·
 
 ---
 
-## 9. Espace : un drone détourne son atterrissage simulé vers une zone plus sûre
+## 19. Espace : un drone détourne son atterrissage simulé vers une zone plus sûre
 
 Fil : tech · 1★ · source : NASA · page lue : oui (3796 caractères) · https://www.nasa.gov/centers-and-facilities/armstrong/nasa-navigation-experiment-shows-promise-for-planetary-landings/
 
@@ -176,9 +366,9 @@ Fil : tech · 1★ · source : NASA · page lue : oui (3796 caractères) · http
 
 ---
 
-## 10. Intelligence artificielle : des programmes planifient et réalisent des expériences sur l'ADN
+## 20. Intelligence artificielle : des programmes planifient et réalisent des expériences sur l'ADN
 
-Fil : tech · 2★ · source : Nature · page lue : oui (1695 caractères) · https://www.nature.com/articles/d41586-026-03270-1
+Fil : tech · 2★ · source : Nature · page lue : oui (1997 caractères) · https://www.nature.com/articles/d41586-026-03270-1
 
 **Actuel (publié)**
 
@@ -195,7 +385,7 @@ Fil : tech · 2★ · source : Nature · page lue : oui (1695 caractères) · ht
 
 ---
 
-## 11. Espace : une collision géante laisse une traînée de poussière noire autour d'une étoile
+## 21. Espace : une collision géante laisse une traînée de poussière noire autour d'une étoile
 
 Fil : science · 2★ · source : Les Numériques · page lue : oui (2524 caractères) · https://www.lesnumeriques.com/astronomie-conquete-spatiale/une-gigantesque-structure-se-cache-dans-un-systeme-stellaire-voisin-et-elle-est-noire-comme-l-encre-n266812.html
 
@@ -214,7 +404,7 @@ Fil : science · 2★ · source : Les Numériques · page lue : oui (2524 caract
 
 ---
 
-## 12. Impression 3D : un filament recyclé rend les prothèses tactiles
+## 22. Impression 3D : un filament recyclé rend les prothèses tactiles
 
 Fil : tech · 1★ · source : 3D Printing Industry · page lue : oui (4685 caractères) · https://3dprintingindustry.com/news/recycled-filament-lets-3d-printed-prosthetics-use-touchscreens-256132/?utm_source=rss&utm_medium=rss&utm_campaign=recycled-filament-lets-3d-printed-prosthetics-use-touchscreens
 
@@ -233,7 +423,7 @@ Fil : tech · 1★ · source : 3D Printing Industry · page lue : oui (4685 cara
 
 ---
 
-## 13. Trous noirs : des amas d'étoiles ultra-denses pourraient fabriquer leurs graines géantes
+## 23. Trous noirs : des amas d'étoiles ultra-denses pourraient fabriquer leurs graines géantes
 
 Fil : science · 2★ · source : Les Numériques · page lue : oui (3300 caractères) · https://www.lesnumeriques.com/astronomie-conquete-spatiale/james-webb-et-trous-noirs-supermassifs-et-si-leur-origine-venait-des-gemmes-cosmiques-deja-decouvertes-n266713.html
 
@@ -252,7 +442,7 @@ Fil : science · 2★ · source : Les Numériques · page lue : oui (3300 caract
 
 ---
 
-## 14. Magnétisme : une troisième famille de magnétisme confirmée par des rayons X
+## 24. Magnétisme : une troisième famille de magnétisme confirmée par des rayons X
 
 Fil : science · 3★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261104012256.htm
 
@@ -271,9 +461,9 @@ Fil : science · 3★ · source : ScienceDaily · page lue : oui (6000 caractèr
 
 ---
 
-## 15. Temps : un chronomètre aux rayons X mesure des durées de quelques attosecondes
+## 25. Temps : un chronomètre aux rayons X mesure des durées de quelques attosecondes
 
-Fil : science · 3★ · source : Nature · page lue : oui (1014 caractères) · https://www.nature.com/articles/d41586-026-03423-2
+Fil : science · 3★ · source : Nature · page lue : oui (1119 caractères) · https://www.nature.com/articles/d41586-026-03423-2
 
 **Actuel (publié)**
 
@@ -290,7 +480,7 @@ Fil : science · 3★ · source : Nature · page lue : oui (1014 caractères) ·
 
 ---
 
-## 16. Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
+## 26. Trous noirs : de jeunes groupes d'étoiles pourraient en créer de taille moyenne
 
 Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-jwst-may-have-found-where-heavy-black-hole-seeds-formed
 
@@ -309,7 +499,7 @@ Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caract�
 
 ---
 
-## 17. Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
+## 27. Espace : un télescope repère deux satellites peu lumineux de la Voie lactée
 
 Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caractères) · https://www.universetoday.com/articles/the-vera-rubin-has-found-two-more-of-the-milky-ways-dim-satellites
 
@@ -328,7 +518,7 @@ Fil : science · 1★ · source : Universe Today · page lue : oui (6000 caract�
 
 ---
 
-## 18. Espace : une faille de Mars a glissé et causé un séisme
+## 28. Espace : une faille de Mars a glissé et causé un séisme
 
 Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2662 caractères) · https://www.techno-science.net/fr/actualites/mars-valles-marineris-seisme-actif-29661
 
@@ -347,7 +537,7 @@ Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2662 car
 
 ---
 
-## 19. Drones : un cadre souple se déforme au choc et reste en vol
+## 29. Drones : un cadre souple se déforme au choc et reste en vol
 
 Fil : tech · 1★ · source : ETH Zurich · page lue : oui (6000 caractères) · https://ethz.ch/en/news-and-events/eth-news/news/2026/11/new-flexible-drone-can-withstand-collisions.html
 
@@ -366,9 +556,9 @@ Fil : tech · 1★ · source : ETH Zurich · page lue : oui (6000 caractères) �
 
 ---
 
-## 20. Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
+## 30. Satellites : un satellite imprime en orbite une poutre rigide de 50 centimètres
 
-Fil : tech · 2★ · source : TechCrunch · page lue : oui (4687 caractères) · https://techcrunch.com/2026/11/03/orbital-matter-3d-printed-the-first-rigid-beam-in-the-vacuum-of-space/
+Fil : tech · 2★ · source : TechCrunch · page lue : oui (4758 caractères) · https://techcrunch.com/2026/11/03/orbital-matter-3d-printed-the-first-rigid-beam-in-the-vacuum-of-space/
 
 **Actuel (publié)**
 
@@ -385,7 +575,7 @@ Fil : tech · 2★ · source : TechCrunch · page lue : oui (4687 caractères) �
 
 ---
 
-## 21. Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
+## 31. Centres de calcul : une nouvelle alimentation électrique sert déjà une ferme d'IA
 
 Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (1607 caractères) · https://www.tomshardware.com/tech-industry/data-centers/china-deploys-worlds-first-800-volt-dc-power-system-for-massive-ai-data-center-seeks-to-quench-power-needs-with-higher-conversion-and-efficiency-inside-a-smaller-footprint
 
@@ -404,7 +594,7 @@ Fil : tech · 1★ · source : Tom's Hardware · page lue : oui (1607 caractère
 
 ---
 
-## 22. Cancer : des cellules du patient font reculer des tumeurs de la peau
+## 32. Cancer : des cellules du patient font reculer des tumeurs de la peau
 
 Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04743-6
 
@@ -423,7 +613,7 @@ Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caract
 
 ---
 
-## 23. Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
+## 33. Espace : un astéroïde renferme les cinq « lettres » de l'ADN et de l'ARN
 
 Fil : science · 2★ · source : ScienceDaily · page lue : oui (4352 caractères) · https://www.sciencedaily.com/releases/2026/11/261102075903.htm
 
@@ -442,7 +632,7 @@ Fil : science · 2★ · source : ScienceDaily · page lue : oui (4352 caractèr
 
 ---
 
-## 24. Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
+## 34. Ordinateurs quantiques : des physiciens observent un phénomène prévu par la théorie
 
 Fil : science · 1★ · source : The Quantum Insider · page lue : oui (4545 caractères) · https://thequantuminsider.com/2026/11/03/experiment-supports-theoretical-path-to-topological-quantum-computing/
 
@@ -461,7 +651,7 @@ Fil : science · 1★ · source : The Quantum Insider · page lue : oui (4545 ca
 
 ---
 
-## 25. Voitures : une berline chinoise roule à l'alcool de bois
+## 35. Voitures : une berline chinoise roule à l'alcool de bois
 
 Fil : tech · 1★ · source : CnEVPost (véhicules électriques, Chine) · page lue : oui (3864 caractères) · https://cnevpost.com/2026/11/03/geely-launches-xingyao-6-ef-methanol-hybrid-sedan/
 
@@ -480,7 +670,7 @@ Fil : tech · 1★ · source : CnEVPost (véhicules électriques, Chine) · page
 
 ---
 
-## 26. Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
+## 36. Climatisation : un nouveau matériau refroidit jusqu'à 5,2 °C de plus sans électricité
 
 Fil : tech · 1★ · source : Tech Xplore · page lue : NON (0 caractères) · https://techxplore.com/news/2026-11-infrared-transparent-aerogel-boosts-subambient.html
 
@@ -499,7 +689,7 @@ Fil : tech · 1★ · source : Tech Xplore · page lue : NON (0 caractères) · 
 
 ---
 
-## 27. Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
+## 37. Intestin : deux médicaments effacent presque la tumeur chez un patient sur trois
 
 Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caractères) · https://www.nature.com/articles/s41591-026-04710-1
 
@@ -518,7 +708,7 @@ Fil : science · 2★ · source : Nature Medicine · page lue : oui (6000 caract
 
 ---
 
-## 28. Étoiles : des astronomes repèrent un probable compagnon d'une étoile géante
+## 38. Étoiles : des astronomes repèrent un probable compagnon d'une étoile géante
 
 Fil : science · 2★ · source : Pour la Science · page lue : oui (6000 caractères) · https://www.pourlascience.fr/sd/astrophysique/la-preuve-la-plus-solide-a-ce-jour-pour-le-compagnon-de-betelgeuse-29610.php
 
@@ -537,7 +727,7 @@ Fil : science · 2★ · source : Pour la Science · page lue : oui (6000 caract
 
 ---
 
-## 29. Électricité : un centre de calcul chinois fonctionne désormais avec un courant stable
+## 39. Électricité : un centre de calcul chinois fonctionne désormais avec un courant stable
 
 Fil : tech · 1★ · source : pv magazine (solaire) · page lue : oui (3533 caractères) · https://www.pv-magazine.com/2026/11/02/envision-claims-world-first-with-800-v-dc-architecture-for-ai-data-center/
 
@@ -556,7 +746,7 @@ Fil : tech · 1★ · source : pv magazine (solaire) · page lue : oui (3533 car
 
 ---
 
-## 30. Dinosaures : des chercheurs trouvent des restes de cellules sanguines dans un os
+## 40. Dinosaures : des chercheurs trouvent des restes de cellules sanguines dans un os
 
 Fil : science · 2★ · source : New Atlas · page lue : oui (5922 caractères) · https://newatlas.com/biology/fossilized-blood-cells-dinosaur-bone/
 
@@ -571,196 +761,6 @@ Fil : science · 2★ · source : New Atlas · page lue : oui (5922 caractères)
 
 - _Mesures automatiques_ : phrase de 29 mots dans « avant », à couper : « On pensait que les molécules du sang ne pouvaient pas survivre dans les os de dinosaures p… » ; phrase de 39 mots dans « decouverte », à couper : « Dans une patte arrière d'un théropode d'environ 3 mètres de long, mort il y a 115 millions… » ; « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
 - _Ajoutée le_ : 2026-11-03T07:26:11.867586+00:00
-
-
----
-
-## 31. Cellules : une pression desserre l'ADN de cellules de peau de souris
-
-Fil : science · 1★ · source : Techno-Science.net · page lue : oui (2694 caractères) · https://www.techno-science.net/fr/actualites/pression-peau-souris-neurones-crispra-29644
-
-**Actuel (publié)**
-
-- **Titre** : Cellules : une pression desserre l'ADN de cellules de peau de souris
-- **Avant** : On savait qu'on peut changer le rôle d'une cellule en activant certaines de ses instructions génétiques. Mais l'ADN, très serré dans le noyau, rend certains gènes difficiles à atteindre.
-- **Découverte** : Des chercheurs de l'Université de Californie à Los Angeles ont fait passer des cellules de peau de souris dans des canaux plus étroits que leur noyau. Pendant quelques millisecondes, le noyau est comprimé et son ADN se desserre. Combinée à un outil qui active des gènes existants sans les couper, cette pression fait passer la part de cellules devenues nerveuses d'environ 3 % à environ 10 %.
-- **Et après** : Ces résultats portent sur des cellules de souris cultivées en laboratoire, et la méthode doit encore être testée sur d'autres types de cellules. Son intérêt pour l'humain reste à démontrer.
-- **Mots** : **CRISPRa** → Outil qui active des gènes déjà présents dans une cellule, sans couper l'ADN.
-- **Type** : cellules
-
-- _Mesures automatiques_ : phrase de 29 mots dans « decouverte », à couper : « Combinée à un outil qui active des gènes existants sans les couper, cette pression fait pa… » ; mot à connaître « CRISPRa » absent du texte de la fiche : choisis un mot du texte ou aucun
-- _Ajoutée le_ : 2026-11-02T17:27:05.454954+00:00
-
-
----
-
-## 32. Archéologie : un bâtiment égyptien de 2 600 ans repéré par satellite
-
-Fil : science · 2★ · source : Live Science · page lue : oui (2906 caractères) · https://www.livescience.com/archaeology/ancient-egyptians/buried-for-2-600-years-beneath-nile-mud-a-massive-ancient-egyptian-complex-was-just-found-from-space
-
-**Actuel (publié)**
-
-- **Titre** : Archéologie : un bâtiment égyptien de 2 600 ans repéré par satellite
-- **Avant** : Buto était l'une des villes les plus sacrées de l'Égypte ancienne, mais une grande partie de ses vestiges restait cachée sous les dépôts de boue du Nil.
-- **Découverte** : Des chercheurs ont utilisé un radar satellite et des mesures électriques du sol pour repérer une structure vieille de 2 600 ans, sans fouille préalable. Les relevés montrent des murs enfouis, et ce qui se trouve sous ces murs est la vraie surprise de l'étude.
-- **Et après** : Les archéologues veulent maintenant fouiller le site pour dater précisément le complexe et comprendre à quoi il servait. Les images ne disent pas encore quel était son usage exact.
-- **Mots** : (aucun)
-- **Type** : observation
-
-- _Mesures automatiques_ : aucun défaut
-- _Ajoutée le_ : 2026-11-02T17:26:43.402214+00:00
-
-
----
-
-## 33. Préhistoire : les Européens d'il y a 30 000 ans étaient plus liés
-
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261031221153.htm
-
-**Actuel (publié)**
-
-- **Titre** : Préhistoire : les Européens d'il y a 30 000 ans étaient plus liés
-- **Avant** : On pensait que les groupes humains de l'est et de l'ouest de l'Europe, à l'époque glaciaire, vivaient largement isolés les uns des autres. Les anciennes preuves génétiques montraient deux grandes lignées bien distinctes.
-- **Découverte** : Une équipe internationale dirigée par l'université de Vienne a analysé de l'ADN ancien, extrait de rares restes humains et de traces génétiques conservées dans des sédiments de grottes. En combinant ces données avec des analyses déjà existantes, elle révèle des liens entre des populations séparées par de très grandes distances.
-- **Et après** : Les chercheurs ont aussi repéré des signes que certaines populations du sud-ouest de l'Europe ont gardé leur héritage génétique propre. Ces résultats, publiés dans la revue Science Advances, devront être confirmés par d'autres équipes.
-- **Mots** : **Gravettien** → Grande culture préhistorique qui a couvert une bonne partie de l'Europe il y a environ 34 000 à 25 000 ans.
-- **Type** : donnees
-
-- _Mesures automatiques_ : « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…) ; mot à connaître « Gravettien » absent du texte de la fiche : choisis un mot du texte ou aucun
-- _Ajoutée le_ : 2026-11-02T17:26:33.737245+00:00
-
-
----
-
-## 34. Laboratoires : un appareil refroidi repère trois fois mieux les molécules
-
-Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (168 caractères) · https://pandaily.com/ciqtek-cryohe-cryogenic-nmr-probe-20k-3x-sensitivity-can-s-solid-state-nmr-spectrometer
-
-**Actuel (publié)**
-
-- **Titre** : Laboratoires : un appareil refroidi repère trois fois mieux les molécules
-- **Avant** : Les appareils d'analyse par résonance magnétique nucléaire, utilisés pour identifier la structure des molécules, fonctionnaient surtout avec des sondes à température ambiante. Leur sensibilité restait donc limitée.
-- **Découverte** : L'entreprise chinoise CIQTEK lance CryoHe, une sonde dont la bobine est refroidie à environ 20 kelvins, soit −253 °C. Elle offre une sensibilité environ trois fois supérieure à celle d'une sonde à température ambiante. C'est la première sonde cryogénique de ce type commercialisée en Chine.
-- **Et après** : Le spectromètre CAN-S, destiné à l'analyse des matériaux solides, est lancé en même temps. Les laboratoires pourraient ainsi analyser plus finement des échantillons difficiles à observer. Ces performances sont annoncées par l'entreprise et restent à vérifier en conditions réelles.
-- **Mots** : **Cryogénie** → Ensemble des techniques permettant de refroidir un appareil à des températures très basses, proches du zéro absolu.
-- **Type** : en_vente
-
-- _Mesures automatiques_ : « apres » a 3 phrases : 2 au plus ; sigles ou noms codés inconnus du public : CAN, CIQTEK → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; phrase vide ou incomplète dans « avant » : « Leur sensibilité restait donc limitée. »
-- _Ajoutée le_ : 2026-11-02T17:26:10.345713+00:00
-
-
----
-
-## 35. Satellites : un petit satellite relie la Terre par un faisceau laser
-
-Fil : tech · 2★ · source : ESA · page lue : oui (4174 caractères) · https://www.esa.int/Applications/Connectivity_and_Secure_Communications/CubeSat_achieves_challenging_laser_link_to_ground
-
-**Actuel (publié)**
-
-- **Titre** : Satellites : un petit satellite relie la Terre par un faisceau laser
-- **Avant** : Les satellites communiquent le plus souvent avec le sol par ondes radio. Les liaisons laser, plus rapides, restent rares sur les petits satellites.
-- **Découverte** : Le CubeSat ERMIS-3, de format 8U et développé par l'université d'Athènes, a établi une liaison laser avec une station au sol en Grèce. C'est la première liaison optique du pays avec un satellite en orbite basse. Le lien a été réalisé quelques semaines après la mise en service du satellite, avec des terminaux optiques de la société lituanienne Astrolight.
-- **Et après** : Les chercheurs veulent confirmer que ce type de communication fonctionne sur de petits satellites. Le faisceau doit rester précis alors que le satellite file à plusieurs kilomètres par seconde, et les nuages peuvent couper le lien.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Mesures automatiques_ : sigles ou noms codés inconnus du public : ERMIS → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-- _Ajoutée le_ : 2026-11-02T17:26:00.101337+00:00
-
-
----
-
-## 36. Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
-
-Fil : science · 1★ · source : Communications Physics · page lue : oui (2974 caractères) · https://www.nature.com/articles/s42005-026-02928-6
-
-**Actuel (publié)**
-
-- **Titre** : Électricité : un calcul éclaire comment certains matériaux conduisent sans perte
-- **Avant** : On savait que le nickelate La3Ni2O7 devient supraconducteur sous très forte pression, vers -193 °C, mais le mécanisme responsable restait débattu.
-- **Découverte** : Des chercheurs ont simulé sur ordinateur un modèle de ce matériau à deux couches. Ils montrent que l'appariement des électrons vient surtout de la division de certaines orbitales électroniques, puis que l'hybridation avec une autre orbitale redistribue ces paires.
-- **Et après** : Il s'agit d'un modèle théorique qui doit être confirmé par des expériences ; pour l'instant, le matériau ne fonctionne qu'à très haute pression.
-- **Mots** : **Supraconductivité** → État d'un matériau qui laisse passer l'électricité sans aucune résistance, donc sans perte d'énergie.
-- **Type** : simulation
-
-- _Mesures automatiques_ : aucun défaut
-- _Ajoutée le_ : 2026-11-02T07:26:18.771679+00:00
-
-
----
-
-## 37. Paludisme : des chercheurs lisent l'ADN complet de trois parasites
-
-Fil : science · 2★ · source : PLOS Pathogens · page lue : oui (6000 caractères) · https://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1014754
-
-**Actuel (publié)**
-
-- **Titre** : Paludisme : des chercheurs lisent l'ADN complet de trois parasites
-- **Avant** : On savait lire le génome du parasite du paludisme le plus meurtrier, mais les autres espèces restaient mal connues. Elles sont difficiles à cultiver en laboratoire, et les prélèvements contiennent très peu de parasites.
-- **Découverte** : Des chercheurs ont reconstruit les génomes complets de trois espèces de parasites directement à partir de sang de malades. Ils ont combiné des techniques de lecture de l'ADN capables de travailler avec très peu de matière. Les extrémités des chromosomes, jusque-là illisibles, sont désormais visibles, avec des familles de gènes sans doute liées aux relations entre parasite et hôte.
-- **Et après** : Ces génomes de référence doivent aider à comprendre comment ces espèces persistent, se transmettent et échappent au système immunitaire. Les chercheurs veulent ainsi mieux intégrer ces espèces longtemps négligées dans les efforts mondiaux pour éliminer le paludisme.
-- **Mots** : **Génome** → L'ensemble de l'information génétique d'un être vivant, codée dans son ADN.
-- **Type** : donnees
-
-- _Mesures automatiques_ : « apres » ne dit pas la limite principale (chez l'animal, un seul site, prototype, à confirmer…)
-- _Ajoutée le_ : 2026-11-02T07:26:08.323622+00:00
-
-
----
-
-## 38. Espace : la poussière de Mars est assez fine pour atteindre les poumons
-
-Fil : science · 1★ · source : NASA JPL · page lue : oui (6000 caractères) · https://www.jpl.nasa.gov/news/nasas-perseverance-offers-clues-to-protect-crews-from-mars-dust
-
-**Actuel (publié)**
-
-- **Titre** : Espace : la poussière de Mars est assez fine pour atteindre les poumons
-- **Avant** : On savait que la poussière de la Lune avait abîmé les visières et les joints des combinaisons d'Apollo, mais on connaissait mal le comportement de la poussière martienne sur les équipements.
-- **Découverte** : Le robot Perseverance a mesuré pendant environ 1 645 jours martiens les fines et ultrafines particules de poussière collées à des échantillons de matériaux de combinaison emportés à bord. Certaines sont assez petites pour pénétrer dans les poumons et passer dans le sang. Ces résultats seront publiés dans la revue PNAS.
-- **Et après** : Ces données pourraient aider à concevoir des combinaisons et des habitats mieux protégés, ainsi que des méthodes de nettoyage et des normes de santé pour les futures missions vers Mars. Il reste à vérifier ces résultats dans des conditions réelles avec des astronautes.
-- **Mots** : (aucun)
-- **Type** : donnees
-
-- _Mesures automatiques_ : phrase de 31 mots dans « avant », à couper : « On savait que la poussière de la Lune avait abîmé les visières et les joints des combinais… » ; phrase de 29 mots dans « decouverte », à couper : « Le robot Perseverance a mesuré pendant environ 1 645 jours martiens les fines et ultrafine… » ; phrase de 30 mots dans « apres », à couper : « Ces données pourraient aider à concevoir des combinaisons et des habitats mieux protégés, … » ; sigles ou noms codés inconnus du public : PNAS → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-- _Ajoutée le_ : 2026-11-02T07:25:49.696942+00:00
-
-
----
-
-## 39. Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
-
-Fil : tech · 1★ · source : MIT News · page lue : oui (6000 caractères) · https://news.mit.edu/2026/mit-engineers-design-safer-more-efficient-vaccination-system-farmed-fish-1102
-
-**Actuel (publié)**
-
-- **Titre** : Élevage : de minuscules aiguilles en soie peuvent vacciner les poissons
-- **Avant** : Les poissons d'élevage sont exposés à des maladies qui causent de lourdes pertes dans l'aquaculture. Il faut donc des outils de vaccination adaptés à l'eau.
-- **Découverte** : Des chercheurs du MIT ont conçu de minuscules aiguilles imperméables, en soie de qualité alimentaire et recouvertes d'une fine couche de shellac. Leur pointe creuse peut transporter le vaccin, et l'aiguille pénètre légèrement la peau du poisson avant de se décomposer.
-- **Et après** : Les chercheurs veulent offrir une méthode plus sûre et plus efficace pour vacciner les poissons d'élevage. Il reste à vérifier ces résultats à plus grande échelle avant tout usage dans les fermes.
-- **Mots** : **Shellac** → Résine naturelle, produite par des insectes, utilisée comme vernis alimentaire pour rendre une surface imperméable.
-- **Type** : prototype
-
-- _Mesures automatiques_ : sigles ou noms codés inconnus du public : MIT → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-- _Ajoutée le_ : 2026-11-02T07:25:36.654031+00:00
-
-
----
-
-## 40. Internet : une fibre envoie 128 000 milliards de bits par seconde
-
-Fil : tech · 2★ · source : Pandaily (Chine) · page lue : oui (181 caractères) · https://pandaily.com/china-telecom-yofc-zte-1000km-hollow-core-fiber-bidirectional-real-time-transmission-800g-128tbps
-
-**Actuel (publié)**
-
-- **Titre** : Internet : une fibre envoie 128 000 milliards de bits par seconde
-- **Avant** : Les liaisons Internet longue distance utilisent surtout des fibres en verre plein, dont le débit et la rapidité du signal sont déjà bien connus.
-- **Découverte** : Des équipes de China Telecom, YOFC et ZTE ont fait passer 800 gigabits par seconde sur chaque couleur de lumière, dans les deux sens, sur une fibre de 1 007 km. Le total atteint 128 000 milliards de bits par seconde.
-- **Et après** : Cette technique vise des réseaux plus rapides et plus réactifs, mais l'essai reste une démonstration et les conditions d'exploitation commerciale ne sont pas précisées.
-- **Mots** : **Fibre creuse** → Fibre optique dont le cœur est rempli d'air, ce qui permet à la lumière de voyager plus vite que dans le verre.
-- **Type** : demonstration
-
-- _Mesures automatiques_ : phrase de 31 mots dans « decouverte », à couper : « Des équipes de China Telecom, YOFC et ZTE ont fait passer 800 gigabits par seconde sur cha… » ; sigles ou noms codés inconnus du public : YOFC, ZTE → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-- _Ajoutée le_ : 2026-11-02T07:25:23.862055+00:00
 
 
 ---
