@@ -402,7 +402,9 @@ def choisir_titre(fiche: dict, candidats: list[str]) -> None:
 
 _SIGLES_CONNUS = {"ADN", "ARN", "IA", "GPS", "NASA", "ESA", "CNRS", "UE", "ONU", "OMS", "CO2", "USB", "PC",
                   "TV", "SMS", "IRM", "VIH", "SIDA", "ARNm", "LED", "OK", "XXe", "XXIe", "km", "Wi-Fi", "5G", "4G",
-                  "UV", "PDG", "CERN", "JO", "FBI", "BMW", "IBM", "AMD", "OLED", "SNCF", "EDF", "USA", "II", "III", "IV"}
+                  "UV", "PDG", "CERN", "JO", "FBI", "BMW", "IBM", "AMD", "OLED", "SNCF", "EDF", "USA", "II", "III", "IV",
+                  # marques connues (06/11 : « BYD » signalé à tort, la fiche l'avait remplacé par « un constructeur chinois »)
+                  "BYD", "LG", "HP", "TSMC", "CATL", "NIO", "SAIC", "GM", "VW", "ARM", "TCL", "KIA"}
 _LIMITE = re.compile(r"\b(?:mais|reste|restent|encore|seulement|pour l'instant|pour le moment|uniquement|limite|"
                      r"prochaine étape|à vérifier|à confirmer|à tester|à mesurer|ne \w+ que|n'\w+ que|pas encore|"
                      r"chez la souris|chez l'animal|en laboratoire|une seule|un seul|démonstration|prototype|"
