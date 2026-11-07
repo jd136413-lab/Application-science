@@ -74,7 +74,18 @@ Types de données à cocher (rien d'autre) :
 
 Pourquoi : Firebase Cloud Messaging (notifications) utilise un identifiant d'installation qui ne permet pas d'identifier la personne ; ML Kit (traduction sur le téléphone) envoie à Google des informations techniques anonymes (modèle du téléphone, version, temps de traitement, erreurs) pour le diagnostic. Ces données vont à Google en tant que prestataire de service, ce qui ne compte pas comme un « partage » au sens de Google Play.
 Ajout du 21/10 : **Firebase Crashlytics** envoie les rapports de plantage (description de l'erreur, modèle du téléphone, identifiant d'installation) → « Journaux de plantage » ; les **statistiques anonymes** NovaSTEM (avancées ouvertes, favoris, masquées, partages, sans aucun identifiant) → « Interactions avec l'application ».
-Non collectés : nom, e-mail, position, contacts, photos, historique de navigation, données de santé, données financières, messages.
+**Mise à jour du 07/11/2026 (pubs Google AdMob)**, d'après la page de Google « Play data disclosure » du SDK Google Mobile Ads (adresse IP, interactions, diagnostics, identifiants : collectés ET partagés ; finalités publicité, analyse, prévention des fraudes ; chiffrés en transit) :
+
+| Catégorie Google | Type | Collecté | Partagé | Traitement éphémère | Obligatoire ou facultatif | Finalités |
+|---|---|---|---|---|---|---|
+| Position | Position approximative | Oui | **Oui** | Non | Obligatoire | Publicité ou marketing, Analyse, Prévention des fraudes |
+| Identifiants de l'appareil ou autres | Identifiants de l'appareil ou autres | Oui | **Oui** | Non | Obligatoire | Fonctionnement de l'application, Analyse, **Publicité ou marketing, Prévention des fraudes** |
+| Infos et performances de l'application | Diagnostics | Oui | **Oui** | Non | Obligatoire | Analyse, **Publicité ou marketing, Prévention des fraudes** |
+| Infos et performances de l'application | Journaux de plantage | Oui | Non | Non | Obligatoire | Analyse (inchangé, Crashlytics) |
+| Activité dans l'application | Interactions avec l'application | Oui | **Oui** | Non | Obligatoire | Analyse, **Publicité ou marketing, Prévention des fraudes** |
+
+L'achat « Retirer les annonces » passe par Google Play : NovaSTEM ne reçoit et n'envoie aucune donnée de paiement → rien à cocher en « Infos financières ».
+Non collectés (avant les pubs) : nom, e-mail, position, contacts, photos, historique de navigation, données de santé, données financières, messages.
 
 ### Applis gouvernementales
 Non.
@@ -86,7 +97,7 @@ Non.
 « Mon application n'a pas de fonctionnalités liées à la santé » (elle relaie des actualités médicales, mais ne propose ni suivi ni conseil de santé).
 
 ### Identifiant publicitaire
-« Non, mon application n'utilise pas l'identifiant publicitaire ».
+~~« Non »~~ → depuis les pubs (07/11/2026) : **« Oui »**, finalités : Publicité ou marketing, Analyse, Prévention des fraudes, sécurité et conformité.
 
 ---
 
