@@ -1,7 +1,7 @@
 # NovaSTEM (ex-Novum) — feuille de route (idées retenues par Maxime, 19/10/2026)
 
 Ligne directrice pour la suite du projet, après la publication (phase 9).
-Difficulté : ★ facile · ★★ moyen · ★★★ ambitieux. 💶 = coût à surveiller (budget de l'agent < 1 €/mois).
+Difficulté : ★ facile · ★★ moyen · ★★★ ambitieux. 💶 = coût à surveiller (budget de l'agent : 2 € par mois en rythme de croisière, décision du 04/11).
 Chaque nouvel écran passe d'abord par une maquette, validée avant d'être codée.
 
 ---
