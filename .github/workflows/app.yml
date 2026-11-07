@@ -57,6 +57,7 @@ jobs:
       - name: Compléter le projet (dossiers Android et Web)
         env:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+          ADMOB_APP_ID: ${{ secrets.ADMOB_APP_ID }}
         run: |
           flutter --version
           flutter create --org fr.novum --project-name novum --platforms android,web .
@@ -82,6 +83,14 @@ jobs:
                             '<action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>'
                             '<action android:name="android.intent.action.QUICKBOOT_POWERON"/></intent-filter></receiver>')
               s = s.replace("</application>", recepteurs + "\n    </application>", 1)
+          # Publicités (07/11/2026) : identifiant de l'app AdMob, OBLIGATOIRE dès que la
+          # bibliothèque est présente (sinon l'app plante au démarrage). Sans le secret
+          # ADMOB_APP_ID : identifiant de TEST de Google (aucune vraie pub, aucun revenu).
+          import os
+          app_id = os.environ.get("ADMOB_APP_ID", "").strip() or "ca-app-pub-3940256099942544~3347511713"
+          if "com.google.android.gms.ads.APPLICATION_ID" not in s:
+              s = s.replace("</application>", f'<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="{app_id}"/>\n    </application>', 1)
+          print("AdMob :", "identifiant réel" if os.environ.get("ADMOB_APP_ID", "").strip() else "identifiant de TEST")
           open(p, "w", encoding="utf-8").write(s)
           PY
           # Détection des téléphones-robots de Google (rapport de pré-lancement, Firebase Test Lab) :
@@ -129,6 +138,10 @@ jobs:
           -keep class com.google.firebase.** { *; }
           -keep class io.flutter.plugins.firebase.** { *; }
           -keep class com.google.gson.** { *; }
+          -keep class com.google.android.gms.ads.** { *; }
+          -keep class io.flutter.plugins.googlemobileads.** { *; }
+          -keep class com.android.billingclient.** { *; }
+          -keep class io.flutter.plugins.inapppurchase.** { *; }
           -keep class * extends com.google.gson.reflect.TypeToken
           -dontwarn com.google.firebase.**
           PRO
@@ -231,6 +244,9 @@ jobs:
           --build-name=1.0.${{ github.run_number }} --build-number=${{ github.run_number }}
           --dart-define=VERSION=1.0.${{ github.run_number }}
           --dart-define=NOTIFICATIONS=$( [ "$(cat notifications.txt)" = oui ] && echo true || echo false )
+          --dart-define=ADMOB_ACCUEIL=${{ secrets.ADMOB_ACCUEIL }}
+          --dart-define=ADMOB_LISTE=${{ secrets.ADMOB_LISTE }}
+          --dart-define=ADMOB_BANDEAU=${{ secrets.ADMOB_BANDEAU }}
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           2>&1 | tee -a ../compilation.log
@@ -256,6 +272,9 @@ jobs:
           --build-name=1.0.${{ github.run_number }} --build-number=${{ github.run_number }}
           --dart-define=VERSION=1.0.${{ github.run_number }}
           --dart-define=NOTIFICATIONS=$( [ "$(cat notifications.txt)" = oui ] && echo true || echo false )
+          --dart-define=ADMOB_ACCUEIL=${{ secrets.ADMOB_ACCUEIL }}
+          --dart-define=ADMOB_LISTE=${{ secrets.ADMOB_LISTE }}
+          --dart-define=ADMOB_BANDEAU=${{ secrets.ADMOB_BANDEAU }}
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           2>&1 | tee -a ../compilation.log

@@ -1,5 +1,6 @@
 // Écran Réglages : thème, notifications, langue, domaines, à propos.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,6 +10,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'memoire.dart';
 import 'premier_lancement.dart';
+import 'pubs.dart';
 import 'regions_monde.dart';
 import 'reglages.dart';
 import 'retours.dart';
@@ -190,6 +192,10 @@ class EcranReglages extends StatelessWidget {
                   Icon(Icons.chevron_right_rounded, color: p.texte),
                 ]),
               ),
+            ],
+            if (!kIsWeb && pubsConfigurees) ...[
+              titreSection('Annonces'),
+              const _BlocAnnonces(),
             ],
             titreSection('Comprendre NovaSTEM'),
             bloc(
@@ -468,6 +474,102 @@ void _ouvrirMasques(BuildContext context) {
   );
 }
 
+
+/// Réglages → Annonces : « Retirer les annonces » (achat unique), « Restaurer mes achats »,
+/// choix de confidentialité (RGPD), ou un merci pour les membres fondateurs.
+class _BlocAnnonces extends StatefulWidget {
+  const _BlocAnnonces();
+
+  @override
+  State<_BlocAnnonces> createState() => _BlocAnnoncesState();
+}
+
+class _BlocAnnoncesState extends State<_BlocAnnonces> {
+  final Future<bool> _confidentialite = choixConfidentialiteDisponible();
+
+  Future<void> _acheter() async {
+    final ok = await acheterSansPub();
+    if (!ok && mounted) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(tr('Achat indisponible pour le moment. Réessayez plus tard.'))));
+    }
+  }
+
+  Future<void> _restaurer() async {
+    await restaurerAchats();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Recherche de vos achats…'))));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    Widget ligne(String titre, String detail, {IconData? icone, VoidCallback? onTap}) => Material(
+          color: p.carte,
+          borderRadius: BorderRadius.circular(18),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(children: [
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(titre, style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+                    if (detail.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text(detail, style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.4)),
+                    ],
+                  ]),
+                ),
+                if (icone != null) Icon(icone, color: p.texte, size: 20),
+              ]),
+            ),
+          ),
+        );
+
+    return ListenableBuilder(
+      listenable: Listenable.merge([etat, prixSansPub]),
+      builder: (context, _) {
+        final enfants = <Widget>[];
+        if (etat.sansPubAchete) {
+          enfants.add(ligne(tr('Annonces retirées'), tr('Merci pour votre soutien !'), icone: Icons.favorite_rounded));
+        } else if (etat.fondateur && !etat.statsExclues) {
+          enfants.add(ligne(tr('Membre fondateur'),
+              tr('Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !'),
+              icone: Icons.workspace_premium_rounded));
+        } else {
+          final prix = prixSansPub.value;
+          enfants.add(ligne(
+            prix == null ? tr('Retirer les annonces') : '${tr('Retirer les annonces')} · $prix',
+            tr('Un seul paiement, pour toujours. Il aide à faire vivre NovaSTEM.'),
+            icone: Icons.block_rounded,
+            onTap: achatsDisponibles ? _acheter : null,
+          ));
+          enfants.add(Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton(
+              onPressed: _restaurer,
+              child: Text(tr('Restaurer mes achats'),
+                  style: police(policeTexte, taille: 14, graisse: FontWeight.w700, couleur: const Color(0xFF3D7BFF))),
+            ),
+          ));
+        }
+        enfants.add(FutureBuilder<bool>(
+          future: _confidentialite,
+          builder: (context, snap) => snap.data != true
+              ? const SizedBox.shrink()
+              : Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: ligne(tr('Choix de confidentialité des annonces'), '',
+                      icone: Icons.privacy_tip_outlined, onTap: ouvrirChoixConfidentialite),
+                ),
+        ));
+        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: enfants);
+      },
+    );
+  }
+}
 
 /// Place prise sur le téléphone par le fil hors ligne et les images, avec « Vider ».
 class _BlocStockage extends StatefulWidget {

@@ -1,6 +1,8 @@
 // Structure principale : les 4 onglets et la barre du bas
 // (Actualités · Favoris · Vocabulaire · Réglages).
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,6 +11,7 @@ import 'ecran_reglages.dart';
 import 'favoris.dart';
 import 'langues.dart';
 import 'navigation.dart';
+import 'pubs.dart';
 import 'reglages.dart';
 import 'vocabulaire.dart';
 import 'widgets.dart';
@@ -28,6 +31,8 @@ class _CoquilleState extends State<Coquille> {
   void initState() {
     super.initState();
     demandeFilAujourdhui.addListener(_versActualites);
+    // Pubs : consentement RGPD puis AdMob, une fois l'accueil affiché (pas pendant la présentation).
+    unawaited(demarrerPubs());
   }
 
   @override

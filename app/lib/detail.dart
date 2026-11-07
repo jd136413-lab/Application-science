@@ -7,6 +7,7 @@ import 'echelle_importance.dart';
 import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart';
+import 'pubs.dart';
 import 'reglages.dart';
 import 'retours.dart';
 import 'stats.dart';
@@ -203,6 +204,8 @@ class EcranDetail extends StatelessWidget {
               ),
             ),
           ),
+          // Petit bandeau publicitaire (scénario D), sous « Lire l'article ».
+          const BandeauPub(),
         ]),
         ),
       ),

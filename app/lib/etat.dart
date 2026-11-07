@@ -28,6 +28,11 @@ class EtatApp extends ChangeNotifier {
   bool avisDemande = false;
   /// Appareil exclu des statistiques (téléphone de Maxime) : 7 appuis sur la version dans Réglages.
   bool statsExclues = false;
+  /// Publicités (07/11/2026). « Membre fondateur » : l'app était déjà installée
+  /// avant l'arrivée des pubs → jamais de pub (choix de Maxime).
+  bool fondateur = false;
+  /// Achat « Retirer les annonces » fait sur ce compte Google Play.
+  bool sansPubAchete = false;
   /// Niveaux d'importance (1 à 5) déjà expliqués par la bulle de la fiche.
   Set<int> niveauxVus = {};
   List<String> lues = []; // avancées déjà ouvertes (cartes grisées)
@@ -129,6 +134,11 @@ class EtatApp extends ChangeNotifier {
       favorisAjoutes = p.getInt('favoris_ajoutes') ?? 0;
       avisDemande = p.getBool('avis_demande') ?? false;
       statsExclues = p.getBool('stats_exclues') ?? false;
+      // Calculé une seule fois, à la première ouverture de la version avec pubs :
+      // premier lancement déjà terminé = l'app était là avant les pubs.
+      fondateur = p.getBool('pubs_fondateur') ?? premierLancementFait;
+      p.setBool('pubs_fondateur', fondateur);
+      sansPubAchete = p.getBool('sans_pub_achete') ?? false;
       niveauxVus = (p.getStringList('niveaux_vus') ?? <String>[]).map(int.tryParse).whereType<int>().toSet();
       p.setInt('ouvertures', ouvertures);
       lues = p.getStringList('lues') ?? [];
@@ -203,6 +213,18 @@ class EtatApp extends ChangeNotifier {
   void basculerStatsExclues() {
     statsExclues = !statsExclues;
     _enregistrer();
+    notifyListeners();
+  }
+
+  // ---- Publicités ----
+  /// Ce téléphone doit-il voir des pubs ? Non pour les fondateurs et après l'achat.
+  /// Le téléphone de Maxime (« hors statistiques ») voit des pubs de TEST, même fondateur.
+  bool get pubsVoulues => !sansPubAchete && (!fondateur || statsExclues);
+
+  void marquerSansPub() {
+    if (sansPubAchete) return;
+    sansPubAchete = true;
+    _prefs?.setBool('sans_pub_achete', true);
     notifyListeners();
   }
 

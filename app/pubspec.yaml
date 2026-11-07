@@ -30,6 +30,9 @@ dependencies:
   flutter_cache_manager: any
   path_provider: any
   device_info_plus: any          # modèle du téléphone dans « Signaler une erreur »
+  # Publicités (AdMob + consentement RGPD) et achat « Retirer les annonces » (07/11/2026)
+  google_mobile_ads: any
+  in_app_purchase: any
 
 flutter:
   uses-material-design: true

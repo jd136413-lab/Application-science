@@ -20,6 +20,7 @@ import 'langues.dart';
 import 'modele.dart';
 import 'navigation.dart';
 import 'proposition_notifs.dart';
+import 'pubs.dart';
 import 'reglages.dart';
 import 'stats.dart';
 import 'texte_article.dart';
@@ -190,6 +191,7 @@ class _EcranMagazineState extends State<EcranMagazine> {
   List<Widget> _rubriques(BuildContext context) {
     final tout = filsAvancees.visibles(_fil);
     final res = <Widget>[];
+    var pubPlacee = false;
     for (final (code, active) in etat.rubriques) {
       if (!active) continue;
       final w = switch (code) {
@@ -203,7 +205,14 @@ class _EcranMagazineState extends State<EcranMagazine> {
         _ => null,
       };
       if (w != null) res.add(Padding(padding: const EdgeInsets.only(bottom: 22), child: w));
+      // Bloc d'annonce de l'accueil : juste après « Nouveau pour vous » (scénario D).
+      if (code == 'nouveau' && w != null) {
+        res.add(const BlocPub(accueil: true));
+        pubPlacee = true;
+      }
     }
+    // « Nouveau pour vous » masqué : l'annonce vient après la 1re rubrique (jamais en tête).
+    if (!pubPlacee && res.isNotEmpty) res.insert(1, const BlocPub(accueil: true));
     if (res.isEmpty) {
       res.add(Padding(
         padding: const EdgeInsets.only(top: 60),
@@ -736,15 +745,20 @@ class _PageListe extends StatelessWidget {
                 ? MessageCentre(icone: Icons.inbox_outlined, titre: vide ?? tr('Rien à afficher'), detail: '')
                 : ListView.builder(
                     padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
-                    itemCount: liste.length,
-                    itemBuilder: (context, i) => Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: CarteBalayable(
-                        avancee: liste[i],
-                        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => EcranDetailFil(liste: List.of(liste), depart: i))),
-                      ),
-                    ),
+                    // Une annonce toutes les 8 avancées (pubs.dart), jamais en 1re position.
+                    itemCount: nbAvecPubs(liste.length),
+                    itemBuilder: (context, i) {
+                      if (estPub(i)) return const BlocPub();
+                      final k = indexAvancee(i);
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: CarteBalayable(
+                          avancee: liste[k],
+                          onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => EcranDetailFil(liste: List.of(liste), depart: k))),
+                        ),
+                      );
+                    },
                   ),
           ),
         ]),
@@ -1016,15 +1030,19 @@ class _EcranDomaineMagState extends State<EcranDomaineMag> {
                     ? MessageCentre(icone: Icons.inbox_outlined, titre: tr('Pas encore d’avancée ici'), detail: '')
                     : ListView.builder(
                         padding: const EdgeInsets.fromLTRB(16, 14, 16, 28),
-                        itemCount: l.length,
-                        itemBuilder: (context, i) => Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: CarteBalayable(
-                            avancee: l[i],
-                            onTap: () => Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (_) => EcranDetailFil(liste: List.of(l), depart: i))),
-                          ),
-                        ),
+                        itemCount: nbAvecPubs(l.length),
+                        itemBuilder: (context, i) {
+                          if (estPub(i)) return const BlocPub();
+                          final k = indexAvancee(i);
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: CarteBalayable(
+                              avancee: l[k],
+                              onTap: () => Navigator.of(context)
+                                  .push(MaterialPageRoute(builder: (_) => EcranDetailFil(liste: List.of(l), depart: k))),
+                            ),
+                          );
+                        },
                       ),
               ),
             ]),

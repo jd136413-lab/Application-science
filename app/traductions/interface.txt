@@ -9268,3 +9268,256 @@ ja 記事が開かない
 ko 기사가 열리지 않음
 id Artikel tidak bisa dibuka
 vi Bài viết không mở được
+
+# ---- Publicités et achat « Retirer les annonces » (07/11/2026) ----
+@ Annonces
+en Ads
+es Anuncios
+pt Anúncios
+de Werbung
+it Annunci
+nl Advertenties
+pl Reklamy
+ru Реклама
+uk Реклама
+tr Reklamlar
+ar الإعلانات
+hi विज्ञापन
+bn বিজ্ঞাপন
+ur اشتہارات
+zh 广告
+ja 広告
+ko 광고
+id Iklan
+vi Quảng cáo
+
+@ Retirer les annonces
+en Remove ads
+es Quitar los anuncios
+pt Remover anúncios
+de Werbung entfernen
+it Rimuovi gli annunci
+nl Advertenties verwijderen
+pl Usuń reklamy
+ru Убрать рекламу
+uk Прибрати рекламу
+tr Reklamları kaldır
+ar إزالة الإعلانات
+hi विज्ञापन हटाएँ
+bn বিজ্ঞাপন সরান
+ur اشتہارات ہٹائیں
+zh 移除广告
+ja 広告を削除
+ko 광고 제거
+id Hapus iklan
+vi Gỡ quảng cáo
+
+@ Un seul paiement, pour toujours. Il aide à faire vivre NovaSTEM.
+en One payment, forever. It helps keep NovaSTEM going.
+es Un solo pago, para siempre. Ayuda a mantener NovaSTEM.
+pt Um único pagamento, para sempre. Ajuda a manter o NovaSTEM.
+de Eine einzige Zahlung, für immer. Sie hilft, NovaSTEM am Leben zu halten.
+it Un solo pagamento, per sempre. Aiuta a far vivere NovaSTEM.
+nl Eén betaling, voor altijd. Het helpt NovaSTEM in de lucht te houden.
+pl Jedna płatność, na zawsze. Pomaga utrzymać NovaSTEM.
+ru Один платёж — навсегда. Это помогает развивать NovaSTEM.
+uk Один платіж — назавжди. Це допомагає розвивати NovaSTEM.
+tr Tek seferlik ödeme, sonsuza dek. NovaSTEM'in yaşamasına yardımcı olur.
+ar دفعة واحدة إلى الأبد. تساعد على استمرار NovaSTEM.
+hi एक ही भुगतान, हमेशा के लिए। इससे NovaSTEM को चलाने में मदद मिलती है।
+bn একবারই পেমেন্ট, চিরকালের জন্য। এটি NovaSTEM চালিয়ে যেতে সাহায্য করে।
+ur ایک ہی ادائیگی، ہمیشہ کے لیے۔ اس سے NovaSTEM کو چلانے میں مدد ملتی ہے۔
+zh 一次付费，永久有效。帮助 NovaSTEM 持续运营。
+ja 一度の支払いでずっと有効。NovaSTEM の運営を支えます。
+ko 한 번 결제로 평생. NovaSTEM 운영에 도움이 됩니다.
+id Sekali bayar, selamanya. Membantu NovaSTEM tetap berjalan.
+vi Thanh toán một lần, dùng mãi mãi. Giúp NovaSTEM tiếp tục hoạt động.
+
+@ Restaurer mes achats
+en Restore my purchases
+es Restaurar mis compras
+pt Restaurar minhas compras
+de Meine Käufe wiederherstellen
+it Ripristina i miei acquisti
+nl Mijn aankopen herstellen
+pl Przywróć moje zakupy
+ru Восстановить покупки
+uk Відновити покупки
+tr Satın alımlarımı geri yükle
+ar استعادة مشترياتي
+hi मेरी खरीदारी बहाल करें
+bn আমার কেনাকাটা পুনরুদ্ধার করুন
+ur میری خریداری بحال کریں
+zh 恢复我的购买
+ja 購入を復元
+ko 구매 복원
+id Pulihkan pembelian saya
+vi Khôi phục giao dịch mua
+
+@ Recherche de vos achats…
+en Looking for your purchases…
+es Buscando sus compras…
+pt Procurando suas compras…
+de Ihre Käufe werden gesucht …
+it Ricerca dei tuoi acquisti…
+nl Uw aankopen worden gezocht…
+pl Szukamy Twoich zakupów…
+ru Ищем ваши покупки…
+uk Шукаємо ваші покупки…
+tr Satın alımlarınız aranıyor…
+ar جارٍ البحث عن مشترياتك…
+hi आपकी खरीदारी खोजी जा रही है…
+bn আপনার কেনাকাটা খোঁজা হচ্ছে…
+ur آپ کی خریداری تلاش کی جا رہی ہے…
+zh 正在查找您的购买记录…
+ja 購入履歴を確認中…
+ko 구매 내역을 찾는 중…
+id Mencari pembelian Anda…
+vi Đang tìm giao dịch mua của bạn…
+
+@ Achat indisponible pour le moment. Réessayez plus tard.
+en Purchase unavailable right now. Please try again later.
+es Compra no disponible por ahora. Inténtelo más tarde.
+pt Compra indisponível no momento. Tente novamente mais tarde.
+de Kauf derzeit nicht möglich. Bitte später erneut versuchen.
+it Acquisto non disponibile al momento. Riprova più tardi.
+nl Aankoop momenteel niet beschikbaar. Probeer het later opnieuw.
+pl Zakup chwilowo niedostępny. Spróbuj później.
+ru Покупка сейчас недоступна. Попробуйте позже.
+uk Покупка зараз недоступна. Спробуйте пізніше.
+tr Satın alma şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.
+ar الشراء غير متاح حاليًا. حاول لاحقًا.
+hi खरीदारी अभी उपलब्ध नहीं है। बाद में फिर कोशिश करें।
+bn কেনাকাটা এখন উপলব্ধ নয়। পরে আবার চেষ্টা করুন।
+ur خریداری ابھی دستیاب نہیں۔ بعد میں دوبارہ کوشش کریں۔
+zh 暂时无法购买，请稍后再试。
+ja 現在購入できません。しばらくしてからお試しください。
+ko 지금은 구매할 수 없습니다. 나중에 다시 시도하세요.
+id Pembelian belum tersedia. Coba lagi nanti.
+vi Hiện chưa thể mua. Vui lòng thử lại sau.
+
+@ Annonces retirées
+en Ads removed
+es Anuncios eliminados
+pt Anúncios removidos
+de Werbung entfernt
+it Annunci rimossi
+nl Advertenties verwijderd
+pl Reklamy usunięte
+ru Реклама убрана
+uk Рекламу прибрано
+tr Reklamlar kaldırıldı
+ar تمت إزالة الإعلانات
+hi विज्ञापन हटा दिए गए
+bn বিজ্ঞাপন সরানো হয়েছে
+ur اشتہارات ہٹا دیے گئے
+zh 广告已移除
+ja 広告は削除されました
+ko 광고가 제거되었습니다
+id Iklan dihapus
+vi Đã gỡ quảng cáo
+
+@ Merci pour votre soutien !
+en Thank you for your support!
+es ¡Gracias por su apoyo!
+pt Obrigado pelo seu apoio!
+de Danke für Ihre Unterstützung!
+it Grazie per il tuo sostegno!
+nl Bedankt voor uw steun!
+pl Dziękujemy za wsparcie!
+ru Спасибо за поддержку!
+uk Дякуємо за підтримку!
+tr Desteğiniz için teşekkürler!
+ar شكرًا على دعمك!
+hi आपके समर्थन के लिए धन्यवाद!
+bn আপনার সহায়তার জন্য ধন্যবাদ!
+ur آپ کی حمایت کا شکریہ!
+zh 感谢您的支持！
+ja ご支援ありがとうございます！
+ko 응원해 주셔서 감사합니다!
+id Terima kasih atas dukungan Anda!
+vi Cảm ơn sự ủng hộ của bạn!
+
+@ Membre fondateur
+en Founding member
+es Miembro fundador
+pt Membro fundador
+de Gründungsmitglied
+it Membro fondatore
+nl Eerste gebruiker
+pl Członek założyciel
+ru Пользователь-основатель
+uk Користувач-засновник
+tr Kurucu üye
+ar عضو مؤسس
+hi संस्थापक सदस्य
+bn প্রতিষ্ঠাতা সদস্য
+ur بانی رکن
+zh 创始会员
+ja 創設メンバー
+ko 창립 멤버
+id Anggota pendiri
+vi Thành viên sáng lập
+
+@ Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !
+en You were using NovaSTEM before ads arrived, so you will never see any. Thank you!
+es Usaba NovaSTEM antes de que llegaran los anuncios: nunca verá ninguno. ¡Gracias!
+pt Você já usava o NovaSTEM antes dos anúncios: nunca verá nenhum. Obrigado!
+de Sie nutzten NovaSTEM schon vor der Werbung: Sie werden nie welche sehen. Danke!
+it Usavi NovaSTEM prima dell’arrivo degli annunci: non ne vedrai mai. Grazie!
+nl U gebruikte NovaSTEM al vóór de advertenties: u ziet er nooit een. Bedankt!
+pl Używałeś NovaSTEM, zanim pojawiły się reklamy: nigdy ich nie zobaczysz. Dziękujemy!
+ru Вы пользовались NovaSTEM до появления рекламы — вы её никогда не увидите. Спасибо!
+uk Ви користувалися NovaSTEM до появи реклами — ви її ніколи не побачите. Дякуємо!
+tr NovaSTEM'i reklamlardan önce kullanıyordunuz: hiç reklam görmeyeceksiniz. Teşekkürler!
+ar كنت تستخدم NovaSTEM قبل وصول الإعلانات: لن ترى أي إعلان أبدًا. شكرًا!
+hi आप विज्ञापनों से पहले से NovaSTEM इस्तेमाल कर रहे थे: आपको कभी विज्ञापन नहीं दिखेंगे। धन्यवाद!
+bn বিজ্ঞাপন আসার আগে থেকেই আপনি NovaSTEM ব্যবহার করছেন: আপনি কখনও বিজ্ঞাপন দেখবেন না। ধন্যবাদ!
+ur آپ اشتہارات سے پہلے سے NovaSTEM استعمال کر رہے تھے: آپ کو کبھی اشتہار نظر نہیں آئیں گے۔ شکریہ!
+zh 您在广告上线前就已使用 NovaSTEM：您永远不会看到广告。谢谢！
+ja 広告導入前から NovaSTEM をご利用いただいているため、広告は一切表示されません。ありがとうございます！
+ko 광고 도입 전부터 NovaSTEM을 사용하셨으므로 광고가 절대 표시되지 않습니다. 감사합니다!
+id Anda sudah memakai NovaSTEM sebelum ada iklan, jadi Anda tidak akan pernah melihat iklan. Terima kasih!
+vi Bạn đã dùng NovaSTEM từ trước khi có quảng cáo nên sẽ không bao giờ thấy quảng cáo. Cảm ơn bạn!
+
+@ Choix de confidentialité des annonces
+en Ad privacy choices
+es Opciones de privacidad de anuncios
+pt Opções de privacidade dos anúncios
+de Datenschutzeinstellungen für Werbung
+it Scelte sulla privacy degli annunci
+nl Privacykeuzes voor advertenties
+pl Ustawienia prywatności reklam
+ru Настройки конфиденциальности рекламы
+uk Налаштування конфіденційності реклами
+tr Reklam gizlilik tercihleri
+ar خيارات خصوصية الإعلانات
+hi विज्ञापन गोपनीयता विकल्प
+bn বিজ্ঞাপনের গোপনীয়তা পছন্দ
+ur اشتہارات کی رازداری کے انتخاب
+zh 广告隐私选项
+ja 広告のプライバシー設定
+ko 광고 개인정보 보호 선택
+id Pilihan privasi iklan
+vi Lựa chọn quyền riêng tư quảng cáo
+
+@ Publicité
+en Ad
+es Publicidad
+pt Publicidade
+de Anzeige
+it Pubblicità
+nl Advertentie
+pl Reklama
+ru Реклама
+uk Реклама
+tr Reklam
+ar إعلان
+hi विज्ञापन
+bn বিজ্ঞাপন
+ur اشتہار
+zh 广告
+ja 広告
+ko 광고
+id Iklan
+vi Quảng cáo
