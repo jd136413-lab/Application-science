@@ -344,3 +344,4 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
 - Tout est **éteint tant que les secrets `ADMOB_APP_ID`, `ADMOB_ACCUEIL`, `ADMOB_LISTE`, `ADMOB_BANDEAU` sont absents** (identifiant d'app de test dans le manifeste, aucune pub).
 - Politique de confidentialité FR/EN mise à jour (partie 4 quinquies / 4d, enfants, droits).
 - Vérification du code : 0 erreur (branche `verif/pubs`). Compilation Android non encore faite (attend « compile »).
+- 07/11 — **Version 1.0.54 compilée** (première avec AdMob et in_app_purchase) : compilation Android réussie, envoyée en tests internes. AdMob : app « NovaSTEM » créée par Maxime, « Diffusion d'annonces limitée / Examen requis » (profil de paiement AdMob à compléter ; liaison au Play Store possible seulement après la mise en production). Profil marchand Play : nom public « Jupiter Dynamics » (valable pour de futures apps).
