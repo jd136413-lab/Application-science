@@ -21,6 +21,7 @@ PLAFOND_COUT = 1.00          # $ : le workflow s'arrête au-delà
 MAX_MOTS = 13                # garde-fou (la règle demande 12 au plus)
 
 import json
+import re
 import os
 import sys
 import time
@@ -126,9 +127,36 @@ def relire(client, fiches: list[dict], log) -> tuple[list[dict], float]:
     return changees, (t_in * PRIX[0] + t_out * PRIX[1]) / 1e6
 
 
+# Noms connus de tous : un titre qui n'a que ceux-là n'a pas besoin d'être relu.
+_CONNUS_TITRE = {"Apple", "Google", "Samsung", "NASA", "SpaceX", "Mars", "Lune", "Terre", "Soleil", "Alzheimer",
+                 "Parkinson", "Covid", "ChatGPT", "Microsoft", "Amazon", "Meta", "Tesla", "BYD", "Huawei", "IBM",
+                 "Nvidia", "Intel", "Sony", "Nintendo", "Chine", "Japon", "Inde", "Europe", "Afrique", "Amérique",
+                 "France", "Jupiter", "Saturne", "Vénus", "Mercure", "Neptune", "Pluton", "Webb", "Hubble",
+                 "Einstein", "iPhone", "Android", "Windows", "Linux", "Internet", "Égypte", "Sibérie", "Everest",
+                 "Antarctique", "Arctique", "Pacifique", "Atlantique", "Néandertal", "Voie", "Big", "Bang", "Claude",
+                 "Pékin", "Préhistoire", "Amazonie", "Système", "Asiatiques", "Européens", "Africains", "Américains",
+                 "Chinois", "Japonais", "Français", "Paris", "Londres", "Arctique", "Méditerranée", "Sahara"}
+
+
+def a_relire(titre: str) -> bool:
+    """Vrai si le titre contient un sigle ou un nom propre que le grand public peut ne pas connaître."""
+    import redaction
+    if any(x not in redaction._SIGLES_CONNUS and not re.fullmatch(r"[IVXL]+", x)
+           for x in re.findall(r"\b[A-Z][A-Z0-9]{1,}[a-z]?\b", titre)):
+        return True
+    mots = titre.split(" : ", 1)[-1].split()
+    noms = [m.strip(",.;:()«»'\"") for m in mots[1:]]
+    return any(n[:1].isupper() and not n.isupper() and n not in _CONNUS_TITRE for n in noms)
+
+
 def passage_agent(db, client, fiches: list[dict], log) -> tuple[int, float]:
     """Appelé par main.py sur les fiches du passage, AVANT traductions et notifications."""
     fiches = [f for f in fiches if f.get("id")]
+    import redaction
+    if redaction.CONSIGNES_V4:
+        # 08/11 : la rédaction et la relecture font déjà le « test du passant » ; on ne relit plus
+        # que les titres où le programme voit un sigle ou un nom propre (moins d'appels, moins de risque).
+        fiches = [f for f in fiches if a_relire(f.get("title", ""))]
     if not fiches:
         return 0, 0.0
     changees, cout = relire(client, fiches, log)

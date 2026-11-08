@@ -167,6 +167,14 @@ Réponds uniquement avec le JSON demandé."""
 
 
 def schema(fil: str) -> dict:
+    s = _schema(fil)
+    if CONSIGNES_V4:                       # plus de liste de contrôle remplie par le rédacteur
+        s["properties"].pop("controle", None)
+        s["required"] = [k for k in s["required"] if k != "controle"]
+    return s
+
+
+def _schema(fil: str) -> dict:
     types = TYPES_SCIENCE if fil == "science" else TYPES_TECH
     return {
         "type": "object",
@@ -303,6 +311,11 @@ Puis donne la fiche corrigée. CHAQUE défaut que tu as listé doit être corrig
 
 Réponds uniquement avec le JSON demandé."""
 
+# Consignes allégées (08/11, consignes_v4.py) : activées par CONSIGNES_V4 (essais : variable d'environnement).
+CONSIGNES_V4 = bool(os.environ.get("CONSIGNES_V4"))
+if CONSIGNES_V4:
+    from consignes_v4 import REDACTION_C as CONSIGNE, RELECTURE_C as CONSIGNE_RELECTURE  # noqa: E402,F811
+
 SCHEMA_RELECTURE = {
     "type": "object",
     "properties": {
@@ -310,7 +323,7 @@ SCHEMA_RELECTURE = {
             "type": "object",
             "properties": {
                 "type": {"type": "string", "enum": ["non_soutenu", "absolu", "titre", "jargon", "comparaison",
-                                                     "apres", "forme", "mot"]},
+                                                     "apres", "forme", "mot", "logique"]},
                 "extrait": {"type": "string"},
                 "explication": {"type": "string"},
             },
