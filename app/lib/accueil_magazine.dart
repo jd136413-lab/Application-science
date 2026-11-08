@@ -752,7 +752,7 @@ class _PageListe extends StatelessWidget {
                       if (estPub(i)) {
                         // Annonce de la taille exacte d'une avancée sans image (la précédente).
                         return PubListe(
-                            carte: CarteAvancee(avancee: liste[indexAvancee(i)], onTap: () {}, sansImage: true));
+                            carte: CarteAvancee(avancee: liste[indexAvancee(i)], onTap: () {}, sansImage: true, maxLignesTitre: 2));
                       }
                       final k = indexAvancee(i);
                       return Padding(
@@ -1039,7 +1039,7 @@ class _EcranDomaineMagState extends State<EcranDomaineMag> {
                         itemBuilder: (context, i) {
                           if (estPub(i)) {
                             return PubListe(
-                                carte: CarteAvancee(avancee: l[indexAvancee(i)], onTap: () {}, sansImage: true));
+                                carte: CarteAvancee(avancee: l[indexAvancee(i)], onTap: () {}, sansImage: true, maxLignesTitre: 2));
                           }
                           final k = indexAvancee(i);
                           return Padding(

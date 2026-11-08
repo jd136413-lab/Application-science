@@ -21,7 +21,10 @@ class CarteAvancee extends StatelessWidget {
   /// Vrai : la carte s'affiche sans photo (sert de gabarit invisible pour donner
   /// aux annonces des listes exactement la taille d'une avancée sans image).
   final bool sansImage;
-  const CarteAvancee({super.key, required this.avancee, required this.onTap, this.sansImage = false});
+  /// Gabarit des annonces : titre limité à 2 lignes, pour une case de taille régulière.
+  final int? maxLignesTitre;
+  const CarteAvancee(
+      {super.key, required this.avancee, required this.onTap, this.sansImage = false, this.maxLignesTitre});
 
   void _menu(BuildContext context) => ouvrirMenuCarte(context, avancee);
 
@@ -93,6 +96,7 @@ class CarteAvancee extends StatelessWidget {
               ]),
               const SizedBox(height: 12),
               TexteArticle(avancee.titre,
+                  maxLines: maxLignesTitre,
                   style: police(policeTitres,
                       taille: tailleTitreCarte, graisse: FontWeight.w600, couleur: texte, hauteur: 1.22)),
               const SizedBox(height: 12),

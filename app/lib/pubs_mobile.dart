@@ -147,7 +147,7 @@ class _Reserve {
   /// une image pleine largeur, au plus aussi haute que ça).
   static const Map<FormatPub, int> hauteurMax = {
     FormatPub.accueil: 250,
-    FormatPub.liste: 100, // + la ligne « Publicité » = la place d'une avancée sans image
+    FormatPub.liste: 116, // + la ligne « Publicité » = la place d'une avancée sans image (titre sur 2 lignes)
     FormatPub.evenement: 76, // la place d'un événement (sans ligne « Publicité »)
   };
 
