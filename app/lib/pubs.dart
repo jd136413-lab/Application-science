@@ -1,5 +1,5 @@
 // Publicités et achat « Retirer les annonces » (07/11/2026, scénario D, planche 80).
-// Compilation demandée par Maxime le 08/11/2026 (corrections format B).
+// Compilation demandée par Maxime le 08/11/2026 (pub accueil + événement).
 //
 // Sur Android : Google AdMob + achat intégré Google Play (pubs_mobile.dart).
 // Sur la version web : rien (pubs_web.dart).
