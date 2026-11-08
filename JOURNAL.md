@@ -352,3 +352,4 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
 - **« À venir »** : une annonce 320 × 50 toutes les 8 cartes d'événements, de **la taille exacte de l'événement précédent** (`PubEvenement`).
 - Accueil (300 × 250) et bandeau sous « Lire l'article » : inchangés, mais préchargés.
 - Le prix « 3,99 € » s'affiche dans Réglages → Annonces (produit `retirer_annonces` actif, prix saisi 3,33 € HT, la Play Console ajoute la TVA de chaque pays).
+- 08/11 — Bouton caché « Annuler l'achat (test) » (Réglages → Annonces, visible seulement sur un téléphone « hors statistiques » après l'achat) : remet les pubs de test et ignore la restauration automatique de l'achat ; « Restaurer mes achats » ou un nouvel achat le réactive. Profil de paiement AdMob complété par Maxime (bandeau rouge disparu) : l'examen de l'app peut commencer.
