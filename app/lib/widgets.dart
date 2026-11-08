@@ -22,7 +22,9 @@ TextStyle police(String nom, {double? taille, FontWeight? graisse, Color? couleu
 class LogoNovaStem extends StatefulWidget {
   final double taille;
   final bool anime;
-  const LogoNovaStem({super.key, this.taille = 44, this.anime = false});
+  /// Écran de chargement : l'animation se rejoue en boucle (composition, puis pause).
+  final bool boucle;
+  const LogoNovaStem({super.key, this.taille = 44, this.anime = false, this.boucle = false});
 
   @override
   State<LogoNovaStem> createState() => _LogoNovaStemState();
@@ -36,7 +38,11 @@ class _LogoNovaStemState extends State<LogoNovaStem> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    if (widget.anime && !_dejaAnime) {
+    if (widget.boucle) {
+      // 1,1 s de composition puis ~0,7 s de pause, en boucle.
+      _t.duration = const Duration(milliseconds: 1800);
+      _t.repeat();
+    } else if (widget.anime && !_dejaAnime) {
       _dejaAnime = true;
       _t.value = 0;
       _t.forward();
@@ -50,8 +56,10 @@ class _LogoNovaStemState extends State<LogoNovaStem> with SingleTickerProviderSt
   }
 
   /// Avancement (0 à 1) de la partie [debut]–[fin] de l'animation.
+  double get _avance => widget.boucle ? (_t.value * 1.6).clamp(0.0, 1.0) : _t.value;
+
   double _phase(double debut, double fin, [Curve courbe = Curves.easeOutCubic]) =>
-      courbe.transform(((_t.value - debut) / (fin - debut)).clamp(0.0, 1.0));
+      courbe.transform(((_avance - debut) / (fin - debut)).clamp(0.0, 1.0));
 
   @override
   Widget build(BuildContext context) {

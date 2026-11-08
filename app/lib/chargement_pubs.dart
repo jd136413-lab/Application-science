@@ -31,13 +31,14 @@ class _EcranChargementPubsState extends State<EcranChargementPubs> with TickerPr
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
-    return ColoredBox(
+    // Material : sans lui, Flutter souligne les textes en jaune (bug vu le 08/11).
+    return Material(
       color: p.fond,
       child: SizedBox.expand(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           ScaleTransition(
             scale: Tween(begin: 1.0, end: 1.04).animate(CurvedAnimation(parent: _respire, curve: Curves.easeInOut)),
-            child: const LogoNovaStem(taille: 56, anime: true),
+            child: const LogoNovaStem(taille: 56, boucle: true),
           ),
           const SizedBox(height: 30),
           ClipRRect(

@@ -25,7 +25,6 @@ import 'widgets.dart';
 // Emplacements de TEST de Google : utilisés sur le téléphone de Maxime
 // (« hors statistiques »), pour ne jamais toucher à ses propres vraies pubs
 // (interdit par AdMob).
-const String _testBloc = 'ca-app-pub-3940256099942544/6300978111';
 const String _testBandeau = 'ca-app-pub-3940256099942544/9214589741';
 
 bool _demarre = false;
@@ -132,11 +131,13 @@ class _Reserve {
   String _id(FormatPub f) {
     final test = etat.statsExclues;
     switch (f) {
+      // Test : emplacement de test « bannière ADAPTATIVE » de Google (l'emplacement de test
+      // fixe ne renvoie qu'une bande de 50 px, d'où la pub minuscule vue le 08/11).
       case FormatPub.accueil:
-        return test ? _testBloc : idPubAccueil;
+        return test ? _testBandeau : idPubAccueil;
       case FormatPub.liste:
       case FormatPub.evenement:
-        return test ? _testBloc : idPubListe;
+        return test ? _testBandeau : idPubListe;
       case FormatPub.bandeau:
         return test ? _testBandeau : idPubBandeau;
     }
