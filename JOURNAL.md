@@ -372,3 +372,7 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
 - 165 fiches publiées du 24/10 au 08/11 notées par Claude (lecture gratuite, branche `redaction/notation-15j` : `tester_redaction.py` accepte maintenant `DEPUIS` et `SANS_LECTURE`). Détail fiche par fiche : `agent/bilan_qualite_15j.md`.
 - Moyenne avant (24/10 → 02/11) : 6,71 ; transition (03-04/11) : 6,97 ; après (05 → 08/11) : 7,68. Fiches < 6,5 : 25 % → 0 %. Fiches ≥ 8 : 2 % → 51 %. Doublons publiés : 6 paires avant/transition → 0 depuis le 05/11. Restes de consigne (« Et après ? », « selon la source ») : 18 → 0.
 - Grille plus stricte que les notes quotidiennes précédentes (≈ 8) : c'est l'écart avant/après qui compte.
+
+## 08/11/2026 — Essai A/B des consignes allégées (v4), rien publié
+- `agent/consignes_v4.py` (rédaction ~1 100 mots sans liste de contrôle, titre = résultat principal ; relecture recentrée avec le point « logique ») et relecture des titres ciblée (`titres.a_relire`), le tout derrière `redaction.CONSIGNES_V4` (désactivé en production).
+- Essai sur 14 articles (`agent/essai_ab_consignes.md`) : ancienne 7,79/10, nouvelle 7,61/10 ; coût par fiche 0,0031 $ → 0,0016 $ (−48 %, surtout la liste de contrôle en moins). La nouvelle se trompe plus souvent de type d'étude (définitions raccourcies) et a perdu une fois le résultat principal. Relecture des titres ciblée : 5 titres sur 165 relus, tous à juste titre. Coût des deux essais : 0,067 $. En attente de la décision de Maxime.
