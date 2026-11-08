@@ -40,9 +40,9 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           MODELES: ${{ inputs.modeles || vars.TEST_MODELES || 'haiku' }}
-          NB: ${{ inputs.nb || '12' }}
+          NB: "12"
           # Lot de fiches testé (décalage dans les fiches publiées, de la plus récente à la plus ancienne)
-          TITRES: ""
+          TITRES: "protéines de dents|perce un trou"
           DECALAGE: "0"
           PAR_LOT: "1"
           TRI_SEUL: "1"
