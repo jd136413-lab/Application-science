@@ -353,3 +353,9 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
 - Accueil (300 × 250) et bandeau sous « Lire l'article » : inchangés, mais préchargés.
 - Le prix « 3,99 € » s'affiche dans Réglages → Annonces (produit `retirer_annonces` actif, prix saisi 3,33 € HT, la Play Console ajoute la TVA de chaque pays).
 - 08/11 — Bouton caché « Annuler l'achat (test) » (Réglages → Annonces, visible seulement sur un téléphone « hors statistiques » après l'achat) : remet les pubs de test et ignore la restauration automatique de l'achat ; « Restaurer mes achats » ou un nouvel achat le réactive. Profil de paiement AdMob complété par Maxime (bandeau rouge disparu) : l'examen de l'app peut commencer.
+
+## 08/11/2026 — Pubs au format B, écran de chargement, onglets pleine largeur (planches 84-85, nouveau tableau « Maquettes NovaSTEM 2 »)
+- Nouveau tableau de maquettes : https://claude.ai/artifact/7YYM3i5pZ339DEbG8kpHG2 (l'ancien ne s'ouvre plus chez Maxime).
+- **Format B choisi par Maxime** : bannières « adaptatives intégrées » pleine largeur. Listes : jusqu'à 100 px + la ligne « Publicité » (place d'une avancée sans image). « À venir » : jusqu'à 76 px, sans ligne « Publicité » (place d'un événement). Accueil (Sciences et Technologies, une pub chacun) : jusqu'à 250 px. La mention « Publicité » est au-dessus de l'annonce, jamais dessus (AdMob interdit de recouvrir une annonce).
+- **Écran de chargement** (`chargement_pubs.dart`) : logo qui se compose puis respire + barre qui glisse, tant que les 2 pubs d'accueil ne sont pas prêtes ; s'arrête dès qu'elles sont prêtes ou que Google n'en a pas, 3 s au plus après le démarrage d'AdMob, 6 s au plus en tout. Seulement si des pubs sont prévues (pas pour les fondateurs, les acheteurs, le web).
+- Onglets Sciences / Technologies / À venir répartis sur toute la largeur.
