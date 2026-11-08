@@ -64,7 +64,8 @@ Future<void> demarrerPubs() async {
     Timer(const Duration(seconds: 3), _finChargement);
     void verifier() {
       // Les 2 pubs d'accueil sont prêtes, ou Google n'en a pas (plus rien en cours) : on ouvre.
-      if (_reserve.nbPretes(FormatPub.accueil) >= 2 || !_reserve.chargeEncore(FormatPub.accueil)) {
+      if (_reserve.nbPretes(FormatPub.accueil) + _reserve.prises(FormatPub.accueil) >= 2 ||
+          !_reserve.chargeEncore(FormatPub.accueil)) {
         _reserve.change.removeListener(verifier);
         _finChargement();
       }
@@ -161,6 +162,9 @@ class _Reserve {
 
   int nbPretes(FormatPub f) => _pretes[f]!.length;
   bool chargeEncore(FormatPub f) => _enCours[f]! > 0;
+  final Map<FormatPub, int> _prises = {for (final f in FormatPub.values) f: 0};
+  /// Annonces déjà placées dans un emplacement depuis le démarrage.
+  int prises(FormatPub f) => _prises[f]!;
 
   void remplir() {
     if (!pubsAffichees) return;
@@ -226,6 +230,7 @@ class _Reserve {
       l.removeAt(0).$1.dispose();
     }
     final ad = l.isEmpty ? null : l.removeAt(0).$1;
+    if (ad != null) _prises[f] = _prises[f]! + 1;
     Future.microtask(remplir);
     return ad;
   }
@@ -306,6 +311,12 @@ class _EmplacementState extends State<_Emplacement> {
   /// Plus tard : seulement si l'emplacement est sous le bas de l'écran (invisible).
   void _essayer() {
     if (_pub != null || !mounted || widget.format == FormatPub.bandeau) return;
+    // Pendant l'écran de chargement, rien n'est visible derrière : on peut prendre l'annonce
+    // tout de suite, elle sera déjà en place quand l'accueil apparaît (bug vu le 08/11).
+    if (ecranChargementPubs.value) {
+      _prendre();
+      return;
+    }
     final box = context.findRenderObject();
     if (box is! RenderBox || !box.attached || !box.hasSize) return;
     final y = box.localToGlobal(Offset.zero).dy;
