@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'accueil_magazine.dart';
+import 'chargement_pubs.dart';
 import 'ecran_reglages.dart';
 import 'favoris.dart';
 import 'langues.dart';
@@ -84,7 +85,8 @@ class _CoquilleState extends State<Coquille> {
       onPopInvokedWithResult: (aQuitte, _) {
         if (!aQuitte) _retour();
       },
-      child: Scaffold(
+      child: Stack(children: [
+      Scaffold(
       backgroundColor: p.fond,
       body: SafeArea(
         bottom: false,
@@ -140,6 +142,19 @@ class _CoquilleState extends State<Coquille> {
         ),
       ),
     ),
+      // Écran de chargement le temps de précharger les pubs des 2 accueils (planche 84).
+      ValueListenableBuilder<bool>(
+        valueListenable: ecranChargementPubs,
+        builder: (context, charge, _) => IgnorePointer(
+          ignoring: !charge,
+          child: AnimatedOpacity(
+            opacity: charge ? 1 : 0,
+            duration: const Duration(milliseconds: 300),
+            child: charge ? const EcranChargementPubs() : const SizedBox.shrink(),
+          ),
+        ),
+      ),
+    ]),
     );
   }
 }

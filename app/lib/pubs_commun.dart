@@ -19,6 +19,10 @@ const String idProduitSansPub = 'retirer_annonces';
 /// Vrai quand AdMob est prêt (consentement RGPD demandé, SDK démarré).
 final ValueNotifier<bool> pubsPretes = ValueNotifier(false);
 
+/// Vrai pendant l'écran de chargement du démarrage (le temps de précharger les pubs
+/// des 2 accueils, 3 secondes au plus après le démarrage d'AdMob, 6 au total).
+final ValueNotifier<bool> ecranChargementPubs = ValueNotifier(false);
+
 /// Pubs à afficher maintenant sur ce téléphone ?
 bool get pubsAffichees => !kIsWeb && pubsConfigurees && pubsPretes.value && etat.pubsVoulues;
 

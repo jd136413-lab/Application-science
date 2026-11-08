@@ -36,6 +36,10 @@ Future<void> demarrerPubs() async {
   _demarre = true;
   unawaited(_demarrerAchats());
   if (!pubsConfigurees || !etat.pubsVoulues) return;
+  // Écran de chargement : jusqu'à ce que les pubs des 2 accueils soient prêtes,
+  // 3 s au plus après le démarrage d'AdMob, 6 s au plus en tout.
+  ecranChargementPubs.value = true;
+  Timer(const Duration(seconds: 6), _finChargement);
   try {
     // 1) Consentement RGPD (formulaire de Google, seulement si nécessaire).
     final fini = Completer<void>();
@@ -58,11 +62,23 @@ Future<void> demarrerPubs() async {
     pubsPretes.value = true;
     // 3) Préchargement : les annonces sont prêtes AVANT d'arriver à l'écran.
     _reserve.remplir();
+    Timer(const Duration(seconds: 3), _finChargement);
+    void verifier() {
+      // Les 2 pubs d'accueil sont prêtes, ou Google n'en a pas (plus rien en cours) : on ouvre.
+      if (_reserve.nbPretes(FormatPub.accueil) >= 2 || !_reserve.chargeEncore(FormatPub.accueil)) {
+        _reserve.change.removeListener(verifier);
+        _finChargement();
+      }
+    }
+    _reserve.change.addListener(verifier);
     etat.addListener(() => etat.pubsVoulues ? _reserve.remplir() : _reserve.vider());
   } catch (_) {
     // Pas de pub plutôt qu'une app qui plante.
   }
+  if (!pubsPretes.value) _finChargement();
 }
+
+void _finChargement() => ecranChargementPubs.value = false;
 
 // ---------------------------------------------------------------------------
 // Réserve d'annonces préchargées (08/11/2026, demande de Maxime : une annonce ne
@@ -75,13 +91,13 @@ Future<void> demarrerPubs() async {
 // ---------------------------------------------------------------------------
 
 enum FormatPub {
-  /// Bloc 300 × 250 de l'accueil.
+  /// Accueil (planche 85, format B) : pleine largeur, jusqu'à 250 px de haut.
   accueil,
 
-  /// 320 × 100 dans les listes d'avancées (place d'une avancée sans image).
+  /// Listes d'avancées (planche 84 B) : pleine largeur, dans la place d'une avancée sans image.
   liste,
 
-  /// 320 × 50 dans « À venir » (place d'un événement).
+  /// « À venir » (planche 84 B) : pleine largeur, dans la place d'un événement.
   evenement,
 
   /// Bandeau adaptatif en bas d'une avancée ouverte.
@@ -91,7 +107,7 @@ enum FormatPub {
 class _Reserve {
   /// Nombre d'annonces gardées prêtes pour chaque format.
   static const Map<FormatPub, int> cible = {
-    FormatPub.accueil: 1,
+    FormatPub.accueil: 2, // une par accueil (Sciences et Technologies)
     FormatPub.liste: 2,
     FormatPub.evenement: 2,
     FormatPub.bandeau: 2,
@@ -104,6 +120,11 @@ class _Reserve {
   final Map<FormatPub, int> _enCours = {for (final f in FormatPub.values) f: 0};
   final Map<FormatPub, int> _echecs = {for (final f in FormatPub.values) f: 0};
   final Map<FormatPub, Timer?> _relances = {};
+  final Map<BannerAd, AdSize> _tailles = {};
+
+  /// Taille réelle de l'annonce (sinon celle demandée).
+  AdSize taille(BannerAd ad) => _tailles[ad] ?? ad.size;
+  void oublier(BannerAd ad) => _tailles.remove(ad);
 
   /// Prévient les emplacements en attente qu'une annonce est prête.
   final ValueNotifier<int> change = ValueNotifier(0);
@@ -121,20 +142,24 @@ class _Reserve {
     }
   }
 
+  /// Hauteur maximale de l'annonce (bannière « adaptative intégrée » : Google choisit
+  /// une image pleine largeur, au plus aussi haute que ça).
+  static const Map<FormatPub, int> hauteurMax = {
+    FormatPub.accueil: 250,
+    FormatPub.liste: 100, // + la ligne « Publicité » = la place d'une avancée sans image
+    FormatPub.evenement: 76, // la place d'un événement (sans ligne « Publicité »)
+  };
+
   Future<AdSize?> _taille(FormatPub f) async {
-    switch (f) {
-      case FormatPub.accueil:
-        return AdSize.mediumRectangle;
-      case FormatPub.liste:
-        return AdSize.largeBanner;
-      case FormatPub.evenement:
-        return AdSize.banner;
-      case FormatPub.bandeau:
-        final vue = WidgetsBinding.instance.platformDispatcher.views.first;
-        final largeur = (vue.physicalSize.width / vue.devicePixelRatio).truncate();
-        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(largeur);
-    }
+    final vue = WidgetsBinding.instance.platformDispatcher.views.first;
+    final ecran = (vue.physicalSize.width / vue.devicePixelRatio).truncate();
+    if (f == FormatPub.bandeau) return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(ecran);
+    // Largeur d'une carte : l'écran moins les marges de 16 px de chaque côté.
+    return AdSize.getInlineAdaptiveBannerAdSize(ecran - 32, hauteurMax[f]!);
   }
+
+  int nbPretes(FormatPub f) => _pretes[f]!.length;
+  bool chargeEncore(FormatPub f) => _enCours[f]! > 0;
 
   void remplir() {
     if (!pubsAffichees) return;
@@ -161,19 +186,26 @@ class _Reserve {
       size: taille,
       request: const AdRequest(),
       listener: BannerAdListener(
-        onAdLoaded: (ad) {
+        onAdLoaded: (ad) async {
           _enCours[f] = _enCours[f]! - 1;
           _echecs[f] = 0;
           if (!pubsAffichees) {
             ad.dispose();
             return;
           }
-          _pretes[f]!.add((ad as BannerAd, DateTime.now()));
+          final banniere = ad as BannerAd;
+          // Taille réelle choisie par Google (bannière adaptative).
+          try {
+            final reelle = await banniere.getPlatformAdSize();
+            if (reelle != null) _tailles[banniere] = reelle;
+          } catch (_) {}
+          _pretes[f]!.add((banniere, DateTime.now()));
           change.value++;
         },
         onAdFailedToLoad: (ad, _) {
           ad.dispose();
           _enCours[f] = _enCours[f]! - 1;
+          change.value++;
           // Pas d'annonce disponible (fréquent au début) : on réessaie plus tard,
           // de plus en plus espacé (1 min, 2 min, 4 min… 15 min au plus).
           final n = _echecs[f] = _echecs[f]! + 1;
@@ -257,18 +289,7 @@ class _EmplacementState extends State<_Emplacement> {
     }
   }
 
-  bool _assezLarge() {
-    final w = MediaQuery.sizeOf(context).width - 32;
-    switch (widget.format) {
-      case FormatPub.accueil:
-        return w >= 300 - 8;
-      case FormatPub.liste:
-      case FormatPub.evenement:
-        return w >= 320;
-      case FormatPub.bandeau:
-        return true;
-    }
-  }
+  bool _assezLarge() => true; // bannières adaptatives : toujours à la largeur de l'écran
 
   void _prendre() {
     if (_pub != null || !pubsAffichees || !_assezLarge()) return;
@@ -294,7 +315,11 @@ class _EmplacementState extends State<_Emplacement> {
   void dispose() {
     _reserve.change.removeListener(_essayer);
     _defilement?.removeListener(_essayer);
-    _pub?.dispose();
+    final pub = _pub;
+    if (pub != null) {
+      _reserve.oublier(pub);
+      pub.dispose();
+    }
     super.dispose();
   }
 
@@ -304,26 +329,32 @@ class _EmplacementState extends State<_Emplacement> {
         builder: (context, _) {
           final pub = _pub;
           if (!pubsAffichees || pub == null) return const SizedBox.shrink();
-          final annonce = SizedBox(
-              width: pub.size.width.toDouble(), height: pub.size.height.toDouble(), child: AdWidget(ad: pub));
+          final t = _reserve.taille(pub);
+          final annonce = SizedBox(width: t.width.toDouble(), height: t.height.toDouble(), child: AdWidget(ad: pub));
           if (widget.format == FormatPub.bandeau) {
-            return SizedBox(width: double.infinity, height: pub.size.height.toDouble(), child: Center(child: annonce));
+            return SizedBox(width: double.infinity, height: t.height.toDouble(), child: Center(child: annonce));
           }
           final p = palette(context);
-          final boite = DecoratedBox(
-            decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(widget.arrondi)),
-            child: Center(
-              child: Column(mainAxisSize: MainAxisSize.min, children: [_mention(context), annonce]),
-            ),
-          );
+          // Format B (planches 84-85) : l'annonce fait toute la largeur de la case.
+          // La mention « Publicité » est posée juste AU-DESSUS de l'annonce, jamais dessus
+          // (AdMob interdit de recouvrir une annonce).
+          final avecMention = widget.format != FormatPub.evenement;
+          final contenu = Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+            if (avecMention)
+              Padding(padding: const EdgeInsets.fromLTRB(12, 0, 0, 0), child: _mention(context)),
+            Center(child: annonce),
+          ]);
           final gabarit = widget.gabarit;
           if (gabarit == null) {
-            // Accueil : la boîte prend la taille de l'annonce.
+            // Accueil : la case prend la hauteur de l'annonce (jusqu'à 250 px).
             return Padding(
               padding: widget.marge,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2),
-                child: SizedBox(height: pub.size.height + 42, child: boite),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(widget.arrondi),
+                child: ColoredBox(
+                  color: p.carte,
+                  child: Padding(padding: const EdgeInsets.only(top: 8), child: contenu),
+                ),
               ),
             );
           }
@@ -342,7 +373,12 @@ class _EmplacementState extends State<_Emplacement> {
                   ),
                 ),
               ),
-              Positioned.fill(child: ClipRRect(borderRadius: BorderRadius.circular(widget.arrondi), child: boite)),
+              Positioned.fill(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(widget.arrondi),
+                  child: ColoredBox(color: p.carte, child: Center(child: contenu)),
+                ),
+              ),
             ]),
           );
         },
