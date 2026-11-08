@@ -25,6 +25,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart' show enTeteMois, SourceAvancee;
 import 'notifications.dart';
+import 'pubs.dart';
 import 'regions_monde.dart';
 import 'reglages.dart';
 import 'retours.dart';
@@ -1041,6 +1042,7 @@ class _VueAVenirState extends State<VueAVenir> {
           );
         }
 
+        var compteur = 0; // événements affichés, pour placer les annonces
         return RefreshIndicator(
           onRefresh: evenementsAVenir.charger,
           child: ListView(
@@ -1068,7 +1070,11 @@ class _VueAVenirState extends State<VueAVenir> {
               for (final (t, l) in groupes)
                 if (l.isNotEmpty) ...[
                   section(t),
-                  for (final e in l) Padding(padding: const EdgeInsets.only(bottom: 9), child: LigneEvenement(e)),
+                  for (final e in l) ...[
+                    Padding(padding: const EdgeInsets.only(bottom: 9), child: LigneEvenement(e)),
+                    // Une annonce toutes les 8 cartes, de la taille exacte de l'événement qui précède.
+                    if (pubsAffichees && (++compteur) % pubToutesLes == 0) PubEvenement(carte: LigneEvenement(e)),
+                  ],
                 ],
               if (arrives.isNotEmpty) ...[
                 section('C’est arrivé'),

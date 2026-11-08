@@ -18,7 +18,10 @@ import 'widgets.dart';
 class CarteAvancee extends StatelessWidget {
   final Avancee avancee;
   final VoidCallback onTap;
-  const CarteAvancee({super.key, required this.avancee, required this.onTap});
+  /// Vrai : la carte s'affiche sans photo (sert de gabarit invisible pour donner
+  /// aux annonces des listes exactement la taille d'une avancée sans image).
+  final bool sansImage;
+  const CarteAvancee({super.key, required this.avancee, required this.onTap, this.sansImage = false});
 
   void _menu(BuildContext context) => ouvrirMenuCarte(context, avancee);
 
@@ -59,7 +62,7 @@ class CarteAvancee extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (avancee.image != null) ...[
+              if (avancee.image != null && !sansImage) ...[
                 _Photo(url: avancee.image!, credit: avancee.creditImage),
                 const SizedBox(height: 14),
               ],

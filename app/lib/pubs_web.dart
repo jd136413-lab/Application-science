@@ -11,6 +11,20 @@ class BlocPub extends StatelessWidget {
   Widget build(BuildContext context) => const SizedBox.shrink();
 }
 
+class PubListe extends StatelessWidget {
+  final Widget carte;
+  const PubListe({super.key, required this.carte});
+  @override
+  Widget build(BuildContext context) => const SizedBox.shrink();
+}
+
+class PubEvenement extends StatelessWidget {
+  final Widget carte;
+  const PubEvenement({super.key, required this.carte});
+  @override
+  Widget build(BuildContext context) => const SizedBox.shrink();
+}
+
 class BandeauPub extends StatelessWidget {
   const BandeauPub({super.key});
   @override

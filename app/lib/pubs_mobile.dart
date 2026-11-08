@@ -28,8 +28,6 @@ import 'widgets.dart';
 const String _testBloc = 'ca-app-pub-3940256099942544/6300978111';
 const String _testBandeau = 'ca-app-pub-3940256099942544/9214589741';
 
-String _id(String vrai, String test) => etat.statsExclues ? test : vrai;
-
 bool _demarre = false;
 
 /// Appelé une fois l'accueil affiché (après la présentation du premier lancement).
@@ -58,133 +56,335 @@ Future<void> demarrerPubs() async {
       RequestConfiguration(maxAdContentRating: MaxAdContentRating.pg),
     );
     pubsPretes.value = true;
+    // 3) Préchargement : les annonces sont prêtes AVANT d'arriver à l'écran.
+    _reserve.remplir();
+    etat.addListener(() => etat.pubsVoulues ? _reserve.remplir() : _reserve.vider());
   } catch (_) {
     // Pas de pub plutôt qu'une app qui plante.
   }
 }
 
-/// Petite mention « Publicité » au-dessus de chaque pub (obligatoire : bien la distinguer du contenu).
+// ---------------------------------------------------------------------------
+// Réserve d'annonces préchargées (08/11/2026, demande de Maxime : une annonce ne
+// doit jamais « apparaître » sous les yeux de la personne).
+//
+// Règle d'affichage d'un emplacement :
+//   - s'il y a une annonce prête au moment où l'emplacement est construit, il la prend ;
+//   - sinon il reste vide (0 pixel) et n'en prend une que lorsqu'il est SOUS le bas
+//     de l'écran (jamais visible au moment où elle arrive, aucun saut du contenu lu).
+// ---------------------------------------------------------------------------
+
+enum FormatPub {
+  /// Bloc 300 × 250 de l'accueil.
+  accueil,
+
+  /// 320 × 100 dans les listes d'avancées (place d'une avancée sans image).
+  liste,
+
+  /// 320 × 50 dans « À venir » (place d'un événement).
+  evenement,
+
+  /// Bandeau adaptatif en bas d'une avancée ouverte.
+  bandeau,
+}
+
+class _Reserve {
+  /// Nombre d'annonces gardées prêtes pour chaque format.
+  static const Map<FormatPub, int> cible = {
+    FormatPub.accueil: 1,
+    FormatPub.liste: 2,
+    FormatPub.evenement: 2,
+    FormatPub.bandeau: 2,
+  };
+
+  /// Une annonce préchargée trop ancienne n'est plus servie (Google conseille moins d'une heure).
+  static const Duration duree = Duration(minutes: 50);
+
+  final Map<FormatPub, List<(BannerAd, DateTime)>> _pretes = {for (final f in FormatPub.values) f: []};
+  final Map<FormatPub, int> _enCours = {for (final f in FormatPub.values) f: 0};
+  final Map<FormatPub, int> _echecs = {for (final f in FormatPub.values) f: 0};
+  final Map<FormatPub, Timer?> _relances = {};
+
+  /// Prévient les emplacements en attente qu'une annonce est prête.
+  final ValueNotifier<int> change = ValueNotifier(0);
+
+  String _id(FormatPub f) {
+    final test = etat.statsExclues;
+    switch (f) {
+      case FormatPub.accueil:
+        return test ? _testBloc : idPubAccueil;
+      case FormatPub.liste:
+      case FormatPub.evenement:
+        return test ? _testBloc : idPubListe;
+      case FormatPub.bandeau:
+        return test ? _testBandeau : idPubBandeau;
+    }
+  }
+
+  Future<AdSize?> _taille(FormatPub f) async {
+    switch (f) {
+      case FormatPub.accueil:
+        return AdSize.mediumRectangle;
+      case FormatPub.liste:
+        return AdSize.largeBanner;
+      case FormatPub.evenement:
+        return AdSize.banner;
+      case FormatPub.bandeau:
+        final vue = WidgetsBinding.instance.platformDispatcher.views.first;
+        final largeur = (vue.physicalSize.width / vue.devicePixelRatio).truncate();
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(largeur);
+    }
+  }
+
+  void remplir() {
+    if (!pubsAffichees) return;
+    for (final f in FormatPub.values) {
+      if (_relances[f]?.isActive ?? false) continue;
+      while (_pretes[f]!.length + _enCours[f]! < cible[f]!) {
+        _enCours[f] = _enCours[f]! + 1;
+        unawaited(_charger(f));
+      }
+    }
+  }
+
+  Future<void> _charger(FormatPub f) async {
+    AdSize? taille;
+    try {
+      taille = await _taille(f);
+    } catch (_) {}
+    if (taille == null) {
+      _enCours[f] = _enCours[f]! - 1;
+      return;
+    }
+    BannerAd(
+      adUnitId: _id(f),
+      size: taille,
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          _enCours[f] = _enCours[f]! - 1;
+          _echecs[f] = 0;
+          if (!pubsAffichees) {
+            ad.dispose();
+            return;
+          }
+          _pretes[f]!.add((ad as BannerAd, DateTime.now()));
+          change.value++;
+        },
+        onAdFailedToLoad: (ad, _) {
+          ad.dispose();
+          _enCours[f] = _enCours[f]! - 1;
+          // Pas d'annonce disponible (fréquent au début) : on réessaie plus tard,
+          // de plus en plus espacé (1 min, 2 min, 4 min… 15 min au plus).
+          final n = _echecs[f] = _echecs[f]! + 1;
+          final attente = Duration(seconds: (60 * (1 << (n - 1).clamp(0, 4))).clamp(60, 900));
+          _relances[f]?.cancel();
+          _relances[f] = Timer(attente, remplir);
+        },
+      ),
+    ).load();
+  }
+
+  /// Une annonce prête, ou null. La réserve se remplit aussitôt derrière.
+  BannerAd? prendre(FormatPub f) {
+    final l = _pretes[f]!;
+    final maintenant = DateTime.now();
+    while (l.isNotEmpty && maintenant.difference(l.first.$2) > duree) {
+      l.removeAt(0).$1.dispose();
+    }
+    final ad = l.isEmpty ? null : l.removeAt(0).$1;
+    Future.microtask(remplir);
+    return ad;
+  }
+
+  void vider() {
+    for (final l in _pretes.values) {
+      for (final (ad, _) in l) {
+        ad.dispose();
+      }
+      l.clear();
+    }
+    change.value++;
+  }
+}
+
+final _Reserve _reserve = _Reserve();
+
+/// Petite mention « Publicité » au-dessus de chaque pub (bien la distinguer du contenu).
 Widget _mention(BuildContext context) => Padding(
-      padding: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.only(bottom: 4),
       child: Text(tr('Publicité').toUpperCase(),
           style: police(policeTexte, taille: 10.5, graisse: FontWeight.w800, couleur: palette(context).texteDiscret)
               .copyWith(letterSpacing: 0.8)),
     );
 
-/// Bloc d'annonce 300 × 250 (accueil et listes). N'occupe aucune place tant
-/// que l'annonce n'est pas chargée, ou si les pubs sont coupées.
-class BlocPub extends StatefulWidget {
+/// Un emplacement d'annonce. [gabarit] : carte invisible qui donne sa taille exacte à
+/// l'emplacement (une avancée sans image, un événement).
+class _Emplacement extends StatefulWidget {
+  final FormatPub format;
+  final Widget? gabarit;
+  final EdgeInsets marge;
+  final double arrondi;
+  const _Emplacement({required this.format, this.gabarit, this.marge = EdgeInsets.zero, this.arrondi = 20});
+
+  @override
+  State<_Emplacement> createState() => _EmplacementState();
+}
+
+class _EmplacementState extends State<_Emplacement> {
+  BannerAd? _pub;
+  ScrollPosition? _defilement;
+  bool _premiere = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _reserve.change.addListener(_essayer);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final pos = Scrollable.maybeOf(context)?.position;
+    if (pos != _defilement) {
+      _defilement?.removeListener(_essayer);
+      _defilement = pos;
+      _defilement?.addListener(_essayer);
+    }
+    if (_premiere) {
+      _premiere = false;
+      _prendre(); // construit pour la 1re fois : une annonce déjà prête est bienvenue
+    }
+  }
+
+  bool _assezLarge() {
+    final w = MediaQuery.sizeOf(context).width - 32;
+    switch (widget.format) {
+      case FormatPub.accueil:
+        return w >= 300 - 8;
+      case FormatPub.liste:
+      case FormatPub.evenement:
+        return w >= 320;
+      case FormatPub.bandeau:
+        return true;
+    }
+  }
+
+  void _prendre() {
+    if (_pub != null || !pubsAffichees || !_assezLarge()) return;
+    final ad = _reserve.prendre(widget.format);
+    if (ad == null) return;
+    _pub = ad;
+    _reserve.change.removeListener(_essayer);
+    _defilement?.removeListener(_essayer);
+    _defilement = null;
+    if (mounted) setState(() {});
+  }
+
+  /// Plus tard : seulement si l'emplacement est sous le bas de l'écran (invisible).
+  void _essayer() {
+    if (_pub != null || !mounted || widget.format == FormatPub.bandeau) return;
+    final box = context.findRenderObject();
+    if (box is! RenderBox || !box.attached || !box.hasSize) return;
+    final y = box.localToGlobal(Offset.zero).dy;
+    if (y > MediaQuery.sizeOf(context).height) _prendre();
+  }
+
+  @override
+  void dispose() {
+    _reserve.change.removeListener(_essayer);
+    _defilement?.removeListener(_essayer);
+    _pub?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => ListenableBuilder(
+        listenable: Listenable.merge([pubsPretes, etat]),
+        builder: (context, _) {
+          final pub = _pub;
+          if (!pubsAffichees || pub == null) return const SizedBox.shrink();
+          final annonce = SizedBox(
+              width: pub.size.width.toDouble(), height: pub.size.height.toDouble(), child: AdWidget(ad: pub));
+          if (widget.format == FormatPub.bandeau) {
+            return SizedBox(width: double.infinity, height: pub.size.height.toDouble(), child: Center(child: annonce));
+          }
+          final p = palette(context);
+          final boite = DecoratedBox(
+            decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(widget.arrondi)),
+            child: Center(
+              child: Column(mainAxisSize: MainAxisSize.min, children: [_mention(context), annonce]),
+            ),
+          );
+          final gabarit = widget.gabarit;
+          if (gabarit == null) {
+            // Accueil : la boîte prend la taille de l'annonce.
+            return Padding(
+              padding: widget.marge,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2),
+                child: SizedBox(height: pub.size.height + 42, child: boite),
+              ),
+            );
+          }
+          // Listes et « À venir » : exactement la taille de la carte voisine (invisible dessous).
+          return Padding(
+            padding: widget.marge,
+            child: Stack(children: [
+              IgnorePointer(
+                child: ExcludeSemantics(
+                  child: Visibility(
+                    visible: false,
+                    maintainSize: true,
+                    maintainAnimation: true,
+                    maintainState: true,
+                    child: gabarit,
+                  ),
+                ),
+              ),
+              Positioned.fill(child: ClipRRect(borderRadius: BorderRadius.circular(widget.arrondi), child: boite)),
+            ]),
+          );
+        },
+      );
+}
+
+/// Bloc d'annonce de l'accueil (300 × 250), après « Nouveau pour vous ».
+class BlocPub extends StatelessWidget {
   final bool accueil;
   const BlocPub({super.key, this.accueil = false});
 
   @override
-  State<BlocPub> createState() => _BlocPubState();
+  Widget build(BuildContext context) =>
+      const _Emplacement(format: FormatPub.accueil, marge: EdgeInsets.only(bottom: 22));
 }
 
-class _BlocPubState extends State<BlocPub> {
-  BannerAd? _pub;
-  bool _chargee = false;
-
-  void _charger() {
-    if (_pub != null || !pubsAffichees) return;
-    _pub = BannerAd(
-      adUnitId: _id(widget.accueil ? idPubAccueil : idPubListe, _testBloc),
-      size: AdSize.mediumRectangle,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (_) {
-          if (mounted) setState(() => _chargee = true);
-        },
-        onAdFailedToLoad: (ad, _) => ad.dispose(),
-      ),
-    )..load();
-  }
+/// Annonce dans une liste d'avancées : même taille que [carte] (une avancée sans image).
+class PubListe extends StatelessWidget {
+  final Widget carte;
+  const PubListe({super.key, required this.carte});
 
   @override
-  void dispose() {
-    _pub?.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) => ListenableBuilder(
-        listenable: Listenable.merge([pubsPretes, etat]),
-        builder: (context, _) {
-          if (!pubsAffichees) return const SizedBox.shrink();
-          if (_pub == null) WidgetsBinding.instance.addPostFrameCallback((_) => _charger());
-          if (!_chargee || _pub == null) return const SizedBox.shrink();
-          final p = palette(context);
-          return Padding(
-            padding: EdgeInsets.only(bottom: widget.accueil ? 22 : 10),
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
-              decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(20)),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                _mention(context),
-                Center(child: SizedBox(width: 300, height: 250, child: AdWidget(ad: _pub!))),
-              ]),
-            ),
-          );
-        },
-      );
+  Widget build(BuildContext context) => _Emplacement(
+      format: FormatPub.liste, gabarit: carte, marge: const EdgeInsets.only(bottom: 10), arrondi: arrondiCarte);
 }
 
-/// Petit bandeau en bas d'une avancée ouverte (largeur de l'écran, hauteur adaptée).
-class BandeauPub extends StatefulWidget {
+/// Annonce dans « À venir » : même taille que [carte] (un événement).
+class PubEvenement extends StatelessWidget {
+  final Widget carte;
+  const PubEvenement({super.key, required this.carte});
+
+  @override
+  Widget build(BuildContext context) =>
+      _Emplacement(format: FormatPub.evenement, gabarit: carte, marge: const EdgeInsets.only(bottom: 9), arrondi: 18);
+}
+
+/// Petit bandeau en bas d'une avancée ouverte (préchargé, largeur de l'écran).
+class BandeauPub extends StatelessWidget {
   const BandeauPub({super.key});
 
   @override
-  State<BandeauPub> createState() => _BandeauPubState();
-}
-
-class _BandeauPubState extends State<BandeauPub> {
-  BannerAd? _pub;
-  bool _chargee = false;
-  bool _enCours = false;
-
-  Future<void> _charger(int largeur) async {
-    if (_enCours || !pubsAffichees) return;
-    _enCours = true;
-    final taille = await AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(largeur);
-    if (!mounted || taille == null) return;
-    _pub = BannerAd(
-      adUnitId: _id(idPubBandeau, _testBandeau),
-      size: taille,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (_) {
-          if (mounted) setState(() => _chargee = true);
-        },
-        onAdFailedToLoad: (ad, _) => ad.dispose(),
-      ),
-    )..load();
-  }
-
-  @override
-  void dispose() {
-    _pub?.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) => ListenableBuilder(
-        listenable: Listenable.merge([pubsPretes, etat]),
-        builder: (context, _) {
-          if (!pubsAffichees) return const SizedBox.shrink();
-          final largeur = MediaQuery.sizeOf(context).width.truncate();
-          if (!_enCours) WidgetsBinding.instance.addPostFrameCallback((_) => _charger(largeur));
-          final pub = _pub;
-          if (!_chargee || pub == null) return const SizedBox.shrink();
-          return SizedBox(
-            width: double.infinity,
-            height: pub.size.height.toDouble(),
-            child: Center(
-              child: SizedBox(
-                  width: pub.size.width.toDouble(), height: pub.size.height.toDouble(), child: AdWidget(ad: pub)),
-            ),
-          );
-        },
-      );
+  Widget build(BuildContext context) => const _Emplacement(format: FormatPub.bandeau);
 }
 
 // ---------------------------------------------------------------------------

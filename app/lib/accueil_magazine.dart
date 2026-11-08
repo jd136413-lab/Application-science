@@ -748,7 +748,11 @@ class _PageListe extends StatelessWidget {
                     // Une annonce toutes les 8 avancées (pubs.dart), jamais en 1re position.
                     itemCount: nbAvecPubs(liste.length),
                     itemBuilder: (context, i) {
-                      if (estPub(i)) return const BlocPub();
+                      if (estPub(i)) {
+                        // Annonce de la taille exacte d'une avancée sans image (la précédente).
+                        return PubListe(
+                            carte: CarteAvancee(avancee: liste[indexAvancee(i)], onTap: () {}, sansImage: true));
+                      }
                       final k = indexAvancee(i);
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 10),
@@ -1032,7 +1036,10 @@ class _EcranDomaineMagState extends State<EcranDomaineMag> {
                         padding: const EdgeInsets.fromLTRB(16, 14, 16, 28),
                         itemCount: nbAvecPubs(l.length),
                         itemBuilder: (context, i) {
-                          if (estPub(i)) return const BlocPub();
+                          if (estPub(i)) {
+                            return PubListe(
+                                carte: CarteAvancee(avancee: l[indexAvancee(i)], onTap: () {}, sansImage: true));
+                          }
                           final k = indexAvancee(i);
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10),
