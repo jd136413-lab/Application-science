@@ -1,484 +1,568 @@
-# Test de la rédaction — 03/11/2026 19:57 UTC
+# Test de la rédaction — 08/11/2026 20:29 UTC
 
-Modèles : haiku · 12 fiches
-
-
----
-
-## 1. Internet : une équipe chinoise atteint 3,2 pétabits par seconde
-
-Fil : tech · 2★ · source : Tom's Hardware · page lue : oui (2446 caractères) · https://www.tomshardware.com/networking/3-2-pb-s-real-time-optical-fiber-transfer-speed-world-record-claimed-by-chinese-team-speed-fast-enough-to-download-more-than-20-000-4k-movies-in-one-second
-
-**Actuel (publié)**
-
-- **Titre** : Internet : une équipe chinoise atteint 3,2 pétabits par seconde
-- **Avant** : Jusqu'ici, le record de vitesse hors laboratoire était de 2,5 pétabits par seconde, obtenu par la même équipe plus tôt cette année avec une fibre à 24 cœurs.
-- **Découverte** : Une équipe chinoise annonce un transfert de données en temps réel à 3,2 pétabits par seconde, un nouveau record de débit sur fibre optique. Le débit dépasse nettement celui de la précédente performance hors laboratoire de la même équipe.
-- **Et après** : Ce record est annoncé par l'équipe et doit encore être confirmé par d'autres chercheurs. Il reste à voir si cette technique pourra sortir des laboratoires pour accélérer réellement les réseaux de données.
-- **Mots** : **Pétabit** → Unité de mesure valant mille milliards de bits, soit un million de milliards d'informations.
-- **Type** : demonstration
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Internet : une fibre optique transporte 3,2 millions de gigabits par seconde
-- **Avant** : Le record de débit hors laboratoire était jusqu'ici de 2,5 pétabits (2,5 millions de gigabits) par seconde, établi par la même équipe plus tôt cette année. Les records de laboratoire atteignent davantage, mais reposent souvent sur des traitements expérimentaux.
-- **Découverte** : Des chercheurs chinois ont transmis 3,2 pétabits (3,2 millions de gigabits) par seconde en temps réel, dans une fibre optique à plusieurs cœurs. Ils ont combiné plusieurs cœurs de fibre et trois plages de lumière, avec du matériel conforme aux normes commerciales. Selon la source, si ce débit était un jour déployé, il pourrait permettre à 3,2 millions de foyers d'utiliser en même temps une connexion d'un gigabit.
-- **Et après** : Cette technique pourrait un jour accélérer de vrais réseaux, car elle utilise du matériel commercial. Aucune date de déploiement n'est donnée, et il reste à voir si elle sortira des laboratoires.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [jargon] « Le record de débit hors laboratoire était jusqu'ici de 2,5 pétabits par seconde » → Le pétabit est une unité savante non convertie. Il faut ajouter l'équivalent en gigabits, comme le titre le fait. | [jargon] « Des chercheurs chinois ont transmis 3,2 pétabits par seconde en temps réel » → Le pétabit est une unité savante non convertie dans le corps de la fiche. | [non_soutenu] « ce débit suffirait à faire utiliser ensemble une connexion d'un gigabit à 3,2 millions de foyers » → L'article dit que ce débit pourrait permettre cela si et quand il serait déployé. La fiche présente un usage futur comme acquis. | [forme] « Selon l'article, cette technique pourrait un jour accélérer de vrais réseaux » → La phrase parle de l'article au lieu des faits. | [comparaison] « dans une fibre optique à 24 cœurs » → Le nombre de cœurs (24) est un chiffre technique qui s'ajoute aux autres chiffres de la section sans apporter de repère pour le lecteur ; la fiche garde trois chiffres parlants.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0058 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Internet : une fibre optique transporte 3,2 millions de gigabits par seconde
-- **Avant** : Le record de débit hors laboratoire était jusqu'ici de 2,5 pétabits par seconde, établi par la même équipe plus tôt cette année. Les records de laboratoire atteignent davantage, mais reposent souvent sur des traitements expérimentaux.
-- **Découverte** : Des chercheurs chinois ont transmis 3,2 pétabits par seconde en temps réel, dans une fibre optique à 24 cœurs. Ils ont combiné plusieurs cœurs de fibre et trois plages de lumière, avec du matériel conforme aux normes commerciales. Selon la source, ce débit suffirait à faire utiliser ensemble une connexion d'un gigabit à 3,2 millions de foyers.
-- **Et après** : Selon l'article, cette technique pourrait un jour accélérer de vrais réseaux, puisqu'elle utilise du matériel commercial. Aucune date de déploiement n'est donnée, et il reste à voir si elle sortira des laboratoires.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Faits relevés_ : Une équipe atteint 3,2 pétabits par seconde en transmission en temps réel, selon l'article. | Le test utilise une fibre optique à 24 cœurs, avec du matériel conforme aux normes commerciales. | Le record précédent hors laboratoire était de 2,5 pétabits par seconde, par la même équipe plus tôt cette année. | L'amélioration atteint près de 30 % en un an, selon l'article. | La technique combine le multiplexage spatial et la transmission sur trois plages de lumière (S, C et L). | Les difficultés principales étaient les interférences entre cœurs de fibre et la gestion des trois plages de lumière. | Selon la source, ce débit équivaudrait à 3,2 millions de foyers utilisant ensemble une connexion d'un gigabit. | Des records de laboratoire atteignent 5,29 pétabits par seconde, mais avec des traitements du signal expérimentaux et des équipements de laboratoire.
-- _Nouveauté selon l'article_ : Selon l'article, c'est un record mondial de transmission en temps réel, qui dépasse de près de 30 % le record hors laboratoire de la même équipe ; les records de laboratoire, eux, étaient déjà plus élevés.
-- _Jargon_ : Pétabit : remplacé par « millions de gigabits par seconde » dans le titre et « millions de foyers » dans le texte. | Multiplexage spatial et bandes S+C+L : expliqués en quelques mots (plusieurs cœurs de fibre et plusieurs plages de lumière).
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
+Modèles : haiku · 14 fiches
 
 
 ---
 
-## 2. Poumon : deux traitements combinés réduisent de 58 % le risque de décès
+## 1. Évolution humaine : des protéines de dents relient une espèce ancienne aux Asiatiques
 
-Fil : science · 3★ · source : Le Monde Sciences · page lue : NON (0 caractères) · https://www.lemonde.fr/sciences/article/2026/10/26/cancers-du-poumon-a-petites-cellules-une-nouvelle-immunotherapie-permet-un-gain-de-survie-jamais-vu_6800675_1650684.html
-
-**Actuel (publié)**
-
-- **Titre** : Poumon : deux traitements combinés réduisent de 58 % le risque de décès
-- **Avant** : Le cancer du poumon à petites cellules est très agressif, et ses formes avancées se soignent mal. L'immunothérapie, qui aide le système immunitaire à attaquer les tumeurs, existe déjà mais ne suffit pas toujours.
-- **Découverte** : Chez des patients aux formes avancées, des chercheurs ont associé une immunothérapie innovante à une immunothérapie classique, sans attendre la rechute. Le risque de décès des patients recevant cette combinaison baisse de 58 %, selon les résultats rapportés.
-- **Et après** : Ces résultats doivent être confirmés sur davantage de patients, et les effets secondaires doivent être surveillés. L'article ne précise pas encore quand ce traitement sera accessible à tous les malades.
-- **Mots** : **Immunothérapie** → Traitement qui aide le système immunitaire à reconnaître et attaquer les cellules cancéreuses.
-- **Type** : essai_clinique
-
-_Article illisible : pas de réécriture._
-
-
----
-
-## 3. Cancer : un médicament réduit d'un tiers le risque de décès
-
-Fil : science · 2★ · source : STAT News (santé) · page lue : oui (1424 caractères) · https://www.statnews.com/2026/10/26/merck-kelun-sac-tmt-endometrial-cancer-study-esmo-2026/?utm_campaign=rss
+Fil : science · 3★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/11/261102202836.htm
 
 **Actuel (publié)**
 
-- **Titre** : Cancer : un médicament réduit d'un tiers le risque de décès
-- **Avant** : Le cancer de l'endomètre, qui touche la paroi interne de l'utérus, est un cancer gynécologique fréquent. Lorsqu'il est avancé, il reste difficile à soigner.
-- **Découverte** : Dans un essai randomisé de phase 3, les patientes traitées par le sac-TMT ont un risque de décès réduit d'un tiers. Ces résultats ont été présentés lors d'un congrès médical.
-- **Et après** : Le médicament est déjà autorisé en Chine, mais il doit encore être évalué aux États-Unis et en Europe. Merck mène 18 études de phase 3 avec ce produit.
-- **Mots** : **Chimiothérapie ciblée** → Traitement anticancéreux qui vise surtout les cellules tumorales en leur apportant une substance toxique. ; **Essai randomisé** → Essai où les patients sont répartis au hasard entre plusieurs traitements, pour comparer leurs effets.
-- **Type** : essai_clinique
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Cancer : une chimiothérapie ciblée réduit d'un tiers le risque de décès
-- **Avant** : Le cancer de l'endomètre touche la paroi interne de l'utérus et fait partie des cancers gynécologiques fréquents. Ici, il s'agit de formes avancées de ce cancer.
-- **Découverte** : Merck et l'entreprise chinoise Kelun-Biotech ont testé le sacituzumab tirumotecan, une chimiothérapie ciblée. Dans un essai de phase 3, une grande étude menée avant une demande d'autorisation. Le risque de décès a baissé d'un tiers chez des patientes atteintes d'un cancer de l'endomètre avancé. Les résultats ont été présentés.
-- **Et après** : Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe, où il doit encore prouver son efficacité. Merck mène 18 études de phase 3 dans le monde pour obtenir ces autorisations, car son médicament phare Keytruda perdra sa protection par brevet en 2028.
-- **Mots** : **Chimiothérapie ciblée** → Traitement anticancéreux qui vise surtout les cellules tumorales, en limitant les effets sur le reste du corps.
-- **Type** : essai_clinique
-
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « pour lesquelles les laboratoires développent de nouveaux traitements » → L'article ne dit pas que les laboratoires développent de nouveaux traitements pour ces formes avancées. Cette affirmation n'est pas dans la source. | [jargon] « Merck et l'entreprise chinoise Kelun-Biotech ont testé le sac-TMT » → Le sigle TMT est un nom codé inconnu du public. L'article donne le nom complet, sacituzumab tirumotecan, ce qui permet de l'expliquer. | [forme] « Dans un essai de phase 3, la grande étude qui précède une demande d'autorisation, le risque de décès a baissé d'un tiers » → Phrase de 30 mots, à couper. | [forme] « Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe : Merck y mène 18 études de phase 3, dont 10 sur des cancers féminins. » → Phrase de 30 mots, à couper. Le paragraphe « apres » contient aussi trois phrases au lieu de deux. | [jargon] « Keytruda perdra sa protection par brevet en 2028 » → Keytruda est un nom de médicament inconnu du public. Il n'est pas expliqué dans le texte. | [forme] « Dans un essai de phase 3, c'est-à-dire une grande étude qui précède une demande d'autorisation, le risque de décès a baissé d'un tiers chez des patientes au cancer de l'endomètre avancé. » → Phrase de 31 mots, trop longue pour une fiche ; à couper. | [jargon] « dit sac-TMT » → Le sigle TMT est un nom codé inconnu du public ; il n'aide pas le lecteur et doit être supprimé. | [non_soutenu] « où Merck mène 18 études de phase 3 » → L'article dit que les 18 études sont mondiales (pour obtenir les autorisations hors de Chine), pas qu'elles ont lieu en Europe ; la fiche laisse croire le contraire.
-
-- _Défauts mesurés restants_ : « decouverte » a 4 phrases : 3 au plus · coût 0.0076 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Cancer : une chimiothérapie ciblée réduit d'un tiers le risque de décès
-- **Avant** : Le cancer de l'endomètre touche la paroi interne de l'utérus et fait partie des cancers gynécologiques fréquents. Ici, il s'agit de formes avancées, pour lesquelles les laboratoires développent de nouveaux traitements.
-- **Découverte** : Merck et l'entreprise chinoise Kelun-Biotech ont testé le sac-TMT, une chimiothérapie ciblée. Dans un essai de phase 3, la grande étude qui précède une demande d'autorisation, le risque de décès a baissé d'un tiers chez des patientes au cancer de l'endomètre avancé. Les résultats ont été présentés.
-- **Et après** : Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe : Merck y mène 18 études de phase 3, dont 10 sur des cancers féminins. Le groupe en a besoin, car Keytruda perdra sa protection par brevet en 2028.
-- **Mots** : **Chimiothérapie ciblée** → Traitement anticancéreux qui vise surtout les cellules tumorales, en limitant les effets sur le reste du corps.
-- **Type** : essai_clinique
-
-- _Faits relevés_ : Merck et l'entreprise chinoise Kelun-Biotech ont mis au point le médicament sac-TMT. | Le sac-TMT est une chimiothérapie ciblée. | L'essai de phase 3 porte sur des patientes atteintes d'un cancer de l'endomètre avancé. | Le risque de décès est réduit d'un tiers, selon les résultats présentés. | Le médicament a déjà montré des bénéfices pour plusieurs cancers dans des études menées par Kelun en Chine. | Le sac-TMT est autorisé en Chine, mais pas encore aux États-Unis ni en Europe. | Merck mène 18 études de phase 3 avec ce médicament, dont 10 sur des cancers féminins. | Keytruda, le médicament phare de Merck, perdra sa protection par brevet en 2028.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il rapporte qu'un essai a montré une baisse d'un tiers du risque de décès, et que le médicament était déjà autorisé en Chine.
-- _Jargon_ : Chimiothérapie ciblée : expliqué dans le texte et en mot à connaître. | Phase 3 : expliqué en quelques mots dans la découverte (grande étude qui précède une demande d'autorisation). | Brevet : remplacé par « protection par brevet », expliqué comme la protection juridique qui empêche les copies.
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : phrase de 30 mots dans « decouverte », à couper : « Dans un essai de phase 3, la grande étude qui précède une demande d'autorisation, le risqu… » ; phrase de 30 mots dans « apres », à couper : « Ce médicament est déjà autorisé en Chine, mais pas encore aux États-Unis ni en Europe : Me… » ; sigles ou noms codés inconnus du public : TMT → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-
-
----
-
-## 4. Muscles : des ciseaux à ADN modifient un gène dans des muscles humains
-
-Fil : science · 2★ · source : Cell · page lue : NON (0 caractères) · https://www.cell.com/cell/fulltext/S0092-8674(26)01206-7?rss=yes
-
-**Actuel (publié)**
-
-- **Titre** : Muscles : des ciseaux à ADN modifient un gène dans des muscles humains
-- **Avant** : La dystrophie de Duchenne est une maladie génétique grave qui affaiblit les muscles. Jusque-là, les traitements ne corrigeaient pas directement le gène défaillant.
-- **Découverte** : Chez des souris humanisées et des primates, une seule injection restaure la dystrophine et la correction reste stable. Lors du premier essai chez l'humain, les analyses montrent une modification du gène dans le muscle, mais une forte dose provoque une complication immunitaire mortelle.
-- **Et après** : Le risque immunitaire doit être nettement réduit avant d'élargir ces traitements. Les résultats restent préliminaires et portent sur peu de patients.
-- **Mots** : **CRISPR** → Outil de modification ciblée de l'ADN, qui utilise une protéine capable de couper un gène précis. ; **Dystrophine** → Protéine des fibres musculaires dont l'absence provoque la dystrophie de Duchenne.
-- **Type** : essai_clinique
-
-_Article illisible : pas de réécriture._
-
-
----
-
-## 5. IA : un virus dessiné par ordinateur attaque une bactérie
-
-Fil : tech · 2★ · source : Les Numériques · page lue : oui (3266 caractères) · https://www.lesnumeriques.com/intelligence-artificielle/si-ca-marche-c-est-incroyable-un-patient-que-les-antibiotiques-ne-soignaient-plus-a-recu-le-tout-premier-virus-concu-par-ia-n263803.html
-
-**Actuel (publié)**
-
-- **Titre** : IA : un virus dessiné par ordinateur attaque une bactérie
-- **Avant** : Les bactériophages, virus qui ne s'attaquent qu'aux bactéries, se choisissent dans la nature. Trouver celui qui reconnaît la souche d'un malade prend parfois des semaines.
-- **Découverte** : Une IA a redessiné le gène d'un virus connu pour qu'il reconnaisse une bactérie résistante, puis le virus a été fabriqué en laboratoire. Selon l'entreprise, 69,9 % des virus conçus étaient viables, contre 4,8 % pour des mutations au hasard, et le mélange a détruit la bactérie du patient en éprouvette.
-- **Et après** : Un patient a reçu ce traitement sous usage compassionnel, mais son issue n'est pas connue et le rapport n'est pas encore évalué par des pairs. Il reste à prouver l'efficacité et la sécurité sur d'autres malades.
-- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries, sans toucher aux cellules humaines.
-- **Type** : demonstration
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Intelligence artificielle : un virus dessiné par IA tue en éprouvette une bactérie
-- **Avant** : Des virus appelés bactériophages s'attaquent aux seules bactéries et servent contre les infections résistantes. Trouver celui qui agit sur la bactérie d'un malade peut prendre des semaines, parfois des mois.
-- **Découverte** : Une start-up américaine, Radical Numerics, a fait réécrire par son IA un virus connu depuis 1945, qui s'attaque à une bactérie intestinale. Selon l'entreprise, 69,9 % des virus conçus étaient viables, contre 4,8 % avec des changements au hasard. Le mélange a détruit la bactérie du malade en éprouvette avant d'être donné au patient.
-- **Et après** : Selon l'entreprise, la méthode pourrait raccourcir la recherche d'un virus adapté. Les observations portent sur un seul patient : son état n'est pas connu et les résultats ne sont pas encore vérifiés par d'autres chercheurs.
-- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries et ignore les cellules humaines ; on s'en sert contre les infections résistantes.
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [jargon] « a fait réécrire par son IA un virus connu, le T7, pour qu'il s'accroche » → Le sigle T7 n'est ni expliqué ni remplacé par des mots simples. L'article dit que c'est un phage de la bactérie Escherichia coli, documenté depuis 1945. | [non_soutenu] « Ce cas reste unique » → L'article ne dit pas que le cas est unique. Il dit seulement que les observations portent sur un seul patient et ne permettent pas d'établir la sécurité ni l'efficacité. | [titre] « Intelligence artificielle : un virus créé sur ordinateur détruit la bactérie d'un patient » → Le titre laisse croire que le virus a détruit la bactérie dans le corps du patient. L'article dit seulement que le mélange a détruit l'isolat en éprouvette, avant d'être administré. | [forme] « Une start-up américaine, Radical Numerics, a fait réécrire par son IA un virus connu depuis 1945, qui s'attaque à une bactérie intestinale, pour qu'il s'accroche à la bactérie d'un patient. » → Phrase de 30 mots, trop longue pour la fiche.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0043 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Intelligence artificielle : un virus créé sur ordinateur détruit la bactérie d'un patient
-- **Avant** : Des virus appelés bactériophages s'attaquent aux seules bactéries et servent contre les infections résistantes. Trouver celui qui agit sur la bactérie d'un malade peut prendre des semaines, parfois des mois.
-- **Découverte** : Une start-up américaine, Radical Numerics, a fait réécrire par son IA un virus connu, le T7, pour qu'il s'accroche à la bactérie d'un patient. Selon l'entreprise, 69,9 % des virus conçus étaient viables, contre 4,8 % avec des changements au hasard. Le mélange a détruit la bactérie du malade en laboratoire avant d'être donné au patient.
-- **Et après** : Selon l'entreprise, la méthode pourrait raccourcir la recherche d'un virus adapté. Ce cas reste unique : l'état du patient n'est pas connu et les résultats ne sont pas encore vérifiés par d'autres chercheurs.
-- **Mots** : **Bactériophage** → Virus qui n'attaque que les bactéries et ignore les cellules humaines ; on s'en sert contre les infections résistantes.
-- **Type** : demonstration
-
-- _Faits relevés_ : Une start-up de San Francisco, Radical Numerics, a fait dessiner un virus par son IA, Omnii-1, pour un patient avec une infection bactérienne résistante aux antibiotiques. | Le virus dessiné est un dérivé du T7, un bactériophage d'Escherichia coli documenté depuis 1945. | L'IA a réécrit le gène gp17, la fibre qui agrippe la bactérie, avec 11 à 15 changements. | Selon l'entreprise, 69,9 % des variantes proposées ont donné un virus viable, contre 4,8 % pour des mutations au hasard. | Sur 6 694 variantes actives mesurées, 2 161 surpassaient le phage d'origine. | Le cocktail a détruit l'isolat bactérien du patient en éprouvette, puis a été administré sous usage compassionnel. | L'entreprise refuse de dire si le patient va mieux, invoquant la confidentialité. | Le rapport technique, publié le 20 octobre 2026, n'a pas encore été évalué par des pairs.
-- _Nouveauté selon l'article_ : Selon l'entreprise, c'est une première mondiale : un virus conçu par IA a été administré à un patient ; l'article rapporte cette revendication sans la confirmer.
-- _Jargon_ : bactériophage : mot à connaître, expliqué dans mots | gène gp17 : remplacé par « le gène qui fabrique la fibre de fixation du virus » | isolat : remplacé par « la bactérie du patient » | usage compassionnel : expliqué comme « un traitement donné hors essai, faute d'autre solution »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : sigles ou noms codés inconnus du public : T7 → écris ce que c'est (ou supprime le nom s'il n'aide pas)
-
-
----
-
-## 6. Désert : des ultrasons libèrent l'eau captée dans l'air
-
-Fil : tech · 1★ · source : Journal du Geek · page lue : oui (3197 caractères) · https://www.journaldugeek.com/2026/10/26/le-mit-accelere-la-collecte-deau-dans-le-desert-grace-aux-ultrasons/
-
-**Actuel (publié)**
-
-- **Titre** : Désert : des ultrasons libèrent l'eau captée dans l'air
-- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau reste piégée et il faut souvent attendre longtemps, parfois des jours, pour la récupérer.
-- **Découverte** : Des chercheurs du MIT ont conçu un appareil dont un anneau en céramique vibre sous tension électrique, à des fréquences ultrasonores. Ces vibrations rompent les liaisons faibles qui retiennent l'eau, et des buses la dirigent vers des récipients de collecte.
-- **Et après** : Le système n'attend plus le soleil pour faire sortir l'eau. Il reste à vérifier sa consommation d'énergie et ses performances hors du laboratoire.
-- **Mots** : **Ultrasons** → Ondes sonores dont la fréquence est trop aiguë pour être entendue par l'oreille humaine.
-- **Type** : prototype
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Eau : des ultrasons extraient l'eau d'un matériau en quelques minutes
-- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau y reste piégée : selon les systèmes, la libérer prend des dizaines de minutes, des heures, voire des jours.
-- **Découverte** : Des chercheurs de l'institut de technologie du Massachusetts, aux États-Unis, ont conçu un appareil où un anneau en céramique vibre sous tension électrique, à des fréquences ultrasonores. Ces vibrations rompent les liens faibles qui retiennent l'eau, et des buses la dirigent vers des récipients de collecte. Sur de petits échantillons, quelques minutes ont suffi à les assécher ; selon les calculs des chercheurs, l'extraction seule est 45 fois plus efficace qu'avec la chaleur solaire.
-- **Et après** : Le système pourrait enchaîner plusieurs collectes par jour au lieu d'attendre le soleil, et potentiellement recueillir davantage d'eau avec le même équipement. Mais aucun volume quotidien n'est annoncé, l'appareil consomme de l'électricité et le matériau doit se recharger assez vite en humidité entre deux passages.
-- **Mots** : **Ultrasons** → Ondes sonores trop aiguës pour être entendues, utilisées ici pour faire vibrer le matériau et en chasser l'eau.
-- **Type** : prototype
-
-- _Défauts trouvés par le relecteur_ : [jargon] « des chercheurs du MIT, une université américaine » → Le sigle MIT n'est pas expliqué ; il faut dire ce que c'est. | [comparaison] « soit 45 fois plus efficace que la chaleur solaire, selon les calculs des chercheurs » → Le chiffre concerne seulement l'extraction pour ce matériau, pas une installation complète ; ce cadre manque. | [forme] « Sur de petits échantillons saturés d'eau » → Le fait des petits échantillons est répété dans « apres » ; il ne doit être dit qu'une fois. | [forme] « Sur de petits échantillons saturés d'eau, quelques minutes ont suffi à les assécher ; selon les calculs des chercheurs, l'extraction est 45 fois plus efficace qu'avec la chaleur solaire pour ce même matériau, mais ce chiffre ne concerne que l'extraction. » → Phrase de 40 mots, trop longue pour être lue facilement. Elle est coupée et raccourcie en gardant la précision que le chiffre de 45 fois ne concerne que l'extraction.
-
-- _Défauts mesurés restants_ : aucun · coût 0.0055 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Eau : des ultrasons extraient l'eau d'un matériau en quelques minutes
-- **Avant** : Des matériaux absorbants captent l'humidité de l'air, même dans les régions désertiques. Mais l'eau y reste piégée : selon les systèmes, la libérer prend des dizaines de minutes, des heures, voire des jours.
-- **Découverte** : Des chercheurs du MIT, une université américaine, ont conçu un appareil où un anneau en céramique vibre sous tension électrique, à des fréquences ultrasonores. Ces vibrations rompent les liens faibles qui retiennent l'eau, et des buses la dirigent vers des récipients de collecte. Sur de petits échantillons saturés d'eau, quelques minutes ont suffi à les assécher, soit 45 fois plus efficace que la chaleur solaire, selon les calculs des chercheurs.
-- **Et après** : Le système pourrait enchaîner plusieurs collectes par jour au lieu d'attendre le soleil, donc recueillir davantage d'eau avec le même équipement. Mais les tests portent sur de petits échantillons, aucun volume quotidien n'est annoncé et l'appareil consomme de l'électricité.
-- **Mots** : **Ultrasons** → Ondes sonores trop aiguës pour être entendues, utilisées ici pour faire vibrer le matériau et en chasser l'eau.
-- **Type** : prototype
-
-- _Faits relevés_ : Des chercheurs du MIT ont mis au point un appareil qui extrait l'eau de matériaux absorbants grâce à des ultrasons. | Un anneau plat en céramique vibre quand on lui applique une tension électrique. | Un second anneau à minuscules buses dirige l'eau vers des récipients de collecte. | Les ultrasons ont une fréquence supérieure à 20 kilohertz et sont inaudibles pour l'être humain. | Sur de petits échantillons saturés d'eau, quelques minutes ont suffi à les assécher. | Selon les calculs des chercheurs, l'extraction est 45 fois plus efficace qu'avec la chaleur solaire pour ce matériau. | L'appareil consomme de l'électricité ; une petite cellule solaire et un déclenchement automatique sont envisagés. | Aucun volume quotidien d'eau n'est annoncé pour un équipement domestique dont chaque élément aurait la taille d'une fenêtre.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : les matériaux absorbants capteurs d'humidité existaient déjà, et la nouveauté est l'extraction rapide de l'eau par ultrasons, testée sur de petits échantillons.
-- _Jargon_ : Ultrasons : mot à connaître, expliqué dans la fiche | Matériau absorbant : expliqué en quelques mots (capte l'eau de l'air) | Interactions faibles : remplacé par « liens faibles »
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : sigles ou noms codés inconnus du public : MIT → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; répétition entre « decouverte » et « apres » : « sur de petits échantillons » (dis-le une seule fois)
-
-
----
-
-## 7. IA : une photo du visage prédit les chances de survie au cancer
-
-Fil : tech · 1★ · source : New Atlas · page lue : oui (4586 caractères) · https://newatlas.com/medical/photo-predict-cancer-treatment-faceage-facesurvival/
-
-**Actuel (publié)**
-
-- **Titre** : IA : une photo du visage prédit les chances de survie au cancer
-- **Avant** : Avant un traitement lourd, les médecins jugent l'état de santé d'un patient à l'intuition, ou leur demandent des examens longs et fatigants.
-- **Découverte** : Une équipe de Mass General Brigham a créé FAHR-Face, un modèle d'IA entraîné sur plus de 42 millions de photos de visages. Il estime l'âge biologique et les chances de survie à partir d'une seule photo.
-- **Et après** : Cet outil pourrait compléter l'avis des médecins et limiter certains tests. Il doit encore être vérifié sur d'autres patients avant tout usage en clinique.
-- **Mots** : **Âge biologique** → Âge réel du corps, qui peut être plus jeune ou plus vieux que l'âge indiqué par le calendrier.
-- **Type** : demonstration
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Cancer : une IA lit une photo du visage pour estimer la survie
-- **Avant** : Aujourd'hui, les médecins jugent surtout à l'intuition la capacité d'un patient à supporter un traitement lourd, et les personnes âgées passent parfois des examens éprouvants. Un autre outil d'IA estimait déjà l'âge réel des personnes avec une erreur moyenne de 6,92 ans.
-- **Découverte** : Des chercheurs américains ont créé une intelligence artificielle (IA) qui estime l'âge biologique d'une personne et ses chances de survie à partir d'une seule photo du visage. Entraînée sur des millions de photos, elle a été adaptée en deux outils, dont un prédit la survie de patients atteints de cancer. Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque.
-- **Et après** : Ce type d'outil pourrait compléter l'avis des médecins et réduire certains examens lourds pour les patients âgés. Il s'agit pour l'instant d'une étude de recherche, et une version élargie au public est en cours.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Défauts trouvés par le relecteur_ : [forme] « Des chercheurs du Mass General Brigham Cancer Institute, aux États-Unis, ont créé une intelligence artificielle (IA) qui estime l'âge biologique d'une personne et ses chances de survie à partir d'une seule photo du visage. » → Phrase de 34 mots, trop longue pour la fiche (30 mots au plus). | [forme] « Entraînée sur plus de 42 millions de photos, elle a été adaptée en deux outils, dont un prédit la survie de patients atteints de cancer. Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque. » → Quatre chiffres dans le paragraphe « decouverte » : le chiffre 42 millions est le moins utile, il est retiré. | [non_soutenu] « le test élargi au public ne remplace pas un avis médical » → L'article ne dit pas que ce test ne remplace pas un avis médical ; la limite doit venir de l'étude elle-même (étude de recherche).
-
-- _Défauts mesurés restants_ : aucun · coût 0.0047 $
-
-**Version du rédacteur (haiku)**
-
-- **Titre** : Cancer : une IA lit une photo du visage pour estimer la survie
-- **Avant** : Aujourd'hui, les médecins jugent surtout à l'intuition la capacité d'un patient à supporter un traitement lourd, et les personnes âgées passent parfois des examens éprouvants. Un autre outil d'IA estimait déjà l'âge réel des personnes avec une erreur moyenne de 6,92 ans.
-- **Découverte** : Des chercheurs du Mass General Brigham Cancer Institute, aux États-Unis, ont créé une intelligence artificielle (IA) qui estime l'âge biologique d'une personne et ses chances de survie à partir d'une seule photo du visage. Entraînée sur plus de 42 millions de photos, elle a été adaptée en deux outils, dont un prédit la survie de patients atteints de cancer. Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque.
-- **Et après** : Ce type d'outil pourrait compléter l'avis des médecins et réduire certains examens lourds pour les patients âgés. Il s'agit pour l'instant d'une étude de recherche, et le test élargi au public ne remplace pas un avis médical.
-- **Mots** : (aucun)
-- **Type** : demonstration
-
-- _Faits relevés_ : Des chercheurs du Mass General Brigham Cancer Institute ont créé l'outil FAHR-Face, une IA entraînée sur plus de 42 millions de photos de visages. | L'outil estime l'âge biologique d'une personne, c'est-à-dire l'état physique lié au vieillissement, à partir d'une seule photo. | Un second outil, FAHR-FaceSurvival, prédit la survie de patients atteints de cancer ; il a été entraîné sur plus de 34 000 patients sous radiothérapie, et sur deux autres groupes de près de 4 000 et 5 000 patients. | Les patients qui paraissaient de plus de 5 ans plus âgés que leur âge réel avaient un risque de mortalité supérieur de 21 % à ceux qui paraissaient de leur âge. | Dans le groupe le plus à risque, 52 % des patients sont morts dans les 90 jours, contre 2,1 % dans le groupe le moins à risque. | L'erreur moyenne de FAHR-FaceAge pour l'âge réel est de 5,1 ans, contre 6,92 ans pour un autre modèle. | Les maquillages, lunettes et changements d'éclairage ne perturbent pas l'outil, mais les personnes ayant subi une rhinoplastie ont donné de petites erreurs. | Une version élargie de l'étude est ouverte au public, qui peut recevoir sa propre estimation d'âge biologique.
-- _Nouveauté selon l'article_ : Selon les chercheurs, c'est la première démonstration qu'une IA peut prédire directement la survie d'un cancer à partir d'une simple photo ; l'estimation de l'âge par photo existait déjà.
-- _Jargon_ : IA : expliquée comme intelligence artificielle dans la fiche | âge biologique : expliqué dans la fiche | biomarqueur : évité dans la fiche
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : phrase de 34 mots dans « decouverte », à couper : « Des chercheurs du Mass General Brigham Cancer Institute, aux États-Unis, ont créé une inte… » ; 4 chiffres dans « decouverte » : garde les 3 plus parlants
-
-
----
-
-## 8. Matériaux : une image 3D révèle une mosaïque cachée dans un cristal
-
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (5535 caractères) · https://www.sciencedaily.com/releases/2026/10/261023023731.htm
-
-**Actuel (publié)**
-
-- **Titre** : Matériaux : une image 3D révèle une mosaïque cachée dans un cristal
-- **Avant** : Depuis 40 ans, les chercheurs pensaient que les cuprates, des supraconducteurs à base de cuivre, avaient une structure cristalline uniforme. Ces matériaux conduisent l'électricité sans résistance, mais seulement à des températures très froides.
-- **Découverte** : Des chercheurs de l'université de Warwick, avec l'installation européenne de rayonnement synchrotron ESRF, ont observé l'intérieur du cristal avec une imagerie 3D avancée. Ils y ont trouvé un assemblage de différentes configurations atomiques, séparées par des frontières anormalement larges qui pourraient affaiblir la supraconductivité.
-- **Et après** : Ce résultat, publié dans Physical Review Letters, pourrait expliquer pourquoi certains supraconducteurs sont plus performants que d'autres. Il reste à le confirmer et à vérifier si ces frontières jouent bien ce rôle.
-- **Mots** : **Cuprates** → Famille de matériaux à base de cuivre capables de conduire le courant sans résistance à des températures relativement élevées, mais encore très froides.
-- **Type** : observation
-
-**Final après 1 relecture(s) (haiku)**
-
-- **Titre** : Supraconducteurs : une image 3D révèle des frontières qui pourraient freiner le courant
-- **Avant** : Pendant 40 ans, les théories sur les cuprates, des matériaux à base de cuivre qui conduisent l'électricité sans perte, supposaient une structure cristalline uniforme. Cette hypothèse ne prenait pas en compte la variété des structures internes de ces matériaux.
-- **Découverte** : Des chercheurs de l'université de Warwick, avec l'installation européenne de rayonnement synchrotron en France, ont reconstitué en 3D l'intérieur d'un cuprate. Ils y ont trouvé une mosaïque de deux arrangements atomiques voisins, séparés par des frontières des centaines de fois plus larges que prévu. Selon eux, ces frontières pourraient freiner le passage du courant.
-- **Et après** : Selon les chercheurs, ces structures pourraient expliquer les écarts de performance entre supraconducteurs et imposer de revoir certaines mesures anciennes. Il s'agit encore d'une hypothèse : elle doit être confirmée, et le phénomène reste à vérifier dans d'autres matériaux.
-- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans perte, à condition d'être refroidi très fort, utile pour les aimants et les réseaux électriques.
+- **Titre** : Évolution humaine : des protéines de dents relient une espèce ancienne aux Asiatiques
+- **Avant** : Pendant longtemps, on pensait qu'Homo erectus, une espèce humaine ancienne, était une impasse de l'évolution, sans descendants. Les fossiles trop anciens ne livrent pas d'ADN, ce qui rendait difficile de vérifier leurs liens avec les autres humains.
+- **Découverte** : Des chercheurs chinois ont extrait des protéines de l'émail de six dents d'Homo erectus vieilles d'environ 400 000 ans, trouvées en Chine. Une variante présente chez les Dénisoviens se retrouve chez 21 % des habitants des Philippines. Selon l'étude, elle serait passée par des croisements entre ces groupes anciens, puis aux populations actuelles d'Asie du Sud-Est.
+- **Et après** : Cette découverte montre que les croisements entre groupes humains anciens étaient fréquents, et non rares. Les effets de cette variante sur la santé restent inconnus, et d'autres fossiles devront être étudiés pour confirmer ce lien.
+- **Mots** : **Dénisovien** → Membre d'un groupe humain ancien, cousin des Néandertaliens, connu surtout grâce à quelques os et dents trouvés dans une grotte de Sibérie.
 - **Type** : laboratoire
 
-- _Défauts trouvés par le relecteur_ : [titre] « Supraconducteurs : une image 3D révèle des frontières cachées qui pourraient freiner le courant » → Le titre compte 13 mots, alors que la limite est de 12. | [jargon] « avec l'installation européenne ESRF en France » → Le sigle ESRF n'est pas expliqué. Il faut dire ce que c'est : une installation européenne de rayonnement synchrotron. | [non_soutenu] « Cette hypothèse ne permettait pas d'expliquer pourquoi certains matériaux fonctionnent mieux que d'autres. » → L'article ne dit pas que l'ancienne hypothèse était incapable d'expliquer les écarts de performance. Il dit seulement que la nouvelle piste pourrait les expliquer. | [mot] « Matériau qui conduit l'électricité sans aucune perte, en général seulement s'il est refroidi très fort, ce qui le rend utile pour les aimants et les réseaux électriques. » → La définition compte 27 mots, alors que la limite est de 25.
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Évolution : des protéines de dents relient une espèce ancienne aux Asiatiques
+- **Avant** : Les espèces humaines anciennes étaient longtemps vues comme des impasses de l'évolution, sans descendants. L'ADN des fossiles trop vieux se dégrade, si bien qu'on ne peut presque jamais lire leurs gènes.
+- **Découverte** : Des chercheurs ont extrait des protéines de l'émail de six dents vieilles d'environ 400 000 ans, trouvées dans trois sites chinois. Ces dents portent une variante inconnue ailleurs, et une autre variante partagée avec les Dénisoviens, un groupe humain connu surtout par une grotte de Sibérie. Cette seconde variante se retrouve aujourd'hui chez 21 % des habitants des Philippines.
+- **Et après** : Ces résultats suggèrent que les croisements entre espèces humaines anciennes étaient fréquents, et que leurs gènes ont traversé les millénaires. Mais la fonction de cette variante reste inconnue, et l'étude doit être confirmée par d'autres travaux.
+- **Mots** : (aucun)
+- **Type** : laboratoire
+
+- _Défauts trouvés par le relecteur_ : [mot] « Introgression » → Le mot à connaître « Introgression » n'apparaît pas dans le texte de la fiche. Le mot a donc été retiré.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0022 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Évolution : des protéines de dents relient une espèce ancienne aux Asiatiques
+- **Avant** : Les espèces humaines anciennes étaient longtemps vues comme des impasses de l'évolution, sans descendants. L'ADN des fossiles trop vieux se dégrade, si bien qu'on ne peut presque jamais lire leurs gènes.
+- **Découverte** : Des chercheurs ont extrait des protéines de l'émail de six dents vieilles d'environ 400 000 ans, trouvées dans trois sites chinois. Ces dents portent une variante inconnue ailleurs, et une autre variante partagée avec les Dénisoviens, un groupe humain connu surtout par une grotte de Sibérie. Cette seconde variante se retrouve aujourd'hui chez 21 % des habitants des Philippines.
+- **Et après** : Ces résultats suggèrent que les croisements entre espèces humaines anciennes étaient fréquents, et que leurs gènes ont traversé les millénaires. Mais la fonction de cette variante reste inconnue, et l'étude doit être confirmée par d'autres travaux.
+- **Mots** : **Introgression** → Passage de gènes d'une espèce à une autre lors d'un croisement, puis transmission de ces gènes aux descendants de l'espèce qui les a reçus.
+- **Type** : laboratoire
+
+- _Contrôle_ : null
+
+
+---
+
+## 2. Espace : une fusée de la NASA perce un trou dans l'atmosphère
+
+Fil : science · 2★ · source : Clubic · page lue : oui (6000 caractères) · https://www.clubic.com/actualite-637822-artemis-ii-a-perce-un-trou-dans-la-haute-atmosphere-avec-un-risque-pour-le-gps.html
+
+**Actuel (publié)**
+
+- **Titre** : Espace : une fusée de la NASA perce un trou dans l'atmosphère
+- **Avant** : Les signaux GPS traversent une couche de l'atmosphère, l'ionosphère, dont la densité d'électrons varie. Ces variations faussent la position calculée, et les corrections existantes ne suppriment pas les perturbations rapides et localisées.
+- **Découverte** : Des chercheurs de l'université Cheng Kung à Taïwan et du centre Goddard de la NASA ont analysé les données de plus de 3 500 stations au sol. Le moteur d'Orion, allumé à environ 185 kilomètres d'altitude, a créé une zone de densité d'électrons modifiée. Elle s'étire sur plus de 5 000 kilomètres au-dessus de l'Amérique du Nord.
+- **Et après** : Ces variations pourraient, selon les chercheurs, fausser la position des voitures autonomes et des drones. L'effet d'un allumage reste localisé et court, contrairement à une tempête solaire ; l'équipe juge crucial de mieux le surveiller avant les prochaines missions vers la Lune et Mars.
+- **Mots** : **Ionosphère** → Couche de l'atmosphère, située à partir d'environ 50 kilomètres d'altitude, remplie de particules électriquement chargées appelées électrons libres.
+- **Type** : observation
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Espace : la fusée de la NASA perturbe trois fois la haute atmosphère
+- **Avant** : Les signaux des satellites GPS traversent une couche de l'atmosphère remplie de particules chargées, qui peut les ralentir ou les accélérer. Les lancements de fusées provoquent déjà ce genre d'effet, mais c'est une première : jamais une même mission n'avait perturbé trois fois la même région.
+- **Découverte** : Des chercheurs d'une université taïwanaise et d'un centre de la NASA ont suivi la fusée grâce à plus de 3 500 stations au sol. Ils ont relevé trois perturbations de la haute atmosphère en moins de deux jours, dont une zone de plus de 5 000 kilomètres. La troisième, plus faible, vient du moteur de la capsule de la mission, allumé à environ 185 kilomètres d'altitude.
+- **Et après** : Ces perturbations peuvent fausser de quelques mètres la position donnée par les satellites, ce qui pourrait gêner une voiture autonome. Il ne s'agit que d'une observation sur une seule mission ; les chercheurs veulent mieux surveiller ces effets, car les missions vers la Lune et Mars vont se multiplier.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Défauts trouvés par le relecteur_ : [apres] « Les chercheurs jugent qu'il faut mieux surveiller ces effets, car les missions vers la Lune et Mars vont se multiplier. » → Le paragraphe « Et après » ne dit pas la limite principale : l'étude porte sur une seule mission observée avec des stations au sol, et l'effet reste plus localisé qu'une tempête solaire. | [mot] « Ionosphère » → Le mot à connaître n'apparaît pas dans le texte de la fiche : il est retiré. | [logique] « le moteur d'Orion allumé à environ 185 kilomètres d'altitude » → Orion n'est jamais présenté dans la fiche ; il faut dire qu'il s'agit de la capsule de la mission. | [absolu] « mais jamais une mission vers la Lune n'en avait fait trois » → L'article dit seulement qu'une même mission n'avait jamais perturbé trois fois la même région. La fiche étend ce constat à toutes les missions vers la Lune, ce que l'article ne dit pas. | [forme] « Des chercheurs de l'université Cheng Kung à Taïwan et du centre Goddard de la NASA » → Noms propres inconnus du grand public, inutiles pour comprendre. On garde seulement une présentation générique. | [forme] « La troisième, plus faible, vient du moteur de la capsule Orion » → Le nom Orion n'est pas expliqué et n'aide pas le lecteur. On le remplace par une description de la capsule de la mission. | [forme] « Il ne s'agit que d'une observation sur une seule mission, et les chercheurs jugent qu'il faut mieux surveiller ces effets, car les missions vers la Lune et Mars vont se multiplier. » → Phrase de 31 mots, trop longue pour le format de la fiche.
+
+- _Défauts mesurés restants_ : phrase de 29 mots dans « apres », à couper : « Il ne s'agit que d'une observation sur une seule mission ; les chercheurs veulent mieux su… » · coût 0.0055 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : la fusée de la NASA perturbe trois fois la haute atmosphère
+- **Avant** : Les signaux des satellites GPS traversent une couche de l'atmosphère remplie de particules chargées, qui peut les ralentir ou les accélérer. Les lancements de fusées provoquent déjà ce genre d'effet, mais jamais une mission vers la Lune n'en avait fait trois.
+- **Découverte** : Des chercheurs de l'université Cheng Kung à Taïwan et du centre Goddard de la NASA ont suivi la fusée grâce à plus de 3 500 stations au sol. Ils ont relevé trois perturbations de la haute atmosphère en moins de deux jours, dont une zone de plus de 5 000 kilomètres. La troisième, plus faible, vient du moteur d'Orion allumé à environ 185 kilomètres d'altitude.
+- **Et après** : Ces perturbations peuvent fausser de quelques mètres la position donnée par les satellites, ce qui pourrait gêner une voiture autonome. Les chercheurs jugent qu'il faut mieux surveiller ces effets, car les missions vers la Lune et Mars vont se multiplier.
+- **Mots** : **Ionosphère** → Couche de l'atmosphère, à partir d'environ 50 kilomètres d'altitude, remplie de particules électriquement chargées appelées électrons libres.
+- **Type** : observation
+
+- _Contrôle_ : null
+
+
+---
+
+## 3. Hypertension : un médicament garde la tension basse deux ans après l'arrêt
+
+Fil : science · 2★ · source : The Guardian Science · page lue : oui (3394 caractères) · https://www.theguardian.com/society/2026/nov/08/new-drug-high-blood-pressure-baxdrostat
+
+**Actuel (publié)**
+
+- **Titre** : Hypertension : un médicament garde la tension basse deux ans après l'arrêt
+- **Avant** : Plus d'un milliard de personnes ont une tension artérielle trop élevée dans le monde. Dans 5 à 10 % des cas, une glande trop active en est la cause, et son retrait chirurgical ne guérit pas toujours.
+- **Découverte** : Des chercheurs de l'université Queen Mary de Londres ont testé sur 14 patients le baxdrostat, qui freine une hormone responsable de la hausse de tension. Après six à douze mois de traitement puis son arrêt, leur tension est restée basse jusqu'à deux ans plus tard. Un peu moins d'un quart des patients n'avaient plus aucun traitement et une tension normale.
+- **Et après** : Si l'effet se confirme, le traitement pourrait éviter la chirurgie à certains malades. Mais l'échantillon est très petit et les chercheurs ne savent pas encore si les patients sont vraiment guéris ; un essai plus large est en cours.
+- **Mots** : (aucun)
+- **Type** : essai_clinique
+
+**Final après 2 relecture(s) (haiku, lot)**
+
+- **Titre** : Hypertension : un médicament maintient la tension basse deux ans après l'arrêt
+- **Avant** : Dans 5 à 10 % des cas d'hypertension, de petites tumeurs bénignes des glandes surrénales produisent trop d'aldostérone, une hormone qui fait retenir le sel. Le traitement habituel est une opération, qui ne guérit pas toujours.
+- **Découverte** : Des chercheurs de l'université Queen Mary de Londres ont suivi 14 patients traités par le baxdrostat, un médicament qui bloque la fabrication d'aldostérone. Après 6 à 12 mois de cachets quotidiens puis un arrêt, leur tension restait basse jusqu'à deux ans plus tard. Un peu moins d'un quart des patients n'avait plus aucun traitement et avait une tension normale.
+- **Et après** : Si cet effet se confirme, certains malades pourraient éviter une opération et des examens lourds. Mais l'étude ne compte que 14 patients : il est trop tôt pour parler de guérison, et un essai plus large est en cours.
+- **Mots** : **Aldostérone** → Hormone fabriquée par les glandes surrénales, situées au-dessus des reins, qui pousse les reins à retenir le sel et fait monter la tension.
+- **Type** : essai_clinique
+
+- _Défauts trouvés par le relecteur_ : [jargon] « de petites tumeurs bénignes des glandes surrénales produisent trop d'aldostérone » → « Glandes surrénales » est un terme savant qui n'est expliqué qu'à l'intérieur du mot à connaître, pas dans le texte où il apparaît. | [forme] « Dans 5 à 10 % des cas d'hypertension, de petites tumeurs bénignes des glandes surrénales, situées au-dessus des reins, produisent trop d'aldostérone, une hormone qui fait retenir le sel. » → Phrase de 29 mots dans « avant », au-dessus de la limite de 30 mots fixée par la règle de forme, et trop longue à lire d'un trait ; elle doit être coupée.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0035 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Hypertension : un médicament maintient la tension basse deux ans après l'arrêt
+- **Avant** : Dans 5 à 10 % des cas d'hypertension, de petites tumeurs bénignes des glandes surrénales produisent trop d'aldostérone, une hormone qui fait retenir le sel. Le traitement habituel est une opération, qui ne guérit pas toujours.
+- **Découverte** : Des chercheurs de l'université Queen Mary de Londres ont suivi 14 patients traités par le baxdrostat, un médicament qui bloque la fabrication d'aldostérone. Après 6 à 12 mois de cachets quotidiens puis un arrêt, leur tension restait basse jusqu'à deux ans plus tard. Un peu moins d'un quart des patients n'avait plus aucun traitement et avait une tension normale.
+- **Et après** : Si cet effet se confirme, certains malades pourraient éviter une opération et des examens lourds. Mais l'étude ne compte que 14 patients : il est trop tôt pour parler de guérison, et un essai plus large est en cours.
+- **Mots** : **Aldostérone** → Hormone fabriquée par les glandes surrénales, situées au-dessus des reins, qui pousse les reins à retenir le sel et fait monter la tension.
+- **Type** : essai_clinique
+
+- _Contrôle_ : null
+
+
+---
+
+## 4. Mathématiques : une preuve montre qu'un ordre évite toujours les sommes identiques
+
+Fil : science · 2★ · source : Wired · page lue : oui (6000 caractères) · https://www.wired.com/story/a-55-year-old-math-problem-was-solved-this-time-by-humans/
+
+**Actuel (publié)**
+
+- **Titre** : Mathématiques : une preuve montre qu'un ordre évite toujours les sommes identiques
+- **Avant** : En 1971, Ronald Graham demande si des nombres peuvent toujours être rangés pour que leurs sommes successives soient toutes différentes. Pour les nombres répétés sur un cadran d'horloge, personne ne parvient à le prouver pendant des décennies.
+- **Découverte** : Des jeunes mathématiciens résolvent le problème dans une preuve répartie sur quatre articles, dont le dernier date de février 2026. Ils utilisent le hasard : ils mélangent les nombres au hasard, puis corrigent les endroits où une suite donne zéro en glissant un nombre de réserve.
+- **Et après** : La preuve montre que la réponse est oui, mais ne décrit pas toujours comment construire concrètement l'ordre recherché. Elle illustre surtout la puissance des méthodes aléatoires pour trouver des structures difficiles à construire directement.
+- **Mots** : (aucun)
+- **Type** : None
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Mathématiques : une preuve montre qu'un ordre évite toujours les sommes identiques
+- **Avant** : En 1971, un mathématicien a posé une question sur des nombres rangés en liste. Pour les nombres enroulés comme sur une horloge, personne n'a pu répondre pendant des décennies.
+- **Découverte** : Plusieurs jeunes mathématiciens ont résolu cette question dans quatre articles scientifiques. Le dernier, écrit par deux chercheurs des universités de Bonn et de Chicago, a paru en février 2026. Leur méthode repose sur le hasard, qui aide à trouver des ordres valables parmi un très grand nombre de possibilités.
+- **Et après** : Le résultat ferme un problème ouvert depuis 1971, mais il ne décrit pas d'usage concret : c'est une démonstration mathématique, pas une application.
+- **Mots** : (aucun)
+- **Type** : aucun
+
+- _Défauts trouvés par le relecteur_ : [mot] « Conjecture » → Le mot à connaître « Conjecture » n'apparaît pas dans le texte de la fiche. Il est retiré. | [titre] « des jeunes chercheurs prouvent qu'un ordre existe toujours » → Le titre est vague (« un ordre ») et ne dit pas ce qui a été prouvé. Le titre d'origine dit concrètement que l'ordre évite les sommes identiques. | [non_soutenu] « la méthode aléatoire reste surtout utile dans des structures très contraintes » → Cette affirmation n'est pas dans l'article. Elle est retirée. | [forme] « L'article ne cite pas d'application pratique » → La phrase parle de l'article au lieu des faits. Elle est remplacée par la limite réelle : c'est une démonstration mathématique. | [forme] « Ronald Graham a posé une question » → Nom de personne inutile pour le lecteur. Il est remplacé par une description. | [forme] « Le dernier, de Lisa Sauermann (université de Bonn) et Huy Tuan Pham (université de Chicago) » → Noms de personnes inutiles. Les universités sont gardées, les noms sont remplacés par une description.
 
 - _Défauts mesurés restants_ : aucun · coût 0.0025 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Supraconducteurs : une image 3D révèle des frontières cachées qui pourraient freiner le courant
-- **Avant** : Pendant 40 ans, les théories sur les cuprates, des matériaux à base de cuivre qui conduisent l'électricité sans perte, supposaient une structure cristalline uniforme. Cette hypothèse ne permettait pas d'expliquer pourquoi certains matériaux fonctionnent mieux que d'autres.
-- **Découverte** : Des chercheurs de l'université de Warwick, avec l'installation européenne ESRF en France, ont reconstitué en 3D l'intérieur d'un cuprate. Ils y ont trouvé une mosaïque de deux arrangements atomiques voisins, séparés par des frontières des centaines de fois plus larges que prévu. Selon eux, ces frontières pourraient freiner le passage du courant.
-- **Et après** : Selon les chercheurs, ces structures pourraient expliquer les écarts de performance entre supraconducteurs et imposer de revoir certaines mesures anciennes. Il s'agit encore d'une hypothèse : elle doit être confirmée, et le phénomène reste à vérifier dans d'autres matériaux.
-- **Mots** : **Supraconducteur** → Matériau qui conduit l'électricité sans aucune perte, en général seulement s'il est refroidi très fort, ce qui le rend utile pour les aimants et les réseaux électriques.
-- **Type** : laboratoire
+- **Titre** : Mathématiques : des jeunes chercheurs prouvent qu'un ordre existe toujours
+- **Avant** : En 1971, Ronald Graham a posé une question sur des nombres rangés en liste. Pour les nombres enroulés comme sur une horloge, personne n'a pu répondre pendant des décennies.
+- **Découverte** : Plusieurs jeunes mathématiciens ont résolu cette question dans quatre articles scientifiques. Le dernier, de Lisa Sauermann (université de Bonn) et Huy Tuan Pham (université de Chicago), a paru en février 2026. Leur méthode repose sur le hasard, qui aide à trouver des ordres valables parmi un très grand nombre de possibilités.
+- **Et après** : Le résultat répond à une question de logique posée depuis plus de cinquante ans. L'article ne cite pas d'application pratique, et la méthode aléatoire reste surtout utile dans des structures très contraintes.
+- **Mots** : **Conjecture** → Affirmation qu'on croit vraie mais qu'aucune preuve n'a encore établie, en attendant une démonstration ou un contre-exemple.
+- **Type** : aucun
 
-- _Faits relevés_ : Des chercheurs de l'université de Warwick (département de chimie) ont étudié les cuprates, des supraconducteurs à base de cuivre, étudiés depuis 40 ans. | Le matériau n'a pas une structure cristalline uniforme : il contient une mosaïque de zones à deux arrangements atomiques légèrement différents. | Les frontières entre ces zones sont des centaines de fois plus larges que prévu. | L'imagerie utilisée est une diffraction des rayons X 3D à balayage, réalisée avec l'installation européenne ESRF en France. | Les chercheurs pensent que ces frontières pourraient nuire à la supraconductivité au lieu de simplement coexister avec elle. | Les théories actuelles supposent une structure uniforme ; certaines mesures anciennes pourraient devoir être réinterprétées. | Les chercheurs soupçonnent que des structures similaires existent chez d'autres cuprates. | Les résultats sont publiés dans Physical Review Letters.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il dit que cette structure en mosaïque n'avait pas été vue, car les techniques classiques ne la révélaient pas, et que l'imagerie 3D permet de voir l'intérieur du cristal.
-- _Jargon_ : Cuprates : remplacé par « matériaux à base de cuivre » et expliqué en une phrase. | Supraconductivité : expliquée par « conduire l'électricité sans aucune résistance ». | Rayons X 3D : remplacé par « une imagerie 3D » ; le scanner médical est cité comme comparaison. | Frontières larges : décrites en mots simples.
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; sigles ou noms codés inconnus du public : ESRF → écris ce que c'est (ou supprime le nom s'il n'aide pas) ; définition de « Supraconducteur » trop longue (27 mots, 25 au plus)
+- _Contrôle_ : null
 
 
 ---
 
-## 9. Dinosaures : des fossiles suggèrent que le spinosaure vivait surtout dans l'eau
+## 5. Puces : une entreprise fabrique un disque en diamant de 200 mm
 
-Fil : science · 1★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261024221956.htm
+Fil : tech · 2★ · source : Tom's Hardware · page lue : oui (3960 caractères) · https://www.tomshardware.com/pc-components/cooling/diamond-foundry-creates-worlds-first-200mm-single-crystal-diamond-wafer-massive-gem-aims-to-solve-ai-chip-cooling-crisis-envisioned-as-a-cooling-material-for-semiconductors
 
 **Actuel (publié)**
 
-- **Titre** : Dinosaures : des fossiles suggèrent que le spinosaure vivait surtout dans l'eau
-- **Avant** : On savait que certains animaux étaient revenus vivre dans l'eau après avoir vécu sur terre. Mais il était difficile de dire lesquels y passaient vraiment la plus grande partie de leur vie.
-- **Découverte** : Des chercheurs de Yale ont analysé des milliers de mesures de fossiles grâce à l'apprentissage automatique. Leur analyse suggère que le spinosaure passait la plus grande partie de sa vie dans l'eau. Certains reptiles marins, longtemps considérés comme entièrement aquatiques, passaient en fait beaucoup de temps sur terre.
-- **Et après** : Ce résultat repose sur des mesures d'os et sur un calcul statistique. Il faudra le confirmer avec d'autres fossiles et d'autres méthodes.
-- **Mots** : **Apprentissage automatique** → Méthode informatique où un logiciel repère des régularités à partir de nombreux exemples.
-- **Type** : donnees
+- **Titre** : Puces : une entreprise fabrique un disque en diamant de 200 mm
+- **Avant** : Les processeurs d'intelligence artificielle chauffent beaucoup, et la chaleur peut créer des points chauds qui les abîment. Des matériaux existent pour refroidir, mais le diamant conduit mieux la chaleur, à condition d'être fabriqué en très grande taille.
+- **Découverte** : Diamond Foundry, entreprise qui fabrique des diamants en laboratoire, a présenté un disque de diamant monocristallin de 200 mm. Ce diamant d'une seule pièce conduirait la chaleur, selon les estimations, au moins cinq fois mieux que le cuivre. Sa taille correspond à celle des disques de silicium que les usines utilisent pour des puces plus anciennes.
+- **Et après** : Ce diamant pourrait aider à éviter les points chauds dans les puces d'IA. Mais l'échantillon n'est pas encore poli, et l'entreprise vise des disques de 300 mm d'ici 2030.
+- **Mots** : **Monocristallin** → Se dit d'un matériau formé d'un seul cristal continu, sans les joints qui séparent de petits cristaux accolés.
+- **Type** : annonce
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Puces : un disque de diamant de 20 cm pour refroidir l'intelligence artificielle
+- **Avant** : Les puces d'intelligence artificielle chauffent de plus en plus, ce qui crée des points très chauds qui les abîment. Le diamant conduit très bien la chaleur, mais il fallait produire de grands disques faits d'un seul cristal, ce qui restait très difficile.
+- **Découverte** : L'entreprise Diamond Foundry a fabriqué un disque de diamant d'un seul cristal de 200 mm, la taille de ceux qui servent aux puces plus anciennes. Selon elle, c'est le premier de cette taille. On estime que le diamant conduit la chaleur au moins cinq fois mieux que le cuivre, sans conduire l'électricité.
+- **Et après** : Ce matériau pourrait aider à refroidir les puces d'intelligence artificielle. L'échantillon n'est pas encore poli, et l'entreprise vise un disque de 300 mm avant 2030.
+- **Mots** : (aucun)
+- **Type** : mise_a_jour
+
+- _Défauts trouvés par le relecteur_ : [jargon] « il fallait produire de grands disques monocristallins » → Le mot « monocristallin » est un terme technique non expliqué ni remplacé par des mots simples. | [jargon] « un disque de diamant monocristallin de 200 mm » → Le mot « monocristallin » est repris dans « decouverte » sans être expliqué ni remplacé. | [non_soutenu] « Le diamant conduit la chaleur au moins cinq fois mieux que le cuivre » → L'article dit que cette valeur est estimée (« estimated »). La fiche la présente comme un fait établi.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0020 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Puces : un disque de diamant de 20 cm pour refroidir l'intelligence artificielle
+- **Avant** : Les puces d'intelligence artificielle chauffent de plus en plus, ce qui crée des points très chauds qui les abîment. Le diamant conduit très bien la chaleur, mais il fallait produire de grands disques monocristallins, ce qui restait très difficile.
+- **Découverte** : L'entreprise Diamond Foundry a fabriqué un disque de diamant monocristallin de 200 mm, la taille de ceux qui servent aux puces plus anciennes. Selon elle, c'est le premier de cette taille. Le diamant conduit la chaleur au moins cinq fois mieux que le cuivre, sans conduire l'électricité.
+- **Et après** : Ce matériau pourrait aider à refroidir les puces d'intelligence artificielle. L'échantillon n'est pas encore poli, et l'entreprise vise un disque de 300 mm avant 2030.
+- **Mots** : (aucun)
+- **Type** : mise_a_jour
+
+- _Contrôle_ : null
+
+
+---
+
+## 6. Obésité : un nouveau médicament fait perdre jusqu'à 25 % du poids
+
+Fil : science · 2★ · source : New Atlas · page lue : oui (2958 caractères) · https://newatlas.com/disease/obesity/knee-osteoarthritis-pain-relief-weight-loss/
+
+**Actuel (publié)**
+
+- **Titre** : Obésité : un nouveau médicament fait perdre jusqu'à 25 % du poids
+- **Avant** : L'arthrose du genou fait mal et limite la marche, surtout chez les personnes en surpoids. Les médicaments contre l'obésité qui imitent une hormone de la satiété font perdre du poids, mais leur effet précis sur la douleur de l'arthrose reste mal connu.
+- **Découverte** : Deux essais cliniques de grande taille, menés sous la direction de l'université Northwestern, ont suivi des adultes. Avec de fortes doses de rétatrutide, un traitement en injection une fois par semaine du laboratoire Eli Lilly, les patients ont perdu jusqu'à 25 % de leur poids en moyenne. Environ deux tiers des patients ont eu une baisse d'au moins 50 % de la douleur au genou. Mais un faux traitement (placebo) a aussi réduit cette douleur de 38 %.
+- **Et après** : Si la perte de poids soulage vraiment le genou, ce traitement pourrait aider les personnes en surpoids souffrant d'arthrose. Les chercheurs doivent encore vérifier si le médicament agit aussi sur l'inflammation, et s'il aide les personnes non obèses.
+- **Mots** : (aucun)
+- **Type** : essai_clinique
 
 **Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Dinosaures : le spinosaure aurait passé presque tout son temps sous l'eau
-- **Avant** : Plusieurs dizaines de groupes de mammifères et de reptiles sont revenus vivre dans l'eau. Pour le spinosaure, les os donnent des indices contradictoires : mode de vie de phoque ou de héron ?
-- **Découverte** : Des chercheurs de l'université Yale ont analysé plus de 11 000 mesures sur des fossiles et des animaux actuels, à l'aide d'un logiciel qui repère des régularités. Ils concluent que le spinosaure, qui vivait il y a 113 à 94 millions d'années en Afrique du Nord, passait la grande majorité de son temps sous l'eau. En revanche, les mésosaures, petits reptiles marins, passaient beaucoup de temps sur terre.
-- **Et après** : Ces résultats pourraient aider à mieux comprendre comment le spinosaure chassait, un point qui reste débattu. Ce sont toutefois des estimations faites à partir de squelettes, pas une observation directe de la vie de ces animaux.
-- **Mots** : (aucun)
-- **Type** : donnees
+- **Titre** : Arthrose : un médicament à trois hormones soulage le genou en faisant maigrir
+- **Avant** : Les médicaments contre l'obésité font maigrir, et l'arthrose du genou, qui fait mal en portant le poids, peut être soulagée par la perte de poids. Les traitements actuels visent une ou deux hormones.
+- **Découverte** : Dans deux essais menés par l'université Northwestern, un médicament expérimental d'Eli Lilly, le retatrutide, qui agit sur trois hormones, a été injecté à plus de mille adultes. Les patients ont perdu jusqu'à 25 % de leur poids, et environ deux tiers ont eu une douleur au genou réduite d'au moins moitié. Un faux traitement, appelé placebo, a aussi réduit cette douleur de 38 %.
+- **Et après** : Chez les personnes en surpoids et arthrosiques, perdre beaucoup de poids pourrait soulager le genou, mais ce n'est pas encore prouvé pour les personnes sans surpoids. Il reste aussi à comprendre si l'effet anti-inflammatoire joue un rôle, et des co-auteurs travaillent pour le laboratoire qui fabrique le médicament.
+- **Mots** : **Arthrose** → Usure progressive d'une articulation, comme le genou, qui provoque des douleurs et une raideur en bougeant.
+- **Type** : essai_clinique
 
-- _Défauts trouvés par le relecteur_ : [forme] « Les mésosaures, petits reptiles marins, passaient eux aussi beaucoup de temps sur terre. » → Le « eux aussi » suggère un parallèle avec le spinosaure, alors que l'article oppose les deux cas : le spinosaure passait l'essentiel de son temps sous l'eau, les mésosaures alternaient entre eau et terre. Le lien logique est faux. | [apres] « Ce sont des estimations faites à partir de squelettes, pas une observation directe de la vie de ces animaux. Les chercheurs reconnaissent que la façon dont le spinosaure chassait reste débattue. » → Le paragraphe « Et après » ne dit pas ce que ces résultats peuvent changer ; il ne donne que la limite.
+- _Défauts trouvés par le relecteur_ : [titre] « Obésité : un médicament sur trois hormones fait perdre jusqu'à 25 % du poids » → Le titre fait 13 mots, au-delà de la limite de 12. Il annonce surtout la perte de poids alors que le résultat principal est le soulagement du genou. | [non_soutenu] « leurs effets sur l'arthrose du genou, qui fait mal en portant le poids, restaient peu étudiés » → L'article ne dit pas que ces effets étaient peu étudiés ; il dit seulement que d'autres recherches sont nécessaires. | [jargon] « le retatrutide » → Nom de molécule jamais présenté : il faut dire qu'il s'agit d'un médicament qui agit sur trois hormones. | [comparaison] « Le faux médicament a aussi réduit la douleur, de 38 %. » → Le chiffre de 38 % n'est pas relié clairement aux 66 % du médicament ; il faut dire qu'il s'agit d'un placebo, donc d'une réduction de douleur sans médicament. | [apres] « Chez les personnes en surpoids et arthrosiques, perdre beaucoup de poids pourrait soulager le genou. » → Le paragraphe ne donne pas la limite principale : on ne sait pas encore si cela vaut pour les personnes sans surpoids.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0033 $
+- _Défauts mesurés restants_ : aucun · coût 0.0036 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Dinosaures : le spinosaure aurait passé presque tout son temps sous l'eau
-- **Avant** : Plusieurs dizaines de groupes de mammifères et de reptiles sont revenus vivre dans l'eau. Pour le spinosaure, les os donnent des indices contradictoires : mode de vie de phoque ou de héron ?
-- **Découverte** : Des chercheurs de l'université Yale ont analysé plus de 11 000 mesures sur des fossiles et des animaux actuels, à l'aide d'un logiciel qui repère des régularités. Ils concluent que le spinosaure, qui vivait il y a 113 à 94 millions d'années en Afrique du Nord, passait la grande majorité de son temps sous l'eau. Les mésosaures, petits reptiles marins, passaient eux aussi beaucoup de temps sur terre.
-- **Et après** : Ce sont des estimations faites à partir de squelettes, pas une observation directe de la vie de ces animaux. Les chercheurs reconnaissent que la façon dont le spinosaure chassait reste débattue.
-- **Mots** : (aucun)
-- **Type** : donnees
+- **Titre** : Obésité : un médicament sur trois hormones fait perdre jusqu'à 25 % du poids
+- **Avant** : Les médicaments contre l'obésité font maigrir, mais leurs effets sur l'arthrose du genou, qui fait mal en portant le poids, restaient peu étudiés. Les traitements actuels visent une ou deux hormones.
+- **Découverte** : Dans deux essais menés par l'université Northwestern, un médicament expérimental d'Eli Lilly, le retatrutide, a été injecté à plus de 1 000 adultes. Les patients ont perdu jusqu'à 25 % de leur poids, et environ deux tiers ont eu au moins 50 % de douleur en moins au genou. Le faux médicament a aussi réduit la douleur, de 38 %.
+- **Et après** : Chez les personnes en surpoids et arthrosiques, perdre beaucoup de poids pourrait soulager le genou. Mais on ignore encore si l'effet anti-inflammatoire joue un rôle, et des co-auteurs travaillent pour le laboratoire qui fabrique le médicament.
+- **Mots** : **Arthrose** → Usure progressive d'une articulation, comme le genou, qui provoque des douleurs et une raideur en bougeant.
+- **Type** : essai_clinique
 
-- _Faits relevés_ : Des chercheurs de l'université Yale ont analysé plus de 11 000 mesures sur des fossiles et des animaux actuels. | Ils ont utilisé un logiciel d'apprentissage automatique, combiné à des méthodes classiques de paléontologie. | Le spinosaure, grand dinosaure, vivait il y a 113 à 94 millions d'années dans le nord de l'Afrique. | Selon l'auteur principal, le spinosaure passait la grande majorité de son temps immergé. | Les chercheurs précisent que la façon dont il chassait reste débattue. | Les mésosaures, petits reptiles marins de 290 à 274 millions d'années, passaient beaucoup de temps sur terre. | Leurs membres n'étaient pas adaptés à une vie entièrement dans l'eau, selon l'étude. | Les modèles s'appuient sur des squelettes et sur des animaux actuels, et permettent d'estimer des structures molles rarement conservées.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première ; il présente une nouvelle analyse de plus de 11 000 mesures, qui estime la part de vie aquatique de plusieurs groupes anciens.
-- _Jargon_ : apprentissage automatique : expliqué en quelques mots dans la fiche | mésosaures : présenté comme de petits reptiles marins
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
+- _Contrôle_ : null
 
 
 ---
 
-## 10. Dents : un liquide bloque les caries des jeunes enfants
+## 7. Espace : un calcul fait apparaître une planète cachée par son étoile
 
-Fil : science · 2★ · source : ScienceDaily · page lue : oui (6000 caractères) · https://www.sciencedaily.com/releases/2026/10/261025222339.htm
+Fil : tech · 2★ · source : Futura Sciences · page lue : oui (6000 caractères) · https://www.futura-sciences.com/sciences/actualites/astronomie-telescope-james-webb-rend-visible-exoplanete-cachee-technique-pourrait-devoiler-beaucoup-autres-139098/#xtor%3DRSS-8
 
 **Actuel (publié)**
 
-- **Titre** : Dents : un liquide bloque les caries des jeunes enfants
-- **Avant** : Les caries des jeunes enfants se soignent en général par forage, pose d'un plombage, voire par une opération sous anesthésie générale. Un liquide au fluorure d'argent est déjà utilisé dans certains cas, mais son efficacité devait encore être prouvée à grande échelle.
-- **Découverte** : Un essai clinique de grande ampleur, mené sur 830 enfants de moins de 6 ans, montre que ce liquide, peint sur la dent en quelques secondes, arrête la progression de nombreuses caries. Aucune perceuse, aucune piqûre et aucune sédation ne sont nécessaires.
-- **Et après** : Ce traitement pourrait éviter à des milliers d'enfants des douleurs, des infections et des soins lourds. Une utilisation plus large, approuvée par l'agence américaine du médicament, reste à venir.
-- **Mots** : **Anesthésie générale** → Médicament qui endort complètement une personne pendant une opération, pour qu'elle ne sente ni ne se souvienne de rien.
-- **Type** : essai_clinique
+- **Titre** : Espace : un calcul fait apparaître une planète cachée par son étoile
+- **Avant** : Pour photographier une exoplanète, il faut masquer la lumière de son étoile, qui peut être un million de fois plus brillante. Même le coronographe, instrument qui cache l'étoile comme la Lune cache le Soleil lors d'une éclipse, laisse passer une lumière qui noie la planète.
+- **Découverte** : Une équipe de l'université Northwestern, aux États-Unis, a mis au point une méthode de calcul. Elle retire la lumière de l'étoile d'images déjà prises par le télescope spatial James-Webb. Appliquée à 51 Eridani b, une géante plusieurs fois plus massive que Jupiter, elle fait apparaître une planète que les méthodes habituelles ne voyaient pas. Selon les chercheurs, la détection gagne deux à quinze fois en sensibilité.
+- **Et après** : Cette méthode pourrait permettre de repérer des planètes restées invisibles dans des données déjà enregistrées. Pour l'instant, elle a été présentée sur des observations déjà faites, et son intérêt pour d'autres planètes reste à confirmer.
+- **Mots** : **Exoplanète** → Monde qui tourne autour d'une étoile autre que notre Soleil, hors du Système solaire.
+- **Type** : demonstration
 
-**Final après 2 relecture(s) (haiku)**
+**Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Dents : un liquide peint en secondes bloque les caries des jeunes enfants
-- **Avant** : Pour soigner une carie chez un jeune enfant, il faut en général forer la dent et la reboucher, parfois sous anesthésie générale. Un liquide à base d'argent et de fluor existait déjà, mais il manquait des preuves solides à grande échelle chez les enfants américains.
-- **Découverte** : Des chercheurs de l'université du Michigan ont testé une solution à 38 % de fluorure d'argent sur 830 enfants de moins de 6 ans. Appliqué à l'éponge tous les six mois, le liquide a arrêté la carie de plus de la moitié des dents de lait touchées. Le traitement ne demandait ni forage, ni piqûre, ni médicament pour endormir.
-- **Et après** : Ce traitement pourrait éviter à des enfants douleurs, infections et opérations, et permettre de les soigner plus tôt, avant un rendez-vous chez le dentiste. Mais la dent traitée noircit de façon définitive, et l'usage contre les caries n'est pas encore approuvé par l'autorité sanitaire américaine.
-- **Mots** : **Fluorure d'argent** → Liquide à base d'argent et de fluor, appliqué sur une carie pour combattre les bactéries et durcir la dent ; il la fait aussi noircir.
-- **Type** : essai_clinique
+- **Titre** : Espace : un logiciel révèle une planète cachée par son étoile
+- **Avant** : La lumière d'une étoile noie souvent celle des planètes proches, qui peuvent être jusqu'à un million de fois moins lumineuses. Les instruments qui masquent cette lumière ne la suppriment pas complètement, et certaines planètes restent invisibles dans les images du télescope James-Webb.
+- **Découverte** : Une équipe de l'université Northwestern, aux États-Unis, a mis au point une méthode informatique qui retire la lumière d'une étoile. Appliquée aux observations du télescope James-Webb, elle fait apparaître la planète 51 Eridani b, une géante plus massive que Jupiter. Selon les chercheurs, la sensibilité de détection progresse de 2 à 15 fois par rapport aux analyses précédentes.
+- **Et après** : Cette méthode pourrait faire repérer des planètes faibles dans des images déjà prises. Il reste à voir si elle donne les mêmes résultats sur d'autres étoiles.
+- **Mots** : (aucun)
+- **Type** : demonstration
 
-- _Défauts trouvés par le relecteur_ : [titre] « Dents : un liquide peint en quelques secondes freine les caries des jeunes enfants » → Le titre compte 13 mots, au-delà de la limite de 12. | [forme] « Des chercheurs de l'université du Michigan ont testé ce liquide à 38 % sur 830 enfants de moins de 6 ans, dans des cabinets dentaires, des cabinets pédiatriques et des programmes d'éducation précoce. » → Phrase de 33 mots, à couper ; « ce liquide » désigne aussi une chose non précisée (une solution à 38 % de fluorure d'argent). | [jargon] « l'usage contre les caries n'est pas encore approuvé par la FDA » → Le sigle FDA n'est pas expliqué au lecteur ; il faut dire ce que c'est ou le remplacer par des mots simples. | [forme] « Appliqué à l'éponge tous les six mois, le liquide a arrêté la carie de plus de la moitié des dents de lait touchées, sans forage, piqûre ni médicament pour endormir. » → Phrase de 30 mots ou plus dans « decouverte », à couper en phrases plus courtes.
+- _Défauts trouvés par le relecteur_ : [jargon] « Les coronographes masquent cette lumière, mais pas complètement » → Le mot « coronographes » est technique et n'est ni expliqué ni remplacé par des mots simples. | [non_soutenu] « qui peuvent être un million de fois moins lumineuses » → L'article dit « jusqu'à un million de fois moins lumineuse », pour certaines planètes seulement. « Peuvent être » généralise à toutes les planètes proches. | [comparaison] « la sensibilité de détection progresse de 2 à 15 fois » → Le chiffre ne dit pas par rapport à quoi. L'article le compare aux analyses précédentes des mêmes observations du James-Webb.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0056 $
+- _Défauts mesurés restants_ : aucun · coût 0.0041 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Dents : un liquide peint en quelques secondes freine les caries des jeunes enfants
-- **Avant** : Pour soigner une carie chez un jeune enfant, il faut en général forer la dent et la reboucher, parfois sous anesthésie générale. Un liquide à base d'argent et de fluor existait déjà, mais il manquait des preuves solides à grande échelle chez les enfants américains.
-- **Découverte** : Des chercheurs de l'université du Michigan ont testé ce liquide à 38 % sur 830 enfants de moins de 6 ans, dans des cabinets dentaires, des cabinets pédiatriques et des programmes d'éducation précoce. Appliqué à l'éponge tous les six mois, il a arrêté la carie de plus de la moitié des dents de lait touchées. Aucun forage, aucune piqûre et aucun médicament pour endormir n'étaient nécessaires.
-- **Et après** : Ce traitement pourrait éviter à des enfants douleurs, infections et opérations, et permettre de les soigner plus tôt, avant un rendez-vous chez le dentiste. Mais la dent traitée noircit de façon définitive, et l'usage contre les caries n'est pas encore approuvé par la FDA.
-- **Mots** : **Fluorure d'argent** → Liquide à base d'argent et de fluor, appliqué sur une carie pour combattre les bactéries et durcir la dent ; il la fait aussi noircir.
-- **Type** : essai_clinique
+- **Titre** : Espace : un logiciel révèle une planète cachée par son étoile
+- **Avant** : La lumière d'une étoile noie souvent celle des planètes proches, qui peuvent être un million de fois moins lumineuses. Les coronographes masquent cette lumière, mais pas complètement, et certaines planètes restent invisibles dans les images du télescope James-Webb.
+- **Découverte** : Une équipe de l'université Northwestern, aux États-Unis, a mis au point une méthode informatique qui retire la lumière d'une étoile. Appliquée aux observations du télescope James-Webb, elle fait apparaître la planète 51 Eridani b, une géante plus massive que Jupiter. Selon les chercheurs, la sensibilité de détection progresse de 2 à 15 fois.
+- **Et après** : Cette méthode pourrait faire repérer des planètes faibles dans des images déjà prises. Il reste à voir si elle donne les mêmes résultats sur d'autres étoiles.
+- **Mots** : (aucun)
+- **Type** : demonstration
 
-- _Faits relevés_ : Le traitement est un liquide à base d'argent et de fluor (fluorure d'argent à 38 %), peint sur la dent avec un petit applicateur à éponge en quelques secondes. | L'essai de phase III a porté sur 830 enfants de moins de 6 ans, recrutés à Michigan, New York et Iowa. | Le traitement a été appliqué tous les six mois. | Il a arrêté la carie dans plus de la moitié des dents de lait touchées. | Aucun forage, aucune piqûre et aucune sédation n'étaient nécessaires. | La dent traitée noircit de façon définitive, surtout les dents de devant ; c'est surtout un défaut esthétique. | Le produit est approuvé par la FDA depuis 2014 contre la sensibilité dentaire ; son usage contre les caries est hors indication. | L'étude, dirigée par Margherita Fontana de l'université du Michigan, a commencé en 2018 et s'est poursuivie malgré la pandémie de Covid-19.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : le liquide est utilisé depuis des décennies dans de nombreux pays, et ce qui est nouveau est la preuve d'essais à grande échelle chez les enfants américains.
-- _Jargon_ : anesthésie générale : remplacé par « endormis complètement » | sédation : remplacé par « médicament pour endormir » | fluorure d'argent : mot à connaître
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 9}
-- _Alertes automatiques_ : titre de 13 mots : 12 au plus ; phrase de 33 mots dans « decouverte », à couper : « Des chercheurs de l'université du Michigan ont testé ce liquide à 38 % sur 830 enfants de … » ; sigles ou noms codés inconnus du public : FDA → écris ce que c'est (ou supprime le nom s'il n'aide pas)
+- _Contrôle_ : null
 
 
 ---
 
-## 11. Peinture : une couche se répare seule et freine la rouille
+## 8. IA : un modèle chinois cite moins la propagande de Pékin après réentraînement
 
-Fil : tech · 1★ · source : Les Numériques · page lue : oui (4203 caractères) · https://www.lesnumeriques.com/science-espace/l-australie-affirme-avoir-cree-un-nouveau-type-de-peinture-auto-reparatrice-qui-ralentit-la-rouille-de-l-acier-de-600-fois-197-n262593.html
+Fil : tech · 1★ · source : The Decoder (IA) · page lue : oui (6000 caractères) · https://the-decoder.com/state-propaganda-in-some-chinese-ai-models-is-only-a-thin-layer-that-fine-tuning-can-strip-away/
 
 **Actuel (publié)**
 
-- **Titre** : Peinture : une couche se répare seule et freine la rouille
-- **Avant** : Les peintures anticorrosion s'abîment dès qu'une rayure met l'acier à nu. Il faut donc les refaire régulièrement, comme pour la Tour Eiffel, repeinte environ tous les sept ans.
-- **Découverte** : Des chercheurs de l'Université du Queensland ajoutent à une peinture à l'eau une poudre de minuscules réservoirs. Ces réservoirs libèrent un anti-rouille lorsque la couche est abîmée. En laboratoire, l'acier protégé ne perd que 37 nanomètres par an, selon l'équipe.
-- **Et après** : Il reste à vérifier ce résultat sur un vrai pont ou une structure exposée aux intempéries. Pour l'instant, il s'agit d'un prototype de laboratoire, sans date ni prix annoncés.
-- **Mots** : **Inhibiteur de rouille** → Substance qui ralentit la formation de rouille sur le métal.
-- **Type** : prototype
-
-**Final après 2 relecture(s) (haiku)**
-
-- **Titre** : Peinture : une couche qui libère un anti-rouille quand elle est rayée
-- **Avant** : Les peintures anticorrosion s'abîment dès qu'une rayure met l'acier à nu, et il faut alors les refaire régulièrement. Ponts, navires et la Tour Eiffel sont repeints à intervalles réguliers, un chantier long et coûteux.
-- **Découverte** : Des chercheurs de l'Université du Queensland, en Australie, ont mélangé à une peinture à l'eau une poudre de minuscules réservoirs. Ces réservoirs gardent un anti-rouille enfermé tant que la peinture est intacte, puis le libèrent là où une fissure apparaît. En laboratoire, l'acier protégé se corrode de 37 nanomètres par an seulement, contre environ 25 000 nanomètres pour beaucoup de revêtements haute performance, selon des fabricants.
-- **Et après** : Cette peinture pourrait espacer les gros chantiers de repeinture sur les ponts et les structures métalliques. Mais les résultats viennent du laboratoire, sans test sur un vrai pont, et l'équipe doit encore réduire les coûts ; elle vise un produit commercial d'ici cinq ans.
+- **Titre** : IA : un modèle chinois cite moins la propagande de Pékin après réentraînement
+- **Avant** : Des modèles d'IA venus de Chine répondent souvent comme les autorités chinoises sur les sujets sensibles. Un modèle de base d'Alibaba donnait cette version officielle dans 22 % de ses réponses, selon des tests.
+- **Découverte** : Une jeune entreprise américaine a réentraîné un modèle d'Alibaba avec environ 53 millions de morceaux de texte. Le nouveau modèle reprend la version de Pékin dans moins de 1 % de ses réponses, contre 22 % auparavant. Selon l'entreprise, ses capacités générales restent intactes.
+- **Et après** : Le modèle et ses données d'entraînement sont publiés sous licence libre, ce qui permet à d'autres de le vérifier. Mais le test a été conçu par l'entreprise, et un autre modèle d'IA y juge les réponses : des évaluations indépendantes restent nécessaires.
 - **Mots** : (aucun)
-- **Type** : prototype
+- **Type** : annonce
 
-- _Défauts trouvés par le relecteur_ : [mot] « Inhibiteur de corrosion » → Le mot à connaître n'apparaît pas dans le texte de la fiche. Il est retiré. | [comparaison] « contre environ 25 000 nanomètres annoncés pour des revêtements haute performance » → Deux chiffres sont mis en face sans dire qu'il s'agit d'une mesure de laboratoire comparée à des chiffres annoncés par des fabricants, ce qui explique l'écart. | [forme] « En laboratoire, l'acier protégé ne se corrode que de 37 nanomètres par an, alors que beaucoup de revêtements haute performance annoncent environ 25 000 nanomètres, selon des chiffres de fabricants. » → Phrase de 30 mots, à couper pour rester lisible. La phrase a été raccourcie en gardant les chiffres et la source de l'article.
+**Final après 1 relecture(s) (haiku, lot)**
 
-- _Défauts mesurés restants_ : aucun · coût 0.0050 $
+- **Titre** : IA : un modèle chinois répète moins la propagande de Pékin après réentraînement
+- **Avant** : Plusieurs études ont montré que des modèles d'IA venus de Chine reprennent la version du gouvernement sur des sujets politiques. Ce biais est souvent présent dans les réponses sur la liberté d'expression ou la surveillance.
+- **Découverte** : Des chercheurs de l'entreprise américaine Nous Research ont réentraîné un modèle d'Alibaba avec des exemples de texte choisis. Sur 803 questions, la part de réponses reprenant la propagande de Pékin est tombée de 22 % à moins de 1 %.
+- **Et après** : Selon Nous, le modèle garde ses autres capacités, mais ces résultats viennent surtout de l'entreprise et n'ont pas encore été vérifiés par d'autres chercheurs. Le biais semble donc plus facile à corriger qu'on ne le pensait, à confirmer sur d'autres tests.
+- **Mots** : (aucun)
+- **Type** : mise_a_jour
+
+- _Défauts trouvés par le relecteur_ : [comparaison] « avec environ 53 millions de morceaux de texte. Sur 803 questions, la part de réponses reprenant la propagande de Pékin est tombée de 22 % à moins de 1 %. » → La fiche contient 6 chiffres dans « decouverte » (dont le nom du modèle Qwen3.8-27B), ce qui est trop pour un lecteur non spécialiste. Seuls les 3 chiffres les plus parlants sont gardés : 22 %, moins de 1 % et 803 questions. | [mot] « Fine-tuning » → Le mot à connaître « Fine-tuning » n'apparaît pas dans le texte de la fiche. Aucun mot à connaître n'est donc gardé.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0026 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Peinture : une couche qui libère un anti-rouille quand elle est rayée
-- **Avant** : Les peintures anticorrosion s'abîment dès qu'une rayure met l'acier à nu, et il faut alors les refaire régulièrement. Ponts, navires et la Tour Eiffel sont repeints à intervalles réguliers, un chantier long et coûteux.
-- **Découverte** : Des chercheurs de l'Université du Queensland, en Australie, ont mélangé à une peinture à l'eau une poudre de minuscules réservoirs. Ces réservoirs gardent un anti-rouille enfermé tant que la peinture est intacte, puis le libèrent là où une fissure apparaît. En laboratoire, l'acier protégé ne se corrode que de 37 nanomètres par an, contre environ 25 000 nanomètres annoncés pour des revêtements haute performance.
-- **Et après** : Cette peinture pourrait espacer les gros chantiers de repeinture sur les ponts et les structures métalliques. Mais les résultats viennent du laboratoire, sans test sur un vrai pont, et l'équipe doit encore réduire les coûts ; elle vise un produit commercial d'ici cinq ans.
-- **Mots** : **Inhibiteur de corrosion** → Substance ajoutée à un métal ou à sa peinture pour ralentir son oxydation et sa rouille.
-- **Type** : prototype
+- **Titre** : IA : un modèle chinois répète moins la propagande de Pékin après réentraînement
+- **Avant** : Plusieurs études ont montré que des modèles d'IA venus de Chine reprennent la version du gouvernement sur des sujets politiques. Ce biais est souvent présent dans les réponses sur la liberté d'expression ou la surveillance.
+- **Découverte** : Des chercheurs de l'entreprise américaine Nous Research ont réentraîné Qwen3.8-27B, un modèle d'Alibaba, avec environ 53 millions de morceaux de texte. Sur 803 questions, la part de réponses reprenant la propagande de Pékin est tombée de 22 % à moins de 1 %.
+- **Et après** : Selon Nous, le modèle garde ses autres capacités, mais ces résultats viennent surtout de l'entreprise et n'ont pas encore été vérifiés par d'autres chercheurs. Le biais semble donc plus facile à corriger qu'on ne le pensait, à confirmer sur d'autres tests.
+- **Mots** : **Fine-tuning** → Réglage d'un modèle d'IA déjà entraîné, avec des exemples choisis pour changer sa façon de répondre sur certains sujets.
+- **Type** : mise_a_jour
 
-- _Faits relevés_ : Des chercheurs de l'Université du Queensland, en Australie, mélangent une poudre à une peinture polyuréthane à base d'eau. | La poudre est faite de minuscules réservoirs qui contiennent un inhibiteur de rouille, le benzotriazole. | Tant que la peinture est intacte, l'inhibiteur reste enfermé ; une fissure acidifie le milieu, les réservoirs s'ouvrent et libèrent l'inhibiteur à cet endroit. | En laboratoire, l'acier protégé ne se corrode que de 37 nanomètres par an, contre environ 0,025 millimètre (25 000 nanomètres) annoncés pour des revêtements haute performance. | L'université parle de plus de 600 fois mieux ; ce rapport compare une mesure expérimentale à des chiffres déclarés par des fabricants. | Des plaques d'acier rayées exprès ont passé quatorze jours dans l'eau salée, sans rouille autour de l'entaille avec la formulation la plus efficace. | Une autre piste, avec des fibres végétales, permettrait de stocker trois fois plus d'inhibiteur et de multiplier la protection jusqu'à cinq fois. | Les prochaines étapes sont des essais à l'échelle pilote, avec un produit commercial visé d'ici cinq ans ; le benzotriazole reste une molécule persistante à surveiller.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il présente une peinture qui libère un anti-rouille seulement là où elle est abîmée, testée en laboratoire et comparée à des revêtements annoncés par des fabricants.
-- _Jargon_ : Inhibiteur de rouille : expliqué en quelques mots (anti-rouille) | Nanoconteneurs : remplacé par « minuscules réservoirs » | Réseaux métallo-organiques : remplacé par « une poudre de minuscules réservoirs » | Électrochimiques : remplacé par « mesures en laboratoire » | Nanocellulose : remplacé par « fibres végétales » | Benzotriazole : mot à connaître, cité sous son nom usuel
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : mot à connaître « Inhibiteur de corrosion » absent du texte de la fiche : choisis un mot du texte ou aucun
+- _Contrôle_ : null
 
 
 ---
 
-## 12. Fusées : une capsule largue un kit de survie depuis l'orbite
+## 9. Espace : des électrons tueurs détectés dans une zone censée protéger les satellites
 
-Fil : tech · 2★ · source : New Atlas · page lue : oui (3115 caractères) · https://newatlas.com/military/usaf-spacex-capsule-survival-kit-from-orbit/
+Fil : science · 2★ · source : Futura Sciences · page lue : oui (6000 caractères) · https://www.futura-sciences.com/sciences/actualites/soleil-barriere-impenetrable-protege-terre-electrons-tueurs-soleil-fissuree-139013/#xtor%3DRSS-8
 
 **Actuel (publié)**
 
-- **Titre** : Fusées : une capsule largue un kit de survie depuis l'orbite
-- **Avant** : Les fusées servent surtout à placer des satellites ou des équipages en orbite. Pour livrer vite du matériel à des personnes isolées, il faut souvent un transport lent.
-- **Découverte** : Le 20 octobre 2026, une fusée Falcon 9 a emporté une capsule de fret Starfall, capable de transporter jusqu'à une tonne. Après sa rentrée dans l'atmosphère, un bouclier thermique, de petits propulseurs et un parachute l'ont guidée vers un atterrissage plus doux. Elle transportait une caisse de secours conçue pour rester stable pendant le voyage.
-- **Et après** : L'objectif est d'envoyer rapidement du matériel à des naufragés ou à des équipes isolées. Il reste à voir si ce système sera utilisé à grande échelle.
+- **Titre** : Espace : des électrons tueurs détectés dans une zone censée protéger les satellites
+- **Avant** : Autour de la Terre, des particules très rapides peuvent endommager les composants électroniques des satellites. Depuis une dizaine d'années, on pensait qu'une zone située à environ trois rayons terrestres du centre de la Terre bloquait ces particules.
+- **Découverte** : Une équipe internationale dirigée par Yoshizumi Miyoshi, de l'université de Nagoya au Japon, a étudié les données du satellite japonais Arase. Pendant une forte perturbation du champ magnétique terrestre en mai 2024, des électrons très énergétiques ont été détectés dans des régions censées être protégées. Leur quantité a augmenté de plus de 5 000 fois par rapport à avant la tempête.
+- **Et après** : Ces résultats montrent que les satellites placés dans cette zone ne sont pas toujours à l'abri des fortes tempêtes, au moins pour cette tempête vue par un seul satellite. Les chercheurs veulent analyser les données de cet événement pour mieux comprendre ces tempêtes et protéger les satellites.
 - **Mots** : (aucun)
-- **Type** : demonstration
+- **Type** : observation
 
-**Final après 2 relecture(s) (haiku)**
+**Final après 1 relecture(s) (haiku)**
 
-- **Titre** : Sauvetage en mer : un test largue un radeau de survie depuis l'orbite
-- **Avant** : Un naufragé peut attendre des jours les secours, même si une fusée fait le tour de la Terre en seulement 90 minutes. Les garde-côtes américains larguent déjà des radeaux depuis des avions ; le laboratoire de l'armée de l'air américaine étudie l'envoi depuis l'orbite.
-- **Découverte** : Lors d'un test de l'armée de l'air américaine, une capsule de fret de SpaceX a largué un kit de survie depuis l'orbite. La capsule, lancée le 20 octobre 2026 par une fusée Falcon 9 depuis la Floride, peut transporter jusqu'à une tonne et atterrir doucement grâce à un parachute. Le kit contient un radeau gonflable, de l'eau douce produite sur place, des rations, une radio et des balises de détresse.
-- **Et après** : Le but est d'envoyer vite du matériel à des naufragés ou des équipes isolées, et à terme des dizaines de tonnes par lancement avec des fusées commerciales. Ce n'est pour l'instant qu'un test, et les résultats serviront à mettre au point ces systèmes.
-- **Mots** : (aucun)
-- **Type** : demonstration
+- **Titre** : Espace : des électrons tueurs franchissent une zone censée protéger les satellites
+- **Avant** : Autour de la Terre, des électrons très rapides sont piégés dans des ceintures magnétiques. On pensait qu'une barrière empêchait les plus énergétiques de s'approcher des satellites protégés.
+- **Découverte** : Une équipe japonaise dirigée par un physicien de l'université de Nagoya a étudié les données d'un satellite japonais pendant une forte tempête magnétique de mai 2024. Des électrons très énergétiques ont été détectés dans des régions où ils étaient censés être bloqués. Leur quantité, à très haute énergie, a été multipliée par plus de 5 000 par rapport à avant la tempête.
+- **Et après** : Ces résultats pourraient aider à mieux prévoir les dangers pour les satellites lors des tempêtes solaires. On ne sait pas encore comment ces électrons sont accélérés, et les données de cette tempête doivent encore être analysées pendant les années à venir.
+- **Mots** : **Électron** → Particule très légère, présente dans tous les atomes, qui porte une charge électrique négative et qui circule dans les câbles électriques.
+- **Type** : observation
 
-- _Défauts trouvés par le relecteur_ : [non_soutenu] « avec des fusées commerciales capables de transporter des dizaines de tonnes » → L'article dit seulement que le but est de trouver des moyens d'envoyer des dizaines de tonnes par lancement avec des fusées commerciales. Il ne dit pas que ces fusées en sont déjà capables. | [apres] « Le but est d'envoyer vite du matériel à des naufragés ou à des équipes isolées, et, un jour, de transporter des dizaines de tonnes par lancement avec des fusées commerciales. » → Phrase de 30 mots, trop longue pour le paragraphe « Et après ».
+- _Défauts trouvés par le relecteur_ : [forme] « Une équipe dirigée par le physicien Yoshizumi Miyoshi, de l'université de Nagoya au Japon, » → Phrase de 30 mots et nom de personne inutile pour le lecteur. Il faut la couper et remplacer le nom par une description. | [forme] « satellite japonais Arase » → Nom propre de satellite inconnu du grand public. Il faut le décrire comme « un satellite japonais ». | [jargon] « à environ 3 MeV » → Unité savante non convertie. Elle doit être remplacée par des mots simples ou supprimée. | [forme] « L'article ne précise pas encore comment ces électrons sont accélérés » → Phrase qui parle de l'article au lieu des faits. Il faut dire directement ce qui est inconnu.
 
-- _Défauts mesurés restants_ : aucun · coût 0.0060 $
+- _Défauts mesurés restants_ : aucun · coût 0.0029 $
 
 **Version du rédacteur (haiku)**
 
-- **Titre** : Sauvetage en mer : un test largue un radeau de survie depuis l'orbite
-- **Avant** : Un naufragé peut attendre des jours les secours, même si une fusée fait le tour de la Terre en seulement 90 minutes. Les garde-côtes américains larguent déjà des radeaux depuis des avions ; le laboratoire de l'armée de l'air américaine étudie l'envoi depuis l'orbite.
-- **Découverte** : Lors d'un test de l'armée de l'air américaine, une capsule de fret de SpaceX a largué un kit de survie depuis l'orbite. La capsule, lancée le 20 octobre 2026 par une fusée Falcon 9 depuis la Floride, peut transporter jusqu'à une tonne et atterrir doucement grâce à un parachute. Le kit contient un radeau gonflable, de l'eau douce produite sur place, des rations, une radio et des balises de détresse.
-- **Et après** : Le but est d'envoyer vite du matériel à des naufragés ou à des équipes isolées, avec des fusées commerciales capables de transporter des dizaines de tonnes. Ce n'est pour l'instant qu'un test, et les résultats serviront à mettre au point ces systèmes.
-- **Mots** : (aucun)
-- **Type** : demonstration
+- **Titre** : Espace : des électrons tueurs franchissent une zone censée protéger les satellites
+- **Avant** : Autour de la Terre, des électrons très rapides sont piégés dans des ceintures magnétiques. On pensait qu'une barrière empêchait les plus énergétiques de s'approcher des satellites protégés.
+- **Découverte** : Une équipe dirigée par le physicien Yoshizumi Miyoshi, de l'université de Nagoya au Japon, a étudié les données du satellite japonais Arase pendant une forte tempête magnétique de mai 2024. Des électrons très énergétiques ont été détectés dans des régions où ils étaient censés être bloqués. Leur nombre a été multiplié par plus de 5 000 à environ 3 MeV.
+- **Et après** : Ces résultats pourraient aider à mieux prévoir les dangers pour les satellites lors des tempêtes solaires. L'article ne précise pas encore comment ces électrons sont accélérés, et les données de cette tempête doivent encore être analysées pendant les années à venir.
+- **Mots** : **Électron** → Particule très légère, présente dans tous les atomes, qui porte une charge électrique négative et qui circule dans les câbles électriques.
+- **Type** : observation
 
-- _Faits relevés_ : Le laboratoire de recherche de l'armée de l'air américaine (AFRL) a réalisé un test de largage depuis l'orbite. | La capsule de fret est une capsule de SpaceX, en forme de disque de 3,1 m de diamètre, qui peut transporter jusqu'à une tonne. | Le test a eu lieu le 20 octobre 2026, avec une fusée Falcon 9 décollée du Cap Canaveral, en Floride. | La capsule était équipée d'un bouclier thermique, de petits propulseurs à gaz froid et d'un parachute pour un atterrissage plus doux. | Le module transportait un radeau de survie gonflable UNI-PAC III, semblable à ceux que la garde côtière américaine largue depuis des avions. | Le kit contenait des balises de détresse, une unité de dessalement, de l'eau en bouteille, des rations militaires, une radio, une trousse de secours et une boussole. | Selon l'AFRL, les résultats serviront à développer des systèmes de livraison depuis l'orbite. | L'objectif à terme est d'envoyer des dizaines de tonnes de charge par lancement avec des fusées commerciales.
-- _Nouveauté selon l'article_ : L'article ne revendique pas de première : il parle de « la démonstration la plus spectaculaire à ce jour » du programme Rocket Cargo, alors que les largages de radeaux depuis des avions existent déjà.
-- _Jargon_ : Capsule de rentrée : remplacé par « capsule de fret » ou « capsule ». | Orbite : expliqué en quelques mots, comme une trajectoire autour de la Terre, dans l'espace. | Falcon 9 : nom de fusée gardé, présenté comme « une fusée de SpaceX ». | Dessalement : expliqué comme la production d'eau douce à partir d'eau de mer. | Gaz froid : remplacé par « petits propulseurs ».
-- _Contrôle_ : {"faits_tous_dans_article": true, "affirmation_absolue_non_soutenue": false, "titre_concret": true, "jargon_non_explique": [], "apres_dit_ce_que_ca_change_et_la_limite": true, "chiffres_coherents": true, "longueurs_respectees": true, "avant_situe_les_resultats_anterieurs": true, "note": 8}
-- _Alertes automatiques_ : aucune
+- _Contrôle_ : null
 
 
 ---
 
-Coût total du test : 0.0503 $ · par fiche : 0.0050 $ · tokens moyens par fiche (rédaction + relecture) : entrée 5048, cache lu 12945, cache écrit 2015, sortie 8290
+## 10. Plastique : des vêtements mélangés recyclés en briques chimiques très pures
+
+Fil : science · 2★ · source : Nature Communications · page lue : oui (3501 caractères) · https://www.nature.com/articles/s41467-026-78713-4
+
+**Actuel (publié)**
+
+- **Titre** : Plastique : des vêtements mélangés recyclés en briques chimiques très pures
+- **Avant** : Le plastique des vêtements usagés est difficile à recycler chimiquement. Quand il est mélangé à d'autres fibres, le traitement dégrade plusieurs matières et produit des mélanges coûteux à séparer.
+- **Découverte** : Une équipe de l'université du Zhejiang, en Chine, a mis au point un procédé qui traite les textiles mélangés chauffés avec du méthanol. Le polyester, plastique très courant dans les vêtements, se découpe rapidement en une molécule de base, le diméthyl téréphtalate, d'une pureté d'au moins 99,92 %, avec un rendement de 91 %. Les autres fibres ne sont pas dégradées.
+- **Et après** : Ce procédé pourrait permettre de refabriquer du polyester à partir de vieux vêtements mélangés. Selon les auteurs, il serait compétitif sur le plan économique, mais il n'a pas encore été testé à grande échelle dans une usine.
+- **Mots** : **Méthanol** → Alcool très simple, liquide et inflammable, utilisé ici pour découper les chaînes du plastique en petites molécules.
+- **Type** : laboratoire
+
+**Final après 2 relecture(s) (haiku)**
+
+- **Titre** : Plastique : des vêtements mélangés donnent une brique chimique très pure
+- **Avant** : Le plastique PET (polyéthylène téréphtalate), très utilisé, est difficile à recycler quand il est mélangé à d'autres fibres dans les vêtements. Les procédés chimiques existants dégradent plusieurs matières à la fois, ce qui rend la séparation coûteuse.
+- **Découverte** : Des chercheurs de l'université du Zhejiang, en Chine, ont traité des textiles mélangés par la chaleur, puis les ont mis en réaction avec du méthanol. Ce plastique se découpe rapidement et sélectivement, dans des conditions douces. On obtient une brique chimique, le diméthyl téréphtalate, d'une pureté d'au moins 99,92 %, avec un rendement de 91 %.
+- **Et après** : Cette méthode pourrait permettre de refaire du plastique neuf à partir de vieux vêtements, selon les auteurs. Ces résultats viennent de travaux de laboratoire ; une application à grande échelle reste à démontrer.
+- **Mots** : (aucun)
+- **Type** : laboratoire
+
+- _Défauts trouvés par le relecteur_ : [jargon] « Le PET, plastique très utilisé » → Le sigle PET n'est ni expliqué ni remplacé par des mots simples dans la fiche. | [jargon] « Le DMT obtenu atteint une pureté » → Le sigle DMT n'est pas expliqué, alors qu'il désigne la brique chimique obtenue. | [mot] « Monomère » → Le mot à connaître n'apparaît pas dans le texte de la fiche. | [jargon] « On obtient une brique chimique appelée DMT (diméthyl téréphtalate) » → Le sigle DMT n'aide pas le lecteur ; le nom complet est donné sans sigle dans la fiche corrigée. | [jargon] « Le PET se découpe rapidement et sélectivement » → Le sigle PET est repris sans nécessité dans ce paragraphe ; on peut désigner le plastique par « ce plastique », déjà présenté dans « avant ». | [non_soutenu] « pure à 99,92 % » → L'article indique une pureté d'au moins 99,92 % (≥ 99.92%), pas une pureté exacte de 99,92 %. Le titre doit être corrigé en conséquence.
+
+- _Défauts mesurés restants_ : sigles ou noms codés inconnus du public : PET → écris ce que c'est (ou supprime le nom s'il n'aide pas) · coût 0.0033 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Plastique : des vêtements mélangés donnent une brique chimique pure à 99,92 %
+- **Avant** : Le PET, plastique très utilisé, est difficile à recycler quand il est mélangé à d'autres fibres dans les vêtements. Les procédés chimiques existants dégradent plusieurs matières à la fois, ce qui rend la séparation coûteuse.
+- **Découverte** : Des chercheurs de l'université du Zhejiang, en Chine, ont traité des textiles mélangés par la chaleur, puis les ont mis en réaction avec du méthanol. Le PET se découpe rapidement et sélectivement, dans des conditions douces. Le DMT obtenu atteint une pureté d'au moins 99,92 %, avec un rendement de 91 %.
+- **Et après** : Cette méthode pourrait permettre de refaire du plastique neuf à partir de vieux vêtements, selon les auteurs. Ces résultats viennent de travaux de laboratoire ; une application à grande échelle reste à démontrer.
+- **Mots** : **Monomère** → Petite molécule qui, reliée à des milliers d'autres identiques, forme une longue chaîne appelée polymère, comme un plastique.
+- **Type** : laboratoire
+
+- _Contrôle_ : null
+
+
+---
+
+## 11. Chimie : une réaction imprévue produit des molécules bore-oxygène enfin stables
+
+Fil : science · 2★ · source : ScienceDaily · page lue : oui (5718 caractères) · https://www.sciencedaily.com/releases/2026/11/261103003205.htm
+
+**Actuel (publié)**
+
+- **Titre** : Chimie : une réaction imprévue produit des molécules bore-oxygène enfin stables
+- **Avant** : Depuis plus de 60 ans, les chimistes cherchent à isoler les oxoboranes, des molécules bore-oxygène jugées trop instables. Elles ont été détectées dans des conditions extrêmes, mais jamais obtenues assez stables pour être étudiées.
+- **Découverte** : Des chercheurs de l'université de Würzburg, en Allemagne, ont obtenu ces molécules en faisant réagir un composé à base de bore avec des cétones, des produits chimiques courants. Les réactions ont produit des solides colorés, où les oxoboranes apparaissaient comme produits principaux. Trois oxoboranes différents ont été préparés et étudiés.
+- **Et après** : La méthode pourrait donner accès à un plus grand nombre de ces molécules rares. L'équipe doit encore vérifier jusqu'où la technique peut s'appliquer à d'autres composés.
+- **Mots** : (aucun)
+- **Type** : laboratoire
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Chimie : des chercheurs obtiennent enfin des molécules bore-oxygène stables
+- **Avant** : Des molécules reliant un atome de bore et un atome d'oxygène par une triple liaison, les oxoboranes, étaient jugées trop instables pour être étudiées. Depuis le début des années 1960, des chimistes tentaient de les obtenir stables, sans succès.
+- **Découverte** : Des chercheurs de l'université de Würzburg, en Allemagne, ont obtenu ces molécules en faisant réagir un composé à base de bore avec des cétones, des produits chimiques courants. La réaction devait donner autre chose, mais elle a produit des solides orange ou jaunes contenant des oxoboranes stables. Les chercheurs ont ainsi préparé trois oxoboranes différents, qu'ils ont pu étudier.
+- **Et après** : Selon les chercheurs, cette méthode pourrait donner accès à une famille bien plus large de ces molécules. Pour l'instant, seules trois ont été préparées, et l'équipe vérifie jusqu'où la technique peut s'appliquer à d'autres éléments du tableau périodique.
+- **Mots** : **Oxoborane** → Molécule dans laquelle un atome de bore et un atome d'oxygène sont reliés par trois paires d'électrons partagés.
+- **Type** : laboratoire
+
+- _Défauts trouvés par le relecteur_ : [apres] « L'équipe vérifie maintenant jusqu'où la technique peut s'appliquer, et si elle marche pour d'autres éléments du tableau périodique. » → Le paragraphe ne dit pas la limite principale : seules trois molécules ont été préparées pour l'instant, la méthode n'est pas encore généralisée.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0025 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Chimie : des chercheurs obtiennent enfin des molécules bore-oxygène stables
+- **Avant** : Des molécules reliant un atome de bore et un atome d'oxygène par une triple liaison, les oxoboranes, étaient jugées trop instables pour être étudiées. Depuis le début des années 1960, des chimistes tentaient de les obtenir stables, sans succès.
+- **Découverte** : Des chercheurs de l'université de Würzburg, en Allemagne, ont obtenu ces molécules en faisant réagir un composé à base de bore avec des cétones, des produits chimiques courants. La réaction devait donner autre chose, mais elle a produit des solides orange ou jaunes contenant des oxoboranes stables. Les chercheurs ont ainsi préparé trois oxoboranes différents, qu'ils ont pu étudier.
+- **Et après** : Selon les chercheurs, cette méthode pourrait donner accès à une famille bien plus large de ces molécules. L'équipe vérifie maintenant jusqu'où la technique peut s'appliquer, et si elle marche pour d'autres éléments du tableau périodique.
+- **Mots** : **Oxoborane** → Molécule dans laquelle un atome de bore et un atome d'oxygène sont reliés par trois paires d'électrons partagés.
+- **Type** : laboratoire
+
+- _Contrôle_ : null
+
+
+---
+
+## 12. Fossiles : un animal de 70 centimètres vivait au fond de la mer
+
+Fil : science · 2★ · source : Science News · page lue : oui (3864 caractères) · https://www.sciencenews.org/article/first-marine-amphibian-ancient-fossil
+
+**Actuel (publié)**
+
+- **Titre** : Fossiles : un animal de 70 centimètres vivait au fond de la mer
+- **Avant** : Les amphibiens actuels, comme les grenouilles, ne supportent pas l'eau salée : leur peau laisse passer l'eau et les rend vulnérables. Les scientifiques cherchaient depuis longtemps un amphibien vivant en mer.
+- **Découverte** : Des chercheurs ont examiné deux fossiles de Gerrothorax maritimus, un amphibien d'environ 70 centimètres. Ils ont été retrouvés dans un ancien fond marin, à 30 kilomètres de toute terre. L'analyse chimique de leurs os montre que l'animal mangeait des poissons et buvait de l'eau de mer.
+- **Et après** : Cette découverte montre qu'un amphibien a pu vivre durablement dans la mer, ce qui était jugé inimaginable pour un amphibien. Elle repose toutefois sur seulement deux fossiles, et d'autres amphibiens marins pourraient encore être trouvés.
+- **Mots** : **Amphibien** → Animal qui vit d'abord dans l'eau puis respire aussi par la peau ou les poumons à l'âge adulte, comme la grenouille ou la salamandre.
+- **Type** : terrain
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Fossiles : un amphibien de 70 centimètres vit au fond de la mer
+- **Avant** : Presque tous les amphibiens meurent dans l'eau salée, leur peau laissant passer l'eau et le sel. Les scientifiques cherchaient depuis longtemps un amphibien capable de vivre en mer.
+- **Découverte** : Des chercheurs de l'université de Californie à Davis ont étudié deux fossiles de Gerrothorax maritimus, vieux d'environ 237 millions d'années. Ces animaux de 70 centimètres vivaient dans un ancien fond marin, à environ 30 kilomètres de toute terre. Une analyse chimique des os montre qu'ils mangeaient des proies marines et buvaient de l'eau de mer.
+- **Et après** : Cette découverte montre qu'un amphibien a pu vivre longtemps en mer, ce que l'on jugeait impensable. Seuls deux fossiles ont été étudiés, et les chercheurs pensent que d'autres amphibiens marins pourraient encore être découverts dans d'anciens milieux négligés.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Défauts trouvés par le relecteur_ : [titre] « Fossiles : un amphibien ancien vivait au fond de la mer, loin de toute terre » → Le titre compte 14 mots, au-delà de la limite de 12. Il faut le raccourcir et garder le résultat principal : un amphibien vivait au fond de la mer. | [non_soutenu] « Une analyse chimique des os montre qu'ils mangeaient et buvaient de l'eau de mer. » → L'article dit qu'ils mangeaient des fruits de mer (seafood) et buvaient de l'eau de mer. « Mangeaient de l'eau de mer » déforme ce qui a été mesuré. | [non_soutenu] « Cette découverte montre qu'un amphibien peut s'adapter à une vie durable en mer, ce que l'on pensait presque impossible. » → « Durable » ne correspond pas à « long-term life » de façon claire, et « presque impossible » exagère « unimaginable » (impensable). | [apres] « Les chercheurs pensent qu'il existe peut-être d'autres amphibiens marins, encore inconnus, à chercher dans des milieux anciens jusqu'ici négligés. » → Le paragraphe « Et après » ne donne aucune limite de l'étude. Il faut dire qu'il n'y a que deux fossiles étudiés, et que l'article ne connaît aucun amphibien vivant uniquement dans l'eau salée. | [mot] « Amphibien » → Le mot est courant et déjà compris par le lecteur, il n'a pas à être expliqué comme mot à connaître.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0027 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Fossiles : un amphibien ancien vivait au fond de la mer, loin de toute terre
+- **Avant** : Presque tous les amphibiens meurent dans l'eau salée, leur peau laissant passer l'eau et le sel. Les scientifiques cherchaient depuis longtemps un amphibien capable de vivre en mer.
+- **Découverte** : Des chercheurs de l'université de Californie à Davis ont étudié deux fossiles de Gerrothorax maritimus, vieux d'environ 237 millions d'années. Ces animaux de 70 centimètres vivaient dans un ancien fond marin, à environ 30 kilomètres de toute terre. Une analyse chimique des os montre qu'ils mangeaient et buvaient de l'eau de mer.
+- **Et après** : Cette découverte montre qu'un amphibien peut s'adapter à une vie durable en mer, ce que l'on pensait presque impossible. Les chercheurs pensent qu'il existe peut-être d'autres amphibiens marins, encore inconnus, à chercher dans des milieux anciens jusqu'ici négligés.
+- **Mots** : **Amphibien** → Animal qui naît souvent dans l'eau puis vit sur terre à l'âge adulte, comme la grenouille ou la salamandre.
+- **Type** : observation
+
+- _Contrôle_ : null
+
+
+---
+
+## 13. Espace : une sonde photographie les traces d'un impact sur un astéroïde
+
+Fil : science · 2★ · source : Space.com · page lue : oui (5018 caractères) · https://www.space.com/space-exploration/asteroid-comet-missions/hera-probe-gets-1st-good-luck-at-asteroid-system-clobbered-by-nasas-dart-mission-space-photo-of-the-day-for-nov-6-2026
+
+**Actuel (publié)**
+
+- **Titre** : Espace : une sonde photographie les traces d'un impact sur un astéroïde
+- **Avant** : En 2022, la sonde américaine DART s'est écrasée sur la petite lune d'un astéroïde pour voir si un impact peut modifier sa trajectoire. Il restait à voir ce que le choc avait changé sur place.
+- **Découverte** : La sonde européenne Hera a photographié l'astéroïde Didymos et sa petite lune Dimorphos, vus d'un côté que la caméra de DART n'avait pas montré juste avant l'impact. Les chercheurs y voient des blocs, des cratères et des rainures apparus après le choc, tandis que la crête centrale est restée. Le choc a aussi réduit de 33 minutes la durée d'une rotation de Dimorphos autour de Didymos, qui durait environ 11 heures et 55 minutes avant l'impact.
+- **Et après** : Le changement de trajectoire obtenu reste petit : il ne compterait que si l'alerte arrivait assez tôt. Les scientifiques doivent encore distinguer les effets du choc direct de ceux des matériaux projetés.
+- **Mots** : (aucun)
+- **Type** : observation
+
+**Final après 2 relecture(s) (haiku, lot)**
+
+- **Titre** : Espace : une sonde photographie les traces d'un impact sur un astéroïde
+- **Avant** : Pour éviter qu'un astéroïde percute la Terre, il faudrait peut-être le dévier. Les scientifiques ne savaient pas encore si un choc provoqué par une sonde suffirait.
+- **Découverte** : La sonde européenne Hera a photographié l'astéroïde Didymos, de l'autre côté de celui que la sonde américaine qui a percuté sa petite lune en 2022 avait vu peu avant son impact. Des blocs, des cratères et des rainures y sont apparus. Le choc contre sa petite lune Dimorphos, en 2022, a réduit son tour de Didymos d'environ 33 minutes.
+- **Et après** : Ces observations portent sur un seul astéroïde et un seul choc, et tout ce qui a changé n'est pas encore expliqué. Les scientifiques devront ensuite cartographier tous les changements pour mieux comprendre l'effet d'une telle déviation.
+- **Mots** : (aucun)
+- **Type** : observation
+
+- _Défauts trouvés par le relecteur_ : [titre] « Espace : la sonde Hera voit des cratères créés sur un astéroïde par un impact » → Le titre compte 14 mots, au-delà de la limite de 12, et contient le nom Hera qui n'aide pas le lecteur. | [jargon] « la sonde DART » → Le sigle DART n'est pas expliqué. Il faut dire que c'est la sonde américaine qui a percuté la petite lune. | [mot] « Astéroïde : Gros rocher qui tourne autour du Soleil » → Astéroïde est un mot connu de tous, qui n'a pas besoin d'être expliqué dans les mots à connaître. | [apres] « Ces observations permettront de savoir quelles traces viennent du choc et lesquelles viennent de la matière éjectée vers Didymos. » → Le paragraphe ne dit pas la limite de l'étude : elle ne porte que sur un seul astéroïde et un seul choc. | [jargon] « la sonde américaine DART avait vu peu avant son impact » → Le sigle DART n'est ni expliqué ni remplacé par des mots simples. Le lecteur ne sait pas que c'est la mission qui a percuté la lune Dimorphos. | [jargon] « Le choc de DART contre sa petite lune Dimorphos » → Le sigle DART est répété sans explication. Il faut le remplacer par une formulation simple.
+
+- _Défauts mesurés restants_ : phrase de 31 mots dans « decouverte », à couper : « La sonde européenne Hera a photographié l'astéroïde Didymos, de l'autre côté de celui que … » · coût 0.0030 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : la sonde Hera voit des cratères créés sur un astéroïde par un impact
+- **Avant** : Pour éviter qu'un astéroïde percute la Terre, il faudrait peut-être le dévier. Les scientifiques ne savaient pas encore si un choc provoqué par une sonde suffirait.
+- **Découverte** : La sonde européenne Hera a photographié l'astéroïde Didymos, de l'autre côté de celui que la sonde DART avait vu peu avant son impact. Des blocs, des cratères et des rainures y sont apparus. Le choc de DART contre sa petite lune Dimorphos, en 2022, a réduit son tour de Didymos d'environ 33 minutes.
+- **Et après** : Ces observations permettront de savoir quelles traces viennent du choc et lesquelles viennent de la matière éjectée vers Didymos. Les scientifiques devront ensuite cartographier tous les changements pour mieux comprendre l'effet d'une telle déviation.
+- **Mots** : **Astéroïde** → Gros rocher qui tourne autour du Soleil, souvent de quelques centaines de mètres à plusieurs kilomètres de large, restes de la formation du système solaire.
+- **Type** : observation
+
+- _Contrôle_ : null
+
+
+---
+
+## 14. Espace : un laser commandé du sol découpe une pièce de station chinoise
+
+Fil : tech · 2★ · source : Clubic · page lue : oui (4804 caractères) · https://www.clubic.com/actualite-638062-la-chine-reussit-une-premiere-mondiale-avec-un-laser-spatial-pilote-depuis-la-terre.html
+
+**Actuel (publié)**
+
+- **Titre** : Espace : un laser commandé du sol découpe une pièce de station chinoise
+- **Avant** : Les stations en orbite demandent des réparations, mais les astronautes ne peuvent pas toujours intervenir. Réparer une pièce dehors, dans le vide et sous de fortes variations de température, reste très difficile.
+- **Découverte** : La Chine affirme qu'un laser fixé au bout d'un bras robotisé, à l'extérieur de sa station Tiangong, a coupé une pièce de grande taille dans l'espace. Des opérateurs au sol ont commandé l'essai à distance, à des centaines de kilomètres de la station. Les coupes ont une précision d'environ un millimètre.
+- **Et après** : Si la méthode fonctionne, elle pourrait permettre de réparer une station sans sortie d'astronautes. Mais il s'agit d'une affirmation encore annoncée par les seules autorités chinoises, et les mêmes outils pourraient aussi servir à endommager d'autres satellites.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+**Final après 1 relecture(s) (haiku, lot)**
+
+- **Titre** : Espace : un laser piloté du sol découpe une pièce de station chinoise
+- **Avant** : Les stations spatiales demandent d'importants travaux de maintenance. Réparer en orbite sans astronautes reste un objectif pour plusieurs pays.
+- **Découverte** : La Chine affirme qu'un laser fixé au bout d'un bras robotisé, à l'extérieur de sa station Tiangong, a découpé une pièce au millimètre près. Des opérateurs restés au sol, à des centaines de kilomètres, ont piloté l'opération à distance. Selon les autorités chinoises, c'est une première mondiale.
+- **Et après** : Ce procédé pourrait permettre de réparer ou d'agrandir des structures en orbite sans astronautes, selon les espoirs de Pékin. Pour l'instant, il ne s'agit que d'une découpe annoncée par la Chine, et non d'un procédé utilisé en routine.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Défauts trouvés par le relecteur_ : [titre] « Espace : un laser piloté depuis le sol coupe une pièce hors de la station chinoise » → Le titre fait 15 mots, au-delà de la limite de 12. | [apres] « Ce procédé pourrait permettre de réparer ou d'agrandir des structures en orbite sans astronautes, selon les espoirs de Pékin. » → Le paragraphe ne dit pas la limite principale : il s'agit d'un essai annoncé par la Chine, pas encore d'un procédé utilisé en routine. | [non_soutenu] « envoyer des astronautes dehors coûte cher et expose à des risques » → L'article ne dit pas que les sorties d'astronautes coûtent cher ou sont risquées ; il parle seulement de maintenance importante et de réparation sans astronautes. | [non_soutenu] « Un laser en orbite peut aussi servir à endommager d'autres satellites » → L'article dit que ces technologies pourraient servir à endommager d'autres satellites ; la formulation « peut » affirme trop.
+
+- _Défauts mesurés restants_ : aucun · coût 0.0015 $
+
+**Version du rédacteur (haiku)**
+
+- **Titre** : Espace : un laser piloté depuis le sol coupe une pièce hors de la station chinoise
+- **Avant** : Les stations spatiales demandent souvent des réparations, mais envoyer des astronautes dehors coûte cher et expose à des risques. Réparer et fabriquer en orbite sans humain reste un défi technique.
+- **Découverte** : La Chine affirme qu'un laser fixé au bout d'un bras robotisé, à l'extérieur de sa station Tiangong, a découpé une pièce au millimètre près. Des opérateurs restés au sol, à des centaines de kilomètres, ont piloté l'opération à distance. Selon les autorités chinoises, c'est une première mondiale.
+- **Et après** : Ce procédé pourrait permettre de réparer ou d'agrandir des structures en orbite sans astronautes, selon les espoirs de Pékin. Un laser en orbite peut aussi servir à endommager d'autres satellites, ce qui inquiète les rivaux de la Chine.
+- **Mots** : (aucun)
+- **Type** : demonstration
+
+- _Contrôle_ : null
+
+
+---
+
+Coût total du test : 0.0419 $ · par fiche : 0.0030 $ · tokens moyens par fiche (rédaction + relecture) : entrée 4908, cache lu 6606, cache écrit 1842, sortie 5358
