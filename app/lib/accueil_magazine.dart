@@ -409,15 +409,16 @@ class _EnTete extends StatelessWidget {
           ),
         ]),
         const SizedBox(height: 8),
-        Row(children: [
-          onglet('science', texteSciences),
-          const SizedBox(width: 22),
-          onglet('tech', texteTechnologies),
-          const SizedBox(width: 22),
-          // 3e onglet « À venir » (maquette 70). Pas de pastille (choix de Maxime du 02/11 :
-          // on ne savait pas quelle carte était « nouvelle »).
-          onglet('avenir', 'À venir'),
-        ]),
+        // Les 3 onglets répartis sur toute la largeur (demande de Maxime du 08/11, planche 85).
+        // 3e onglet « À venir » (maquette 70). Pas de pastille (choix de Maxime du 02/11 :
+        // on ne savait pas quelle carte était « nouvelle »).
+        Padding(
+          padding: const EdgeInsets.only(right: 12),
+          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            for (final (code, texte) in [('science', texteSciences), ('tech', texteTechnologies), ('avenir', 'À venir')])
+              Flexible(child: FittedBox(fit: BoxFit.scaleDown, child: onglet(code, texte))),
+          ]),
+        ),
       ]),
     );
   }
