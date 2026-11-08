@@ -77,3 +77,28 @@ Si le message contient des « Défauts MESURÉS automatiquement », ils sont cer
 Puis donne la fiche corrigée : reprends-la telle quelle et corrige SEULEMENT les défauts trouvés, sans rien inventer. Un titre corrigé doit être plus concret que l'ancien, jamais plus vague ; sinon garde l'ancien. Si tu retires une limite non soutenue, mets une limite vraie tirée du cadre de l'étude. Forme à garder : titre « Thème : phrase au présent », 12 mots au plus ; avant 1-2 phrases ; decouverte 2-3 ; apres 1-2, sans commencer par « Et après » ; aucune mention de la revue ou du média ; mots à connaître 0 à 2. S'il n'y a aucun défaut, "problemes" est vide et la fiche est identique.
 
 Réponds uniquement avec le JSON demandé."""
+
+
+def retouches_b(redaction: str, relecture: str) -> tuple[str, str]:
+    """Version « b » (08/11, après l'essai A/B) : l'ancienne consigne, avec seulement 3 retouches."""
+    def rempl(t, avant, apres):
+        assert avant in t, avant[:60]
+        return t.replace(avant, apres, 1)
+    # 1) Plus de liste de contrôle remplie par le rédacteur (la relecture et le programme font ce travail)
+    redaction = rempl(redaction, """4. "titres_candidats" : 3 titres différents ; puis la fiche : "title" (le meilleur des trois), "avant", "decouverte", "apres", "mots", "type_etude".
+5. "controle" : relis la fiche avec la liste de contrôle ; si une réponse est mauvaise, CORRIGE la fiche avant de répondre.""",
+                      """4. "titres_candidats" : 3 titres différents ; puis la fiche : "title" (le meilleur des trois), "avant", "decouverte", "apres", "mots", "type_etude".""")
+    debut = redaction.index("# Liste de contrôle")
+    fin = redaction.index("# Exemples")
+    redaction = redaction[:debut] + redaction[fin:]
+    # 2) Titre = résultat principal
+    redaction = rempl(redaction, "La phrase dit CONCRÈTEMENT ce qui a été vu, fait ou lancé (chiffre, chose vue, record) ou à quoi ça sert",
+                      "La phrase annonce le RÉSULTAT PRINCIPAL, celui de la 1re phrase de « decouverte » (chiffre, chose vue, record, ou à quoi ça sert), jamais un détail")
+    # 3) Relecture : point « logique »
+    relecture = rempl(relecture, """
+
+Sois sévère mais juste""", """
+9. "logique" : une chose ou un nom utilisé sans avoir été présenté (« le moteur d'Orion » sans dire ce qu'est Orion), une phrase qui ne suit pas la précédente, ou un enchaînement qu'un lycéen ne peut pas suivre. Et "titre" aussi si le titre n'annonce pas le RÉSULTAT PRINCIPAL de la découverte.
+
+Sois sévère mais juste""")
+    return redaction, relecture

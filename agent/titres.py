@@ -127,6 +127,10 @@ def relire(client, fiches: list[dict], log) -> tuple[list[dict], float]:
     return changees, (t_in * PRIX[0] + t_out * PRIX[1]) / 1e6
 
 
+# Point 4 du 08/11, en service : seuls les titres avec un sigle ou un nom propre sont relus
+# (testé sur les 165 titres du 24/10 au 08/11 : 5 relus, tous à juste titre).
+TITRES_CIBLES = True
+
 # Noms connus de tous : un titre qui n'a que ceux-là n'a pas besoin d'être relu.
 _CONNUS_TITRE = {"Apple", "Google", "Samsung", "NASA", "SpaceX", "Mars", "Lune", "Terre", "Soleil", "Alzheimer",
                  "Parkinson", "Covid", "ChatGPT", "Microsoft", "Amazon", "Meta", "Tesla", "BYD", "Huawei", "IBM",
@@ -152,8 +156,7 @@ def a_relire(titre: str) -> bool:
 def passage_agent(db, client, fiches: list[dict], log) -> tuple[int, float]:
     """Appelé par main.py sur les fiches du passage, AVANT traductions et notifications."""
     fiches = [f for f in fiches if f.get("id")]
-    import redaction
-    if redaction.CONSIGNES_V4:
+    if TITRES_CIBLES:
         # 08/11 : la rédaction et la relecture font déjà le « test du passant » ; on ne relit plus
         # que les titres où le programme voit un sigle ou un nom propre (moins d'appels, moins de risque).
         fiches = [f for f in fiches if a_relire(f.get("title", ""))]

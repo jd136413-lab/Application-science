@@ -312,8 +312,14 @@ Puis donne la fiche corrigée. CHAQUE défaut que tu as listé doit être corrig
 Réponds uniquement avec le JSON demandé."""
 
 # Consignes allégées (08/11, consignes_v4.py) : activées par CONSIGNES_V4 (essais : variable d'environnement).
-CONSIGNES_V4 = bool(os.environ.get("CONSIGNES_V4"))
-if CONSIGNES_V4:
+# « 1 » = version allégée C (essai du 08/11 : −48 % de coût mais un peu moins bonne) ;
+# « b » = ancienne consigne + 3 retouches seulement (sans liste de contrôle, titre = résultat principal,
+# point « logique » dans la relecture).
+CONSIGNES_V4 = os.environ.get("CONSIGNES_V4", "")
+if CONSIGNES_V4 == "b":
+    from consignes_v4 import retouches_b  # noqa: E402
+    CONSIGNE, CONSIGNE_RELECTURE = retouches_b(CONSIGNE, CONSIGNE_RELECTURE)  # noqa: F811
+elif CONSIGNES_V4:
     from consignes_v4 import REDACTION_C as CONSIGNE, RELECTURE_C as CONSIGNE_RELECTURE  # noqa: E402,F811
 
 SCHEMA_RELECTURE = {
