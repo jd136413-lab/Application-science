@@ -367,3 +367,8 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
 - Base : `database/migration_013_videos.sql` (colonnes `video_url`, `video_titre` sur `advances` et `upcoming_events`), à lancer par Maxime. Sans elle, l'agent prévient dans les logs et n'enregistre rien.
 - App : bouton « ▶ Voir la vidéo » (+ titre de la vidéo) au-dessus des sources dans une avancée, et sous « Regarder en direct » dans un événement ; s'ouvre dans l'app YouTube / Vimeo / Dailymotion. Pas de maquette (petit bouton) : à ajuster si Maxime le souhaite.
 - Les fiches déjà publiées n'ont pas de vidéo (seulement les nouvelles).
+
+## 08/11/2026 — Bilan qualité sur 15 jours (demande de Maxime)
+- 165 fiches publiées du 24/10 au 08/11 notées par Claude (lecture gratuite, branche `redaction/notation-15j` : `tester_redaction.py` accepte maintenant `DEPUIS` et `SANS_LECTURE`). Détail fiche par fiche : `agent/bilan_qualite_15j.md`.
+- Moyenne avant (24/10 → 02/11) : 6,71 ; transition (03-04/11) : 6,97 ; après (05 → 08/11) : 7,68. Fiches < 6,5 : 25 % → 0 %. Fiches ≥ 8 : 2 % → 51 %. Doublons publiés : 6 paires avant/transition → 0 depuis le 05/11. Restes de consigne (« Et après ? », « selon la source ») : 18 → 0.
+- Grille plus stricte que les notes quotidiennes précédentes (≈ 8) : c'est l'écart avant/après qui compte.
