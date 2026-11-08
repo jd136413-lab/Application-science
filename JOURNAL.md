@@ -345,3 +345,10 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
 - Politique de confidentialité FR/EN mise à jour (partie 4 quinquies / 4d, enfants, droits).
 - Vérification du code : 0 erreur (branche `verif/pubs`). Compilation Android non encore faite (attend « compile »).
 - 07/11 — **Version 1.0.54 compilée** (première avec AdMob et in_app_purchase) : compilation Android réussie, envoyée en tests internes. AdMob : app « NovaSTEM » créée par Maxime, « Diffusion d'annonces limitée / Examen requis » (profil de paiement AdMob à compléter ; liaison au Play Store possible seulement après la mise en production). Profil marchand Play : nom public « Jupiter Dynamics » (valable pour de futures apps).
+
+## 08/11/2026 — Pubs préchargées et à la taille des cartes (demande de Maxime)
+- **Préchargement** (`_Reserve` dans `pubs_mobile.dart`) : 1 annonce d'accueil, 2 de liste, 2 d'« À venir » et 2 bandeaux gardés prêts en permanence (renouvelés après 50 min). Un emplacement prend une annonce prête au moment où il est construit ; sinon il reste vide et n'en prend une que lorsqu'il est sous le bas de l'écran : une annonce n'apparaît jamais sous les yeux, et rien ne saute. Échecs (« pas d'annonce disponible ») : nouvel essai de 1 à 15 min plus tard.
+- **Listes d'avancées** : annonce 320 × 100 dans une boîte de **la taille exacte de l'avancée précédente affichée sans image** (carte invisible en dessous, `CarteAvancee(sansImage: true)`).
+- **« À venir »** : une annonce 320 × 50 toutes les 8 cartes d'événements, de **la taille exacte de l'événement précédent** (`PubEvenement`).
+- Accueil (300 × 250) et bandeau sous « Lire l'article » : inchangés, mais préchargés.
+- Le prix « 3,99 € » s'affiche dans Réglages → Annonces (produit `retirer_annonces` actif, prix saisi 3,33 € HT, la Play Console ajoute la TVA de chaque pays).
