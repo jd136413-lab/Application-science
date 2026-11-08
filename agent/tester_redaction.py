@@ -35,9 +35,11 @@ def fiches(base: str, cle: str, nb: int, titres: list[str], decalage: int = 0) -
         for f in r.json() if r.ok else []:
             if f["id"] not in vus:
                 vus.add(f["id"]), res.append(f)
-    r = requests.get(base, headers=h, timeout=30, params={"select": champs, "avant": "not.is.null",
-                                                          "order": "created_at.desc", "limit": str(nb * 2),
-                                                          "offset": str(decalage)})
+    params = {"select": champs, "avant": "not.is.null", "order": "created_at.desc", "limit": str(nb * 2),
+              "offset": str(decalage)}
+    if os.environ.get("DEPUIS"):                       # bilan sur une période (08/11)
+        params["created_at"] = "gte." + os.environ["DEPUIS"]
+    r = requests.get(base, headers=h, timeout=30, params=params)
     for f in r.json() if r.ok else []:
         if len(res) >= nb + len(titres):
             break
@@ -72,7 +74,8 @@ def main() -> int:
     entetes, items = {}, []
     for i, f in enumerate(liste, 1):
         art = {"url": f["source_url"], "source_name": f["source_name"], "title": f["title"], "text": ""}
-        agent.lire_page(art)
+        if not os.environ.get("SANS_LECTURE"):
+            agent.lire_page(art)
         entetes[i] = [f"\n---\n\n## {i}. {f['title']}\n\nFil : {f['feed']} · {f['importance']}★ · "
                       f"source : {f['source_name']} · page lue : {'oui' if art.get('page_lue') else 'NON'} "
                       f"({len(art.get('text', ''))} caractères) · {f['source_url']}\n", bloc("Actuel (publié)", f)]
