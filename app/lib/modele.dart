@@ -27,6 +27,8 @@ class Avancee {
   final String? typeEtude;
   /// Autres médias qui parlent de la même avancée (maquette 49 B1).
   final List<SourceAvancee> autresSources;
+  /// Vidéo à l'appui trouvée par l'agent dans l'article (migration 013, 08/11/2026).
+  final String? video, videoTitre;
   /// Données d'origine, gardées pour enregistrer un favori sur le téléphone.
   final Map<String, dynamic> brut;
 
@@ -54,6 +56,8 @@ class Avancee {
     this.mots = const [],
     this.typeEtude,
     this.autresSources = const [],
+    this.video,
+    this.videoTitre,
   });
 
   factory Avancee.depuisJson(Map<String, dynamic> j) {
@@ -90,6 +94,8 @@ class Avancee {
             SourceAvancee(s['nom'].toString(), s['url'].toString(), (s['langue'] ?? '').toString(),
                 DateTime.tryParse((s['date'] ?? '').toString())),
       ],
+      video: (j['video_url'] as String?)?.trim(),
+      videoTitre: (j['video_titre'] as String?)?.trim(),
     );
   }
 }

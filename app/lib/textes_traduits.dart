@@ -455,6 +455,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'You were using NovaSTEM before ads arrived, so you will never see any. Thank you!',
     'Choix de confidentialité des annonces': 'Ad privacy choices',
     'Publicité': 'Ad',
+    'Voir la vidéo': 'Watch the video',
   },
   'es': {
     'Sciences': 'Ciencia',
@@ -909,6 +910,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'Usaba NovaSTEM antes de que llegaran los anuncios: nunca verá ninguno. ¡Gracias!',
     'Choix de confidentialité des annonces': 'Opciones de privacidad de anuncios',
     'Publicité': 'Publicidad',
+    'Voir la vidéo': 'Ver el vídeo',
   },
   'pt': {
     'Sciences': 'Ciência',
@@ -1363,6 +1365,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'Você já usava o NovaSTEM antes dos anúncios: nunca verá nenhum. Obrigado!',
     'Choix de confidentialité des annonces': 'Opções de privacidade dos anúncios',
     'Publicité': 'Publicidade',
+    'Voir la vidéo': 'Ver o vídeo',
   },
   'de': {
     'Sciences': 'Wissenschaft',
@@ -1817,6 +1820,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'Sie nutzten NovaSTEM schon vor der Werbung: Sie werden nie welche sehen. Danke!',
     'Choix de confidentialité des annonces': 'Datenschutzeinstellungen für Werbung',
     'Publicité': 'Anzeige',
+    'Voir la vidéo': 'Video ansehen',
   },
   'it': {
     'Sciences': 'Scienza',
@@ -2271,6 +2275,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'Usavi NovaSTEM prima dell’arrivo degli annunci: non ne vedrai mai. Grazie!',
     'Choix de confidentialité des annonces': 'Scelte sulla privacy degli annunci',
     'Publicité': 'Pubblicità',
+    'Voir la vidéo': 'Guarda il video',
   },
   'nl': {
     'Sciences': 'Wetenschap',
@@ -2725,6 +2730,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'U gebruikte NovaSTEM al vóór de advertenties: u ziet er nooit een. Bedankt!',
     'Choix de confidentialité des annonces': 'Privacykeuzes voor advertenties',
     'Publicité': 'Advertentie',
+    'Voir la vidéo': 'Bekijk de video',
   },
   'pl': {
     'Sciences': 'Nauka',
@@ -3179,6 +3185,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'Używałeś NovaSTEM, zanim pojawiły się reklamy: nigdy ich nie zobaczysz. Dziękujemy!',
     'Choix de confidentialité des annonces': 'Ustawienia prywatności reklam',
     'Publicité': 'Reklama',
+    'Voir la vidéo': 'Obejrzyj wideo',
   },
   'ru': {
     'Sciences': 'Наука',
@@ -3633,6 +3640,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'Вы пользовались NovaSTEM до появления рекламы — вы её никогда не увидите. Спасибо!',
     'Choix de confidentialité des annonces': 'Настройки конфиденциальности рекламы',
     'Publicité': 'Реклама',
+    'Voir la vidéo': 'Смотреть видео',
   },
   'uk': {
     'Sciences': 'Наука',
@@ -4087,6 +4095,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'Ви користувалися NovaSTEM до появи реклами — ви її ніколи не побачите. Дякуємо!',
     'Choix de confidentialité des annonces': 'Налаштування конфіденційності реклами',
     'Publicité': 'Реклама',
+    'Voir la vidéo': 'Дивитися відео',
   },
   'tr': {
     'Sciences': 'Bilim',
@@ -4541,6 +4550,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'NovaSTEM\'i reklamlardan önce kullanıyordunuz: hiç reklam görmeyeceksiniz. Teşekkürler!',
     'Choix de confidentialité des annonces': 'Reklam gizlilik tercihleri',
     'Publicité': 'Reklam',
+    'Voir la vidéo': 'Videoyu izle',
   },
   'ar': {
     'Sciences': 'العلوم',
@@ -4995,6 +5005,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'كنت تستخدم NovaSTEM قبل وصول الإعلانات: لن ترى أي إعلان أبدًا. شكرًا!',
     'Choix de confidentialité des annonces': 'خيارات خصوصية الإعلانات',
     'Publicité': 'إعلان',
+    'Voir la vidéo': 'شاهد الفيديو',
   },
   'hi': {
     'Sciences': 'विज्ञान',
@@ -5449,6 +5460,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'आप विज्ञापनों से पहले से NovaSTEM इस्तेमाल कर रहे थे: आपको कभी विज्ञापन नहीं दिखेंगे। धन्यवाद!',
     'Choix de confidentialité des annonces': 'विज्ञापन गोपनीयता विकल्प',
     'Publicité': 'विज्ञापन',
+    'Voir la vidéo': 'वीडियो देखें',
   },
   'bn': {
     'Sciences': 'বিজ্ঞান',
@@ -5903,6 +5915,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'বিজ্ঞাপন আসার আগে থেকেই আপনি NovaSTEM ব্যবহার করছেন: আপনি কখনও বিজ্ঞাপন দেখবেন না। ধন্যবাদ!',
     'Choix de confidentialité des annonces': 'বিজ্ঞাপনের গোপনীয়তা পছন্দ',
     'Publicité': 'বিজ্ঞাপন',
+    'Voir la vidéo': 'ভিডিও দেখুন',
   },
   'ur': {
     'Sciences': 'سائنس',
@@ -6357,6 +6370,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'آپ اشتہارات سے پہلے سے NovaSTEM استعمال کر رہے تھے: آپ کو کبھی اشتہار نظر نہیں آئیں گے۔ شکریہ!',
     'Choix de confidentialité des annonces': 'اشتہارات کی رازداری کے انتخاب',
     'Publicité': 'اشتہار',
+    'Voir la vidéo': 'ویڈیو دیکھیں',
   },
   'zh': {
     'Sciences': '科学',
@@ -6811,6 +6825,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': '您在广告上线前就已使用 NovaSTEM：您永远不会看到广告。谢谢！',
     'Choix de confidentialité des annonces': '广告隐私选项',
     'Publicité': '广告',
+    'Voir la vidéo': '观看视频',
   },
   'ja': {
     'Sciences': '科学',
@@ -7265,6 +7280,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': '広告導入前から NovaSTEM をご利用いただいているため、広告は一切表示されません。ありがとうございます！',
     'Choix de confidentialité des annonces': '広告のプライバシー設定',
     'Publicité': '広告',
+    'Voir la vidéo': '動画を見る',
   },
   'ko': {
     'Sciences': '과학',
@@ -7719,6 +7735,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': '광고 도입 전부터 NovaSTEM을 사용하셨으므로 광고가 절대 표시되지 않습니다. 감사합니다!',
     'Choix de confidentialité des annonces': '광고 개인정보 보호 선택',
     'Publicité': '광고',
+    'Voir la vidéo': '동영상 보기',
   },
   'id': {
     'Sciences': 'Sains',
@@ -8173,6 +8190,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'Anda sudah memakai NovaSTEM sebelum ada iklan, jadi Anda tidak akan pernah melihat iklan. Terima kasih!',
     'Choix de confidentialité des annonces': 'Pilihan privasi iklan',
     'Publicité': 'Iklan',
+    'Voir la vidéo': 'Tonton video',
   },
   'vi': {
     'Sciences': 'Khoa học',
@@ -8627,5 +8645,6 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !': 'Bạn đã dùng NovaSTEM từ trước khi có quảng cáo nên sẽ không bao giờ thấy quảng cáo. Cảm ơn bạn!',
     'Choix de confidentialité des annonces': 'Lựa chọn quyền riêng tư quảng cáo',
     'Publicité': 'Quảng cáo',
+    'Voir la vidéo': 'Xem video',
   },
 };

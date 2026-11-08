@@ -9521,3 +9521,24 @@ ja 広告
 ko 광고
 id Iklan
 vi Quảng cáo
+
+@ Voir la vidéo
+en Watch the video
+es Ver el vídeo
+pt Ver o vídeo
+de Video ansehen
+it Guarda il video
+nl Bekijk de video
+pl Obejrzyj wideo
+ru Смотреть видео
+uk Дивитися відео
+tr Videoyu izle
+ar شاهد الفيديو
+hi वीडियो देखें
+bn ভিডিও দেখুন
+ur ویڈیو دیکھیں
+zh 观看视频
+ja 動画を見る
+ko 동영상 보기
+id Tonton video
+vi Xem video

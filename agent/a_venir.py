@@ -51,6 +51,7 @@ except Exception:                      # pragma: no cover
 import requests
 
 import economie
+import videos
 
 import notifications
 
@@ -878,6 +879,10 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
             if cree:
                 futurs.append(cree)
                 QUOTA.compter(fam, feed)
+                # Vidéo à l'appui si l'article en contient une sur ce sujet (videos.py, 08/11)
+                if art.get("videos"):
+                    videos.attacher(_url(db), db.headers, cree.get("id"), ligne["title"],
+                                    ligne.get("pourquoi") or "", art["videos"], client, modele_id, conso, log)
             urls.add(art["url"])
             nouveaux += 1
             log(f"  📅 À venir : {d} {ligne['type']} — {ligne['title']}")

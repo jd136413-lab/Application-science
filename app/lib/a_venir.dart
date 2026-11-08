@@ -73,6 +73,8 @@ class Evenement {
   final String id, titre, type, fil, sourceUrl, sourceNom, precision, statut;
   final String? prevu, pourquoi, famille, heure, avanceeId;
   final String? lieu, lienDirect, lienDirectNom, visibleTexte, statutRaison;
+  /// Vidéo à l'appui trouvée par l'agent dans l'article (migration 013, 08/11/2026).
+  final String? video, videoTitre;
   final DateTime date; // jour seul (UTC)
   final DateTime? datePrecedente, fin, instantExact;
   final List<LignePratique> pratique;
@@ -101,6 +103,8 @@ class Evenement {
     this.lieu,
     this.lienDirect,
     this.lienDirectNom,
+    this.video,
+    this.videoTitre,
     this.visibleTexte,
     this.fin,
     this.instantExact,
@@ -159,6 +163,8 @@ class Evenement {
         lieu: j['lieu'] as String?,
         lienDirect: j['lien_direct'] as String?,
         lienDirectNom: j['lien_direct_nom'] as String?,
+        video: (j['video_url'] as String?)?.trim(),
+        videoTitre: (j['video_titre'] as String?)?.trim(),
         visibleTexte: j['visible_texte'] as String?,
         fin: _jour(j['event_end']),
         instantExact: DateTime.tryParse('${j['event_utc'] ?? ''}')?.toUtc(),
@@ -1244,6 +1250,9 @@ class _EcranEvenementState extends State<EcranEvenement> {
                   Padding(padding: const EdgeInsets.only(bottom: 16), child: CarteArrivee(e)),
                 for (final b in bandeauxEvenement(context, e)) Padding(padding: const EdgeInsets.only(bottom: 10), child: b),
                 if (boutonDirect(context, e) case final b?) Padding(padding: const EdgeInsets.only(bottom: 10), child: b),
+                // Vidéo à l'appui (08/11), seulement si l'agent en a trouvé une sur ce sujet.
+                if ((e.video ?? '').isNotEmpty && (e.video ?? '') != (e.lienDirect ?? ''))
+                  Padding(padding: const EdgeInsets.only(bottom: 10), child: BoutonVideo(lien: e.video!, titre: e.videoTitre)),
                 if (blocPratique(context, e) case final b?) Padding(padding: const EdgeInsets.only(bottom: 16), child: b),
                 if (!e.arrive && !e.annule && e.joursFin < 0 && e.type != 'ciel')
                   Container(

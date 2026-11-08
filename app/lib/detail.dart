@@ -1,6 +1,7 @@
 // Écran de détail d'une avancée.
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'carte.dart';
 import 'echelle_importance.dart';
@@ -115,6 +116,11 @@ class EcranDetail extends StatelessWidget {
         ]),
         const SizedBox(height: 16),
         _TitreEtResume(avancee: avancee),
+        // Vidéo à l'appui (08/11), seulement si l'agent en a trouvé une qui montre l'avancée.
+        if ((avancee.video ?? '').isNotEmpty) ...[
+          const SizedBox(height: 18),
+          BoutonVideo(lien: avancee.video!, titre: avancee.videoTitre),
+        ],
         const SizedBox(height: 18),
         BlocSources(source: avancee.source, lien: avancee.lien, autres: avancee.autresSources, avancee: avancee),
       ]),
@@ -494,5 +500,51 @@ class _BlocSourcesState extends State<BlocSources> {
               ]),
       ),
     ]);
+  }
+}
+
+
+/// Bouton « ▶ Voir la vidéo » (avancée ou événement) : ouvre la vidéo (YouTube, Vimeo,
+/// Dailymotion) dans l'application concernée. Le titre de la vidéo s'affiche dessous.
+class BoutonVideo extends StatelessWidget {
+  final String lien;
+  final String? titre;
+  const BoutonVideo({super.key, required this.lien, this.titre});
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    final uri = Uri.tryParse(lien);
+    return Material(
+      color: p.carte,
+      borderRadius: BorderRadius.circular(18),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: uri == null ? null : () => launchUrl(uri, mode: LaunchMode.externalApplication),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(children: [
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(color: const Color(0xFFE5484D), borderRadius: BorderRadius.circular(12)),
+              child: const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 30),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(tr('Voir la vidéo'), style: police(policeTexte, taille: 15, graisse: FontWeight.w800, couleur: p.texte)),
+                if ((titre ?? '').isNotEmpty)
+                  Text(titre!,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret, hauteur: 1.3)),
+              ]),
+            ),
+            Icon(Icons.open_in_new_rounded, size: 18, color: p.texteDiscret),
+          ]),
+        ),
+      ),
+    );
   }
 }

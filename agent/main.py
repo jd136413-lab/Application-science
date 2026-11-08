@@ -122,6 +122,7 @@ import titres
 import bilan_sources
 import a_venir
 import redaction
+import videos
 from anthropic import Anthropic
 
 from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
@@ -1062,6 +1063,12 @@ def lire_page(art: dict, n: int = 6000) -> None:
     except Exception as ex:
         art["statut_page"] = ex.__class__.__name__
         return
+    # Vidéos à l'appui (08/11) : liens YouTube / Vimeo / Dailymotion du corps de l'article (videos.py)
+    try:
+        deja = art.get("videos") or []
+        art["videos"] = (deja + [v for v in videos.candidats(page) if v not in deja])[:videos.MAX_CANDIDATS]
+    except Exception:
+        pass
     morceaux = []
     desc = _meta(page, "og:description", "description", "dc.description", "citation_abstract")
     if len(desc) >= 40:
@@ -1429,6 +1436,8 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
         "mots": mots, "type_etude": type_etude,
         # Autres médias qui parlent de la même avancée (migration 007, maquette 49 B1)
         "autres_sources": art.get("autres_sources_det") or [],
+        # Vidéos trouvées dans l'article (pas envoyé à la base : la vidéo choisie est ajoutée après)
+        "_videos": art.get("videos") or [],
     }
 
 
@@ -1813,6 +1822,15 @@ def main() -> int:
     nb_titres, cout_titres = titres.passage_agent(db, client, ajoutes, log)
     cout_red = cout_redaction[0]
 
+    # --- Vidéos à l'appui (videos.py, demande de Maxime du 08/11) : seulement si l'article en contient ---
+    conso_videos = {"in": 0, "out": 0}
+    if mode_budget == "normal":
+        for l in ajoutes:
+            if l.get("_videos"):
+                videos.attacher(db.base, db.headers, l.get("id"), l["title"], l.get("summary", ""), l["_videos"],
+                                client, modele["id"], conso_videos, log)
+    cout_videos = (conso_videos["in"] * modele["prix"][0] + conso_videos["out"] * modele["prix"][1]) / 1e6
+
     # --- Traductions (anglais…) : nouvelles fiches + rattrapage d'anciennes (traduction.py) ---
     trad_nouv, trad_anc, cout_trad = traduction.passage_agent(db, client, ajoutes, log)
 
@@ -1830,7 +1848,7 @@ def main() -> int:
     # --- Coût (cache : écriture = 1,25 × le prix d'entrée, lecture = 0,1 ×) ---
     p_in, p_out = modele["prix"]
     cout = (conso["in"] * p_in + conso["cache_w"] * p_in * 1.25
-            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad + cout_titres + cout_avenir + cout_red
+            + conso["cache_r"] * p_in * 0.1 + conso["out"] * p_out) / 1e6 + cout_trad + cout_titres + cout_avenir + cout_red + cout_videos
 
     enregistrer_attente()
     enregistrer_depense(cout)
