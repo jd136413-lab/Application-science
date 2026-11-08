@@ -534,6 +534,18 @@ class _BlocAnnoncesState extends State<_BlocAnnonces> {
         final enfants = <Widget>[];
         if (etat.sansPubAchete) {
           enfants.add(ligne(tr('Annonces retirées'), tr('Merci pour votre soutien !'), icone: Icons.favorite_rounded));
+          // Téléphone de Maxime (« hors statistiques ») seulement : revenir aux pubs de test
+          // après un achat d'essai. Pour racheter, rembourser d'abord la commande dans la Play Console.
+          if (etat.statsExclues) {
+            enfants.add(Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                onPressed: etat.annulerAchatTest,
+                child: Text('Annuler l’achat (test)',
+                    style: police(policeTexte, taille: 14, graisse: FontWeight.w700, couleur: const Color(0xFF3D7BFF))),
+              ),
+            ));
+          }
         } else if (etat.fondateur && !etat.statsExclues) {
           enfants.add(ligne(tr('Membre fondateur'),
               tr('Vous utilisiez NovaSTEM avant l’arrivée des annonces : vous n’en verrez jamais. Merci !'),

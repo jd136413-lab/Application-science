@@ -410,15 +410,17 @@ Future<void> _demarrerAchats() async {
       prixSansPub.value = _produit!.price;
     }
     // App réinstallée ou nouveau téléphone : l'achat revient tout seul (lié au compte Google).
-    if (!etat.sansPubAchete) await iap.restorePurchases();
+    if (!etat.sansPubAchete && !etat.achatTestIgnore) await iap.restorePurchases();
   } catch (_) {}
 }
 
+bool _restaurationManuelle = false;
+
 void _traiter(List<PurchaseDetails> achats) {
   for (final a in achats) {
-    if (a.productID == idProduitSansPub &&
-        (a.status == PurchaseStatus.purchased || a.status == PurchaseStatus.restored)) {
-      etat.marquerSansPub();
+    if (a.productID == idProduitSansPub) {
+      if (a.status == PurchaseStatus.purchased) etat.marquerSansPub();
+      if (a.status == PurchaseStatus.restored) etat.marquerSansPub(automatique: !_restaurationManuelle);
     }
     // Confirmer l'achat à Google (sinon il est remboursé automatiquement au bout de 3 jours).
     if (a.pendingCompletePurchase) InAppPurchase.instance.completePurchase(a);
@@ -438,6 +440,7 @@ Future<bool> acheterSansPub() async {
 
 /// Bouton « Restaurer mes achats ».
 Future<void> restaurerAchats() async {
+  _restaurationManuelle = true;
   try {
     await InAppPurchase.instance.restorePurchases();
   } catch (_) {}

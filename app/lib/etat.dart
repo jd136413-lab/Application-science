@@ -33,6 +33,9 @@ class EtatApp extends ChangeNotifier {
   bool fondateur = false;
   /// Achat « Retirer les annonces » fait sur ce compte Google Play.
   bool sansPubAchete = false;
+  /// Téléphone de Maxime seulement : achat de test « annulé » pour revoir les pubs de test.
+  /// L'achat restauré automatiquement au démarrage est alors ignoré.
+  bool achatTestIgnore = false;
   /// Niveaux d'importance (1 à 5) déjà expliqués par la bulle de la fiche.
   Set<int> niveauxVus = {};
   List<String> lues = []; // avancées déjà ouvertes (cartes grisées)
@@ -139,6 +142,7 @@ class EtatApp extends ChangeNotifier {
       fondateur = p.getBool('pubs_fondateur') ?? premierLancementFait;
       p.setBool('pubs_fondateur', fondateur);
       sansPubAchete = p.getBool('sans_pub_achete') ?? false;
+      achatTestIgnore = p.getBool('achat_test_ignore') ?? false;
       niveauxVus = (p.getStringList('niveaux_vus') ?? <String>[]).map(int.tryParse).whereType<int>().toSet();
       p.setInt('ouvertures', ouvertures);
       lues = p.getStringList('lues') ?? [];
@@ -221,10 +225,23 @@ class EtatApp extends ChangeNotifier {
   /// Le téléphone de Maxime (« hors statistiques ») voit des pubs de TEST, même fondateur.
   bool get pubsVoulues => !sansPubAchete && (!fondateur || statsExclues);
 
-  void marquerSansPub() {
+  /// [automatique] : achat retrouvé tout seul au démarrage (ignoré après « Annuler l'achat (test) »).
+  void marquerSansPub({bool automatique = false}) {
+    if (automatique && achatTestIgnore) return;
+    achatTestIgnore = false;
+    _prefs?.setBool('achat_test_ignore', false);
     if (sansPubAchete) return;
     sansPubAchete = true;
     _prefs?.setBool('sans_pub_achete', true);
+    notifyListeners();
+  }
+
+  /// Bouton caché (téléphone « hors statistiques ») : revoir les pubs de test après un achat d'essai.
+  void annulerAchatTest() {
+    sansPubAchete = false;
+    achatTestIgnore = true;
+    _prefs?.setBool('sans_pub_achete', false);
+    _prefs?.setBool('achat_test_ignore', true);
     notifyListeners();
   }
 
