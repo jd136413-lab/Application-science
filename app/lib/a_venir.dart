@@ -1294,7 +1294,8 @@ class _EcranEvenementState extends State<EcranEvenement> {
           // pour laisser la place au futur bandeau publicitaire.
           SafeArea(
             top: false,
-            child: Container(
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Container(
               decoration: BoxDecoration(border: Border(top: BorderSide(color: p.bordure.withValues(alpha: 0.5)))),
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 10),
               child: SizedBox(
@@ -1335,6 +1336,9 @@ class _EcranEvenementState extends State<EcranEvenement> {
                 ]),
               ),
             ),
+            // Petit bandeau publicitaire, comme sous « Lire l'article » d'une avancée (demande du 08/11).
+            const BandeauPub(),
+            ]),
           ),
           ]),
         );
