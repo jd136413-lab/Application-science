@@ -67,7 +67,7 @@ class EcranDetail extends StatelessWidget {
 
   Future<void> _ouvrir(BuildContext context) async {
     final uri = Uri.tryParse(avancee.lien);
-    stat('article', a: avancee);
+    statArticle(avancee);
     if (uri == null || !await ouvrirArticle(uri)) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Impossible d’ouvrir l’article'))));
@@ -354,7 +354,7 @@ class _BlocSourcesState extends State<BlocSources> {
 
   Future<void> _ouvrirSource(String nom, String lien) async {
     final uri = Uri.tryParse(lien);
-    if (widget.avancee != null) stat('article', a: widget.avancee, valeur: nom == widget.source ? null : 'autre_source');
+    if (widget.avancee != null) statArticle(widget.avancee!, valeur: nom == widget.source ? null : 'autre_source');
     if (uri == null || !await ouvrirArticle(uri)) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(tr('Impossible d’ouvrir l’article'))));

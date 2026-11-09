@@ -112,6 +112,7 @@ class _AppNovaStemState extends State<AppNovaStem> {
       final a = await chargerAvancee(contenu);
       if (a != null) {
         stat('notif_ouverte', a: a);
+        stat('lecture', a: a, valeur: 'notification');
         etat.marquerLue(a.id);
         nav.push(MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)));
       }

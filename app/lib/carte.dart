@@ -247,7 +247,8 @@ void ouvrirMenuCarte(BuildContext context, Avancee a) {
               final uri = Uri.tryParse(a.lien);
               if (uri != null) {
                 etat.marquerLue(a.id);
-                stat('article', a: a);
+                stat('lecture', a: a, valeur: 'menu'); // ouvert sans passer par la fiche
+                statArticle(a);
                 ouvrirArticle(uri);
               }
             }),

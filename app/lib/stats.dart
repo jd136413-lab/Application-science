@@ -49,6 +49,22 @@ void stat(String evenement, {Avancee? a, String? valeur}) {
   } catch (_) {}
 }
 
+/// Clic vers l'article source : compté UNE fois par fiche et par téléphone
+/// (plusieurs sources, ou le même article rouvert, ne recomptent pas). Le tableau
+/// de bord peut ainsi dire quelle part des avancées lues mène jusqu'à la source.
+Future<void> statArticle(Avancee a, {String? valeur}) async {
+  if (!statistiquesActives || !configurationPresente || kIsWeb || etat.statsExclues || appareilDeTest) return;
+  try {
+    final p = await SharedPreferences.getInstance();
+    final deja = p.getStringList('stat_articles') ?? <String>[];
+    final cle = a.id.isNotEmpty ? a.id : a.lien;
+    if (deja.contains(cle)) return;
+    deja.add(cle);
+    await p.setStringList('stat_articles', deja.length > 500 ? deja.sublist(deja.length - 500) : deja);
+  } catch (_) {}
+  stat('article', a: a, valeur: valeur);
+}
+
 /// Utilisateurs par langue (tableau de bord) : chaque téléphone envoie
 /// « actif_jour » une fois par jour et « actif_mois » une fois par mois, avec la
 /// langue de l'app. En les comptant, on connaît le nombre de téléphones actifs

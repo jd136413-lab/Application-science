@@ -30,6 +30,7 @@ import 'regions_monde.dart';
 import 'reglages.dart';
 import 'retours.dart';
 import 'texte_article.dart';
+import 'stats.dart';
 import 'widgets.dart';
 
 // ------------------------------------------------------------------ dates (heure de Paris)
@@ -501,6 +502,7 @@ Future<void> ouvrirAvanceeArrivee(BuildContext context, Evenement e) async {
     final a = await chargerAvancee(e.avanceeId!);
     if (a == null || !context.mounted) return;
     etat.marquerLue(a.id);
+    stat('lecture', a: a, valeur: 'a_venir');
     Navigator.of(context).push(MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)));
   } catch (_) {
     if (context.mounted) afficherMessage(context, tr(texteErreur), icone: Icons.wifi_off_rounded);

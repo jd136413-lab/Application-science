@@ -16,6 +16,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'reglages.dart';
 import 'texte_article.dart';
+import 'stats.dart';
 import 'widgets.dart';
 
 class EcranVocabulaire extends StatefulWidget {
@@ -57,6 +58,7 @@ class _EcranVocabulaireState extends State<EcranVocabulaire> {
     try {
       final a = await chargerAvancee(m.idAvancee);
       if (a != null && mounted) {
+        stat('lecture', a: a, valeur: 'vocabulaire');
         Navigator.of(context).push(MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)));
       }
     } catch (_) {

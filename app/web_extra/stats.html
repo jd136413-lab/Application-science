@@ -245,7 +245,7 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
       [fmt(u), "utilisateurs", fmt(t.installation) + " nouvelles installations"],
       [fmt(ouv), "ouvertures de l’app", u ? dec(ratio(ouv, u)) + " par utilisateur" : "–"],
       [fmt(vues), "avancées vues", dec(ratio(vues, ouv)) + " par ouverture en moyenne"],
-      [pct(nb(t.article), vues), "lisent l’article source", fmt(t.article) + " articles ouverts"],
+      [vues ? Math.min(100, Math.round(100 * nb(t.article) / vues)) + " %" : "–", "vont jusqu’à la source", fmt(t.article) + " fiches · une fois par fiche et par téléphone"],
       [fmt(nb(t.favori) + nb(t.partage)), "favoris et partages", fmt(t.favori) + " favoris · " + fmt(t.partage) + " partages"]
     ];
     document.getElementById("tuiles").innerHTML = items.map(function (x) {
@@ -405,6 +405,8 @@ details summary { cursor: pointer; font-weight: 700; font-size: 14px; }
     puces("usage", [
       [fmt(o.fil), "avancées ouvertes depuis le fil"],
       [fmt(o.glisse), "en glissant d’une avancée à l’autre"],
+      [fmt(o.notification), "ouvertes depuis une notification"],
+      [fmt(nb(o.vocabulaire) + nb(o.a_venir) + nb(o.menu) + nb(o.accueil)), "depuis l’accueil, le vocabulaire, « À venir » ou le menu d’une carte"],
       [fmt(t.notif_ouverte), "notifications touchées"],
       [fmt(t.hors_ligne), "ouvertures sans réseau"],
       [fmt(t.masquee), "avancées masquées"],
