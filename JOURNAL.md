@@ -378,3 +378,9 @@ Liste de Maxime, traitée un point à la fois : 1. traduction ; 2. répartition 
 - Essai sur 14 articles (`agent/essai_ab_consignes.md`) : ancienne 7,79/10, nouvelle 7,61/10 ; coût par fiche 0,0031 $ → 0,0016 $ (−48 %, surtout la liste de contrôle en moins). La nouvelle se trompe plus souvent de type d'étude (définitions raccourcies) et a perdu une fois le résultat principal. Relecture des titres ciblée : 5 titres sur 165 relus, tous à juste titre. Coût des deux essais : 0,067 $. En attente de la décision de Maxime.
 - 08/11 — 3e essai, version « b » (`CONSIGNES_V4=b` : ancienne consigne sans liste de contrôle, titre = résultat principal, point « logique ») : 7,75/10 et 0,0030 $ par fiche, équivalent à l'ancienne (7,79, 0,0031 $). Relecture des titres ciblée (`titres.TITRES_CIBLES = True`) mise en service. Total des trois essais : 0,11 $.
 - 08/11 — Décision de Maxime : on garde l'ancienne consigne (CONSIGNES_V4 reste vide). Seule la relecture des titres ciblée reste en service.
+
+## 09/11/2026 — Statistiques sans robots
+- Constat : rafales de faux utilisateurs les jours de compilation (8/11 : 21 ouvertures sur 25 venaient des versions 1.0.55 à 1.0.60, en test interne seulement). Les robots du rapport de pré-lancement de Google n'étaient plus reconnus.
+- App (prochaine compilation, 1.0.61+) : `MainActivity.kt` (généré par app.yml) reconnaît les robots par plusieurs signes (firebase.test.lab, isUserAMonkey, émulateur, installation hors Play Store) → aucune statistique.
+- Base : `migration_014_stats_sans_robots.sql` (à lancer par Maxime). Pour les versions ≤ 1.0.60, les événements des 12 h suivant l'apparition d'une version sont écartés du tableau de bord. Rien n'est supprimé. Testé sur un Postgres local.
+- Le téléphone de Maxime reste exclu (« hors statistiques »).

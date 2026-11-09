@@ -99,6 +99,8 @@ jobs:
           cat > android/app/src/main/kotlin/fr/novum/novum/MainActivity.kt <<'KT'
           package fr.novum.novum
 
+          import android.app.ActivityManager
+          import android.os.Build
           import android.provider.Settings
           import io.flutter.embedding.android.FlutterActivity
           import io.flutter.embedding.engine.FlutterEngine
@@ -109,10 +111,30 @@ jobs:
                   super.configureFlutterEngine(flutterEngine)
                   MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "novastem/appareil").setMethodCallHandler { appel, resultat ->
                       if (appel.method == "estAppareilDeTest") {
-                          val v = try { Settings.System.getString(contentResolver, "firebase.test.lab") } catch (e: Exception) { null }
-                          resultat.success(v == "true")
+                          resultat.success(estRobot())
                       } else resultat.notImplemented()
                   }
+              }
+
+              // Robot de Google (rapport de pré-lancement, Firebase Test Lab), émulateur, ou app
+              // qui ne vient pas du Play Store : aucune statistique. Plusieurs signes, car Google
+              // ne fournit plus toujours le premier (rafales de faux utilisateurs le 8/11).
+              private fun estRobot(): Boolean {
+                  try { if (Settings.System.getString(contentResolver, "firebase.test.lab") == "true") return true } catch (e: Exception) {}
+                  try { if (ActivityManager.isUserAMonkey()) return true } catch (e: Exception) {}
+                  val empreinte = (Build.FINGERPRINT ?: "").lowercase()
+                  val materiel = (Build.HARDWARE ?: "").lowercase()
+                  val modele = (Build.MODEL ?: "").lowercase()
+                  val produit = (Build.PRODUCT ?: "").lowercase()
+                  if (empreinte.startsWith("generic") || empreinte.contains("emulator") || empreinte.contains("test-keys")) return true
+                  if (materiel.contains("goldfish") || materiel.contains("ranchu") || materiel.contains("cutf")) return true
+                  if (modele.contains("sdk") || modele.contains("emulator") || produit.contains("sdk") || produit.contains("emulator")) return true
+                  // Les vrais utilisateurs installent depuis le Play Store ; les robots reçoivent l'app directement.
+                  val installateur = try {
+                      if (Build.VERSION.SDK_INT >= 30) packageManager.getInstallSourceInfo(packageName).installingPackageName
+                      else @Suppress("DEPRECATION") packageManager.getInstallerPackageName(packageName)
+                  } catch (e: Exception) { "inconnu" }
+                  return installateur != "com.android.vending"
               }
           }
           KT
