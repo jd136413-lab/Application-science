@@ -47,6 +47,7 @@ jobs:
           [ -f modeles/kokoro.onnx ] || curl -sL -o modeles/kokoro.onnx https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
           [ -f modeles/voices.bin ] || curl -sL -o modeles/voices.bin https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
           curl -sL -o polices/bric.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/bricolagegrotesque/BricolageGrotesque%5Bopsz,wdth,wght%5D.ttf"
+          curl -sL -o polices/fraunces.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/fraunces/Fraunces%5BSOFT,WONK,opsz,wght%5D.ttf"
           curl -sL -o polices/figtree.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/figtree/Figtree%5Bwght%5D.ttf"
       - name: Fabriquer la vidéo
         working-directory: agent

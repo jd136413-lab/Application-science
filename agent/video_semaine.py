@@ -26,6 +26,7 @@ DUREE_MAX_MOTS = 105          # ≈ 40 secondes de voix
 W, H, FPS = 1080, 1920, 30
 SORTIE = "sortie"
 JAUNE, BLANC, NOIR, BLEU = (255, 212, 59), (255, 255, 255), (0, 0, 0), (61, 123, 255)
+JAUNE_FONCE = (200, 140, 0)
 UA = {"User-Agent": "NovaSTEM-video/1.0 (application NovaSTEM ; vidéo hebdomadaire)"}
 # Couleurs de fond par famille (mêmes teintes que l'app, en plus sombre)
 FONDS = {"space": (24, 30, 70), "health": (70, 24, 40), "earth": (70, 52, 26), "life": (24, 64, 40),
@@ -75,33 +76,40 @@ def choisir_avancees():
 # ------------------------------------------------------------------ 2. texte
 CONSIGNE = """Tu écris le texte d'une vidéo courte verticale (YouTube Shorts, Instagram Reels) pour NovaSTEM,
 une application gratuite qui résume les avancées scientifiques et technologiques. Public : grand public
-francophone de 15 à 60 ans, qui fait défiler son fil et décide en 2 secondes de regarder ou non.
+francophone de 12 à 60 ans, qui fait défiler son fil et décide en 2 secondes de regarder ou non.
 
-Parmi les avancées proposées, choisis celle qui fera la meilleure vidéo : la plus marquante pour le grand
-public, facile à expliquer, avec un chiffre ou une image forte. Puis écris le texte.
+ÉTAPE 1 : CHOISIR. Parmi les avancées proposées, prends celle qu'un collégien comprendrait en 30 secondes ET
+qui le surprendrait : un effet concret sur la vie des gens, un record, une première. Écarte les sujets qui
+demandent trop de notions (mécanismes moléculaires, génétique fine, physique abstraite) même s'ils sont mieux notés.
 
-RÈGLES (les plus importantes d'abord)
-1. ACCROCHE (scène 1) : une phrase choc de 12 mots au plus, qui donne envie de rester ET dit clairement
-   de quoi on parle. Un fait surprenant, un chiffre fort ou une question directe. Mots de tous les jours,
-   aucune métaphore obscure, aucun mot technique. On doit comprendre le sujet à la première écoute.
-   Bon : « Des patients paralysés ont remarché grâce à leurs propres cellules. »
-   Mauvais : « Des dents de 400 000 ans viennent de parler. » (on ne comprend pas de quoi il s'agit)
-2. EXPLICATION (scènes 2 à 5) : une seule idée par scène, dans l'ordre : le problème avant, ce qui a été
-   fait, le résultat (avec le chiffre clé), ce que ça change pour nous. Phrases courtes (15 mots au plus),
-   comme si tu expliquais à un ami. Tout mot technique est expliqué en quelques mots ou remplacé.
-   Une comparaison concrète vaut mieux qu'un chiffre abstrait.
-3. VÉRITÉ : uniquement des faits présents dans la fiche. N'invente rien, n'exagère rien. Si c'est une
-   étude préliminaire (animaux, laboratoire), dis-le simplement.
-4. Le texte « voix » est lu par une voix de synthèse : écris les nombres en lettres (« vingt et un pour
-   cent »), pas de sigle sans l'expliquer, pas de parenthèses. Le texte « ecran » est le même, avec les
-   nombres en chiffres (« 21 % »), pour les sous-titres.
-5. En tout, 95 mots au plus pour les 5 scènes (environ 35 secondes). Ne mets pas de phrase de fin :
-   l'écran de fin NovaSTEM est ajouté automatiquement.
+ÉTAPE 2 : LE MESSAGE. Écris en une phrase simple ce que le spectateur doit retenir (champ « message »).
+Toute la vidéo sert ce message, et rien d'autre : pas de détail qui ne l'aide pas à comprendre.
 
-Pour chaque scène, donne aussi 2 ou 3 mots-clés EN ANGLAIS pour chercher une photo libre de droits qui
-illustre la phrase (choses concrètes et photographiables : « fossil tooth », « laboratory microscope »,
-« Philippines people »), et, si la scène contient le chiffre clé, ce chiffre court (« 21 % ») et une
-légende de 6 mots au plus.
+ÉTAPE 3 : LES 5 SCÈNES, qui racontent une petite histoire où chaque phrase découle de la précédente :
+ 1. ACCROCHE (12 mots au plus) : le résultat le plus surprenant, dit simplement. On doit savoir tout de suite
+    de quoi on parle. Pas de métaphore, pas d'énigme. Bon : « Des patients paralysés ont remarché grâce à leurs
+    propres cellules. » Mauvais : « Des dents de 400 000 ans viennent de parler. »
+ 2. LE PROBLÈME : ce qu'on ne savait pas ou ne pouvait pas faire avant, et pourquoi c'était gênant.
+ 3. CE QU'ILS ONT FAIT : qui, et quelle idée, expliquée avec une comparaison de la vie de tous les jours.
+ 4. LE RÉSULTAT : ce qu'ils ont trouvé, avec le chiffre clé expliqué (« un habitant sur cinq » plutôt que
+    « vingt et un pour cent » quand c'est plus parlant).
+ 5. POURQUOI C'EST IMPORTANT : ce que ça change pour nous, en reprenant le message. Si c'est une étude
+    préliminaire (animaux, laboratoire), dis-le simplement.
+Phrases courtes (15 mots au plus), mots de tous les jours, comme si tu expliquais à un ami. Utilise des mots de
+liaison (« Problème : », « Alors », « Résultat : », « Et pour nous ? ») pour que l'histoire se suive.
+Chaque mot technique est remplacé ou expliqué en 4 mots. 95 mots au plus en tout. Pas de phrase de fin
+(l'écran NovaSTEM est ajouté automatiquement).
+
+VÉRITÉ : uniquement des faits présents dans la fiche. N'invente rien, n'exagère rien.
+
+TEXTE LU PAR UNE VOIX DE SYNTHÈSE (champ « voix ») : nombres en lettres, aucune parenthèse, aucune
+écriture inclusive ni « (s) », aucun sigle non expliqué, aucun tiret ni guillemet. Le champ « ecran » est
+le même texte, avec les nombres en chiffres, pour les sous-titres.
+
+Pour chaque scène : une étiquette de 3 mots au plus affichée en haut de l'écran (« LE PROBLÈME »,
+« L'IDÉE », « LE RÉSULTAT », « ET POUR NOUS ? » ; l'accroche n'en a pas), 2 ou 3 mots-clés EN ANGLAIS pour
+chercher une photo libre de droits (choses concrètes et photographiables), et, pour la scène du résultat, le
+chiffre court (6 caractères au plus, ex. « 1 sur 5 ») avec une légende de 6 mots au plus.
 
 Écris enfin la description de la publication : 2 phrases simples + 4 à 6 hashtags en français."""
 
@@ -109,17 +117,19 @@ SCHEMA = {
     "type": "object",
     "properties": {
         "choix": {"type": "integer", "description": "numéro de l'avancée choisie"},
+        "message": {"type": "string", "description": "ce que le spectateur doit retenir, en une phrase simple"},
         "sujet": {"type": "string", "description": "2 ou 3 mots en majuscules affichés au début, ex. ÉVOLUTION HUMAINE"},
         "scenes": {"type": "array", "minItems": 5, "maxItems": 5, "items": {
             "type": "object",
             "properties": {
                 "voix": {"type": "string"}, "ecran": {"type": "string"},
+                "etiquette": {"type": "string", "description": "3 mots au plus, vide pour l'accroche"},
                 "mots_cles_image": {"type": "string"},
                 "chiffre": {"type": "string", "description": "chiffre clé court, 6 caractères au plus, ex. 21 %"}, "legende": {"type": "string"}},
             "required": ["voix", "ecran", "mots_cles_image"]}},
         "description": {"type": "string"},
     },
-    "required": ["choix", "sujet", "scenes", "description"],
+    "required": ["choix", "message", "sujet", "scenes", "description"],
 }
 
 
@@ -182,7 +192,17 @@ def mp3_vers_tableau(octets):
     return sf.read(io.BytesIO(p.stdout))
 
 
+def texte_a_lire(p):
+    """Nettoie ce que la voix lit : « lointain(s) », parenthèses, guillemets, tirets…"""
+    p = re.sub(r"(\w)\((e?s|e|x)\)", r"\1\2", p)        # lointain(s) → lointains
+    p = re.sub(r"\s*\([^)]*\)", "", p)                   # (remarque entre parenthèses) supprimée
+    p = re.sub(r"[«»\"“”]", "", p).replace(" – ", ", ").replace(" — ", ", ")
+    p = re.sub(r"(\w)·(\w)", r"\1\2", p)                  # écriture inclusive
+    return re.sub(r"\s+", " ", p).strip()
+
+
 def fabriquer_voix(phrases):
+    phrases = [texte_a_lire(p) for p in phrases]
     if os.environ.get("ELEVENLABS_API_KEY"):
         moteurs = [("ElevenLabs", voix_elevenlabs), ("voix libre", voix_libre)]
     elif os.environ.get("GOOGLE_TTS_API_KEY"):
@@ -387,6 +407,50 @@ def choisir_musique(famille):
 
 
 # ------------------------------------------------------------------ 5. montage
+ROSE_LOGO, BLEU_LOGO = (255, 90, 138), (61, 123, 255)
+
+
+def _phase(avance, debut, fin):
+    x = min(max((avance - debut) / (fin - debut), 0), 1)
+    return 1 - (1 - x) ** 3  # easeOutCubic, comme dans l'app
+
+
+def dessiner_logo(img, x, y, taille, avance=1.0):
+    """Logo NovaSTEM identique à l'app (widgets.dart, LogoNovaStem) : « No » rose et « No » bleu
+    qui arrivent de chaque côté et se superposent (mélange « écran »), cadre, numéro 102, « va » et « STEM »
+    en exposant. avance : 0 → 1 pendant l'animation (1,1 s dans l'app)."""
+    from PIL import ImageChops
+    arrivee, cadre, fin = _phase(avance, 0, .45), _phase(avance, .3, .65), _phase(avance, .5, 1)
+    f = police(taille, "Bold", "polices/fraunces.ttf")
+    f_num = police(max(8, int(taille * .23)), "Bold", "polices/figtree.ttf")
+    f_exp = police(max(8, int(taille * .36)), "Bold", "polices/figtree.ttf")
+    bord, pad_g, pad_h, pad_b = max(2, int(taille * .068)), taille * .18, taille * .27, taille * .11
+    asc = f.getmetrics()[0]
+    larg_no = f.getlength("No")
+    l_cadre, h_cadre = larg_no + 2 * pad_g + taille * .068, asc + pad_h + pad_b
+    # « No » rose et bleu sur des calques séparés, mélangés en mode écran (comme dans l'app sur fond sombre)
+    zone = (int(x - taille), int(y), int(x + l_cadre + taille), int(y + h_cadre + taille * .3))
+    fond = img.crop(zone)
+    for coul, dx, dy, signe in ((ROSE_LOGO, 0, 0, -1), (BLEU_LOGO, taille * .068, taille * .045, 1)):
+        calque = Image.new("RGB", fond.size, (0, 0, 0))
+        cd = ImageDraw.Draw(calque)
+        c = tuple(int(v * arrivee) for v in coul)
+        cd.text((taille + pad_g + dx + signe * taille * .9 * (1 - arrivee), pad_h + dy), "No", font=f, fill=c)
+        fond = ImageChops.screen(fond, calque)
+    img.paste(fond, zone[:2])
+    d = ImageDraw.Draw(img)
+    if cadre > 0:
+        c = tuple(int(255 * cadre + v * (1 - cadre)) for v in (40, 40, 50))
+        d.rectangle((x, y, x + l_cadre, y + h_cadre), outline=c if cadre > .05 else None, width=bord)
+    if fin > 0:
+        blanc = tuple(int(255 * fin + 20 * (1 - fin)) for _ in range(3))
+        d.text((x + pad_g - taille * .05, y + pad_h - taille * .21), "102", font=f_num, fill=blanc)
+        bx = x + l_cadre + taille * .07
+        by = y + h_cadre - pad_b - asc + taille * .12 * (1 - fin)
+        if fin > .05:
+            d.text((bx, by), "va", font=f, fill=blanc)
+            d.text((bx + f.getlength("va") + taille * .04, by + taille * .04), "STEM", font=f_exp, fill=blanc)
+    return l_cadre + taille * .07 + f.getlength("va") + taille * .04 + f_exp.getlength("STEM")
 def police(taille, style="ExtraBold", f="polices/bric.ttf"):
     p = ImageFont.truetype(f, taille)
     try:
@@ -472,11 +536,8 @@ def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
             if k_in == len(groupes[gi]):
                 gi += 1; k_in = 0
 
-    def logo(d, x, y, s=1.0):
-        f, f2 = police(int(44 * s)), police(int(26 * s), "ExtraBold", "polices/figtree.ttf")
-        d.rounded_rectangle((x, y + int(6 * s), x + int(58 * s), y + int(52 * s)), radius=int(6 * s), outline=BLANC, width=max(2, int(4 * s)))
-        d.text((x + int(9 * s), y + int(13 * s)), "No", font=f2, fill=BLANC)
-        d.text((x + int(66 * s), y), "vaSTEM", font=f, fill=BLANC)
+    def logo(d, x, y, s=1.0, avance=1.0):
+        dessiner_logo(d._image, x, y, int(44 * s), avance)
 
     def badge(d, txt, x, y, c=BLEU):
         w = d.textlength(txt, font=P_BADGE)
@@ -531,15 +592,21 @@ def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
             d = ImageDraw.Draw(img)
             if i == 0:
                 a = ease(tl / 0.4)
-                badge(d, "LA DÉCOUVERTE DE LA SEMAINE", 60, int(150 - 30 * (1 - a)))
-                centre(d, texte["sujet"].upper(), 250, P_SUJET)
+                dessiner_logo(img, 60, 55, 56, min(1, tl / 1.1))
+                d = ImageDraw.Draw(img)
+                badge(d, "LA DÉCOUVERTE DE LA SEMAINE", 60, int(185 - 30 * (1 - a)))
+                centre(d, texte["sujet"].upper(), 285, P_SUJET)
             else:
-                logo(d, 60, 70)
+                dessiner_logo(img, 60, 55, 56)
+                d = ImageDraw.Draw(img)
+                if s.get("etiquette"):
+                    a = ease(tl / 0.35)
+                    badge(d, s["etiquette"].upper()[:28], 60, int(185 - 30 * (1 - a)), JAUNE_FONCE)
             if s.get("chiffre"):
                 a = ease((tl - 0.2) / 0.5)
                 base = 230 if len(s['chiffre']) <= 6 else 130
                 f_big = police(int(base + 30 * (1 - a)))
-                y = centre(d, s["chiffre"], 330 if i else 520, f_big, JAUNE, 8)
+                y = centre(d, s["chiffre"], 360 if i else 520, f_big, JAUNE, 8)
                 if s.get("legende"):
                     centre(d, s["legende"], y + 10, P_SM)
             elif photos[i] is None and i > 0:
@@ -551,7 +618,9 @@ def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
             img = degrade((26, 26, 46), (10, 10, 16))
             d = ImageDraw.Draw(img)
             a = ease(tl / 0.6)
-            logo(d, int(W / 2 - 330), int(560 - 40 * (1 - a)), 3.0)
+            larg = 150 * 4.02
+            dessiner_logo(img, int((W - larg) / 2), 560, 150, min(1, tl / 1.1))
+            d = ImageDraw.Draw(img)
             for k, l in enumerate(["Chaque semaine, la plus grande", "avancée scientifique en 40 s"]):
                 d.text(((W - d.textlength(l, font=P_SM)) / 2, 820 + k * 58), l, font=P_SM, fill=(220, 220, 235))
             b = "Disponible sur Google Play"
@@ -624,6 +693,10 @@ def main():
     fiches = choisir_avancees()
     log("Candidates :", *[f"\n  ★{f.get('importance')} {f['title']}" for f in fiches])
     fiche, texte = ecrire_texte(fiches)
+    for sc in texte["scenes"]:
+        sc["ecran"] = re.sub(r"(\w)\((e?s|e|x)\)", r"\1\2", sc["ecran"])
+        sc["ecran"] = re.sub(r"\s*\([^)]*\)", "", sc["ecran"])
+    log(f"Message : {texte.get('message')}")
     log(f"\nAvancée choisie : {fiche['title']}\nSujet : {texte['sujet']}")
     for k, s in enumerate(texte["scenes"], 1):
         log(f"  {k}. {s['voix']}")
