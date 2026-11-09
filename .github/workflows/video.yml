@@ -1,0 +1,63 @@
+# Vidéo de la semaine (09/11/2026)
+#  - AUTOMATIQUE : lancée le samedi soir par le passage de l'agent de 18 h 20 (heure de Paris).
+#  - À LA MAIN : onglet « Actions » → « Vidéo de la semaine » → « Run workflow ».
+# Résultat : en bas de la page de l'exécution, « Artifacts » → video-de-la-semaine
+# (la vidéo + la description à coller en publiant). Gardé 30 jours.
+# Coût : moins d'1 centime (Haiku). Voix : ElevenLabs si le secret ELEVENLABS_API_KEY existe,
+# sinon Google si GOOGLE_TTS_API_KEY existe, sinon une voix libre gratuite (moins naturelle).
+# POUR ARRÊTER : Actions → « Vidéo de la semaine » → « ··· » → « Disable workflow ».
+name: Vidéo de la semaine
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["video/**"]   # essais lancés par Claude
+
+concurrency:
+  group: video
+  cancel-in-progress: false
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Outils (montage vidéo et voix libre)
+        run: |
+          which ffmpeg || (sudo apt-get update -q && sudo apt-get install -y -q ffmpeg)
+          pip install -q anthropic requests numpy pillow soundfile kokoro-onnx
+      - name: Mémoire de la voix libre (modèle de 350 Mo)
+        uses: actions/cache@v4
+        with:
+          path: agent/modeles
+          key: voix-libre-kokoro-v1
+      - name: Voix libre et polices
+        working-directory: agent
+        run: |
+          mkdir -p modeles polices
+          [ -f modeles/kokoro.onnx ] || curl -sL -o modeles/kokoro.onnx https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
+          [ -f modeles/voices.bin ] || curl -sL -o modeles/voices.bin https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+          curl -sL -o polices/bric.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/bricolagegrotesque/BricolageGrotesque%5Bopsz,wdth,wght%5D.ttf"
+          curl -sL -o polices/figtree.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/figtree/Figtree%5Bwght%5D.ttf"
+      - name: Fabriquer la vidéo
+        working-directory: agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+        run: python video_semaine.py
+      - name: Livrer la vidéo
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-de-la-semaine
+          path: |
+            agent/sortie/video_semaine.mp4
+            agent/sortie/description.txt
+            agent/sortie/script.json
+          retention-days: 30

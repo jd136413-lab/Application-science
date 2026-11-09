@@ -38,6 +38,7 @@ on:
 
 permissions:
   contents: write   # enregistrer agent/bilan_sources.md
+  actions: write    # lancer la « Vidéo de la semaine » le samedi soir
 
 # Une seule exécution à la fois : un double clic ne lance pas deux agents.
 concurrency:
@@ -114,4 +115,16 @@ jobs:
             python controle_semaine.py
           else
             echo "Pas de contrôle aujourd'hui (seulement le dimanche soir ou à la main)."
+          fi
+      # Vidéo de la semaine : lancée le samedi soir (passage de 18 h 20).
+      - name: Lancer la vidéo de la semaine (samedi soir)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          JOUR=$(TZ=Europe/Paris date +%u); HEURE=$(TZ=Europe/Paris date +%H)
+          if [ "$JOUR" = "6" ] && [ "$HEURE" -ge 15 ]; then
+            gh workflow run video.yml --ref main -R "$GITHUB_REPOSITORY" && echo "Vidéo de la semaine lancée."
+          else
+            echo "Pas de vidéo aujourd'hui (seulement le samedi soir)."
           fi
