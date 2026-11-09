@@ -11,6 +11,10 @@ name: Vidéo de la semaine
 on:
   workflow_dispatch:
     inputs:
+      avancee:
+        description: "Facultatif : mots du titre de l'avancée à mettre en vidéo (ex. 500 km/h). Vide = Sonnet choisit"
+        type: string
+        default: ""
       enregistrer:
         description: "Vraie vidéo de la semaine : noter l'avancée pour ne jamais la refaire (décoché = simple essai)"
         type: boolean
@@ -65,7 +69,11 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
-        run: python video_semaine.py
+          AVANCEE: ${{ inputs.avancee }}
+        run: |
+          # Essais de Claude (branche video/…) : avancée imposée lue dans essai_avancee.txt
+          if [ -z "$AVANCEE" ] && [ -f essai_avancee.txt ]; then export AVANCEE="$(cat essai_avancee.txt)"; fi
+          python video_semaine.py
       - name: Livrer la vidéo
         uses: actions/upload-artifact@v4
         with:

@@ -49,9 +49,19 @@ def choisir_avancees():
     if cle.startswith("eyJ"):
         h["Authorization"] = f"Bearer {cle}"
     depuis = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+    champs = "id,title,summary,avant,decouverte,apres,importance,family,feed,source_name,source_url,image_url,image_credit,created_at"
+    impose = (os.environ.get("AVANCEE") or "").strip()
+    if impose:  # avancée choisie à la main (identifiant ou mots du titre)
+        cle_rech = {"id": f"eq.{impose}"} if re.fullmatch(r"[0-9a-f-]{36}", impose) else {"title": f"ilike.*{impose}*"}
+        r = requests.get(f"{url}/rest/v1/advances", headers=h, timeout=30,
+                         params={"select": champs, "order": "created_at.desc", "limit": "1", **cle_rech})
+        r.raise_for_status()
+        if r.json():
+            log(f"Avancée imposée : {r.json()[0]['title']}")
+            return r.json()
+        log(f"⚠ Aucune avancée ne correspond à « {impose} » : choix automatique.")
     r = requests.get(f"{url}/rest/v1/advances", headers=h, timeout=30, params={
-        "select": "id,title,summary,avant,decouverte,apres,importance,family,feed,source_name,source_url,image_url,image_credit,created_at",
-        "created_at": f"gte.{depuis}", "order": "importance.desc,created_at.desc", "limit": "200"})
+        "select": champs, "created_at": f"gte.{depuis}", "order": "importance.desc,created_at.desc", "limit": "200"})
     r.raise_for_status()
     fiches = r.json()
     if not fiches:
@@ -90,8 +100,10 @@ une application gratuite qui résume les avancées scientifiques et technologiqu
 francophone de 12 à 60 ans qui fait défiler son fil. Il décide en 1 seconde de rester ou non, en se demandant
 seulement : « est-ce que ça me concerne ? » ou « est-ce que c'est fou ? ».
 
-ÉTAPE 1 : CHOISIR L'AVANCÉE, dans cet ordre de priorité :
- 1) D'ABORD LA CLARTÉ : un sujet qu'un collégien comprend en 25 secondes, sans aucune notion préalable :
+ÉTAPE 1 : CHOISIR L'AVANCÉE (si une seule est proposée, c'est elle), dans cet ordre de priorité :
+ 0) D'ABORD LE SPECTACULAIRE MONTRABLE : de préférence le fil Technologies, avec un objet qu'on peut montrer
+    et qui impressionne (voiture, avion, robot, fusée, appareil, record de vitesse, de taille, de puissance).
+ 1) ENSUITE LA CLARTÉ : un sujet qu'un collégien comprend en 25 secondes, sans aucune notion préalable :
     un effet concret sur la vie des gens, un objet qu'on se représente, un record, une première.
     Écarte les sujets qui demandent des notions (protéines, gènes, particules, réseaux électriques,
     mécanismes chimiques, physique abstraite), même s'ils sont mieux notés.
@@ -169,7 +181,7 @@ def ecrire_texte(fiches):
     blocs = []
     for i, f in enumerate(fiches):
         corps = "\n".join(x for x in [f.get("avant"), f.get("decouverte"), f.get("apres")] if x) or f.get("summary") or ""
-        blocs.append(f"[{i}] {f['title']} (importance {f.get('importance')}/5, source {f.get('source_name')})\n{corps}")
+        blocs.append(f"[{i}] ({'Technologies' if f.get('feed') == 'tech' else 'Sciences'}) {f['title']} (importance {f.get('importance')}/5, source {f.get('source_name')})\n{corps}")
     r = client.messages.create(
         model=MODELE, max_tokens=8000, system=CONSIGNE,
         output_config={"format": {"type": "json_schema", "schema": SCHEMA}},
@@ -195,8 +207,36 @@ def voix_elevenlabs(phrase):
     return mp3_vers_tableau(r.content)
 
 
+STYLE_VOIX = ("Lis en français, comme un créateur de vidéos scientifiques sur les réseaux sociaux : "
+              "ton enthousiaste et captivant, rythme dynamique, articulation nette.")
+
+
+def voix_gemini(phrase):
+    """Gemini-TTS (Google Cloud) : même voix « Charon », mais prononce correctement
+    les apostrophes françaises (l'avion, c'est), contrairement à Chirp 3 HD (bug connu)."""
+    cle = os.environ["GOOGLE_TTS_API_KEY"]
+    r = requests.post("https://texttospeech.googleapis.com/v1/text:synthesize", params={"key": cle}, timeout=120,
+                      json={"input": {"prompt": STYLE_VOIX, "text": phrase},
+                            "voice": {"languageCode": "fr-FR", "name": os.environ.get("GEMINI_TTS_VOICE") or "Charon",
+                                      "modelName": os.environ.get("GEMINI_TTS_MODELE") or "gemini-2.5-flash-tts"},
+                            "audioConfig": {"audioEncoding": "LINEAR16", "sampleRateHertz": 44100}})
+    if r.status_code >= 400:
+        raise RuntimeError(f"{r.status_code} {r.text[:200]}")
+    a, sr = sf.read(io.BytesIO(base64.b64decode(r.json()["audioContent"])))
+    return a, sr
+
+
+def sans_elision(p):
+    """Secours pour Chirp 3 HD, qui lit « l'avion » comme « l, avion » : on colle les mots."""
+    p = re.sub(r"\b[Cc]'est\b", "cè", p)
+    p = re.sub(r"\b([Nn])'est\b", r"\1è", p)
+    p = re.sub(r"\b([Qq])u'", r"k", p)
+    return re.sub(r"\b([LlDdJjNnSsMmTtCc])'(\w)", r"\1\2", p)
+
+
 def voix_google(phrase):
     cle = os.environ["GOOGLE_TTS_API_KEY"]
+    phrase = sans_elision(phrase)
     nom = os.environ.get("GOOGLE_TTS_VOICE") or "fr-FR-Chirp3-HD-Charon"
     r = requests.post("https://texttospeech.googleapis.com/v1/text:synthesize", params={"key": cle}, timeout=120,
                       json={"input": {"text": phrase}, "voice": {"languageCode": "fr-FR", "name": nom},
@@ -237,7 +277,7 @@ def fabriquer_voix(phrases):
     if os.environ.get("ELEVENLABS_API_KEY"):
         moteurs = [("ElevenLabs", voix_elevenlabs), ("voix libre", voix_libre)]
     elif os.environ.get("GOOGLE_TTS_API_KEY"):
-        moteurs = [("Google", voix_google), ("voix libre", voix_libre)]
+        moteurs = [("Google Gemini", voix_gemini), ("Google", voix_google), ("voix libre", voix_libre)]
     else:
         moteurs = [("voix libre", voix_libre)]
     for nom, f in moteurs:
@@ -766,11 +806,13 @@ def main():
                "credits": [[x[1] for x in l] for l in images]},
               open(os.path.join(SORTIE, "script.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     car = COUTS["caracteres_voix"]
-    prix_voix = car * 30 / 1e6 if nom_voix == "Google" else (car * 0.0002 if nom_voix == "ElevenLabs" else 0)
+    duree_voix = segs[-1][1] if segs else 0
+    prix_voix = (car * 30 / 1e6 if nom_voix == "Google" else car * 0.0002 if nom_voix == "ElevenLabs"
+                 else duree_voix * 25 * 10 / 1e6 + car / 4 * 0.5 / 1e6 if nom_voix == "Google Gemini" else 0)
     cout_txt = (f"Coût de cette vidéo : choix et texte (Sonnet) {COUTS['haiku']:.4f} $ + voix {nom_voix} "
                 + (f"{car} caractères ({prix_voix:.4f} $ au tarif, mais gratuit sous 1 million de caractères par mois)"
-                   if nom_voix == "Google" else ("gratuite" if nom_voix == "voix libre" else f"{car} caractères ≈ {prix_voix:.4f} $"))
-                + f" = {COUTS['haiku']:.4f} $ payés réellement. Calcul GitHub : gratuit (repo public).")
+                   if nom_voix == "Google" else f"≈ {prix_voix:.4f} $ (estimation)" if nom_voix == "Google Gemini" else ("gratuite" if nom_voix == "voix libre" else f"{car} caractères ≈ {prix_voix:.4f} $"))
+                + f" = {COUTS['haiku'] + (prix_voix if nom_voix in ('Google Gemini', 'ElevenLabs') else 0):.4f} $ en tout. Calcul GitHub : gratuit (repo public).")
     print(f"::notice title=Coût::{cout_txt}", flush=True)
     print(f"::notice title=Vidéo::{fiche['title']} — plan {texte.get('plan')} — {total:.0f} s, voix {nom_voix}, musique {'libre' if credit_musique else 'de secours'}, sous-titres {'calés' if cales else 'approximatifs'}", flush=True)
     log(f"\n✅ Vidéo prête : {chemin} ({total:.0f} s, voix : {nom_voix}).")
