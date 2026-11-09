@@ -3,19 +3,27 @@
 #  - À LA MAIN : onglet « Actions » → « Vidéo de la semaine » → « Run workflow ».
 # Résultat : en bas de la page de l'exécution, « Artifacts » → video-de-la-semaine
 # (la vidéo + la description à coller en publiant). Gardé 30 jours.
-# Coût : moins d'1 centime (Haiku) ; affiché en haut de la page de chaque exécution. Voix : ElevenLabs si le secret ELEVENLABS_API_KEY existe,
+# Coût : environ 3 centimes (Sonnet) ; affiché en haut de la page de chaque exécution. Voix : ElevenLabs si le secret ELEVENLABS_API_KEY existe,
 # sinon Google si GOOGLE_TTS_API_KEY existe, sinon une voix libre gratuite (moins naturelle).
 # POUR ARRÊTER : Actions → « Vidéo de la semaine » → « ··· » → « Disable workflow ».
 name: Vidéo de la semaine
 
 on:
   workflow_dispatch:
+    inputs:
+      enregistrer:
+        description: "Vraie vidéo de la semaine : noter l'avancée pour ne jamais la refaire (décoché = simple essai)"
+        type: boolean
+        default: false
   push:
     branches: ["video/**"]   # essais lancés par Claude
 
 concurrency:
   group: video
   cancel-in-progress: false
+
+permissions:
+  contents: write   # noter l'avancée utilisée (agent/videos_faites.json)
 
 jobs:
   video:
@@ -67,3 +75,18 @@ jobs:
             agent/sortie/description.txt
             agent/sortie/script.json
           retention-days: 30
+      - name: Noter l'avancée utilisée (pas de doublon)
+        if: ${{ inputs.enregistrer }}
+        run: |
+          python3 - <<'EOF'
+          import json, os
+          f = "agent/videos_faites.json"
+          l = json.load(open(f)) if os.path.exists(f) else []
+          l.append(open("agent/sortie/id_avancee.txt").read().strip())
+          json.dump(l, open(f, "w"), indent=1)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add agent/videos_faites.json
+          git commit -m "Vidéo de la semaine : avancée notée [skip ci]" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

@@ -21,7 +21,9 @@ import soundfile as sf
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 # ------------------------------------------------------------------ réglages
-MODELE = "claude-haiku-5-5"
+MODELE = "claude-sonnet-5-5"   # choix + texte (Sonnet juge mieux ce qui est clair pour le grand public)
+PRIX_MODELE = (2.00, 10.00)    # $ par million de jetons (entrée, sortie)
+DEJA_FAITES = "videos_faites.json"  # avancées déjà mises en vidéo (jamais deux fois la même)
 DUREE_MAX_MOTS = 105          # ≈ 40 secondes de voix
 W, H, FPS = 1080, 1920, 30
 SORTIE = "sortie"
@@ -67,6 +69,11 @@ def choisir_avancees():
                 interet[e["avancee_id"]] = interet.get(e["avancee_id"], 0) + poids[e["evenement"]]
     except Exception as ex:
         log(f"(statistiques indisponibles : {ex.__class__.__name__}, choix sur la note seule)")
+    try:
+        deja = set(json.load(open(DEJA_FAITES, encoding="utf-8")))
+    except Exception:
+        deja = set()
+    fiches = [f for f in fiches if f["id"] not in deja] or fiches
     for f in fiches:
         f["_score"] = (f.get("importance") or 1) * 10 + min(15, interet.get(f["id"], 0))
     fiches.sort(key=lambda f: -f["_score"])
@@ -157,9 +164,9 @@ def ecrire_texte(fiches):
         tool_choice={"type": "tool", "name": "video"},
         messages=[{"role": "user", "content": "Avancées de la semaine :\n\n" + "\n\n".join(blocs)}])
     texte = next(b.input for b in r.content if b.type == "tool_use")
-    cout = r.usage.input_tokens * 0.10 / 1e6 + r.usage.output_tokens * 0.50 / 1e6
+    cout = r.usage.input_tokens * PRIX_MODELE[0] / 1e6 + r.usage.output_tokens * PRIX_MODELE[1] / 1e6
     COUTS["haiku"] = cout
-    log(f"Texte écrit par Haiku ({cout:.4f} $).")
+    log(f"Choix et texte écrits par Sonnet ({cout:.4f} $).")
     choix = max(0, min(len(fiches) - 1, int(texte.get("choix", 0))))
     return fiches[choix], texte
 
@@ -742,12 +749,13 @@ def main():
             "\nToutes les avancées de la semaine dans l'app NovaSTEM (Google Play)."
             "\nTexte et voix générés avec l'aide de l'IA.")
     open(os.path.join(SORTIE, "description.txt"), "w", encoding="utf-8").write(desc)
+    open(os.path.join(SORTIE, "id_avancee.txt"), "w").write(fiche["id"])
     json.dump({"fiche": {k: fiche.get(k) for k in ("id", "title", "source_url")}, "texte": texte, "voix": nom_voix,
                "credits": [[x[1] for x in l] for l in images]},
               open(os.path.join(SORTIE, "script.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     car = COUTS["caracteres_voix"]
     prix_voix = car * 30 / 1e6 if nom_voix == "Google" else (car * 0.0002 if nom_voix == "ElevenLabs" else 0)
-    cout_txt = (f"Coût de cette vidéo : texte (Haiku) {COUTS['haiku']:.4f} $ + voix {nom_voix} "
+    cout_txt = (f"Coût de cette vidéo : choix et texte (Sonnet) {COUTS['haiku']:.4f} $ + voix {nom_voix} "
                 + (f"{car} caractères ({prix_voix:.4f} $ au tarif, mais gratuit sous 1 million de caractères par mois)"
                    if nom_voix == "Google" else ("gratuite" if nom_voix == "voix libre" else f"{car} caractères ≈ {prix_voix:.4f} $"))
                 + f" = {COUTS['haiku']:.4f} $ payés réellement. Calcul GitHub : gratuit (repo public).")

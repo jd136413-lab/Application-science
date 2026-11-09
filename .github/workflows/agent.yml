@@ -124,7 +124,7 @@ jobs:
         run: |
           JOUR=$(TZ=Europe/Paris date +%u); HEURE=$(TZ=Europe/Paris date +%H)
           if [ "$JOUR" = "6" ] && [ "$HEURE" -ge 15 ]; then
-            gh workflow run video.yml --ref main -R "$GITHUB_REPOSITORY" && echo "Vidéo de la semaine lancée."
+            gh workflow run video.yml --ref main -f enregistrer=true -R "$GITHUB_REPOSITORY" && echo "Vidéo de la semaine lancée."
           else
             echo "Pas de vidéo aujourd'hui (seulement le samedi soir)."
           fi
