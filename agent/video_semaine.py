@@ -70,17 +70,24 @@ def choisir_avancees():
     for f in fiches:
         f["_score"] = (f.get("importance") or 1) * 10 + min(15, interet.get(f["id"], 0))
     fiches.sort(key=lambda f: -f["_score"])
-    return fiches[:6]
+    return fiches[:20]
 
 
 # ------------------------------------------------------------------ 2. texte
+APPEL_VOIX = "Toutes les découvertes de la semaine sont dans l'appli gratuite NovaSTEM. Le lien est dans la description."
+APPEL_ECRAN = "Toutes les découvertes de la semaine sont dans l'appli gratuite NovaSTEM. Le lien est dans la description."
+LIEN_PLAY = "https://play.google.com/store/apps/details?id=fr.novum.novum"
+
 CONSIGNE = """Tu écris le texte d'une vidéo courte verticale (YouTube Shorts, Instagram Reels) pour NovaSTEM,
 une application gratuite qui résume les avancées scientifiques et technologiques. Public : grand public
 francophone de 12 à 60 ans, qui fait défiler son fil et décide en 2 secondes de regarder ou non.
 
-ÉTAPE 1 : CHOISIR. Parmi les avancées proposées, prends celle qu'un collégien comprendrait en 30 secondes ET
-qui le surprendrait : un effet concret sur la vie des gens, un record, une première. Écarte les sujets qui
-demandent trop de notions (mécanismes moléculaires, génétique fine, physique abstraite) même s'ils sont mieux notés.
+ÉTAPE 1 : CHOISIR, dans cet ordre de priorité :
+ 1) D'ABORD LA CLARTÉ : un sujet qu'un collégien comprend en 30 secondes, sans aucune notion préalable :
+    un effet concret sur la vie des gens, un objet qu'on peut se représenter, un record, une première.
+    Écarte les sujets qui demandent des notions (protéines, gènes, particules, mécanismes chimiques,
+    physique abstraite, évolution humaine fine), même s'ils sont mieux notés.
+ 2) ENSUITE L'IMPORTANCE : parmi les sujets clairs, prends le mieux noté (étoiles).
 
 ÉTAPE 2 : LE MESSAGE. Écris en une phrase simple ce que le spectateur doit retenir (champ « message »).
 Toute la vidéo sert ce message, et rien d'autre : pas de détail qui ne l'aide pas à comprendre.
@@ -108,10 +115,13 @@ le même texte, avec les nombres en chiffres, pour les sous-titres.
 
 Pour chaque scène : une étiquette de 3 mots au plus affichée en haut de l'écran (« LE PROBLÈME »,
 « L'IDÉE », « LE RÉSULTAT », « ET POUR NOUS ? » ; l'accroche n'en a pas), 2 ou 3 mots-clés EN ANGLAIS pour
-chercher une photo libre de droits (choses concrètes et photographiables), et, pour la scène du résultat, le
+chercher une photo libre de droits (choses concrètes et photographiables), plus une 2e idée de photo
+différente pour la même scène (la vidéo change d'image au milieu de chaque scène), et, pour la scène du résultat, le
 chiffre court (6 caractères au plus, ex. « 1 sur 5 ») avec une légende de 6 mots au plus.
 
-Écris enfin la description de la publication : 2 phrases simples + 4 à 6 hashtags en français."""
+Écris enfin la description de la publication : 2 phrases simples sur la découverte, puis une phrase qui donne
+envie de télécharger l'appli NovaSTEM (gratuite, toutes les avancées de la semaine expliquées simplement,
+sans publicité racoleuse), puis 4 à 6 hashtags en français. N'écris pas de lien : il est ajouté automatiquement."""
 
 SCHEMA = {
     "type": "object",
@@ -124,7 +134,8 @@ SCHEMA = {
             "properties": {
                 "voix": {"type": "string"}, "ecran": {"type": "string"},
                 "etiquette": {"type": "string", "description": "3 mots au plus, vide pour l'accroche"},
-                "mots_cles_image": {"type": "string"},
+                "mots_cles_image": {"type": "string", "description": "2 ou 3 mots anglais, objet concret et photographiable"},
+                "mots_cles_image_2": {"type": "string", "description": "2e idée de photo, différente, 2 ou 3 mots anglais"},
                 "chiffre": {"type": "string", "description": "chiffre clé court, 6 caractères au plus, ex. 21 %"}, "legende": {"type": "string"}},
             "required": ["voix", "ecran", "mots_cles_image"]}},
         "description": {"type": "string"},
@@ -198,6 +209,7 @@ def texte_a_lire(p):
     p = re.sub(r"\s*\([^)]*\)", "", p)                   # (remarque entre parenthèses) supprimée
     p = re.sub(r"[«»\"“”]", "", p).replace(" – ", ", ").replace(" — ", ", ")
     p = re.sub(r"(\w)·(\w)", r"\1\2", p)                  # écriture inclusive
+    p = p.replace("’", "'").replace("‘", "'")              # apostrophe droite : « l'émail » lu d'un seul tenant
     return re.sub(r"\s+", " ", p).strip()
 
 
@@ -236,7 +248,7 @@ def fabriquer_voix(phrases):
 LICENCES_OK = ("cc0", "public domain", "pd", "cc by", "cc-by", "cc by-sa", "cc-by-sa")
 
 
-def image_wikimedia(mots):
+def image_wikimedia(mots, deja=()):
     r = requests.get("https://commons.wikimedia.org/w/api.php", headers=UA, timeout=30, params={
         "action": "query", "format": "json", "generator": "search", "gsrnamespace": "6", "gsrlimit": "12",
         "gsrsearch": f"{mots} filetype:bitmap", "prop": "imageinfo", "iiprop": "url|extmetadata|size",
@@ -247,20 +259,20 @@ def image_wikimedia(mots):
         ii = (p.get("imageinfo") or [{}])[0]
         meta = ii.get("extmetadata") or {}
         lic = (meta.get("LicenseShortName", {}).get("value") or "").lower()
-        if not lic.startswith(LICENCES_OK) or ii.get("width", 0) < 700:
+        if not lic.startswith(LICENCES_OK) or ii.get("width", 0) < 700 or (ii.get("thumburl") or ii.get("url")) in deja:
             continue
         auteur = re.sub("<[^>]+>", "", meta.get("Artist", {}).get("value") or "").strip()[:40]
         return ii.get("thumburl") or ii["url"], f"Photo : {auteur or 'Wikimedia Commons'} · {meta['LicenseShortName']['value']}"
     return None
 
 
-def image_nasa(mots):
+def image_nasa(mots, deja=()):
     r = requests.get("https://images-api.nasa.gov/search", headers=UA, timeout=30,
                      params={"q": mots, "media_type": "image", "page_size": "10"})
     r.raise_for_status()
     for it in r.json()["collection"]["items"]:
         liens = it.get("links") or []
-        if liens:
+        if liens and liens[0]["href"].replace("~thumb", "~medium") not in deja:
             return liens[0]["href"].replace("~thumb", "~medium"), "Image : NASA (domaine public)"
     return None
 
@@ -275,27 +287,35 @@ def telecharger(url):
 
 
 def chercher_images(fiche, scenes):
+    """Jusqu'à 2 images par scène (la vidéo change d'image au milieu de la scène).
+    Une scène sans image reprend une image d'une autre scène plutôt qu'un fond vide."""
     images, deja = [], set()
+    chercheurs = [image_nasa, image_wikimedia] if fiche.get("family") == "space" else [image_wikimedia, image_nasa]
     for i, s in enumerate(scenes):
-        trouve = None
+        liste = []
         if i == 0 and fiche.get("image_url"):
             try:
-                trouve = (telecharger(fiche["image_url"]), fiche.get("image_credit") or "Photo : source de l'article")
+                liste.append((telecharger(fiche["image_url"]), fiche.get("image_credit") or "Photo : source de l'article"))
             except Exception:
                 pass
-        mots = (s.get("mots_cles_image") or "").strip()
-        for chercheur in ([image_nasa, image_wikimedia] if fiche.get("family") == "space" else [image_wikimedia, image_nasa]):
-            if trouve or not mots:
-                break
-            try:
-                res = chercheur(mots)
-                if res and res[0] not in deja:
-                    trouve = (telecharger(res[0]), res[1])
-                    deja.add(res[0])
-            except Exception as ex:
-                log(f"  (image « {mots} » : {ex.__class__.__name__})")
-        images.append(trouve)
-        log(f"  Scène {i + 1} : {'image trouvée — ' + trouve[1] if trouve else 'écran graphique'}")
+        for mots in [(s.get("mots_cles_image") or "").strip(), (s.get("mots_cles_image_2") or "").strip()]:
+            if len(liste) >= 2 or not mots:
+                continue
+            for chercheur in chercheurs:
+                try:
+                    res = chercheur(mots, deja)
+                    if res:
+                        liste.append((telecharger(res[0]), res[1]))
+                        deja.add(res[0])
+                        break
+                except Exception as ex:
+                    log(f"  (image « {mots} » : {ex.__class__.__name__})")
+        images.append(liste)
+        log(f"  Scène {i + 1} : {len(liste)} image(s)")
+    toutes = [im for l in images for im in l]
+    for i, l in enumerate(images):
+        if not l and toutes:
+            images[i] = [toutes[(i * 2) % len(toutes)]]
     return images
 
 
@@ -502,12 +522,12 @@ def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
     os.makedirs(SORTIE, exist_ok=True)
     scenes = texte["scenes"]
     FIN = segs[-1][1]
-    TOTAL = FIN + 3.0
+    TOTAL = FIN + 1.5
     P_SUB, P_SUJET, P_BIG = police(72), police(88), police(250)
     P_BADGE, P_SM, P_XS = police(34, "ExtraBold", "polices/figtree.ttf"), police(42, "Bold", "polices/figtree.ttf"), police(28, "SemiBold", "polices/figtree.ttf")
     fond = degrade(FONDS.get(fiche.get("family"), (30, 30, 60)), (8, 8, 14))
-    photos = [preparer_photo(i[0]) if i else None for i in images]
-    credits = [i[1] if i else "Illustration NovaSTEM" for i in images]
+    photos = [[preparer_photo(x[0]) for x in l] for l in images] + [[]]
+    credits = [[x[1] for x in l] for l in images] + [[]]
 
     # Mots des sous-titres et leur moment (proportionnel à la longueur prononcée)
     mots = []
@@ -560,7 +580,7 @@ def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
         grp = [x for x in mots if x[3] == m[3]]
         actif = grp.index(m)
         lignes = couper_lignes(d, [x[2].upper() for x in grp], P_SUB)
-        y, idx = 1290 - (len(lignes) - 2) * 44, 0
+        y, idx = (1290 if not scenes[m[3][0]].get("fin") else 1300) - (len(lignes) - 2) * 44, 0
         for ligne in lignes:
             larg = d.textlength(" ".join(ligne), font=P_SUB)
             x = (W - larg) / 2
@@ -569,7 +589,7 @@ def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
                 x += d.textlength(w + " ", font=P_SUB); idx += 1
             y += 86
 
-    debuts = [s[0] for s in segs] + [FIN + 0.2, TOTAL]
+    debuts = [s[0] for s in segs] + [TOTAL]
     sortie_mp4 = os.path.join(SORTIE, "video_semaine.mp4")
     ff = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
                            "-r", str(FPS), "-i", "-", "-i", os.path.join(SORTIE, "audio.wav"), "-c:v", "libx264",
@@ -579,11 +599,13 @@ def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
         t = f / FPS
         i = max(k for k in range(len(debuts) - 1) if debuts[k] <= t)
         tl, dur = t - debuts[i], debuts[i + 1] - debuts[i]
-        if i < len(scenes):
+        if not scenes[i].get("fin"):
             s = scenes[i]
-            if photos[i] is not None:
-                z = 1 + 0.08 * tl / max(dur, 0.1)
-                p = photos[i]
+            if photos[i]:
+                k_im = min(len(photos[i]) - 1, int(2 * tl / max(dur, 0.1)))
+                t_im = tl - k_im * dur / 2 if len(photos[i]) > 1 else tl
+                z = 1 + 0.08 * t_im / max(dur, 0.1)
+                p = photos[i][k_im]
                 pw, ph = int(W * 1.15 / z), int(H * 1.15 / z)
                 dx = int((p.width - pw) * (0.5 + 0.2 * math.sin(i)))
                 img = p.crop((dx, (p.height - ph) // 2, dx + pw, (p.height - ph) // 2 + ph)).resize((W, H), Image.BILINEAR)
@@ -609,11 +631,12 @@ def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
                 y = centre(d, s["chiffre"], 360 if i else 520, f_big, JAUNE, 8)
                 if s.get("legende"):
                     centre(d, s["legende"], y + 10, P_SM)
-            elif photos[i] is None and i > 0:
+            elif not photos[i] and i > 0:
                 # écran graphique : le mot-clé de la scène en grand
                 centre(d, (s.get("legende") or texte["sujet"]).upper(), 520, police(96))
             sous_titres(d, t)
-            d.text((60, H - 90), credits[i][:70], font=P_XS, fill=(230, 230, 240))
+            cr = credits[i][min(len(credits[i]) - 1, int(2 * tl / max(dur, 0.1)))] if credits[i] else "Illustration NovaSTEM"
+            d.text((60, H - 90), cr[:70], font=P_XS, fill=(230, 230, 240))
         else:  # écran de fin
             img = degrade((26, 26, 46), (10, 10, 16))
             d = ImageDraw.Draw(img)
@@ -621,14 +644,17 @@ def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
             larg = 150 * 4.02
             dessiner_logo(img, int((W - larg) / 2), 560, 150, min(1, tl / 1.1))
             d = ImageDraw.Draw(img)
-            for k, l in enumerate(["Chaque semaine, la plus grande", "avancée scientifique en 40 s"]):
+            for k, l in enumerate(["Toutes les avancées de la semaine,", "expliquées simplement. Gratuit."]):
                 d.text(((W - d.textlength(l, font=P_SM)) / 2, 820 + k * 58), l, font=P_SM, fill=(220, 220, 235))
+            sous_titres(d, t)
             b = "Disponible sur Google Play"
             w = d.textlength(b, font=P_BADGE) + 50
             x0 = (W - w) / 2
             d.rounded_rectangle((x0 - 30, 1010, x0 + w + 30, 1090), radius=20, fill=BLANC)
             d.polygon([(x0, 1032), (x0, 1068), (x0 + 30, 1050)], fill=NOIR)
             d.text((x0 + 50, 1028), b, font=P_BADGE, fill=NOIR)
+            l = "Lien dans la description"
+            d.text(((W - d.textlength(l, font=P_SM)) / 2, 1120), l, font=P_SM, fill=JAUNE)
             d.text((60, H - 90), f"Source : {fiche.get('source_name') or ''}"[:70], font=P_XS, fill=(230, 230, 240))
         if 0 < i < len(debuts) - 1 and tl < 0.12:
             img = Image.blend(img, Image.new("RGB", (W, H), BLANC), 0.22 * (1 - tl / 0.12))
@@ -693,6 +719,8 @@ def main():
     fiches = choisir_avancees()
     log("Candidates :", *[f"\n  ★{f.get('importance')} {f['title']}" for f in fiches])
     fiche, texte = ecrire_texte(fiches)
+    texte["scenes"] = texte["scenes"][:5] + [{
+        "fin": True, "voix": APPEL_VOIX, "ecran": APPEL_ECRAN, "mots_cles_image": ""}]
     for sc in texte["scenes"]:
         sc["ecran"] = re.sub(r"(\w)\((e?s|e|x)\)", r"\1\2", sc["ecran"])
         sc["ecran"] = re.sub(r"\s*\([^)]*\)", "", sc["ecran"])
@@ -702,19 +730,20 @@ def main():
         log(f"  {k}. {s['voix']}")
     voix, segs, nom_voix = fabriquer_voix([s["voix"] for s in texte["scenes"]])
     cales = caler_mots(voix, segs, texte["scenes"])
-    images = chercher_images(fiche, texte["scenes"])
+    images = chercher_images(fiche, texte["scenes"][:-1])
     musique, credit_musique = choisir_musique(fiche.get("family"))
-    total = segs[-1][1] + 3.0
+    total = segs[-1][1] + 1.5
     chiffre = next((k for k, s in enumerate(texte["scenes"]) if s.get("chiffre")), None)
     fabriquer_audio(voix, segs, total, chiffre, musique)
     chemin, total = monter(fiche, texte, voix, segs, nom_voix, images, cales)
-    desc = (texte["description"].strip() + f"\n\nSource : {fiche.get('source_name') or ''} — {fiche.get('source_url') or ''}"
+    desc = (texte["description"].strip() + f"\n\n📲 NovaSTEM, gratuit sur Google Play : {LIEN_PLAY}\n(lien aussi dans la bio)"
+            + f"\n\nSource : {fiche.get('source_name') or ''} — {fiche.get('source_url') or ''}"
             + (f"\n{credit_musique}" if credit_musique else "") +
             "\nToutes les avancées de la semaine dans l'app NovaSTEM (Google Play)."
             "\nTexte et voix générés avec l'aide de l'IA.")
     open(os.path.join(SORTIE, "description.txt"), "w", encoding="utf-8").write(desc)
     json.dump({"fiche": {k: fiche.get(k) for k in ("id", "title", "source_url")}, "texte": texte, "voix": nom_voix,
-               "credits": [i[1] if i else None for i in images]},
+               "credits": [[x[1] for x in l] for l in images]},
               open(os.path.join(SORTIE, "script.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     car = COUTS["caracteres_voix"]
     prix_voix = car * 30 / 1e6 if nom_voix == "Google" else (car * 0.0002 if nom_voix == "ElevenLabs" else 0)
