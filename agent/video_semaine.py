@@ -300,6 +300,7 @@ def caler_mots(voix, segs, scenes):
         entendus = [(w.start, w.end, _norm(w.word)) for m in morceaux for w in (m.words or [])]
     except Exception as ex:
         log(f"⚠ Calage précis des sous-titres impossible ({ex.__class__.__name__}: {str(ex)[:120]}) : calage approximatif.")
+        print(f"::warning title=Sous-titres::{ex.__class__.__name__}: {str(ex)[:300]}", flush=True)
         return None
     import difflib
     resultat = []
