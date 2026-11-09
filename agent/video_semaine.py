@@ -300,6 +300,7 @@ def fabriquer_voix(phrases):
             return np.concatenate(morceaux), segs, nom
         except Exception as ex:
             log(f"⚠ Voix {nom} impossible ({ex.__class__.__name__}: {str(ex)[:150]}) — essai suivant.")
+            print(f"::warning title=Voix {nom}::{ex.__class__.__name__}: {str(ex)[:400]}", flush=True)
     raise SystemExit("Aucune voix n'a fonctionné.")
 
 
