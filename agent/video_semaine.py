@@ -292,9 +292,8 @@ def caler_mots(voix, segs, scenes):
     Retourne, pour chaque scène, la liste (début, fin) de chacun de ses mots, ou None."""
     try:
         from faster_whisper import WhisperModel
-        wav16 = os.path.join(SORTIE, "voix16k.wav")
         idx = np.arange(0, len(voix) * 16000 / 44100) * 44100 / 16000
-        sf.write(wav16, np.interp(idx, np.arange(len(voix)), voix).astype(np.float32), 16000)
+        wav16 = np.interp(idx, np.arange(len(voix)), voix).astype(np.float32)  # tableau 16 kHz, sans décodeur audio
         modele = WhisperModel(os.environ.get("WHISPER_MODELE") or "small", device="cpu", compute_type="int8")
         morceaux, _ = modele.transcribe(wav16, language="fr", word_timestamps=True, beam_size=1)
         entendus = [(w.start, w.end, _norm(w.word)) for m in morceaux for w in (m.words or [])]
