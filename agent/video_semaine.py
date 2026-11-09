@@ -85,58 +85,69 @@ APPEL_VOIX = "Toutes les découvertes de la semaine sont dans l'appli gratuite N
 APPEL_ECRAN = "Toutes les découvertes de la semaine sont dans l'appli gratuite NovaSTEM. Le lien est dans la description."
 LIEN_PLAY = "https://play.google.com/store/apps/details?id=fr.novum.novum"
 
-CONSIGNE = """Tu écris le texte d'une vidéo courte verticale (YouTube Shorts, Instagram Reels) pour NovaSTEM,
+CONSIGNE = """Tu écris le texte d'une vidéo courte verticale (YouTube Shorts, Instagram Reels, TikTok) pour NovaSTEM,
 une application gratuite qui résume les avancées scientifiques et technologiques. Public : grand public
-francophone de 12 à 60 ans, qui fait défiler son fil et décide en 2 secondes de regarder ou non.
+francophone de 12 à 60 ans qui fait défiler son fil. Il décide en 1 seconde de rester ou non, en se demandant
+seulement : « est-ce que ça me concerne ? » ou « est-ce que c'est fou ? ».
 
-ÉTAPE 1 : CHOISIR, dans cet ordre de priorité :
- 1) D'ABORD LA CLARTÉ : un sujet qu'un collégien comprend en 30 secondes, sans aucune notion préalable :
-    un effet concret sur la vie des gens, un objet qu'on peut se représenter, un record, une première.
-    Écarte les sujets qui demandent des notions (protéines, gènes, particules, mécanismes chimiques,
-    physique abstraite, évolution humaine fine), même s'ils sont mieux notés.
+ÉTAPE 1 : CHOISIR L'AVANCÉE, dans cet ordre de priorité :
+ 1) D'ABORD LA CLARTÉ : un sujet qu'un collégien comprend en 25 secondes, sans aucune notion préalable :
+    un effet concret sur la vie des gens, un objet qu'on se représente, un record, une première.
+    Écarte les sujets qui demandent des notions (protéines, gènes, particules, réseaux électriques,
+    mécanismes chimiques, physique abstraite), même s'ils sont mieux notés.
  2) ENSUITE L'IMPORTANCE : parmi les sujets clairs, prends le mieux noté (étoiles).
 
-ÉTAPE 2 : LE MESSAGE. Écris en une phrase simple ce que le spectateur doit retenir (champ « message »).
-Toute la vidéo sert ce message, et rien d'autre : pas de détail qui ne l'aide pas à comprendre.
+ÉTAPE 2 : LE MESSAGE. Une phrase simple : ce que le spectateur doit retenir. Toute la vidéo sert ce message.
 
-ÉTAPE 3 : LES 5 SCÈNES, qui racontent une petite histoire où chaque phrase découle de la précédente :
- 1. ACCROCHE (12 mots au plus) : le résultat le plus surprenant, dit simplement. On doit savoir tout de suite
-    de quoi on parle. Pas de métaphore, pas d'énigme. Bon : « Des patients paralysés ont remarché grâce à leurs
-    propres cellules. » Mauvais : « Des dents de 400 000 ans viennent de parler. »
- 2. LE PROBLÈME : ce qu'on ne savait pas ou ne pouvait pas faire avant, et pourquoi c'était gênant.
- 3. CE QU'ILS ONT FAIT : qui, et quelle idée, expliquée avec une comparaison de la vie de tous les jours.
- 4. LE RÉSULTAT : ce qu'ils ont trouvé, avec le chiffre clé expliqué (« un habitant sur cinq » plutôt que
-    « vingt et un pour cent » quand c'est plus parlant).
- 5. POURQUOI C'EST IMPORTANT : ce que ça change pour nous, en reprenant le message. Si c'est une étude
-    préliminaire (animaux, laboratoire), dis-le simplement.
-Phrases courtes (15 mots au plus), mots de tous les jours, comme si tu expliquais à un ami. Utilise des mots de
-liaison (« Problème : », « Alors », « Résultat : », « Et pour nous ? ») pour que l'histoire se suive.
-Chaque mot technique est remplacé ou expliqué en 4 mots. 95 mots au plus en tout. Pas de phrase de fin
-(l'écran NovaSTEM est ajouté automatiquement).
+ÉTAPE 3 : CHOISIR LE PLAN le plus efficace pour CE sujet, parmi ces 5 (champ « plan ») :
+ A « chiffre choc » (tech, records) : un chiffre impossible à ignorer, puis comment c'est possible.
+   Ex. « 6 minutes. C'est le temps pour recharger cette batterie. » → elle utilise du sodium, comme le sel
+   de cuisine → beaucoup moins cher → prototype de labo → « imagine une voiture électrique bon marché
+   rechargée pendant ta pause café ».
+ B « avant / maintenant » (santé, environnement) : le contraste se voit.
+   Ex. « Avant, ces malades ne pouvaient presque plus marcher. Maintenant, certains ont repris le travail. »
+   → la maladie → ce que les médecins ont fait, en une image → limite honnête.
+ C « tu savais que ? » (espace, découvertes) : une question à laquelle on répond spontanément oui, puis on la casse.
+   Ex. « Tu crois qu'on connaît tout notre système solaire ? Raté. » → 27 nouveaux petits mondes glacés
+   → la taille d'une ville → fossiles de la naissance des planètes, donc de la nôtre.
+ D « explique-moi comme si j'avais 10 ans » (physique, sujets abstraits) : chaque phrase est une image du quotidien.
+   Ex. « Des chercheurs ont créé une matière à la fois solide et liquide. » → « imagine un glaçon bien
+   rangé qui coulerait comme de l'eau » → avant, seulement à moins 273 degrés → maintenant à température ambiante.
+ E « idée reçue cassée » (seulement si une vraie idée reçue existe) : « On t'a appris que… C'est peut-être faux. »
 
-VÉRITÉ : uniquement des faits présents dans la fiche. N'invente rien, n'exagère rien.
+RÈGLES POUR TOUS LES PLANS
+- La première phrase contient le « waouh » ou le bénéfice, 12 mots au plus. Jamais de contexte en premier,
+  jamais d'énigme ni de métaphore obscure. On sait de quoi on parle dès la première seconde.
+- Parle au spectateur (« tu », « ton téléphone », « ton corps ») quand c'est naturel.
+- Une seule idée. Pas de détail de méthode qui ne sert pas le message.
+- 4 ou 5 scènes, une phrase courte chacune (15 mots au plus), 80 mots au plus en tout (25 à 30 secondes).
+  Chaque phrase découle de la précédente. La dernière scène dit ce que ça change, ou laisse une question.
+- Si c'est une étude préliminaire (animaux, laboratoire, prototype), dis-le simplement, sans tuer l'intérêt.
+- VÉRITÉ : uniquement des faits présents dans la fiche. N'invente rien, n'exagère rien.
+- Pas de phrase de fin : l'écran NovaSTEM et l'appel à télécharger sont ajoutés automatiquement.
 
-TEXTE LU PAR UNE VOIX DE SYNTHÈSE (champ « voix ») : nombres en lettres, aucune parenthèse, aucune
-écriture inclusive ni « (s) », aucun sigle non expliqué, aucun tiret ni guillemet. Le champ « ecran » est
-le même texte, avec les nombres en chiffres, pour les sous-titres.
+TEXTE LU PAR UNE VOIX DE SYNTHÈSE (champ « voix ») : nombres en lettres, aucune parenthèse, aucune écriture
+inclusive ni « (s) », aucun sigle non expliqué, aucun tiret ni guillemet. Le champ « ecran » est le même texte,
+avec les nombres en chiffres, pour les sous-titres.
 
-Pour chaque scène : une étiquette de 3 mots au plus affichée en haut de l'écran (« LE PROBLÈME »,
-« L'IDÉE », « LE RÉSULTAT », « ET POUR NOUS ? » ; l'accroche n'en a pas), 2 ou 3 mots-clés EN ANGLAIS pour
-chercher une photo libre de droits (choses concrètes et photographiables), plus une 2e idée de photo
-différente pour la même scène (la vidéo change d'image au milieu de chaque scène), et, pour la scène du résultat, le
-chiffre court (6 caractères au plus, ex. « 1 sur 5 ») avec une légende de 6 mots au plus.
+Pour chaque scène : une étiquette facultative de 2 mots au plus affichée en haut de l'écran, seulement si elle
+aide (« AVANT », « MAINTENANT », « IMAGINE », « RÉSULTAT » ; sinon chaîne vide ; jamais sur la 1re scène) ;
+2 ou 3 mots-clés EN ANGLAIS pour une photo libre de droits (choses concrètes et photographiables) et une
+2e idée de photo différente (la vidéo change d'image au milieu de chaque scène) ; et, pour la scène du chiffre
+clé, ce chiffre court (6 caractères au plus, ex. « 6 min ») avec une légende de 6 mots au plus.
 
 Écris enfin la description de la publication : 2 phrases simples sur la découverte, puis une phrase qui donne
-envie de télécharger l'appli NovaSTEM (gratuite, toutes les avancées de la semaine expliquées simplement,
-sans publicité racoleuse), puis 4 à 6 hashtags en français. N'écris pas de lien : il est ajouté automatiquement."""
+envie de télécharger l'appli NovaSTEM (gratuite, toutes les avancées de la semaine expliquées simplement),
+puis 4 à 6 hashtags en français. N'écris pas de lien : il est ajouté automatiquement."""
 
 SCHEMA = {
     "type": "object",
     "properties": {
         "choix": {"type": "integer", "description": "numéro de l'avancée choisie"},
+        "plan": {"type": "string", "enum": ["A", "B", "C", "D", "E"]},
         "message": {"type": "string", "description": "ce que le spectateur doit retenir, en une phrase simple"},
         "sujet": {"type": "string", "description": "2 ou 3 mots en majuscules affichés au début, ex. ÉVOLUTION HUMAINE"},
-        "scenes": {"type": "array", "minItems": 5, "maxItems": 5, "items": {
+        "scenes": {"type": "array", "minItems": 4, "maxItems": 5, "items": {
             "type": "object",
             "properties": {
                 "voix": {"type": "string"}, "ecran": {"type": "string"},
@@ -731,7 +742,7 @@ def main():
     for sc in texte["scenes"]:
         sc["ecran"] = re.sub(r"(\w)\((e?s|e|x)\)", r"\1\2", sc["ecran"])
         sc["ecran"] = re.sub(r"\s*\([^)]*\)", "", sc["ecran"])
-    log(f"Message : {texte.get('message')}")
+    log(f"Plan : {texte.get('plan')} · Message : {texte.get('message')}")
     log(f"\nAvancée choisie : {fiche['title']}\nSujet : {texte['sujet']}")
     for k, s in enumerate(texte["scenes"], 1):
         log(f"  {k}. {s['voix']}")
@@ -760,7 +771,7 @@ def main():
                    if nom_voix == "Google" else ("gratuite" if nom_voix == "voix libre" else f"{car} caractères ≈ {prix_voix:.4f} $"))
                 + f" = {COUTS['haiku']:.4f} $ payés réellement. Calcul GitHub : gratuit (repo public).")
     print(f"::notice title=Coût::{cout_txt}", flush=True)
-    print(f"::notice title=Vidéo::{fiche['title']} — {total:.0f} s, voix {nom_voix}, musique {'libre' if credit_musique else 'de secours'}, sous-titres {'calés' if cales else 'approximatifs'}", flush=True)
+    print(f"::notice title=Vidéo::{fiche['title']} — plan {texte.get('plan')} — {total:.0f} s, voix {nom_voix}, musique {'libre' if credit_musique else 'de secours'}, sous-titres {'calés' if cales else 'approximatifs'}", flush=True)
     log(f"\n✅ Vidéo prête : {chemin} ({total:.0f} s, voix : {nom_voix}).")
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as r:
