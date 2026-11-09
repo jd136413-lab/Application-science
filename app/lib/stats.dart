@@ -1,4 +1,4 @@
-// Statistiques anonymes (tableau de bord : stats.html).
+// Statistiques anonymes (tableau de bord : stats.html). Robots et téléphone de Maxime exclus.
 //
 // Chaque action (ouverture de l'app, lecture d'une avancée, favori…) ajoute
 // une ligne dans la table « stats » de Supabase, SANS aucun identifiant du
