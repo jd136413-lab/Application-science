@@ -147,8 +147,8 @@ SCHEMA = {
         "plan": {"type": "string", "enum": ["A", "B", "C", "D", "E"]},
         "message": {"type": "string", "description": "ce que le spectateur doit retenir, en une phrase simple"},
         "sujet": {"type": "string", "description": "2 ou 3 mots en majuscules affichés au début, ex. ÉVOLUTION HUMAINE"},
-        "scenes": {"type": "array", "minItems": 4, "maxItems": 5, "items": {
-            "type": "object",
+        "scenes": {"type": "array", "description": "4 ou 5 scènes", "items": {
+            "type": "object", "additionalProperties": False,
             "properties": {
                 "voix": {"type": "string"}, "ecran": {"type": "string"},
                 "etiquette": {"type": "string", "description": "3 mots au plus, vide pour l'accroche"},
@@ -158,7 +158,8 @@ SCHEMA = {
             "required": ["voix", "ecran", "mots_cles_image"]}},
         "description": {"type": "string"},
     },
-    "required": ["choix", "message", "sujet", "scenes", "description"],
+    "required": ["choix", "plan", "message", "sujet", "scenes", "description"],
+    "additionalProperties": False,
 }
 
 
@@ -170,11 +171,11 @@ def ecrire_texte(fiches):
         corps = "\n".join(x for x in [f.get("avant"), f.get("decouverte"), f.get("apres")] if x) or f.get("summary") or ""
         blocs.append(f"[{i}] {f['title']} (importance {f.get('importance')}/5, source {f.get('source_name')})\n{corps}")
     r = client.messages.create(
-        model=MODELE, max_tokens=2000, system=CONSIGNE,
-        tools=[{"name": "video", "description": "Texte de la vidéo", "input_schema": SCHEMA}],
-        tool_choice={"type": "tool", "name": "video"},
+        model=MODELE, max_tokens=8000, system=CONSIGNE,
+        output_config={"format": {"type": "json_schema", "schema": SCHEMA}},
         messages=[{"role": "user", "content": "Avancées de la semaine :\n\n" + "\n\n".join(blocs)}])
-    texte = next(b.input for b in r.content if b.type == "tool_use")
+    texte = json.loads("".join(b.text for b in r.content if getattr(b, "type", "") == "text"))
+    texte["scenes"] = texte["scenes"][:5]
     cout = r.usage.input_tokens * PRIX_MODELE[0] / 1e6 + r.usage.output_tokens * PRIX_MODELE[1] / 1e6
     COUTS["haiku"] = cout
     log(f"Choix et texte écrits par Sonnet ({cout:.4f} $).")
