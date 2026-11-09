@@ -3,7 +3,7 @@
 #  - À LA MAIN : onglet « Actions » → « Vidéo de la semaine » → « Run workflow ».
 # Résultat : en bas de la page de l'exécution, « Artifacts » → video-de-la-semaine
 # (la vidéo + la description à coller en publiant). Gardé 30 jours.
-# Coût : moins d'1 centime (Haiku). Voix : ElevenLabs si le secret ELEVENLABS_API_KEY existe,
+# Coût : moins d'1 centime (Haiku) ; affiché en haut de la page de chaque exécution. Voix : ElevenLabs si le secret ELEVENLABS_API_KEY existe,
 # sinon Google si GOOGLE_TTS_API_KEY existe, sinon une voix libre gratuite (moins naturelle).
 # POUR ARRÊTER : Actions → « Vidéo de la semaine » → « ··· » → « Disable workflow ».
 name: Vidéo de la semaine
@@ -29,12 +29,17 @@ jobs:
       - name: Outils (montage vidéo et voix libre)
         run: |
           which ffmpeg || (sudo apt-get update -q && sudo apt-get install -y -q ffmpeg)
-          pip install -q anthropic requests numpy pillow soundfile kokoro-onnx
+          pip install -q anthropic requests numpy pillow soundfile kokoro-onnx faster-whisper
       - name: Mémoire de la voix libre (modèle de 350 Mo)
         uses: actions/cache@v4
         with:
           path: agent/modeles
           key: voix-libre-kokoro-v1
+      - name: Mémoire de la reconnaissance vocale (calage des sous-titres)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: whisper-small-v1
       - name: Voix libre et polices
         working-directory: agent
         run: |

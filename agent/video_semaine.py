@@ -32,6 +32,9 @@ FONDS = {"space": (24, 30, 70), "health": (70, 24, 40), "earth": (70, 52, 26), "
          "physics": (40, 30, 80), "environment": (20, 64, 56), "tech": (20, 48, 80)}
 
 
+COUTS = {"haiku": 0.0, "caracteres_voix": 0}
+
+
 def log(*a):
     print(*a, flush=True)
 
@@ -134,6 +137,7 @@ def ecrire_texte(fiches):
         messages=[{"role": "user", "content": "Avancées de la semaine :\n\n" + "\n\n".join(blocs)}])
     texte = next(b.input for b in r.content if b.type == "tool_use")
     cout = r.usage.input_tokens * 0.10 / 1e6 + r.usage.output_tokens * 0.50 / 1e6
+    COUTS["haiku"] = cout
     log(f"Texte écrit par Haiku ({cout:.4f} $).")
     choix = max(0, min(len(fiches) - 1, int(texte.get("choix", 0))))
     return fiches[choix], texte
@@ -190,6 +194,7 @@ def fabriquer_voix(phrases):
             morceaux, segs, t = [], [], 0.0
             for p in phrases:
                 a, sr = f(p)
+                COUTS["caracteres_voix"] += len(p)
                 a = np.asarray(a, dtype=np.float32)
                 if a.ndim > 1:
                     a = a.mean(axis=1)
@@ -198,6 +203,8 @@ def fabriquer_voix(phrases):
                 segs.append((t, t + len(a) / 44100))
                 morceaux += [a, np.zeros(int(0.22 * 44100), np.float32)]
                 t += len(a) / 44100 + 0.22
+            if nom == "voix libre":
+                COUTS["caracteres_voix"] = 0
             log(f"Voix : {nom}.")
             return np.concatenate(morceaux), segs, nom
         except Exception as ex:
@@ -272,6 +279,113 @@ def chercher_images(fiche, scenes):
     return images
 
 
+# ------------------------------------------------------------------ 4 bis. calage des sous-titres
+def _norm(m):
+    m = m.lower().replace("’", "'")
+    m = re.sub(r"[^\w'%]", "", m)
+    return m.split("'")[-1] if "'" in m else m
+
+
+def caler_mots(voix, segs, scenes):
+    """Moment exact où chaque mot est prononcé : la voix est réécoutée par Whisper
+    (reconnaissance vocale gratuite), puis ses mots sont alignés sur le texte affiché.
+    Retourne, pour chaque scène, la liste (début, fin) de chacun de ses mots, ou None."""
+    try:
+        from faster_whisper import WhisperModel
+        wav16 = os.path.join(SORTIE, "voix16k.wav")
+        idx = np.arange(0, len(voix) * 16000 / 44100) * 44100 / 16000
+        sf.write(wav16, np.interp(idx, np.arange(len(voix)), voix).astype(np.float32), 16000)
+        modele = WhisperModel(os.environ.get("WHISPER_MODELE") or "small", device="cpu", compute_type="int8")
+        morceaux, _ = modele.transcribe(wav16, language="fr", word_timestamps=True, beam_size=1)
+        entendus = [(w.start, w.end, _norm(w.word)) for m in morceaux for w in (m.words or [])]
+    except Exception as ex:
+        log(f"⚠ Calage précis des sous-titres impossible ({ex.__class__.__name__}: {str(ex)[:120]}) : calage approximatif.")
+        return None
+    import difflib
+    resultat = []
+    for s, (t0, t1) in zip(scenes, segs):
+        affiches = [w for w in s["ecran"].replace(" %", "\u00a0%").replace(" :", "\u00a0:").split(" ") if w]
+        ent = [e for e in entendus if t0 - 0.3 <= (e[0] + e[1]) / 2 <= t1 + 0.3]
+        temps = [None] * len(affiches)
+        sm = difflib.SequenceMatcher(None, [_norm(w) for w in affiches], [e[2] for e in ent], autojunk=False)
+        for a, b, n in sm.get_matching_blocks():
+            for k in range(n):
+                temps[a + k] = (ent[b + k][0], ent[b + k][1])
+        # mots non reconnus (nombres écrits en chiffres…) : placés entre leurs voisins
+        connus = [k for k, x in enumerate(temps) if x]
+        for k in range(len(temps)):
+            if temps[k]:
+                continue
+            avant = max([j for j in connus if j < k], default=None)
+            apres = min([j for j in connus if j > k], default=None)
+            ta = temps[avant][1] if avant is not None else t0
+            tb = temps[apres][0] if apres is not None else t1
+            j0 = (avant if avant is not None else -1)
+            j1 = (apres if apres is not None else len(temps))
+            pas = (tb - ta) / (j1 - j0)
+            temps[k] = (ta + pas * (k - j0 - 1), ta + pas * (k - j0))
+        resultat.append(temps)
+    n_ok = sum(1 for e in entendus)
+    log(f"Sous-titres calés sur la voix ({n_ok} mots reconnus).")
+    return resultat
+
+
+# ------------------------------------------------------------------ 4 ter. musique libre de droits
+AMBIANCES = {  # mots cherchés dans l'ambiance (« feel ») des musiques de Kevin MacLeod (incompetech, CC BY 4.0)
+    "space": ["mysterious", "epic", "calming"], "physics": ["mysterious", "driving", "bright"],
+    "health": ["hopeful", "uplifting", "calming"], "life": ["bright", "uplifting", "calming"],
+    "earth": ["mysterious", "epic", "uplifting"], "environment": ["calming", "hopeful", "uplifting"],
+    "tech": ["driving", "bright", "uplifting"]}
+GENRES_EXCLUS = ("holiday", "horror", "silent film", "comedy", "polka", "children", "funk")
+
+
+def _texte(x):
+    if isinstance(x, list):
+        return " ".join(map(str, x)).lower()
+    return str(x or "").lower()
+
+
+def choisir_musique(famille):
+    """Musique de Kevin MacLeod (incompetech.com, licence CC BY 4.0, crédit obligatoire),
+    choisie au hasard parmi celles dont l'ambiance correspond au domaine."""
+    try:
+        r = requests.get("https://incompetech.com/music/royalty-free/pieces.json", headers=UA, timeout=60)
+        r.raise_for_status()
+        pieces = r.json()
+        if isinstance(pieces, dict):
+            pieces = next((v for v in pieces.values() if isinstance(v, list)), [])
+        voulus = AMBIANCES.get(famille, ["uplifting", "bright", "mysterious"])
+        candidats = []
+        for p in pieces:
+            feel, genre = _texte(p.get("feel")), _texte(p.get("genre"))
+            if not p.get("filename") or any(g in genre for g in GENRES_EXCLUS):
+                continue
+            score = sum(1 for v in voulus if v in feel)
+            if score:
+                candidats.append((score, p))
+        if not candidats:
+            raise ValueError("aucune musique adaptée")
+        meilleur = max(c[0] for c in candidats)
+        pool = [p for sc, p in candidats if sc == meilleur]
+        random.shuffle(pool)
+        for p in pool[:5]:
+            try:
+                url = "https://incompetech.com/music/royalty-free/mp3-royaltyfree/" + requests.utils.quote(p["filename"])
+                m = requests.get(url, headers=UA, timeout=120)
+                m.raise_for_status()
+                a, sr = mp3_vers_tableau(m.content)
+                if len(a) / sr < 45:
+                    continue
+                credit = f"Musique : « {p.get('title')} » Kevin MacLeod (incompetech.com), licence CC BY 4.0"
+                log(credit)
+                return np.asarray(a, dtype=np.float32), credit
+            except Exception as ex:
+                log(f"  (musique {p.get('title')} : {ex.__class__.__name__})")
+    except Exception as ex:
+        log(f"⚠ Musique libre indisponible ({ex.__class__.__name__}: {str(ex)[:100]}) : fond musical de secours.")
+    return None, None
+
+
 # ------------------------------------------------------------------ 5. montage
 def police(taille, style="ExtraBold", f="polices/bric.ttf"):
     p = ImageFont.truetype(f, taille)
@@ -320,7 +434,7 @@ def couper_lignes(d, mots, f, largeur_max=W - 140):
     return lignes
 
 
-def monter(fiche, texte, voix, segs, nom_voix, images):
+def monter(fiche, texte, voix, segs, nom_voix, images, cales=None):
     os.makedirs(SORTIE, exist_ok=True)
     scenes = texte["scenes"]
     FIN = segs[-1][1]
@@ -347,9 +461,13 @@ def monter(fiche, texte, voix, segs, nom_voix, images):
         if g:
             groupes.append(g)
         gi = k_in = 0
-        for w, p in zip(ws, poids):
+        for j, (w, p) in enumerate(zip(ws, poids)):
             d = (t1 - t0 - 0.1) * p / tot
-            mots.append((t, t + d, w, (k, gi)))
+            if cales and k < len(cales) and len(cales[k]) == len(ws):
+                deb, fin_mot = cales[k][j]
+            else:
+                deb, fin_mot = t, t + d
+            mots.append((deb, fin_mot, w, (k, gi)))
             t += d; k_in += 1
             if k_in == len(groupes[gi]):
                 gi += 1; k_in = 0
@@ -373,7 +491,8 @@ def monter(fiche, texte, voix, segs, nom_voix, images):
         return y
 
     def sous_titres(d, t):
-        cur = [m for m in mots if m[0] <= t < m[1] + 0.15]
+        cur = [m for m in mots if m[0] - 0.04 <= t]
+        cur = cur[-1:] if cur and t < cur[-1][1] + 0.6 else []
         if not cur or t > FIN + 0.2:
             return
         m = cur[-1]
@@ -453,7 +572,7 @@ def monter(fiche, texte, voix, segs, nom_voix, images):
     return sortie_mp4, TOTAL
 
 
-def fabriquer_audio(voix, segs, total, chiffre_scene):
+def fabriquer_audio(voix, segs, total, chiffre_scene, vraie_musique=None):
     os.makedirs(SORTIE, exist_ok=True)
     SR = 44100
     n = int(total * SR)
@@ -481,6 +600,14 @@ def fabriquer_audio(voix, segs, total, chiffre_scene):
         a = int((segs[chiffre_scene][0] + 0.3) * SR); tt = np.arange(min(int(1.2 * SR), n - a)) / SR
         pad[a:a + len(tt)] += 1.4 * np.sin(2 * np.pi * 48 * tt) * np.exp(-tt * 4)
     pad /= np.max(np.abs(pad)) or 1
+    if vraie_musique is not None:
+        # vraie musique : début pris à 5 s (souvent plus vivant), bruitages gardés très bas
+        m = vraie_musique[int(5 * SR):][:n] if len(vraie_musique) > n + 5 * SR else vraie_musique[:n]
+        m = np.pad(m, (0, max(0, n - len(m))))
+        m = m / (np.max(np.abs(m)) or 1)
+        effets = pad - np.convolve(pad, np.ones(400) / 400, mode="same")
+        pad = m + 0.35 * effets
+        pad /= np.max(np.abs(pad)) or 1
     musique = pad * 10 ** (-19 / 20)
     fin = int(segs[-1][1] * SR)
     musique[fin:] *= np.linspace(1, 2.5, n - fin)
@@ -501,22 +628,33 @@ def main():
     for k, s in enumerate(texte["scenes"], 1):
         log(f"  {k}. {s['voix']}")
     voix, segs, nom_voix = fabriquer_voix([s["voix"] for s in texte["scenes"]])
+    cales = caler_mots(voix, segs, texte["scenes"])
     images = chercher_images(fiche, texte["scenes"])
+    musique, credit_musique = choisir_musique(fiche.get("family"))
     total = segs[-1][1] + 3.0
     chiffre = next((k for k, s in enumerate(texte["scenes"]) if s.get("chiffre")), None)
-    fabriquer_audio(voix, segs, total, chiffre)
-    chemin, total = monter(fiche, texte, voix, segs, nom_voix, images)
+    fabriquer_audio(voix, segs, total, chiffre, musique)
+    chemin, total = monter(fiche, texte, voix, segs, nom_voix, images, cales)
     desc = (texte["description"].strip() + f"\n\nSource : {fiche.get('source_name') or ''} — {fiche.get('source_url') or ''}"
+            + (f"\n{credit_musique}" if credit_musique else "") +
             "\nToutes les avancées de la semaine dans l'app NovaSTEM (Google Play)."
             "\nTexte et voix générés avec l'aide de l'IA.")
     open(os.path.join(SORTIE, "description.txt"), "w", encoding="utf-8").write(desc)
     json.dump({"fiche": {k: fiche.get(k) for k in ("id", "title", "source_url")}, "texte": texte, "voix": nom_voix,
                "credits": [i[1] if i else None for i in images]},
               open(os.path.join(SORTIE, "script.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    car = COUTS["caracteres_voix"]
+    prix_voix = car * 30 / 1e6 if nom_voix == "Google" else (car * 0.0002 if nom_voix == "ElevenLabs" else 0)
+    cout_txt = (f"Coût de cette vidéo : texte (Haiku) {COUTS['haiku']:.4f} $ + voix {nom_voix} "
+                + (f"{car} caractères ({prix_voix:.4f} $ au tarif, mais gratuit sous 1 million de caractères par mois)"
+                   if nom_voix == "Google" else ("gratuite" if nom_voix == "voix libre" else f"{car} caractères ≈ {prix_voix:.4f} $"))
+                + f" = {COUTS['haiku']:.4f} $ payés réellement. Calcul GitHub : gratuit (repo public).")
+    print(f"::notice title=Coût::{cout_txt}", flush=True)
+    print(f"::notice title=Vidéo::{fiche['title']} — {total:.0f} s, voix {nom_voix}, musique {'libre' if credit_musique else 'de secours'}, sous-titres {'calés' if cales else 'approximatifs'}", flush=True)
     log(f"\n✅ Vidéo prête : {chemin} ({total:.0f} s, voix : {nom_voix}).")
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as r:
-            r.write(f"## 🎬 Vidéo de la semaine\n\n**{fiche['title']}**\n\nVoix : {nom_voix} · durée {total:.0f} s\n\n"
+            r.write(f"## 🎬 Vidéo de la semaine\n\n**{fiche['title']}**\n\nVoix : {nom_voix} · durée {total:.0f} s\n\n💶 {cout_txt}\n\n"
                     "Télécharge la vidéo et la description en bas de cette page (« Artifacts » → **video-de-la-semaine**).\n\n"
                     "### Texte\n" + "\n".join(f"{k}. {s['voix']}" for k, s in enumerate(texte['scenes'], 1)) +
                     "\n\n### Description à coller\n```\n" + desc + "\n```\n")
