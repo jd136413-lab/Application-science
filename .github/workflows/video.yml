@@ -73,6 +73,7 @@ jobs:
         run: |
           # Essais de Claude (branche video/…) : avancée imposée lue dans essai_avancee.txt
           if [ -z "$AVANCEE" ] && [ -f essai_avancee.txt ]; then export AVANCEE="$(cat essai_avancee.txt)"; fi
+          if [ -f essai_voix.txt ]; then export TEST_VOIX=1; fi
           python video_semaine.py
       - name: Livrer la vidéo
         uses: actions/upload-artifact@v4

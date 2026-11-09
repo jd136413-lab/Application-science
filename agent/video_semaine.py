@@ -221,7 +221,7 @@ def voix_gemini(phrase):
                                       "modelName": os.environ.get("GEMINI_TTS_MODELE") or "gemini-2.5-flash-tts"},
                             "audioConfig": {"audioEncoding": "LINEAR16", "sampleRateHertz": 44100}})
     if r.status_code >= 400:
-        raise RuntimeError(f"{r.status_code} {r.text[:200]}")
+        raise RuntimeError(f"{r.status_code} " + " ".join(r.text.split())[:500])
     a, sr = sf.read(io.BytesIO(base64.b64decode(r.json()["audioContent"])))
     return a, sr
 
@@ -776,6 +776,13 @@ def fabriquer_audio(voix, segs, total, chiffre_scene, vraie_musique=None):
 # ------------------------------------------------------------------ programme
 def main():
     os.makedirs(SORTIE, exist_ok=True)
+    if os.environ.get("TEST_VOIX"):  # essai de la voix seule, sans Claude (gratuit)
+        try:
+            a, sr = voix_gemini("C'est l'avion le plus rapide qu'on ait jamais construit.")
+            print(f"::notice title=Test voix Gemini::OK, {len(a) / sr:.1f} s", flush=True)
+        except Exception as ex:
+            print(f"::warning title=Test voix Gemini::{str(ex)[:600]}", flush=True)
+        return
     fiches = choisir_avancees()
     log("Candidates :", *[f"\n  ★{f.get('importance')} {f['title']}" for f in fiches])
     fiche, texte = ecrire_texte(fiches)
