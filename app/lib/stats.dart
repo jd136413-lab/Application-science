@@ -52,7 +52,9 @@ void stat(String evenement, {Avancee? a, String? valeur}) {
 /// Clic vers l'article source : compté UNE fois par fiche et par téléphone
 /// (plusieurs sources, ou le même article rouvert, ne recomptent pas). Le tableau
 /// de bord peut ainsi dire quelle part des avancées lues mène jusqu'à la source.
-Future<void> statArticle(Avancee a, {String? valeur}) async {
+void statArticle(Avancee a, {String? valeur}) => _statArticle(a, valeur: valeur).ignore();
+
+Future<void> _statArticle(Avancee a, {String? valeur}) async {
   if (!statistiquesActives || !configurationPresente || kIsWeb || etat.statsExclues || appareilDeTest) return;
   try {
     final p = await SharedPreferences.getInstance();
