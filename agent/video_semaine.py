@@ -782,4 +782,12 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception as ex:
+        import traceback
+        tb = traceback.format_exc().strip().splitlines()
+        print(f"::error title=Vidéo impossible::{ex.__class__.__name__}: {str(ex)[:300]} | {' / '.join(tb[-4:])[:500]}", flush=True)
+        raise
