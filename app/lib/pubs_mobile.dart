@@ -36,9 +36,9 @@ Future<void> demarrerPubs() async {
   unawaited(_demarrerAchats());
   if (!pubsConfigurees || !etat.pubsVoulues) return;
   // Écran de chargement : jusqu'à ce que les pubs des 2 accueils soient prêtes,
-  // 3 s au plus après le démarrage d'AdMob, 6 s au plus en tout.
+  // 3 s au plus après le démarrage d'AdMob, 4 s au plus en tout.
   ecranChargementPubs.value = true;
-  Timer(const Duration(seconds: 6), _finChargement);
+  Timer(const Duration(seconds: 4), _finChargement); // 4 s au plus (choix de Maxime, 10/11)
   try {
     // 1) Consentement RGPD (formulaire de Google, seulement si nécessaire).
     final fini = Completer<void>();
