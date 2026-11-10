@@ -7,7 +7,8 @@ Les longueurs maximales de Google sont indiquées entre parenthèses. **Refaite 
 
 Images prêtes dans ce dossier :
 - `icone-512.png` → « Icône de l'application » (512 × 512)
-- **Nouvelles images du 24/10 (style B) : dossier `captures-v2/`** → `fr_banniere_1024x500.png` (« Image de présentation ») et `fr_01…fr_07` (« Captures d'écran du téléphone », 1080 × 1920). Tout en un : `captures-v2.zip`.
+- **Images de la publication (10/11) : dossier `captures-v3/`** → `fr_01…fr_07` et `en_01…en_07` (« Captures d'écran du téléphone », 1080 × 1920), fabriquées par `captures_fiche.py` à partir des captures brutes `brut_fr/` et `brut_en/`.
+- **Anciennes images du 24/10 (style B) : dossier `captures-v2/`** → `fr_banniere_1024x500.png` (« Image de présentation ») et `fr_01…fr_07` (« Captures d'écran du téléphone », 1080 × 1920). Tout en un : `captures-v2.zip`.
 - (anciennes : `banniere-1024x500.png`, `captures/`)
 - Captures d'écran du téléphone : à prendre sur le POCO (4 à 8 captures), voir en bas.
 
@@ -27,40 +28,40 @@ NovaSTEM
 Sciences et tech : les vraies avancées du jour, expliquées en une minute.
 ```
 
-**Description complète** (4 000 caractères max)
+**Description complète** (4 000 caractères max) — **mise à jour du 10/11/2026 (publication)**
 
 ```
 Chaque jour, des chercheurs et des ingénieurs font des découvertes, parfois immenses. Elles sont éparpillées dans des centaines de revues, de laboratoires et de sites spécialisés. NovaSTEM les rassemble pour vous, les explique simplement et vous dit lesquelles comptent vraiment.
 
-Deux fils, toutes les sciences
+Sciences, technologies et rendez-vous à venir
 • Sciences : espace, santé, climat, physique, vivant, Terre et histoire…
 • Technologies : smartphones, puces, intelligence artificielle, transports, énergie, jeux vidéo…
-Plus de 150 sources du monde entier (revues scientifiques, laboratoires, agences spatiales, sites tech) sont lues chaque jour. Les nouvelles avancées arrivent le matin et le soir.
+• À venir : lancements de fusées, sorties, grands sommets et événements à ne pas manquer, avec un rappel si vous le souhaitez
+Plus de 150 sources du monde entier sont lues chaque jour. Les nouvelles avancées arrivent le matin et le soir.
 
 Une note pour aller à l'essentiel
 Chaque avancée reçoit de 1 à 5 étoiles selon sa nouveauté, son impact et la solidité des preuves : Intéressant, Notable, Important, Majeur, Rupture. Triez par importance pour voir d'abord ce qui compte.
 
 Comprendre en une minute
-• Un titre clair et un résumé en trois temps : ce qu'on savait avant, ce qui est nouveau, et ce que ça change
+• Un titre clair et un résumé en trois temps : ce qu'on savait avant, la découverte, et ce que ça change
 • Le type d'étude (chez l'humain, chez l'animal, simulation, prototype…) pour savoir ce que vaut le résultat
-• Les mots techniques expliqués, à retrouver dans l'onglet Vocabulaire
-• Toujours la source, avec un lien vers l'article d'origine
+• Les mots difficiles expliqués, à réviser dans l'onglet Vocabulaire
+• Les sources, avec un lien vers l'article d'origine, et une vidéo sur le sujet quand il en existe une
 
 Simple à suivre
-• Nouveautés : les avancées des 3 derniers jours que vous n'avez pas encore lues
-• Cette semaine (jour par jour), ce mois-ci, cette année (mois par mois)
-• Filtres par domaine, tri par date ou par importance
-• Glissez d'une avancée à l'autre ; balayez une carte pour l'ajouter aux favoris ou la masquer
+• À la une, Nouveau pour vous et Le top de la semaine dès l'accueil
+• Une page par domaine, triée par date ou par importance, sur la semaine, le mois ou l'année
+• Recherche, favoris, thème sombre
 • Le fil s'ouvre instantanément et reste lisible sans réseau
 
 Des notifications qui ne dérangent pas
-Choisissez le fil et l'importance minimale : vous n'êtes prévenu que de ce qui vous intéresse, au plus deux fois par jour. Les notifications sont facultatives.
+Choisissez le fil et l'importance minimale : vous n'êtes prévenu que de ce qui vous intéresse. Les notifications sont facultatives.
 
 Dans votre langue
-L'application est disponible en 20 langues ; les avancées sont traduites directement sur votre téléphone.
+L'application est disponible en 20 langues.
 
 Gratuit et sans compte
-Pas d'inscription : vos choix, vos favoris et votre vocabulaire restent sur votre téléphone. Une erreur dans un résumé ? Signalez-la en un geste depuis l'avancée.
+Pas d'inscription : vos choix, vos favoris et votre vocabulaire restent sur votre téléphone. L'application est financée par quelques annonces discrètes, que vous pouvez retirer à vie par un achat unique. Une erreur dans un résumé ? Signalez-la en un geste depuis l'avancée.
 
 À savoir
 Les avancées sont sélectionnées, résumées et notées automatiquement par une intelligence artificielle à partir de sources scientifiques et technologiques reconnues. Elle peut se tromper : le résumé ne remplace pas l'article, la source fait toujours foi et un lien vous y mène.
@@ -82,40 +83,40 @@ NovaSTEM
 Science & tech: today’s real breakthroughs, explained in a minute.
 ```
 
-**Full description** (4,000 max)
+**Full description** (4,000 max) — **updated 10/11/2026 (launch)**
 
 ```
 Every day, researchers and engineers make discoveries, some of them huge. They are scattered across hundreds of journals, labs and specialist sites. NovaSTEM gathers them for you, explains them simply and tells you which ones really matter.
 
-Two feeds, all of science
+Science, tech and what's coming up
 • Science: space, health, climate, physics, life, Earth and history…
 • Tech: smartphones, chips, artificial intelligence, transport, energy, video games…
-More than 150 sources from around the world (scientific journals, labs, space agencies, tech sites) are read every day. New breakthroughs arrive in the morning and in the evening.
+• Coming up: rocket launches, product releases, major summits and events not to miss, with an optional reminder
+More than 150 sources from around the world are read every day. New breakthroughs arrive in the morning and in the evening.
 
 A rating to get to the point
 Each breakthrough gets 1 to 5 stars based on how new it is, its impact and the strength of the evidence: Interesting, Notable, Important, Major, Breakthrough. Sort by importance to see what matters first.
 
 Understand it in a minute
-• A clear title and a three-part summary: what we knew before, what is new, and what it changes
+• A clear title and a three-part summary: what we knew before, the discovery, and what it changes
 • The type of study (in humans, in animals, simulation, prototype…) so you know what the result is worth
-• Technical words explained, saved in the Words tab
-• Always the source, with a link to the original article
+• Tricky words explained, to review in the Words tab
+• The sources, with a link to the original article, and a video on the topic when one exists
 
 Easy to follow
-• New: the breakthroughs from the last 3 days you haven't read yet
-• This week (day by day), this month, this year (month by month)
-• Filters by field, sort by date or importance
-• Swipe from one breakthrough to the next; swipe a card to save it or hide it
+• Top story, New for you and Top of the week right on the home screen
+• A page for each field, sorted by date or importance, over the week, month or year
+• Search, saved items, dark mode
 • The feed opens instantly and stays readable offline
 
 Notifications that don't get in the way
-Choose the feed and the minimum importance: you only hear about what interests you, at most twice a day. Notifications are optional.
+Choose the feed and the minimum importance: you only hear about what interests you. Notifications are optional.
 
 In your language
-The app is available in 20 languages; breakthroughs are translated directly on your phone.
+The app is available in 20 languages.
 
 Free, no account
-No sign-up: your choices, favorites and words stay on your phone. Spotted a mistake in a summary? Report it in one tap from the breakthrough.
+No sign-up: your choices, saved items and words stay on your phone. The app is funded by a few unobtrusive ads, which you can remove for life with a one-time purchase. Spotted a mistake in a summary? Report it in one tap from the breakthrough.
 
 Good to know
 Breakthroughs are selected, summarized and rated automatically by artificial intelligence from recognized scientific and technology sources. It can make mistakes: the summary does not replace the article, the source always prevails, and a link takes you there.
