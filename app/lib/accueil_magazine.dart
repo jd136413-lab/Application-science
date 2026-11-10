@@ -228,21 +228,30 @@ class _EcranMagazineState extends State<EcranMagazine> {
     return res;
   }
 
-  Widget? _rubriqueUne(BuildContext context, List<Avancee> tout) {
-    // La plus importante des dernières 24 h ; à défaut, des 3 derniers jours.
+  /// L'avancée « À la une » : la plus importante des dernières 24 h ; à défaut, des 3 derniers jours.
+  (List<Avancee>, String)? _une(List<Avancee> tout) {
     var l = parImportance(tout.where((a) => DateTime.now().difference(a.ajouteLe ?? a.publieLe).inHours < 24).toList());
     var libelle = 'À la une · aujourd’hui';
     if (l.isEmpty) {
       l = parImportance(surPeriode(tout, 3));
       libelle = 'À la une · ces derniers jours';
     }
-    if (l.isEmpty) return null;
+    return l.isEmpty ? null : (l, libelle);
+  }
+
+  Widget? _rubriqueUne(BuildContext context, List<Avancee> tout) {
+    final une = _une(tout);
+    if (une == null) return null;
+    final (l, libelle) = une;
     return _CarteUne(avancee: l.first, libelle: tr(libelle), onTap: () => ouvrirAvancee(context, l, l.first));
   }
 
   Widget _rubriqueNouveau(BuildContext context, List<Avancee> tout) {
     final p = palette(context);
-    final l = tout.where(etat.estNouvelle).toList()..sort((a, b) => b.publieLe.compareTo(a.publieLe));
+    // Sans l'avancée déjà affichée en grand dans « À la une » (pas de doublon à l'écran).
+    final idUne = etat.rubriqueActive('une') ? _une(tout)?.$1.first.id : null;
+    final l = tout.where((a) => etat.estNouvelle(a) && a.id != idUne).toList()
+      ..sort((a, b) => b.publieLe.compareTo(a.publieLe));
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       _TitreRubrique(
         titre: l.isEmpty ? tr('Nouveau pour vous') : '${tr('Nouveau pour vous')} · ${l.length}',
@@ -679,7 +688,10 @@ class _TuileDomaine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final f = familleDe(famille);
-    return Material(
+    // Domaine sans avancée ce mois-ci : tuile pâle « Rien ce mois-ci » (choix de Maxime, 10/11).
+    return Opacity(
+      opacity: nombre == 0 ? 0.45 : 1,
+      child: Material(
       color: f.couleur,
       borderRadius: BorderRadius.circular(16),
       clipBehavior: Clip.antiAlias,
@@ -694,7 +706,7 @@ class _TuileDomaine extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: police(policeTexte, taille: 13, graisse: FontWeight.w800, couleur: f.icone, hauteur: 1.1)),
-                Text(nombre == 1 ? tr('1 avancée') : tr('{n} avancées', n: nombre),
+                Text(nombre == 0 ? tr('Rien ce mois-ci') : nombre == 1 ? tr('1 avancée') : tr('{n} avancées', n: nombre),
                     style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: f.icone.withValues(alpha: 0.85))),
               ]),
             ),
@@ -702,6 +714,7 @@ class _TuileDomaine extends StatelessWidget {
           ]),
         ),
       ),
+    ),
     );
   }
 }

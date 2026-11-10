@@ -419,6 +419,9 @@ def _changement(db, e: dict, nouveau: dict, statut: str, raison: str, log) -> bo
 
 # ------------------------------------------------------------------ calendrier (rempli à la main)
 
+CALENDRIER_URLS: set[str] = set()
+
+
 def calendrier(db, existants: list[dict], futurs: list[dict], aujourd_hui: date, log) -> int:
     """Événements connus longtemps à l'avance (calendrier_a_venir.json) : ajoutés une fois,
     puis mis à jour quand le fichier change (date, heure, infos pratiques, report)."""
@@ -429,6 +432,7 @@ def calendrier(db, existants: list[dict], futurs: list[dict], aujourd_hui: date,
         log(f"  ⚠ À venir : calendrier illisible ({str(ex)[:80]})")
         return 0
     par_url = {e["source_url"]: e for e in existants}
+    CALENDRIER_URLS.update(ev.get("source_url", "") for ev in liste)
     n = maj = 0
     for ev in liste:
         ev = {k: v for k, v in ev.items() if not k.startswith("_")}
@@ -533,20 +537,20 @@ _LL2_CACHE: dict[str, dict] = {}   # lancements déjà reçus pendant ce passage
 
 CONSIGNE_LANCEMENTS = """Tu choisis des lancements spatiaux pour l'onglet « À venir » de NovaSTEM (application gratuite d'avancées scientifiques et technologiques pour le grand public du monde entier, en français).
 
-On te donne les prochains lancements (numérotés) et les événements déjà dans l'onglet. Garde AU PLUS {n} lancements qui intéressent le grand public : vol avec des astronautes, mission vers la Lune, Mars ou une autre planète, grand télescope ou sonde scientifique, premier vol d'une nouvelle fusée, fusée européenne (Ariane 6, Vega), retour ou atterrissage d'une fusée jamais tenté. JAMAIS : lancements de séries de satellites de communication (Starlink, Kuiper, OneWeb, Qianfan…), satellites commerciaux ou militaires ordinaires, vols de routine. Ne reprends pas un lancement déjà dans l'onglet. Liste vide si rien d'intéressant.
+On te donne les prochains lancements (numérotés) et les événements déjà dans l'onglet. Garde AU PLUS {n} lancements qui intéressent le grand public : vol avec des astronautes, mission vers la Lune, Mars ou une autre planète, grand télescope ou sonde scientifique, premier vol d'une nouvelle fusée, fusée européenne (Ariane 6, Vega), retour ou atterrissage d'une fusée jamais tenté. JAMAIS : lancements de séries de satellites de communication (Starlink, Kuiper, OneWeb, Qianfan…), satellites commerciaux ou militaires ordinaires, vols de routine. Ne reprends JAMAIS un lancement déjà dans l'onglet, même formulé autrement ou à une autre date (même fusée et même mission = même lancement) : un doublon est la pire erreur possible. Liste vide si rien d'intéressant.
 
-Pour chacun : "i" (son numéro), "titre" (« Sujet : phrase », 12 mots au plus, la phrase après les deux-points compréhensible seule en 8 mots au plus car seule affichée dans la liste, compréhensible par quelqu'un qui n'y connaît rien, sans nom de code inconnu ; ex. « Fusées : l'Europe lance son télescope chasseur de planètes » ; la phrase nomme qui lance, jamais « sa fusée » seul ; noms de fusées en français usuel : « Longue Marche », pas « Long March »), "prevu" (1 à 2 phrases simples : qui lance quoi, pour faire quoi), "pourquoi" (1 phrase), "lieu" (le pas de tir donné, en français : « Kourou, en Guyane française », « Cap Canaveral, en Floride (États-Unis) »), "pratique" (1 à 2 lignes : "repere" À regarder = le moment fort du vol ; "info" la mission si utile ; jamais la date ni le lieu), "famille" ("space" pour une mission scientifique, "aerospace" pour une fusée ou un vol habité), "importance" (1 à 5, exigeant : 2 en général, 3 pour un vol très suivi, 4 pour un moment historique)."""
+Pour chacun : "i" (son numéro), "nom" (le nom du lancement RECOPIÉ À L'IDENTIQUE depuis la liste, ex. « LVM-3 | Gaganyaan-1 » : il sert à vérifier que le texte correspond bien au bon numéro), "titre" (« Sujet : phrase », 12 mots au plus, la phrase après les deux-points compréhensible seule en 8 mots au plus car seule affichée dans la liste, compréhensible par quelqu'un qui n'y connaît rien, sans nom de code inconnu ; ex. « Fusées : l'Europe lance son télescope chasseur de planètes » ; la phrase nomme qui lance, jamais « sa fusée » seul ; noms de fusées en français usuel : « Longue Marche », pas « Long March »), "prevu" (1 à 2 phrases simples : qui lance quoi, pour faire quoi), "pourquoi" (1 phrase), "lieu" (le pas de tir donné, en français : « Kourou, en Guyane française », « Cap Canaveral, en Floride (États-Unis) »), "pratique" (1 à 2 lignes : "repere" À regarder = le moment fort du vol ; "info" la mission si utile ; jamais la date ni le lieu), "famille" ("space" pour une mission scientifique, "aerospace" pour une fusée ou un vol habité), "importance" (1 à 5, exigeant : 2 en général, 3 pour un vol très suivi, 4 pour un moment historique)."""
 
 SCHEMA_LANCEMENTS = {
     "type": "object",
     "properties": {"lancements": {"type": "array", "items": {
         "type": "object",
-        "properties": {"i": {"type": "integer"}, "titre": {"type": "string"}, "prevu": {"type": "string"},
+        "properties": {"i": {"type": "integer"}, "nom": {"type": "string"}, "titre": {"type": "string"}, "prevu": {"type": "string"},
                        "pourquoi": {"type": "string"}, "lieu": {"type": "string"},
                        "pratique": {"type": "array", "items": _LIGNE},
                        "famille": {"type": "string", "enum": ["space", "aerospace"]},
                        "importance": {"type": "integer"}},
-        "required": ["i", "titre", "prevu", "pourquoi", "lieu", "pratique", "famille", "importance"],
+        "required": ["i", "nom", "titre", "prevu", "pourquoi", "lieu", "pratique", "famille", "importance"],
         "additionalProperties": False}}},
     "required": ["lancements"], "additionalProperties": False,
 }
@@ -642,7 +646,7 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
     candidats = []
     for l in res:
         url = f"{LL2}{l.get('id')}/"
-        if url in {e["source_url"] for e in existants}:
+        if url in {e["source_url"] for e in existants} or url in REFUS:
             continue
         q = _quand_lancement(l)
         if q is None or not (aujourd_hui.isoformat() <= q["event_date"] <= limite.isoformat()):
@@ -657,7 +661,10 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
         lignes.append(f"{k}. {l.get('name', '')} — {q['event_date']} ({q['precision']}) — "
                       f"{(l.get('launch_service_provider') or {}).get('name', '')} — pas de tir : {lieu}"
                       f" — {(m.get('description') or '')[:220]}")
-    deja = "\n".join(f"- {e['title']} ({e['event_date']})" for e in futurs) or "(aucun)"
+    def nom_ll2(e):
+        l = _LL2_CACHE.get(str(e.get("source_url", "")))
+        return f" [lancement : {l.get('name')}]" if l and l.get("name") else ""
+    deja = "\n".join(f"- {e['title']} ({e['event_date']}){nom_ll2(e)}" for e in futurs) or "(aucun)"
     rep = _appel(client, modele_id, CONSIGNE_LANCEMENTS.replace("{n}", str(LANCEMENTS_MAX)),
                  f"Déjà dans l'onglet :\n{deja}\n\nProchains lancements :\n" + "\n".join(lignes),
                  SCHEMA_LANCEMENTS, conso, 3000)
@@ -667,6 +674,11 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
         if not isinstance(k, int) or not 0 <= k < len(candidats):
             continue
         l, q, url = candidats[k]
+        if " ".join(str(x.get("nom", "")).split()).lower() != " ".join(str(l.get("name", "")).split()).lower():
+            # Le texte écrit ne correspond pas au lancement de ce numéro (erreur du 10/11 : une carte
+            # « Gaganyaan » reliée à un lancement SpaceX) : on n'ajoute rien plutôt qu'une carte fausse.
+            log(f"  · À venir : lancement écarté (nom « {str(x.get('nom', ''))[:40]} » ≠ « {str(l.get('name', ''))[:40]} »)")
+            continue
         video, video_nom = _video(l)
         ligne = {
             "title": str(x.get("titre", "")).strip().rstrip(".")[:200],
@@ -776,6 +788,131 @@ def completer(db, client, modele_id, futurs: list[dict], lire_debut_page, conso:
     return n
 
 
+# ------------------------------------------------------------------ anti-doublons (10/11/2026)
+# « Je ne veux absolument aucun doublon » (Maxime). Une carte peut arriver par trois chemins
+# (calendrier, lancements, articles) : à chaque passage, un juge relit TOUT l'onglet et retire
+# les doublons et les cartes incohérentes. Sonnet, le plus fiable : ≈ 0,01 $ par passage.
+
+MODELE_DOUBLONS = "claude-sonnet-5-5"
+PRIX_DOUBLONS = (2.00, 10.00)      # $ par million de tokens (entrée, sortie)
+SUPPRESSIONS_MAX = 4               # sécurité : jamais plus de cartes retirées en un passage
+
+CONSIGNE_DOUBLONS = """Tu contrôles l'onglet « À venir » de NovaSTEM (calendrier d'événements scientifiques et technologiques). Un DOUBLON est la pire erreur possible : l'utilisateur ne doit jamais voir deux cartes pour le même événement.
+
+On te donne toutes les cartes (numérotées), avec leur date, leur texte et, pour les lancements, le nom officiel du lancement dans la base Launch Library (« [base : …] »).
+
+1. "doublons" : les groupes de cartes qui décrivent le MÊME événement, même formulé autrement, même avec des dates différentes (une date a pu changer) ou des sources différentes. Ex. « Inde : premier test sans équipage de Gaganyaan » et « Fusées : l'Inde teste un nouvel engin spatial habité » = même vol. Ce ne sont PAS des doublons : deux éditions différentes (Géminides 2026 et Géminides 2027), deux vols différents d'un même programme (premier et deuxième test, Flight 11 et Flight 12), deux étapes différentes (lancement puis arrivée d'une sonde). Pour chaque groupe : "cartes" (les numéros) et "garder" (le numéro de la carte à garder : la plus précise et la plus juste, à défaut la plus ancienne, c'est-à-dire le plus petit numéro).
+2. "incoherentes" : les cartes dont le texte ne correspond PAS au nom officiel du lancement (ex. texte sur une capsule indienne, base « Falcon 9 | SDA Tranche 2 »). Ne signale que les contradictions nettes, pas les simples traductions ou noms vulgarisés.
+
+Sois sûr de toi : dans le doute, ce n'est pas un doublon. Listes vides si tout va bien."""
+
+SCHEMA_DOUBLONS = {
+    "type": "object",
+    "properties": {
+        "doublons": {"type": "array", "items": {
+            "type": "object",
+            "properties": {"cartes": {"type": "array", "items": {"type": "integer"}}, "garder": {"type": "integer"},
+                           "raison": {"type": "string"}},
+            "required": ["cartes", "garder", "raison"], "additionalProperties": False}},
+        "incoherentes": {"type": "array", "items": {
+            "type": "object",
+            "properties": {"carte": {"type": "integer"}, "raison": {"type": "string"}},
+            "required": ["carte", "raison"], "additionalProperties": False}},
+    },
+    "required": ["doublons", "incoherentes"], "additionalProperties": False,
+}
+
+
+REFUS: set[str] = set()            # adresses des cartes déjà retirées (table upcoming_refus, migration 016)
+REFUS_TABLE = True
+
+
+def lire_refus(db, log) -> None:
+    global REFUS_TABLE
+    try:
+        r = requests.get(db.base.rsplit("/", 1)[0] + "/upcoming_refus", headers=db.headers, timeout=30,
+                         params={"select": "source_url", "limit": "5000"})
+        if r.status_code >= 400:
+            REFUS_TABLE = False
+            log("ℹ À venir : liste des doublons retirés absente (lancer database/migration_016_a_venir_refus.sql).")
+            return
+        REFUS.update(x["source_url"] for x in r.json() if x.get("source_url"))
+    except Exception:
+        REFUS_TABLE = False
+
+
+def _noter_refus(db, url: str, raison: str) -> None:
+    REFUS.add(url)
+    if not REFUS_TABLE or not url:
+        return
+    try:
+        requests.post(db.base.rsplit("/", 1)[0] + "/upcoming_refus", timeout=30,
+                      headers=dict(db.headers, Prefer="resolution=merge-duplicates,return=minimal"),
+                      json={"source_url": url, "raison": raison[:300]})
+    except Exception:
+        pass
+
+
+def _supprimer(db, e: dict) -> bool:
+    r = requests.delete(_url(db), headers=dict(db.headers, Prefer="return=minimal"), timeout=30,
+                        params={"id": f"eq.{e['id']}"})
+    return r.status_code < 300
+
+
+def verifier_doublons(db, client, futurs: list[dict], log) -> float:
+    """Relit tout l'onglet, retire doublons et cartes incohérentes. Renvoie le coût ($). Jamais bloquant."""
+    cartes = [e for e in futurs if e.get("id") and not e.get("advance_id")]
+    if len(cartes) < 2:
+        return 0.0
+    conso = {"in": 0, "out": 0}
+    try:
+        lignes = []
+        for k, e in enumerate(cartes):
+            l = _LL2_CACHE.get(str(e.get("source_url", "")))
+            base = f" [base : {l.get('name')}]" if l and l.get("name") else ""
+            lignes.append(f"{k}. {e.get('event_date')} — {e.get('title', '')} — {(e.get('prevu') or '')[:160]}{base}")
+        r = _appel(client, MODELE_DOUBLONS, CONSIGNE_DOUBLONS, "\n".join(lignes), SCHEMA_DOUBLONS, conso, 1500)
+        a_retirer: dict[int, str] = {}
+        for g in r.get("doublons") or []:
+            nums = sorted({n for n in g.get("cartes") or [] if isinstance(n, int) and 0 <= n < len(cartes)})
+            if len(nums) < 2:
+                continue
+            garder = g.get("garder") if g.get("garder") in nums else nums[0]
+            # Une carte du calendrier (choisi à la main) est toujours celle qu'on garde.
+            du_cal = [n for n in nums if str(cartes[n].get("source_url", "")) in CALENDRIER_URLS]
+            if len(du_cal) > 1:
+                log(f"  ⚠ À venir : doublon dans le calendrier lui-même ({', '.join(cartes[n].get('title', '')[:40] for n in du_cal)}) : à corriger dans {FICHIER_CALENDRIER}")
+                continue
+            if du_cal:
+                garder = du_cal[0]
+            for n in nums:
+                if n != garder:
+                    a_retirer.setdefault(n, f"doublon de « {cartes[garder].get('title', '')[:50]} » ({g.get('raison', '')[:80]})")
+        for x in r.get("incoherentes") or []:
+            n = x.get("carte")
+            # Seulement les lancements de la base, dont on peut comparer le texte au nom officiel.
+            if isinstance(n, int) and 0 <= n < len(cartes) and str(cartes[n].get("source_url", "")).startswith(LL2):
+                a_retirer.setdefault(n, f"texte incohérent avec le lancement ({x.get('raison', '')[:80]})")
+        retirees = 0
+        for n, raison in list(a_retirer.items())[:SUPPRESSIONS_MAX]:
+            e = cartes[n]
+            if str(e.get("source_url", "")) in CALENDRIER_URLS:
+                continue                       # jamais une carte du calendrier
+            if _supprimer(db, e):
+                _noter_refus(db, str(e.get("source_url", "")), raison)
+                retirees += 1
+                if e in futurs:
+                    futurs.remove(e)
+                log(f"  🧹 À venir : « {e.get('title', '')[:60]} » retirée — {raison}")
+        if len(a_retirer) > SUPPRESSIONS_MAX:
+            log(f"  ⚠ À venir : {len(a_retirer) - SUPPRESSIONS_MAX} autre(s) doublon(s) signalé(s), retirés au prochain passage")
+        if not a_retirer:
+            log("  ✔ À venir : aucun doublon")
+    except Exception as ex:
+        log(f"  ⚠ À venir : contrôle des doublons impossible ({str(ex)[:80]})")
+    return (conso["in"] * PRIX_DOUBLONS[0] + conso["out"] * PRIX_DOUBLONS[1]) / 1e6
+
+
 def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_apres, prix,
                   familles_science: set[str], familles_tech: set[str], lire_debut_page) -> float:
     """Appelé par main.py à la fin du passage. Jamais bloquant. Renvoie le coût ($)."""
@@ -794,7 +931,8 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
     nouveaux = maj = arrives = 0
     global QUOTA
     QUOTA = Quota(db, log)
-    urls = {e["source_url"] for e in existants}
+    lire_refus(db, log)
+    urls = {e["source_url"] for e in existants} | REFUS
     futurs = [e for e in existants if e["event_date"] >= aujourd_hui.isoformat()]
     # --- 0) Événements connus à l'avance + prochains lancements spatiaux ---
     nouveaux += calendrier(db, existants, futurs, aujourd_hui, log)
@@ -901,6 +1039,8 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
         maj += completer(db, client, modele_id, futurs, lire_debut_page, conso, log)
     except Exception as ex:
         log(f"  ⚠ À venir : complément ignoré ({ex.__class__.__name__})")
+    # --- Contrôle des doublons sur tout l'onglet (tous les chemins d'arrivée) ---
+    cout_doublons = verifier_doublons(db, client, futurs, log)
     # --- 2) « C'est arrivé » : relier les avancées du jour aux événements attendus ---
     attendus = [e for e in existants if not e.get("advance_id")
                 and (aujourd_hui - timedelta(days=7)).isoformat() <= e["event_date"] <= (aujourd_hui + timedelta(days=1)).isoformat()]
@@ -921,7 +1061,7 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
                     log(f"  ✅ C'est arrivé : « {attendus[e]['title'][:60]} » → « {publies[a]['title'][:60]} »")
         except Exception as ex:
             log(f"  ⚠ À venir : liens impossibles ({str(ex)[:80]})")
-    cout = (conso["in"] * prix[0] + conso["out"] * prix[1]) / 1e6
+    cout = (conso["in"] * prix[0] + conso["out"] * prix[1]) / 1e6 + cout_doublons
     # --- 3) Traduction des cartes (anglais…), une fois pour toutes ---
     try:
         import traduction_a_venir
