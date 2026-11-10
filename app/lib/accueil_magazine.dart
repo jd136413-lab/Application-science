@@ -291,7 +291,7 @@ class _EcranMagazineState extends State<EcranMagazine> {
         (filsAvancees.fils[_fil] ?? const <Avancee>[]).where((a) => !etat.estMasquee(a)).toList(), 31);
     final compte = <String, int>{for (final f in famillesDuFil(_fil)) f: 0};
     for (final a in mois) {
-      compte[a.famille] = (compte[a.famille] ?? 0) + 1;
+      if (compte.containsKey(a.famille)) compte[a.famille] = compte[a.famille]! + 1; // domaines du fil seulement
     }
     final ordre = compte.keys.toList()..sort((a, b) => compte[b]!.compareTo(compte[a]!));
     final p = palette(context);

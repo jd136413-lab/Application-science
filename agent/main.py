@@ -582,7 +582,7 @@ THEME_DE_SECOURS = {"psychology": "other", "society": "other", "cameras": "gadge
                     "ships": "cars", "defense": "aircraft", "nuclear": "solar", "manufacturing": "tech_other",
                     "construction": "tech_other", "agritech": "tech_other"}
 FAMILLES_TEXTE = ("Sciences : space (espace, astronomie), environment (environnement, climat, océans, "
-                  "agriculture), health (santé, médecine, cerveau), technology (technologie, IA, robots, énergie), "
+                  "agriculture), health (santé, médecine, cerveau), "
                   "physics (physique, chimie, matériaux, maths), life (biologie, génétique, animaux, plantes), "
                   "earth (géologie, fossiles, archéologie), other (psychologie, comportement, société, éducation). "
                   "Technologies : mobile (smartphones, objets, appareils photo), "
@@ -1840,7 +1840,7 @@ def main() -> int:
         if mode_budget != "normal":
             raise RuntimeError("mode économie du budget")
         cout_avenir = a_venir.passage_agent(db, client, modele["id"], ajoutes, log, sans_et_apres, modele["prix"],
-                                            set(FAMILLES_THEMES) - familles_tech, familles_tech, lire_debut_page)
+                                            set(FAMILLES_THEMES) - familles_tech - {"technology"}, familles_tech, lire_debut_page)
     except Exception as ex:                      # l'onglet « À venir » ne doit jamais bloquer le passage
         log(f"⚠ À venir : passage interrompu ({ex.__class__.__name__}: {str(ex)[:120]})")
         cout_avenir = 0.0
