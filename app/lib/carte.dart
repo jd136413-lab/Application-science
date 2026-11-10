@@ -274,7 +274,11 @@ Future<bool> ouvrirArticle(Uri uri) async {
   try {
     if (await launchUrl(uri, mode: LaunchMode.inAppBrowserView)) return true;
   } catch (_) {}
-  return launchUrl(uri, mode: LaunchMode.externalApplication);
+  try {
+    return await launchUrl(uri, mode: LaunchMode.externalApplication);
+  } catch (_) {
+    return false; // aucun navigateur : rien plutôt qu'un plantage
+  }
 }
 
 /// Carte grise qui « respire » pendant le chargement (maquette 22).

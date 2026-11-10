@@ -172,8 +172,10 @@ class Evenement {
             if (x is Map && '${x['nom'] ?? ''}'.isNotEmpty && '${x['url'] ?? ''}'.isNotEmpty)
               SourceAvancee('${x['nom']}', '${x['url']}', '${x['langue'] ?? ''}', DateTime.tryParse('${x['date'] ?? ''}')),
         ],
-        sourceUrl: '${j['source_url'] ?? ''}',
-        sourceNom: '${j['source_name'] ?? ''}',
+        sourceUrl: _lienLisible('${j['source_url'] ?? ''}'),
+        sourceNom: _lienLisible('${j['source_url'] ?? ''}') != '${j['source_url'] ?? ''}'
+            ? 'Space Launch Now'
+            : '${j['source_name'] ?? ''}',
         datePrecedente: _jour(j['previous_date']),
         avanceeId: j['advance_id'] as String?,
         statut: '${j['statut'] ?? 'prevu'}',
@@ -579,6 +581,8 @@ String titreCourt(String titre) {
   if (i <= 0 || titre.substring(0, i).split(' ').length > 3) return titre;
   final reste = titre.substring(i + 3).trim();
   if (reste.isEmpty) return titre;
+  // « Corée du Sud : premier vol de SA fusée » : sans le début, on ne sait plus de qui on parle.
+  if (RegExp(r'\b(sa|son|ses|leur|leurs)\b', caseSensitive: false).hasMatch(reste.split(' ').take(8).join(' '))) return titre;
   return reste[0].toUpperCase() + reste.substring(1);
 }
 
@@ -876,6 +880,14 @@ List<Widget> ligneCarte(BuildContext context, Evenement e, {bool statutSeulement
   ];
 }
 
+/// Lancements venant de la base The Space Devs : leur adresse est celle de la base de
+/// données (page technique illisible). On ouvre plutôt la fiche du lancement sur
+/// Space Launch Now, le site grand public de la même base (même identifiant).
+String _lienLisible(String url) {
+  final m = RegExp(r'^https://ll\.thespacedevs\.com/[0-9.]+/launch/([0-9a-f-]{36})/?$').firstMatch(url);
+  return m == null ? url : 'https://spacelaunchnow.app/launch/${m.group(1)}/';
+}
+
 /// Texte composé de morceaux (heure · lieu, « Raison : … », lignes pratiques…).
 /// `faire` reçoit une fonction `t` à appliquer aux morceaux écrits par l'agent.
 /// Si tous ces morceaux ont leur traduction toute prête, la phrase traduite est
@@ -1070,12 +1082,14 @@ class _VueAVenirState extends State<VueAVenir> {
             );
         // Plus loin qu'un mois : un en-tête par mois (« Janvier », « Août 2027 »…).
         final plusTard = <String, List<Evenement>>{};
-        for (final e in prochains.where((e) => e.jours > 31)) {
+        final auj = aujourdhuiParis();
+        bool ceMois(Evenement e) => e.date.year == auj.year && e.date.month == auj.month;
+        for (final e in prochains.where((e) => e.jours > 7 && !ceMois(e))) {
           plusTard.putIfAbsent(enTeteMois(DateTime(e.date.year, e.date.month)), () => []).add(e);
         }
         final groupes = <(String, List<Evenement>)>[
           ('Cette semaine', prochains.where((e) => e.jours <= 7).toList()),
-          ('Ce mois-ci', prochains.where((e) => e.jours > 7 && e.jours <= 31).toList()),
+          ('Ce mois-ci', prochains.where((e) => e.jours > 7 && ceMois(e)).toList()),
           for (final m in plusTard.entries) (m.key, m.value),
         ];
         Widget choix(String? fil, String texte) {

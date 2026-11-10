@@ -144,6 +144,10 @@ def envoyer_changement(evenement: dict, nature: str, log) -> bool:
             "type": "changement", "nature": nature, "evt": str(evenement["id"]),
             "titre": evenement.get("title", ""), "date": str(evenement.get("event_date") or ""),
             "utc": str(evenement.get("event_utc") or ""), "precision": str(evenement.get("precision") or "jour"),
+            # Titre traduit par l'agent (migration 015), affiché tel quel par le téléphone.
+            **{f"titre_{code}": str(paires.get(evenement.get("title", "")))
+               for code, paires in (evenement.get("traductions") or {}).items()
+               if isinstance(paires, dict) and paires.get(evenement.get("title", ""))},
         }
         message = {"message": {
             "topic": f"evt_{evenement['id']}",

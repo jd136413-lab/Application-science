@@ -495,7 +495,9 @@ Future<void> _afficherChangement(Map<String, dynamic> data) async {
         _ => 'Reporté',
       },
       langue);
-  final texte = '${data['titre'] ?? ''}${nature != 'annule' && quand.isNotEmpty ? '\n→ $quand' : ''}';
+  final traduit = data['titre_$langue']?.toString() ?? '';
+  final titreEvt = langue != 'fr' && traduit.isNotEmpty ? traduit : (data['titre']?.toString() ?? '');
+  final texte = '$titreEvt${nature != 'annule' && quand.isNotEmpty ? '\n→ $quand' : ''}';
   await _local.show(
     idRappelEvenement(evt) + 2,
     titreNotif,
