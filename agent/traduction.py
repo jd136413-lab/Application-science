@@ -285,6 +285,12 @@ def main() -> int:
         log("❌ Colonne « traductions » absente (migration 006).")
         return 1
     restantes = len(fiches) - n
+    try:  # les événements « À venir » aussi (migration 015)
+        from datetime import date, timedelta
+        import traduction_a_venir
+        cout += traduction_a_venir.passage(db, Anthropic(), log, (date.today() - timedelta(days=7)).isoformat(), maximum=400)
+    except Exception as ex:
+        log(f"⚠ À venir : traductions ignorées ({ex.__class__.__name__})")
     log(f"\n✔ {n} fiche(s) traduite(s) en {int(time.time() - debut)} s — coût estimé : {cout:.4f} $"
         + (f" — {restantes} restante(s) (relancer le workflow)" if restantes else ""))
     if os.environ.get("GITHUB_ACTIONS"):
