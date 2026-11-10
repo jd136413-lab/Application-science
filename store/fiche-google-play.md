@@ -39,9 +39,9 @@ Deux fils : sciences et technologies
 Plus de 150 sources du monde entier sont lues chaque jour. Les nouvelles avancées arrivent le matin et le soir.
 
 À venir : ne ratez plus les grands rendez-vous
-Un calendrier des événements scientifiques et technologiques des prochains jours et des prochaines semaines : lancements de fusées et de missions spatiales, sorties de nouveaux produits, grands sommets, éclipses et phénomènes dans le ciel…
+Un calendrier des événements scientifiques et technologiques des prochains jours et des prochaines semaines : lancements de fusées et de missions spatiales, sorties de nouveaux produits, grands sommets et conférences…
 • Un compte à rebours sur chaque événement : en cours, demain, dans 2 jours…
-• Une cloche pour recevoir un rappel juste avant le moment venu
+• Une cloche pour recevoir un rappel le moment venu
 • Les changements de date signalés clairement quand un lancement est reporté
 • Un lien pour suivre en direct quand l'événement est retransmis
 • Un tri en un geste : tout, sciences ou technologies
@@ -101,9 +101,9 @@ Two feeds: science and tech
 More than 150 sources from around the world are read every day. New breakthroughs arrive in the morning and in the evening.
 
 Coming up: never miss a big moment again
-A calendar of the science and tech events of the coming days and weeks: rocket launches and space missions, new product releases, major summits, eclipses and sky events…
+A calendar of the science and tech events of the coming days and weeks: rocket launches and space missions, new product releases, major summits and conferences…
 • A countdown on every event: happening now, tomorrow, in 2 days…
-• A bell to get a reminder just before it starts
+• A bell to get a reminder when the time comes
 • Date changes clearly flagged when a launch is postponed
 • A link to watch live when the event is streamed
 • One tap to filter: everything, science or tech
