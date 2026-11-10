@@ -914,6 +914,12 @@ def passage_agent(db, client, modele_id: str, ajoutes: list[dict], log, sans_et_
         except Exception as ex:
             log(f"  ⚠ À venir : liens impossibles ({str(ex)[:80]})")
     cout = (conso["in"] * prix[0] + conso["out"] * prix[1]) / 1e6
+    # --- 3) Traduction des cartes (anglais…), une fois pour toutes ---
+    try:
+        import traduction_a_venir
+        cout += traduction_a_venir.passage(db, client, log, (aujourd_hui - timedelta(days=7)).isoformat())
+    except Exception as ex:
+        log(f"  ⚠ À venir : traductions ignorées ({ex.__class__.__name__})")
     log(f"À venir : {nouveaux} nouvelle(s) carte(s), {maj} carte(s) mise(s) à jour (dates, reports, infos pratiques), {arrives} « C'est arrivé » "
         f"({len(CANDIDATS)} titre(s) signalé(s)), {cout:.4f} $")
     return cout

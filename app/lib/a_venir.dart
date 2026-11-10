@@ -23,7 +23,7 @@ import 'detail.dart';
 import 'donnees.dart';
 import 'etat.dart';
 import 'langues.dart';
-import 'modele.dart' show enTeteMois, SourceAvancee;
+import 'modele.dart' show enTeteMois, SourceAvancee, traductionAgent, traductionsAgent;
 import 'notifications.dart';
 import 'pubs.dart';
 import 'regions_monde.dart';
@@ -138,7 +138,24 @@ class Evenement {
     return d == null ? null : DateTime.utc(d.year, d.month, d.day);
   }
 
-  factory Evenement.depuisJson(Map<String, dynamic> j) => Evenement(
+  /// Lit un événement et retient ses traductions faites par l'agent
+  /// (colonne « traductions », migration 015) : affichées tout de suite, sans traduction sur le téléphone.
+  factory Evenement.depuisJson(Map<String, dynamic> j) {
+    final t = j['traductions'];
+    if (t is Map) {
+      t.forEach((langue, paires) {
+        if (paires is! Map) return;
+        final d = traductionsAgent.putIfAbsent(langue.toString(), () => {});
+        paires.forEach((fr, trad) {
+          final a = '$fr'.trim(), b = '${trad ?? ''}'.trim();
+          if (a.isNotEmpty && b.isNotEmpty) d[a] = b;
+        });
+      });
+    }
+    return Evenement._lire(j);
+  }
+
+  factory Evenement._lire(Map<String, dynamic> j) => Evenement(
         id: '${j['id']}',
         titre: '${j['title'] ?? ''}',
         prevu: j['prevu'] as String?,
@@ -820,35 +837,35 @@ List<Widget> ligneCarte(BuildContext context, Evenement e, {bool statutSeulement
   Color couleur = p.texteDiscret;
   var gras = false;
   if (e.annule) {
-    texte = tr('Annulé');
+    texte = _compose((_) => tr('Annulé'));
     couleur = estSombre(context) ? const Color(0xFFFF8A8F) : _rougeTexte;
     gras = true;
   } else if (e.reporte) {
-    texte = '${tr('Reporté')} · ${tr('prévu d’abord le')} ${DateFormat('d MMM', etat.langue).format(e.datePrecedente!)}';
+    texte = _compose((_) => '${tr('Reporté')} · ${tr('prévu d’abord le')} ${DateFormat('d MMM', etat.langue).format(e.datePrecedente!)}');
     couleur = estSombre(context) ? const Color(0xFFFFC56B) : _orangeTexte;
     gras = true;
   } else if (e.type == 'ciel') {
     switch (visibiliteIci(e.visibleRegions, e.visiblePartiel)) {
       case Visibilite.totale:
-        texte = '✓ ${tr('Visible chez vous')}';
+        texte = _compose((_) => '✓ ${tr('Visible chez vous')}');
         couleur = estSombre(context) ? const Color(0xFF6EE2BE) : _vertTexte;
         gras = true;
       case Visibilite.partielle:
-        texte = '◐ ${tr('En partie visible chez vous')}';
+        texte = _compose((_) => '◐ ${tr('En partie visible chez vous')}');
         couleur = estSombre(context) ? const Color(0xFF6EE2BE) : _vertTexte;
         gras = true;
       case Visibilite.aucune:
-        texte = '✕ ${tr('Pas visible chez vous')}';
+        texte = _compose((_) => '✕ ${tr('Pas visible chez vous')}');
         couleur = estSombre(context) ? const Color(0xFFFFC56B) : _orangeTexte;
         gras = true;
       case Visibilite.inconnue:
         texte = e.visibleTexte;
     }
   } else {
-    texte = [
-      if (e.instantExact != null) heureLocale(e.instantExact!),
-      if ((e.lieu ?? '').isNotEmpty) e.lieu!,
-    ].join(' · ');
+    texte = _compose((t) => [
+          if (e.instantExact != null) heureLocale(e.instantExact!),
+          if ((e.lieu ?? '').isNotEmpty) t(e.lieu),
+        ].join(' · '));
   }
   if ((texte ?? '').isEmpty) return const [];
   return [
@@ -857,6 +874,25 @@ List<Widget> ligneCarte(BuildContext context, Evenement e, {bool statutSeulement
         maxLines: 1,
         style: police(policeTexte, taille: 12, graisse: gras ? FontWeight.w800 : FontWeight.w500, couleur: couleur)),
   ];
+}
+
+/// Texte composé de morceaux (heure · lieu, « Raison : … », lignes pratiques…).
+/// `faire` reçoit une fonction `t` à appliquer aux morceaux écrits par l'agent.
+/// Si tous ces morceaux ont leur traduction toute prête, la phrase traduite est
+/// retenue : TexteArticle l'affiche aussitôt, sans passer par le téléphone.
+String _compose(String Function(String Function(String?) t) faire) {
+  final fr = faire((x) => x ?? '');
+  if (etat.langue == 'fr' || fr.trim().isEmpty) return fr;
+  var complet = true;
+  final trad = faire((x) {
+    final a = (x ?? '').trim();
+    if (a.isEmpty) return x ?? '';
+    final r = traductionAgent(a);
+    if (r == null) complet = false;
+    return r ?? x!;
+  });
+  if (complet) traductionsAgent.putIfAbsent(etat.langue, () => {})[fr] = trad;
+  return fr;
 }
 
 Widget _bandeau(BuildContext context, Color fond, Color texte, IconData icone, String titre, String? detail) {
@@ -883,10 +919,10 @@ Widget _bandeau(BuildContext context, Color fond, Color texte, IconData icone, S
 /// Bandeaux en haut de la fiche : annulé, reporté, date floue, visibilité (ciel).
 List<Widget> bandeauxEvenement(BuildContext context, Evenement e) {
   final l = <Widget>[];
-  final raison = (e.statutRaison ?? '').isNotEmpty ? '${tr('Raison')} : ${e.statutRaison}. ' : '';
+  String raison(String Function(String?) t) => (e.statutRaison ?? '').isNotEmpty ? '${tr('Raison')} : ${t(e.statutRaison)}. ' : '';
   if (e.annule) {
     l.add(_bandeau(context, _rougeFond, _rougeTexte, Icons.event_busy_rounded, tr('Annulé'),
-        '$raison${tr('L’organisateur a annulé l’événement.')}'));
+        _compose((t) => '${raison(t)}${tr('L’organisateur a annulé l’événement.')}')));
   } else if (e.reporte) {
     l.add(_bandeau(
         context,
@@ -894,11 +930,11 @@ List<Widget> bandeauxEvenement(BuildContext context, Evenement e) {
         _orangeTexte,
         Icons.update_rounded,
         trv('Reporté au {date}', {'date': dateEvenement(e, longue: true)}),
-        '${tr('prévu d’abord le')} ${DateFormat('d MMMM', etat.langue).format(e.datePrecedente!)}. $raison'
-            '${etat.rappels.contains(e.id) ? tr('Votre rappel a été déplacé.') : ''}'.trim()));
+        _compose((t) => '${tr('prévu d’abord le')} ${DateFormat('d MMMM', etat.langue).format(e.datePrecedente!)}. ${raison(t)}'
+            '${etat.rappels.contains(e.id) ? tr('Votre rappel a été déplacé.') : ''}'.trim())));
   } else if (e.precision == 'avant') {
     l.add(_bandeau(context, _bleuFond, _bleuTexte, Icons.event_note_rounded, dateEvenement(e),
-        tr('Date précise pas encore annoncée. On la met dès qu’elle paraît.')));
+        _compose((_) => tr('Date précise pas encore annoncée. On la met dès qu’elle paraît.'))));
   }
   if (e.type == 'ciel' && !e.annule) {
     final zone = e.visibleTexte;
@@ -909,7 +945,7 @@ List<Widget> bandeauxEvenement(BuildContext context, Evenement e) {
         l.add(_bandeau(context, _vertFond, _vertTexte, Icons.contrast_rounded, tr('En partie visible chez vous'), zone));
       case Visibilite.aucune:
         l.add(_bandeau(context, _orangeFond, _orangeTexte, Icons.cancel_rounded, tr('Pas visible chez vous'),
-            '${zone ?? ''}${(e.lienDirect ?? '').isNotEmpty ? ' · ${tr('À suivre en direct sur Internet.')}' : ''}'));
+            _compose((t) => '${t(zone)}${(e.lienDirect ?? '').isNotEmpty ? ' · ${tr('À suivre en direct sur Internet.')}' : ''}')));
       case Visibilite.inconnue:
         if ((zone ?? '').isNotEmpty) {
           l.add(_bandeau(context, _bleuFond, _bleuTexte, Icons.public_rounded, tr('Où le voir'), zone));
@@ -923,11 +959,19 @@ List<Widget> bandeauxEvenement(BuildContext context, Evenement e) {
 Widget? blocPratique(BuildContext context, Evenement e) {
   final p = palette(context);
   final lignes = <(String, String, String)>[
-    if ((e.lieu ?? '').isNotEmpty) ('lieu', tr(e.type == 'lancement' ? 'D’où' : 'Où'), e.lieu!),
+    if ((e.lieu ?? '').isNotEmpty) ('lieu', _compose((_) => tr(e.type == 'lancement' ? 'D’où' : 'Où')), e.lieu!),
     if (e.instantExact != null)
-      ('heure', tr('Heure de chez vous'), '${DateFormat('EEEE d MMMM', etat.langue).format(e.instantExact!.toLocal())} · ${heureLocale(e.instantExact!)}'),
+      (
+        'heure',
+        _compose((_) => tr('Heure de chez vous')),
+        _compose((_) => '${DateFormat('EEEE d MMMM', etat.langue).format(e.instantExact!.toLocal())} · ${heureLocale(e.instantExact!)}')
+      ),
     if (e.fin != null && e.fin!.isAfter(e.date))
-      ('duree', tr('Durée'), '${dateEvenement(e, longue: true)} · ${tr('{n} jours', n: e.fin!.difference(e.date).inDays + 1)}'),
+      (
+        'duree',
+        _compose((_) => tr('Durée')),
+        _compose((_) => '${dateEvenement(e, longue: true)} · ${tr('{n} jours', n: e.fin!.difference(e.date).inDays + 1)}')
+      ),
     for (final x in e.pratique) (x.icone, x.titre, x.texte),
   ];
   if (lignes.isEmpty) return null;
