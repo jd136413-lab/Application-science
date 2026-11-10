@@ -19,19 +19,21 @@ BAS_UTILE = 2290       # au-delà : barre de navigation Android, retirée
 TITRES = {
     "fr": [("Les avancées du jour,", "sans rien rater"),
            ("Comprendre", "en une minute"),
-           ("La tech aussi,", "sans le jargon"),
+           ("La tech aussi,", "racontée simplement"),
            ("Les grands rendez-vous", "à ne pas manquer"),
            ("Chaque avancée notée", "de 1 à 5 étoiles"),
            ("Les mots difficiles,", "expliqués simplement"),
            ("Aussi", "en thème sombre")],
     "en": [("Today's breakthroughs,", "never miss one"),
            ("Understand it", "in one minute"),
-           ("Tech news too,", "without the jargon"),
+           ("Tech news too,", "told simply"),
            ("Big events", "you won't want to miss"),
            ("Every breakthrough", "rated from 1 to 5 stars"),
            ("Tricky words,", "explained simply"),
            ("Also", "in dark mode")],
 }
+# Position (haut, bas) du bloc « Voir la vidéo » et de la carte de la source dans la capture 3 brute.
+ZONES_DETAIL = [(1320, 1545), (1590, 1800)]
 NOMS = ["01_avancees", "02_detail", "03_technologies", "04_a_venir", "05_notes", "06_vocabulaire", "07_sombre"]
 
 
@@ -62,6 +64,8 @@ def fond_titre(t1, t2):
 
 
 def ecran(capture, haut=HAUT_STATUT, bas=BAS_UTILE):
+    if isinstance(capture, Image.Image):
+        return capture
     return Image.open(capture).convert("RGB").crop((0, haut, 1080, bas))
 
 
@@ -85,10 +89,34 @@ def page_simple(capture, t1, t2):
     return im
 
 
-def page_detail(haut, bas, t1, t2):
+ENCADRES = {"fr": ("La vidéo du sujet", "Les sources"), "en": ("A video on the topic", "The sources")}
+
+
+def encadrer(img, zones, langue):
+    """Met en avant des zones de la capture (y début, y fin, dans la capture brute) : cadre bleu + étiquette."""
+    img = img.copy()
+    d = ImageDraw.Draw(img)
+    f = ImageFont.truetype(os.path.join(ICI, "polices", "figtree.ttf"), 40)
+    try:
+        f.set_variation_by_name("ExtraBold")
+    except Exception:
+        pass
+    for (y0, y1), txt in zip(zones, ENCADRES[langue]):
+        y0, y1 = y0 - HAUT_STATUT, y1 - HAUT_STATUT
+        d.rounded_rectangle((40, y0, 1040, y1), radius=44, outline=BLEU, width=9)
+        l = d.textlength(txt, font=f)
+        d.rounded_rectangle((70, y0 - 30, 70 + l + 44, y0 + 30), radius=30, fill=BLEU)
+        d.text((92, y0), txt, font=f, fill=(255, 255, 255), anchor="lm")
+    return img
+
+
+def page_detail(haut, bas, t1, t2, zones=None, langue="fr"):
     im = fond_titre(t1, t2).convert("RGBA")
     for capture, angle, pos in ((haut, 3, (0, 400)), (bas, -3, (500, 570))):
-        tel = telephone(ecran(capture), 530, int(530 * (BAS_UTILE - HAUT_STATUT) / 1080), bord=16, rayon=66)
+        img = ecran(capture)
+        if capture == bas and zones:
+            img = encadrer(img, zones, langue)
+        tel = telephone(img, 530, int(530 * (BAS_UTILE - HAUT_STATUT) / 1080), bord=16, rayon=66)
         tel = tel.rotate(angle, resample=Image.BICUBIC, expand=True)
         m = 60  # marge pour que le flou de l'ombre ne soit pas coupé
         ombre = Image.new("RGBA", (tel.width + 2 * m, tel.height + 2 * m), (0, 0, 0, 0))
@@ -106,7 +134,7 @@ def main(src, sortie, langue):
     os.makedirs(sortie, exist_ok=True)
     t = TITRES[langue]
     c = lambda n: os.path.join(src, f"{n}.jpg")
-    pages = [page_simple(c(1), *t[0]), page_detail(c(2), c(3), *t[1]), page_simple(c(4), *t[2]),
+    pages = [page_simple(c(1), *t[0]), page_detail(c(2), c(3), *t[1], zones=ZONES_DETAIL, langue=langue), page_simple(c(4), *t[2]),
              page_simple(c(5), *t[3]), page_simple(c(6), *t[4]), page_simple(c(7), *t[5]), page_simple(c(8), *t[6])]
     for nom, p in zip(NOMS, pages):
         p.save(os.path.join(sortie, f"{langue}_{nom}.png"))
