@@ -11,12 +11,13 @@
 from pathlib import Path
 
 # Thèmes du fil Sciences (famille calculée par la base)
+# 10/11/2026 (choix de Maxime) : plus de domaine « Technologie & IA » dans Sciences
+# (technology, ai, robotics, energy, transportation retirés) : la tech a son propre fil.
 THEMES = [
-    "space", "astronomy", "environment", "climate", "technology", "ai",
-    "robotics", "health", "medicine", "neuroscience", "genetics", "biology",
-    "chemistry", "physics", "quantum", "materials", "energy", "ocean",
+    "space", "astronomy", "environment", "climate",
+    "health", "medicine", "neuroscience", "genetics", "biology",
+    "chemistry", "physics", "quantum", "materials", "ocean",
     "geology", "paleontology", "archaeology", "agriculture", "mathematics",
-    "transportation",
     "psychology", "society",                        # Humain & société (31/10)
     "other",
 ]

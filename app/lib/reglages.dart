@@ -106,7 +106,9 @@ Famille familleDe(String code) => familles[code] ?? familles['other']!;
 
 // Ordre d'affichage des familles de chaque fil (filtres, premier lancement).
 const List<String> famillesSciences = [
-  'space', 'environment', 'health', 'technology', 'physics', 'life', 'earth', 'other',
+  // 10/11/2026 : « Technologie & IA » retiré de Sciences (la tech a son fil). La famille
+  // 'technology' reste dans [familles] pour les anciennes fiches, mais n'est plus proposée.
+  'space', 'environment', 'health', 'physics', 'life', 'earth', 'other',
 ];
 const List<String> famillesTech = [
   'mobile', 'computing', 'ai_software', 'mobility', 'aerospace', 'energy_home', 'gaming', 'tech_other',
