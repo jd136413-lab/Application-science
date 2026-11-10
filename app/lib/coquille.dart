@@ -98,9 +98,6 @@ class _CoquilleState extends State<Coquille> {
           EcranFavoris(),
           EcranVocabulaire(),
           EcranReglages(),
-          EcranFavoris(),
-          EcranVocabulaire(),
-          EcranReglages(),
         ]),
       ),
       bottomNavigationBar: NavigationBarTheme(

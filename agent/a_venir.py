@@ -99,7 +99,7 @@ On te donne un article, la date d'aujourd'hui, et la liste des événements DÉJ
 4. "date" : AAAA-MM-JJ. "precision" : "jour" si le jour est connu ; "mois" si seul le mois est connu (date = le 1er du mois) ; "avant" si l'article dit seulement « d'ici fin <mois> », « avant la fin de l'année », « au premier trimestre » (date = le DERNIER jour possible). "fin" : AAAA-MM-JJ du dernier jour pour un événement sur plusieurs jours (salon, sommet), sinon "".
 5. "heure" : HH:MM de début si l'article la donne, à l'heure LOCALE du lieu ou du fuseau cité ; "fuseau" : le fuseau de cette heure au format IANA (ex. "Europe/Paris", "America/New_York", "UTC") ; sinon "" et "". Pour le ciel (étoiles filantes…), pas d'heure : elle va dans les lignes pratiques, en heure locale.
 6. "type" : lancement, arrivee, ciel, sortie, presentation, salon, sommet, resultats, decision, prix, mise_en_service ou essai.
-7. "titre" : « Sujet : phrase » (12 mots au plus, verbe au présent ou au futur, sans point final), compréhensible par quelqu'un qui n'a jamais entendu parler du sujet (pas de nom propre inconnu du grand public, pas de jargon). Ex. « Fusées : une fusée européenne tente de revenir se poser ». Dans la liste de l'app, le « Sujet : » est masqué (l'icône et le type le disent déjà) : la phrase après les deux-points doit se comprendre SEULE et rester courte (8 mots au plus).
+7. "titre" : « Sujet : phrase » (12 mots au plus, verbe au présent ou au futur, sans point final), compréhensible par quelqu'un qui n'a jamais entendu parler du sujet (pas de nom propre inconnu du grand public, pas de jargon). Ex. « Fusées : une fusée européenne tente de revenir se poser ». Dans la liste de l'app, le « Sujet : » est masqué (l'icône et le type le disent déjà) : la phrase après les deux-points doit se comprendre SEULE et rester courte (8 mots au plus). Elle nomme donc elle-même qui agit (« la Corée du Sud lance… », jamais « sa fusée », « son robot » qui renverrait au sujet masqué). Noms de fusées et de missions sous leur forme française usuelle quand elle existe (« Longue Marche 10A », pas « Long March 10A »).
 8. "lieu" : où ça se passe, court, en français (« Antalya, en Turquie », « Starbase, au Texas (États-Unis) », « En orbite autour de Mercure », « En ligne »). Pour le ciel : "".
 9. "pratique" : les lignes pratiques (voir plus bas).
 10. "lien_direct" : adresse d'une page officielle où suivre l'événement EN DIRECT, seulement si l'article la donne ; "lien_direct_nom" son nom court (« Chaîne YouTube de SpaceX ») ; sinon "" et "".
@@ -203,11 +203,17 @@ def _url(db) -> str:
 _SELECT_BASE = "id,title,prevu,pourquoi,type,event_date,event_time,precision,previous_date,source_url,source_name,advance_id,feed,family,importance"
 
 
+TRADUCTIONS = True          # colonne « traductions » (migration 015)
+
+
 def _lire(db, depuis: date) -> list[dict] | None:
     """Événements à partir de `depuis`. None si la table n'existe pas encore."""
     global NOUVELLES_COLONNES
     global AUTRES_SOURCES
+    global TRADUCTIONS
     essais = []
+    if NOUVELLES_COLONNES and AUTRES_SOURCES and TRADUCTIONS:
+        essais.append(_SELECT_BASE + "," + ",".join(COLONNES_PRATIQUES) + ",autres_sources,traductions")
     if NOUVELLES_COLONNES and AUTRES_SOURCES:
         essais.append(_SELECT_BASE + "," + ",".join(COLONNES_PRATIQUES) + ",autres_sources")
     if NOUVELLES_COLONNES:
@@ -218,7 +224,9 @@ def _lire(db, depuis: date) -> list[dict] | None:
         if r.status_code == 404 or (r.status_code >= 400 and "upcoming_events" in r.text and "column" not in r.text):
             return None
         if r.status_code >= 400 and "column" in r.text and select != _SELECT_BASE:
-            if "autres_sources" in select:
+            if "traductions" in select:
+                TRADUCTIONS = False         # migration 015 pas encore faite : titres des notifications en français
+            elif "autres_sources" in select:
                 AUTRES_SOURCES = False      # migration 012 pas encore faite : une seule source par carte
             else:
                 NOUVELLES_COLONNES = False  # migration 011 pas encore faite : on continue sans les infos pratiques
@@ -527,7 +535,7 @@ CONSIGNE_LANCEMENTS = """Tu choisis des lancements spatiaux pour l'onglet « À 
 
 On te donne les prochains lancements (numérotés) et les événements déjà dans l'onglet. Garde AU PLUS {n} lancements qui intéressent le grand public : vol avec des astronautes, mission vers la Lune, Mars ou une autre planète, grand télescope ou sonde scientifique, premier vol d'une nouvelle fusée, fusée européenne (Ariane 6, Vega), retour ou atterrissage d'une fusée jamais tenté. JAMAIS : lancements de séries de satellites de communication (Starlink, Kuiper, OneWeb, Qianfan…), satellites commerciaux ou militaires ordinaires, vols de routine. Ne reprends pas un lancement déjà dans l'onglet. Liste vide si rien d'intéressant.
 
-Pour chacun : "i" (son numéro), "titre" (« Sujet : phrase », 12 mots au plus, la phrase après les deux-points compréhensible seule en 8 mots au plus car seule affichée dans la liste, compréhensible par quelqu'un qui n'y connaît rien, sans nom de code inconnu ; ex. « Fusées : l'Europe lance son télescope chasseur de planètes »), "prevu" (1 à 2 phrases simples : qui lance quoi, pour faire quoi), "pourquoi" (1 phrase), "lieu" (le pas de tir donné, en français : « Kourou, en Guyane française », « Cap Canaveral, en Floride (États-Unis) »), "pratique" (1 à 2 lignes : "repere" À regarder = le moment fort du vol ; "info" la mission si utile ; jamais la date ni le lieu), "famille" ("space" pour une mission scientifique, "aerospace" pour une fusée ou un vol habité), "importance" (1 à 5, exigeant : 2 en général, 3 pour un vol très suivi, 4 pour un moment historique)."""
+Pour chacun : "i" (son numéro), "titre" (« Sujet : phrase », 12 mots au plus, la phrase après les deux-points compréhensible seule en 8 mots au plus car seule affichée dans la liste, compréhensible par quelqu'un qui n'y connaît rien, sans nom de code inconnu ; ex. « Fusées : l'Europe lance son télescope chasseur de planètes » ; la phrase nomme qui lance, jamais « sa fusée » seul ; noms de fusées en français usuel : « Longue Marche », pas « Long March »), "prevu" (1 à 2 phrases simples : qui lance quoi, pour faire quoi), "pourquoi" (1 phrase), "lieu" (le pas de tir donné, en français : « Kourou, en Guyane française », « Cap Canaveral, en Floride (États-Unis) »), "pratique" (1 à 2 lignes : "repere" À regarder = le moment fort du vol ; "info" la mission si utile ; jamais la date ni le lieu), "famille" ("space" pour une mission scientifique, "aerospace" pour une fusée ou un vol habité), "importance" (1 à 5, exigeant : 2 en général, 3 pour un vol très suivi, 4 pour un moment historique)."""
 
 SCHEMA_LANCEMENTS = {
     "type": "object",
