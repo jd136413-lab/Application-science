@@ -33,11 +33,18 @@ Sciences et tech : les vraies avancées du jour, expliquées en une minute.
 ```
 Chaque jour, des chercheurs et des ingénieurs font des découvertes, parfois immenses. Elles sont éparpillées dans des centaines de revues, de laboratoires et de sites spécialisés. NovaSTEM les rassemble pour vous, les explique simplement et vous dit lesquelles comptent vraiment.
 
-Sciences, technologies et rendez-vous à venir
+Deux fils : sciences et technologies
 • Sciences : espace, santé, climat, physique, vivant, Terre et histoire…
 • Technologies : smartphones, puces, intelligence artificielle, transports, énergie, jeux vidéo…
-• À venir : lancements de fusées, sorties, grands sommets et événements à ne pas manquer, avec un rappel si vous le souhaitez
 Plus de 150 sources du monde entier sont lues chaque jour. Les nouvelles avancées arrivent le matin et le soir.
+
+À venir : ne ratez plus les grands rendez-vous
+Un calendrier des événements scientifiques et technologiques des prochains jours et des prochaines semaines : lancements de fusées et de missions spatiales, sorties de nouveaux produits, grands sommets, éclipses et phénomènes dans le ciel…
+• Un compte à rebours sur chaque événement : en cours, demain, dans 2 jours…
+• Une cloche pour recevoir un rappel juste avant le moment venu
+• Les changements de date signalés clairement quand un lancement est reporté
+• Un lien pour suivre en direct quand l'événement est retransmis
+• Un tri en un geste : tout, sciences ou technologies
 
 Une note pour aller à l'essentiel
 Chaque avancée reçoit de 1 à 5 étoiles selon sa nouveauté, son impact et la solidité des preuves : Intéressant, Notable, Important, Majeur, Rupture. Triez par importance pour voir d'abord ce qui compte.
@@ -88,11 +95,18 @@ Science & tech: today’s real breakthroughs, explained in a minute.
 ```
 Every day, researchers and engineers make discoveries, some of them huge. They are scattered across hundreds of journals, labs and specialist sites. NovaSTEM gathers them for you, explains them simply and tells you which ones really matter.
 
-Science, tech and what's coming up
+Two feeds: science and tech
 • Science: space, health, climate, physics, life, Earth and history…
 • Tech: smartphones, chips, artificial intelligence, transport, energy, video games…
-• Coming up: rocket launches, product releases, major summits and events not to miss, with an optional reminder
 More than 150 sources from around the world are read every day. New breakthroughs arrive in the morning and in the evening.
+
+Coming up: never miss a big moment again
+A calendar of the science and tech events of the coming days and weeks: rocket launches and space missions, new product releases, major summits, eclipses and sky events…
+• A countdown on every event: happening now, tomorrow, in 2 days…
+• A bell to get a reminder just before it starts
+• Date changes clearly flagged when a launch is postponed
+• A link to watch live when the event is streamed
+• One tap to filter: everything, science or tech
 
 A rating to get to the point
 Each breakthrough gets 1 to 5 stars based on how new it is, its impact and the strength of the evidence: Interesting, Notable, Important, Major, Breakthrough. Sort by importance to see what matters first.
