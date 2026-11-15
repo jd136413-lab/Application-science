@@ -6,8 +6,8 @@
 // - Quand l'agent ajoute une avancée, il envoie un message sur le sujet
 //   correspondant. Seuls les téléphones abonnés le reçoivent.
 // - Le téléphone affiche lui-même les notifications, au plus UNE par fil
-//   (Sciences, Technologies) : l'avancée la plus importante en vedette, avec
-//   son « en bref » et sa photo libre s'il y en a une, les autres listées
+//   (Sciences, Technologies) : seulement les titres (maquette 92, 15/11) ;
+//   une avancée = titre + note, plusieurs = « n nouvelles avancées » et la liste des titres
 //   dessous (maquette 28 D). Si la notification du fil est encore affichée
 //   à l'arrivée suivante, elle est mise à jour, les nouvelles en tête.
 //
@@ -214,7 +214,8 @@ Future<String> _traduire(String texte, String langue) async {
 
 /// Télécharge la photo libre de l'avancée et la réduit (720 px de large) pour
 /// la notification. Null en cas de souci : la notification part sans photo.
-Future<Uint8List?> _photo(String adresse) async {
+// ignore: unused_element
+Future<Uint8List?> _photo(String adresse) async { // plus utilisée depuis la maquette 92 (gardée pour plus tard)
   if (!adresse.startsWith('https://')) return null;
   final client = HttpClient()..connectionTimeout = const Duration(seconds: 6);
   try {
@@ -301,7 +302,6 @@ Future<void> _afficherUne(Map<String, dynamic> data) async {
   await prefs.setString(cle, jsonEncode(liste));
 
   final vedette = liste.first;
-  final autres = liste.skip(1).toList();
   final nb = liste.length;
   final imp = vedette['imp'] as int;
   final etoiles = '★' * imp;
@@ -310,36 +310,25 @@ Future<void> _afficherUne(Map<String, dynamic> data) async {
   // Déjà traduit par l'agent ('tr') : tel quel ; sinon traduction du téléphone.
   Future<String> texte(Map<String, dynamic> a, String champ) async =>
       a['tr'] == true ? a[champ] as String : await _traduire(a[champ] as String, langue);
+  // Maquette 92 (15/11, choix A + C) : seulement les titres, jamais le résumé,
+  // pour donner envie d'ouvrir l'app.
   final titreV = await texte(vedette, 'titre');
-  final resumeV = await texte(vedette, 'resume');
-  final titresAutres = [
-    for (final a in autres.take(5)) '${'★' * (a['imp'] as int)} ${await texte(a, 'titre')}'
+  final lignesTitres = [
+    for (final a in liste) '${'★' * (a['imp'] as int)} ${a == vedette ? titreV : await texte(a, 'titre')}'
   ];
-  final plus = autres.isEmpty
-      ? ''
-      : ' · ${autres.length == 1 ? _tr('+ 1 autre', langue) : _tr('+ {n} autres', langue, n: autres.length)}';
-
-  final photo = await _photo(vedette['image'] as String);
+  final String titreNotif;
+  final String corps;
   final StyleInformation style;
-  if (photo != null) {
-    style = BigPictureStyleInformation(
-      ByteArrayAndroidBitmap(photo),
-      contentTitle: titreV,
-      summaryText: autres.isEmpty
-          ? (resumeV.isEmpty ? '$etoiles $mot' : resumeV)
-          : '$etoiles $mot · ${_tr('Aussi :', langue)} ${titresAutres.join(' · ')}',
-      hideExpandedLargeIcon: true,
-    );
+  if (nb == 1) {
+    // A · le titre, et dessous la note (★★★ Important).
+    titreNotif = titreV;
+    corps = '$etoiles $mot';
+    style = BigTextStyleInformation(corps, contentTitle: titreV);
   } else {
-    final lignes = StringBuffer('$etoiles $mot');
-    if (resumeV.isNotEmpty) lignes.write(' — $resumeV');
-    if (titresAutres.isNotEmpty) {
-      lignes.write('\n\n${_tr('Aussi :', langue)}');
-      for (final t in titresAutres) {
-        lignes.write('\n$t');
-      }
-    }
-    style = BigTextStyleInformation(lignes.toString(), contentTitle: titreV);
+    // C · une seule notification par fil : « 3 nouvelles avancées » et la liste des titres.
+    titreNotif = _tr('{n} nouvelles avancées', langue, n: nb);
+    corps = lignesTitres.first;
+    style = InboxStyleInformation(lignesTitres, contentTitle: titreNotif);
   }
 
   final details = NotificationDetails(
@@ -351,7 +340,6 @@ Future<void> _afficherUne(Map<String, dynamic> data) async {
       color: logoEncreRose,
       subText: nomFil,
       styleInformation: style,
-      largeIcon: photo == null ? null : ByteArrayAndroidBitmap(photo),
       onlyAlertOnce: false,
       actions: [
         AndroidNotificationAction('lire', _tr('Lire', langue), showsUserInterface: true),
@@ -363,8 +351,8 @@ Future<void> _afficherUne(Map<String, dynamic> data) async {
 
   await _local.show(
     idNotif,
-    titreV,
-    autres.isEmpty ? (resumeV.isEmpty ? '$etoiles $mot' : resumeV) : '$etoiles $mot$plus',
+    titreNotif,
+    corps,
     details,
     payload: 'grp|$fil|${vedette['id']}|$nb',
   );
