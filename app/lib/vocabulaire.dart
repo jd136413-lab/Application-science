@@ -247,25 +247,12 @@ class _EcranVocabulaireState extends State<EcranVocabulaire> {
     return Semantics(
       button: true,
       label: _verso ? tr('Retourner la carte') : tr('Touchez la carte pour voir la définition'),
-      child: GestureDetector(
-        onTap: () => setState(() => _verso = !_verso),
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 320),
-          switchInCurve: Curves.easeOutCubic,
-          switchOutCurve: Curves.easeInCubic,
-          transitionBuilder: (enfant, anim) => AnimatedBuilder(
-            animation: anim,
-            child: enfant,
-            builder: (_, c) => Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.identity()
-                ..setEntry(3, 2, 0.001)
-                ..rotateY((1 - anim.value) * math.pi / 2),
-              child: c,
-            ),
-          ),
-          child: _verso ? verso : recto,
-        ),
+      child: CarteRetournable(
+        key: ValueKey('carte-${m.mot}'),
+        verso: _verso,
+        onChange: (v) => setState(() => _verso = v),
+        recto: recto,
+        dos: verso,
       ),
     );
   }
@@ -426,5 +413,113 @@ class _EcranVocabulaireState extends State<EcranVocabulaire> {
           ),
       ]),
     );
+  }
+}
+
+
+/// Carte à retourner comme une carte à jouer (maquette 95 A, 15/11/2026) :
+/// un seul demi-tour en 3D de 0,4 s, sans arrêt au milieu ; la carte se soulève
+/// un peu (5 %) à mi-chemin. On peut aussi la tourner en glissant le doigt :
+/// elle suit le doigt puis finit son tour toute seule (ou revient).
+class CarteRetournable extends StatefulWidget {
+  final bool verso;
+  final ValueChanged<bool> onChange;
+  final Widget recto;
+  final Widget dos;
+  const CarteRetournable(
+      {super.key, required this.verso, required this.onChange, required this.recto, required this.dos});
+
+  @override
+  State<CarteRetournable> createState() => _CarteRetournableState();
+}
+
+class _CarteRetournableState extends State<CarteRetournable> with SingleTickerProviderStateMixin {
+  static const _duree = Duration(milliseconds: 400);
+  static const _courbe = Cubic(0.45, 0, 0.25, 1);
+  late final AnimationController _c =
+      AnimationController(vsync: this, duration: _duree, value: widget.verso ? 1 : 0);
+  double _largeur = 300;
+  double _depart = 0; // position au début du glissement
+
+  @override
+  void didUpdateWidget(CarteRetournable ancien) {
+    super.didUpdateWidget(ancien);
+    if (widget.verso != ancien.verso && (_c.value > 0.5) != widget.verso) _aller(widget.verso);
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  void _aller(bool verso, {double vitesse = 0}) {
+    final cible = verso ? 1.0 : 0.0;
+    final reste = (cible - _c.value).abs();
+    _c
+        .animateTo(cible,
+            duration: Duration(milliseconds: (_duree.inMilliseconds * reste).round().clamp(120, 400)),
+            curve: vitesse.abs() > 0 ? Curves.easeOutCubic : _courbe)
+        .whenComplete(() {
+      if (mounted && reste > 0.05) HapticFeedback.selectionClick();
+    });
+    if (verso != widget.verso) widget.onChange(verso);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (_, cs) {
+      if (cs.maxWidth.isFinite) _largeur = cs.maxWidth;
+      return GestureDetector(
+        onTap: () => _aller(_c.value < 0.5),
+        onHorizontalDragStart: (_) {
+          _c.stop();
+          _depart = _c.value;
+        },
+        onHorizontalDragUpdate: (d) {
+          // Dans un sens comme dans l'autre, glisser fait avancer le retournement.
+          final avance = (d.primaryDelta ?? 0).abs() / (_largeur * 0.9);
+          final sens = _depart < 0.5 ? 1 : -1;
+          _c.value = (_c.value + sens * avance).clamp(0.0, 1.0);
+        },
+        onHorizontalDragEnd: (d) {
+          final v = (d.primaryVelocity ?? 0).abs();
+          final depuisRecto = _depart < 0.5;
+          final franchi = depuisRecto ? _c.value > 0.35 : _c.value < 0.65;
+          _aller(v > 600 || franchi ? depuisRecto : !depuisRecto, vitesse: v);
+        },
+        child: AnimatedBuilder(
+          animation: _c,
+          builder: (_, __) {
+            final t = _c.value;
+            final angle = t * math.pi;
+            final dos = angle > math.pi / 2;
+            final hausse = 1 + 0.05 * math.sin(t * math.pi);
+            return Transform.scale(
+              scale: hausse,
+              child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.identity()
+                ..setEntry(3, 2, 0.0012)
+                ..rotateY(angle),
+              child: IntrinsicHeight(
+                child: Stack(fit: StackFit.expand, children: [
+                  Offstage(offstage: dos, child: widget.recto),
+                  Offstage(
+                    offstage: !dos,
+                    child: Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.identity()..rotateY(math.pi),
+                      child: widget.dos,
+                    ),
+                  ),
+                ]),
+              ),
+              ),
+            );
+          },
+        ),
+      );
+    });
   }
 }
