@@ -151,27 +151,63 @@ class _Photo extends StatelessWidget {
 
 /// Carte du fil qu'on peut balayer : vers la droite = favori (la carte reste),
 /// vers la gauche = masquer (avec « Annuler »).
-class CarteBalayable extends StatelessWidget {
+/// Maquette 93 A (15/11) : le fond est une pastille aux 4 coins arrondis, séparée
+/// de la carte par un petit espace, qui s'allonge avec le geste.
+class CarteBalayable extends StatefulWidget {
   final Avancee avancee;
   final VoidCallback onTap;
   const CarteBalayable({super.key, required this.avancee, required this.onTap});
 
   @override
+  State<CarteBalayable> createState() => _CarteBalayableState();
+}
+
+class _CarteBalayableState extends State<CarteBalayable> {
+  double _progres = 0; // 0 = carte en place, 1 = carte sortie
+
+  @override
   Widget build(BuildContext context) {
     final p = palette(context);
-    Widget fond(Alignment cote, Color couleur, IconData icone, String texte, Color encre) => Container(
-          alignment: cote,
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          decoration: BoxDecoration(color: couleur, borderRadius: BorderRadius.circular(arrondiCarte)),
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Icon(icone, color: encre, size: 28),
-            const SizedBox(height: 4),
-            Text(texte, style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: encre)),
-          ]),
+    final avancee = widget.avancee;
+    Widget fond(Alignment cote, Color couleur, IconData icone, String texte, Color encre) => LayoutBuilder(
+          builder: (_, cs) {
+            const espace = 8.0;
+            final largeur = (cs.maxWidth * _progres - espace).clamp(0.0, cs.maxWidth);
+            return Align(
+              alignment: cote,
+              child: Container(
+                width: largeur,
+                height: cs.maxHeight,
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(color: couleur, borderRadius: BorderRadius.circular(arrondiCarte)),
+                child: largeur < 44
+                    ? null
+                    : Center(
+                        child: Column(mainAxisSize: MainAxisSize.min, children: [
+                          Icon(icone, color: encre, size: 26),
+                          if (largeur > 110) ...[
+                            const SizedBox(height: 4),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Text(texte,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.fade,
+                                  style: police(policeTexte, taille: 12.5, graisse: FontWeight.w700, couleur: encre)),
+                            ),
+                          ],
+                        ]),
+                      ),
+              ),
+            );
+          },
         );
     final favori = etat.estFavori(avancee.id);
     return Dismissible(
       key: ValueKey('carte-${avancee.id}'),
+      onUpdate: (d) {
+        if ((d.progress - _progres).abs() > 0.004 || d.progress == 0) setState(() => _progres = d.progress);
+      },
       background: fond(Alignment.centerLeft, couleurEtoiles,
           favori ? Icons.bookmark_remove_rounded : Icons.bookmark_add_rounded,
           tr(favori ? 'Retirer des favoris' : 'Ajouter aux favoris'), const Color(0xFF2B2000)),
@@ -194,7 +230,7 @@ class CarteBalayable extends StatelessWidget {
         afficherMessage(context, tr('Avancée masquée'),
             icone: Icons.visibility_off_rounded, annuler: () => etat.demasquer(avancee.id));
       },
-      child: CarteAvancee(avancee: avancee, onTap: onTap),
+      child: CarteAvancee(avancee: avancee, onTap: widget.onTap),
     );
   }
 }
