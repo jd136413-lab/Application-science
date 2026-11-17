@@ -71,8 +71,8 @@ Future<bool> supprimerProposition(String id) async {
   return r == true;
 }
 
-/// Limite par semaine (migration 019), par téléphone : sujets + résumés, et améliorations.
-const int limiteSemaine = 5;
+/// Limite par semaine (migration 019), par téléphone : 1 sujet, 1 résumé et 1 amélioration.
+const int limiteSemaine = 1;
 
 /// Vérifie un code administrateur et enregistre ce téléphone comme administrateur (sans limite
 /// de propositions). Renvoie le sujet de notification réservé, ou null si le code est faux.

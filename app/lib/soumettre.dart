@@ -98,7 +98,7 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
         borderRadius: BorderRadius.circular(18),
         onTap: actif
             ? () => _ouvrir(ecran)
-            : () => afficherMessage(context, 'Limite de la semaine atteinte : reviens dans quelques jours.',
+            : () => afficherMessage(context, 'Déjà fait cette semaine : 1 par semaine. Reviens dans quelques jours.',
                 icone: Icons.hourglass_bottom_rounded),
         child: Padding(
           padding: const EdgeInsets.all(14),
@@ -160,30 +160,34 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
           future: _liste,
           builder: (context, snap) {
             final l = snap.data ?? const <Proposition>[];
-            final fiches = l.where((x) => x.cetteSemaine && x.genre != 'amelioration').length;
-            final idees = l.where((x) => x.cetteSemaine && x.genre == 'amelioration').length;
             final illimite = etat.admin;
-            final resteF = illimite ? 99 : limiteSemaine - fiches;
-            final resteI = illimite ? 99 : limiteSemaine - idees;
+            bool libre(String genre) => illimite || !l.any((x) => x.cetteSemaine && x.genre == genre);
+            final sujetLibre = libre('sujet'), resumeLibre = libre('resume'), ameliorationLibre = libre('amelioration');
+            final restants = [
+              if (sujetLibre) '1 sujet',
+              if (resumeLibre) '1 résumé',
+              if (ameliorationLibre) '1 amélioration',
+            ];
             return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               _choix(Icons.bolt_rounded, logoEncreBleue, 'Proposer un sujet', 'Une phrase : on s’occupe du reste.',
-                  const EcranProposerSujet(), actif: resteF > 0),
+                  const EcranProposerSujet(), actif: sujetLibre),
               const SizedBox(height: 10),
               _choix(Icons.edit_rounded, _vert, 'Proposer un résumé', 'Ta fiche en 3 parties, vérifiée avant publication.',
-                  const EcranProposerResume(), actif: resteF > 0),
+                  const EcranProposerResume(), actif: resumeLibre),
               const SizedBox(height: 10),
               _choix(Icons.lightbulb_outline_rounded, _orange, 'Proposer une amélioration',
                   'Une idée, un bug, un souhait pour l’application.', const EcranProposerAmelioration(),
-                  actif: resteI > 0),
+                  actif: ameliorationLibre),
               const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Text(
                     illimite
-                        ? 'Sans limite sur ton téléphone (administrateur). Pour les autres : $limiteSemaine sujets ou '
-                            'résumés et $limiteSemaine améliorations par semaine.'
-                        : 'Cette semaine : encore ${resteF.clamp(0, limiteSemaine)} sujet(s) ou résumé(s), '
-                            'et ${resteI.clamp(0, limiteSemaine)} amélioration(s).',
+                        ? 'Sans limite sur ton téléphone (administrateur). Pour les autres : 1 sujet, 1 résumé '
+                            'et 1 amélioration par semaine.'
+                        : restants.isEmpty
+                            ? 'Tu as utilisé tes 3 propositions de la semaine. Reviens dans quelques jours !'
+                            : 'Cette semaine, tu peux encore proposer : ${restants.join(', ')}.',
                     style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret)),
               ),
             ]);
@@ -427,7 +431,7 @@ Future<void> _envoyer(BuildContext context, Map<String, dynamic> champs, void Fu
       afficherMessage(
           context,
           e.toString().contains('limite_semaine') || e.toString().contains('trop de propositions')
-              ? 'Limite atteinte : $limiteSemaine propositions par semaine.'
+              ? 'Tu as déjà fait cette sorte de proposition cette semaine (1 par semaine).'
               : 'Envoi impossible. Vérifie ta connexion et réessaie.',
           icone: Icons.error_outline_rounded);
     }
@@ -706,13 +710,13 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
         _champ(context, _titre, indice: 'Batteries : une cellule au sodium se recharge en 6 minutes', lignes: 2, max: 160),
         _compteurMots(context, _titre.text),
         _aide(context, 'Thème, deux-points, puis ce qui a été trouvé.'),
-        _etiquette(context, 'AVANT', '1 à 2 phrases · 8 à 45 mots'),
+        _etiquette(context, 'AVANT', '8 à 45 mots'),
         _champ(context, _avant, indice: 'Ce qu’on savait, et ce qui manquait encore…', lignes: 3, max: 600),
         _jauge(_avant, _bornesAvant, 'Dis ce qui posait problème.'),
-        _etiquette(context, tech ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE', '2 à 3 phrases · 15 à 85 mots'),
+        _etiquette(context, tech ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE', '15 à 85 mots'),
         _champ(context, _decouverte, indice: 'Qui, quoi, comment, avec un ou deux chiffres clés…', lignes: 4, max: 900),
         _jauge(_decouverte, _bornesDecouverte, 'Dis qui, quoi, et un chiffre clé.'),
-        _etiquette(context, 'ET APRÈS ?', '1 à 2 phrases · 8 à 50 mots'),
+        _etiquette(context, 'ET APRÈS ?', '8 à 50 mots'),
         _champ(context, _apres, indice: 'Ce que ça peut changer, et la limite principale…', lignes: 3, max: 600),
         _jauge(_apres, _bornesApres, 'Dis ce que ça change, et la limite.'),
         _etiquette(context, 'LIEN DE L’ARTICLE SOURCE', 'obligatoire'),
