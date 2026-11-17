@@ -5,6 +5,7 @@
 // les améliorations arrivent telles quelles dans la boîte à idées (boite_idees.dart).
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'detail.dart';
 import 'donnees.dart' show chargerAvancee;
@@ -126,11 +127,13 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
   }
 
   Future<void> _detail(Proposition x) async {
-    final supprimee = await Navigator.of(context)
-        .push<bool>(MaterialPageRoute(builder: (_) => EcranMaProposition(proposition: x)));
-    if (supprimee == true) {
-      await _recharger();
-      if (mounted) afficherMessage(context, 'Proposition supprimée', icone: Icons.delete_outline_rounded);
+    final r = await Navigator.of(context)
+        .push<String>(MaterialPageRoute(builder: (_) => EcranMaProposition(proposition: x)));
+    if (r == null) return;
+    await _recharger();
+    if (mounted) {
+      afficherMessage(context, r == 'supprimee' ? 'Proposition supprimée' : 'Proposition modifiée',
+          icone: r == 'supprimee' ? Icons.delete_outline_rounded : Icons.check_rounded);
     }
   }
 
@@ -420,10 +423,22 @@ bool _lienValide(String l) {
   return u != null && (u.scheme == 'https' || u.scheme == 'http') && u.host.contains('.');
 }
 
-Future<void> _envoyer(BuildContext context, Map<String, dynamic> champs, void Function(bool) attente) async {
+Future<void> _envoyer(BuildContext context, Map<String, dynamic> champs, void Function(bool) attente,
+    {Proposition? modifier}) async {
   attente(true);
   try {
-    await envoyerProposition(champs);
+    if (modifier != null) {
+      if (!await modifierProposition(modifier.id, champs)) {
+        attente(false);
+        if (context.mounted) {
+          afficherMessage(context, 'Elle est déjà en cours d’examen : on ne peut plus la modifier.',
+              icone: Icons.lock_clock_outlined);
+        }
+        return;
+      }
+    } else {
+      await envoyerProposition(champs);
+    }
     if (context.mounted) Navigator.of(context).pop(true);
   } catch (e) {
     attente(false);
@@ -441,7 +456,9 @@ Future<void> _envoyer(BuildContext context, Map<String, dynamic> champs, void Fu
 // ------------------------------------------------------------------ proposer un sujet
 
 class EcranProposerSujet extends StatefulWidget {
-  const EcranProposerSujet({super.key});
+  /// Proposition à modifier (pas encore examinée), ou null pour une nouvelle.
+  final Proposition? initiale;
+  const EcranProposerSujet({super.key, this.initiale});
   @override
   State<EcranProposerSujet> createState() => _EcranProposerSujetState();
 }
@@ -450,6 +467,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
   final _sujet = TextEditingController();
   final _lien = TextEditingController();
   final _video = TextEditingController();
+  final _direct = TextEditingController();
   String _fil = 'science';
   String? _type;
   String _quand = 'jour';
@@ -464,9 +482,20 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
   @override
   void initState() {
     super.initState();
-    _sujet.addListener(() => setState(() {}));
-    _lien.addListener(() => setState(() {}));
-    _video.addListener(() => setState(() {}));
+    final i = widget.initiale;
+    if (i != null) {
+      _sujet.text = i.sujet ?? '';
+      _lien.text = i.lien ?? '';
+      _video.text = i.video ?? '';
+      _direct.text = i.direct ?? '';
+      _fil = i.fil ?? 'science';
+      _type = i.typeEvt;
+      _quand = i.quandPrecision ?? 'jour';
+      _date = DateTime.tryParse(i.quand ?? '');
+    }
+    for (final c in [_sujet, _lien, _video, _direct]) {
+      c.addListener(() => setState(() {}));
+    }
   }
 
   @override
@@ -474,6 +503,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
     _sujet.dispose();
     _lien.dispose();
     _video.dispose();
+    _direct.dispose();
     super.dispose();
   }
 
@@ -482,6 +512,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
     if (n < _motsMin || n > _motsMax) return false;
     if (_lien.text.trim().isNotEmpty && !_lienValide(_lien.text)) return false;
     if (_video.text.trim().isNotEmpty && !_videoValide(_video.text)) return false;
+    if (_fil == 'a_venir' && _direct.text.trim().isNotEmpty && !_lienValide(_direct.text)) return false;
     if (_fil == 'a_venir') return _type != null && (_quand == 'inconnue' || _date != null);
     return true;
   }
@@ -510,8 +541,8 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
     final p = palette(context);
     final evenement = _fil == 'a_venir';
     return _Formulaire(
-      titre: 'Proposer un sujet',
-      bouton: evenement ? 'Proposer l’événement' : 'Envoyer le sujet',
+      titre: widget.initiale != null ? 'Modifier le sujet' : 'Proposer un sujet',
+      bouton: widget.initiale != null ? 'Enregistrer' : (evenement ? 'Proposer l’événement' : 'Envoyer le sujet'),
       pret: _pret,
       envoi: _envoi,
       onEnvoyer: () => _envoyer(
@@ -522,18 +553,20 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
             'fil': _fil,
             if (_lien.text.trim().isNotEmpty) 'lien': _lien.text.trim(),
             if (_video.text.trim().isNotEmpty) 'video': _video.text.trim(),
+            if (evenement && _direct.text.trim().isNotEmpty) 'direct': _direct.text.trim(),
             if (evenement) 'type_evt': _type,
             if (evenement) 'quand_precision': _quand,
             if (evenement && _quand != 'inconnue' && _date != null)
               'quand': '${_date!.year}-${_date!.month.toString().padLeft(2, '0')}-'
                   '${(_quand == 'mois' ? 1 : _date!.day).toString().padLeft(2, '0')}',
           },
-          (v) => setState(() => _envoi = v)),
+          (v) => setState(() => _envoi = v),
+          modifier: widget.initiale),
       enfants: [
         _etiquette(context, 'C’EST POUR…'),
         _segments(context, const [('science', 'Sciences'), ('tech', 'Technologies'), ('a_venir', 'À venir')], _fil,
             (v) => setState(() => _fil = v)),
-        _etiquette(context, evenement ? 'L’ÉVÉNEMENT' : 'LE SUJET', '3 à 12 mots'),
+        _etiquette(context, evenement ? 'L’ÉVÉNEMENT' : 'LE SUJET'),
         _champ(context, _sujet,
             indice: evenement ? 'Lancement de la mission Artemis III' : 'SpaceX rattrape le Starship avec la tour',
             lignes: 2,
@@ -572,6 +605,14 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
             ),
           ],
+          _etiquette(context, 'LIEN DU DIRECT (LIVE)', 'facultatif'),
+          _champ(context, _direct, indice: 'https://youtube.com/live/…', clavier: TextInputType.url, max: 300),
+          _aide(
+              context,
+              _direct.text.trim().isNotEmpty && !_lienValide(_direct.text)
+                  ? 'Ce lien ne semble pas valide (il doit commencer par https://).'
+                  : 'La page où suivre l’événement en direct (YouTube, Twitch, site officiel…).',
+              couleur: _direct.text.trim().isNotEmpty && !_lienValide(_direct.text) ? _orange : null),
         ],
         _etiquette(context, 'LIEN D’UN ARTICLE', 'facultatif'),
         _champ(context, _lien, indice: 'https://…', clavier: TextInputType.url, max: 600),
@@ -592,7 +633,8 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
 // ------------------------------------------------------------------ proposer un résumé
 
 class EcranProposerResume extends StatefulWidget {
-  const EcranProposerResume({super.key});
+  final Proposition? initiale;
+  const EcranProposerResume({super.key, this.initiale});
   @override
   State<EcranProposerResume> createState() => _EcranProposerResumeState();
 }
@@ -617,6 +659,17 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
   @override
   void initState() {
     super.initState();
+    final i = widget.initiale;
+    if (i != null) {
+      _titre.text = i.titre ?? '';
+      _avant.text = i.avant ?? '';
+      _decouverte.text = i.decouverte ?? '';
+      _apres.text = i.apres ?? '';
+      _lien.text = i.lien ?? '';
+      _video.text = i.video ?? '';
+      _fil = i.fil == 'tech' ? 'tech' : 'science';
+      if (i.langue != null) _langue = i.langue!;
+    }
     for (final c in _tous) {
       c.addListener(() => setState(() {}));
     }
@@ -677,8 +730,8 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
   Widget build(BuildContext context) {
     final tech = _fil == 'tech';
     return _Formulaire(
-      titre: 'Proposer un résumé',
-      bouton: 'Envoyer',
+      titre: widget.initiale != null ? 'Modifier le résumé' : 'Proposer un résumé',
+      bouton: widget.initiale != null ? 'Enregistrer' : 'Envoyer',
       couleur: _vert,
       pret: _pret,
       envoi: _envoi,
@@ -695,7 +748,8 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
             'lien': _lien.text.trim(),
             if (_video.text.trim().isNotEmpty) 'video': _video.text.trim(),
           },
-          (v) => setState(() => _envoi = v)),
+          (v) => setState(() => _envoi = v),
+          modifier: widget.initiale),
       enfants: [
         _aide(context, 'Ton texte est publié tel quel : seuls les faits sont vérifiés avec l’article, '
             'et seul ce qui est faux ou exagéré est corrigé.'),
@@ -706,17 +760,17 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
         _etiquette(context, 'C’EST POUR…'),
         _segments(context, const [('science', 'Sciences'), ('tech', 'Technologies')], _fil,
             (v) => setState(() => _fil = v)),
-        _etiquette(context, 'TITRE', '3 à 12 mots'),
+        _etiquette(context, 'TITRE'),
         _champ(context, _titre, indice: 'Batteries : une cellule au sodium se recharge en 6 minutes', lignes: 2, max: 160),
         _compteurMots(context, _titre.text),
         _aide(context, 'Thème, deux-points, puis ce qui a été trouvé.'),
-        _etiquette(context, 'AVANT', '8 à 45 mots'),
+        _etiquette(context, 'AVANT'),
         _champ(context, _avant, indice: 'Ce qu’on savait, et ce qui manquait encore…', lignes: 3, max: 600),
         _jauge(_avant, _bornesAvant, 'Dis ce qui posait problème.'),
-        _etiquette(context, tech ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE', '15 à 85 mots'),
+        _etiquette(context, tech ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE'),
         _champ(context, _decouverte, indice: 'Qui, quoi, comment, avec un ou deux chiffres clés…', lignes: 4, max: 900),
         _jauge(_decouverte, _bornesDecouverte, 'Dis qui, quoi, et un chiffre clé.'),
-        _etiquette(context, 'ET APRÈS ?', '8 à 50 mots'),
+        _etiquette(context, 'ET APRÈS ?'),
         _champ(context, _apres, indice: 'Ce que ça peut changer, et la limite principale…', lignes: 3, max: 600),
         _jauge(_apres, _bornesApres, 'Dis ce que ça change, et la limite.'),
         _etiquette(context, 'LIEN DE L’ARTICLE SOURCE', 'obligatoire'),
@@ -731,7 +785,8 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
 // ------------------------------------------------------------------ proposer une amélioration
 
 class EcranProposerAmelioration extends StatefulWidget {
-  const EcranProposerAmelioration({super.key});
+  final Proposition? initiale;
+  const EcranProposerAmelioration({super.key, this.initiale});
   @override
   State<EcranProposerAmelioration> createState() => _EcranProposerAmeliorationState();
 }
@@ -745,6 +800,11 @@ class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
   @override
   void initState() {
     super.initState();
+    final i = widget.initiale;
+    if (i != null) {
+      _texte.text = i.resume ?? i.sujet ?? '';
+      _categorie = i.categorie ?? 'idee';
+    }
     _texte.addListener(() => setState(() {}));
   }
 
@@ -772,15 +832,16 @@ class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
           if (t.length > 400) 'resume': t,
           if (infos != null) 'infos': infos.length > 200 ? infos.substring(0, 200) : infos,
         },
-        (v) => setState(() => _envoi = v));
+        (v) => setState(() => _envoi = v),
+        modifier: widget.initiale);
   }
 
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
     return _Formulaire(
-      titre: 'Une amélioration',
-      bouton: 'Envoyer',
+      titre: widget.initiale != null ? 'Modifier' : 'Une amélioration',
+      bouton: widget.initiale != null ? 'Enregistrer' : 'Envoyer',
       couleur: _orange,
       couleurTexte: const Color(0xFF17161F),
       pret: _texte.text.trim().length >= 10,
@@ -861,7 +922,7 @@ class _EcranMaPropositionState extends State<EcranMaProposition> {
       final ok = await supprimerProposition(x.id);
       if (!mounted) return;
       if (ok) {
-        Navigator.of(context).pop(true);
+        Navigator.of(context).pop('supprimee');
       } else {
         afficherMessage(context, 'Suppression impossible pour l’instant.', icone: Icons.error_outline_rounded);
       }
@@ -871,6 +932,19 @@ class _EcranMaPropositionState extends State<EcranMaProposition> {
   }
 
   Proposition get x => widget.proposition;
+
+  void _voirMaFiche() =>
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => EcranApercuProposition(proposition: x)));
+
+  Future<void> _modifier() async {
+    final ecran = switch (x.genre) {
+      'resume' => EcranProposerResume(initiale: x) as Widget,
+      'amelioration' => EcranProposerAmelioration(initiale: x),
+      _ => EcranProposerSujet(initiale: x),
+    };
+    final ok = await Navigator.of(context).push<bool>(MaterialPageRoute(builder: (_) => ecran));
+    if (ok == true && mounted) Navigator.of(context).pop('modifiee');
+  }
   bool get _amelioration => x.genre == 'amelioration';
   bool get _evenement => x.fil == 'a_venir';
 
@@ -972,35 +1046,12 @@ class _EcranMaPropositionState extends State<EcranMaProposition> {
     );
   }
 
-  Widget _bloc(String titre, String texte) {
-    final p = palette(context);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(titre, style: police(policeTexte, taille: 11.5, graisse: FontWeight.w800, couleur: p.texteDiscret)),
-        const SizedBox(height: 3),
-        SelectableText(texte, style: police(policeTexte, taille: 14.5, couleur: p.texte, hauteur: 1.4)),
-      ]),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
     final (nom, couleur) = _etat(x.statut);
     final etapes = _etapes();
     final message = (x.message ?? '').trim();
-    final envoye = <Widget>[
-      if ((x.titre ?? '').isNotEmpty) _bloc('TITRE', x.titre!),
-      if ((x.sujet ?? '').isNotEmpty && x.titre == null) _bloc(_amelioration ? 'TA PROPOSITION' : 'SUJET', x.resume ?? x.sujet!),
-      if ((x.avant ?? '').isNotEmpty) _bloc('AVANT', x.avant!),
-      if ((x.decouverte ?? '').isNotEmpty) _bloc(x.fil == 'tech' ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE', x.decouverte!),
-      if ((x.apres ?? '').isNotEmpty) _bloc('ET APRÈS ?', x.apres!),
-      if ((x.quand ?? '').isNotEmpty) _bloc('QUAND', x.quandPrecision == 'mois' ? x.quand!.substring(0, 7) : x.quand!),
-      if ((x.lien ?? '').isNotEmpty) _bloc('ARTICLE', x.lien!),
-      if ((x.video ?? '').isNotEmpty) _bloc('VIDÉO', x.video!),
-      if (x.texte.isNotEmpty && x.titre == null && (x.sujet ?? '').isEmpty) _bloc('TEXTE', x.texte),
-    ];
     return Scaffold(
       backgroundColor: p.fond,
       appBar: AppBar(
@@ -1056,15 +1107,30 @@ class _EcranMaPropositionState extends State<EcranMaProposition> {
             ),
           ),
         const SizedBox(height: 22),
-        if (envoye.isNotEmpty) ...[
-          Text('CE QUE TU AS ENVOYÉ',
-              style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+        OutlinedButton.icon(
+          onPressed: _voirMaFiche,
+          icon: const Icon(Icons.article_outlined, size: 20),
+          label: Text(_amelioration ? 'Voir ma proposition' : 'Voir ma fiche',
+              style: police(policeTexte, taille: 15, graisse: FontWeight.w800)),
+          style: OutlinedButton.styleFrom(
+              foregroundColor: p.texte,
+              side: BorderSide(color: p.bordure, width: 1.5),
+              minimumSize: const Size.fromHeight(50),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
+        ),
+        if (x.statut == 'nouvelle') ...[
           const SizedBox(height: 10),
-          Container(
-            padding: const EdgeInsets.fromLTRB(14, 14, 14, 4),
-            decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(16)),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: envoye),
+          FilledButton.icon(
+            onPressed: _modifier,
+            icon: const Icon(Icons.edit_outlined, size: 20),
+            label: Text('Modifier', style: police(policeTexte, taille: 15, graisse: FontWeight.w800)),
+            style: FilledButton.styleFrom(
+                backgroundColor: logoEncreBleue,
+                foregroundColor: Colors.white,
+                minimumSize: const Size.fromHeight(50),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
           ),
+          _aide(context, 'Tu peux la modifier tant qu’elle n’a pas été examinée.'),
         ],
         const SizedBox(height: 18),
         Center(
@@ -1075,6 +1141,123 @@ class _EcranMaPropositionState extends State<EcranMaProposition> {
                 style: police(policeTexte, taille: 14.5, graisse: FontWeight.w700, couleur: _rouge)),
           ),
         ),
+      ]),
+    );
+  }
+}
+
+
+// ------------------------------------------------------------------ « Voir ma fiche »
+
+/// La proposition présentée comme une fiche (résumé, sujet, événement ou amélioration).
+class EcranApercuProposition extends StatelessWidget {
+  final Proposition proposition;
+  const EcranApercuProposition({super.key, required this.proposition});
+
+  static const _typesEvt = {
+    'lancement': '🚀 Lancement', 'ciel': '🔭 Dans le ciel', 'sortie': '📦 Sortie', 'presentation': '🎤 Présentation',
+    'sommet': '🏛 Sommet', 'resultats': '📊 Résultats', 'autre': '📅 Événement',
+  };
+
+  String _dateEvt(Proposition x) {
+    final d = DateTime.tryParse(x.quand ?? '');
+    if (x.quandPrecision == 'inconnue' || d == null) return 'Date à confirmer';
+    const mois = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre',
+      'novembre', 'décembre'];
+    return x.quandPrecision == 'mois' ? '${mois[d.month - 1]} ${d.year}' : '${d.day} ${mois[d.month - 1]} ${d.year}';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    final x = proposition;
+    final evenement = x.genre == 'sujet' && x.fil == 'a_venir';
+    final amelio = x.genre == 'amelioration';
+    final fil = switch (x.fil) { 'tech' => 'Technologies', 'a_venir' => 'À venir', 'science' => 'Sciences', _ => '' };
+
+    Widget section(String titre, String? texte) => (texte ?? '').trim().isEmpty
+        ? const SizedBox.shrink()
+        : Padding(
+            padding: const EdgeInsets.only(bottom: 18),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(titre, style: police(policeTitres, taille: 17, graisse: FontWeight.w800, couleur: p.texte)),
+              const SizedBox(height: 6),
+              Text(texte!.trim(), style: police(policeTexte, taille: 16, couleur: p.texte, hauteur: 1.55)),
+            ]),
+          );
+
+    Widget lien(IconData icone, String nom, String? url) {
+      final u = (url ?? '').trim();
+      if (u.isEmpty) return const SizedBox.shrink();
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Material(
+          color: p.carte,
+          borderRadius: BorderRadius.circular(16),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(16),
+            onTap: () => launchUrl(Uri.parse(u), mode: LaunchMode.externalApplication),
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Row(children: [
+                Icon(icone, color: p.texte),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(nom, style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
+                    Text(Uri.tryParse(u)?.host.replaceFirst('www.', '') ?? u,
+                        style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret)),
+                  ]),
+                ),
+                Icon(Icons.open_in_new_rounded, size: 18, color: p.texteDiscret),
+              ]),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Scaffold(
+      backgroundColor: p.fond,
+      appBar: AppBar(backgroundColor: p.fond, surfaceTintColor: Colors.transparent, foregroundColor: p.texte),
+      body: ListView(padding: const EdgeInsets.fromLTRB(20, 0, 20, 30), children: [
+        Wrap(spacing: 8, runSpacing: 6, children: [
+          if (fil.isNotEmpty) Pastille(fil, logoEncreBleue),
+          if (evenement) Pastille(_typesEvt[x.typeEvt] ?? '📅 Événement', _orange),
+          if (amelio)
+            Pastille(switch (x.categorie) { 'bug' => '🐞 Bug', 'design' => '🎨 Design', _ => '💡 Idée' }, _orange),
+          Pastille(_genre(x), p.texteDiscret),
+        ]),
+        const SizedBox(height: 14),
+        Text(
+            amelio ? 'Ma proposition' : (x.titre ?? x.sujet ?? x.texte),
+            style: police(policeTitres, taille: 26, graisse: FontWeight.w800, couleur: p.texte, hauteur: 1.2)),
+        const SizedBox(height: 8),
+        Text(
+            evenement ? _dateEvt(x) : 'Proposée le ${_date(x.cree)}',
+            style: police(policeTexte, taille: 14, graisse: evenement ? FontWeight.w800 : FontWeight.w500,
+                couleur: evenement ? _orange : p.texteDiscret)),
+        const SizedBox(height: 22),
+        if (x.genre == 'resume') ...[
+          section('Avant', x.avant),
+          section(x.fil == 'tech' ? 'La nouveauté' : 'La découverte', x.decouverte),
+          section('Et après ?', x.apres),
+        ],
+        if (amelio) section('Ce que je propose', x.resume ?? x.sujet),
+        if (x.genre == 'sujet')
+          Container(
+            padding: const EdgeInsets.all(14),
+            margin: const EdgeInsets.only(bottom: 18),
+            decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(16)),
+            child: Text(
+                evenement
+                    ? 'Ce qui est prévu, pourquoi c’est important, le lieu et l’heure seront complétés à partir des articles.'
+                    : 'Le résumé complet (avant, découverte, et après), le thème et la note d’importance seront rédigés à partir des articles.',
+                style: police(policeTexte, taille: 14, couleur: p.texteDiscret, hauteur: 1.45)),
+          ),
+        lien(Icons.sensors_rounded, 'Suivre en direct', x.direct),
+        lien(Icons.play_circle_outline_rounded, 'Voir la vidéo', x.video),
+        lien(Icons.article_outlined, 'Lire l’article', x.lien),
       ]),
     );
   }

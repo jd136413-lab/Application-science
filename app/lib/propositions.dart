@@ -16,13 +16,13 @@ SupabaseClient get _db => Supabase.instance.client;
 class Proposition {
   final String id, genre, statut, texte;
   final String? categorie, fil, message, ficheId, resume, lien, infos;
-  final String? sujet, titre, avant, decouverte, apres, video, typeEvt, quand, quandPrecision, langue;
+  final String? sujet, titre, avant, decouverte, apres, video, typeEvt, quand, quandPrecision, langue, direct;
   final DateTime cree;
   const Proposition({
     required this.id, required this.genre, required this.statut, required this.texte, required this.cree,
     this.categorie, this.fil, this.message, this.ficheId, this.resume, this.lien, this.infos,
     this.sujet, this.titre, this.avant, this.decouverte, this.apres, this.video, this.typeEvt, this.quand,
-    this.quandPrecision, this.langue,
+    this.quandPrecision, this.langue, this.direct,
   });
 
   /// Envoyée il y a moins de 7 jours (limite par semaine).
@@ -51,6 +51,7 @@ class Proposition {
         quand: j['quand']?.toString(),
         quandPrecision: j['quand_precision']?.toString(),
         langue: j['langue']?.toString(),
+        direct: j['direct']?.toString(),
       );
 }
 
@@ -63,6 +64,12 @@ Future<void> envoyerProposition(Map<String, dynamic> champs) async {
 Future<List<Proposition>> mesPropositions() async {
   final r = await _db.rpc('mes_propositions', params: {'p_appareil': etat.appareilId});
   return [for (final l in r as List) Proposition.depuisJson(Map<String, dynamic>.from(l as Map))];
+}
+
+/// Modifie une de ses propositions tant qu'elle n'a pas été examinée. Vrai si c'est fait.
+Future<bool> modifierProposition(String id, Map<String, dynamic> champs) async {
+  final r = await _db.rpc('modifier_proposition', params: {'p_appareil': etat.appareilId, 'p_id': id, 'p': champs});
+  return r == true;
 }
 
 /// Supprime une de ses propositions (pas pendant sa vérification). Vrai si c'est fait.

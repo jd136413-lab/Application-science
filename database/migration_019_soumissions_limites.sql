@@ -6,6 +6,9 @@
 -- • « Mes propositions » renvoie maintenant tout ce que la personne a envoyé, pour l'écran
 --   de détail (ce qui se passe après l'envoi).
 
+-- 0. Lien du direct (live) d'un événement « À venir » proposé
+alter table submissions add column if not exists direct text check (char_length(direct) <= 300);
+
 -- 1. Téléphones administrateurs (enregistrés quand le bon code est saisi), illisibles depuis l'app
 create table if not exists admin_appareils (
   appareil text primary key,
@@ -47,11 +50,11 @@ create function mes_propositions(p_appareil text)
 returns table (id uuid, created_at timestamptz, genre text, categorie text, fil text, texte text,
                statut text, message text, fiche_id uuid, sujet text, titre text, avant text,
                decouverte text, apres text, resume text, lien text, video text, type_evt text,
-               quand date, quand_precision text, langue text)
+               quand date, quand_precision text, langue text, direct text)
 language sql stable security definer set search_path = public as $$
   select s.id, s.created_at, s.genre, s.categorie, s.fil, coalesce(s.titre, s.sujet), s.statut, s.message,
          s.fiche_id, s.sujet, s.titre, s.avant, s.decouverte, s.apres, s.resume, s.lien, s.video, s.type_evt,
-         s.quand, s.quand_precision, s.langue
+         s.quand, s.quand_precision, s.langue, s.direct
   from submissions s
   where char_length(p_appareil) >= 20 and s.appareil = p_appareil
   order by s.created_at desc
@@ -69,5 +72,20 @@ begin
   return found;
 end $$;
 grant execute on function supprimer_proposition(text, uuid) to anon, authenticated;
+
+-- 5. Modifier une de SES propositions tant qu'elle n'a pas été examinée (statut « nouvelle »)
+create or replace function modifier_proposition(p_appareil text, p_id uuid, p jsonb) returns boolean
+language plpgsql security definer set search_path = public as $$
+begin
+  update submissions set
+    sujet = p->>'sujet', titre = p->>'titre', avant = p->>'avant', decouverte = p->>'decouverte',
+    apres = p->>'apres', resume = p->>'resume', lien = p->>'lien', video = p->>'video', direct = p->>'direct',
+    fil = p->>'fil', type_evt = p->>'type_evt', quand = (p->>'quand')::date,
+    quand_precision = p->>'quand_precision', langue = p->>'langue', categorie = p->>'categorie',
+    infos = coalesce(p->>'infos', infos)
+  where id = p_id and appareil = p_appareil and char_length(p_appareil) >= 20 and statut = 'nouvelle';
+  return found;
+end $$;
+grant execute on function modifier_proposition(text, uuid, jsonb) to anon, authenticated;
 
 -- Ce fichier peut être relancé sans risque (tout est « create or replace » ou « if not exists »).

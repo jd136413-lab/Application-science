@@ -285,6 +285,14 @@ def traiter_evenement(prop: dict, base: "Base", db, client, conso: dict) -> None
         "source_url": art["url"], "source_name": art["source_name"],
         **ch, "statut": "prevu", "verifie_le": datetime.now(timezone.utc).isoformat(),
     }
+    # Lien du direct (live) donné par le lecteur
+    direct = (prop.get("direct") or "").strip()
+    if direct.startswith("https://"):
+        hote = urlparse(direct).netloc.lower().removeprefix("www.").removeprefix("m.")
+        noms = {"youtube.com": "YouTube", "youtu.be": "YouTube", "twitch.tv": "Twitch", "x.com": "X", "twitter.com": "X",
+                "nasa.gov": "NASA", "plus.nasa.gov": "NASA+", "esa.int": "ESA", "spacex.com": "SpaceX"}
+        ligne["lien_direct"] = direct
+        ligne["lien_direct_nom"] = next((v for k, v in noms.items() if hote == k or hote.endswith("." + k)), hote)
     vp = video_proposee(client, prop, ligne["title"], ligne.get("pourquoi") or ligne.get("prevu") or "", conso)
     if vp:
         ligne["video_url"], ligne["video_titre"] = vp["url"], vp["titre"]
