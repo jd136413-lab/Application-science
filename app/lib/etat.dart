@@ -2,6 +2,7 @@
 // premier lancement terminé, domaines choisis, favoris, thème.
 
 import 'dart:convert';
+import 'dart:math' show Random;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,6 +29,16 @@ class EtatApp extends ChangeNotifier {
   bool avisDemande = false;
   /// Appareil exclu des statistiques (téléphone de Maxime) : 7 appuis sur la version dans Réglages.
   bool statsExclues = false;
+  /// Mode administrateur (Maxime seulement, 17/11/2026) : code secret vérifié par Supabase
+  /// (fonction admin_verifier). Sans le bon code, rien n'apparaît et rien n'est lisible.
+  String? adminCode;
+  /// Sujet de notification réservé à l'administrateur (renvoyé par Supabase avec le code).
+  String? adminSujet;
+  /// Réglages administrateur : « Me prévenir des nouvelles propositions ».
+  bool adminNotif = false;
+  /// Identifiant aléatoire de ce téléphone (onglet Soumettre : « Mes propositions »).
+  String appareilId = '';
+  bool get admin => adminCode != null && adminSujet != null;
   /// Publicités (07/11/2026). « Membre fondateur » : l'app était déjà installée
   /// avant l'arrivée des pubs → jamais de pub (choix de Maxime).
   bool fondateur = false;
@@ -137,6 +148,15 @@ class EtatApp extends ChangeNotifier {
       favorisAjoutes = p.getInt('favoris_ajoutes') ?? 0;
       avisDemande = p.getBool('avis_demande') ?? false;
       statsExclues = p.getBool('stats_exclues') ?? false;
+      adminCode = p.getString('admin_code');
+      adminSujet = p.getString('admin_sujet');
+      adminNotif = p.getBool('admin_notif') ?? false;
+      appareilId = p.getString('appareil_id') ?? '';
+      if (appareilId.length < 20) {
+        final r = Random.secure();
+        appareilId = List.generate(32, (_) => '0123456789abcdef'[r.nextInt(16)]).join();
+        p.setString('appareil_id', appareilId);
+      }
       // Calculé une seule fois, à la première ouverture de la version avec pubs :
       // premier lancement déjà terminé = l'app était là avant les pubs.
       fondateur = p.getBool('pubs_fondateur') ?? premierLancementFait;
@@ -184,6 +204,14 @@ class EtatApp extends ChangeNotifier {
     p.setInt('favoris_ajoutes', favorisAjoutes);
     p.setBool('avis_demande', avisDemande);
     p.setBool('stats_exclues', statsExclues);
+    if (adminCode != null && adminSujet != null) {
+      p.setString('admin_code', adminCode!);
+      p.setString('admin_sujet', adminSujet!);
+    } else {
+      p.remove('admin_code');
+      p.remove('admin_sujet');
+    }
+    p.setBool('admin_notif', adminNotif);
     p.setStringList('niveaux_vus', [for (final n in niveauxVus) '$n']);
     p.setStringList('sources_masquees', sourcesMasquees.toList());
     p.setString('vocabulaire', jsonEncode([for (final m in vocabulaire) m.versJson()]));
@@ -216,6 +244,28 @@ class EtatApp extends ChangeNotifier {
   /// Exclut (ou réintègre) ce téléphone dans les statistiques.
   void basculerStatsExclues() {
     statsExclues = !statsExclues;
+    _enregistrer();
+    notifyListeners();
+  }
+
+  // ---- Mode administrateur ----
+  void activerAdmin(String code, String sujet) {
+    adminCode = code;
+    adminSujet = sujet;
+    _enregistrer();
+    notifyListeners();
+  }
+
+  void quitterAdmin() {
+    adminCode = null;
+    adminSujet = null;
+    adminNotif = false;
+    _enregistrer();
+    notifyListeners();
+  }
+
+  void changerAdminNotif(bool v) {
+    adminNotif = v;
     _enregistrer();
     notifyListeners();
   }

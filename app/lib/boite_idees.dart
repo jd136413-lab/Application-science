@@ -1,0 +1,218 @@
+// Boîte à idées (maquette 96.6) : toutes les propositions reçues. Mode administrateur seulement
+// (Réglages → Administration). Les données ne sont renvoyées par Supabase qu'avec le bon code
+// (fonction admin_propositions), donc même un écran affiché par erreur resterait vide.
+
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'propositions.dart';
+import 'reglages.dart';
+import 'soumettre.dart' show Pastille;
+import 'widgets.dart';
+
+const Color _vert = Color(0xFF2FC27B);
+const Color _orange = Color(0xFFF5A524);
+const Color _rouge = Color(0xFFE5484D);
+
+class EcranBoiteIdees extends StatefulWidget {
+  const EcranBoiteIdees({super.key});
+  @override
+  State<EcranBoiteIdees> createState() => _EcranBoiteIdeesState();
+}
+
+class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
+  late Future<List<Proposition>> _liste = toutesLesPropositions();
+  String _filtre = 'nouvelles'; // nouvelles · ameliorations · toutes
+
+  Future<void> _recharger() async {
+    final f = toutesLesPropositions();
+    setState(() => _liste = f);
+    try {
+      await f;
+    } catch (_) {}
+  }
+
+  static (String, Color) _categorie(Proposition x) => switch (x.genre) {
+        'sujet' => (x.fil == 'a_venir' ? '📅 ÉVÉNEMENT' : '⚡ SUJET', logoEncreBleue),
+        'resume' => ('✎ RÉSUMÉ', _vert),
+        _ => switch (x.categorie) {
+            'bug' => ('🐞 BUG', _rouge),
+            'design' => ('🎨 DESIGN', const Color(0xFFB49BFF)),
+            _ => ('💡 IDÉE', _orange),
+          },
+      };
+
+  static (String, Color) _etat(String s) => switch (s) {
+        'a_faire' => ('À faire', _orange),
+        'faite' => ('Fait', _vert),
+        'ignoree' => ('Ignorée', _rouge),
+        'publiee' => ('Publiée', _vert),
+        'refusee' => ('Refusée', _rouge),
+        'en_cours' => ('En cours', _orange),
+        _ => ('Nouvelle', logoEncreBleue),
+      };
+
+  String _quand(DateTime d) {
+    final j = DateTime.now().difference(d).inDays;
+    final h = '${d.hour.toString().padLeft(2, '0')} h ${d.minute.toString().padLeft(2, '0')}';
+    if (j == 0 && d.day == DateTime.now().day) return 'aujourd’hui $h';
+    if (j <= 1) return 'hier $h';
+    return '${d.day}/${d.month.toString().padLeft(2, '0')} $h';
+  }
+
+  Future<void> _actions(Proposition x) async {
+    final p = palette(context);
+    final choix = await showModalBottomSheet<String>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: p.carte,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
+      builder: (ctx) => SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(22, 22, 22, 12),
+          child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(_categorie(x).$1,
+                style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: _categorie(x).$2)),
+            const SizedBox(height: 8),
+            SelectableText(x.resume ?? x.texte,
+                style: police(policeTexte, taille: 15.5, couleur: p.texte, hauteur: 1.45)),
+            if ((x.lien ?? '').isNotEmpty) ...[
+              const SizedBox(height: 8),
+              GestureDetector(
+                onTap: () => launchUrl(Uri.parse(x.lien!), mode: LaunchMode.externalApplication),
+                child: Text(x.lien!,
+                    style: police(policeTexte, taille: 13, couleur: logoEncreBleue), maxLines: 2, overflow: TextOverflow.ellipsis),
+              ),
+            ],
+            const SizedBox(height: 8),
+            Text([_quand(x.cree), if ((x.infos ?? '').isNotEmpty) x.infos!].join(' · '),
+                style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
+            if ((x.message ?? '').isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(x.message!, style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+            ],
+            if (x.genre == 'amelioration') ...[
+              const SizedBox(height: 16),
+              for (final (cle, nom, icone) in const [
+                ('a_faire', 'À faire', Icons.flag_outlined),
+                ('faite', 'Fait', Icons.check_circle_outline_rounded),
+                ('ignoree', 'Ignorer', Icons.block_rounded),
+                ('nouvelle', 'Remettre en « Nouvelle »', Icons.fiber_new_outlined),
+              ])
+                if (cle != x.statut)
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: Icon(icone, color: p.texte),
+                    title: Text(nom, style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
+                    onTap: () => Navigator.pop(ctx, cle),
+                  ),
+            ],
+          ]),
+        ),
+      ),
+    );
+    if (choix == null) return;
+    try {
+      await changerStatut(x.id, choix);
+      await _recharger();
+    } catch (_) {
+      if (mounted) afficherMessage(context, 'Changement impossible (réseau ?)', icone: Icons.error_outline_rounded);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return Scaffold(
+      backgroundColor: p.fond,
+      appBar: AppBar(
+        backgroundColor: p.fond,
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: p.texte,
+        title: Text('Boîte à idées', style: police(policeTitres, taille: 22, graisse: FontWeight.w800, couleur: p.texte)),
+      ),
+      body: FutureBuilder<List<Proposition>>(
+        future: _liste,
+        builder: (context, s) {
+          if (s.connectionState != ConnectionState.done) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (s.hasError) {
+            return MessageCentre(
+              icone: Icons.lock_outline_rounded,
+              titre: 'Accès refusé ou pas de réseau',
+              detail: 'Vérifie ta connexion. Si le problème continue, ressaisis ton code administrateur.',
+            );
+          }
+          final toutes = s.data ?? [];
+          final nouvelles = toutes.where((x) => x.statut == 'nouvelle' && x.genre == 'amelioration').toList();
+          final amelio = toutes.where((x) => x.genre == 'amelioration').toList();
+          final liste = switch (_filtre) { 'nouvelles' => nouvelles, 'ameliorations' => amelio, _ => toutes };
+          return RefreshIndicator(
+            onRefresh: _recharger,
+            child: ListView(padding: const EdgeInsets.fromLTRB(16, 0, 16, 24), children: [
+              Text('Toutes les propositions envoyées par les lecteurs. Visible seulement par toi.',
+                  style: police(policeTexte, taille: 13.5, couleur: p.texteDiscret)),
+              const SizedBox(height: 12),
+              Wrap(spacing: 6, children: [
+                for (final (cle, nom) in [
+                  ('nouvelles', 'Nouvelles · ${nouvelles.length}'),
+                  ('ameliorations', 'Améliorations · ${amelio.length}'),
+                  ('toutes', 'Tout · ${toutes.length}'),
+                ])
+                  ChoiceChip(
+                    label: Text(nom),
+                    selected: _filtre == cle,
+                    showCheckmark: false,
+                    onSelected: (_) => setState(() => _filtre = cle),
+                    labelStyle: police(policeTexte,
+                        taille: 13, graisse: FontWeight.w800, couleur: _filtre == cle ? p.surEncre : p.texteDiscret),
+                    selectedColor: p.encre,
+                    backgroundColor: p.carte,
+                    side: BorderSide(color: _filtre == cle ? p.encre : p.bordure),
+                  ),
+              ]),
+              const SizedBox(height: 12),
+              if (liste.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Center(
+                      child: Text('Rien ici pour l’instant.',
+                          style: police(policeTexte, taille: 14, couleur: p.texteDiscret))),
+                ),
+              for (final x in liste)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Material(
+                    color: p.carte,
+                    borderRadius: BorderRadius.circular(16),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(16),
+                      onTap: () => _actions(x),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Row(children: [
+                            Expanded(
+                                child: Text(_categorie(x).$1,
+                                    style: police(policeTexte,
+                                        taille: 11.5, graisse: FontWeight.w800, couleur: _categorie(x).$2))),
+                            Pastille(_etat(x.statut).$1, _etat(x.statut).$2),
+                          ]),
+                          const SizedBox(height: 6),
+                          Text(x.texte, style: police(policeTexte, taille: 14.5, couleur: p.texte, hauteur: 1.35)),
+                          const SizedBox(height: 4),
+                          Text([_quand(x.cree), if ((x.infos ?? '').isNotEmpty) x.infos!].join(' · '),
+                              style: police(policeTexte, taille: 11.5, couleur: p.texteDiscret)),
+                        ]),
+                      ),
+                    ),
+                  ),
+                ),
+            ]),
+          );
+        },
+      ),
+    );
+  }
+}

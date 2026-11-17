@@ -6,10 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'echelle_importance.dart';
 import 'ecran_notifications.dart';
+import 'boite_idees.dart';
 import 'etat.dart';
 import 'langues.dart';
 import 'memoire.dart';
+import 'notifications.dart';
 import 'premier_lancement.dart';
+import 'propositions.dart';
 import 'pubs.dart';
 import 'regions_monde.dart';
 import 'reglages.dart';
@@ -265,6 +268,10 @@ class EcranReglages extends StatelessWidget {
                 Icon(Icons.mail_outline_rounded, color: p.texte, size: 20),
               ]),
             ),
+            if (etat.admin) ...[
+              const SizedBox(height: 18),
+              const _BlocAdmin(),
+            ],
             const SizedBox(height: 18),
             const Center(child: _LigneVersion()),
           ],
@@ -681,6 +688,8 @@ class _LigneVersionState extends State<_LigneVersion> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: _appui,
+      // Appui long : mode administrateur (code secret vérifié par Supabase, 17/11/2026).
+      onLongPress: () => etat.admin ? _quitterAdmin(context) : demanderCodeAdmin(context),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
         child: Text(
@@ -689,5 +698,129 @@ class _LigneVersionState extends State<_LigneVersion> {
             style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
       ),
     );
+  }
+}
+
+
+// ------------------------------------------------------------------ mode administrateur
+
+/// Demande le code administrateur et l'envoie à Supabase pour vérification.
+Future<void> demanderCodeAdmin(BuildContext context) async {
+  final p = palette(context);
+  final c = TextEditingController();
+  final code = await showDialog<String>(
+    context: context,
+    builder: (ctx) => AlertDialog(
+      backgroundColor: p.carte,
+      title: Text('Code', style: police(policeTitres, taille: 20, graisse: FontWeight.w700, couleur: p.texte)),
+      content: TextField(
+        controller: c,
+        obscureText: true,
+        autofocus: true,
+        style: police(policeTexte, taille: 16, couleur: p.texte),
+        onSubmitted: (v) => Navigator.pop(ctx, v),
+      ),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(ctx), child: Text(tr(texteAnnuler))),
+        FilledButton(onPressed: () => Navigator.pop(ctx, c.text), child: const Text('OK')),
+      ],
+    ),
+  );
+  c.dispose();
+  if (code == null || code.trim().isEmpty) return;
+  String? sujet;
+  try {
+    sujet = await verifierCodeAdmin(code.trim());
+  } catch (_) {
+    sujet = null;
+  }
+  if (!context.mounted) return;
+  if (sujet == null) {
+    afficherMessage(context, 'Code refusé', icone: Icons.lock_outline_rounded);
+    return;
+  }
+  etat.activerAdmin(code.trim(), sujet);
+  afficherMessage(context, 'Mode administrateur activé', icone: Icons.admin_panel_settings_outlined);
+}
+
+Future<void> _quitterAdmin(BuildContext context) async {
+  final p = palette(context);
+  final oui = await showDialog<bool>(
+    context: context,
+    builder: (ctx) => AlertDialog(
+      backgroundColor: p.carte,
+      title: Text('Quitter le mode administrateur ?',
+          style: police(policeTitres, taille: 19, graisse: FontWeight.w700, couleur: p.texte)),
+      content: Text('L’onglet Soumettre et la boîte à idées disparaîtront de ce téléphone.',
+          style: police(policeTexte, taille: 14.5, couleur: p.texteDiscret)),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(tr(texteAnnuler))),
+        FilledButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Quitter')),
+      ],
+    ),
+  );
+  if (oui != true) return;
+  final sujet = etat.adminSujet;
+  if (sujet != null) await abonnerSujetAdmin(sujet, false);
+  etat.quitterAdmin();
+}
+
+/// Réglages → Administration (mode administrateur seulement).
+class _BlocAdmin extends StatelessWidget {
+  const _BlocAdmin();
+
+  Future<void> _notif(BuildContext context, bool v) async {
+    final sujet = etat.adminSujet;
+    if (sujet == null) return;
+    if (v && !await demanderAutorisation()) {
+      if (context.mounted) {
+        afficherMessage(context, 'Notifications refusées dans les réglages du téléphone', icone: Icons.notifications_off_outlined);
+      }
+      return;
+    }
+    await abonnerSujetAdmin(sujet, v);
+    etat.changerAdminNotif(v);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 4, bottom: 8),
+        child: Text('ADMINISTRATION',
+            style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: const Color(0xFF8B5CF6))),
+      ),
+      Material(
+        color: p.carte,
+        borderRadius: BorderRadius.circular(18),
+        clipBehavior: Clip.antiAlias,
+        child: Column(children: [
+          ListTile(
+            leading: Icon(Icons.inbox_rounded, color: p.texte),
+            title: Text('Boîte à idées',
+                style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
+            subtitle: Text('Améliorations et propositions des lecteurs',
+                style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+            trailing: Icon(Icons.chevron_right_rounded, color: p.texteDiscret),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const EcranBoiteIdees())),
+          ),
+          if (notificationsPossibles)
+            SwitchListTile(
+              value: etat.adminNotif,
+              onChanged: (v) => _notif(context, v),
+              title: Text('Me prévenir des nouvelles propositions',
+                  style: police(policeTexte, taille: 15, graisse: FontWeight.w600, couleur: p.texte)),
+              subtitle: Text('Vérifié toutes les heures',
+                  style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+            ),
+        ]),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 4, top: 6),
+        child: Text('Appui long sur le numéro de version pour quitter ce mode.',
+            style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
+      ),
+    ]);
   }
 }

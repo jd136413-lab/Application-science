@@ -1,0 +1,31 @@
+# Prévient le téléphone de Maxime des nouvelles propositions (onglet Soumettre, boîte à idées).
+# Gratuit : aucun appel à Claude, juste une lecture Supabase et une notification.
+name: "Propositions : notification"
+
+on:
+  schedule:
+    - cron: "7 * * * *"      # toutes les heures
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: propositions-notif
+  cancel-in-progress: false
+
+jobs:
+  prevenir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests google-auth
+      - run: cd agent && python propositions_notif.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}

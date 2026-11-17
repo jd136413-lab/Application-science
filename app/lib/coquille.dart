@@ -9,11 +9,13 @@ import 'package:flutter/services.dart';
 import 'accueil_magazine.dart';
 import 'chargement_pubs.dart';
 import 'ecran_reglages.dart';
+import 'etat.dart';
 import 'favoris.dart';
 import 'langues.dart';
 import 'navigation.dart';
 import 'pubs.dart';
 import 'reglages.dart';
+import 'soumettre.dart';
 import 'vocabulaire.dart';
 import 'widgets.dart';
 
@@ -26,7 +28,23 @@ class Coquille extends StatefulWidget {
 
 class _CoquilleState extends State<Coquille> {
   // Gardé en mémoire (static) pour rester sur le même onglet quand on change de langue.
-  static int _onglet = 0;
+  // Retenu par son nom : l'onglet « Soumettre » (mode administrateur) peut apparaître ou
+  // disparaître sans faire changer d'onglet.
+  static String _ongletNom = 'actualites';
+
+  List<String> get _noms => [
+        'actualites',
+        'favoris',
+        if (etat.admin) 'soumettre',
+        'vocabulaire',
+        'reglages',
+      ];
+  int get _onglet {
+    final i = _noms.indexOf(_ongletNom);
+    return i < 0 ? 0 : i;
+  }
+
+  set _onglet(int i) => _ongletNom = _noms[i.clamp(0, _noms.length - 1)];
 
   @override
   void initState() {
@@ -78,7 +96,9 @@ class _CoquilleState extends State<Coquille> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) => ListenableBuilder(listenable: etat, builder: (context, _) => _construire(context));
+
+  Widget _construire(BuildContext context) {
     final p = palette(context);
     return PopScope(
       canPop: false,
@@ -93,11 +113,12 @@ class _CoquilleState extends State<Coquille> {
         // IndexedStack garde chaque onglet en mémoire (position, filtres…).
         // Accueil magazine pour tout le monde (01/11). L'ancien fil (accueil.dart) reste
         // dans le code et dans la branche sauvegarde/accueil-classique-v41.
-        child: IndexedStack(index: _onglet, children: const [
-          EcranMagazine(),
-          EcranFavoris(),
-          EcranVocabulaire(),
-          EcranReglages(),
+        child: IndexedStack(index: _onglet, children: [
+          const KeyedSubtree(key: ValueKey('actualites'), child: EcranMagazine()),
+          const KeyedSubtree(key: ValueKey('favoris'), child: EcranFavoris()),
+          if (etat.admin) const KeyedSubtree(key: ValueKey('soumettre'), child: EcranSoumettre()),
+          const KeyedSubtree(key: ValueKey('vocabulaire'), child: EcranVocabulaire()),
+          const KeyedSubtree(key: ValueKey('reglages'), child: EcranReglages()),
         ]),
       ),
       bottomNavigationBar: NavigationBarTheme(
@@ -127,6 +148,11 @@ class _CoquilleState extends State<Coquille> {
                 icon: const Icon(Icons.bookmark_border_rounded),
                 selectedIcon: const Icon(Icons.bookmark_rounded),
                 label: tr(texteOngletFavoris)),
+            if (etat.admin)
+              const NavigationDestination(
+                  icon: Icon(Icons.add_circle_outline_rounded),
+                  selectedIcon: Icon(Icons.add_circle_rounded),
+                  label: 'Soumettre'),
             NavigationDestination(
                 icon: const Icon(Icons.menu_book_outlined),
                 selectedIcon: const Icon(Icons.menu_book_rounded),

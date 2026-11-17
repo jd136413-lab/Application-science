@@ -27,6 +27,9 @@ const List<(String, String)> motifsSignalement = [
   ('Autre', ''),
 ];
 
+/// Modèle du téléphone et système, pour l'onglet Soumettre (améliorations).
+Future<String> descriptionAppareil() => _appareil();
+
 /// Modèle du téléphone et système (ex. « Xiaomi POCO X7 Pro · Android 15 »).
 Future<String> _appareil() async {
   try {

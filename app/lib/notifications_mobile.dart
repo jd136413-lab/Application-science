@@ -244,7 +244,9 @@ Future<void> _file = Future.value();
 
 Future<void> _afficher(Map<String, dynamic> data) {
   _file = _file
-      .then((_) => data['type'] == 'arrive'
+      .then((_) => data['type'] == 'admin'
+          ? _afficherAdmin(data)
+          : data['type'] == 'arrive'
           ? _afficherArrive(data)
           : data['type'] == 'changement'
               ? _afficherChangement(data)
@@ -454,6 +456,27 @@ Future<void> _afficherArrive(Map<String, dynamic> data) async {
   );
 }
 
+/// Mode administrateur : nouvelles propositions des lecteurs (propositions_notif.py).
+Future<void> _afficherAdmin(Map<String, dynamic> data) async {
+  final titre = data['titre']?.toString() ?? 'Nouvelle proposition';
+  final texte = data['texte']?.toString() ?? '';
+  await _local.show(
+    290,
+    titre,
+    texte,
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        'administration',
+        'Administration',
+        importance: Importance.defaultImportance,
+        color: logoEncreBleue,
+        styleInformation: BigTextStyleInformation(texte),
+      ),
+      iOS: const DarwinNotificationDetails(),
+    ),
+  );
+}
+
 /// Un événement suivi est reporté, avancé, annulé ou enfin daté (maquette 79) : on prévient,
 /// et on retire l'ancien rappel ; l'app le reprogrammera à la bonne date à la prochaine ouverture.
 Future<void> _afficherChangement(Map<String, dynamic> data) async {
@@ -510,6 +533,18 @@ Future<void> abonnerEvenement(String id) async {
   if (!notificationsPossibles) return;
   try {
     await FirebaseMessaging.instance.subscribeToTopic('evt_$id');
+  } catch (_) {}
+}
+
+/// Mode administrateur : abonnement au sujet réservé (nouvelles propositions des lecteurs).
+Future<void> abonnerSujetAdmin(String sujet, bool oui) async {
+  if (!notificationsPossibles || sujet.isEmpty) return;
+  try {
+    if (oui) {
+      await FirebaseMessaging.instance.subscribeToTopic(sujet);
+    } else {
+      await FirebaseMessaging.instance.unsubscribeFromTopic(sujet);
+    }
   } catch (_) {}
 }
 
