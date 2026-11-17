@@ -16,11 +16,17 @@ SupabaseClient get _db => Supabase.instance.client;
 class Proposition {
   final String id, genre, statut, texte;
   final String? categorie, fil, message, ficheId, resume, lien, infos;
+  final String? sujet, titre, avant, decouverte, apres, video, typeEvt, quand, quandPrecision, langue;
   final DateTime cree;
   const Proposition({
     required this.id, required this.genre, required this.statut, required this.texte, required this.cree,
     this.categorie, this.fil, this.message, this.ficheId, this.resume, this.lien, this.infos,
+    this.sujet, this.titre, this.avant, this.decouverte, this.apres, this.video, this.typeEvt, this.quand,
+    this.quandPrecision, this.langue,
   });
+
+  /// Envoyée il y a moins de 7 jours (limite par semaine).
+  bool get cetteSemaine => DateTime.now().difference(cree).inDays < 7;
 
   factory Proposition.depuisJson(Map<String, dynamic> j) => Proposition(
         id: j['id'].toString(),
@@ -35,6 +41,16 @@ class Proposition {
         resume: j['resume']?.toString(),
         lien: j['lien']?.toString(),
         infos: j['infos']?.toString(),
+        sujet: j['sujet']?.toString(),
+        titre: j['titre']?.toString(),
+        avant: j['avant']?.toString(),
+        decouverte: j['decouverte']?.toString(),
+        apres: j['apres']?.toString(),
+        video: j['video']?.toString(),
+        typeEvt: j['type_evt']?.toString(),
+        quand: j['quand']?.toString(),
+        quandPrecision: j['quand_precision']?.toString(),
+        langue: j['langue']?.toString(),
       );
 }
 
@@ -49,9 +65,18 @@ Future<List<Proposition>> mesPropositions() async {
   return [for (final l in r as List) Proposition.depuisJson(Map<String, dynamic>.from(l as Map))];
 }
 
-/// Vérifie un code administrateur. Renvoie le sujet de notification réservé, ou null.
+/// Limite par semaine (migration 019), par téléphone : sujets + résumés, et améliorations.
+const int limiteSemaine = 5;
+
+/// Vérifie un code administrateur et enregistre ce téléphone comme administrateur (sans limite
+/// de propositions). Renvoie le sujet de notification réservé, ou null si le code est faux.
 Future<String?> verifierCodeAdmin(String code) async {
-  final r = await _db.rpc('admin_verifier', params: {'p_code': code});
+  dynamic r;
+  try {
+    r = await _db.rpc('admin_activer', params: {'p_code': code, 'p_appareil': etat.appareilId});
+  } catch (_) {
+    r = await _db.rpc('admin_verifier', params: {'p_code': code}); // migration 019 pas encore faite
+  }
   final s = r?.toString() ?? '';
   return s.isEmpty || s == 'null' ? null : s;
 }

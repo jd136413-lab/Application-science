@@ -6,6 +6,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'detail.dart';
+import 'donnees.dart' show chargerAvancee;
 import 'etat.dart';
 import 'propositions.dart';
 import 'reglages.dart';
@@ -61,6 +63,14 @@ class EcranSoumettre extends StatefulWidget {
 class _EcranSoumettreState extends State<EcranSoumettre> {
   late Future<List<Proposition>> _liste = mesPropositions();
 
+  @override
+  void initState() {
+    super.initState();
+    // Téléphone administrateur : (ré)enregistré pour ne pas avoir de limite de propositions.
+    final code = etat.adminCode;
+    if (code != null) verifierCodeAdmin(code).catchError((_) => null);
+  }
+
   Future<void> _recharger() async {
     final f = mesPropositions();
     setState(() => _liste = f);
@@ -77,14 +87,19 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
     }
   }
 
-  Widget _choix(IconData icone, Color c, String titre, String detail, Widget ecran) {
+  Widget _choix(IconData icone, Color c, String titre, String detail, Widget ecran, {bool actif = true}) {
     final p = palette(context);
-    return Material(
+    return Opacity(
+      opacity: actif ? 1 : 0.45,
+      child: Material(
       color: p.carte,
       borderRadius: BorderRadius.circular(18),
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
-        onTap: () => _ouvrir(ecran),
+        onTap: actif
+            ? () => _ouvrir(ecran)
+            : () => afficherMessage(context, 'Limite de la semaine atteinte : reviens dans quelques jours.',
+                icone: Icons.hourglass_bottom_rounded),
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Row(children: [
@@ -106,40 +121,12 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
           ]),
         ),
       ),
+    ),
     );
   }
 
   void _detail(Proposition x) {
-    final p = palette(context);
-    final (nom, c) = _etat(x.statut);
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: p.carte,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
-      builder: (_) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(22, 22, 22, 18),
-          child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(children: [
-              Pastille(nom, c),
-              const SizedBox(width: 8),
-              Text('${_genre(x)} · ${_date(x.cree)}',
-                  style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret)),
-            ]),
-            const SizedBox(height: 12),
-            Text(x.texte, style: police(policeTitres, taille: 18, graisse: FontWeight.w700, couleur: p.texte)),
-            const SizedBox(height: 10),
-            Text(
-                (x.message ?? '').isNotEmpty
-                    ? x.message!
-                    : x.statut == 'nouvelle'
-                        ? 'Elle sera examinée au prochain passage.'
-                        : '',
-                style: police(policeTexte, taille: 14.5, couleur: p.texte, hauteur: 1.45)),
-          ]),
-        ),
-      ),
-    );
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => EcranMaProposition(proposition: x)));
   }
 
   @override
@@ -164,14 +151,39 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
               style: police(policeTexte, taille: 15, couleur: p.texte)),
         ),
         const SizedBox(height: 12),
-        _choix(Icons.bolt_rounded, logoEncreBleue, 'Proposer un sujet', 'Une phrase : on s’occupe du reste.',
-            const EcranProposerSujet()),
-        const SizedBox(height: 10),
-        _choix(Icons.edit_rounded, _vert, 'Proposer un résumé', 'Ta fiche en 3 parties, vérifiée avant publication.',
-            const EcranProposerResume()),
-        const SizedBox(height: 10),
-        _choix(Icons.lightbulb_outline_rounded, _orange, 'Proposer une amélioration',
-            'Une idée, un bug, un souhait pour l’application.', const EcranProposerAmelioration()),
+        FutureBuilder<List<Proposition>>(
+          future: _liste,
+          builder: (context, snap) {
+            final l = snap.data ?? const <Proposition>[];
+            final fiches = l.where((x) => x.cetteSemaine && x.genre != 'amelioration').length;
+            final idees = l.where((x) => x.cetteSemaine && x.genre == 'amelioration').length;
+            final illimite = etat.admin;
+            final resteF = illimite ? 99 : limiteSemaine - fiches;
+            final resteI = illimite ? 99 : limiteSemaine - idees;
+            return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              _choix(Icons.bolt_rounded, logoEncreBleue, 'Proposer un sujet', 'Une phrase : on s’occupe du reste.',
+                  const EcranProposerSujet(), actif: resteF > 0),
+              const SizedBox(height: 10),
+              _choix(Icons.edit_rounded, _vert, 'Proposer un résumé', 'Ta fiche en 3 parties, vérifiée avant publication.',
+                  const EcranProposerResume(), actif: resteF > 0),
+              const SizedBox(height: 10),
+              _choix(Icons.lightbulb_outline_rounded, _orange, 'Proposer une amélioration',
+                  'Une idée, un bug, un souhait pour l’application.', const EcranProposerAmelioration(),
+                  actif: resteI > 0),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Text(
+                    illimite
+                        ? 'Sans limite sur ton téléphone (administrateur). Pour les autres : $limiteSemaine sujets ou '
+                            'résumés et $limiteSemaine améliorations par semaine.'
+                        : 'Cette semaine : encore ${resteF.clamp(0, limiteSemaine)} sujet(s) ou résumé(s), '
+                            'et ${resteI.clamp(0, limiteSemaine)} amélioration(s).',
+                    style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret)),
+              ),
+            ]);
+          },
+        ),
         const SizedBox(height: 22),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -405,8 +417,8 @@ Future<void> _envoyer(BuildContext context, Map<String, dynamic> champs, void Fu
     if (context.mounted) {
       afficherMessage(
           context,
-          e.toString().contains('trop de propositions')
-              ? 'Limite atteinte : 15 propositions par jour.'
+          e.toString().contains('limite_semaine') || e.toString().contains('trop de propositions')
+              ? 'Limite atteinte : $limiteSemaine propositions par semaine.'
               : 'Envoi impossible. Vérifie ta connexion et réessaie.',
           icone: Icons.error_outline_rounded);
     }
@@ -784,6 +796,214 @@ class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
         ),
         _aide(context, 'Ta proposition arrive telle quelle à l’équipe.'),
       ],
+    );
+  }
+}
+
+
+// ------------------------------------------------------------------ détail d'une proposition
+
+/// Ce qui se passe après l'envoi : les étapes, ce qui a été envoyé, et le résultat.
+class EcranMaProposition extends StatefulWidget {
+  final Proposition proposition;
+  const EcranMaProposition({super.key, required this.proposition});
+  @override
+  State<EcranMaProposition> createState() => _EcranMaPropositionState();
+}
+
+class _EcranMaPropositionState extends State<EcranMaProposition> {
+  bool _ouverture = false;
+
+  Proposition get x => widget.proposition;
+  bool get _amelioration => x.genre == 'amelioration';
+  bool get _evenement => x.fil == 'a_venir';
+
+  Future<void> _voirFiche() async {
+    final id = x.ficheId;
+    if (id == null) return;
+    setState(() => _ouverture = true);
+    try {
+      final a = await chargerAvancee(id);
+      if (!mounted) return;
+      if (a == null) {
+        afficherMessage(context, 'Fiche introuvable', icone: Icons.error_outline_rounded);
+      } else {
+        await Navigator.of(context).push(MaterialPageRoute(builder: (_) => EcranDetailFil(liste: [a], depart: 0)));
+      }
+    } catch (_) {
+      if (mounted) afficherMessage(context, 'Impossible d’ouvrir la fiche (réseau ?)', icone: Icons.error_outline_rounded);
+    } finally {
+      if (mounted) setState(() => _ouverture = false);
+    }
+  }
+
+  /// Étapes : (titre, explication, état) avec état 0 = à venir, 1 = en cours, 2 = fait, 3 = refus.
+  List<(String, String, int)> _etapes() {
+    final s = x.statut;
+    if (_amelioration) {
+      return [
+        ('Envoyée', 'Le ${_date(x.cree)}. Elle arrive telle quelle dans la boîte à idées de l’équipe.', 2),
+        ('Lue par l’équipe', s == 'nouvelle' ? 'Pas encore lue.' : 'Ta proposition a été lue.', s == 'nouvelle' ? 1 : 2),
+        (
+          switch (s) { 'faite' => 'Faite', 'ignoree' => 'Pas retenue', 'a_faire' => 'Prévue', _ => 'Décision' },
+          switch (s) {
+            'faite' => 'C’est fait ! Elle sera dans une prochaine version de l’app.',
+            'a_faire' => 'Elle est dans la liste des choses à faire.',
+            'ignoree' => 'Elle n’est pas retenue pour l’instant. Merci quand même !',
+            _ => 'À faire, faite ou pas retenue : tu le verras ici.',
+          },
+          switch (s) { 'faite' => 2, 'ignoree' => 3, 'a_faire' => 1, _ => 0 },
+        ),
+      ];
+    }
+    final verif = _evenement
+        ? 'L’article est lu, la date est vérifiée, et l’événement ne doit pas déjà être dans « À venir ».'
+        : x.genre == 'resume'
+            ? 'Chaque fait de ton texte est comparé à l’article. Seul ce qui est faux ou exagéré est corrigé.'
+            : 'Des articles fiables sont lus, on vérifie que c’est une vraie avancée et pas un doublon, puis la fiche est rédigée.';
+    return [
+      ('Envoyée', 'Le ${_date(x.cree)}.', 2),
+      (
+        'Vérification',
+        s == 'nouvelle' ? 'En attente : elle sera examinée au prochain passage. $verif' : verif,
+        s == 'nouvelle' || s == 'en_cours' ? 1 : 2,
+      ),
+      (
+        s == 'refusee' ? 'Non publiée' : 'Publication',
+        switch (s) {
+          'publiee' => _evenement ? 'Ajoutée à l’onglet « À venir ».' : 'Publiée dans le fil, en français et en anglais.',
+          'refusee' => 'Elle n’a pas été publiée. La raison est juste en dessous.',
+          _ => 'Publiée dans le fil, ou une explication si elle ne peut pas l’être.',
+        },
+        switch (s) { 'publiee' => 2, 'refusee' => 3, _ => 0 },
+      ),
+    ];
+  }
+
+  Widget _etape(String titre, String detail, int e, bool derniere) {
+    final p = palette(context);
+    final c = switch (e) { 2 => _vert, 1 => _orange, 3 => _rouge, _ => p.bordure };
+    final icone = switch (e) { 2 => Icons.check_rounded, 3 => Icons.close_rounded, 1 => Icons.more_horiz_rounded, _ => null };
+    return IntrinsicHeight(
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Column(children: [
+          Container(
+            width: 26,
+            height: 26,
+            decoration: BoxDecoration(
+              color: e == 0 ? Colors.transparent : c.withValues(alpha: 0.18),
+              shape: BoxShape.circle,
+              border: Border.all(color: c, width: 2),
+            ),
+            child: icone == null ? null : Icon(icone, size: 15, color: c),
+          ),
+          if (!derniere) Expanded(child: Container(width: 2, color: p.bordure)),
+        ]),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 18, top: 2),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(titre,
+                  style: police(policeTexte,
+                      taille: 15.5, graisse: FontWeight.w800, couleur: e == 0 ? p.texteDiscret : p.texte)),
+              const SizedBox(height: 3),
+              Text(detail, style: police(policeTexte, taille: 13.5, couleur: p.texteDiscret, hauteur: 1.4)),
+            ]),
+          ),
+        ),
+      ]),
+    );
+  }
+
+  Widget _bloc(String titre, String texte) {
+    final p = palette(context);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(titre, style: police(policeTexte, taille: 11.5, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+        const SizedBox(height: 3),
+        SelectableText(texte, style: police(policeTexte, taille: 14.5, couleur: p.texte, hauteur: 1.4)),
+      ]),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    final (nom, couleur) = _etat(x.statut);
+    final etapes = _etapes();
+    final message = (x.message ?? '').trim();
+    final envoye = <Widget>[
+      if ((x.titre ?? '').isNotEmpty) _bloc('TITRE', x.titre!),
+      if ((x.sujet ?? '').isNotEmpty && x.titre == null) _bloc(_amelioration ? 'TA PROPOSITION' : 'SUJET', x.resume ?? x.sujet!),
+      if ((x.avant ?? '').isNotEmpty) _bloc('AVANT', x.avant!),
+      if ((x.decouverte ?? '').isNotEmpty) _bloc(x.fil == 'tech' ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE', x.decouverte!),
+      if ((x.apres ?? '').isNotEmpty) _bloc('ET APRÈS ?', x.apres!),
+      if ((x.quand ?? '').isNotEmpty) _bloc('QUAND', x.quandPrecision == 'mois' ? x.quand!.substring(0, 7) : x.quand!),
+      if ((x.lien ?? '').isNotEmpty) _bloc('ARTICLE', x.lien!),
+      if ((x.video ?? '').isNotEmpty) _bloc('VIDÉO', x.video!),
+      if (x.texte.isNotEmpty && x.titre == null && (x.sujet ?? '').isEmpty) _bloc('TEXTE', x.texte),
+    ];
+    return Scaffold(
+      backgroundColor: p.fond,
+      appBar: AppBar(
+        backgroundColor: p.fond,
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: p.texte,
+        title: Text('Ma proposition', style: police(policeTitres, taille: 22, graisse: FontWeight.w800, couleur: p.texte)),
+      ),
+      body: ListView(padding: const EdgeInsets.fromLTRB(18, 4, 18, 28), children: [
+        Row(children: [
+          Pastille(nom, couleur),
+          const SizedBox(width: 8),
+          Text(_genre(x), style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+        ]),
+        const SizedBox(height: 10),
+        Text(x.texte, style: police(policeTitres, taille: 20, graisse: FontWeight.w800, couleur: p.texte, hauteur: 1.25)),
+        const SizedBox(height: 20),
+        for (final (i, (t, d, e)) in etapes.indexed) _etape(t, d, e, i == etapes.length - 1),
+        if (message.isNotEmpty) ...[
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: (x.statut == 'refusee' ? _rouge : _vert).withValues(alpha: 0.10),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(x.statut == 'refusee' ? 'POURQUOI ?' : 'DÉTAIL',
+                  style: police(policeTexte,
+                      taille: 11.5, graisse: FontWeight.w800, couleur: x.statut == 'refusee' ? _rouge : _vert)),
+              const SizedBox(height: 4),
+              Text(message, style: police(policeTexte, taille: 14.5, couleur: p.texte, hauteur: 1.45)),
+            ]),
+          ),
+          const SizedBox(height: 14),
+        ],
+        if (x.statut == 'publiee' && x.ficheId != null && !_evenement)
+          SizedBox(
+            height: 50,
+            child: FilledButton(
+              style: FilledButton.styleFrom(
+                  backgroundColor: p.encre,
+                  foregroundColor: p.surEncre,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
+              onPressed: _ouverture ? null : _voirFiche,
+              child: Text('Voir la fiche publiée', style: police(policeTexte, taille: 15.5, graisse: FontWeight.w800)),
+            ),
+          ),
+        const SizedBox(height: 22),
+        if (envoye.isNotEmpty) ...[
+          Text('CE QUE TU AS ENVOYÉ',
+              style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+          const SizedBox(height: 10),
+          Container(
+            padding: const EdgeInsets.fromLTRB(14, 14, 14, 4),
+            decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(16)),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: envoye),
+          ),
+        ],
+      ]),
     );
   }
 }
