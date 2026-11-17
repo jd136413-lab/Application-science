@@ -125,8 +125,13 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
     );
   }
 
-  void _detail(Proposition x) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => EcranMaProposition(proposition: x)));
+  Future<void> _detail(Proposition x) async {
+    final supprimee = await Navigator.of(context)
+        .push<bool>(MaterialPageRoute(builder: (_) => EcranMaProposition(proposition: x)));
+    if (supprimee == true) {
+      await _recharger();
+      if (mounted) afficherMessage(context, 'Proposition supprimée', icone: Icons.delete_outline_rounded);
+    }
   }
 
   @override
@@ -373,12 +378,16 @@ Widget _segments(BuildContext context, List<(String, String)> options, String ac
   ]);
 }
 
-/// Compteur de mots d'un titre (12 au plus, comme l'agent).
+/// Compteur de mots d'un titre ou d'un sujet : de 3 à 12 mots (comme les titres de l'agent).
+const int _motsMin = 3;
 Widget _compteurMots(BuildContext context, String texte) {
   final n = compterMots(texte);
-  if (n == 0) return _aide(context, '$_motsMax mots au plus');
-  return _aide(context, n <= _motsMax ? '✓ $n / $_motsMax mots' : '$n / $_motsMax mots : trop long',
-      couleur: n <= _motsMax ? _vert : _orange);
+  if (n == 0) return _aide(context, 'Entre $_motsMin et $_motsMax mots');
+  if (n < _motsMin) {
+    return _aide(context, '$n mot${n > 1 ? 's' : ''} : trop court ($_motsMin mots au moins)', couleur: _orange);
+  }
+  if (n > _motsMax) return _aide(context, '$n mots : trop long ($_motsMax mots au plus)', couleur: _orange);
+  return _aide(context, '✓ $n mots (entre $_motsMin et $_motsMax)', couleur: _vert);
 }
 
 /// Lien de vidéo accepté : YouTube (y compris Shorts), Vimeo ou Dailymotion.
@@ -466,7 +475,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
 
   bool get _pret {
     final n = compterMots(_sujet.text);
-    if (n < 3 || n > _motsMax) return false;
+    if (n < _motsMin || n > _motsMax) return false;
     if (_lien.text.trim().isNotEmpty && !_lienValide(_lien.text)) return false;
     if (_video.text.trim().isNotEmpty && !_videoValide(_video.text)) return false;
     if (_fil == 'a_venir') return _type != null && (_quand == 'inconnue' || _date != null);
@@ -520,7 +529,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
         _etiquette(context, 'C’EST POUR…'),
         _segments(context, const [('science', 'Sciences'), ('tech', 'Technologies'), ('a_venir', 'À venir')], _fil,
             (v) => setState(() => _fil = v)),
-        _etiquette(context, evenement ? 'L’ÉVÉNEMENT' : 'LE SUJET', '12 mots au plus, comme un titre'),
+        _etiquette(context, evenement ? 'L’ÉVÉNEMENT' : 'LE SUJET', '3 à 12 mots'),
         _champ(context, _sujet,
             indice: evenement ? 'Lancement de la mission Artemis III' : 'SpaceX rattrape le Starship avec la tour',
             lignes: 2,
@@ -624,7 +633,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
 
   bool get _pret {
     final n = compterMots(_titre.text);
-    return n >= 3 && n <= _motsMax && _dans(_avant, _bornesAvant) && _dans(_decouverte, _bornesDecouverte) &&
+    return n >= _motsMin && n <= _motsMax && _dans(_avant, _bornesAvant) && _dans(_decouverte, _bornesDecouverte) &&
         _dans(_apres, _bornesApres) && _lienValide(_lien.text) &&
         (_video.text.trim().isEmpty || _videoValide(_video.text));
   }
@@ -654,8 +663,8 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
           Text('$n / ${b.$1}–${b.$2} mots',
               style: police(policeTexte, taille: 11.5, graisse: FontWeight.w700, couleur: couleur)),
         ]),
-        if (n > 0 && n < b.$1) _aide(context, conseilCourt, couleur: _orange),
-        if (n > b.$2) _aide(context, 'Un peu long : garde l’essentiel.', couleur: _orange),
+        if (n > 0 && n < b.$1) _aide(context, 'Trop court (${b.$1} mots au moins). $conseilCourt', couleur: _orange),
+        if (n > b.$2) _aide(context, 'Trop long (${b.$2} mots au plus) : garde l’essentiel.', couleur: _orange),
       ]),
     );
   }
@@ -693,19 +702,19 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
         _etiquette(context, 'C’EST POUR…'),
         _segments(context, const [('science', 'Sciences'), ('tech', 'Technologies')], _fil,
             (v) => setState(() => _fil = v)),
-        _etiquette(context, 'TITRE', '12 mots au plus'),
+        _etiquette(context, 'TITRE', '3 à 12 mots'),
         _champ(context, _titre, indice: 'Batteries : une cellule au sodium se recharge en 6 minutes', lignes: 2, max: 160),
         _compteurMots(context, _titre.text),
         _aide(context, 'Thème, deux-points, puis ce qui a été trouvé.'),
-        _etiquette(context, 'AVANT', '1 à 2 phrases'),
+        _etiquette(context, 'AVANT', '1 à 2 phrases · 8 à 45 mots'),
         _champ(context, _avant, indice: 'Ce qu’on savait, et ce qui manquait encore…', lignes: 3, max: 600),
-        _jauge(_avant, _bornesAvant, 'Encore un peu court : dis ce qui posait problème.'),
-        _etiquette(context, tech ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE', '2 à 3 phrases'),
+        _jauge(_avant, _bornesAvant, 'Dis ce qui posait problème.'),
+        _etiquette(context, tech ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE', '2 à 3 phrases · 15 à 85 mots'),
         _champ(context, _decouverte, indice: 'Qui, quoi, comment, avec un ou deux chiffres clés…', lignes: 4, max: 900),
-        _jauge(_decouverte, _bornesDecouverte, 'Encore un peu court : dis qui, quoi, et un chiffre clé.'),
-        _etiquette(context, 'ET APRÈS ?', '1 à 2 phrases'),
+        _jauge(_decouverte, _bornesDecouverte, 'Dis qui, quoi, et un chiffre clé.'),
+        _etiquette(context, 'ET APRÈS ?', '1 à 2 phrases · 8 à 50 mots'),
         _champ(context, _apres, indice: 'Ce que ça peut changer, et la limite principale…', lignes: 3, max: 600),
-        _jauge(_apres, _bornesApres, 'Encore un peu court : ce que ça change, et la limite.'),
+        _jauge(_apres, _bornesApres, 'Dis ce que ça change, et la limite.'),
         _etiquette(context, 'LIEN DE L’ARTICLE SOURCE', 'obligatoire'),
         _champ(context, _lien, indice: 'https://…', clavier: TextInputType.url, max: 600),
         _aide(context, 'C’est lui qui permet de vérifier chaque fait.'),
@@ -794,7 +803,7 @@ class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
           title: Text('Joindre la version de l’app et le modèle du téléphone (aide pour les bugs)',
               style: police(policeTexte, taille: 13.5, couleur: p.texte)),
         ),
-        _aide(context, 'Ta proposition arrive telle quelle à l’équipe.'),
+        _aide(context, 'Ta proposition arrive telle quelle à l’équipe (10 caractères au moins).'),
       ],
     );
   }
@@ -813,6 +822,49 @@ class EcranMaProposition extends StatefulWidget {
 
 class _EcranMaPropositionState extends State<EcranMaProposition> {
   bool _ouverture = false;
+
+  Future<void> _supprimer() async {
+    final p = palette(context);
+    if (x.statut == 'en_cours') {
+      afficherMessage(context, 'Elle est en cours de vérification : réessaie dans quelques minutes.',
+          icone: Icons.hourglass_bottom_rounded);
+      return;
+    }
+    final oui = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: p.carte,
+        title: Text('Supprimer cette proposition ?',
+            style: police(policeTitres, taille: 19, graisse: FontWeight.w700, couleur: p.texte)),
+        content: Text(
+            x.statut == 'publiee'
+                ? 'Elle disparaîtra de « Mes propositions ». La fiche publiée reste en ligne.'
+                : x.statut == 'nouvelle'
+                    ? 'Elle ne sera pas examinée.'
+                    : 'Elle disparaîtra de « Mes propositions ».',
+            style: police(policeTexte, taille: 14.5, couleur: p.texteDiscret)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Annuler')),
+          FilledButton(
+              style: FilledButton.styleFrom(backgroundColor: _rouge, foregroundColor: Colors.white),
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Supprimer')),
+        ],
+      ),
+    );
+    if (oui != true) return;
+    try {
+      final ok = await supprimerProposition(x.id);
+      if (!mounted) return;
+      if (ok) {
+        Navigator.of(context).pop(true);
+      } else {
+        afficherMessage(context, 'Suppression impossible pour l’instant.', icone: Icons.error_outline_rounded);
+      }
+    } catch (_) {
+      if (mounted) afficherMessage(context, 'Suppression impossible (réseau ?)', icone: Icons.error_outline_rounded);
+    }
+  }
 
   Proposition get x => widget.proposition;
   bool get _amelioration => x.genre == 'amelioration';
@@ -952,6 +1004,13 @@ class _EcranMaPropositionState extends State<EcranMaProposition> {
         surfaceTintColor: Colors.transparent,
         foregroundColor: p.texte,
         title: Text('Ma proposition', style: police(policeTitres, taille: 22, graisse: FontWeight.w800, couleur: p.texte)),
+        actions: [
+          IconButton(
+            tooltip: 'Supprimer',
+            icon: const Icon(Icons.delete_outline_rounded),
+            onPressed: _supprimer,
+          ),
+        ],
       ),
       body: ListView(padding: const EdgeInsets.fromLTRB(18, 4, 18, 28), children: [
         Row(children: [
@@ -1003,6 +1062,15 @@ class _EcranMaPropositionState extends State<EcranMaProposition> {
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: envoye),
           ),
         ],
+        const SizedBox(height: 18),
+        Center(
+          child: TextButton.icon(
+            onPressed: _supprimer,
+            icon: const Icon(Icons.delete_outline_rounded, color: _rouge, size: 20),
+            label: Text('Supprimer cette proposition',
+                style: police(policeTexte, taille: 14.5, graisse: FontWeight.w700, couleur: _rouge)),
+          ),
+        ),
       ]),
     );
   }

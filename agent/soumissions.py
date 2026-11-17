@@ -16,7 +16,8 @@ Deux sortes de propositions (table submissions, migration 018) :
     consigne que l'agent (a_venir.CONSIGNE). Les quotas de l'onglet ne s'appliquent pas.
 Les « améliorations » ne passent pas par ici (pas d'IA) : elles vont dans la boîte à idées.
 
-Coût : ≈ 0,02 à 0,05 $ par proposition. MAX_PAR_PASSAGE borne le nombre traité à chaque
+Coût : sujet sans lien ≈ 1 à 2 centimes (recherche web), avec lien ≈ 0,5 centime ;
+résumé ≈ 0,3 centime ; sujet absurde écarté pour ≈ 0,01 centime. MAX_PAR_PASSAGE borne le nombre traité à chaque
 lancement ; PLAFOND_PASSAGE arrête le passage au-delà d'une dépense donnée.
 """
 
@@ -39,7 +40,7 @@ import videos
 MAX_PAR_PASSAGE = 5
 PLAFOND_PASSAGE = 0.30          # $ : arrêt du passage au-delà
 MODELE = agent.MODELES["haiku"]
-MODELE_VERIF = agent.MODELES["sonnet"]   # vérification des faits d'un résumé écrit par un lecteur
+MODELE_VERIF = agent.MODELES["haiku"]    # vérification des faits d'un résumé (17/11 : Haiku, ≈ 10 fois moins cher que Sonnet)
 
 log = agent.log
 
@@ -92,7 +93,7 @@ def chercher_articles(client, sujet: str, conso: dict, indice: str = "") -> list
     """Recherche web par Claude (outil web_search) : adresses d'articles sur le sujet."""
     rep = client.messages.create(
         model=MODELE["id"], max_tokens=1500, system=CONSIGNE_RECHERCHE,
-        tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 3}],
+        tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 2}],
         messages=[{"role": "user", "content": f"Sujet proposé par un lecteur : {sujet}{indice}"}],
     )
     conso["in"] += rep.usage.input_tokens or 0
@@ -116,6 +117,29 @@ def chercher_articles(client, sujet: str, conso: dict, indice: str = "") -> list
             vus.add(u)
             res.append(u)
     return res[:3]
+
+
+# ------------------------------------------------------------------------- Premier filtre (presque gratuit)
+
+CONSIGNE_FILTRE = """Un lecteur propose un sujet pour une application d'actualité scientifique et technologique. Dis seulement si ce texte décrit PLAUSIBLEMENT une avancée scientifique ou technologique réelle, un résultat de recherche, un lancement, un essai, un produit technologique ou un événement scientifique à venir. Réponds non pour une blague, un texte sans sens, une insulte, une opinion, de la politique, du sport, une publicité ou une question. Réponds en JSON."""
+SCHEMA_FILTRE = {"type": "object", "properties": {"plausible": {"type": "boolean"}}, "required": ["plausible"],
+                 "additionalProperties": False}
+
+
+def plausible(client, sujet: str, conso: dict) -> bool:
+    """Écarte les sujets absurdes AVANT la recherche web (qui coûte 1 centime par recherche)."""
+    try:
+        rep = client.messages.create(
+            model=MODELE["id"], max_tokens=50, system=CONSIGNE_FILTRE,
+            messages=[{"role": "user", "content": sujet[:400]}],
+            output_config={"format": {"type": "json_schema", "schema": SCHEMA_FILTRE}},
+        )
+        conso["in"] += rep.usage.input_tokens or 0
+        conso["out"] += rep.usage.output_tokens or 0
+        t = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
+        return bool(json.loads(t[t.find("{"):t.rfind("}") + 1]).get("plausible", True))
+    except Exception:
+        return True     # en cas de doute, on laisse la suite décider
 
 
 # ------------------------------------------------------------------------- Vérification d'un résumé
@@ -290,6 +314,10 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
     texte_prop = (prop.get("titre") or prop.get("sujet") or "").strip()
     log(f"\n▶ Proposition « {texte_prop[:70]} » ({genre})")
     base.maj(sid, statut="en_cours")
+    if genre == "sujet" and not plausible(client, prop.get("sujet") or "", conso):
+        base.maj(sid, statut="refusee", message="Ce sujet ne ressemble pas à une avancée scientifique ou technologique.")
+        log("  – refusée au premier filtre")
+        return
     if genre == "sujet" and prop.get("fil") == "a_venir":
         traiter_evenement(prop, base, db, client, conso)
         return

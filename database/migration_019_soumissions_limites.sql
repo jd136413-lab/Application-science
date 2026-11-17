@@ -59,3 +59,16 @@ language sql stable security definer set search_path = public as $$
   limit 50
 $$;
 grant execute on function mes_propositions(text) to anon, authenticated;
+
+-- 4. Supprimer une de SES propositions (pas pendant sa vérification). Une fiche déjà publiée reste
+--    publiée : seule la proposition disparaît de « Mes propositions ».
+create or replace function supprimer_proposition(p_appareil text, p_id uuid) returns boolean
+language plpgsql security definer set search_path = public as $$
+begin
+  delete from submissions
+   where id = p_id and appareil = p_appareil and char_length(p_appareil) >= 20 and statut <> 'en_cours';
+  return found;
+end $$;
+grant execute on function supprimer_proposition(text, uuid) to anon, authenticated;
+
+-- Ce fichier peut être relancé sans risque (tout est « create or replace » ou « if not exists »).

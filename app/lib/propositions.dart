@@ -65,6 +65,12 @@ Future<List<Proposition>> mesPropositions() async {
   return [for (final l in r as List) Proposition.depuisJson(Map<String, dynamic>.from(l as Map))];
 }
 
+/// Supprime une de ses propositions (pas pendant sa vérification). Vrai si c'est fait.
+Future<bool> supprimerProposition(String id) async {
+  final r = await _db.rpc('supprimer_proposition', params: {'p_appareil': etat.appareilId, 'p_id': id});
+  return r == true;
+}
+
 /// Limite par semaine (migration 019), par téléphone : sujets + résumés, et améliorations.
 const int limiteSemaine = 5;
 
