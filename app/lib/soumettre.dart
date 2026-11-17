@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'etat.dart';
 import 'propositions.dart';
 import 'reglages.dart';
 import 'retours.dart' show descriptionAppareil;
@@ -163,10 +164,10 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
               style: police(policeTexte, taille: 15, couleur: p.texte)),
         ),
         const SizedBox(height: 12),
-        _choix(Icons.bolt_rounded, logoEncreBleue, 'Proposer un sujet', 'Une phrase : l’IA cherche et écrit la fiche.',
+        _choix(Icons.bolt_rounded, logoEncreBleue, 'Proposer un sujet', 'Une phrase : on s’occupe du reste.',
             const EcranProposerSujet()),
         const SizedBox(height: 10),
-        _choix(Icons.edit_rounded, _vert, 'Proposer un résumé', 'Ton titre et ton résumé : l’IA vérifie les faits.',
+        _choix(Icons.edit_rounded, _vert, 'Proposer un résumé', 'Ta fiche en 3 parties, vérifiée avant publication.',
             const EcranProposerResume()),
         const SizedBox(height: 10),
         _choix(Icons.lightbulb_outline_rounded, _orange, 'Proposer une amélioration',
@@ -368,6 +369,27 @@ Widget _compteurMots(BuildContext context, String texte) {
       couleur: n <= _motsMax ? _vert : _orange);
 }
 
+/// Lien de vidéo accepté : YouTube (y compris Shorts), Vimeo ou Dailymotion.
+bool _videoValide(String l) =>
+    _lienValide(l) &&
+    RegExp(r'(youtube\.com/(watch|shorts|live)|youtu\.be/|vimeo\.com/|dailymotion\.com/video/|dai\.ly/)')
+        .hasMatch(l.trim());
+
+/// Champ « Lien d'une vidéo » (facultatif), commun aux sujets et aux résumés.
+List<Widget> _champVideo(BuildContext context, TextEditingController c) {
+  final mauvais = c.text.trim().isNotEmpty && !_videoValide(c.text);
+  return [
+    _etiquette(context, 'LIEN D’UNE VIDÉO', 'facultatif'),
+    _champ(context, c, indice: 'https://youtube.com/…', clavier: TextInputType.url, max: 300),
+    _aide(
+        context,
+        mauvais
+            ? 'Lien YouTube, Vimeo ou Dailymotion seulement.'
+            : 'Une vidéo courte qui montre l’avancée (essai, démonstration, lancement…).',
+        couleur: mauvais ? _orange : null),
+  ];
+}
+
 bool _lienValide(String l) {
   final u = Uri.tryParse(l.trim());
   return u != null && (u.scheme == 'https' || u.scheme == 'http') && u.host.contains('.');
@@ -402,6 +424,7 @@ class EcranProposerSujet extends StatefulWidget {
 class _EcranProposerSujetState extends State<EcranProposerSujet> {
   final _sujet = TextEditingController();
   final _lien = TextEditingController();
+  final _video = TextEditingController();
   String _fil = 'science';
   String? _type;
   String _quand = 'jour';
@@ -418,12 +441,14 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
     super.initState();
     _sujet.addListener(() => setState(() {}));
     _lien.addListener(() => setState(() {}));
+    _video.addListener(() => setState(() {}));
   }
 
   @override
   void dispose() {
     _sujet.dispose();
     _lien.dispose();
+    _video.dispose();
     super.dispose();
   }
 
@@ -431,6 +456,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
     final n = compterMots(_sujet.text);
     if (n < 3 || n > _motsMax) return false;
     if (_lien.text.trim().isNotEmpty && !_lienValide(_lien.text)) return false;
+    if (_video.text.trim().isNotEmpty && !_videoValide(_video.text)) return false;
     if (_fil == 'a_venir') return _type != null && (_quand == 'inconnue' || _date != null);
     return true;
   }
@@ -470,6 +496,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
             'sujet': _sujet.text.trim(),
             'fil': _fil,
             if (_lien.text.trim().isNotEmpty) 'lien': _lien.text.trim(),
+            if (_video.text.trim().isNotEmpty) 'video': _video.text.trim(),
             if (evenement) 'type_evt': _type,
             if (evenement) 'quand_precision': _quand,
             if (evenement && _quand != 'inconnue' && _date != null)
@@ -528,9 +555,10 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
             _lien.text.trim().isNotEmpty && !_lienValide(_lien.text)
                 ? 'Ce lien ne semble pas valide (il doit commencer par https://).'
                 : evenement
-                    ? 'L’IA vérifie la date et complète le lieu et l’heure.'
-                    : 'Sans lien, l’IA cherche elle-même des articles fiables sur le sujet.',
+                    ? 'La date sera vérifiée, puis le lieu et l’heure complétés.'
+                    : 'Sans lien, des articles fiables sur le sujet seront cherchés.',
             couleur: _lien.text.trim().isNotEmpty && !_lienValide(_lien.text) ? _orange : null),
+        ..._champVideo(context, _video),
       ],
     );
   }
@@ -546,39 +574,83 @@ class EcranProposerResume extends StatefulWidget {
 
 class _EcranProposerResumeState extends State<EcranProposerResume> {
   final _titre = TextEditingController();
-  final _resume = TextEditingController();
+  final _avant = TextEditingController();
+  final _decouverte = TextEditingController();
+  final _apres = TextEditingController();
   final _lien = TextEditingController();
+  final _video = TextEditingController();
   String _fil = 'science';
+  // Langue du texte : celle de l'app par défaut (traduit ensuite en français et en anglais).
+  String _langue = etat.langue == 'fr' ? 'fr' : (etat.langue == 'en' ? 'en' : 'autre');
   bool _envoi = false;
-  static const _min = 150, _max = 700;
+
+  // Mêmes longueurs que les fiches de l'agent (redaction.py), en mots : (minimum, maximum).
+  static const _bornesAvant = (8, 45), _bornesDecouverte = (15, 85), _bornesApres = (8, 50);
+
+  List<TextEditingController> get _tous => [_titre, _avant, _decouverte, _apres, _lien, _video];
 
   @override
   void initState() {
     super.initState();
-    for (final c in [_titre, _resume, _lien]) {
+    for (final c in _tous) {
       c.addListener(() => setState(() {}));
     }
   }
 
   @override
   void dispose() {
-    _titre.dispose();
-    _resume.dispose();
-    _lien.dispose();
+    for (final c in _tous) {
+      c.dispose();
+    }
     super.dispose();
+  }
+
+  static bool _dans(TextEditingController c, (int, int) b) {
+    final n = compterMots(c.text);
+    return n >= b.$1 && n <= b.$2;
   }
 
   bool get _pret {
     final n = compterMots(_titre.text);
-    final r = _resume.text.trim().length;
-    return n >= 3 && n <= _motsMax && r >= _min && r <= _max && _lienValide(_lien.text);
+    return n >= 3 && n <= _motsMax && _dans(_avant, _bornesAvant) && _dans(_decouverte, _bornesDecouverte) &&
+        _dans(_apres, _bornesApres) && _lienValide(_lien.text) &&
+        (_video.text.trim().isEmpty || _videoValide(_video.text));
+  }
+
+  /// Jauge « pas trop court, pas trop long » sous chaque partie.
+  Widget _jauge(TextEditingController c, (int, int) b, String conseilCourt) {
+    final p = palette(context);
+    final n = compterMots(c.text);
+    final ok = n >= b.$1 && n <= b.$2;
+    final couleur = n == 0 ? p.texteDiscret : (ok ? _vert : _orange);
+    return Padding(
+      padding: const EdgeInsets.only(top: 7),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(3),
+              child: LinearProgressIndicator(
+                value: (n / b.$2).clamp(0, 1).toDouble(),
+                minHeight: 4,
+                backgroundColor: p.pastille,
+                color: couleur,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Text('$n / ${b.$1}–${b.$2} mots',
+              style: police(policeTexte, taille: 11.5, graisse: FontWeight.w700, couleur: couleur)),
+        ]),
+        if (n > 0 && n < b.$1) _aide(context, conseilCourt, couleur: _orange),
+        if (n > b.$2) _aide(context, 'Un peu long : garde l’essentiel.', couleur: _orange),
+      ]),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final p = palette(context);
-    final r = _resume.text.trim().length;
-    final okR = r >= _min && r <= _max;
+    final tech = _fil == 'tech';
     return _Formulaire(
       titre: 'Proposer un résumé',
       bouton: 'Envoyer',
@@ -590,41 +662,42 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
           {
             'genre': 'resume',
             'fil': _fil,
+            'langue': _langue,
             'titre': _titre.text.trim(),
-            'resume': _resume.text.trim(),
+            'avant': _avant.text.trim(),
+            'decouverte': _decouverte.text.trim(),
+            'apres': _apres.text.trim(),
             'lien': _lien.text.trim(),
+            if (_video.text.trim().isNotEmpty) 'video': _video.text.trim(),
           },
           (v) => setState(() => _envoi = v)),
       enfants: [
+        _aide(context, 'Ton texte est publié tel quel : seuls les faits sont vérifiés avec l’article, '
+            'et seul ce qui est faux ou exagéré est corrigé.'),
+        _etiquette(context, 'J’ÉCRIS EN…'),
+        _segments(context, const [('fr', 'Français'), ('en', 'English'), ('autre', 'Autre langue')], _langue,
+            (v) => setState(() => _langue = v)),
+        _aide(context, 'Ta fiche sera publiée en français et en anglais.'),
         _etiquette(context, 'C’EST POUR…'),
         _segments(context, const [('science', 'Sciences'), ('tech', 'Technologies')], _fil,
             (v) => setState(() => _fil = v)),
         _etiquette(context, 'TITRE', '12 mots au plus'),
         _champ(context, _titre, indice: 'Batteries : une cellule au sodium se recharge en 6 minutes', lignes: 2, max: 160),
         _compteurMots(context, _titre.text),
-        _etiquette(context, 'TON RÉSUMÉ', '3 à 6 phrases, comme tu veux'),
-        _champ(context, _resume, indice: 'Ce qu’on savait avant, ce qui a été trouvé, ce que ça change…', lignes: 6, max: _max + 200),
-        const SizedBox(height: 8),
-        Row(children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(3),
-              child: LinearProgressIndicator(
-                value: (r / _max).clamp(0, 1).toDouble(),
-                minHeight: 5,
-                backgroundColor: p.pastille,
-                color: okR ? _vert : _orange,
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          Text('$r / $_min–$_max',
-              style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: okR || r == 0 ? _vert : _orange)),
-        ]),
-        _aide(context, 'L’IA le range en 3 parties (avant, découverte, et après) en gardant tes phrases.'),
+        _aide(context, 'Thème, deux-points, puis ce qui a été trouvé.'),
+        _etiquette(context, 'AVANT', '1 à 2 phrases'),
+        _champ(context, _avant, indice: 'Ce qu’on savait, et ce qui manquait encore…', lignes: 3, max: 600),
+        _jauge(_avant, _bornesAvant, 'Encore un peu court : dis ce qui posait problème.'),
+        _etiquette(context, tech ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE', '2 à 3 phrases'),
+        _champ(context, _decouverte, indice: 'Qui, quoi, comment, avec un ou deux chiffres clés…', lignes: 4, max: 900),
+        _jauge(_decouverte, _bornesDecouverte, 'Encore un peu court : dis qui, quoi, et un chiffre clé.'),
+        _etiquette(context, 'ET APRÈS ?', '1 à 2 phrases'),
+        _champ(context, _apres, indice: 'Ce que ça peut changer, et la limite principale…', lignes: 3, max: 600),
+        _jauge(_apres, _bornesApres, 'Encore un peu court : ce que ça change, et la limite.'),
         _etiquette(context, 'LIEN DE L’ARTICLE SOURCE', 'obligatoire'),
         _champ(context, _lien, indice: 'https://…', clavier: TextInputType.url, max: 600),
         _aide(context, 'C’est lui qui permet de vérifier chaque fait.'),
+        ..._champVideo(context, _video),
       ],
     );
   }
@@ -709,7 +782,7 @@ class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
           title: Text('Joindre la version de l’app et le modèle du téléphone (aide pour les bugs)',
               style: police(policeTexte, taille: 13.5, couleur: p.texte)),
         ),
-        _aide(context, 'Pas d’IA ici : ta proposition arrive telle quelle à l’équipe.'),
+        _aide(context, 'Ta proposition arrive telle quelle à l’équipe.'),
       ],
     );
   }

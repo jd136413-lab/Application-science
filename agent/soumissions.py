@@ -8,9 +8,9 @@ suivent exactement les mêmes règles que celles de l'agent.
 Deux sortes de propositions (table submissions, migration 018) :
   • « sujet »  : une phrase (+ lien facultatif). Sans lien, Claude cherche 1 à 3 articles
     fiables sur le web. Puis tri (vraie avancée ? doublon ?) et rédaction comme l'agent.
-  • « resume » : titre + résumé écrits par la personne + lien obligatoire. Tri comme l'agent,
-    puis Claude vérifie chaque fait avec l'article, corrige le minimum et range le texte
-    en « avant / découverte / et après » en gardant les phrases de la personne.
+  • « resume » : titre + trois parties (avant, découverte, et après) écrits par la personne,
+    + lien obligatoire. Tri comme l'agent, puis Claude vérifie SEULEMENT les faits avec
+    l'article : le texte de la personne est publié tel quel, sauf les erreurs corrigées.
   • « sujet » avec le fil « À venir » : un événement (type + date indiquée par le lecteur).
     Claude lit l'article (donné ou trouvé), vérifie la date et rédige la carte avec la même
     consigne que l'agent (a_venir.CONSIGNE). Les quotas de l'onglet ne s'appliquent pas.
@@ -120,12 +120,13 @@ def chercher_articles(client, sujet: str, conso: dict, indice: str = "") -> list
 
 # ------------------------------------------------------------------------- Vérification d'un résumé
 
-CONSIGNE_VERIF = """Un lecteur de NovaSTEM a écrit lui-même une fiche (titre + résumé) sur une avancée scientifique ou technologique. Tu la compares à l'article source.
-1. Vérifie CHAQUE fait, chiffre et affirmation avec l'article. Un fait faux, absent de l'article ou exagéré doit être corrigé ou retiré.
-2. Corrige le MINIMUM : faits, exagérations (« révolutionnaire », « va remplacer »), jargon non expliqué, fautes. Garde les phrases du lecteur mot pour mot partout ailleurs.
-3. Range le texte en trois parties : "avant" (1 à 2 phrases : la situation avant), "decouverte" (2 à 3 phrases : ce qui a été fait, par qui, un chiffre clé), "apres" (1 à 2 phrases : ce que ça change et la limite principale). Ajoute seulement ce qui manque pour qu'une partie existe, tiré de l'article.
-4. Titre : forme « Thème : ce qui a été trouvé », 12 mots au plus, fidèle à l'article.
-5. Refuse ("decision": "refuser") si l'article ne confirme pas le fait principal (projet annoncé et non réalisé, rumeur, autre sujet), ou si le texte est inapproprié.
+CONSIGNE_VERIF = """Un lecteur de NovaSTEM a écrit lui-même une fiche sur une avancée scientifique ou technologique : un titre et trois parties (« avant », « découverte », « et après »). Ton SEUL rôle est de vérifier les faits avec l'article source. Le texte du lecteur doit être gardé au maximum.
+1. Vérifie CHAQUE fait, chiffre, nom et affirmation avec l'article.
+2. Ne change QUE ce qui est faux, absent de l'article ou exagéré (« révolutionnaire », « va remplacer », « guérit » pour un essai chez la souris…). Remplace-le par la version exacte de l'article, en touchant le moins de mots possible. Tu peux aussi corriger une faute d'orthographe évidente.
+3. Ne réécris PAS le style, ne réorganise pas, ne raccourcis pas, n'ajoute rien qui ne corrige pas une erreur. Une phrase juste reste identique au mot près, même si tu l'aurais écrite autrement.
+4. Recopie dans "title", "avant", "decouverte", "apres" le texte du lecteur avec seulement ces corrections. Liste chaque correction dans "corrections" (texte d'origine, texte corrigé, raison en une phrase).
+5. LANGUE : la fiche publiée est en FRANÇAIS. Si le lecteur a écrit dans une autre langue, traduis fidèlement son texte corrigé en français dans "title", "avant", "decouverte", "apres" (traduction au plus près, sans réécrire le style), et recopie son texte corrigé, dans SA langue, dans "title_original", "avant_original", "decouverte_original", "apres_original". S'il a écrit en français, laisse ces 4 champs vides ("").
+6. Refuse ("decision": "refuser") si l'article ne confirme pas le fait principal (projet annoncé et non réalisé, rumeur, autre sujet), si la fiche est trop fausse pour être corrigée sans la réécrire, ou si le texte est inapproprié. Explique en une phrase dans "raison".
 Réponds en JSON."""
 
 SCHEMA_VERIF = {
@@ -135,18 +136,24 @@ SCHEMA_VERIF = {
         "raison": {"type": "string"},
         "title": {"type": "string"}, "avant": {"type": "string"},
         "decouverte": {"type": "string"}, "apres": {"type": "string"},
+        "langue_detectee": {"type": "string"},
+        "title_original": {"type": "string"}, "avant_original": {"type": "string"},
+        "decouverte_original": {"type": "string"}, "apres_original": {"type": "string"},
         "corrections": {"type": "array", "items": {
             "type": "object",
             "properties": {"avant": {"type": "string"}, "apres": {"type": "string"}, "raison": {"type": "string"}},
             "required": ["avant", "apres", "raison"], "additionalProperties": False}},
     },
-    "required": ["decision", "raison", "title", "avant", "decouverte", "apres", "corrections"],
+    "required": ["decision", "raison", "title", "avant", "decouverte", "apres", "langue_detectee", "title_original",
+                 "avant_original", "decouverte_original", "apres_original", "corrections"],
     "additionalProperties": False,
 }
 
 
 def verifier_resume(client, prop: dict, art: dict, conso: dict) -> dict | None:
-    contenu = (f"FICHE DU LECTEUR\nTitre : {prop.get('titre') or ''}\nRésumé : {prop.get('resume') or ''}\n\n"
+    langue = {"fr": "français", "en": "anglais"}.get(prop.get("langue") or "", "langue à identifier")
+    contenu = (f"FICHE DU LECTEUR (écrite en {langue} ; indique la langue réelle dans \"langue_detectee\", code ISO : fr, en, es…)\nTitre : {prop.get('titre') or ''}\nAvant : {prop.get('avant') or ''}\n"
+               f"Découverte : {prop.get('decouverte') or ''}\nEt après : {prop.get('apres') or ''}\n\n"
                f"ARTICLE SOURCE ({art['source_name']})\n{art.get('text', '')[:9000]}")
     rep = client.messages.create(
         model=MODELE_VERIF["id"], max_tokens=2500, system=CONSIGNE_VERIF,
@@ -160,6 +167,23 @@ def verifier_resume(client, prop: dict, art: dict, conso: dict) -> dict | None:
         return json.loads(t[t.find("{"):t.rfind("}") + 1])
     except Exception:
         return None
+
+
+# ------------------------------------------------------------------------- Vidéo proposée
+
+def video_proposee(client, prop: dict, titre: str, texte: str, conso: dict) -> dict | None:
+    """Vidéo donnée par le lecteur : gardée seulement si elle existe (oEmbed), n'est pas une
+    présentation générale et montre vraiment le sujet (même contrôle que les autres vidéos)."""
+    url = (prop.get("video") or "").strip()
+    if not url:
+        return None
+    propres = videos.candidats(url)            # forme standard (youtube.com/watch?v=…)
+    if not propres:
+        log("  · vidéo proposée ignorée : lien non reconnu")
+        return None
+    v = videos.choisir(client, MODELE["id"], titre, texte, propres[:1], conso)
+    log(f"  {'▶ vidéo proposée gardée' if v else '· vidéo proposée refusée (sans rapport ou générale)'}")
+    return v
 
 
 # ------------------------------------------------------------------------- Traitement
@@ -237,6 +261,10 @@ def traiter_evenement(prop: dict, base: "Base", db, client, conso: dict) -> None
         "source_url": art["url"], "source_name": art["source_name"],
         **ch, "statut": "prevu", "verifie_le": datetime.now(timezone.utc).isoformat(),
     }
+    vp = video_proposee(client, prop, ligne["title"], ligne.get("pourquoi") or ligne.get("prevu") or "", conso)
+    if vp:
+        ligne["video_url"], ligne["video_titre"] = vp["url"], vp["titre"]
+        art["videos"] = []
     cree = av._inserer(db, ligne)
     if not cree:
         base.maj(sid, statut="refusee", message="Cet article est déjà utilisé par une carte « À venir ».")
@@ -318,7 +346,7 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
             base.maj(sid, statut="nouvelle")
             log("  ✖ rédaction impossible : reprise au prochain passage")
             return
-        message = f"Fiche écrite par l'IA à partir de {len(arts)} article(s)."
+        message = f"Fiche rédigée à partir de {len(arts)} article(s)."
     else:
         v = verifier_resume(client, prop, art, conso)
         if not v:
@@ -334,6 +362,13 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
         if titre and dec:
             ligne.update({"title": titre, "avant": avant or None, "decouverte": dec, "apres": apres or None,
                           "summary": " ".join(x for x in (avant, dec, apres) if x)})
+        # Texte écrit en anglais : la version anglaise publiée est celle du lecteur (corrigée),
+        # pas une retraduction. Autre langue : l'agent traduit en anglais depuis le français.
+        if str(v.get("langue_detectee", "")).lower().startswith("en") and v.get("decouverte_original"):
+            o = {k: " ".join(str(v.get(f"{k}_original", "")).split()) for k in ("title", "avant", "decouverte", "apres")}
+            o["title"] = o["title"].rstrip(".")
+            ligne["traductions"] = {"en": {**o, "summary": " ".join(x for x in (o["avant"], o["decouverte"], o["apres"]) if x),
+                                           "mots": []}}
         corr = v.get("corrections") or []
         message = ("Ton texte a été publié tel quel." if not corr else
                    f"{len(corr)} correction(s) : " + " · ".join(f"« {x['avant'][:60]} » → « {x['apres'][:60]} » ({x['raison'][:80]})"
@@ -341,6 +376,10 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
 
     # 4. Enregistrement (même table et mêmes contrôles que l'agent), avec le bandeau « proposée »
     ligne["proposee"] = True
+    vp = video_proposee(client, prop, ligne["title"], ligne.get("summary", ""), conso)
+    if vp:
+        ligne["video_url"], ligne["video_titre"] = vp["url"], vp["titre"]
+        ligne["_videos"] = []
     agent.completer_image(art)
     if db.inserer(ligne) == "doublon":
         base.maj(sid, statut="refusee", message="Cet article est déjà publié sur NovaSTEM.")

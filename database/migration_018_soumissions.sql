@@ -29,8 +29,14 @@ create table if not exists submissions (
   categorie text check (categorie in ('idee', 'bug', 'design')),
   sujet text check (char_length(sujet) <= 400),
   titre text check (char_length(titre) <= 160),
-  resume text check (char_length(resume) <= 1500),
+  resume text check (char_length(resume) <= 1500),          -- texte long d'une amélioration
+  -- Résumé écrit par le lecteur, directement en trois parties (comme les fiches de l'agent)
+  avant text check (char_length(avant) <= 600),
+  decouverte text check (char_length(decouverte) <= 900),
+  apres text check (char_length(apres) <= 600),
+  langue text check (langue in ('fr', 'en', 'autre')),     -- langue dans laquelle le lecteur a écrit
   lien text check (char_length(lien) <= 600),
+  video text check (char_length(video) <= 300),             -- lien YouTube, Vimeo ou Dailymotion (facultatif)
   fil text check (fil in ('science', 'tech', 'a_venir')),
   -- Événement « À venir » proposé : type, date et précision (jour, mois ou inconnue)
   type_evt text check (char_length(type_evt) <= 30),
