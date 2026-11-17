@@ -1,12 +1,7 @@
-import requests, re, json
-u="https://www.youtube.com/watch?v=7JDRHVi0YYI"
+import requests, re
 UA={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36","Accept-Language":"en"}
-for h in [{"User-Agent":"NovaSTEM/1.0"},UA]:
-    r=requests.get(u,headers=h,cookies={"CONSENT":"YES+1"},timeout=15)
-    print(r.status_code,r.url[:80],len(r.text),'lengthSeconds' in r.text, re.search(r'"lengthSeconds":"(\d+)"',r.text), 'consent' in r.url)
-for client in [{"clientName":"WEB","clientVersion":"2.20241101.00.00"},{"clientName":"ANDROID","clientVersion":"19.44.38","androidSdkVersion":30}]:
-    try:
-        r=requests.post("https://www.youtube.com/youtubei/v1/player",json={"videoId":"7JDRHVi0YYI","context":{"client":client}},headers=UA,timeout=15)
-        j=r.json(); print(client["clientName"],r.status_code,j.get("videoDetails",{}).get("lengthSeconds"),j.get("playabilityStatus",{}).get("status"))
-    except Exception as e: print(client["clientName"],e)
-r=requests.get("https://www.youtube.com/shorts/7JDRHVi0YYI",headers=UA,allow_redirects=False,timeout=15); print("shorts",r.status_code)
+for vid in ["7JDRHVi0YYI","fAGdYMJDqGk","gTpn5Whu2ao"]:
+    r=requests.get("https://www.youtube.com/watch?v="+vid,headers=UA,cookies={"CONSENT":"YES+1"},timeout=15)
+    t=r.text
+    print(vid, re.search(r'itemprop="duration" content="([^"]+)"',t), re.search(r'approxDurationMs\\?":\\?"(\d+)',t), re.search(r'"lengthText":\{[^}]{0,200}',t) and re.search(r'"lengthText":\{[^}]{0,200}',t).group(0)[:120], re.search(r'"simpleText":"(\d+:\d\d(?::\d\d)?)"',t))
+    s=requests.get("https://www.youtube.com/shorts/"+vid,headers=UA,allow_redirects=False,timeout=15); print("  shorts",s.status_code,s.headers.get("location"))
