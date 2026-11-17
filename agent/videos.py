@@ -158,17 +158,17 @@ CHAINES_OFFICIELLES = [
     "BlueOrigin", "RocketLab|RocketLabNZ|RocketLabUSA", "ISRO|isroofficial5866|ISROofficial", "NASASpaceflight", "EverydayAstronaut", "ESOobservatory",
     # Sciences : organismes, universités et laboratoires qui filment leurs expériences
     "CERN", "CNRS", "Inserm", "MIT", "ETHZurich|ETHZuerich", "EPFL|epflchannel", "Stanford", "Caltech",
-    "harvard", "WyssInstitute", "cambridgeuniversity|CambridgeUniversity", "oxford", "MaxPlanckSociety|maxplanck",
+    "harvard", "WyssInstitute", "cambridgeuniversity|CambridgeUniversity",
     # Technologies
     "BostonDynamics", "GoogleDeepMind", "OpenAI", "NVIDIA", "Google", "Apple", "Tesla",
     "Samsung", "Microsoft", "Meta", "BYD|BYDCompany|BYDAutoGlobal", "Airbus", "IEEESpectrum",
-    # Agences de presse vidéo (images de premiers vols, d'essais en Chine, etc.)
-    "Reuters", "AFP|afpfr", "CGTN", "NewChinaTV",
+    # (Agences de presse Reuters, AFP, CGTN essayées le 17/11 et retirées : leur flux ne garde que
+    # les 15 dernières vidéos, soit quelques heures d'actualité surtout politique.)
 ]
 JOURS_VIDEOS = 9          # âge maximal d'une vidéo de chaîne prise en compte
 JOURS_FICHES = 7          # fiches récentes encore sans vidéo examinées à chaque passage
 MAX_FICHES = 60
-MAX_VIDEOS = 160
+MAX_VIDEOS = 220
 
 _CHAINE_ID = {}
 
