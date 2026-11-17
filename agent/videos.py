@@ -142,8 +142,8 @@ def attacher(table_url: str, headers: dict, ligne_id, titre: str, texte: str, ur
 # Beaucoup d'articles n'intègrent aucune vidéo, alors que la vidéo existe (exemple : le rattrapage
 # du Starship par la tour, filmé par SpaceX). Ici, sans clé ni coût :
 #   1. on lit le flux RSS public des chaînes YouTube ci-dessous (15 dernières vidéos de chacune) ;
-#   2. on garde les vidéos des 6 derniers jours ;
-#   3. on prend les fiches des 4 derniers jours qui n'ont pas encore de vidéo ;
+#   2. on garde les vidéos des 9 derniers jours ;
+#   3. on prend les fiches des 7 derniers jours qui n'ont pas encore de vidéo ;
 #   4. UN SEUL appel à Claude associe les fiches aux vidéos qui les montrent vraiment.
 # Comme les chaînes publient parfois quelques heures après l'événement, chaque passage de
 # l'agent (matin et soir) refait la recherche pour les fiches récentes encore sans vidéo.
@@ -156,16 +156,19 @@ CHAINES_OFFICIELLES = [
     # Espace : agences, entreprises et chaînes qui filment les lancements de près
     "SpaceX", "NASA", "NASAJPL", "NASAGoddard", "ESA|EuropeanSpaceAgency|ESAOfficial", "CNES|CNESFrance|cnes_france",
     "BlueOrigin", "RocketLab|RocketLabNZ|RocketLabUSA", "ISRO|isroofficial5866|ISROofficial", "NASASpaceflight", "EverydayAstronaut", "ESOobservatory",
-    # Sciences
-    "CERN", "CNRS", "Inserm",
+    # Sciences : organismes, universités et laboratoires qui filment leurs expériences
+    "CERN", "CNRS", "Inserm", "MIT", "ETHZurich|ETHZuerich", "EPFL|epflchannel", "Stanford", "Caltech",
+    "harvard", "WyssInstitute", "cambridgeuniversity|CambridgeUniversity", "oxford", "MaxPlanckSociety|maxplanck",
     # Technologies
     "BostonDynamics", "GoogleDeepMind", "OpenAI", "NVIDIA", "Google", "Apple", "Tesla",
-    "Samsung", "Microsoft", "Meta",
+    "Samsung", "Microsoft", "Meta", "BYD|BYDCompany|BYDAutoGlobal", "Airbus", "IEEESpectrum",
+    # Agences de presse vidéo (images de premiers vols, d'essais en Chine, etc.)
+    "Reuters", "AFP|afpfr", "CGTN", "NewChinaTV",
 ]
-JOURS_VIDEOS = 6          # âge maximal d'une vidéo de chaîne prise en compte
-JOURS_FICHES = 4          # fiches récentes encore sans vidéo examinées à chaque passage
+JOURS_VIDEOS = 9          # âge maximal d'une vidéo de chaîne prise en compte
+JOURS_FICHES = 7          # fiches récentes encore sans vidéo examinées à chaque passage
 MAX_FICHES = 60
-MAX_VIDEOS = 80
+MAX_VIDEOS = 160
 
 _CHAINE_ID = {}
 
