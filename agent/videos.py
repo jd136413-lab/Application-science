@@ -81,17 +81,29 @@ def _infos(url: str) -> dict | None:
 
 CONSIGNE = """Tu choisis une vidéo à mettre sous une fiche d'actualité scientifique ou technologique.
 Garde une vidéo SEULEMENT si elle montre ou explique directement CE sujet précis (la démonstration, l'essai, l'objet, l'expérience, le lancement, la présentation officielle, ou une explication par les chercheurs ou l'entreprise concernés).
-Réponds -1 (aucune) si les vidéos sont : sans rapport ou sur un autre sujet, une publicité, une bande-annonce de la chaîne, une invitation à s'abonner, un podcast ou une émission généraliste, une vidéo sur un sujet voisin mais différent. En cas de doute : -1.
+Réponds -1 (aucune) si les vidéos sont : une présentation GÉNÉRALE de plusieurs produits ou annonces (keynote, « launch event », « product launch », conférence, salon, Unpacked, résumé de la semaine…) alors que la fiche parle d'UN seul produit ou résultat, sans rapport ou sur un autre sujet, une publicité, une bande-annonce de la chaîne, une invitation à s'abonner, un podcast ou une émission généraliste, une vidéo sur un sujet voisin mais différent. En cas de doute : -1.
 Réponds en JSON : {"i": numéro de la vidéo choisie ou -1}."""
 
 SCHEMA = {"type": "object", "properties": {"i": {"type": "integer"}}, "required": ["i"], "additionalProperties": False}
 
 _COLONNES_ABSENTES = set()
 
+# Vidéos « fourre-tout » (17/11, exemple : « Xiaomi New Product Launch November 2026 » sous une fiche
+# sur UN téléphone) : écartées d'office, sauf si la fiche parle elle-même de l'événement.
+_GENERALES = re.compile(r"(?i)\b(keynote|launch event|product launch|launch (?:of|in) (?:january|february|march|april|may|"
+                        r"june|july|august|september|october|november|december)|special event|unpacked|livestream|"
+                        r"event highlights|full event|recap|this week in|weekly|news roundup|round-?up|conference|"
+                        r"lancement des nouveaut|conférence de presse)\b")
+_FICHE_EVENEMENT = re.compile(r"(?i)\b(keynote|conférence|salon|présentation|événement|évènement|ces|mwc|wwdc|unpacked)\b")
+
+
+def _generale(titre_video: str, titre_fiche: str) -> bool:
+    return bool(_GENERALES.search(titre_video)) and not _FICHE_EVENEMENT.search(titre_fiche or "")
+
 
 def choisir(client, modele_id, titre: str, texte: str, urls: list[str], conso: dict) -> dict | None:
     """La vidéo qui montre le sujet, ou None."""
-    infos = [x for x in (_infos(u) for u in urls[:MAX_CANDIDATS]) if x]
+    infos = [x for x in (_infos(u) for u in urls[:MAX_CANDIDATS]) if x and not _generale(x["titre"], titre)]
     if not infos:
         return None
     contenu = (f"Fiche : {titre}\nRésumé : {' '.join(texte.split())[:600]}\n\nVidéos trouvées dans l'article :\n"
@@ -239,7 +251,7 @@ def videos_chaines(log=print) -> list[dict]:
 CONSIGNE_ASSOCIATION = """Tu associes des fiches d'actualité scientifique ou technologique (en français) à des vidéos récentes de chaînes officielles (souvent en anglais).
 Associe une vidéo à une fiche SEULEMENT si elle montre ou explique directement CE sujet précis : le lancement, l'essai, le vol, la démonstration, l'objet présenté, l'expérience, la présentation officielle par l'agence, l'entreprise ou les chercheurs concernés.
 Exemple : une fiche « SpaceX rattrape le Starship avec la tour » ↔ une vidéo « Starship Flight 12 … catch » de SpaceX ou NASASpaceflight : oui.
-Refuse (n'associe pas) : un sujet voisin mais différent (autre mission, autre produit, autre vol), une vidéo générale ou promotionnelle, un direct annoncé pour plus tard, un podcast, un résumé de l'actualité de la semaine. En cas de doute : n'associe pas.
+Refuse (n'associe pas) : une présentation générale de plusieurs produits ou annonces (keynote, « launch event », conférence, salon, résumé de la semaine) pour une fiche sur UN seul produit ou résultat, un sujet voisin mais différent (autre mission, autre produit, autre vol), une vidéo générale ou promotionnelle, un direct annoncé pour plus tard, un podcast, un résumé de l'actualité de la semaine. En cas de doute : n'associe pas.
 Une vidéo peut servir à une seule fiche. Si plusieurs vidéos conviennent pour une fiche, préfère celle qui MONTRE l'événement (images réelles) et la chaîne de l'acteur concerné.
 Réponds en JSON : {"paires": [{"fiche": numéro, "video": numéro}, ...]} (liste vide si aucune)."""
 
@@ -270,9 +282,20 @@ def passage_chaines(table_url: str, headers: dict, client, modele_id, conso: dic
             return 0
         r.raise_for_status()
         fiches = r.json()
+        # Ménage (17/11) : retire les vidéos « fourre-tout » déjà posées sur des fiches récentes (gratuit)
+        try:
+            rv = requests.get(table_url, headers=headers, timeout=30, params={
+                "select": "id,title,video_titre", "video_url": "not.is.null", "published_at": f"gte.{depuis}"})
+            for f in (rv.json() if rv.ok else []):
+                if _generale(f.get("video_titre") or "", f.get("title") or ""):
+                    requests.patch(table_url, headers=dict(headers, Prefer="return=minimal"), timeout=30,
+                                   params={"id": f"eq.{f['id']}"}, json={"video_url": None, "video_titre": None})
+                    log(f"  ✖ vidéo générale retirée : « {str(f.get('video_titre'))[:60]} » ← {str(f.get('title'))[:50]}")
+        except Exception:
+            pass
         if not fiches:
             return 0
-        vids = videos_chaines(log)
+        vids = [v for v in videos_chaines(log) if not _GENERALES.search(v["titre"])]
         log(f"▶ Vidéos officielles : {len(vids)} vidéo(s) récente(s) sur {len(CHAINES_OFFICIELLES)} chaînes, "
             f"{len(fiches)} fiche(s) récente(s) sans vidéo")
         if not vids:
