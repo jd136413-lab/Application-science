@@ -190,7 +190,9 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
           alignment: Alignment.centerLeft,
           child: Pastille('🔒 Visible seulement sur ton téléphone', const Color(0xFF8B5CF6)),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 12),
+        const _Regles(),
+        const SizedBox(height: 14),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Text('Aide-nous à faire grandir NovaSTEM :',
@@ -278,6 +280,79 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
           },
         ),
       ]),
+    );
+  }
+}
+
+/// « Pour qu'une proposition soit acceptée » : les grandes lignes, repliables.
+class _Regles extends StatefulWidget {
+  const _Regles();
+  @override
+  State<_Regles> createState() => _ReglesState();
+}
+
+class _ReglesState extends State<_Regles> {
+  static bool _ouvert = true; // gardé pendant que l'app est ouverte
+
+  static const _regles = [
+    ('✅', 'Une vraie avancée', 'un résultat, une première, un essai réussi, un produit présenté. '
+        'Pas une rumeur, une opinion ou un simple projet.'),
+    ('🔗', 'Vérifiable', 'un article fiable doit le confirmer (média reconnu, revue scientifique, agence, '
+        'université, communiqué officiel).'),
+    ('🎯', 'Des faits exacts', 'sans exagération : chaque fait de ton résumé doit se trouver dans l’article.'),
+    ('♻️', 'Pas déjà publiée', 'on vérifie qu’elle n’est pas déjà dans NovaSTEM.'),
+    ('📅', 'Pour « À venir »', 'une date annoncée par une source fiable.'),
+    ('▶️', 'Vidéo', 'courte, et qui montre vraiment l’avancée.'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    return Material(
+      color: p.carte,
+      borderRadius: BorderRadius.circular(18),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(18),
+        onTap: () => setState(() => _ouvert = !_ouvert),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(14, 12, 12, 12),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              Expanded(
+                child: Text('📋 Pour qu’une proposition soit acceptée',
+                    style: police(policeTitres, taille: 16, graisse: FontWeight.w800, couleur: p.texte)),
+              ),
+              Icon(_ouvert ? Icons.expand_less_rounded : Icons.expand_more_rounded, color: p.texteDiscret),
+            ]),
+            AnimatedSize(
+              duration: const Duration(milliseconds: 200),
+              alignment: Alignment.topCenter,
+              child: !_ouvert
+                  ? const SizedBox(width: double.infinity)
+                  : Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        for (final (e, t, d) in _regles)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 6),
+                            child: Text.rich(
+                              TextSpan(children: [
+                                TextSpan(text: '$e '),
+                                TextSpan(
+                                    text: t,
+                                    style: police(policeTexte,
+                                        taille: 13.5, graisse: FontWeight.w800, couleur: p.texte)),
+                                TextSpan(text: ' : $d'),
+                              ]),
+                              style: police(policeTexte, taille: 13.5, couleur: p.texteDiscret, hauteur: 1.4),
+                            ),
+                          ),
+                      ]),
+                    ),
+            ),
+          ]),
+        ),
+      ),
     );
   }
 }
