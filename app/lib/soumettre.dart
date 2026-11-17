@@ -88,41 +88,79 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
     }
   }
 
-  Widget _choix(IconData icone, Color c, String titre, String detail, Widget ecran, {bool actif = true}) {
+  /// « dans 4 j 6 h », « dans 3 h », « dans 12 min ».
+  static String _dans(Duration d) {
+    if (d.inDays >= 1) return 'dans ${d.inDays} j ${d.inHours % 24} h';
+    if (d.inHours >= 1) return 'dans ${d.inHours} h';
+    return 'dans ${d.inMinutes.clamp(1, 59)} min';
+  }
+
+  /// [prochaine] : moment où cette sorte de proposition redevient possible (null = possible maintenant).
+  Widget _choix(IconData icone, Color c, String titre, String detail, Widget ecran, {DateTime? prochaine}) {
     final p = palette(context);
-    return Opacity(
-      opacity: actif ? 1 : 0.45,
-      child: Material(
+    final reste = prochaine?.difference(DateTime.now());
+    final attente = reste != null && !reste.isNegative;
+    final fraction = attente ? (1 - reste.inMinutes / const Duration(days: 7).inMinutes).clamp(0.0, 1.0) : 1.0;
+    return Material(
       color: p.carte,
       borderRadius: BorderRadius.circular(18),
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
-        onTap: actif
-            ? () => _ouvrir(ecran)
-            : () => afficherMessage(context, 'Déjà fait cette semaine : 1 par semaine. Reviens dans quelques jours.',
-                icone: Icons.hourglass_bottom_rounded),
+        onTap: attente
+            ? () => afficherMessage(context, '1 par semaine : de nouveau possible ${_dans(reste)} ⏳',
+                icone: Icons.hourglass_bottom_rounded)
+            : () => _ouvrir(ecran),
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Row(children: [
-            Container(
-              width: 42,
-              height: 42,
-              decoration: BoxDecoration(color: c.withValues(alpha: 0.18), borderRadius: BorderRadius.circular(12)),
-              child: Icon(icone, color: c, size: 22),
+            Opacity(
+              opacity: attente ? 0.5 : 1,
+              child: Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(color: c.withValues(alpha: 0.18), borderRadius: BorderRadius.circular(12)),
+                child: Icon(icone, color: c, size: 22),
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(titre, style: police(policeTitres, taille: 17, graisse: FontWeight.w800, couleur: p.texte)),
+                Text(titre,
+                    style: police(policeTitres,
+                        taille: 17, graisse: FontWeight.w800, couleur: attente ? p.texteDiscret : p.texte)),
                 const SizedBox(height: 2),
-                Text(detail, style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+                Text(attente ? '⏳ De nouveau possible ${_dans(reste)}' : detail,
+                    style: police(policeTexte,
+                        taille: 13, graisse: attente ? FontWeight.w700 : FontWeight.w400,
+                        couleur: attente ? c : p.texteDiscret)),
               ]),
             ),
-            Icon(Icons.chevron_right_rounded, color: p.texteDiscret),
+            if (attente)
+              // L'anneau se remplit jour après jour jusqu'à la prochaine proposition possible.
+              SizedBox(
+                width: 46,
+                height: 46,
+                child: Stack(alignment: Alignment.center, children: [
+                  SizedBox(
+                    width: 42,
+                    height: 42,
+                    child: CircularProgressIndicator(
+                      value: fraction,
+                      strokeWidth: 4,
+                      strokeCap: StrokeCap.round,
+                      backgroundColor: p.pastille,
+                      color: c,
+                    ),
+                  ),
+                  Text(reste.inDays >= 1 ? '${reste.inDays} j' : '${reste.inHours} h',
+                      style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texte)),
+                ]),
+              )
+            else
+              Icon(Icons.chevron_right_rounded, color: p.texteDiscret),
           ]),
         ),
       ),
-    ),
     );
   }
 
@@ -163,36 +201,23 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
           future: _liste,
           builder: (context, snap) {
             final l = snap.data ?? const <Proposition>[];
-            final illimite = etat.admin;
-            bool libre(String genre) => illimite || !l.any((x) => x.cetteSemaine && x.genre == genre);
-            final sujetLibre = libre('sujet'), resumeLibre = libre('resume'), ameliorationLibre = libre('amelioration');
-            final restants = [
-              if (sujetLibre) '1 sujet',
-              if (resumeLibre) '1 résumé',
-              if (ameliorationLibre) '1 amélioration',
-            ];
+            // 1 proposition de chaque sorte par semaine (sauf administrateur) : moment où elle redevient possible.
+            DateTime? prochaine(String genre) {
+              if (etat.admin) return null;
+              final dernieres = l.where((x) => x.genre == genre && x.cetteSemaine).map((x) => x.cree).toList()
+                ..sort();
+              return dernieres.isEmpty ? null : dernieres.last.add(const Duration(days: 7));
+            }
             return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               _choix(Icons.bolt_rounded, logoEncreBleue, 'Proposer un sujet', 'Une phrase : on s’occupe du reste.',
-                  const EcranProposerSujet(), actif: sujetLibre),
+                  const EcranProposerSujet(), prochaine: prochaine('sujet')),
               const SizedBox(height: 10),
               _choix(Icons.edit_rounded, _vert, 'Proposer un résumé', 'Ta fiche en 3 parties, vérifiée avant publication.',
-                  const EcranProposerResume(), actif: resumeLibre),
+                  const EcranProposerResume(), prochaine: prochaine('resume')),
               const SizedBox(height: 10),
               _choix(Icons.lightbulb_outline_rounded, _orange, 'Proposer une amélioration',
                   'Une idée, un bug, un souhait pour l’application.', const EcranProposerAmelioration(),
-                  actif: ameliorationLibre),
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: Text(
-                    illimite
-                        ? 'Sans limite sur ton téléphone (administrateur). Pour les autres : 1 sujet, 1 résumé '
-                            'et 1 amélioration par semaine.'
-                        : restants.isEmpty
-                            ? 'Tu as utilisé tes 3 propositions de la semaine. Reviens dans quelques jours !'
-                            : 'Cette semaine, tu peux encore proposer : ${restants.join(', ')}.',
-                    style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret)),
-              ),
+                  prochaine: prochaine('amelioration')),
             ]);
           },
         ),
