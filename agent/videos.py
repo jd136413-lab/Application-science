@@ -82,14 +82,36 @@ def _infos(url: str) -> dict | None:
 DUREE_MAX = 30 * 60     # au-delà (directs, conférences, émissions) : vidéo écartée d'office
 
 
-def _duree(url: str) -> int | None:
-    """Durée d'une vidéo YouTube en secondes (lue sur sa page publique), ou None si inconnue."""
-    if "youtube.com" not in url:
-        return None
+_DUREES = {}   # identifiant de vidéo → durée en secondes (lue sur l'onglet « Vidéos » des chaînes)
+
+
+def _lire_durees_chaine(ident: str) -> None:
+    """Durées des dernières vidéos d'une chaîne (badge « 10:12 » des miniatures). Gratuit, jamais bloquant."""
     try:
-        r = requests.get(url, headers=dict(_UA, **{"Accept-Language": "en"}), cookies={"CONSENT": "YES+1"}, timeout=15)
-        m = re.search(r'"lengthSeconds":"(\d+)"', r.text) if r.ok else None
-        return int(m.group(1)) if m else None
+        r = requests.get(f"https://www.youtube.com/channel/{ident}/videos", timeout=15, cookies={"CONSENT": "YES+1"},
+                         headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                                                "(KHTML, like Gecko) Chrome/130.0 Safari/537.36", "Accept-Language": "en"})
+        for txt, vid in re.findall(r'"thumbnailBadgeViewModel":\{"text":"(\d+(?::\d\d){1,2})"[^{}]*?'
+                                   r'"animationActivationTargetId":"([\w-]{11})"', r.text if r.ok else ""):
+            sec = 0
+            for morceau in txt.split(":"):
+                sec = sec * 60 + int(morceau)
+            _DUREES.setdefault(vid, sec)
+    except Exception:
+        pass
+
+
+def _duree(url: str) -> int | None:
+    """Durée en secondes ; -1 = YouTube Short (moins de 3 minutes) ; None = inconnue."""
+    m = re.search(r"[?&]v=([\w-]{11})", url)
+    if not m:
+        return None
+    if m.group(1) in _DUREES:
+        return _DUREES[m.group(1)]
+    try:   # un Short s'ouvre en /shorts/ (200) ; une vidéo normale y est redirigée (303)
+        r = requests.get(f"https://www.youtube.com/shorts/{m.group(1)}", allow_redirects=False, timeout=15,
+                         headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/130.0"})
+        return -1 if r.status_code == 200 else None
     except Exception:
         return None
 
@@ -104,6 +126,8 @@ def _avec_durees(videos: list[dict]) -> list[dict]:
 
 
 def _hms(d) -> str:
+    if d == -1:
+        return "Short (moins de 3 min)"
     return "durée inconnue" if not d else (f"{d // 60} min {d % 60:02d} s" if d >= 60 else f"{d} s")
 
 
@@ -249,6 +273,7 @@ def videos_chaines(log=print) -> list[dict]:
             ko.append(nom.split("|")[0])
             continue
         nom = nom.split("|")[0]
+        _lire_durees_chaine(ident)
         try:
             r = requests.get("https://www.youtube.com/feeds/videos.xml", params={"channel_id": ident},
                              headers=_UA, timeout=15)
