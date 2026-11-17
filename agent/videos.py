@@ -148,13 +148,14 @@ def attacher(table_url: str, headers: dict, ligne_id, titre: str, texte: str, ur
 # Comme les chaînes publient parfois quelques heures après l'événement, chaque passage de
 # l'agent (matin et soir) refait la recherche pour les fiches récentes encore sans vidéo.
 # Coût : ≈ 0,002 à 0,005 $ par passage (un seul appel), rien si aucune vidéo récente.
-# Pour ajouter une chaîne : son @nom tel qu'il apparaît dans l'adresse youtube.com/@nom.
+# Pour ajouter une chaîne : son @nom tel qu'il apparaît dans l'adresse youtube.com/@nom
+# (plusieurs noms possibles séparés par | : le premier qui marche est gardé).
 # ---------------------------------------------------------------------------------------------
 
 CHAINES_OFFICIELLES = [
     # Espace : agences, entreprises et chaînes qui filment les lancements de près
-    "SpaceX", "NASA", "NASAJPL", "NASAGoddard", "ESA", "CNES", "BlueOrigin", "RocketLab",
-    "ISROOfficial", "NASASpaceflight", "EverydayAstronaut", "ESOobservatory",
+    "SpaceX", "NASA", "NASAJPL", "NASAGoddard", "ESA|EuropeanSpaceAgency|ESAOfficial", "CNES|CNESFrance|cnes_france",
+    "BlueOrigin", "RocketLab|RocketLabNZ|RocketLabUSA", "ISRO|isroofficial5866|ISROofficial", "NASASpaceflight", "EverydayAstronaut", "ESOobservatory",
     # Sciences
     "CERN", "CNRS", "Inserm",
     # Technologies
@@ -173,6 +174,10 @@ def _id_chaine(nom: str) -> str | None:
     """Identifiant UC… d'une chaîne à partir de son @nom (lu sur sa page publique)."""
     if nom in _CHAINE_ID:
         return _CHAINE_ID[nom]
+    if "|" in nom:
+        ident = next((i for i in (_id_chaine(n) for n in nom.split("|")) if i), None)
+        _CHAINE_ID[nom] = ident
+        return ident
     ident = None
     try:
         r = requests.get(f"https://www.youtube.com/@{nom}", headers=dict(_UA, **{"Accept-Language": "en"}),
@@ -196,8 +201,9 @@ def videos_chaines(log=print) -> list[dict]:
     for nom in CHAINES_OFFICIELLES:
         ident = _id_chaine(nom)
         if not ident:
-            ko.append(nom)
+            ko.append(nom.split("|")[0])
             continue
+        nom = nom.split("|")[0]
         try:
             r = requests.get("https://www.youtube.com/feeds/videos.xml", params={"channel_id": ident},
                              headers=_UA, timeout=15)
