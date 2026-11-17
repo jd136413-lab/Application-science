@@ -6,8 +6,21 @@
 -- • « Mes propositions » renvoie maintenant tout ce que la personne a envoyé, pour l'écran
 --   de détail (ce qui se passe après l'envoi).
 
--- 0. Lien du direct (live) d'un événement « À venir » proposé
+-- 0. Colonnes ajoutées après la première version de la migration 018 (si elle a été lancée
+--    avant le 17/11 au soir, ces colonnes manquent) + lien du direct (live) d'un événement
+alter table submissions add column if not exists type_evt text check (char_length(type_evt) <= 30);
+alter table submissions add column if not exists quand date;
+alter table submissions add column if not exists quand_precision text
+  check (quand_precision in ('jour', 'mois', 'inconnue'));
+alter table submissions add column if not exists avant text check (char_length(avant) <= 600);
+alter table submissions add column if not exists decouverte text check (char_length(decouverte) <= 900);
+alter table submissions add column if not exists apres text check (char_length(apres) <= 600);
+alter table submissions add column if not exists langue text check (langue in ('fr', 'en', 'autre'));
+alter table submissions add column if not exists video text check (char_length(video) <= 300);
 alter table submissions add column if not exists direct text check (char_length(direct) <= 300);
+-- Le fil « À venir » doit être accepté (la première version n'acceptait que science et tech)
+alter table submissions drop constraint if exists submissions_fil_check;
+alter table submissions add constraint submissions_fil_check check (fil in ('science', 'tech', 'a_venir'));
 
 -- 1. Téléphones administrateurs (enregistrés quand le bon code est saisi), illisibles depuis l'app
 create table if not exists admin_appareils (
