@@ -217,19 +217,20 @@ class Evenement {
   }
 }
 
+// Catégories (18/11/2026, plus claires et traduisibles). « salon » et « sommet » partagent le même nom.
 const Map<String, String> nomsTypes = {
   'lancement': 'Lancement',
-  'arrivee': 'Sonde spatiale',
+  'arrivee': 'Mission spatiale',
   'ciel': 'Dans le ciel',
-  'sortie': 'Sortie',
-  'presentation': 'Présentation',
-  'salon': 'Salon',
-  'sommet': 'Sommet',
-  'resultats': 'Résultats attendus',
-  'decision': 'Décision',
-  'prix': 'Prix',
+  'sortie': 'Sortie d’un produit',
+  'presentation': 'Présentation officielle',
+  'salon': 'Salon ou conférence',
+  'sommet': 'Salon ou conférence',
+  'resultats': 'Résultats d’une étude',
+  'decision': 'Décision officielle',
+  'prix': 'Remise de prix',
   'mise_en_service': 'Mise en service',
-  'essai': 'Premier vol, essai',
+  'essai': 'Premier essai',
   'evenement': 'Événement',
   'annonce': 'Annonce',
 };
@@ -559,8 +560,8 @@ const Map<String, String> iconesTypes = {
   'sortie': '📦',
   'presentation': '🎤',
   'salon': '🏛️',
-  'sommet': '🌍',
-  'resultats': '📊',
+  'sommet': '🏛️',
+  'resultats': '🧪',
   'decision': '⚖️',
   'prix': '🏆',
   'mise_en_service': '⚡',

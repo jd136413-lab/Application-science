@@ -574,9 +574,20 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
   DateTime? _date;
   bool _envoi = false;
 
+  // Mêmes catégories que l'onglet « À venir » (18/11/2026) : (code, nom, exemples).
   static const _types = [
-    ('lancement', '🚀 Lancement'), ('ciel', '🔭 Dans le ciel'), ('sortie', '📦 Sortie'),
-    ('presentation', '🎤 Présentation'), ('sommet', '🏛 Sommet'), ('resultats', '📊 Résultats'), ('autre', 'Autre'),
+    ('lancement', '🚀 Lancement', 'fusée, satellite, mission habitée'),
+    ('arrivee', '🛰️ Mission spatiale', 'une sonde arrive, survole ou se pose'),
+    ('ciel', '🌠 Dans le ciel', 'éclipse, pluie d’étoiles filantes, comète'),
+    ('sortie', '📦 Sortie d’un produit', 'téléphone, console, jeu, voiture'),
+    ('presentation', '🎤 Présentation officielle', 'une entreprise ou une agence dévoile une nouveauté'),
+    ('salon', '🏛️ Salon ou conférence', 'CES, COP sur le climat, grand congrès'),
+    ('resultats', '🧪 Résultats d’une étude', 'essai clinique, grande expérience'),
+    ('decision', '⚖️ Décision officielle', 'autorisation d’un médicament, nouvelle loi'),
+    ('prix', '🏆 Remise de prix', 'prix Nobel, médaille Fields'),
+    ('essai', '✈️ Premier essai', 'premier vol, premier test en conditions réelles'),
+    ('mise_en_service', '⚡ Mise en service', 'une centrale, un télescope ou une ligne démarre'),
+    ('autre', '📅 Autre', 'un autre événement daté'),
   ];
 
   @override
@@ -676,7 +687,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
         if (evenement) ...[
           _etiquette(context, 'C’EST…'),
           Wrap(spacing: 6, runSpacing: 6, children: [
-            for (final (cle, nom) in _types)
+            for (final (cle, nom, _) in _types)
               ChoiceChip(
                 label: Text(nom),
                 selected: _type == cle,
@@ -689,6 +700,8 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
                 side: BorderSide(color: _type == cle ? logoEncreBleue : p.bordure),
               ),
           ]),
+          if (_type != null)
+            _aide(context, 'Par exemple : ${_types.firstWhere((t) => t.$1 == _type, orElse: () => _types.last).$3}.'),
           _etiquette(context, 'QUAND ?'),
           _segments(context, const [('jour', 'Jour précis'), ('mois', 'Mois'), ('inconnue', 'Je ne sais pas')], _quand,
               (v) => setState(() => _quand = v)),
@@ -1255,8 +1268,11 @@ class EcranApercuProposition extends StatelessWidget {
   const EcranApercuProposition({super.key, required this.proposition});
 
   static const _typesEvt = {
-    'lancement': '🚀 Lancement', 'ciel': '🔭 Dans le ciel', 'sortie': '📦 Sortie', 'presentation': '🎤 Présentation',
-    'sommet': '🏛 Sommet', 'resultats': '📊 Résultats', 'autre': '📅 Événement',
+    'lancement': '🚀 Lancement', 'arrivee': '🛰️ Mission spatiale', 'ciel': '🌠 Dans le ciel',
+    'sortie': '📦 Sortie d’un produit', 'presentation': '🎤 Présentation officielle',
+    'salon': '🏛️ Salon ou conférence', 'resultats': '🧪 Résultats d’une étude', 'decision': '⚖️ Décision officielle',
+    'prix': '🏆 Remise de prix', 'essai': '✈️ Premier essai', 'mise_en_service': '⚡ Mise en service',
+    'autre': '📅 Autre',
   };
 
   String _dateEvt(Proposition x) {

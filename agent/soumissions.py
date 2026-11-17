@@ -47,8 +47,9 @@ log = agent.log
 # Mêmes familles que l'agent pour « À venir » (main.py, passage À venir)
 FAMILLES_TECH = {"mobile", "computing", "ai_software", "mobility", "aerospace", "energy_home", "gaming", "tech_other"}
 FAMILLES_SCIENCE = set(agent.FAMILLES_THEMES) - FAMILLES_TECH - {"technology"}
-TYPES_LECTEUR = {"lancement": "lancement", "ciel": "ciel", "sortie": "sortie", "presentation": "presentation",
-                 "sommet": "sommet", "resultats": "resultats"}
+# Catégories du formulaire (18/11/2026) : mêmes codes que l'agent ; « autre » laisse Claude choisir.
+TYPES_LECTEUR = {t: t for t in ("lancement", "arrivee", "ciel", "sortie", "presentation", "salon", "resultats",
+                                "decision", "prix", "essai", "mise_en_service")}
 
 
 # ------------------------------------------------------------------------- Supabase
