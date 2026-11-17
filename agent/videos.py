@@ -134,3 +134,176 @@ def attacher(table_url: str, headers: dict, ligne_id, titre: str, texte: str, ur
     except Exception as ex:
         log(f"  ⚠ Vidéo non ajoutée ({ex.__class__.__name__}: {str(ex)[:80]})")
         return False
+
+
+# ---------------------------------------------------------------------------------------------
+# Vidéos des chaînes officielles (demande de Maxime du 17/11/2026)
+#
+# Beaucoup d'articles n'intègrent aucune vidéo, alors que la vidéo existe (exemple : le rattrapage
+# du Starship par la tour, filmé par SpaceX). Ici, sans clé ni coût :
+#   1. on lit le flux RSS public des chaînes YouTube ci-dessous (15 dernières vidéos de chacune) ;
+#   2. on garde les vidéos des 6 derniers jours ;
+#   3. on prend les fiches des 4 derniers jours qui n'ont pas encore de vidéo ;
+#   4. UN SEUL appel à Claude associe les fiches aux vidéos qui les montrent vraiment.
+# Comme les chaînes publient parfois quelques heures après l'événement, chaque passage de
+# l'agent (matin et soir) refait la recherche pour les fiches récentes encore sans vidéo.
+# Coût : ≈ 0,002 à 0,005 $ par passage (un seul appel), rien si aucune vidéo récente.
+# Pour ajouter une chaîne : son @nom tel qu'il apparaît dans l'adresse youtube.com/@nom.
+# ---------------------------------------------------------------------------------------------
+
+CHAINES_OFFICIELLES = [
+    # Espace : agences, entreprises et chaînes qui filment les lancements de près
+    "SpaceX", "NASA", "NASAJPL", "NASAGoddard", "ESA", "CNES", "BlueOrigin", "RocketLab",
+    "ISROOfficial", "NASASpaceflight", "EverydayAstronaut", "ESOobservatory",
+    # Sciences
+    "CERN", "CNRS", "Inserm",
+    # Technologies
+    "BostonDynamics", "GoogleDeepMind", "OpenAI", "NVIDIA", "Google", "Apple", "Tesla",
+    "Samsung", "Microsoft", "Meta",
+]
+JOURS_VIDEOS = 6          # âge maximal d'une vidéo de chaîne prise en compte
+JOURS_FICHES = 4          # fiches récentes encore sans vidéo examinées à chaque passage
+MAX_FICHES = 60
+MAX_VIDEOS = 80
+
+_CHAINE_ID = {}
+
+
+def _id_chaine(nom: str) -> str | None:
+    """Identifiant UC… d'une chaîne à partir de son @nom (lu sur sa page publique)."""
+    if nom in _CHAINE_ID:
+        return _CHAINE_ID[nom]
+    ident = None
+    try:
+        r = requests.get(f"https://www.youtube.com/@{nom}", headers=dict(_UA, **{"Accept-Language": "en"}),
+                         cookies={"CONSENT": "YES+1"}, timeout=15)
+        if r.ok:
+            m = (re.search(r'<link rel="canonical" href="https://www\.youtube\.com/channel/(UC[\w-]{22})"', r.text)
+                 or re.search(r'"externalId":"(UC[\w-]{22})"', r.text)
+                 or re.search(r'"channelId":"(UC[\w-]{22})"', r.text))
+            ident = m.group(1) if m else None
+    except Exception:
+        ident = None
+    _CHAINE_ID[nom] = ident
+    return ident
+
+
+def videos_chaines(log=print) -> list[dict]:
+    """Vidéos récentes des chaînes officielles : url, titre, chaîne, date (ISO)."""
+    import datetime as dt
+    limite = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=JOURS_VIDEOS)
+    res, ko = [], []
+    for nom in CHAINES_OFFICIELLES:
+        ident = _id_chaine(nom)
+        if not ident:
+            ko.append(nom)
+            continue
+        try:
+            r = requests.get("https://www.youtube.com/feeds/videos.xml", params={"channel_id": ident},
+                             headers=_UA, timeout=15)
+            if not r.ok:
+                ko.append(nom)
+                continue
+            for e in re.findall(r"(?s)<entry>(.*?)</entry>", r.text):
+                vid = re.search(r"<yt:videoId>([\w-]{11})</yt:videoId>", e)
+                titre = re.search(r"<title>(.*?)</title>", e, re.S)
+                date = re.search(r"<published>(.*?)</published>", e)
+                if not (vid and titre and date):
+                    continue
+                try:
+                    d = dt.datetime.fromisoformat(date.group(1).replace("Z", "+00:00"))
+                except ValueError:
+                    continue
+                if d < limite:
+                    continue
+                res.append({"url": f"https://www.youtube.com/watch?v={vid.group(1)}",
+                            "titre": " ".join(html.unescape(titre.group(1)).split())[:200],
+                            "chaine": nom, "date": d.strftime("%Y-%m-%d")})
+        except Exception:
+            ko.append(nom)
+    if ko:
+        log(f"  · chaînes vidéo non lues : {', '.join(ko)}")
+    res.sort(key=lambda v: v["date"], reverse=True)
+    return res[:MAX_VIDEOS]
+
+
+CONSIGNE_ASSOCIATION = """Tu associes des fiches d'actualité scientifique ou technologique (en français) à des vidéos récentes de chaînes officielles (souvent en anglais).
+Associe une vidéo à une fiche SEULEMENT si elle montre ou explique directement CE sujet précis : le lancement, l'essai, le vol, la démonstration, l'objet présenté, l'expérience, la présentation officielle par l'agence, l'entreprise ou les chercheurs concernés.
+Exemple : une fiche « SpaceX rattrape le Starship avec la tour » ↔ une vidéo « Starship Flight 12 … catch » de SpaceX ou NASASpaceflight : oui.
+Refuse (n'associe pas) : un sujet voisin mais différent (autre mission, autre produit, autre vol), une vidéo générale ou promotionnelle, un direct annoncé pour plus tard, un podcast, un résumé de l'actualité de la semaine. En cas de doute : n'associe pas.
+Une vidéo peut servir à une seule fiche. Si plusieurs vidéos conviennent pour une fiche, préfère celle qui MONTRE l'événement (images réelles) et la chaîne de l'acteur concerné.
+Réponds en JSON : {"paires": [{"fiche": numéro, "video": numéro}, ...]} (liste vide si aucune)."""
+
+SCHEMA_ASSOCIATION = {
+    "type": "object",
+    "properties": {"paires": {"type": "array", "items": {
+        "type": "object",
+        "properties": {"fiche": {"type": "integer"}, "video": {"type": "integer"}},
+        "required": ["fiche", "video"], "additionalProperties": False}}},
+    "required": ["paires"], "additionalProperties": False,
+}
+
+
+def passage_chaines(table_url: str, headers: dict, client, modele_id, conso: dict, log=print) -> int:
+    """Ajoute des vidéos officielles aux fiches récentes qui n'en ont pas. Jamais bloquant.
+    Renvoie le nombre de vidéos ajoutées."""
+    if table_url in _COLONNES_ABSENTES:
+        return 0
+    try:
+        import datetime as dt
+        depuis = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=JOURS_FICHES)).isoformat()
+        r = requests.get(table_url, headers=headers, timeout=30, params={
+            "select": "id,title,summary,published_at",
+            "video_url": "is.null", "published_at": f"gte.{depuis}",
+            "order": "importance.desc,published_at.desc", "limit": str(MAX_FICHES)})
+        if r.status_code == 400 and "video" in r.text:
+            _COLONNES_ABSENTES.add(table_url)
+            return 0
+        r.raise_for_status()
+        fiches = r.json()
+        if not fiches:
+            return 0
+        vids = videos_chaines(log)
+        log(f"▶ Vidéos officielles : {len(vids)} vidéo(s) récente(s) sur {len(CHAINES_OFFICIELLES)} chaînes, "
+            f"{len(fiches)} fiche(s) récente(s) sans vidéo")
+        if not vids:
+            return 0
+        contenu = ("FICHES :\n" + "\n".join(
+            f"{k}. [{str(f.get('published_at', ''))[:10]}] {f.get('title', '')} — {' '.join(str(f.get('summary') or '').split())[:180]}"
+            for k, f in enumerate(fiches))
+            + "\n\nVIDÉOS :\n" + "\n".join(
+            f"{k}. [{v['date']}] « {v['titre']} » — chaîne : {v['chaine']}" for k, v in enumerate(vids)))
+        rep = client.messages.create(
+            model=modele_id, max_tokens=800, system=CONSIGNE_ASSOCIATION,
+            messages=[{"role": "user", "content": contenu}],
+            output_config={"format": {"type": "json_schema", "schema": SCHEMA_ASSOCIATION}},
+            **economie.PARAMS,
+        )
+        conso["in"] += rep.usage.input_tokens or 0
+        conso["out"] += rep.usage.output_tokens or 0
+        t = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
+        paires = json.loads(t[t.find("{"):t.rfind("}") + 1]).get("paires") or []
+        ajout, prises_f, prises_v = 0, set(), set()
+        for p in paires:
+            i, j = p.get("fiche", -1), p.get("video", -1)
+            if not (0 <= i < len(fiches) and 0 <= j < len(vids)) or i in prises_f or j in prises_v:
+                continue
+            prises_f.add(i)
+            prises_v.add(j)
+            f, v = fiches[i], vids[j]
+            rr = requests.patch(table_url, headers=dict(headers, Prefer="return=minimal"), timeout=30,
+                                params={"id": f"eq.{f['id']}", "video_url": "is.null"},
+                                json={"video_url": v["url"], "video_titre": v["titre"]})
+            if rr.ok:
+                ajout += 1
+                log(f"  ▶ vidéo officielle ({v['chaine']}) : « {v['titre'][:60]} » → {str(f.get('title'))[:50]}")
+        return ajout
+    except Exception as ex:
+        log(f"  ⚠ Vidéos officielles non traitées ({ex.__class__.__name__}: {str(ex)[:80]})")
+        return 0
+
+
+if __name__ == "__main__":
+    # Test gratuit (aucun appel à Claude) : liste les vidéos récentes des chaînes officielles.
+    for v in videos_chaines():
+        print(f"{v['date']}  {v['chaine']:<18} {v['titre'][:90]}  {v['url']}")

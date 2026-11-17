@@ -1,0 +1,21 @@
+# Liste les vidéos récentes des chaînes officielles (SpaceX, NASA, ESA…) lues par l'agent.
+# N'appelle pas Claude : gratuit. Résultat dans le journal de l'exécution.
+name: Tester les vidéos officielles
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tester:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: cd agent && python videos.py

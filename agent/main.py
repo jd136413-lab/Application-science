@@ -1829,6 +1829,8 @@ def main() -> int:
             if l.get("_videos"):
                 videos.attacher(db.base, db.headers, l.get("id"), l["title"], l.get("summary", ""), l["_videos"],
                                 client, modele["id"], conso_videos, log)
+        # Vidéos des chaînes officielles (17/11) : fiches récentes encore sans vidéo (y compris des passages précédents)
+        videos.passage_chaines(db.base, db.headers, client, modele["id"], conso_videos, log)
     cout_videos = (conso_videos["in"] * modele["prix"][0] + conso_videos["out"] * modele["prix"][1]) / 1e6
 
     # --- Traductions (anglais…) : nouvelles fiches + rattrapage d'anciennes (traduction.py) ---
