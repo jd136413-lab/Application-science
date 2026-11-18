@@ -66,7 +66,7 @@ class CarteAvancee extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (avancee.image != null && !sansImage) ...[
-                _Photo(url: avancee.image!, credit: avancee.creditImage),
+                _Photo(url: avancee.image!, credit: avancee.creditImage, video: avancee.video),
                 const SizedBox(height: 14),
               ],
               Row(children: [
@@ -121,7 +121,8 @@ class CarteAvancee extends StatelessWidget {
 class _Photo extends StatelessWidget {
   final String url;
   final String? credit;
-  const _Photo({required this.url, this.credit});
+  final String? video;
+  const _Photo({required this.url, this.credit, this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +133,7 @@ class _Photo extends StatelessWidget {
         width: double.infinity,
         child: Stack(fit: StackFit.expand, children: [
           ImageGardee(url: url),
+          if (estImageVideo(url)) BoutonLecture(video: video),
           if (credit != null && credit!.isNotEmpty)
             Positioned(
               right: 8,

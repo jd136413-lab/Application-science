@@ -123,6 +123,7 @@ import bilan_sources
 import a_venir
 import redaction
 import videos
+import images
 from anthropic import Anthropic
 
 from prompt import SYSTEM_PROMPT, THEMES, TECH_THEMES, build_user_message
@@ -1837,6 +1838,11 @@ def main() -> int:
                                 client, modele["id"], conso_videos, log)
         # Vidéos des chaînes officielles (17/11) : fiches récentes encore sans vidéo (y compris des passages précédents)
         videos.passage_chaines(db.base, db.headers, client, modele["id"], conso_videos, log)
+        # Images (images.py, 18/11) : image de la vidéo, sinon photo libre vérifiée (chose nommée), sinon rien
+        try:
+            images.passage(db.base, db.headers, client, MODELES["haiku"]["id"], ajoutes, conso_videos, log)
+        except Exception as ex:
+            log(f"⚠ Images non traitées ({ex.__class__.__name__})")
     cout_videos = (conso_videos["in"] * modele["prix"][0] + conso_videos["out"] * modele["prix"][1]) / 1e6
 
     # --- Traductions (anglais…) : nouvelles fiches + rattrapage d'anciennes (traduction.py) ---
