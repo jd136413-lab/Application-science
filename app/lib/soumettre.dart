@@ -1027,7 +1027,6 @@ class EcranProposerAmelioration extends StatefulWidget {
 
 class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
   final _texte = TextEditingController();
-  String _categorie = 'idee';
   bool _infos = true;
   bool _envoi = false;
 
@@ -1037,7 +1036,6 @@ class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
     final i = widget.initiale;
     if (i != null) {
       _texte.text = i.resume ?? i.sujet ?? '';
-      _categorie = i.categorie ?? 'idee';
     }
     _texte.addListener(() => setState(() {}));
   }
@@ -1061,7 +1059,6 @@ class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
         context,
         {
           'genre': 'amelioration',
-          'categorie': _categorie,
           'sujet': t.length > 400 ? '${t.substring(0, 397)}…' : t,
           if (t.length > 400) 'resume': t,
           if (infos != null) 'infos': infos.length > 200 ? infos.substring(0, 200) : infos,
@@ -1082,14 +1079,9 @@ class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
       envoi: _envoi,
       onEnvoyer: _go,
       enfants: [
-        _etiquette(context, 'C’EST…'),
-        _segments(context, const [('idee', '💡 Une idée'), ('bug', '🐞 Un bug'), ('design', '🎨 Le design')], _categorie,
-            (v) => setState(() => _categorie = v)),
         _etiquette(context, 'TA PROPOSITION'),
         _champ(context, _texte,
-            indice: _categorie == 'bug'
-                ? 'Ce qui ne marche pas, et ce que tu faisais à ce moment-là…'
-                : 'Ce serait bien de pouvoir…',
+            indice: 'Une idée, un souci, ce qui manque… Ce serait bien de pouvoir…',
             lignes: 5,
             max: 1500),
         const SizedBox(height: 10),
@@ -1461,7 +1453,7 @@ class EcranApercuProposition extends StatelessWidget {
         Wrap(spacing: 8, runSpacing: 6, children: [
           if (fil.isNotEmpty) Pastille(fil, logoEncreBleue),
           if (evenement) Pastille(_typesEvt[x.typeEvt] ?? '📅 Événement', _orange),
-          if (amelio)
+          if (amelio && x.categorie != null)
             Pastille(switch (x.categorie) { 'bug' => '🐞 Bug', 'design' => '🎨 Design', _ => '💡 Idée' }, _orange),
           Pastille(_genre(x), p.texteDiscret),
         ]),

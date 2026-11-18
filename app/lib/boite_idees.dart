@@ -38,7 +38,8 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
         _ => switch (x.categorie) {
             'bug' => ('🐞 BUG', _rouge),
             'design' => ('🎨 DESIGN', const Color(0xFFB49BFF)),
-            _ => ('💡 IDÉE', _orange),
+            'idee' => ('💡 IDÉE', _orange),
+            _ => ('💡 AMÉLIORATION', _orange),
           },
       };
 
