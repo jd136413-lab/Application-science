@@ -3,11 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'admin_suppression.dart';
 import 'carte.dart';
 import 'echelle_importance.dart';
 import 'etat.dart';
+import 'fils.dart' show filsAvancees;
 import 'langues.dart';
 import 'modele.dart';
+import 'propositions.dart' show adminSupprimerFiche;
 import 'pubs.dart';
 import 'reglages.dart';
 import 'retours.dart';
@@ -183,6 +186,14 @@ class EcranDetail extends StatelessWidget {
                       icon: const Icon(Icons.flag_outlined, size: 16),
                       label: Text(tr('Signaler une erreur'),
                           style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: p.texte)),
+                    ),
+                    BoutonSuppressionAdmin(
+                      quoi: 'cette fiche',
+                      supprimer: () => adminSupprimerFiche(avancee.id),
+                      apres: () async {
+                        await filsAvancees.mettreAJour(avancee.fil, complet: true);
+                        if (context.mounted) Navigator.of(context).pop();
+                      },
                     ),
                   ]),
                 ),

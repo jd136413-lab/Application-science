@@ -18,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'admin_suppression.dart';
 import 'carte.dart' show ouvrirArticle;
 import 'detail.dart';
 import 'donnees.dart';
@@ -25,6 +26,7 @@ import 'etat.dart';
 import 'langues.dart';
 import 'modele.dart' show enTeteMois, SourceAvancee, traductionAgent, traductionsAgent;
 import 'notifications.dart';
+import 'propositions.dart' show adminSupprimerEvenement;
 import 'pubs.dart';
 import 'regions_monde.dart';
 import 'reglages.dart';
@@ -1354,6 +1356,16 @@ class _EcranEvenementState extends State<EcranEvenement> {
                     icon: const Icon(Icons.flag_outlined, size: 16),
                     label: Text(tr('Signaler une erreur'),
                         style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: p.texte)),
+                  ),
+                ),
+                Center(
+                  child: BoutonSuppressionAdmin(
+                    quoi: 'cette carte',
+                    supprimer: () => adminSupprimerEvenement(e.id),
+                    apres: () async {
+                      await evenementsAVenir.charger();
+                      if (context.mounted) Navigator.of(context).pop();
+                    },
                   ),
                 ),
               ]),

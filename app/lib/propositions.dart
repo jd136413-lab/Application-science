@@ -110,3 +110,15 @@ Future<void> changerStatut(String id, String statut) async {
 
 /// Nombre de mots d'un texte (limite des titres : 12 mots, comme l'agent).
 int compterMots(String t) => t.trim().split(RegExp(r'\s+')).where((m) => m.isNotEmpty).length;
+
+/// Administrateur : supprime une fiche (avancée). Ses articles ne seront pas repris par l'agent.
+Future<bool> adminSupprimerFiche(String id) async {
+  final r = await _db.rpc('admin_supprimer_fiche', params: {'p_code': etat.adminCode ?? '', 'p_id': id});
+  return r == true;
+}
+
+/// Administrateur : supprime une carte « À venir ».
+Future<bool> adminSupprimerEvenement(String id) async {
+  final r = await _db.rpc('admin_supprimer_evenement', params: {'p_code': etat.adminCode ?? '', 'p_id': id});
+  return r == true;
+}
