@@ -546,6 +546,7 @@ class _CarteUne extends StatelessWidget {
                   ),
                 ),
               ),
+              if (estImageVideo(a.image)) Align(alignment: const Alignment(0, -0.35), child: BoutonLecture(video: a.video)),
             ] else
               DecoratedBox(
                 decoration: BoxDecoration(

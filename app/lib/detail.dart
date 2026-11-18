@@ -143,6 +143,7 @@ class EcranDetail extends StatelessWidget {
                     height: 270,
                     child: Stack(fit: StackFit.expand, children: [
                       ImageGardee(url: avancee.image!),
+                      if (estImageVideo(avancee.image)) BoutonLecture(video: avancee.video, taille: 60),
                       if ((avancee.creditImage ?? '').isNotEmpty)
                         Positioned(
                           right: 10,

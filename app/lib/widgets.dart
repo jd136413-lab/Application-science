@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'langues.dart';
@@ -328,6 +329,36 @@ class BadgeEtude extends StatelessWidget {
       decoration: BoxDecoration(color: sombre ? fondSombre : fondClair, borderRadius: BorderRadius.circular(10)),
       child: Text(tr(libelle),
           style: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: sombre ? texteSombre : texteClair)),
+    );
+  }
+}
+
+/// Image tirée d'une vidéo YouTube (agent/images.py, 18/11) : on y pose un bouton ▶.
+bool estImageVideo(String? url) => url != null && url.contains('ytimg.com/');
+
+/// Bouton ▶ au centre de l'image d'une vidéo : ouvre la vidéo (YouTube).
+class BoutonLecture extends StatelessWidget {
+  final String? video;
+  final double taille;
+  const BoutonLecture({super.key, this.video, this.taille = 52});
+
+  @override
+  Widget build(BuildContext context) {
+    final lien = Uri.tryParse(video ?? '');
+    return Center(
+      child: Semantics(
+        button: true,
+        label: tr('Voir la vidéo'),
+        child: GestureDetector(
+          onTap: lien == null ? null : () => launchUrl(lien, mode: LaunchMode.externalApplication),
+          child: Container(
+            width: taille,
+            height: taille,
+            decoration: const BoxDecoration(color: Colors.black54, shape: BoxShape.circle),
+            child: Icon(Icons.play_arrow_rounded, color: Colors.white, size: taille * 0.62),
+          ),
+        ),
+      ),
     );
   }
 }

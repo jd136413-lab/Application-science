@@ -40,6 +40,7 @@ import main as agent
 import redaction
 import traduction
 import videos
+import images
 
 MAX_PAR_PASSAGE = 5
 ESSAIS_MAX = 3                  # une proposition qui échoue 3 fois est refusée (au lieu d'être retentée sans fin)
@@ -687,6 +688,10 @@ def principal() -> int:
             except Exception:
                 pass
     if ajoutes:
+        try:
+            images.passage(db.base, db.headers, client, MODELE["id"], ajoutes, conso, log)
+        except Exception as ex:
+            log(f"⚠ Images non traitées ({ex.__class__.__name__})")
         try:
             traduction.passage_agent(db, client, ajoutes, log)
         except Exception as ex:
