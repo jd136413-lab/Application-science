@@ -3,3 +3,4 @@ feedparser>=6.0
 requests>=2.31
 google-auth>=2.30
 trafilatura>=2.0
+python-dateutil

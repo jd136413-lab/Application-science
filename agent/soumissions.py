@@ -89,9 +89,51 @@ def _liens(prop: dict) -> list[str]:
     return res[:5]
 
 
+_META_DATE = re.compile(
+    r'<meta[^>]+(?:property|name|itemprop)=["\'](?:article:published_time|og:article:published_time|'
+    r'citation_publication_date|citation_online_date|dc\.date|DC\.date\.issued|pubdate|publishdate|'
+    r'datePublished|date)["\'][^>]*content=["\']([^"\']+)["\']', re.I)
+
+
+def _date_page(url: str) -> datetime | None:
+    """Date de publication de l'article, lue dans la page (18/11 : les fiches proposées
+    prenaient la date du traitement). None si introuvable ou peu crédible."""
+    try:
+        r = requests.get(url, timeout=20, headers={"User-Agent": agent.USER_AGENT})
+        if not r.ok:
+            return None
+        page = r.text[:1500000]
+    except Exception:
+        return None
+    brut = None
+    try:
+        import trafilatura
+        m = trafilatura.extract_metadata(page, default_url=url)
+        brut = getattr(m, "date", None) if m else None
+    except Exception:
+        brut = None
+    if not brut:
+        x = _META_DATE.search(page) or re.search(r'"datePublished"\s*:\s*"([^"]+)"', page)
+        brut = x.group(1) if x else None
+    if not brut:
+        return None
+    try:
+        from dateutil import parser as dp
+        d = dp.parse(str(brut))
+    except Exception:
+        return None
+    if d.tzinfo is None:
+        d = d.replace(tzinfo=timezone.utc)
+    maintenant = datetime.now(timezone.utc)
+    # Date future ou de plus de 2 ans : sûrement une erreur de lecture → on l'ignore.
+    if d > maintenant + timedelta(hours=1) or d < maintenant - timedelta(days=730):
+        return None
+    return min(d, maintenant)
+
+
 def _article(url: str, titre: str) -> dict:
     art = {"url": url, "title": titre, "text": "", "source_name": _nom_source(url),
-           "published_at": datetime.now(timezone.utc), "videos": []}
+           "published_at": _date_page(url) or datetime.now(timezone.utc), "videos": []}
     agent.lire_page(art)
     return art
 
