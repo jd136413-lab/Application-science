@@ -647,6 +647,65 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
     return _quand == 'mois' ? '${mois[_date!.month - 1]} ${_date!.year}' : '${_date!.day} ${mois[_date!.month - 1]} ${_date!.year}';
   }
 
+  // Catégories rangées en familles, sur une grille de 2 colonnes (18/11/2026).
+  static const _familles = [
+    ('ESPACE', ['lancement', 'arrivee', 'ciel']),
+    ('TECHNOLOGIE', ['sortie', 'presentation', 'essai', 'mise_en_service']),
+    ('SCIENCE ET SOCIÉTÉ', ['resultats', 'decision', 'prix', 'salon']),
+    ('', ['autre']),
+  ];
+
+  Widget _caseType(Palette p, String cle) {
+    final t = _types.firstWhere((x) => x.$1 == cle);
+    final choisi = _type == cle;
+    return Material(
+      color: choisi ? logoEncreBleue : Colors.transparent,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: choisi ? logoEncreBleue : p.bordure, width: 1.5)),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: () => setState(() => _type = cle),
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 44),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          alignment: Alignment.centerLeft,
+          child: Text(t.$2,
+              style: police(policeTexte,
+                  taille: 13, graisse: FontWeight.w700, couleur: choisi ? Colors.white : p.texte, hauteur: 1.2)),
+        ),
+      ),
+    );
+  }
+
+  Widget _grilleTypes(Palette p) {
+    final enfants = <Widget>[];
+    for (final (titre, cles) in _familles) {
+      if (titre.isNotEmpty) {
+        enfants.add(Padding(
+          padding: const EdgeInsets.only(top: 6, bottom: 6),
+          child: Text(titre,
+              style: police(policeTexte, taille: 11, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+        ));
+      } else {
+        enfants.add(const SizedBox(height: 8));
+      }
+      for (var i = 0; i < cles.length; i += 2) {
+        enfants.add(Padding(
+          padding: const EdgeInsets.only(bottom: 6),
+          child: IntrinsicHeight(
+            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Expanded(child: _caseType(p, cles[i])),
+              const SizedBox(width: 6),
+              Expanded(child: i + 1 < cles.length ? _caseType(p, cles[i + 1]) : const SizedBox()),
+            ]),
+          ),
+        ));
+      }
+    }
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: enfants);
+  }
+
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
@@ -686,20 +745,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
         if (!evenement) _aide(context, 'Dis ce qui s’est passé, avec un nom si tu l’as (entreprise, labo, mission).'),
         if (evenement) ...[
           _etiquette(context, 'C’EST…'),
-          Wrap(spacing: 6, runSpacing: 6, children: [
-            for (final (cle, nom, _) in _types)
-              ChoiceChip(
-                label: Text(nom),
-                selected: _type == cle,
-                onSelected: (_) => setState(() => _type = cle),
-                labelStyle: police(policeTexte,
-                    taille: 13, graisse: FontWeight.w700, couleur: _type == cle ? Colors.white : p.texteDiscret),
-                selectedColor: logoEncreBleue,
-                backgroundColor: p.carte,
-                showCheckmark: false,
-                side: BorderSide(color: _type == cle ? logoEncreBleue : p.bordure),
-              ),
-          ]),
+          _grilleTypes(p),
           if (_type != null)
             _aide(context, 'Par exemple : ${_types.firstWhere((t) => t.$1 == _type, orElse: () => _types.last).$3}.'),
           _etiquette(context, 'QUAND ?'),
