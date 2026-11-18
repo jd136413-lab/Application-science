@@ -204,7 +204,12 @@ class _TexteArticleState extends State<TexteArticle> {
         overflow: widget.maxLines == null ? null : TextOverflow.ellipsis);
     if (widget.original || etat.langue == 'fr') {
       final t = widget.nettoyer == null ? widget.texte : widget.nettoyer!(widget.texte);
-      return widget.marques.isEmpty ? texte(widget.texte) : _avecMots(t);
+      if (widget.marques.isEmpty) return texte(widget.texte);
+      try {
+        return _avecMots(t);
+      } catch (_) {
+        return texte(widget.texte); // par sécurité : texte normal si un mot pose problème
+      }
     }
     final deja = traductionImmediate(widget.texte);
     if (deja != null) return texte(deja); // déjà traduit : tout de suite, sans saut
