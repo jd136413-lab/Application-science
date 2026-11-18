@@ -6,8 +6,8 @@ main.py (lecture de page, tri, rédaction, enregistrement) pour que les fiches p
 suivent exactement les mêmes règles que celles de l'agent.
 
 Deux sortes de propositions (table submissions, migration 018) :
-  • « sujet »  : une phrase (+ lien facultatif). Sans lien, Claude cherche 1 à 3 articles
-    fiables sur le web. Puis tri (vraie avancée ? doublon ?) et rédaction comme l'agent.
+  • « sujet »  : une phrase + 1 à 5 liens d'articles (obligatoires depuis le 18/11 : la
+    recherche web coûtait trop cher). Puis tri (vraie avancée ? doublon ?) et rédaction comme l'agent.
   • « resume » : titre + trois parties (avant, découverte, et après) écrits par la personne,
     + lien obligatoire. Tri comme l'agent, puis Claude vérifie SEULEMENT les faits avec
     l'article : le texte de la personne est publié tel quel, sauf les erreurs corrigées.
@@ -77,6 +77,16 @@ class Base:
 def _nom_source(url: str) -> str:
     hote = urlparse(url).netloc.lower().removeprefix("www.")
     return hote or "source"
+
+
+def _liens(prop: dict) -> list[str]:
+    """Le lien principal puis les liens en plus (5 au plus), sans doublon."""
+    res = []
+    for u in [prop.get("lien")] + list(prop.get("liens_sup") or []):
+        u = str(u or "").strip()
+        if u.startswith("http") and u not in res:
+            res.append(u)
+    return res[:5]
 
 
 def _article(url: str, titre: str) -> dict:
@@ -179,7 +189,7 @@ def verifier_resume(client, prop: dict, art: dict, conso: dict) -> dict | None:
     langue = {"fr": "français", "en": "anglais"}.get(prop.get("langue") or "", "langue à identifier")
     contenu = (f"FICHE DU LECTEUR (écrite en {langue} ; indique la langue réelle dans \"langue_detectee\", code ISO : fr, en, es…)\nTitre : {prop.get('titre') or ''}\nAvant : {prop.get('avant') or ''}\n"
                f"Découverte : {prop.get('decouverte') or ''}\nEt après : {prop.get('apres') or ''}\n\n"
-               f"ARTICLE SOURCE ({art['source_name']})\n{art.get('text', '')[:9000]}")
+               f"ARTICLE(S) SOURCE ({art['source_name']})\n{agent.texte_pour_redaction(art).get('text', '')[:14000]}")
     rep = client.messages.create(
         model=MODELE_VERIF["id"], max_tokens=2500, system=CONSIGNE_VERIF,
         messages=[{"role": "user", "content": contenu}],
@@ -234,7 +244,7 @@ def traiter_evenement(prop: dict, base: "Base", db, client, conso: dict) -> None
         log("  ✖ table upcoming_events illisible : reprise au prochain passage")
         return
     futurs = [e for e in existants if e["event_date"] >= aujourd_hui.isoformat()]
-    liens = [prop["lien"]] if prop.get("lien") else chercher_articles(client, sujet, conso, _indice_evenement(prop))
+    liens = _liens(prop)
     arts = [a for a in (_article(u, sujet) for u in liens) if len(a.get("text", "")) >= 300]
     if not arts:
         base.maj(sid, statut="refusee", message="Aucun article lisible trouvé sur cet événement. Ajoute un lien qui l'annonce.")
@@ -332,13 +342,11 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
         return
 
     # 1. L'article (ou les articles) qui parlent du sujet
-    liens = [prop["lien"]] if prop.get("lien") else []
-    if not liens and genre == "sujet":
-        liens = chercher_articles(client, prop.get("sujet") or "", conso)
-        log(f"  🔎 recherche web : {len(liens)} article(s) trouvé(s)")
+    # 18/11 : le lien est obligatoire (la recherche web coûtait trop cher) ; jusqu'à 5 liens.
+    liens = _liens(prop)
     if not liens:
-        base.maj(sid, statut="refusee", message="Aucun article fiable trouvé sur ce sujet. Ajoute un lien vers un article qui en parle.")
-        log("  – refusée : aucun article")
+        base.maj(sid, statut="refusee", message="Il faut au moins un lien vers un article qui en parle.")
+        log("  – refusée : aucun lien")
         return
     arts = [a for a in (_article(u, texte_prop) for u in liens) if len(a.get("text", "")) >= 400]
     if not arts:

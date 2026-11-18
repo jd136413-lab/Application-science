@@ -211,7 +211,7 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
               return dernieres.isEmpty ? null : dernieres.last.add(const Duration(days: 7));
             }
             return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              _choix(Icons.bolt_rounded, logoEncreBleue, 'Proposer un sujet', 'Une phrase : on s’occupe du reste.',
+              _choix(Icons.bolt_rounded, logoEncreBleue, 'Proposer un sujet', 'Une phrase et un lien : on s’occupe du reste.',
                   const EcranProposerSujet(), prochaine: prochaine('sujet')),
               const SizedBox(height: 10),
               _choix(Icons.edit_rounded, _vert, 'Proposer un résumé', 'Ta fiche en 3 parties, vérifiée avant publication.',
@@ -518,6 +518,87 @@ List<Widget> _champVideo(BuildContext context, TextEditingController c) {
   ];
 }
 
+/// Liens d'articles : le 1er obligatoire, jusqu'à 5 en tout (18/11/2026 : sans lien, la
+/// recherche web coûtait trop cher).
+class _Liens {
+  static const int max = 5;
+  final VoidCallback changer;
+  final List<TextEditingController> c = [];
+  _Liens(this.changer) {
+    _nouveau();
+  }
+
+  TextEditingController _nouveau([String texte = '']) {
+    final t = TextEditingController(text: texte)..addListener(changer);
+    c.add(t);
+    return t;
+  }
+
+  void remplir(Proposition i) {
+    c.first.text = i.lien ?? '';
+    for (final l in i.liensSup.take(max - 1)) {
+      _nouveau(l);
+    }
+  }
+
+  void ajouter() {
+    if (c.length < max) {
+      _nouveau();
+      changer();
+    }
+  }
+
+  void retirer(int i) {
+    if (c.length > 1) {
+      c.removeAt(i).dispose();
+      changer();
+    }
+  }
+
+  List<String> get valeurs => [for (final t in c) if (t.text.trim().isNotEmpty) t.text.trim()];
+  bool get valides => valeurs.isNotEmpty && valeurs.every(_lienValide);
+  Map<String, dynamic> champs() => {'lien': valeurs.first, 'liens_sup': valeurs.skip(1).toList()};
+
+  void dispose() {
+    for (final t in c) {
+      t.dispose();
+    }
+  }
+
+  List<Widget> widgets(BuildContext context, String aide) {
+    final p = palette(context);
+    final mauvais = valeurs.any((l) => !_lienValide(l));
+    return [
+      _etiquette(context, c.length > 1 ? 'LIENS D’ARTICLES' : 'LIEN D’UN ARTICLE', 'obligatoire · 5 au plus'),
+      for (final (i, t) in c.indexed)
+        Padding(
+          padding: EdgeInsets.only(bottom: i < c.length - 1 ? 8 : 0),
+          child: Row(children: [
+            Expanded(child: _champ(context, t, indice: i == 0 ? 'https://…' : 'Un autre article (facultatif)', clavier: TextInputType.url, max: 600)),
+            if (i > 0)
+              IconButton(
+                tooltip: 'Retirer',
+                icon: Icon(Icons.close_rounded, color: p.texteDiscret),
+                onPressed: () => retirer(i),
+              ),
+          ]),
+        ),
+      if (c.length < max)
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton.icon(
+            onPressed: ajouter,
+            icon: const Icon(Icons.add_rounded, size: 20),
+            label: Text('Ajouter un autre article (${c.length} / $max)',
+                style: police(policeTexte, taille: 13.5, graisse: FontWeight.w700)),
+          ),
+        ),
+      _aide(context, mauvais ? 'Un lien ne semble pas valide (il doit commencer par https://).' : aide,
+          couleur: mauvais ? _orange : null),
+    ];
+  }
+}
+
 bool _lienValide(String l) {
   final u = Uri.tryParse(l.trim());
   return u != null && (u.scheme == 'https' || u.scheme == 'http') && u.host.contains('.');
@@ -565,7 +646,7 @@ class EcranProposerSujet extends StatefulWidget {
 
 class _EcranProposerSujetState extends State<EcranProposerSujet> {
   final _sujet = TextEditingController();
-  final _lien = TextEditingController();
+  late final _liens = _Liens(() => setState(() {}));
   final _video = TextEditingController();
   final _direct = TextEditingController();
   String _fil = 'science';
@@ -596,7 +677,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
     final i = widget.initiale;
     if (i != null) {
       _sujet.text = i.sujet ?? '';
-      _lien.text = i.lien ?? '';
+      _liens.remplir(i);
       _video.text = i.video ?? '';
       _direct.text = i.direct ?? '';
       _fil = i.fil ?? 'science';
@@ -604,7 +685,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
       _quand = i.quandPrecision ?? 'jour';
       _date = DateTime.tryParse(i.quand ?? '');
     }
-    for (final c in [_sujet, _lien, _video, _direct]) {
+    for (final c in [_sujet, _video, _direct]) {
       c.addListener(() => setState(() {}));
     }
   }
@@ -612,7 +693,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
   @override
   void dispose() {
     _sujet.dispose();
-    _lien.dispose();
+    _liens.dispose();
     _video.dispose();
     _direct.dispose();
     super.dispose();
@@ -621,7 +702,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
   bool get _pret {
     final n = compterMots(_sujet.text);
     if (n < _motsMin || n > _motsMax) return false;
-    if (_lien.text.trim().isNotEmpty && !_lienValide(_lien.text)) return false;
+    if (!_liens.valides) return false;
     if (_video.text.trim().isNotEmpty && !_videoValide(_video.text)) return false;
     if (_fil == 'a_venir' && _direct.text.trim().isNotEmpty && !_lienValide(_direct.text)) return false;
     if (_fil == 'a_venir') return _type != null && (_quand == 'inconnue' || _date != null);
@@ -721,7 +802,7 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
             'genre': 'sujet',
             'sujet': _sujet.text.trim(),
             'fil': _fil,
-            if (_lien.text.trim().isNotEmpty) 'lien': _lien.text.trim(),
+            ..._liens.champs(),
             if (_video.text.trim().isNotEmpty) 'video': _video.text.trim(),
             if (evenement && _direct.text.trim().isNotEmpty) 'direct': _direct.text.trim(),
             if (evenement) 'type_evt': _type,
@@ -773,16 +854,11 @@ class _EcranProposerSujetState extends State<EcranProposerSujet> {
                   : 'La page où suivre l’événement en direct (YouTube, Twitch, site officiel…).',
               couleur: _direct.text.trim().isNotEmpty && !_lienValide(_direct.text) ? _orange : null),
         ],
-        _etiquette(context, 'LIEN D’UN ARTICLE', 'facultatif'),
-        _champ(context, _lien, indice: 'https://…', clavier: TextInputType.url, max: 600),
-        _aide(
+        ..._liens.widgets(
             context,
-            _lien.text.trim().isNotEmpty && !_lienValide(_lien.text)
-                ? 'Ce lien ne semble pas valide (il doit commencer par https://).'
-                : evenement
-                    ? 'La date sera vérifiée, puis le lieu et l’heure complétés.'
-                    : 'Sans lien, des articles fiables sur le sujet seront cherchés.',
-            couleur: _lien.text.trim().isNotEmpty && !_lienValide(_lien.text) ? _orange : null),
+            evenement
+                ? 'Un article qui annonce l’événement : la date y sera vérifiée, puis le lieu et l’heure complétés.'
+                : 'Les articles qui parlent du sujet. Plusieurs sources donnent une fiche plus complète.'),
         ..._champVideo(context, _video),
       ],
     );
@@ -803,7 +879,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
   final _avant = TextEditingController();
   final _decouverte = TextEditingController();
   final _apres = TextEditingController();
-  final _lien = TextEditingController();
+  late final _liens = _Liens(() => setState(() {}));
   final _video = TextEditingController();
   String _fil = 'science';
   // Langue du texte : celle de l'app par défaut (traduit ensuite en français et en anglais).
@@ -813,7 +889,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
   // Mêmes longueurs que les fiches de l'agent (redaction.py), en mots : (minimum, maximum).
   static const _bornesAvant = (8, 45), _bornesDecouverte = (15, 85), _bornesApres = (8, 50);
 
-  List<TextEditingController> get _tous => [_titre, _avant, _decouverte, _apres, _lien, _video];
+  List<TextEditingController> get _tous => [_titre, _avant, _decouverte, _apres, _video];
 
   @override
   void initState() {
@@ -824,7 +900,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
       _avant.text = i.avant ?? '';
       _decouverte.text = i.decouverte ?? '';
       _apres.text = i.apres ?? '';
-      _lien.text = i.lien ?? '';
+      _liens.remplir(i);
       _video.text = i.video ?? '';
       _fil = i.fil == 'tech' ? 'tech' : 'science';
       if (i.langue != null) _langue = i.langue!;
@@ -839,6 +915,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
     for (final c in _tous) {
       c.dispose();
     }
+    _liens.dispose();
     super.dispose();
   }
 
@@ -850,7 +927,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
   bool get _pret {
     final n = compterMots(_titre.text);
     return n >= _motsMin && n <= _motsMax && _dans(_avant, _bornesAvant) && _dans(_decouverte, _bornesDecouverte) &&
-        _dans(_apres, _bornesApres) && _lienValide(_lien.text) &&
+        _dans(_apres, _bornesApres) && _liens.valides &&
         (_video.text.trim().isEmpty || _videoValide(_video.text));
   }
 
@@ -904,7 +981,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
             'avant': _avant.text.trim(),
             'decouverte': _decouverte.text.trim(),
             'apres': _apres.text.trim(),
-            'lien': _lien.text.trim(),
+            ..._liens.champs(),
             if (_video.text.trim().isNotEmpty) 'video': _video.text.trim(),
           },
           (v) => setState(() => _envoi = v),
@@ -932,9 +1009,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
         _etiquette(context, 'ET APRÈS ?'),
         _champ(context, _apres, indice: 'Ce que ça peut changer, et la limite principale…', lignes: 3, max: 600),
         _jauge(_apres, _bornesApres, 'Dis ce que ça change, et la limite.'),
-        _etiquette(context, 'LIEN DE L’ARTICLE SOURCE', 'obligatoire'),
-        _champ(context, _lien, indice: 'https://…', clavier: TextInputType.url, max: 600),
-        _aide(context, 'C’est lui qui permet de vérifier chaque fait.'),
+        ..._liens.widgets(context, 'Les articles qui permettent de vérifier chaque fait de ton texte.'),
         ..._champVideo(context, _video),
       ],
     );
@@ -1419,7 +1494,8 @@ class EcranApercuProposition extends StatelessWidget {
           ),
         lien(Icons.sensors_rounded, 'Suivre en direct', x.direct),
         lien(Icons.play_circle_outline_rounded, 'Voir la vidéo', x.video),
-        lien(Icons.article_outlined, 'Lire l’article', x.lien),
+        lien(Icons.article_outlined, x.liensSup.isEmpty ? 'Lire l’article' : 'Article 1', x.lien),
+        for (final (i, l) in x.liensSup.indexed) lien(Icons.article_outlined, 'Article ${i + 2}', l),
       ]),
     );
   }

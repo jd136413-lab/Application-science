@@ -17,12 +17,14 @@ class Proposition {
   final String id, genre, statut, texte;
   final String? categorie, fil, message, ficheId, resume, lien, infos;
   final String? sujet, titre, avant, decouverte, apres, video, typeEvt, quand, quandPrecision, langue, direct;
+  /// Liens d'articles en plus du premier (4 au plus, migration 020).
+  final List<String> liensSup;
   final DateTime cree;
   const Proposition({
     required this.id, required this.genre, required this.statut, required this.texte, required this.cree,
     this.categorie, this.fil, this.message, this.ficheId, this.resume, this.lien, this.infos,
     this.sujet, this.titre, this.avant, this.decouverte, this.apres, this.video, this.typeEvt, this.quand,
-    this.quandPrecision, this.langue, this.direct,
+    this.quandPrecision, this.langue, this.direct, this.liensSup = const [],
   });
 
   /// Envoyée il y a moins de 7 jours (limite par semaine).
@@ -52,6 +54,7 @@ class Proposition {
         quandPrecision: j['quand_precision']?.toString(),
         langue: j['langue']?.toString(),
         direct: j['direct']?.toString(),
+        liensSup: [for (final l in (j['liens_sup'] as List?) ?? const []) l.toString()],
       );
 }
 
