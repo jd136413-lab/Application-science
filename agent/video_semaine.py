@@ -60,8 +60,11 @@ def choisir_avancees():
             log(f"Avancée imposée : {r.json()[0]['title']}")
             return r.json()
         log(f"⚠ Aucune avancée ne correspond à « {impose} » : choix automatique.")
-    r = requests.get(f"{url}/rest/v1/advances", headers=h, timeout=30, params={
-        "select": champs, "created_at": f"gte.{depuis}", "order": "importance.desc,created_at.desc", "limit": "200"})
+    params = {"select": champs, "created_at": f"gte.{depuis}", "order": "importance.desc,created_at.desc", "limit": "200"}
+    # Pas les fiches en attente de validation (migration 023) ; sans la colonne, on fait comme avant.
+    r = requests.get(f"{url}/rest/v1/advances", headers=h, timeout=30, params={**params, "en_attente": "is.false"})
+    if r.status_code == 400:
+        r = requests.get(f"{url}/rest/v1/advances", headers=h, timeout=30, params=params)
     r.raise_for_status()
     fiches = r.json()
     if not fiches:

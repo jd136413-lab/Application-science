@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'detail.dart';
 import 'propositions.dart';
 import 'reglages.dart';
 import 'soumettre.dart' show Pastille;
@@ -22,7 +23,7 @@ class EcranBoiteIdees extends StatefulWidget {
 
 class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
   late Future<List<Proposition>> _liste = toutesLesPropositions();
-  String _filtre = 'nouvelles'; // nouvelles · ameliorations · toutes
+  String? _filtre; // a_valider · nouvelles · ameliorations · toutes (null : « À valider » s'il y en a)
 
   Future<void> _recharger() async {
     final f = toutesLesPropositions();
@@ -50,6 +51,7 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
         'publiee' => ('Publiée', _vert),
         'refusee' => ('Refusée', _rouge),
         'en_cours' => ('En cours', _orange),
+        'a_valider' => ('À valider', _orange),
         _ => ('Nouvelle', logoEncreBleue),
       };
 
@@ -59,6 +61,64 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
     if (j == 0 && d.day == DateTime.now().day) return 'aujourd’hui $h';
     if (j <= 1) return 'hier $h';
     return '${d.day}/${d.month.toString().padLeft(2, '0')} $h';
+  }
+
+  /// Ouvre la fiche en attente telle qu'elle apparaîtra dans le fil.
+  Future<void> _voirFiche(Proposition x) async {
+    try {
+      final a = await adminFiche(x.ficheId ?? '');
+      if (!mounted) return;
+      if (a == null) {
+        afficherMessage(context, 'Fiche introuvable', icone: Icons.error_outline_rounded);
+        return;
+      }
+      await Navigator.of(context).push(MaterialPageRoute(builder: (_) => EcranDetailFil(liste: [a], depart: 0)));
+    } catch (_) {
+      if (mounted) afficherMessage(context, 'Impossible d’ouvrir la fiche (réseau ?)', icone: Icons.error_outline_rounded);
+    }
+  }
+
+  /// Publier ou refuser une fiche en attente (résumé écrit par un lecteur).
+  Future<void> _valider(Proposition x, bool publier) async {
+    String? raison;
+    if (!publier) {
+      final c = TextEditingController();
+      final p = palette(context);
+      final ok = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          backgroundColor: p.carte,
+          title: Text('Refuser cette fiche ?',
+              style: police(policeTitres, taille: 19, graisse: FontWeight.w700, couleur: p.texte)),
+          content: TextField(
+            controller: c,
+            maxLength: 200,
+            maxLines: 3,
+            minLines: 1,
+            decoration: const InputDecoration(hintText: 'Raison montrée au lecteur (facultatif)'),
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Annuler')),
+            FilledButton(
+                style: FilledButton.styleFrom(backgroundColor: _rouge, foregroundColor: Colors.white),
+                onPressed: () => Navigator.pop(ctx, true),
+                child: const Text('Refuser')),
+          ],
+        ),
+      );
+      if (ok != true) return;
+      raison = c.text.trim();
+    }
+    try {
+      final fait = await adminValider(x.id, publier: publier, message: raison);
+      if (!mounted) return;
+      afficherMessage(context,
+          !fait ? 'Déjà traitée, ou code refusé.' : publier ? 'Publiée dans le fil ✓' : 'Refusée : le lecteur verra la raison.',
+          icone: fait ? Icons.check_circle_outline_rounded : Icons.error_outline_rounded);
+      await _recharger();
+    } catch (_) {
+      if (mounted) afficherMessage(context, 'Action impossible (réseau ?)', icone: Icons.error_outline_rounded);
+    }
   }
 
   Future<void> _actions(Proposition x) async {
@@ -92,6 +152,20 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
               const SizedBox(height: 8),
               Text(x.message!, style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
             ],
+            if (x.statut == 'a_valider') ...[
+              const SizedBox(height: 16),
+              for (final (cle, nom, icone) in const [
+                ('voir', 'Voir la fiche telle qu’elle apparaîtra', Icons.visibility_outlined),
+                ('publier', 'Publier', Icons.check_circle_outline_rounded),
+                ('refuser', 'Refuser', Icons.block_rounded),
+              ])
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(icone, color: cle == 'publier' ? _vert : cle == 'refuser' ? _rouge : p.texte),
+                  title: Text(nom, style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
+                  onTap: () => Navigator.pop(ctx, cle),
+                ),
+            ],
             if (x.genre == 'amelioration') ...[
               const SizedBox(height: 16),
               for (final (cle, nom, icone) in const [
@@ -113,6 +187,8 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
       ),
     );
     if (choix == null) return;
+    if (choix == 'voir') return _voirFiche(x);
+    if (choix == 'publier' || choix == 'refuser') return _valider(x, choix == 'publier');
     try {
       await changerStatut(x.id, choix);
       await _recharger();
@@ -147,8 +223,15 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
           }
           final toutes = s.data ?? [];
           final nouvelles = toutes.where((x) => x.statut == 'nouvelle' && x.genre == 'amelioration').toList();
+          final aValider = toutes.where((x) => x.statut == 'a_valider').toList();
+          final filtre = _filtre ?? (aValider.isNotEmpty ? 'a_valider' : 'nouvelles');
           final amelio = toutes.where((x) => x.genre == 'amelioration').toList();
-          final liste = switch (_filtre) { 'nouvelles' => nouvelles, 'ameliorations' => amelio, _ => toutes };
+          final liste = switch (filtre) {
+            'a_valider' => aValider,
+            'nouvelles' => nouvelles,
+            'ameliorations' => amelio,
+            _ => toutes,
+          };
           return RefreshIndicator(
             onRefresh: _recharger,
             child: ListView(padding: const EdgeInsets.fromLTRB(16, 0, 16, 24), children: [
@@ -157,20 +240,21 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
               const SizedBox(height: 12),
               Wrap(spacing: 6, children: [
                 for (final (cle, nom) in [
+                  ('a_valider', 'À valider · ${aValider.length}'),
                   ('nouvelles', 'Nouvelles · ${nouvelles.length}'),
                   ('ameliorations', 'Améliorations · ${amelio.length}'),
                   ('toutes', 'Tout · ${toutes.length}'),
                 ])
                   ChoiceChip(
                     label: Text(nom),
-                    selected: _filtre == cle,
+                    selected: filtre == cle,
                     showCheckmark: false,
                     onSelected: (_) => setState(() => _filtre = cle),
                     labelStyle: police(policeTexte,
-                        taille: 13, graisse: FontWeight.w800, couleur: _filtre == cle ? p.surEncre : p.texteDiscret),
+                        taille: 13, graisse: FontWeight.w800, couleur: filtre == cle ? p.surEncre : p.texteDiscret),
                     selectedColor: p.encre,
                     backgroundColor: p.carte,
-                    side: BorderSide(color: _filtre == cle ? p.encre : p.bordure),
+                    side: BorderSide(color: filtre == cle ? p.encre : p.bordure),
                   ),
               ]),
               const SizedBox(height: 12),

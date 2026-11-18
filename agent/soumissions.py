@@ -63,6 +63,7 @@ TYPES_LECTEUR = {t: t for t in ("lancement", "arrivee", "ciel", "sortie", "prese
 
 class Base:
     essais_ok = False
+    validation_ok = False     # migration 023 lancée : les résumés attendent la validation de Maxime
     connues: set = set()
     retirees: set = set()
 
@@ -81,6 +82,14 @@ class Base:
                                           params={"select": "essais", "limit": "1"}).ok
         except Exception:
             self.essais_ok = False
+        try:
+            self.validation_ok = requests.get(self.url.replace("/submissions", "/advances"), headers=self.h, timeout=30,
+                                              params={"select": "en_attente", "limit": "1"}).ok
+        except Exception:
+            self.validation_ok = False
+        if not self.validation_ok:
+            log("⚠ Colonne « en_attente » absente : les résumés sont publiés sans ta validation "
+                "(lancer database/migration_023_validation_admin.sql)")
         p = dict(self.h, Prefer="return=minimal")
         requests.patch(self.url, headers=p, timeout=30, params={"statut": "eq.en_cours"},
                        json={"statut": "nouvelle"}).raise_for_status()
@@ -610,6 +619,11 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
 
     # 4. Enregistrement (même table et mêmes contrôles que l'agent), avec le bandeau « proposée »
     ligne["proposee"] = True
+    # 18/11 : un résumé écrit par un lecteur est enregistré caché ; il n'apparaît qu'après « Publier »
+    # dans la boîte à idées (migration 023). Les sujets, rédigés par l'IA, sont publiés directement.
+    attente = genre == "resume" and base.validation_ok
+    if attente:
+        ligne["en_attente"] = True
     vp = video_proposee(client, prop, ligne["title"], ligne.get("summary", ""), conso)
     if vp:
         ligne["video_url"], ligne["video_titre"] = vp["url"], vp["titre"]
@@ -623,8 +637,9 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
     if ligne.get("_videos"):
         videos.attacher(db.base, db.headers, ligne.get("id"), ligne["title"], ligne.get("summary", ""),
                         ligne["_videos"], client, MODELE["id"], conso, log)
-    base.maj(sid, statut="publiee", fiche_id=ligne.get("id"), message=message[:600])
-    log(f"  ✔ publiée [{ligne['importance']}★ {ligne['theme']}] : {ligne['title']}")
+    base.maj(sid, statut="a_valider" if attente else "publiee", fiche_id=ligne.get("id"), message=message[:600])
+    log(f"  {'⏸ prête, en attente de ta validation' if attente else '✔ publiée'} "
+        f"[{ligne['importance']}★ {ligne['theme']}] : {ligne['title']}")
 
 
 def principal() -> int:
@@ -676,7 +691,8 @@ def principal() -> int:
             traduction.passage_agent(db, client, ajoutes, log)
         except Exception as ex:
             log(f"⚠ Traductions non faites ({ex.__class__.__name__})")
-    log(f"\nBilan : {len(ajoutes)} fiche(s) publiée(s) · coût ≈ {cout(conso):.3f} $")
+    log(f"\nBilan : {len(ajoutes)} fiche(s) préparée(s) (les résumés attendent ta validation dans la boîte à idées) "
+        f"· coût ≈ {cout(conso):.3f} $")
     return 0
 
 
