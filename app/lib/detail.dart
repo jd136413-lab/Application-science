@@ -247,6 +247,32 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
   /// Bulle ouverte : (n° du paragraphe, mot touché).
   (int, MotMarque)? _bulle;
 
+  @override
+  void initState() {
+    super.initState();
+    _traduireMots();
+  }
+
+  /// App dans une autre langue : traduit à l'avance les mots repérés (gardés sur le téléphone),
+  /// pour les retrouver dans le texte traduit. Les mots traduits par l'agent sont déjà prêts.
+  Future<void> _traduireMots() async {
+    if (etat.langue == 'fr') return;
+    final a = widget.avancee;
+    final langue = etat.langue;
+    var nouveau = false;
+    for (final m in _marques('${a.avant} ${a.decouverte} ${a.apres}')) {
+      if ((m.traduction ?? traductionImmediate(m.mot)) != null) continue;
+      try {
+        final t = await traduireMot(m.mot);
+        if (t.trim().isNotEmpty && t != m.mot) {
+          etat.garderTraductionMot(m.mot, langue, t.trim());
+          nouveau = true;
+        }
+      } catch (_) {}
+    }
+    if (nouveau && mounted) setState(() {});
+  }
+
   /// Mots à repérer dans ce texte : ceux de la fiche (nouveaux ou non) et ceux du Vocabulaire qu'il contient.
   List<MotMarque> _marques(String texte) {
     final bas = texte.toLowerCase();
@@ -256,12 +282,17 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
       if (!bas.contains(cle)) continue;
       final appris = etat.vocabulaire.where((v) => v.mot.toLowerCase() == cle).firstOrNull;
       res[cle] = MotMarque(
-          mot: m.mot, definition: m.definition, nouveau: !_connusAvant.contains(cle), appris: appris?.appris);
+          mot: m.mot,
+          definition: m.definition,
+          nouveau: !_connusAvant.contains(cle),
+          appris: appris?.appris,
+          traduction: appris?.traductions[etat.langue]);
     }
     for (final v in etat.vocabulaire) {
       final cle = v.mot.toLowerCase();
       if (res.containsKey(cle) || !_connusAvant.contains(cle) || cle.length < 3 || !bas.contains(cle)) continue;
-      res[cle] = MotMarque(mot: v.mot, definition: v.definition, nouveau: false, appris: v.appris);
+      res[cle] = MotMarque(
+          mot: v.mot, definition: v.definition, nouveau: false, appris: v.appris, traduction: v.traductions[etat.langue]);
     }
     return res.values.toList();
   }
@@ -269,8 +300,10 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
   Widget _bulleMot(MotMarque m) {
     final p = palette(context);
     final c = m.nouveau ? const Color(0xFF2FC27B) : p.texteDiscret;
-    const mois = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
-    final quand = m.appris == null ? '' : 'Appris le ${m.appris!.day} ${mois[m.appris!.month - 1]}';
+    final d = m.appris;
+    final quand = d == null
+        ? ''
+        : trv('Appris le {date}', {'date': '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}'});
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(top: 8),
@@ -281,21 +314,21 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
         border: Border.all(color: c.withValues(alpha: 0.45), width: 1.5),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text.rich(TextSpan(children: [
-          TextSpan(
-              text: m.mot,
+        Wrap(spacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: [
+          TexteArticle(m.mot,
+              original: _original,
               style: police(policeTexte, taille: 14.5, graisse: FontWeight.w800, couleur: p.texte)),
-          TextSpan(
-              text: m.nouveau ? '   + nouveau mot' : '   ✓ déjà dans ton Vocabulaire',
+          Text(m.nouveau ? '+ ${tr('nouveau mot')}' : '✓ ${tr('déjà dans ton Vocabulaire')}',
               style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: c)),
-        ])),
+        ]),
         const SizedBox(height: 4),
-        Text(m.definition, style: police(policeTexte, taille: 14, couleur: p.texte, hauteur: 1.45)),
+        TexteArticle(m.definition,
+            original: _original, style: police(policeTexte, taille: 14, couleur: p.texte, hauteur: 1.45)),
         Row(children: [
           Expanded(
-              child: Text(m.nouveau ? 'Ajouté à ton Vocabulaire' : quand,
+              child: Text(m.nouveau ? tr('Ajouté à ton Vocabulaire') : quand,
                   style: police(policeTexte, taille: 12, couleur: p.texteDiscret))),
-          TextButton(onPressed: () => setState(() => _bulle = null), child: const Text('Fermer')),
+          TextButton(onPressed: () => setState(() => _bulle = null), child: Text(tr('Fermer'))),
         ]),
       ]),
     );
