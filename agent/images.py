@@ -65,9 +65,13 @@ def accorder_videos(table_url: str, headers: dict, log=print) -> int:
 
 # ----------------------------------------------------------------------------- C : photo libre vérifiée
 
-CONSIGNE_RECHERCHE = """On illustre une fiche d'actualité scientifique ou technologique avec une PHOTO libre de droits de Wikimedia Commons. Propose 0 à 2 recherches (2 à 4 mots, en anglais) pour trouver une photo qui montre EXACTEMENT la chose concrète dont parle la fiche : l'appareil, le véhicule, l'instrument, le lieu, le site, l'espèce, l'objet ou le bâtiment NOMMÉS. Jamais une personne, jamais un concept. Si la fiche ne parle de rien de précis et photographiable (étude statistique, théorie, calcul, molécule, logiciel, médicament…), renvoie une liste vide. Réponds en JSON."""
-SCHEMA_RECHERCHE = {"type": "object", "properties": {"recherches": {"type": "array", "items": {"type": "string"}}},
-                    "required": ["recherches"], "additionalProperties": False}
+CONSIGNE_RECHERCHE = """On illustre une fiche d'actualité scientifique ou technologique avec une PHOTO libre de droits de Wikimedia Commons, seulement si on peut montrer EXACTEMENT la chose dont elle parle.
+1. "nom_exact" : le NOM PROPRE de la chose concrète et unique au centre de la fiche, tel qu'on l'écrirait en anglais : un appareil ou véhicule nommé (« Starship », « Ingenuity », « James Webb Space Telescope »), un lieu ou site précis (« Chengjiang », « Mount Etna »), une espèce (nom courant ou scientifique). Laisse "" si la fiche n'a pas de tel nom : des robots, des chercheurs, une étude, une molécule, un logiciel, une méthode, un médicament, un concept, ou une chose seulement décrite (« un nouveau drone », « 20 petits robots »). Jamais une personne ni une entreprise seule.
+2. "recherches" : si "nom_exact" n'est pas vide, 1 à 2 recherches (2 à 4 mots, en anglais) qui contiennent ce nom ; sinon, liste vide.
+Réponds en JSON."""
+SCHEMA_RECHERCHE = {"type": "object", "properties": {"nom_exact": {"type": "string"},
+                                                      "recherches": {"type": "array", "items": {"type": "string"}}},
+                    "required": ["nom_exact", "recherches"], "additionalProperties": False}
 
 CONSIGNE_CHOIX = """Tu choisis la photo d'une fiche d'actualité scientifique ou technologique, parmi des photos libres de droits numérotées. Garde UNE photo seulement si tu es SÛR, en la regardant, qu'elle montre exactement le sujet de la fiche : le même appareil, véhicule, lieu, site, espèce ou objet (pas un modèle semblable, pas une illustration générale du domaine). Elle doit être une vraie photo nette : jamais un schéma, un logo, une carte, un graphique, une capture d'écran, un texte, un dessin. Jamais une photo dont le sujet principal est une personne. Dans le moindre doute, réponds -1 (pas d'image) : une fiche sans image vaut mieux qu'une image fausse. Réponds en JSON."""
 SCHEMA_CHOIX = {"type": "object", "properties": {"choix": {"type": "integer"}, "raison": {"type": "string"}},
@@ -82,7 +86,10 @@ def _json_appel(client, modele_id: str, systeme: str, contenu, schema: dict, con
     conso["in"] += rep.usage.input_tokens or 0
     conso["out"] += rep.usage.output_tokens or 0
     t = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
-    return json.loads(t[t.find("{"):t.rfind("}") + 1])
+    try:
+        return json.loads(t[t.find("{"):t.rfind("}") + 1])
+    except ValueError:
+        return {}
 
 
 def _sans_html(t: str) -> str:
@@ -95,7 +102,8 @@ def candidats_commons(recherche: str, n: int = 6) -> list[dict]:
         "action": "query", "format": "json", "generator": "search", "gsrsearch": f"{recherche} filetype:bitmap",
         "gsrnamespace": "6", "gsrlimit": "12", "prop": "imageinfo", "iiprop": "url|size|mime|extmetadata",
         "iiurlwidth": "1280"})
-    r.raise_for_status()
+    if not r.ok or "json" not in r.headers.get("content-type", ""):
+        return []
     pages = sorted((r.json().get("query") or {}).get("pages", {}).values(), key=lambda p: p.get("index", 99))
     res = []
     for p in pages:
@@ -110,8 +118,9 @@ def candidats_commons(recherche: str, n: int = 6) -> list[dict]:
         grande = ii.get("thumburl") or ii.get("url")
         if not grande or not grande.startswith("https://upload.wikimedia.org/"):
             continue
-        res.append({"url": grande, "petite": grande.replace("/1280px-", "/400px-"), "licence": licence,
-                    "auteur": auteur, "titre": p.get("title", "")})
+        desc = _sans_html((meta.get("ImageDescription") or {}).get("value", ""))[:300]
+        res.append({"url": grande.split("?")[0], "petite": grande.split("?")[0].replace("/1280px-", "/400px-"),
+                    "licence": licence, "auteur": auteur, "titre": p.get("title", ""), "description": desc})
         if len(res) >= n:
             break
     return res
@@ -132,25 +141,37 @@ def _image_b64(url: str) -> dict | None:
 def photo_libre(client, modele_id: str, fiche: dict, conso: dict, log=print) -> dict | None:
     """Une photo Commons sûre pour cette fiche, ou None."""
     sujet = f"Titre : {fiche.get('title', '')}\nDécouverte : {fiche.get('decouverte') or fiche.get('summary') or ''}"
-    recherches = [str(x).strip() for x in _json_appel(client, modele_id, CONSIGNE_RECHERCHE, sujet, SCHEMA_RECHERCHE,
-                                                       conso).get("recherches", []) if str(x).strip()][:2]
-    if not recherches:
+    rech = _json_appel(client, modele_id, CONSIGNE_RECHERCHE, sujet, SCHEMA_RECHERCHE, conso)
+    nom = " ".join(str(rech.get("nom_exact", "")).split())
+    recherches = [str(x).strip() for x in rech.get("recherches", []) if str(x).strip()][:2]
+    if len(nom) < 3 or not recherches:
+        log("  · pas de chose précise et nommée à montrer : pas d'image")
         return None
+    # Le nom doit figurer dans le titre ou la description du fichier (sinon : photo d'une chose « semblable »)
+    mots_nom = [m for m in re.findall(r"[a-z0-9]+", nom.lower()) if len(m) >= 3] or [nom.lower()]
+    def parle_du_nom(c):
+        t = (c["titre"] + " " + c["description"]).lower()
+        return all(m in t for m in mots_nom)
     vus, cands = set(), []
     for q in recherches:
-        for c in candidats_commons(q):
-            if c["url"] not in vus:
+        try:
+            trouves = candidats_commons(q)
+        except Exception:
+            trouves = []
+        for c in trouves:
+            if c["url"] not in vus and parle_du_nom(c):
                 vus.add(c["url"])
                 cands.append(c)
     blocs, gardes = [], []
     for c in cands[:6]:
         img = _image_b64(c["petite"]) or _image_b64(c["url"])
         if img:
-            blocs += [{"type": "text", "text": f"Photo {len(gardes)} :"}, img]
+            blocs += [{"type": "text", "text": f"Photo {len(gardes)} — fichier « {c['titre']} » : {c['description'][:150]}"}, img]
             gardes.append(c)
     if not gardes:
         return None
-    rep = _json_appel(client, modele_id, CONSIGNE_CHOIX, [{"type": "text", "text": sujet}] + blocs, SCHEMA_CHOIX, conso)
+    rep = _json_appel(client, modele_id, CONSIGNE_CHOIX,
+                      [{"type": "text", "text": f"{sujet}\nChose à montrer : {nom}"}] + blocs, SCHEMA_CHOIX, conso)
     k = rep.get("choix", -1)
     if not isinstance(k, int) or not 0 <= k < len(gardes):
         log(f"  · pas de photo sûre ({str(rep.get('raison', ''))[:70]})")
