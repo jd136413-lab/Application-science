@@ -28,6 +28,7 @@ import 'stats.dart';
 import 'texte_article.dart';
 import 'traducteur.dart';
 import 'widgets.dart';
+import 'pubs.dart' show prechargerPubs;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,6 +63,8 @@ class _AppNovaStemState extends State<AppNovaStem> {
           'ne sont pas arrivés jusqu’à la compilation.';
     }
     await etat.charger(); // mémoire du téléphone : domaines, favoris, thème, langue
+    // Pubs préparées dès maintenant (consentement, AdMob, préchargement), en parallèle du reste.
+    if (etat.premierLancementFait) prechargerPubs();
     await chargerTraductionsGardees(); // traductions déjà faites par le téléphone
     // Langue sans traduction de l'agent : modèle du téléphone préparé dès maintenant.
     if (!languesTraduitesParAgent.contains(etat.langue)) unawaited(preparerTraduction(etat.langue));

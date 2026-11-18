@@ -37,3 +37,5 @@ Future<bool> acheterSansPub() async => false;
 Future<void> restaurerAchats() async {}
 Future<bool> choixConfidentialiteDisponible() async => false;
 Future<void> ouvrirChoixConfidentialite() async {}
+
+void prechargerPubs() {}

@@ -28,17 +28,19 @@ import 'widgets.dart';
 const String _testBandeau = 'ca-app-pub-3940256099942544/9214589741';
 
 bool _demarre = false;
+Future<void>? _preparation;
+DateTime? _debutAccueil;
 
-/// Appelé une fois l'accueil affiché (après la présentation du premier lancement).
-Future<void> demarrerPubs() async {
-  if (_demarre || !Platform.isAndroid) return;
-  _demarre = true;
-  unawaited(_demarrerAchats());
+/// Appelé TRÈS TÔT au démarrage de l'app (18/11/2026), quand la présentation du premier
+/// lancement est déjà faite : consentement, démarrage d'AdMob et préchargement se font
+/// pendant que l'app charge ses données. Les pubs sont ainsi prêtes en arrivant sur l'accueil.
+void prechargerPubs() {
+  if (!Platform.isAndroid) return;
+  _preparation ??= _preparer();
+}
+
+Future<void> _preparer() async {
   if (!pubsConfigurees || !etat.pubsVoulues) return;
-  // Écran de chargement : jusqu'à ce que les pubs des 2 accueils soient prêtes,
-  // 3 s au plus après le démarrage d'AdMob, 4 s au plus en tout.
-  ecranChargementPubs.value = true;
-  Timer(const Duration(seconds: 4), _finChargement); // 4 s au plus (choix de Maxime, 10/11)
   try {
     // 1) Consentement RGPD (formulaire de Google, seulement si nécessaire).
     final fini = Completer<void>();
@@ -61,22 +63,46 @@ Future<void> demarrerPubs() async {
     pubsPretes.value = true;
     // 3) Préchargement : les annonces sont prêtes AVANT d'arriver à l'écran.
     _reserve.remplir();
-    Timer(const Duration(seconds: 3), _finChargement);
-    void verifier() {
-      // Les 2 pubs d'accueil sont prêtes, ou Google n'en a pas (plus rien en cours) : on ouvre.
-      if (_reserve.nbPretes(FormatPub.accueil) + _reserve.prises(FormatPub.accueil) >= 2 ||
-          !_reserve.chargeEncore(FormatPub.accueil)) {
-        _reserve.change.removeListener(verifier);
-        _finChargement();
-      }
-    }
-    _reserve.change.addListener(verifier);
     etat.addListener(() => etat.pubsVoulues ? _reserve.remplir() : _reserve.vider());
   } catch (_) {
     // Pas de pub plutôt qu'une app qui plante.
   }
-  if (!pubsPretes.value) _finChargement();
 }
+
+/// Les pubs des 2 accueils sont prêtes (ou Google n'en a pas : plus rien en cours).
+bool _accueilsPrets() =>
+    _reserve.nbPretes(FormatPub.accueil) + _reserve.prises(FormatPub.accueil) >= 2 ||
+    (pubsPretes.value && !_reserve.chargeEncore(FormatPub.accueil));
+
+/// Appelé une fois l'accueil affiché (après la présentation du premier lancement).
+Future<void> demarrerPubs() async {
+  if (_demarre || !Platform.isAndroid) return;
+  _demarre = true;
+  _debutAccueil = DateTime.now();
+  unawaited(_demarrerAchats());
+  if (!pubsConfigurees || !etat.pubsVoulues) return;
+  prechargerPubs();
+  // Déjà prêtes (préchargées pendant le démarrage) : pas d'écran de chargement du tout.
+  if (pubsPretes.value && _accueilsPrets()) return;
+  // Sinon, écran de chargement jusqu'à ce que les pubs des 2 accueils soient prêtes, 4 s au plus.
+  ecranChargementPubs.value = true;
+  Timer(const Duration(seconds: 4), _finChargement); // 4 s au plus (choix de Maxime, 10/11)
+  void verifier() {
+    if (_accueilsPrets()) {
+      _reserve.change.removeListener(verifier);
+      _finChargement();
+    }
+  }
+  _reserve.change.addListener(verifier);
+  await _preparation;
+  if (!pubsPretes.value) _finChargement();
+  verifier();
+}
+
+/// Pendant les 20 premières secondes sur l'accueil, une pub d'accueil arrivée en retard
+/// est quand même affichée (avec une petite animation) au lieu de laisser la case vide.
+bool get _accueilRecent =>
+    _debutAccueil != null && DateTime.now().difference(_debutAccueil!) < const Duration(seconds: 20);
 
 void _finChargement() => ecranChargementPubs.value = false;
 
@@ -313,7 +339,7 @@ class _EmplacementState extends State<_Emplacement> {
     if (_pub != null || !mounted || widget.format == FormatPub.bandeau) return;
     // Pendant l'écran de chargement, rien n'est visible derrière : on peut prendre l'annonce
     // tout de suite, elle sera déjà en place quand l'accueil apparaît (bug vu le 08/11).
-    if (ecranChargementPubs.value) {
+    if (ecranChargementPubs.value || (widget.format == FormatPub.accueil && _accueilRecent)) {
       _prendre();
       return;
     }
@@ -336,7 +362,14 @@ class _EmplacementState extends State<_Emplacement> {
   }
 
   @override
-  Widget build(BuildContext context) => ListenableBuilder(
+  Widget build(BuildContext context) => AnimatedSize(
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeOutCubic,
+        alignment: Alignment.topCenter,
+        child: _construire(context),
+      );
+
+  Widget _construire(BuildContext context) => ListenableBuilder(
         listenable: Listenable.merge([pubsPretes, etat]),
         builder: (context, _) {
           final pub = _pub;
