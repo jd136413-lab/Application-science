@@ -367,10 +367,11 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
                  f"(annonce, rumeur, opinion ou publicité). {str(rep.get('explanation', ''))[:200]}".strip())
         log(f"  – refusée : {decision}")
         return
-    fil = prop.get("fil") if prop.get("fil") in ("science", "tech") else ("science" if decision == "both" else decision)
-    if fil not in ("science", "tech"):
-        fil = "science"
-    ligne = agent.preparer_ligne(fil, rep.get(fil) or rep.get(decision) or {}, art)
+    # Le fil choisi par le lecteur est gardé s'il correspond au tri ; sinon, celui du tri
+    # (18/11 : sujet proposé en « Sciences » mais classé « Technologies » → fiche vide, erreur).
+    fils_tri = ["science", "tech"] if decision == "both" else [decision]
+    fil = prop.get("fil") if prop.get("fil") in fils_tri else fils_tri[0]
+    ligne = agent.preparer_ligne(fil, rep.get(fil) or {}, art)
 
     # 3. Écriture : par l'IA (sujet) ou vérification du texte du lecteur (résumé)
     message = ""
