@@ -80,7 +80,7 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
             if ((x.lien ?? '').isNotEmpty) ...[
               const SizedBox(height: 8),
               GestureDetector(
-                onTap: () => launchUrl(Uri.parse(x.lien!), mode: LaunchMode.externalApplication),
+                onTap: () { final l = Uri.tryParse(x.lien!); if (l != null) launchUrl(l, mode: LaunchMode.externalApplication); },
                 child: Text(x.lien!,
                     style: police(policeTexte, taille: 13, couleur: logoEncreBleue), maxLines: 2, overflow: TextOverflow.ellipsis),
               ),

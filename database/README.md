@@ -2,8 +2,8 @@
 
 Tous ces fichiers se lancent **à la main**, une seule fois, dans Supabase :
 SQL Editor → New query → New blank query → coller → Run.
-Ils sont tous déjà passés sur la base actuelle (projet `seqpmcovknfgppdolhns`).
-Une nouvelle migration prend le numéro suivant (prochaine : **022**).
+Ils sont tous déjà passés sur la base actuelle, sauf la 022 (à lancer) (projet `seqpmcovknfgppdolhns`).
+Une nouvelle migration prend le numéro suivant (prochaine : **023**).
 
 | Fichier | Date | Ce qu'il fait |
 |---|---|---|
@@ -29,6 +29,7 @@ Une nouvelle migration prend le numéro suivant (prochaine : **022**).
 | `migration_019_soumissions_limites.sql` | 17/11 | Limite par semaine, détail d'une proposition |
 | `migration_020_soumissions_liens.sql` | 18/11 | Jusqu'à 5 liens par proposition |
 | `migration_021_admin_suppression.sql` | 18/11 | Suppression d'une fiche par l'administrateur |
+| `migration_022_soumissions_securite.sql` | 18/11 | Sécurité des propositions : contrôles dans la base, plafond global, code admin protégé |
 | `reset.sql` | — | ⚠️ **Remise à zéro irréversible** (phase de test seulement) : ne pas lancer |
 
 Il n'y a pas de 010 (numéro sauté), et deux 004 / deux 005 (créées le même jour) : c'est normal.

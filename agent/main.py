@@ -221,7 +221,9 @@ class Supabase:
             r = requests.get(self.base_vus, headers=self.headers, timeout=30,
                              params={"select": "url", "limit": "20000"})
             r.raise_for_status()
-            return {x["url"] for x in r.json()}
+            # Comparés sous la même forme que les liens des flux (18/11 : les fiches supprimées par
+            # l'administrateur sont notées avec leur adresse brute, www. ou / final compris).
+            return {normaliser_url(x["url"]) for x in r.json()}
         except Exception as ex:
             self.memoire_ok = False
             log(f"⚠ Mémoire des articles écartés indisponible ({ex.__class__.__name__}) : "
@@ -1049,20 +1051,24 @@ def _meta(page: str, *noms: str) -> str:
     return ""
 
 
-def lire_page(art: dict, n: int = 6000) -> None:
+def lire_page(art: dict, n: int = 6000, page: str | None = None) -> None:
     """Qualité des résumés (02/11) : on lit l'article lui-même (chapeau et paragraphes,
     6 000 caractères au plus) au lieu du seul extrait du flux, pour que Claude ait les
     chiffres, la méthode et les limites.
     Coût : environ 1 000 mots de plus à lire par article examiné (≈ 0,001 $ par passage)."""
-    try:
-        r = requests.get(art["url"], timeout=20, headers={"User-Agent": USER_AGENT})
-        art["statut_page"] = r.status_code
-        if not r.ok or "html" not in r.headers.get("content-type", ""):
+    # page : déjà téléchargée par l'appelant (soumissions.py, téléchargement contrôlé, 18/11)
+    if page is None:
+        try:
+            r = requests.get(art["url"], timeout=20, headers={"User-Agent": USER_AGENT})
+            art["statut_page"] = r.status_code
+            if not r.ok or "html" not in r.headers.get("content-type", ""):
+                return
+            page = r.text[:1500000]
+        except Exception as ex:
+            art["statut_page"] = ex.__class__.__name__
             return
-        page = r.text[:1500000]
-    except Exception as ex:
-        art["statut_page"] = ex.__class__.__name__
-        return
+    else:
+        art["statut_page"] = 200
     # Vidéos à l'appui (08/11) : liens YouTube / Vimeo / Dailymotion du corps de l'article (videos.py)
     try:
         deja = art.get("videos") or []

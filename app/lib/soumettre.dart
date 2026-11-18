@@ -626,9 +626,13 @@ Future<void> _envoyer(BuildContext context, Map<String, dynamic> champs, void Fu
     if (context.mounted) {
       afficherMessage(
           context,
-          e.toString().contains('limite_semaine') || e.toString().contains('trop de propositions')
+          e.toString().contains('limite_semaine')
               ? 'Tu as déjà fait cette sorte de proposition cette semaine (1 par semaine).'
-              : 'Envoi impossible. Vérifie ta connexion et réessaie.',
+              : e.toString().contains('trop_de_propositions')
+                  ? 'Beaucoup de propositions arrivent en ce moment : réessaie dans une heure.'
+                  : e.toString().contains('proposition_invalide')
+                      ? 'Un champ n’est pas accepté (texte vide ou lien incorrect). Vérifie et réessaie.'
+                      : 'Envoi impossible. Vérifie ta connexion et réessaie.',
           icone: Icons.error_outline_rounded);
     }
   }
@@ -1059,9 +1063,9 @@ class _EcranProposerAmeliorationState extends State<EcranProposerAmelioration> {
         context,
         {
           'genre': 'amelioration',
-          'sujet': t.length > 400 ? '${t.substring(0, 397)}…' : t,
-          if (t.length > 400) 'resume': t,
-          if (infos != null) 'infos': infos.length > 200 ? infos.substring(0, 200) : infos,
+          'sujet': t.characters.length > 390 ? '${t.characters.take(380)}…' : t,
+          if (t.characters.length > 390) 'resume': t,
+          if (infos != null) 'infos': infos.characters.take(150).toString(),
         },
         (v) => setState(() => _envoi = v),
         modifier: widget.initiale);
@@ -1425,7 +1429,7 @@ class EcranApercuProposition extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
-            onTap: () => launchUrl(Uri.parse(u), mode: LaunchMode.externalApplication),
+            onTap: () { final l = Uri.tryParse(u); if (l != null) launchUrl(l, mode: LaunchMode.externalApplication); },
             child: Padding(
               padding: const EdgeInsets.all(14),
               child: Row(children: [
