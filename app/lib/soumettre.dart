@@ -31,6 +31,7 @@ String _date(DateTime d) {
       'refusee' => ('Non publiée', _rouge),
       'ignoree' => ('Classée', _rouge),
       'en_cours' => ('En vérification', _orange),
+      'a_valider' => ('Relecture', _orange),
       'a_faire' => ('À faire', _orange),
       _ => ('Reçue', logoEncreBleue),
     };
@@ -1136,6 +1137,8 @@ class _EcranMaPropositionState extends State<EcranMaProposition> {
                 ? 'Elle disparaîtra de « Mes propositions ». La fiche publiée reste en ligne.'
                 : x.statut == 'nouvelle'
                     ? 'Elle ne sera pas examinée.'
+                    : x.statut == 'a_valider'
+                        ? 'Ta fiche est prête mais ne sera pas publiée.'
                     : 'Elle disparaîtra de « Mes propositions ».',
             style: police(policeTexte, taille: 14.5, couleur: p.texteDiscret)),
         actions: [
@@ -1232,10 +1235,11 @@ class _EcranMaPropositionState extends State<EcranMaProposition> {
         s == 'refusee' ? 'Non publiée' : 'Publication',
         switch (s) {
           'publiee' => _evenement ? 'Ajoutée à l’onglet « À venir ».' : 'Publiée dans le fil, en français et en anglais.',
+          'a_valider' => 'Ta fiche est prête : elle est relue une dernière fois avant d’apparaître dans le fil.',
           'refusee' => 'Elle n’a pas été publiée. La raison est juste en dessous.',
           _ => 'Publiée dans le fil, ou une explication si elle ne peut pas l’être.',
         },
-        switch (s) { 'publiee' => 2, 'refusee' => 3, _ => 0 },
+        switch (s) { 'publiee' => 2, 'refusee' => 3, 'a_valider' => 1, _ => 0 },
       ),
     ];
   }

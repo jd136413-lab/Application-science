@@ -9,6 +9,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'etat.dart';
+import 'modele.dart';
 
 SupabaseClient get _db => Supabase.instance.client;
 
@@ -114,6 +115,19 @@ int compterMots(String t) => t.trim().split(RegExp(r'\s+')).where((m) => m.isNot
 /// Administrateur : supprime une fiche (avancée). Ses articles ne seront pas repris par l'agent.
 Future<bool> adminSupprimerFiche(String id) async {
   final r = await _db.rpc('admin_supprimer_fiche', params: {'p_code': etat.adminCode ?? '', 'p_id': id});
+  return r == true;
+}
+
+/// Administrateur : une fiche en attente de validation, telle qu'elle apparaîtra (migration 023).
+Future<Avancee?> adminFiche(String id) async {
+  final r = await _db.rpc('admin_fiche', params: {'p_code': etat.adminCode ?? '', 'p_id': id});
+  return r == null ? null : Avancee.depuisJson(Map<String, dynamic>.from(r as Map));
+}
+
+/// Administrateur : publie (ou refuse, avec une raison) une proposition en attente. Vrai si c'est fait.
+Future<bool> adminValider(String id, {required bool publier, String? message}) async {
+  final r = await _db.rpc('admin_valider',
+      params: {'p_code': etat.adminCode ?? '', 'p_id': id, 'p_publier': publier, 'p_message': message});
   return r == true;
 }
 
