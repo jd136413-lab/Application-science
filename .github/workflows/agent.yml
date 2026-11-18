@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45   # 160 sources à lire + attente du traitement par lot (15 min max)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 50   # pour savoir si le bilan des sources a déjà été enregistré aujourd'hui
       - uses: actions/setup-python@v5

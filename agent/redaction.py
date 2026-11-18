@@ -13,7 +13,7 @@
 # 3) lister le jargon et décider comment le traiter, 4) écrire, 5) relire
 # avec une liste de contrôle. Les étapes 1 à 3 et 5 ne sont pas publiées.
 #
-# Testé avec agent/tester_redaction.py (workflow « Tester la rédaction »).
+# Testé en novembre avec un script d’essai (retiré le 18/11, résultats dans docs/JOURNAL.md).
 # =====================================================================
 
 import json

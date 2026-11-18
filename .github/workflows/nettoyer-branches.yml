@@ -1,0 +1,29 @@
+# Nettoyer les branches (18/11/2026) — à lancer à la main, une seule fois.
+# Supprime toutes les branches du dépôt SAUF « main » et les « sauvegarde/… ».
+# Ces branches ne servaient qu'aux vérifications et aux essais : leur contenu
+# utile est déjà dans « main ». Rien n'est compilé, rien n'est payant.
+name: Nettoyer les branches
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  nettoyer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Supprimer les anciennes branches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          n=0
+          for b in $(gh api "repos/$REPO/branches" --paginate -q '.[].name'); do
+            case "$b" in
+              main|sauvegarde/*) echo "gardée : $b" ;;
+              *) gh api -X DELETE "repos/$REPO/git/refs/heads/$b" && echo "supprimée : $b" && n=$((n+1)) ;;
+            esac
+          done
+          echo "Terminé : $n branches supprimées." >> "$GITHUB_STEP_SUMMARY"

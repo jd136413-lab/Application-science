@@ -61,7 +61,7 @@ app/  (Flutter) → APK de test, version web, Google Play
 | Tester les vidéos officielles | teste les chaînes YouTube officielles | gratuit |
 | Découvrir des sources / Tester des sources | cherche et teste de nouveaux flux RSS | gratuit |
 | Télécharger des images | images libres pour les maquettes | gratuit |
-| Essai des consignes A/B · Essai des leviers · Tester la rédaction | anciens essais de consignes (novembre), sans rien publier | payant |
+| Nettoyer les branches | supprime les branches de vérification et d'essai (garde `main` et `sauvegarde/…`) | gratuit |
 
 ## Règles du projet
 

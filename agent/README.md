@@ -26,7 +26,7 @@ par Claude, les traduit, cherche une vidéo, met à jour « À venir », envoie 
 | `economie.py` | Interrupteur unique pour tous les appels à Claude |
 | `requirements.txt` | Bibliothèques Python à installer |
 
-> ⚠️ Les noms `consignes_v2/v3/v4` viennent des essais de novembre : malgré leur nom,
+> ⚠️ Les noms `consignes_v2/v3/v4` viennent des essais de novembre (scripts d'essai retirés le 18/11) : malgré leur nom,
 > ils sont **tous utilisés**. Ne pas les supprimer.
 
 ## Les autres programmes (lancés à part)
@@ -38,7 +38,6 @@ par Claude, les traduit, cherche une vidéo, met à jour « À venir », envoie 
 | `controle_semaine.py` | Contrôle de la semaine | Les grands sujets de la semaine sont-ils là ? |
 | `video_semaine.py` + `videos_faites.json` | Vidéo de la semaine | Vidéo verticale de la semaine |
 | `test_lecture.py` | Vérifier le code | Test gratuit de la lecture des articles |
-| `tester_agent.py`, `tester_leviers.py`, `tester_redaction.py` | Essais (anciens) | Essais de consignes, sans rien publier |
 
 ## Rapports (écrits par les workflows, à lire seulement)
 
