@@ -25,6 +25,7 @@ import redaction
 N_FICHES = 5
 PLAFOND = 0.80   # $ : arrêt de l'essai au-delà
 
+# (18/11 : la règle « accroche » est maintenant dans redaction.CONSIGNE ; l'essai la rajoute en double.)
 ACCROCHE = """
 
 # Règle en plus : ACCROCHE

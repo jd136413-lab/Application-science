@@ -281,6 +281,14 @@ def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict,
 CONSIGNE_V1 = CONSIGNE
 from consignes_v2 import REDACTION_B as CONSIGNE  # noqa: E402
 
+# 18/11 : règle « accroche » ajoutée après l'essai Haiku / Sonnet / Haiku + accroche (essai_modeles.py) :
+# 7,5/10 contre 6,8 sans elle (Sonnet : 7,7 mais 9 fois plus cher). Gratuite (quelques mots de consigne, en cache).
+ACCROCHE = """
+
+# Règle en plus : ACCROCHE
+La 1re phrase de « decouverte » donne le résultat principal ET pourquoi il compte (pour la vie courante, la santé, l'environnement ou la science), en mots simples, sans exagérer : l'intérêt doit venir de l'article, jamais de toi. Si l'article donne un chiffre clé, rends-le parlant avec une comparaison de la vie courante (« 6 minutes, le temps d'un café », « plus que la population de la France ») quand c'est exact. Si l'intérêt ou la comparaison sonne forcé, garde une 1re phrase simple et factuelle : une phrase naturelle vaut mieux qu'une accroche maladroite. Le reste de la fiche ne change pas."""
+CONSIGNE = CONSIGNE + ACCROCHE
+
 CONSIGNE_RELECTURE = """Tu es le relecteur le plus exigeant de NovaSTEM, une application qui explique les avancées scientifiques et technologiques à des lecteurs non spécialistes. Un rédacteur a écrit une fiche ; tu NE l'as PAS écrite et tu ne lui fais pas confiance. Compare-la phrase par phrase à l'article source, seule base de faits autorisée.
 
 Cherche UNIQUEMENT ces défauts précis (un défaut = une ligne dans "problemes") :
