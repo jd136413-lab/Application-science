@@ -323,14 +323,17 @@ Future<void> _afficherUne(Map<String, dynamic> data) async {
   final StyleInformation style;
   if (nb == 1) {
     // A · le titre, et dessous la note (★★★ Important).
+    // Le titre d'une notification Android tient sur une ligne : une fois dépliée, le titre
+    // COMPLET est dans le texte (sur plusieurs lignes si besoin) et la note passe en en-tête.
     titreNotif = titreV;
     corps = '$etoiles $mot';
-    style = BigTextStyleInformation(corps, contentTitle: titreV);
+    style = BigTextStyleInformation(titreV, contentTitle: '$etoiles $mot');
   } else {
     // C · une seule notification par fil : « 3 nouvelles avancées » et la liste des titres.
+    // Texte long plutôt que liste (InboxStyle coupe chaque ligne) : chaque titre en entier.
     titreNotif = _tr('{n} nouvelles avancées', langue, n: nb);
     corps = lignesTitres.first;
-    style = InboxStyleInformation(lignesTitres, contentTitle: titreNotif);
+    style = BigTextStyleInformation(lignesTitres.join('\n'), contentTitle: titreNotif);
   }
 
   final details = NotificationDetails(
