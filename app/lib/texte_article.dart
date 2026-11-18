@@ -9,6 +9,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,15 +18,34 @@ import 'memoire.dart' show cleTraductionsGardees;
 import 'modele.dart';
 import 'traducteur.dart';
 
+/// Un mot à repérer dans le texte (maquette 101 C, 18/11) : nouveau pour la personne (« + »)
+/// ou déjà dans son Vocabulaire (« ✓ »).
+class MotMarque {
+  final String mot, definition;
+  final bool nouveau;
+  final DateTime? appris;
+  const MotMarque({required this.mot, required this.definition, required this.nouveau, this.appris});
+}
+
 class TexteArticle extends StatefulWidget {
   final String texte;
+  /// Mots à souligner (seulement quand le texte est affiché en français : ce sont des mots français).
+  final List<MotMarque> marques;
+  final void Function(MotMarque)? surMot;
   final TextStyle style;
   final bool original; // true = toujours le texte français
   final TextAlign? textAlign;
   final int? maxLines; // null = sans limite ; sinon « … » à la fin
   final String Function(String)? nettoyer; // retouche le texte affiché (après traduction)
   const TexteArticle(this.texte,
-      {super.key, required this.style, this.original = false, this.textAlign, this.maxLines, this.nettoyer});
+      {super.key,
+      required this.style,
+      this.original = false,
+      this.textAlign,
+      this.maxLines,
+      this.nettoyer,
+      this.marques = const [],
+      this.surMot});
 
   @override
   State<TexteArticle> createState() => _TexteArticleState();
@@ -107,6 +127,65 @@ Future<void> pretraduire(List<Avancee> avancees) async {
 class _TexteArticleState extends State<TexteArticle> {
   late Future<String> _traduction;
   String _cle = '';
+  final List<TapGestureRecognizer> _touches = [];
+
+  void _liberer() {
+    for (final t in _touches) {
+      t.dispose();
+    }
+    _touches.clear();
+  }
+
+  @override
+  void dispose() {
+    _liberer();
+    super.dispose();
+  }
+
+  /// Texte avec les mots repérés : pointillés + petit « + » (nouveau) ou « ✓ » (déjà appris).
+  Widget _avecMots(String t) {
+    _liberer();
+    final marques = [...widget.marques]..sort((a, b) => b.mot.length.compareTo(a.mot.length));
+    final motif = RegExp(
+        '(?<![\\p{L}\\p{N}])(${marques.map((m) => RegExp.escape(m.mot)).join('|')})(?:s|x)?(?![\\p{L}\\p{N}])',
+        caseSensitive: false,
+        unicode: true);
+    final vus = <String>{};
+    final morceaux = <InlineSpan>[];
+    var pos = 0;
+    final nouveauC = const Color(0xFF2FC27B), connuC = const Color(0xFF8E8C9C);
+    for (final m in motif.allMatches(t)) {
+      final cle = m.group(1)!.toLowerCase();
+      final mm = marques.firstWhere((x) => x.mot.toLowerCase() == cle, orElse: () => marques.first);
+      if (vus.contains(cle)) continue; // seulement la 1re fois dans le paragraphe
+      vus.add(cle);
+      final c = mm.nouveau ? nouveauC : connuC;
+      final touche = TapGestureRecognizer()..onTap = () => widget.surMot?.call(mm);
+      _touches.add(touche);
+      morceaux
+        ..add(TextSpan(text: t.substring(pos, m.start)))
+        ..add(TextSpan(
+            text: m.group(0),
+            recognizer: touche,
+            style: TextStyle(
+                decoration: TextDecoration.underline,
+                decorationStyle: TextDecorationStyle.dotted,
+                decorationColor: c,
+                decorationThickness: 2)))
+        ..add(WidgetSpan(
+            alignment: PlaceholderAlignment.top,
+            child: GestureDetector(
+              onTap: () => widget.surMot?.call(mm),
+              child: Text(mm.nouveau ? '+' : '✓',
+                  style: TextStyle(
+                      fontSize: (widget.style.fontSize ?? 16) * 0.62, fontWeight: FontWeight.w800, color: c, height: 1)),
+            )));
+      pos = m.end;
+    }
+    morceaux.add(TextSpan(text: t.substring(pos)));
+    return Text.rich(TextSpan(style: widget.style, children: morceaux),
+        textAlign: widget.textAlign, maxLines: widget.maxLines);
+  }
 
   void _preparer() {
     final langue = etat.langue;
@@ -123,7 +202,10 @@ class _TexteArticleState extends State<TexteArticle> {
         textAlign: widget.textAlign,
         maxLines: widget.maxLines,
         overflow: widget.maxLines == null ? null : TextOverflow.ellipsis);
-    if (widget.original || etat.langue == 'fr') return texte(widget.texte);
+    if (widget.original || etat.langue == 'fr') {
+      final t = widget.nettoyer == null ? widget.texte : widget.nettoyer!(widget.texte);
+      return widget.marques.isEmpty ? texte(widget.texte) : _avecMots(t);
+    }
     final deja = traductionImmediate(widget.texte);
     if (deja != null) return texte(deja); // déjà traduit : tout de suite, sans saut
     if (!traductionArticlesPossible) return texte(widget.texte);

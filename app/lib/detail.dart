@@ -242,6 +242,64 @@ class _TitreEtResume extends StatefulWidget {
 
 class _TitreEtResumeState extends State<_TitreEtResume> {
   bool _original = false;
+  /// Mots déjà dans le Vocabulaire AVANT l'ouverture de la fiche (les siens y sont ajoutés juste après).
+  late final Set<String> _connusAvant = {for (final v in etat.vocabulaire) v.mot.toLowerCase()};
+  /// Bulle ouverte : (n° du paragraphe, mot touché).
+  (int, MotMarque)? _bulle;
+
+  /// Mots à repérer dans ce texte : ceux de la fiche (nouveaux ou non) et ceux du Vocabulaire qu'il contient.
+  List<MotMarque> _marques(String texte) {
+    final bas = texte.toLowerCase();
+    final res = <String, MotMarque>{};
+    for (final m in widget.avancee.mots) {
+      final cle = m.mot.toLowerCase();
+      if (!bas.contains(cle)) continue;
+      final appris = etat.vocabulaire.where((v) => v.mot.toLowerCase() == cle).firstOrNull;
+      res[cle] = MotMarque(
+          mot: m.mot, definition: m.definition, nouveau: !_connusAvant.contains(cle), appris: appris?.appris);
+    }
+    for (final v in etat.vocabulaire) {
+      final cle = v.mot.toLowerCase();
+      if (res.containsKey(cle) || !_connusAvant.contains(cle) || cle.length < 3 || !bas.contains(cle)) continue;
+      res[cle] = MotMarque(mot: v.mot, definition: v.definition, nouveau: false, appris: v.appris);
+    }
+    return res.values.toList();
+  }
+
+  Widget _bulleMot(MotMarque m) {
+    final p = palette(context);
+    final c = m.nouveau ? const Color(0xFF2FC27B) : p.texteDiscret;
+    const mois = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+    final quand = m.appris == null ? '' : 'Appris le ${m.appris!.day} ${mois[m.appris!.month - 1]}';
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(top: 8),
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 6),
+      decoration: BoxDecoration(
+        color: p.carte,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: c.withValues(alpha: 0.45), width: 1.5),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text.rich(TextSpan(children: [
+          TextSpan(
+              text: m.mot,
+              style: police(policeTexte, taille: 14.5, graisse: FontWeight.w800, couleur: p.texte)),
+          TextSpan(
+              text: m.nouveau ? '   + nouveau mot' : '   ✓ déjà dans ton Vocabulaire',
+              style: police(policeTexte, taille: 12, graisse: FontWeight.w700, couleur: c)),
+        ])),
+        const SizedBox(height: 4),
+        Text(m.definition, style: police(policeTexte, taille: 14, couleur: p.texte, hauteur: 1.45)),
+        Row(children: [
+          Expanded(
+              child: Text(m.nouveau ? 'Ajouté à ton Vocabulaire' : quand,
+                  style: police(policeTexte, taille: 12, couleur: p.texteDiscret))),
+          TextButton(onPressed: () => setState(() => _bulle = null), child: const Text('Fermer')),
+        ]),
+      ]),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -263,11 +321,11 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
         TexteArticle(a.resume,
             original: _original, style: police(policeTexte, taille: 17, couleur: p.texte, hauteur: 1.6))
       else ...[
-        for (final (titre, texte) in [
+        for (final (i, (titre, texte)) in [
           (texteAvant, a.avant),
           (a.fil == 'tech' ? texteNouveaute : texteDecouverte, a.decouverte),
           (texteEtApres, a.apres),
-        ])
+        ].indexed)
           if (texte.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(bottom: 14),
@@ -278,10 +336,14 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
                 TexteArticle(texte,
                     original: _original,
                     nettoyer: titre == texteEtApres ? sansEtApres : null,
+                    marques: _marques(texte),
+                    surMot: (m) => setState(() => _bulle = _bulle?.$1 == i && _bulle?.$2.mot == m.mot ? null : (i, m)),
                     style: police(policeTexte, taille: 16, couleur: p.texte, hauteur: 1.55)),
+                if (_bulle != null && _bulle!.$1 == i) _bulleMot(_bulle!.$2),
               ]),
             ),
-        if (a.mots.isNotEmpty)
+        // Encadré du bas : seulement les mots NOUVEAUX pour cette personne (maquette 101 C)
+        if (a.mots.any((m) => !_connusAvant.contains(m.mot.toLowerCase())))
           Container(
             width: double.infinity,
             margin: const EdgeInsets.only(top: 2),
@@ -293,7 +355,7 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(tr(texteMotsAConnaitre).toUpperCase(),
                   style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
-              for (final m in a.mots) ...[
+              for (final m in a.mots.where((m) => !_connusAvant.contains(m.mot.toLowerCase()))) ...[
                 const SizedBox(height: 8),
                 TexteArticle('${m.mot} : ${m.definition}',
                     original: _original, style: police(policeTexte, taille: 14, couleur: p.texte, hauteur: 1.45)),
