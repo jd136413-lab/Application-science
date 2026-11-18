@@ -4,3 +4,7 @@
 *.keystore
 cle-signature*
 key.properties
+
+# Fichiers générés automatiquement par Python (inutiles dans le dépôt)
+__pycache__/
+*.pyc

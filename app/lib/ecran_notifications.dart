@@ -167,11 +167,6 @@ class _EcranNotificationsState extends State<EcranNotifications> {
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: enfants),
         );
 
-    Widget titreBloc(String t) => Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Text(tr(t), style: police(policeTexte, taille: 15, graisse: FontWeight.w800, couleur: p.texte)),
-        );
-
     /// Sélecteur en pastilles (Sciences / Technologies / Les deux).
     Widget pastilles(List<(String, String)> choix, String actuel, void Function(String) choisir) => Container(
           padding: const EdgeInsets.all(4),

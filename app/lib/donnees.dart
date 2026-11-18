@@ -54,7 +54,7 @@ Future<List<Avancee>> mettreAJourFil(String fil, {bool complet = false}) async {
   List<Map<String, dynamic>> lignes;
   DateTime? dateComplet;
   if (recent) {
-    final m = memoire!;
+    final m = memoire;
     var dernier = '';
     for (final l in m.lignes) {
       final c = (l['created_at'] as String?) ?? '';
