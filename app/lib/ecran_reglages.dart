@@ -16,7 +16,6 @@ import 'propositions.dart';
 import 'pubs.dart';
 import 'regions_monde.dart';
 import 'reglages.dart';
-import 'retours.dart';
 import 'stats.dart';
 import 'traducteur.dart';
 import 'widgets.dart';
@@ -239,22 +238,6 @@ class EcranReglages extends StatelessWidget {
                       style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
                 ),
                 Icon(Icons.open_in_new_rounded, color: p.texte, size: 20),
-              ]),
-            ),
-            const SizedBox(height: 8),
-            bloc(
-              onTap: () => donnerAvis(context),
-              child: Row(children: [
-                Expanded(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(tr('Donner mon avis'),
-                        style: police(policeTexte, taille: 16, graisse: FontWeight.w600, couleur: p.texte)),
-                    const SizedBox(height: 4),
-                    Text(tr('Ce qui vous plaît, gêne ou manque'),
-                        style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
-                  ]),
-                ),
-                Icon(Icons.rate_review_outlined, color: p.texte, size: 20),
               ]),
             ),
             const SizedBox(height: 8),
