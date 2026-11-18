@@ -9542,3 +9542,85 @@ ja 動画を見る
 ko 동영상 보기
 id Tonton video
 vi Xem video
+
+# Mots repérés dans une fiche (maquette 101 C, 18/11/2026)
+@ nouveau mot
+en new word
+es palabra nueva
+pt palavra nova
+de neues Wort
+it parola nuova
+nl nieuw woord
+pl nowe słowo
+ru новое слово
+uk нове слово
+tr yeni kelime
+ar كلمة جديدة
+hi नया शब्द
+bn নতুন শব্দ
+ur نیا لفظ
+zh 新词
+ja 新しい用語
+ko 새 단어
+id kata baru
+vi từ mới
+@ déjà dans ton Vocabulaire
+en already in your Words
+es ya en tu Vocabulario
+pt já no seu Vocabulário
+de schon in deinen Wörtern
+it già nel tuo Vocabolario
+nl al in je Woorden
+pl już w Twoich Słówkach
+ru уже в вашем Словаре
+uk уже у вашому Словнику
+tr Kelimeler'inde zaten var
+ar موجودة في مفرداتك
+hi आपकी शब्दावली में पहले से है
+bn আপনার শব্দভান্ডারে আগে থেকেই আছে
+ur آپ کے ذخیرہ الفاظ میں پہلے سے ہے
+zh 已在你的词汇中
+ja 用語集に登録済み
+ko 이미 단어장에 있음
+id sudah ada di Kosakata-mu
+vi đã có trong Từ vựng của bạn
+@ Ajouté à ton Vocabulaire
+en Added to your Words
+es Añadida a tu Vocabulario
+pt Adicionada ao seu Vocabulário
+de Zu deinen Wörtern hinzugefügt
+it Aggiunta al tuo Vocabolario
+nl Toegevoegd aan je Woorden
+pl Dodano do Twoich Słówek
+ru Добавлено в ваш Словарь
+uk Додано до вашого Словника
+tr Kelimeler'ine eklendi
+ar أُضيفت إلى مفرداتك
+hi आपकी शब्दावली में जोड़ा गया
+bn আপনার শব্দভান্ডারে যোগ হয়েছে
+ur آپ کے ذخیرہ الفاظ میں شامل کر دیا گیا
+zh 已加入你的词汇
+ja 用語集に追加しました
+ko 단어장에 추가됨
+id Ditambahkan ke Kosakata-mu
+vi Đã thêm vào Từ vựng của bạn
+@ Appris le {date}
+en Learned on {date}
+es Aprendida el {date}
+pt Aprendida em {date}
+de Gelernt am {date}
+it Imparata il {date}
+nl Geleerd op {date}
+pl Poznano {date}
+ru Изучено {date}
+uk Вивчено {date}
+tr {date} tarihinde öğrenildi
+ar تعلّمتها في {date}
+hi {date} को सीखा
+bn {date} তারিখে শেখা
+ur {date} کو سیکھا
+zh 学于 {date}
+ja {date} に覚えた
+ko {date}에 배움
+id Dipelajari pada {date}
+vi Đã học ngày {date}

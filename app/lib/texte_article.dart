@@ -24,8 +24,22 @@ class MotMarque {
   final String mot, definition;
   final bool nouveau;
   final DateTime? appris;
-  const MotMarque({required this.mot, required this.definition, required this.nouveau, this.appris});
+  /// Le mot dans la langue de l'app, s'il est connu d'avance (gardé avec le Vocabulaire).
+  final String? traduction;
+  const MotMarque(
+      {required this.mot, required this.definition, required this.nouveau, this.appris, this.traduction});
 }
+
+/// Traduit un mot (ou une définition) dans la langue de l'app et garde la traduction sur le téléphone.
+Future<String> traduireMot(String texte) async {
+  if (etat.langue == 'fr') return texte;
+  final deja = traductionImmediate(texte);
+  if (deja != null || !traductionArticlesPossible) return deja ?? texte;
+  return _traduireEtGarder(texte, etat.langue);
+}
+
+/// Écritures sans espaces entre les mots (chinois, japonais) : on cherche le mot tel quel.
+final RegExp _sansEspaces = RegExp(r'[\u3040-\u30ff\u3400-\u9fff]');
 
 class TexteArticle extends StatefulWidget {
   final String texte;
@@ -143,20 +157,31 @@ class _TexteArticleState extends State<TexteArticle> {
   }
 
   /// Texte avec les mots repérés : pointillés + petit « + » (nouveau) ou « ✓ » (déjà appris).
-  Widget _avecMots(String t) {
+  /// [francais] : vrai si t est le texte français, sinon on cherche le mot traduit.
+  Widget _avecMots(String t, {required bool francais}) {
     _liberer();
-    final marques = [...widget.marques]..sort((a, b) => b.mot.length.compareTo(a.mot.length));
-    final motif = RegExp(
-        '(?<![\\p{L}\\p{N}])(${marques.map((m) => RegExp.escape(m.mot)).join('|')})(?:s|x)?(?![\\p{L}\\p{N}])',
-        caseSensitive: false,
-        unicode: true);
+    // Formes cherchées : le mot français, et sa traduction quand le texte est traduit.
+    final formes = <(String, MotMarque)>[];
+    for (final m in widget.marques) {
+      final f = francais ? m.mot : (m.traduction ?? traductionImmediate(m.mot));
+      if (f != null && f.trim().length >= 2) formes.add((f.trim(), m));
+    }
+    if (formes.isEmpty) return Text(t, style: widget.style, textAlign: widget.textAlign, maxLines: widget.maxLines);
+    formes.sort((a, b) => b.$1.length.compareTo(a.$1.length));
+    String motifDe(String f) => _sansEspaces.hasMatch(f)
+        ? RegExp.escape(f)
+        : '(?<![\\p{L}\\p{N}])${RegExp.escape(f)}(?:s|x|es)?(?![\\p{L}\\p{N}])';
+    final motif = RegExp(formes.map((f) => motifDe(f.$1)).join('|'), caseSensitive: false, unicode: true);
     final vus = <String>{};
     final morceaux = <InlineSpan>[];
     var pos = 0;
     final nouveauC = const Color(0xFF2FC27B), connuC = const Color(0xFF8E8C9C);
     for (final m in motif.allMatches(t)) {
-      final cle = m.group(1)!.toLowerCase();
-      final mm = marques.firstWhere((x) => x.mot.toLowerCase() == cle, orElse: () => marques.first);
+      final trouve = m.group(0)!.toLowerCase();
+      final forme = formes.where((f) => trouve.startsWith(f.$1.toLowerCase())).firstOrNull;
+      if (forme == null) continue;
+      final mm = forme.$2;
+      final cle = mm.mot.toLowerCase();
       if (vus.contains(cle)) continue; // seulement la 1re fois dans le paragraphe
       vus.add(cle);
       final c = mm.nouveau ? nouveauC : connuC;
@@ -206,18 +231,29 @@ class _TexteArticleState extends State<TexteArticle> {
       final t = widget.nettoyer == null ? widget.texte : widget.nettoyer!(widget.texte);
       if (widget.marques.isEmpty) return texte(widget.texte);
       try {
-        return _avecMots(t);
+        return _avecMots(t, francais: true);
       } catch (_) {
         return texte(widget.texte); // par sécurité : texte normal si un mot pose problème
       }
     }
+    // Texte traduit : les mots sont cherchés sous leur forme traduite (toutes les langues).
+    Widget rendu(String traduit, {required bool francais}) {
+      if (widget.marques.isEmpty) return texte(traduit);
+      try {
+        return _avecMots(widget.nettoyer == null ? traduit : widget.nettoyer!(traduit), francais: francais);
+      } catch (_) {
+        return texte(traduit);
+      }
+    }
     final deja = traductionImmediate(widget.texte);
-    if (deja != null) return texte(deja); // déjà traduit : tout de suite, sans saut
-    if (!traductionArticlesPossible) return texte(widget.texte);
+    if (deja != null) return rendu(deja, francais: false); // déjà traduit : tout de suite, sans saut
+    if (!traductionArticlesPossible) return rendu(widget.texte, francais: true);
     _preparer();
     return FutureBuilder<String>(
       future: _traduction,
-      builder: (context, snap) => texte(snap.data ?? widget.texte),
+      builder: (context, snap) => snap.data == null
+          ? rendu(widget.texte, francais: true)
+          : rendu(snap.data!, francais: snap.data == widget.texte),
     );
   }
 }

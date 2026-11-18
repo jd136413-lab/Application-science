@@ -533,7 +533,11 @@ class EtatApp extends ChangeNotifier {
             titreAvancee: a.titre,
             famille: a.famille,
             appris: DateTime.now(),
-            statut: 'nouveau'),
+            statut: 'nouveau',
+            traductions: {
+              for (final e in traductionsAgent.entries)
+                if (e.value[m.mot] != null) e.key: e.value[m.mot]!,
+            }),
       ];
       ajout = true;
     }
@@ -541,6 +545,19 @@ class EtatApp extends ChangeNotifier {
     if (vocabulaire.length > 2000) vocabulaire = vocabulaire.sublist(vocabulaire.length - 2000);
     _enregistrer();
     notifyListeners();
+  }
+
+  /// Garde la traduction d'un mot du Vocabulaire (sans prévenir l'écran : rien ne change à l'affichage).
+  void garderTraductionMot(String mot, String langue, String traduction) {
+    var change = false;
+    vocabulaire = [
+      for (final v in vocabulaire)
+        if (v.mot == mot && v.traductions[langue] != traduction) (() {
+          change = true;
+          return v.avecTraduction(langue, traduction);
+        })() else v,
+    ];
+    if (change) _enregistrer();
   }
 
   /// Range un mot dans « Je savais » ('su') ou « À revoir » ('revoir').
@@ -566,7 +583,10 @@ class MotAppris {
   final DateTime appris;
   /// 'nouveau' (jamais révisé, compté dans « À revoir »), 'revoir' ou 'su'.
   final String statut;
+  /// Le mot dans d'autres langues (langue → mot), pour le repérer dans les fiches traduites.
+  final Map<String, String> traductions;
   const MotAppris({
+    this.traductions = const {},
     required this.mot,
     required this.definition,
     required this.idAvancee,
@@ -585,7 +605,19 @@ class MotAppris {
       titreAvancee: titreAvancee,
       famille: famille,
       appris: appris,
-      statut: s);
+      statut: s,
+      traductions: traductions);
+
+  /// Copie avec une traduction de plus (ajoutée quand le téléphone traduit le mot).
+  MotAppris avecTraduction(String langue, String mot) => MotAppris(
+      mot: this.mot,
+      definition: definition,
+      idAvancee: idAvancee,
+      titreAvancee: titreAvancee,
+      famille: famille,
+      appris: appris,
+      statut: statut,
+      traductions: {...traductions, langue: mot});
 
   Map<String, dynamic> versJson() => {
         'mot': mot,
@@ -595,6 +627,7 @@ class MotAppris {
         'famille': famille,
         'appris': appris.toIso8601String(),
         'statut': statut,
+        if (traductions.isNotEmpty) 'tr': traductions,
       };
 
   factory MotAppris.depuisJson(Map<String, dynamic> j) => MotAppris(
@@ -605,5 +638,8 @@ class MotAppris {
         famille: (j['famille'] ?? 'other').toString(),
         appris: DateTime.tryParse((j['appris'] ?? '').toString()) ?? DateTime.now(),
         statut: (j['statut'] ?? 'nouveau').toString(),
+        traductions: {
+          if (j['tr'] is Map) for (final e in (j['tr'] as Map).entries) e.key.toString(): e.value.toString(),
+        },
       );
 }
