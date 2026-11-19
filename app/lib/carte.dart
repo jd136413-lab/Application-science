@@ -23,8 +23,15 @@ class CarteAvancee extends StatelessWidget {
   final bool sansImage;
   /// Gabarit des annonces : titre limité à 2 lignes, pour une case de taille régulière.
   final int? maxLignesTitre;
+  /// Mots cherchés, surlignés dans le titre (écran de recherche).
+  final List<String> surligne;
   const CarteAvancee(
-      {super.key, required this.avancee, required this.onTap, this.sansImage = false, this.maxLignesTitre});
+      {super.key,
+      required this.avancee,
+      required this.onTap,
+      this.sansImage = false,
+      this.maxLignesTitre,
+      this.surligne = const []});
 
   void _menu(BuildContext context) => ouvrirMenuCarte(context, avancee);
 
@@ -96,6 +103,7 @@ class CarteAvancee extends StatelessWidget {
               ]),
               const SizedBox(height: 12),
               TexteArticle(avancee.titre,
+                  surligne: surligne,
                   maxLines: maxLignesTitre,
                   style: police(policeTitres,
                       taille: tailleTitreCarte, graisse: FontWeight.w600, couleur: texte, hauteur: 1.22)),

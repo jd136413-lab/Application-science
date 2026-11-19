@@ -38,6 +38,51 @@ Future<String> traduireMot(String texte) async {
   return _traduireEtGarder(texte, etat.langue);
 }
 
+/// Minuscules sans accents, de la MÊME longueur que le texte (pour retrouver les positions).
+String _plat(String s) {
+  const de = 'àâäáãåçéèêëíìîïñóòôöõúùûüýÿœæ';
+  const vers = 'aaaaaaceeeeiiiinooooouuuuyyoa';
+  final b = StringBuffer();
+  for (final u in s.codeUnits) {
+    var ch = String.fromCharCode(u);
+    final bas = ch.toLowerCase();
+    if (bas.length == 1) ch = bas;
+    final i = de.indexOf(ch);
+    b.write(i < 0 ? ch : vers[i]);
+  }
+  return b.toString();
+}
+
+/// Morceaux de texte avec les mots cherchés surlignés, ou null s'il n'y en a aucun.
+List<InlineSpan>? spansSurlignes(String t, List<String> mots) {
+  final plat = _plat(t);
+  final zones = <(int, int)>[];
+  for (final m in mots) {
+    final mp = _plat(m.trim());
+    if (mp.length < 2) continue;
+    var i = plat.indexOf(mp);
+    while (i >= 0) {
+      zones.add((i, i + mp.length));
+      i = plat.indexOf(mp, i + mp.length);
+    }
+  }
+  if (zones.isEmpty) return null;
+  zones.sort((a, b) => a.$1.compareTo(b.$1));
+  final spans = <InlineSpan>[];
+  var pos = 0;
+  for (final (d, f) in zones) {
+    if (d < pos) continue;
+    spans
+      ..add(TextSpan(text: t.substring(pos, d)))
+      ..add(TextSpan(
+          text: t.substring(d, f),
+          style: const TextStyle(backgroundColor: Color(0x55F5A524))));
+    pos = f;
+  }
+  spans.add(TextSpan(text: t.substring(pos)));
+  return spans;
+}
+
 /// Écritures sans espaces entre les mots (chinois, japonais) : on cherche le mot tel quel.
 final RegExp _sansEspaces = RegExp(r'[\u3040-\u30ff\u3400-\u9fff]');
 
@@ -46,6 +91,8 @@ class TexteArticle extends StatefulWidget {
   /// Mots à souligner (seulement quand le texte est affiché en français : ce sont des mots français).
   final List<MotMarque> marques;
   final void Function(MotMarque)? surMot;
+  /// Mots à surligner (recherche), sans tenir compte des accents ni des majuscules.
+  final List<String> surligne;
   final TextStyle style;
   final bool original; // true = toujours le texte français
   final TextAlign? textAlign;
@@ -59,7 +106,8 @@ class TexteArticle extends StatefulWidget {
       this.maxLines,
       this.nettoyer,
       this.marques = const [],
-      this.surMot});
+      this.surMot,
+      this.surligne = const []});
 
   @override
   State<TexteArticle> createState() => _TexteArticleState();
@@ -222,11 +270,23 @@ class _TexteArticleState extends State<TexteArticle> {
 
   @override
   Widget build(BuildContext context) {
-    Text texte(String t) => Text(widget.nettoyer == null ? t : widget.nettoyer!(t),
-        style: widget.style,
-        textAlign: widget.textAlign,
-        maxLines: widget.maxLines,
-        overflow: widget.maxLines == null ? null : TextOverflow.ellipsis);
+    Text texte(String t) {
+      final propre = widget.nettoyer == null ? t : widget.nettoyer!(t);
+      if (widget.surligne.isNotEmpty) {
+        final spans = spansSurlignes(propre, widget.surligne);
+        if (spans != null) {
+          return Text.rich(TextSpan(style: widget.style, children: spans),
+              textAlign: widget.textAlign,
+              maxLines: widget.maxLines,
+              overflow: widget.maxLines == null ? null : TextOverflow.ellipsis);
+        }
+      }
+      return Text(propre,
+          style: widget.style,
+          textAlign: widget.textAlign,
+          maxLines: widget.maxLines,
+          overflow: widget.maxLines == null ? null : TextOverflow.ellipsis);
+    }
     if (widget.original || etat.langue == 'fr') {
       final t = widget.nettoyer == null ? widget.texte : widget.nettoyer!(widget.texte);
       if (widget.marques.isEmpty) return texte(widget.texte);
