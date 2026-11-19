@@ -1,6 +1,7 @@
 // Petits éléments réutilisés : palette, logo, étoiles, tuile de famille.
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -378,6 +379,9 @@ class ImageGardee extends StatelessWidget {
       child: CachedNetworkImage(
         imageUrl: url,
         cacheManager: cacheImages,
+        // 19/11 : Wikimedia refuse (erreur 429) les téléchargements signés « Dart/… », le nom par défaut.
+        // L'app se présente donc par son nom, comme le demande Wikimedia. (Sur le web, le navigateur s'en charge.)
+        httpHeaders: kIsWeb ? null : enteteImages,
         fit: BoxFit.cover,
         fadeInDuration: const Duration(milliseconds: 200),
         placeholder: (c, u) => Container(color: p.pastille),

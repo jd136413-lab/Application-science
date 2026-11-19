@@ -13,6 +13,7 @@
 //
 // Sans configuration Firebase à la compilation, tout est désactivé.
 
+import 'memoire.dart' show enteteImages;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -217,7 +218,9 @@ Future<String> _traduire(String texte, String langue) async {
 // ignore: unused_element
 Future<Uint8List?> _photo(String adresse) async { // plus utilisée depuis la maquette 92 (gardée pour plus tard)
   if (!adresse.startsWith('https://')) return null;
-  final client = HttpClient()..connectionTimeout = const Duration(seconds: 6);
+  final client = HttpClient()
+    ..connectionTimeout = const Duration(seconds: 6)
+    ..userAgent = enteteImages['User-Agent'];
   try {
     final req = await client.getUrl(Uri.parse(adresse)).timeout(const Duration(seconds: 6));
     final rep = await req.close().timeout(const Duration(seconds: 8));
