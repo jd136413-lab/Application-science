@@ -187,10 +187,11 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
           child: Text('Soumettre', style: police(policeTitres, taille: 34, graisse: FontWeight.w800, couleur: p.texte)),
         ),
         const SizedBox(height: 8),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Pastille('🔒 Visible seulement sur ton téléphone', const Color(0xFF8B5CF6)),
-        ),
+        if (!soumettrePublic)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Pastille('🔒 Visible seulement sur ton téléphone', const Color(0xFF8B5CF6)),
+          ),
         const SizedBox(height: 12),
         const _Regles(),
         const SizedBox(height: 14),

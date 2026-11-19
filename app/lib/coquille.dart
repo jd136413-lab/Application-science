@@ -35,7 +35,7 @@ class _CoquilleState extends State<Coquille> {
   List<String> get _noms => [
         'actualites',
         'favoris',
-        if (etat.admin) 'soumettre',
+        if (soumettrePublic || etat.admin) 'soumettre',
         'vocabulaire',
         'reglages',
       ];
@@ -116,7 +116,7 @@ class _CoquilleState extends State<Coquille> {
         child: IndexedStack(index: _onglet, children: [
           const KeyedSubtree(key: ValueKey('actualites'), child: EcranMagazine()),
           const KeyedSubtree(key: ValueKey('favoris'), child: EcranFavoris()),
-          if (etat.admin) const KeyedSubtree(key: ValueKey('soumettre'), child: EcranSoumettre()),
+          if (soumettrePublic || etat.admin) const KeyedSubtree(key: ValueKey('soumettre'), child: EcranSoumettre()),
           const KeyedSubtree(key: ValueKey('vocabulaire'), child: EcranVocabulaire()),
           const KeyedSubtree(key: ValueKey('reglages'), child: EcranReglages()),
         ]),
@@ -148,7 +148,7 @@ class _CoquilleState extends State<Coquille> {
                 icon: const Icon(Icons.bookmark_border_rounded),
                 selectedIcon: const Icon(Icons.bookmark_rounded),
                 label: tr(texteOngletFavoris)),
-            if (etat.admin)
+            if (soumettrePublic || etat.admin)
               const NavigationDestination(
                   icon: Icon(Icons.add_circle_outline_rounded),
                   selectedIcon: Icon(Icons.add_circle_rounded),
