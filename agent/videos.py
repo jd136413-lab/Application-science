@@ -14,6 +14,7 @@ l'événement (exemple : la voiture électrique à 500 km/h), on l'ajoute à la 
 
 import html
 import json
+import sys
 import re
 
 import requests
@@ -141,6 +142,44 @@ SCHEMA = {"type": "object", "properties": {"i": {"type": "integer"}}, "required"
 
 _COLONNES_ABSENTES = set()
 
+# 19/11 : vérification fiche par fiche, avant d'attacher TOUTE vidéo (Maxime a vu une vidéo du booster
+# Super Heavy sous la fiche du VAISSEAU Starship rattrapé par la tour, et une vidéo de Starship sous une
+# fiche sur les trous noirs). Un appel court par vidéo retenue (≈ 0,00005 $).
+CONSIGNE_VERIF = """Tu vérifies qu'une vidéo correspond EXACTEMENT à une fiche d'actualité scientifique ou technologique.
+D'abord, dans "raison", compare en une ou deux phrases ce que montre la vidéo (d'après son titre et sa chaîne) et ce que raconte la fiche. Ensuite "ok".
+ok = true SEULEMENT si la vidéo montre ou explique le MÊME événement :
+• le même objet ou engin (le vaisseau Starship n'est pas le booster Super Heavy ; un rover n'est pas l'hélicoptère qui l'accompagne) ;
+• la même étape (le rattrapage par la tour n'est pas le décollage, ni la séparation, ni l'amerrissage ou l'explosion d'un autre étage) ;
+• le même vol, la même mission, le même produit, le même résultat scientifique.
+ok = false pour une vidéo sur le même programme, la même entreprise ou le même domaine mais sur un autre moment, un autre engin, un autre vol ou un autre sujet ; pour une vidéo sans rapport ; et dès que le titre ne permet pas d'en être sûr.
+Réponds en JSON."""
+SCHEMA_VERIF = {"type": "object", "properties": {"raison": {"type": "string"}, "ok": {"type": "boolean"}},
+                "required": ["raison", "ok"], "additionalProperties": False}
+
+
+def verifier(client, modele_id, titre: str, texte: str, video: dict, conso: dict, log=None) -> bool:
+    """Vrai si la vidéo montre exactement le sujet de la fiche. Faux en cas de doute ou d'erreur."""
+    contenu = (f"FICHE\nTitre : {titre}\nRésumé : {' '.join((texte or '').split())[:700]}\n\n"
+               f"VIDÉO\nTitre : « {video.get('titre', '')} »\nChaîne : {video.get('chaine') or 'inconnue'}"
+               f"\nDate : {video.get('date') or 'inconnue'} · Durée : {_hms(video.get('duree'))}")
+    try:
+        rep = client.messages.create(
+            model=modele_id, max_tokens=300, system=CONSIGNE_VERIF,
+            messages=[{"role": "user", "content": contenu}],
+            output_config={"format": {"type": "json_schema", "schema": SCHEMA_VERIF}},
+            **economie.PARAMS,
+        )
+        conso["in"] += rep.usage.input_tokens or 0
+        conso["out"] += rep.usage.output_tokens or 0
+        t = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
+        v = json.loads(t[t.find("{"):t.rfind("}") + 1])
+        if not v.get("ok") and log:
+            log(f"  ✗ vidéo refusée à la vérification : « {str(video.get('titre'))[:55]} » → {titre[:45]} "
+                f"({str(v.get('raison', ''))[:90]})")
+        return bool(v.get("ok"))
+    except Exception:
+        return False
+
 # Vidéos « fourre-tout » (17/11, exemple : « Xiaomi New Product Launch November 2026 » sous une fiche
 # sur UN téléphone) : écartées d'office, sauf si la fiche parle elle-même de l'événement.
 _GENERALES = re.compile(r"(?i)\b(keynote|launch event|product launch|launch (?:of|in) (?:january|february|march|april|may|"
@@ -175,7 +214,9 @@ def choisir(client, modele_id, titre: str, texte: str, urls: list[str], conso: d
         i = int(json.loads(t[t.find("{"):t.rfind("}") + 1]).get("i", -1))
     except Exception:
         return None
-    return infos[i] if 0 <= i < len(infos) else None
+    if not 0 <= i < len(infos):
+        return None
+    return infos[i] if verifier(client, modele_id, titre, texte, infos[i], conso) else None
 
 
 def attacher(table_url: str, headers: dict, ligne_id, titre: str, texte: str, urls: list[str],
@@ -305,7 +346,7 @@ def videos_chaines(log=print) -> list[dict]:
 
 CONSIGNE_ASSOCIATION = """Tu associes des fiches d'actualité scientifique ou technologique (en français) à des vidéos récentes de chaînes officielles (souvent en anglais).
 Associe une vidéo à une fiche SEULEMENT si elle montre ou explique directement CE sujet précis : le lancement, l'essai, le vol, la démonstration, l'objet présenté, l'expérience, la présentation officielle par l'agence, l'entreprise ou les chercheurs concernés.
-Exemple : une fiche « SpaceX rattrape le Starship avec la tour » ↔ une vidéo « Starship Flight 12 … catch » de SpaceX ou NASASpaceflight : oui.
+Exemple : une fiche « SpaceX rattrape le vaisseau Starship avec la tour » ↔ une vidéo qui montre le VAISSEAU (Ship) rattrapé par la tour : oui ; une vidéo du booster Super Heavy, du décollage ou d'un autre vol : non. Une fiche sur un autre sujet (trous noirs, biologie…) ↔ une vidéo de fusée : jamais.
 Refuse (n'associe pas) : une présentation générale de plusieurs produits ou annonces (keynote, « launch event », conférence, salon, résumé de la semaine) pour une fiche sur UN seul produit ou résultat, un sujet voisin mais différent (autre mission, autre produit, autre vol), une vidéo générale ou promotionnelle, un direct annoncé pour plus tard, un podcast, un résumé de l'actualité de la semaine. En cas de doute : n'associe pas.
 Une vidéo peut servir à une seule fiche. Si plusieurs vidéos conviennent pour une fiche, préfère la plus COURTE et la plus PERCUTANTE : celle qui MONTRE l'événement en images réelles (gros plan, plusieurs angles) ou où l'acteur concerné en parle directement, idéalement moins de 5 minutes. Évite les directs, les émissions et les vidéos de plus de 10 minutes quand une vidéo courte existe.
 Réponds en JSON : {"paires": [{"fiche": numéro, "video": numéro}, ...]} (liste vide si aucune)."""
@@ -380,6 +421,9 @@ def passage_chaines(table_url: str, headers: dict, client, modele_id, conso: dic
             prises_f.add(i)
             prises_v.add(j)
             f, v = fiches[i], vids[j]
+            if not verifier(client, modele_id, str(f.get("title") or ""), str(f.get("summary") or ""), v, conso, log):
+                prises_v.discard(j)       # la vidéo reste libre pour une autre fiche… mais pas au même passage
+                continue
             rr = requests.patch(table_url, headers=dict(headers, Prefer="return=minimal"), timeout=30,
                                 params={"id": f"eq.{f['id']}", "video_url": "is.null"},
                                 json={"video_url": v["url"], "video_titre": v["titre"]})
@@ -392,7 +436,49 @@ def passage_chaines(table_url: str, headers: dict, client, modele_id, conso: dic
         return 0
 
 
-if __name__ == "__main__":
+def reverifier(table_url: str, headers: dict, client, modele_id, conso: dict, appliquer: bool, log=print) -> int:
+    """Revérifie les vidéos des fiches des 30 derniers jours ; retire celles qui ne correspondent pas
+    (seulement si appliquer). Renvoie le nombre de vidéos refusées."""
+    from datetime import datetime, timedelta, timezone
+    depuis = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+    r = requests.get(table_url, headers=headers, timeout=30, params={
+        "select": "id,title,summary,video_url,video_titre", "video_url": "not.is.null",
+        "created_at": f"gte.{depuis}", "order": "created_at.desc", "limit": "200"})
+    r.raise_for_status()
+    refus = 0
+    for f in r.json():
+        v = {"titre": f.get("video_titre") or "", "chaine": None, "url": f["video_url"]}
+        info = _infos(f["video_url"]) or {}
+        v["chaine"] = info.get("chaine")
+        ok = verifier(client, modele_id, f.get("title") or "", f.get("summary") or "", v, conso, log)
+        print(f"{'✔' if ok else '✗'} {str(f.get('title'))[:60]}  ←  « {v['titre'][:60]} » ({v['chaine'] or '?'})")
+        if not ok:
+            refus += 1
+            if appliquer:
+                requests.patch(table_url, headers=dict(headers, Prefer="return=minimal"), timeout=30,
+                               params={"id": f"eq.{f['id']}"},
+                               json={"video_url": None, "video_titre": None}).raise_for_status()
+    return refus
+
+
+if __name__ == "__main__" and len(sys.argv) > 1 and sys.argv[1] == "reverifier":
+    # Workflow « Revérifier les vidéos » : à blanc, ou en retirant les vidéos refusées (case cochée).
+    import os
+    from anthropic import Anthropic
+    url = os.environ["SUPABASE_URL"].rstrip("/") + "/rest/v1/advances"
+    cle = os.environ["SUPABASE_SECRET_KEY"]
+    h = {"apikey": cle, "Authorization": f"Bearer {cle}"}
+    appliquer = os.environ.get("APPLIQUER", "false") == "true"
+    conso = {"in": 0, "out": 0}
+    import main as agent
+    n = reverifier(url, h, Anthropic(), agent.MODELES["haiku"]["id"], conso, appliquer)
+    if appliquer:
+        import images
+        images.accorder_videos(url, h)   # retire aussi l'image tirée d'une vidéo retirée
+    p = agent.MODELES["haiku"]["prix"]
+    print(f"\n{n} vidéo(s) refusée(s){' et retirée(s)' if appliquer else ' (essai à blanc : rien n’est retiré)'} · "
+          f"coût {(conso['in'] * p[0] + conso['out'] * p[1]) / 1e6:.4f} $")
+elif __name__ == "__main__":
     # Test gratuit (aucun appel à Claude) : liste les vidéos récentes des chaînes officielles.
     vs = _avec_durees([v for v in videos_chaines() if not _GENERALES.search(v["titre"])])
     for v in vs:

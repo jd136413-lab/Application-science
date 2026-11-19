@@ -1,0 +1,33 @@
+# Revérifier les vidéos des fiches des 30 derniers jours (19/11/2026).
+# Case décochée : essai à blanc (rien n'est retiré). Case cochée : les vidéos qui ne montrent pas
+# exactement le sujet de la fiche sont retirées (avec leur image). ≈ 0,003 $.
+name: Revérifier les vidéos
+
+on:
+  workflow_dispatch:
+    inputs:
+      appliquer:
+        description: "Retirer les vidéos refusées (sinon : essai à blanc)"
+        type: boolean
+        default: false
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: agent/requirements.txt
+      - run: pip install -r agent/requirements.txt
+      - name: Revérifier
+        working-directory: agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          APPLIQUER: ${{ inputs.appliquer }}
+        run: python videos.py reverifier
