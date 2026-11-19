@@ -106,8 +106,10 @@ SOURCES = [
     {"feed": "science", "name": "NSF", "url": "https://www.nsf.gov/rss/rss_www_news.xml"},
     {"feed": "science", "name": "NIST", "url": "https://www.nist.gov/news-events/news/rss.xml"},
     {"feed": "science", "name": "USGS", "url": "https://www.usgs.gov/news/national-news-release/feed", "age_max": 45},
-    {"feed": "science", "name": "Berkeley Lab", "url": "https://newscenter.lbl.gov/feed/"},
-    {"feed": "science", "name": "Argonne", "url": "https://www.anl.gov/rss.xml", "age_max": 45},
+    # Désactivée le 20/11/2026 : injoignable depuis GitHub à chaque passage (robots bloqués, 403).
+    # {"feed": "science", "name": "Berkeley Lab", "url": "https://newscenter.lbl.gov/feed/"},
+    # Désactivée le 20/11/2026 : injoignable depuis GitHub à chaque passage (robots bloqués, 403).
+    # {"feed": "science", "name": "Argonne", "url": "https://www.anl.gov/rss.xml", "age_max": 45},
     {"feed": "science", "name": "Oak Ridge (ORNL)", "url": "https://www.ornl.gov/news/feed/"},
     {"feed": "science", "name": "SLAC", "url": "https://www6.slac.stanford.edu/rss.xml"},
     {"feed": "science", "name": "Harvard Gazette", "url": "https://news.harvard.edu/gazette/feed/"},
@@ -210,7 +212,8 @@ SOURCES = [
     {"feed": "tech", "name": "Siemens", "url": "https://press.siemens.com/global/en/rss.xml"},
     {"feed": "tech", "name": "Airbus", "url": "https://www.airbus.com/rss.xml", "age_max": 45},
     {"feed": "tech", "name": "Rocket Lab", "url": "https://www.rocketlabusa.com/updates/rss/", "age_max": 45},
-    {"feed": "tech", "name": "ESA (technologie spatiale)", "url": "https://www.esa.int/rssfeed/Our_Activities/Space_Engineering_Technology", "age_max": 45},
+    # Désactivée le 20/11/2026 : injoignable depuis GitHub à chaque passage (flux supprimé, 404).
+    # {"feed": "tech", "name": "ESA (technologie spatiale)", "url": "https://www.esa.int/rssfeed/Our_Activities/Space_Engineering_Technology", "age_max": 45},
     {"feed": "tech", "name": "PlayStation Blog", "url": "https://blog.playstation.com/feed/"},
     # --- Médias spécialisés par domaine ---
     {"feed": "tech", "name": "ServeTheHome (serveurs, puces)", "url": "https://www.servethehome.com/feed/"},
@@ -238,8 +241,10 @@ SOURCES = [
     {"feed": "tech", "name": "Pandaily (Chine)", "url": "https://pandaily.com/feed/"},
     {"feed": "tech", "name": "SCMP Tech (Asie)", "url": "https://www.scmp.com/rss/36/feed"},
     {"feed": "tech", "name": "TechCabal (Afrique)", "url": "https://techcabal.com/feed/"},
-    {"feed": "tech", "name": "L'Usine Nouvelle", "url": "https://www.usinenouvelle.com/rss/"},
-    {"feed": "tech", "name": "L'Usine Digitale", "url": "https://www.usine-digitale.fr/rss"},
+    # Désactivée le 20/11/2026 : injoignable depuis GitHub à chaque passage (robots bloqués, 403).
+    # {"feed": "tech", "name": "L'Usine Nouvelle", "url": "https://www.usinenouvelle.com/rss/"},
+    # Désactivée le 20/11/2026 : injoignable depuis GitHub à chaque passage (robots bloqués, 403).
+    # {"feed": "tech", "name": "L'Usine Digitale", "url": "https://www.usine-digitale.fr/rss"},
     # =================================================================
     # AJOUTS DU 31/10/2026 — régions et domaines absents, jeux vidéo
     # (série CANDIDATS3 testée le 31/10 : agent/decouverte_CANDIDATS3.md ;

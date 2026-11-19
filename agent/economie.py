@@ -21,6 +21,15 @@ REFLEXION_TRI = True
 # Paramètre ajouté à chaque appel client.messages.create(...)
 PARAMS = {} if REFLEXION else {"thinking": {"type": "disabled"}}
 PARAMS_TRI = {} if REFLEXION_TRI else {"thinking": {"type": "disabled"}}
+
+
+def params_modele(modele_id: str) -> dict:
+    """PARAMS adapté au modèle. 20/11/2026 : Sonnet refuse { "thinking": "disabled" } (erreur 400) et
+    demande { "thinking": "between_tools" } pour ne pas réfléchir avant de répondre. Le contrôle
+    des doublons de « À venir » (Sonnet) échouait à chaque passage depuis le 10/11 à cause de ça."""
+    if PARAMS and "haiku" not in modele_id:
+        return {"thinking": {"type": "between_tools"}}
+    return PARAMS
 EFFORT_TRI = "low"
 
 # Exception pour la réécriture et la relecture des fiches (redaction.py) : là, la réflexion

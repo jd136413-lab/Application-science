@@ -185,7 +185,7 @@ def _appel(client, modele_id, consigne, contenu, schema, conso, max_tokens=2000)
         model=modele_id, max_tokens=max_tokens, system=consigne,
         messages=[{"role": "user", "content": contenu}],
         output_config={"format": {"type": "json_schema", "schema": schema}},
-        **economie.PARAMS,
+        **economie.params_modele(modele_id),
     )
     conso["in"] += rep.usage.input_tokens or 0
     conso["out"] += rep.usage.output_tokens or 0
@@ -909,7 +909,7 @@ def verifier_doublons(db, client, futurs: list[dict], log) -> float:
         if not a_retirer:
             log("  ✔ À venir : aucun doublon")
     except Exception as ex:
-        log(f"  ⚠ À venir : contrôle des doublons impossible ({str(ex)[:80]})")
+        log(f"  ⚠ À venir : contrôle des doublons impossible ({str(ex)[:300]})")
     return (conso["in"] * PRIX_DOUBLONS[0] + conso["out"] * PRIX_DOUBLONS[1]) / 1e6
 
 

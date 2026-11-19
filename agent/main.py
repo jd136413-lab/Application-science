@@ -1406,6 +1406,18 @@ def mettre_en_attente(art: dict, raison: str) -> None:
     log(f"  ⏳ en attente d'une version lisible ({raison}) : {art['title'][:70]}")
 
 
+def fiche_du_fil(rep: dict, feed: str) -> dict:
+    """La fiche que Claude a remplie pour ce fil. 20/11 : pour des sujets à la frontière (ARN conçu par
+    IA, circuits photoniques…), le tri choisit parfois un fil mais remplit la fiche de l'autre ; l'article
+    finissait en erreur (« fiche Sciences sans titre »). On reprend alors la fiche remplie."""
+    fiche = rep.get(feed) or {}
+    if not str(fiche.get("title", "")).strip():
+        autre = rep.get("tech" if feed == "science" else "science") or {}
+        if str(autre.get("title", "")).strip():
+            return autre
+    return fiche
+
+
 def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     """Vérifie et nettoie une fiche renvoyée par Claude pour un fil."""
     titre = str(fiche.get("title", "")).strip().rstrip(".")
@@ -1738,7 +1750,7 @@ def main() -> int:
                 art["_reponse"] = rep             # réutilisée au 2e tour, sans nouvel appel
                 log(f"  ⏸ fil {FIL_NOM[fils[0]]} plein : {art['title'][:70]}")
                 continue
-            lignes = [preparer_ligne(f, rep.get(f) or {}, art) for f in fils]
+            lignes = [preparer_ligne(f, fiche_du_fil(rep, f), art) for f in fils]
             # Vérification avec la vraie famille (thème choisi par le juge) : au plafond et
             # moins de ★★★ → pas publiée maintenant, ni écartée (candidate plus tard).
             gardees = [l for l in lignes if l["importance"] >= 3

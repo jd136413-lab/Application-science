@@ -571,7 +571,7 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
     # (18/11 : sujet proposé en « Sciences » mais classé « Technologies » → fiche vide, erreur).
     fils_tri = ["science", "tech"] if decision == "both" else [decision]
     fil = prop.get("fil") if prop.get("fil") in fils_tri else fils_tri[0]
-    ligne = agent.preparer_ligne(fil, rep.get(fil) or {}, art)
+    ligne = agent.preparer_ligne(fil, agent.fiche_du_fil(rep, fil), art)
 
     # 3. Écriture : par l'IA (sujet) ou vérification du texte du lecteur (résumé)
     message = ""
