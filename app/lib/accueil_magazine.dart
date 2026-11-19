@@ -424,8 +424,6 @@ class _EcranMagazineState extends State<EcranMagazine> {
     );
   }
 }
-}
-}
 
 // ------------------------------------------------------------------ en-tête
 
