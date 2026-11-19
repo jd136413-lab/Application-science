@@ -1,4 +1,4 @@
-# Diagnostic gratuit (19/11/2026) : une image Wikimedia se charge-t-elle selon le nom d'app envoyé ?
+# Diagnostic gratuit (19/11/2026) : une image Wikimedia se charge-t-elle comme dans l'app (client Dart) ?
 name: Diagnostic images
 
 on:
@@ -8,10 +8,28 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: dart-lang/setup-dart@v1
       - run: |
-          U='https://upload.wikimedia.org/wikipedia/commons/b/b3/Danionella_cerebrum_%28cropped%29.jpg'
-          for ua in "Dart/3.9 (dart:io)" "NovaSTEM/1.0 (https://jd136413-lab.github.io/Application-science/)" "Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/131 Mobile Safari/537.36"; do
-            echo "== $ua"; curl -s -o /tmp/i -w "HTTP %{http_code} · %{size_download} octets · %{content_type}\n" -A "$ua" "$U"
-          done
-          echo "== sans nom d'app"; curl -s -o /tmp/i -w "HTTP %{http_code} · %{size_download} octets\n" -H "User-Agent:" "$U"
-          head -c 300 /tmp/i; echo
+          mkdir t && cd t
+          cat > pubspec.yaml <<'Y'
+          name: t
+          environment:
+            sdk: ">=3.0.0 <4.0.0"
+          dependencies:
+            http: any
+          Y
+          dart pub get >/dev/null
+          mkdir bin && cat > bin/t.dart <<'D'
+          import 'dart:io';
+          import 'package:http/http.dart' as http;
+          Future<void> main() async {
+            const u = 'https://upload.wikimedia.org/wikipedia/commons/b/b3/Danionella_cerebrum_%28cropped%29.jpg';
+            final c = HttpClient();
+            print('Nom d’app envoyé par défaut : ${c.userAgent}');
+            final r = await http.get(Uri.parse(u));
+            print('http.get par défaut : HTTP ${r.statusCode} · ${r.bodyBytes.length} octets · ${r.body.length < 300 ? r.body : ''}');
+            final r2 = await http.get(Uri.parse(u), headers: {'User-Agent': 'NovaSTEM/1.0 (Android; https://jd136413-lab.github.io/Application-science/)'});
+            print('avec nom NovaSTEM : HTTP ${r2.statusCode} · ${r2.bodyBytes.length} octets');
+          }
+          D
+          dart run bin/t.dart
