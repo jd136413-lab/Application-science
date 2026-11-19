@@ -1,0 +1,17 @@
+# Diagnostic gratuit (19/11/2026) : une image Wikimedia se charge-t-elle selon le nom d'app envoyé ?
+name: Diagnostic images
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          U='https://upload.wikimedia.org/wikipedia/commons/b/b3/Danionella_cerebrum_%28cropped%29.jpg'
+          for ua in "Dart/3.9 (dart:io)" "NovaSTEM/1.0 (https://jd136413-lab.github.io/Application-science/)" "Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/131 Mobile Safari/537.36"; do
+            echo "== $ua"; curl -s -o /tmp/i -w "HTTP %{http_code} · %{size_download} octets · %{content_type}\n" -A "$ua" "$U"
+          done
+          echo "== sans nom d'app"; curl -s -o /tmp/i -w "HTTP %{http_code} · %{size_download} octets\n" -H "User-Agent:" "$U"
+          head -c 300 /tmp/i; echo
