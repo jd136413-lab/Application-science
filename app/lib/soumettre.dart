@@ -293,7 +293,7 @@ class _Regles extends StatefulWidget {
 }
 
 class _ReglesState extends State<_Regles> {
-  static bool _ouvert = true; // gardé pendant que l'app est ouverte
+  static bool _ouvert = false; // fermé par défaut (20/11), gardé pendant que l'app est ouverte
 
   // 19/11 : écrit simplement, sans émojis ni liste à étiquettes (Maxime : « trop IA »).
   static const _regles = [
