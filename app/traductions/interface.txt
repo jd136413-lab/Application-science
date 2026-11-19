@@ -9624,3 +9624,85 @@ ja {date} に覚えた
 ko {date}에 배움
 id Dipelajari pada {date}
 vi Đã học ngày {date}
+
+# Recherche (maquettes 102, 19/11/2026)
+@ Recherches récentes
+en Recent searches
+es Búsquedas recientes
+pt Pesquisas recentes
+de Letzte Suchen
+it Ricerche recenti
+nl Recente zoekopdrachten
+pl Ostatnie wyszukiwania
+ru Недавние запросы
+uk Нещодавні запити
+tr Son aramalar
+ar عمليات البحث الأخيرة
+hi हाल की खोजें
+bn সাম্প্রতিক অনুসন্ধান
+ur حالیہ تلاش
+zh 最近搜索
+ja 最近の検索
+ko 최근 검색
+id Pencarian terbaru
+vi Tìm kiếm gần đây
+@ Par domaine
+en By field
+es Por ámbito
+pt Por área
+de Nach Bereich
+it Per ambito
+nl Per domein
+pl Według dziedziny
+ru По области
+uk За галуззю
+tr Alana göre
+ar حسب المجال
+hi क्षेत्र के अनुसार
+bn ক্ষেত্র অনুযায়ী
+ur شعبے کے لحاظ سے
+zh 按领域
+ja 分野別
+ko 분야별
+id Menurut bidang
+vi Theo lĩnh vực
+@ Bientôt
+en Coming up
+es Próximamente
+pt Em breve
+de Demnächst
+it Prossimamente
+nl Binnenkort
+pl Wkrótce
+ru Скоро
+uk Незабаром
+tr Yakında
+ar قريبًا
+hi जल्द ही
+bn শীঘ্রই
+ur جلد
+zh 即将到来
+ja まもなく
+ko 곧
+id Segera
+vi Sắp diễn ra
+@ {n} résultats
+en {n} results
+es {n} resultados
+pt {n} resultados
+de {n} Ergebnisse
+it {n} risultati
+nl {n} resultaten
+pl Wyniki: {n}
+ru Результатов: {n}
+uk Результатів: {n}
+tr {n} sonuç
+ar {n} نتيجة
+hi {n} परिणाम
+bn {n}টি ফলাফল
+ur {n} نتائج
+zh {n} 个结果
+ja {n} 件の結果
+ko 결과 {n}개
+id {n} hasil
+vi {n} kết quả

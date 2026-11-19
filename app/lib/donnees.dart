@@ -105,3 +105,25 @@ Future<Avancee?> chargerAvancee(String id) async {
   final ligne = await Supabase.instance.client.from('advances').select().eq('id', id).maybeSingle();
   return ligne == null ? null : Avancee.depuisJson(Map<String, dynamic>.from(ligne));
 }
+
+/// Recherche dans toute la base (titre et résumé), pour trouver aussi ce qui n'est pas dans le
+/// fil gardé sur le téléphone (plus d'un an, au-delà de 500 fiches). Un seul mot (le plus long) :
+/// le tri fin se fait ensuite sur le téléphone, sans tenir compte des accents.
+Future<List<Avancee>> rechercherEnLigne(String texte) async {
+  if (!configurationPresente) return const [];
+  final mots = texte
+      .split(RegExp(r'\s+'))
+      .map((m) => m.replaceAll(RegExp(r'[^\p{L}\p{N}-]', unicode: true), ''))
+      .where((m) => m.length >= 3)
+      .toList()
+    ..sort((a, b) => b.length.compareTo(a.length));
+  if (mots.isEmpty) return const [];
+  final m = '*${mots.first}*';
+  final lignes = await Supabase.instance.client
+      .from('advances')
+      .select()
+      .or('title.ilike.$m,summary.ilike.$m,avant.ilike.$m,decouverte.ilike.$m,apres.ilike.$m')
+      .order('published_at', ascending: false)
+      .limit(150);
+  return _versAvancees((lignes as List).map((l) => Map<String, dynamic>.from(l as Map)).toList());
+}

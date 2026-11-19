@@ -21,6 +21,7 @@ import 'modele.dart';
 import 'navigation.dart';
 import 'proposition_notifs.dart';
 import 'pubs.dart';
+import 'recherche.dart';
 import 'reglages.dart';
 import 'stats.dart';
 import 'texte_article.dart';
@@ -280,7 +281,9 @@ class _EcranMagazineState extends State<EcranMagazine> {
         action: tr('Tout voir'),
         onAction: () => _pousser(context, EcranTopMag(fil: _fil)),
       ),
-      for (var i = 0; i < l.length && i < 3; i++)
+      // Maquette 104 B (19/11) : la n° 1 en grande carte avec son image, les n° 2 et 3 en lignes avec vignette.
+      _CarteTopUne(avancee: l[0], onTap: () => ouvrirAvancee(context, l, l[0])),
+      for (var i = 1; i < l.length && i < 3; i++)
         _LigneTop(rang: i + 1, avancee: l[i], onTap: () => ouvrirAvancee(context, l, l[i])),
     ]);
   }
@@ -674,7 +677,76 @@ class _LigneTop extends StatelessWidget {
               Etoiles(note: avancee.importance, taille: 12),
             ]),
           ),
+          const SizedBox(width: 10),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: SizedBox(
+              width: 68,
+              height: 68,
+              child: ImageOuVisuel(image: avancee.image, video: avancee.video, famille: f, boutonLecture: false),
+            ),
+          ),
         ]),
+      ),
+    );
+  }
+}
+
+/// N° 1 du top de la semaine (maquette 104 B) : grande carte, image (ou visuel du domaine) en fond.
+class _CarteTopUne extends StatelessWidget {
+  final Avancee avancee;
+  final VoidCallback onTap;
+  const _CarteTopUne({required this.avancee, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final f = familleDe(avancee.famille);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Material(
+        borderRadius: BorderRadius.circular(18),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          onLongPress: () => ouvrirMenuCarte(context, avancee),
+          child: SizedBox(
+            height: 210,
+            child: Stack(fit: StackFit.expand, children: [
+              ImageOuVisuel(image: avancee.image, video: avancee.video, famille: f),
+              const DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.3, 1],
+                    colors: [Color(0x00000000), Color(0xE6000000)],
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 14,
+                top: 8,
+                child: Text('1',
+                    style: police(policeTitres, taille: 38, graisse: FontWeight.w800, couleur: Colors.white, hauteur: 1)),
+              ),
+              Positioned(
+                left: 14,
+                right: 14,
+                bottom: 12,
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+                  Text(tr(f.nom),
+                      style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: Colors.white70)),
+                  const SizedBox(height: 3),
+                  TexteArticle(avancee.titre,
+                      maxLines: 3,
+                      style: police(policeTitres, taille: 18, graisse: FontWeight.w700, couleur: Colors.white, hauteur: 1.2)),
+                  const SizedBox(height: 5),
+                  Etoiles(note: avancee.importance, taille: 13, avecMot: false),
+                ]),
+              ),
+            ]),
+          ),
+        ),
       ),
     );
   }
@@ -1171,111 +1243,7 @@ class EcranAnneeMag extends StatelessWidget {
       );
 }
 
-// ------------------------------------------------------------------ recherche
-
-class EcranRechercheMag extends StatefulWidget {
-  const EcranRechercheMag({super.key});
-
-  @override
-  State<EcranRechercheMag> createState() => _EcranRechercheMagState();
-}
-
-class _EcranRechercheMagState extends State<EcranRechercheMag> {
-  final _champ = TextEditingController();
-  String _texte = '';
-
-  @override
-  void dispose() {
-    _champ.dispose();
-    super.dispose();
-  }
-
-  List<Avancee> _resultats() {
-    final mots = sansAccents(_texte).split(RegExp(r'\s+')).where((m) => m.length >= 2).toList();
-    if (mots.isEmpty) return const [];
-    final res = <Avancee>[];
-    for (final fil in const ['science', 'tech']) {
-      for (final a in filsAvancees.fils[fil] ?? const <Avancee>[]) {
-        if (etat.estMasquee(a)) continue;
-        final textes = [a.titre, a.resume, a.avant, a.decouverte, a.apres, a.source, tr(familleDe(a.famille).nom)];
-        final traduit = traductionImmediate(a.titre);
-        if (traduit != null) textes.add(traduit);
-        final tout = sansAccents(textes.join(' '));
-        if (mots.every(tout.contains)) res.add(a);
-      }
-    }
-    res.sort((a, b) => b.publieLe.compareTo(a.publieLe));
-    return res.take(100).toList();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final p = palette(context);
-    final l = _resultats();
-    return Scaffold(
-      backgroundColor: p.fond,
-      body: SafeArea(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 8, 6),
-            child: Row(children: [
-              Expanded(
-                child: TextField(
-                  controller: _champ,
-                  autofocus: true,
-                  textInputAction: TextInputAction.search,
-                  onChanged: (t) => setState(() => _texte = t),
-                  style: police(policeTexte, taille: 16, couleur: p.texte),
-                  decoration: InputDecoration(
-                    hintText: tr('Rechercher une avancée'),
-                    hintStyle: police(policeTexte, taille: 16, couleur: p.texteDiscret),
-                    prefixIcon: Icon(Icons.search_rounded, color: p.texte),
-                    filled: true,
-                    fillColor: p.carte,
-                    contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide(color: p.bordure)),
-                    enabledBorder:
-                        OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide(color: p.bordure)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(24), borderSide: BorderSide(color: p.texte, width: 1.5)),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(tr(texteAnnuler),
-                    style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texteDiscret)),
-              ),
-            ]),
-          ),
-          if (_texte.trim().length >= 2)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 2, 20, 4),
-              child: Text(
-                  l.isEmpty
-                      ? tr('Aucune avancée trouvée')
-                      : (l.length == 1 ? tr('1 avancée') : tr('{n} avancées', n: l.length)),
-                  style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
-            ),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
-              itemCount: l.length,
-              itemBuilder: (context, i) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: CarteAvancee(
-                  avancee: l[i],
-                  onTap: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => EcranDetailFil(liste: List.of(l), depart: i))),
-                ),
-              ),
-            ),
-          ),
-        ]),
-      ),
-    );
-  }
-}
+// Recherche : voir recherche.dart (maquettes 102, 19/11).
 
 // ------------------------------------------------------------------ personnaliser
 
