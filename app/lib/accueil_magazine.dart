@@ -24,6 +24,7 @@ import 'pubs.dart';
 import 'recherche.dart';
 import 'reglages.dart';
 import 'stats.dart';
+import 'stories.dart';
 import 'texte_article.dart';
 import 'widgets.dart';
 
@@ -282,7 +283,10 @@ class _EcranMagazineState extends State<EcranMagazine> {
         onAction: () => _pousser(context, EcranTopMag(fil: _fil)),
       ),
       // Maquette 104 B (19/11) : la n° 1 en grande carte avec son image, les n° 2 et 3 en lignes avec vignette.
-      _CarteTopUne(avancee: l[0], onTap: () => ouvrirAvancee(context, l, l[0])),
+      if ((l[0].image ?? '').isNotEmpty)
+        _CarteTopUne(avancee: l[0], onTap: () => ouvrirAvancee(context, l, l[0]))
+      else
+        _LigneTop(rang: 1, avancee: l[0], onTap: () => ouvrirAvancee(context, l, l[0])),
       for (var i = 1; i < l.length && i < 3; i++)
         _LigneTop(rang: i + 1, avancee: l[i], onTap: () => ouvrirAvancee(context, l, l[i])),
     ]);
@@ -338,27 +342,89 @@ class _EcranMagazineState extends State<EcranMagazine> {
             style: police(policeTexte, taille: 14, couleur: p.texteDiscret, hauteur: 1.4)),
       ]);
     }
+    // Maquette 105 bis (19/11) : une bulle par domaine suivi (nouveautés d'abord), puis les dernières fiches.
+    final groupes = [
+      for (final f in suivis)
+        GroupeDomaine(f, tout.where((a) => a.famille == f).toList()..sort((a, b) => b.publieLe.compareTo(a.publieLe))),
+    ]..sort((a, b) => b.nouvelles.length.compareTo(a.nouvelles.length));
+    final dernieres = [for (final g in groupes) ...g.fiches]..sort((a, b) => b.publieLe.compareTo(a.publieLe));
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      for (final f in suivis) ...[
-        _TitreRubrique(
-          titre: tr(familleDe(f).nom),
-          action: tr('Tout voir'),
-          onAction: () => _pousser(context, EcranDomaineMag(fil: _fil, famille: f)),
+      _TitreRubrique(titre: tr('Mes domaines suivis')),
+      SizedBox(
+        height: 98,
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          clipBehavior: Clip.none,
+          itemCount: groupes.length,
+          separatorBuilder: (_, __) => const SizedBox(width: 6),
+          itemBuilder: (context, i) => BulleDomaine(
+            groupe: groupes[i],
+            onTap: () => groupes[i].aMontrer.isEmpty
+                ? _pousser(context, EcranDomaineMag(fil: _fil, famille: groupes[i].famille))
+                : _pousser(context, EcranStories(groupes: groupes.where((g) => g.aMontrer.isNotEmpty).toList(),
+                    depart: groupes.where((g) => g.aMontrer.isNotEmpty).toList().indexOf(groupes[i]))),
+            onLongPress: () => _menuDomaine(context, groupes[i]),
+          ),
         ),
-        Builder(builder: (context) {
-          // Même tri que le bouton de la page du domaine (« Tout voir »).
-          var l = tout.where((a) => a.famille == f).toList()..sort((a, b) => b.publieLe.compareTo(a.publieLe));
-          if (etat.triDomainesImportance) l = parImportance(l);
-          l = l.take(10).toList();
-          return l.isEmpty
-              ? Text(tr('Pas encore d’avancée ce mois-ci.'),
-                  style: police(policeTexte, taille: 14, couleur: p.texteDiscret))
-              : _Carrousel(liste: l, toutes: l);
-        }),
-        const SizedBox(height: 14),
+      ),
+      if (dernieres.isNotEmpty) ...[
+        const SizedBox(height: 8),
+        Text(tr('Dernières dans tes domaines').toUpperCase(),
+            style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+        const SizedBox(height: 4),
+        for (final a in dernieres.take(3))
+          _LigneSuivi(avancee: a, onTap: () => ouvrirAvancee(context, dernieres, a)),
       ],
     ]);
   }
+
+  /// Appui long sur une bulle : voir tout le domaine, tout marquer comme vu, ne plus le suivre.
+  void _menuDomaine(BuildContext context, GroupeDomaine g) {
+    final p = palette(context);
+    final f = familleDe(g.famille);
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: p.carte,
+      builder: (ctx) => SafeArea(
+        child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 4),
+            child: Text(tr(f.nom), style: police(policeTitres, taille: 18, graisse: FontWeight.w800, couleur: p.texte)),
+          ),
+          ListTile(
+            leading: Icon(Icons.view_list_rounded, color: p.texte),
+            title: Text(tr('Voir toutes les fiches de ce domaine')),
+            onTap: () {
+              Navigator.pop(ctx);
+              _pousser(context, EcranDomaineMag(fil: _fil, famille: g.famille));
+            },
+          ),
+          if (g.nouvelles.isNotEmpty)
+            ListTile(
+              leading: Icon(Icons.done_all_rounded, color: p.texte),
+              title: Text(tr('Tout marquer comme vu')),
+              onTap: () {
+                Navigator.pop(ctx);
+                for (final a in g.nouvelles) {
+                  etat.marquerLue(a.id);
+                }
+              },
+            ),
+          ListTile(
+            leading: Icon(Icons.remove_circle_outline_rounded, color: p.texte),
+            title: Text(tr('Ne plus suivre ce domaine')),
+            onTap: () {
+              Navigator.pop(ctx);
+              etat.basculerSuivi(g.famille);
+            },
+          ),
+          const SizedBox(height: 8),
+        ]),
+      ),
+    );
+  }
+}
+}
 }
 
 // ------------------------------------------------------------------ en-tête
@@ -582,8 +648,10 @@ class _Carrousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
+    // Maquette 103 ter (19/11) : toutes les cartes ont la même taille ; l'image en haut si la fiche
+    // en a une, sinon le début de « La découverte » (l'accroche) prend sa place.
     return SizedBox(
-      height: 168,
+      height: 262,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         clipBehavior: Clip.none,
@@ -605,7 +673,11 @@ class _Carrousel extends StatelessWidget {
               child: InkWell(
                 onTap: () => ouvrirAvancee(context, toutes, a),
                 onLongPress: () => ouvrirMenuCarte(context, a),
-                child: Padding(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                  if ((a.image ?? '').isNotEmpty)
+                    SizedBox(height: 92, child: ImageAvancee(image: a.image!, video: a.video, tailleBouton: 36)),
+                  Expanded(
+                    child: Padding(
                   padding: const EdgeInsets.all(12),
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Row(children: [
@@ -620,14 +692,23 @@ class _Carrousel extends StatelessWidget {
                         ),
                     ]),
                     const SizedBox(height: 8),
-                    Expanded(
-                      child: TexteArticle(a.titre,
-                          maxLines: 4,
-                          style: police(policeTitres, taille: 14, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.2)),
-                    ),
+                    TexteArticle(a.titre,
+                        maxLines: 4,
+                        style: police(policeTitres, taille: 14, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.2)),
+                    if ((a.image ?? '').isEmpty && a.decouverte.isNotEmpty) ...[
+                      const SizedBox(height: 8),
+                      Expanded(
+                        child: TexteArticle(a.decouverte,
+                            maxLines: 5,
+                            style: police(policeTexte, taille: 12.5, couleur: p.texteDiscret, hauteur: 1.4)),
+                      ),
+                    ] else
+                      const Spacer(),
                     Etoiles(note: a.importance, taille: 12, avecMot: false),
                   ]),
                 ),
+                  ),
+                ]),
               ),
             ),
             ),
@@ -677,15 +758,17 @@ class _LigneTop extends StatelessWidget {
               Etoiles(note: avancee.importance, taille: 12),
             ]),
           ),
-          const SizedBox(width: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: SizedBox(
-              width: 68,
-              height: 68,
-              child: ImageOuVisuel(image: avancee.image, video: avancee.video, famille: f, boutonLecture: false),
+          if ((avancee.image ?? '').isNotEmpty) ...[
+            const SizedBox(width: 10),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: SizedBox(
+                width: 68,
+                height: 68,
+                child: ImageAvancee(image: avancee.image!, video: avancee.video, boutonLecture: false),
+              ),
             ),
-          ),
+          ],
         ]),
       ),
     );
@@ -712,7 +795,7 @@ class _CarteTopUne extends StatelessWidget {
           child: SizedBox(
             height: 210,
             child: Stack(fit: StackFit.expand, children: [
-              ImageOuVisuel(image: avancee.image, video: avancee.video, famille: f),
+              ImageAvancee(image: avancee.image!, video: avancee.video),
               const DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -747,6 +830,54 @@ class _CarteTopUne extends StatelessWidget {
             ]),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _LigneSuivi extends StatelessWidget {
+  final Avancee avancee;
+  final VoidCallback onTap;
+  const _LigneSuivi({required this.avancee, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final p = palette(context);
+    final f = familleDe(avancee.famille);
+    return InkWell(
+      onTap: onTap,
+      onLongPress: () => ouvrirMenuCarte(context, avancee),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(children: [
+          if ((avancee.image ?? '').isNotEmpty) ...[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: SizedBox(
+                  width: 60, height: 60, child: ImageAvancee(image: avancee.image!, video: avancee.video, boutonLecture: false)),
+            ),
+            const SizedBox(width: 12),
+          ],
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(children: [
+                TuileFamille(famille: f, taille: 18),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(tr(f.nom),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: police(policeTexte,
+                          taille: 12, graisse: FontWeight.w700, couleur: estSombre(context) ? f.encreSombre : f.encreClaire)),
+                ),
+              ]),
+              const SizedBox(height: 4),
+              TexteArticle(avancee.titre,
+                  maxLines: 2,
+                  style: police(policeTitres, taille: 14.5, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.2)),
+            ]),
+          ),
+        ]),
       ),
     );
   }

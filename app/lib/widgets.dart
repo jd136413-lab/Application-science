@@ -364,49 +364,20 @@ class BoutonLecture extends StatelessWidget {
   }
 }
 
-/// Visuel d'une avancée sans photo (maquette 100 A) : dégradé de la couleur du domaine et son
-/// symbole en grand, très pâle. Aucune image téléchargée, aucun droit d'auteur.
-class VisuelFamille extends StatelessWidget {
-  final Famille famille;
-  const VisuelFamille({super.key, required this.famille});
-
-  @override
-  Widget build(BuildContext context) => LayoutBuilder(
-        builder: (context, c) {
-          final h = c.maxHeight.isFinite ? c.maxHeight : 120.0;
-          return Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [famille.couleur, Color.lerp(famille.couleur, const Color(0xFF15151C), 0.7)!],
-              ),
-            ),
-            child: Align(
-              alignment: const Alignment(0.85, -0.6),
-              child: Icon(famille.symbole, size: h * 0.62, color: Colors.white.withValues(alpha: 0.2)),
-            ),
-          );
-        },
-      );
-}
-
-/// Image d'une avancée (avec ▶ si c'est l'image d'une vidéo), sinon le visuel de son domaine.
-class ImageOuVisuel extends StatelessWidget {
-  final String? image;
+/// Image d'une avancée, avec ▶ si c'est l'image d'une vidéo. (19/11 : jamais de « visuel du domaine »
+/// à la place d'une image absente — choix de Maxime ; sans image, la carte s'en passe.)
+class ImageAvancee extends StatelessWidget {
+  final String image;
   final String? video;
-  final Famille famille;
   final bool boutonLecture;
-  const ImageOuVisuel({super.key, this.image, this.video, required this.famille, this.boutonLecture = true});
+  final double tailleBouton;
+  const ImageAvancee({super.key, required this.image, this.video, this.boutonLecture = true, this.tailleBouton = 44});
 
   @override
-  Widget build(BuildContext context) {
-    if (image == null || image!.isEmpty) return VisuelFamille(famille: famille);
-    return Stack(fit: StackFit.expand, children: [
-      ImageGardee(url: image!),
-      if (boutonLecture && estImageVideo(image)) BoutonLecture(video: video, taille: 44),
-    ]);
-  }
+  Widget build(BuildContext context) => Stack(fit: StackFit.expand, children: [
+        ImageGardee(url: image),
+        if (boutonLecture && estImageVideo(image)) BoutonLecture(video: video, taille: tailleBouton),
+      ]);
 }
 
 /// Photo d'une avancée, gardée sur le téléphone (30 jours, 100 Mo au plus :
