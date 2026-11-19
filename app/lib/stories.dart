@@ -184,17 +184,18 @@ class _EcranStoriesState extends State<EcranStories> {
   Widget build(BuildContext context) {
     final p = palette(context);
     final f = familleDe(widget.groupes[_g].famille);
+    if (_fiches.isEmpty) return Scaffold(backgroundColor: p.fond); // le temps de se fermer
     final a = _fiches[_k];
     final image = (a.image ?? '').isNotEmpty ? a.image : null;
-    const surImage = true; // une fiche a toujours un fond : son image, sinon le visuel de son domaine
-    final texte = surImage ? Colors.white : p.texte;
+    // Une fiche a toujours un fond : son image, sinon le visuel de son domaine ; texte en blanc.
+    const texte = Colors.white;
     return Scaffold(
-      backgroundColor: surImage ? Colors.black : p.fond,
+      backgroundColor: Colors.black,
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTapUp: (d) => d.localPosition.dx < MediaQuery.of(context).size.width / 3 ? _precedente() : _suivante(),
         child: Stack(fit: StackFit.expand, children: [
-          if (surImage) ...[
+          ...[
             if (image != null)
               ImageAvancee(image: image, video: a.video, tailleBouton: 60)
             else
@@ -243,7 +244,7 @@ class _EcranStoriesState extends State<EcranStories> {
                   ),
                 ]),
                 const Spacer(),
-                _fiche(a, texte, surImage),
+                _fiche(a, texte, true),
               ]),
             ),
           ),
