@@ -349,6 +349,7 @@ Associe une vidéo à une fiche SEULEMENT si elle montre ou explique directement
 Exemple : une fiche « SpaceX rattrape le vaisseau Starship avec la tour » ↔ une vidéo qui montre le VAISSEAU (Ship) rattrapé par la tour : oui ; une vidéo du booster Super Heavy, du décollage ou d'un autre vol : non. Une fiche sur un autre sujet (trous noirs, biologie…) ↔ une vidéo de fusée : jamais.
 Refuse (n'associe pas) : une présentation générale de plusieurs produits ou annonces (keynote, « launch event », conférence, salon, résumé de la semaine) pour une fiche sur UN seul produit ou résultat, un sujet voisin mais différent (autre mission, autre produit, autre vol), une vidéo générale ou promotionnelle, un direct annoncé pour plus tard, un podcast, un résumé de l'actualité de la semaine. En cas de doute : n'associe pas.
 Une vidéo peut servir à une seule fiche. Si plusieurs vidéos conviennent pour une fiche, préfère la plus COURTE et la plus PERCUTANTE : celle qui MONTRE l'événement en images réelles (gros plan, plusieurs angles) ou où l'acteur concerné en parle directement, idéalement moins de 5 minutes. Évite les directs, les émissions et les vidéos de plus de 10 minutes quand une vidéo courte existe.
+Les fiches sont numérotées F0, F1… et les vidéos V0, V1… : ne confonds jamais les deux listes. Dans ta réponse, "fiche" est le numéro de la fiche (F12 → 12) et "video" celui de la vidéo (V7 → 7).
 Réponds en JSON : {"paires": [{"fiche": numéro, "video": numéro}, ...]} (liste vide si aucune)."""
 
 SCHEMA_ASSOCIATION = {
@@ -399,10 +400,10 @@ def passage_chaines(table_url: str, headers: dict, client, modele_id, conso: dic
         if not vids:
             return 0
         contenu = ("FICHES :\n" + "\n".join(
-            f"{k}. [{str(f.get('published_at', ''))[:10]}] {f.get('title', '')} — {' '.join(str(f.get('summary') or '').split())[:180]}"
+            f"F{k}. [{str(f.get('published_at', ''))[:10]}] {f.get('title', '')} — {' '.join(str(f.get('summary') or '').split())[:180]}"
             for k, f in enumerate(fiches))
             + "\n\nVIDÉOS :\n" + "\n".join(
-            f"{k}. [{v['date']}] « {v['titre']} » — chaîne : {v['chaine']} — {_hms(v.get('duree'))}" for k, v in enumerate(vids)))
+            f"V{k}. [{v['date']}] « {v['titre']} » — chaîne : {v['chaine']} — {_hms(v.get('duree'))}" for k, v in enumerate(vids)))
         rep = client.messages.create(
             model=modele_id, max_tokens=800, system=CONSIGNE_ASSOCIATION,
             messages=[{"role": "user", "content": contenu}],
