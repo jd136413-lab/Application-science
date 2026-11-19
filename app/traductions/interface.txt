@@ -9706,3 +9706,125 @@ ja {n} 件の結果
 ko 결과 {n}개
 id {n} hasil
 vi {n} kết quả
+
+# Bulles « stories » des domaines suivis (maquette 105 bis, 19/11/2026)
+@ Lire la fiche
+en Read the story
+es Leer la ficha
+pt Ler a ficha
+de Beitrag lesen
+it Leggi la scheda
+nl Lees het artikel
+pl Przeczytaj
+ru Читать
+uk Читати
+tr Haberi oku
+ar اقرأ البطاقة
+hi पूरा पढ़ें
+bn পুরোটা পড়ুন
+ur پوری خبر پڑھیں
+zh 阅读全文
+ja 記事を読む
+ko 자세히 읽기
+id Baca selengkapnya
+vi Đọc bài
+@ Tu es à jour en {domaine}
+en You're all caught up in {domaine}
+es Estás al día en {domaine}
+pt Você está em dia em {domaine}
+de Du bist in {domaine} auf dem neuesten Stand
+it Sei aggiornato su {domaine}
+nl Je bent bij in {domaine}
+pl Jesteś na bieżąco: {domaine}
+ru Вы всё посмотрели: {domaine}
+uk Ви все переглянули: {domaine}
+tr {domaine} alanında güncelsin
+ar أنت على اطلاع في {domaine}
+hi {domaine} में आप अप-टू-डेट हैं
+bn {domaine}-এ আপনি সব দেখে ফেলেছেন
+ur {domaine} میں آپ سب دیکھ چکے ہیں
+zh {domaine} 已全部看完
+ja {domaine} はすべて見ました
+ko {domaine} 소식을 모두 봤어요
+id Kamu sudah melihat semua di {domaine}
+vi Bạn đã xem hết {domaine}
+@ Dernières dans tes domaines
+en Latest in your fields
+es Lo último en tus ámbitos
+pt Últimas nas suas áreas
+de Neu in deinen Bereichen
+it Le ultime nei tuoi ambiti
+nl Nieuwste in je domeinen
+pl Najnowsze w Twoich dziedzinach
+ru Последнее в ваших областях
+uk Найновіше у ваших галузях
+tr Alanlarındaki son haberler
+ar الأحدث في مجالاتك
+hi आपके क्षेत्रों में नया
+bn আপনার ক্ষেত্রগুলোর সর্বশেষ
+ur آپ کے شعبوں میں تازہ ترین
+zh 你关注领域的最新内容
+ja あなたの分野の最新情報
+ko 내 분야의 최신 소식
+id Terbaru di bidangmu
+vi Mới nhất trong lĩnh vực của bạn
+@ Voir toutes les fiches de ce domaine
+en See all stories in this field
+es Ver todas las fichas de este ámbito
+pt Ver todas as fichas desta área
+de Alle Beiträge dieses Bereichs ansehen
+it Vedi tutte le schede di questo ambito
+nl Alle artikelen in dit domein bekijken
+pl Zobacz wszystko z tej dziedziny
+ru Все материалы этой области
+uk Усі матеріали цієї галузі
+tr Bu alandaki tüm haberleri gör
+ar عرض كل بطاقات هذا المجال
+hi इस क्षेत्र की सभी खबरें देखें
+bn এই ক্ষেত্রের সব খবর দেখুন
+ur اس شعبے کی تمام خبریں دیکھیں
+zh 查看该领域的全部内容
+ja この分野の記事をすべて見る
+ko 이 분야의 모든 소식 보기
+id Lihat semua di bidang ini
+vi Xem tất cả bài trong lĩnh vực này
+@ Tout marquer comme vu
+en Mark all as seen
+es Marcar todo como visto
+pt Marcar tudo como visto
+de Alles als gesehen markieren
+it Segna tutto come visto
+nl Alles als gezien markeren
+pl Oznacz wszystko jako obejrzane
+ru Отметить всё как просмотренное
+uk Позначити все як переглянуте
+tr Tümünü görüldü olarak işaretle
+ar تحديد الكل كمُشاهَد
+hi सब देखा हुआ चिह्नित करें
+bn সব দেখা হিসেবে চিহ্নিত করুন
+ur سب کو دیکھا ہوا نشان زد کریں
+zh 全部标为已看
+ja すべて既読にする
+ko 모두 본 것으로 표시
+id Tandai semua sudah dilihat
+vi Đánh dấu tất cả là đã xem
+@ Ne plus suivre ce domaine
+en Unfollow this field
+es Dejar de seguir este ámbito
+pt Deixar de seguir esta área
+de Diesem Bereich nicht mehr folgen
+it Smetti di seguire questo ambito
+nl Dit domein niet meer volgen
+pl Przestań obserwować tę dziedzinę
+ru Не отслеживать эту область
+uk Не стежити за цією галуззю
+tr Bu alanı takip etmeyi bırak
+ar إلغاء متابعة هذا المجال
+hi इस क्षेत्र को फ़ॉलो करना बंद करें
+bn এই ক্ষেত্র আর অনুসরণ করবেন না
+ur اس شعبے کو فالو کرنا بند کریں
+zh 不再关注该领域
+ja この分野のフォローをやめる
+ko 이 분야 팔로우 취소
+id Berhenti mengikuti bidang ini
+vi Bỏ theo dõi lĩnh vực này
