@@ -166,8 +166,12 @@ class _EcranStoriesState extends State<EcranStories> {
     if (_k > 0) setState(() => _k--);
   }
 
+  bool _ferme = false;
+
   void _domaineSuivant() {
+    if (_ferme) return;
     if (_g + 1 >= widget.groupes.length) {
+      _ferme = true; // un double toucher ne doit pas fermer aussi l'écran d'en dessous
       Navigator.of(context).pop();
       return;
     }
