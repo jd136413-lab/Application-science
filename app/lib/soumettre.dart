@@ -297,13 +297,12 @@ class _ReglesState extends State<_Regles> {
 
   // 19/11 : écrit simplement, sans émojis ni liste à étiquettes (Maxime : « trop IA »).
   static const _regles = [
-    'On publie ce qui est nouveau et vérifiable : un résultat, une première, un essai réussi, un produit présenté. '
-        'Pas les rumeurs ni les simples projets.',
-    'Mets le lien d’un article sérieux qui en parle (journal, revue scientifique, université, communiqué officiel). '
-        'Si tu écris le résumé, tout ce que tu dis doit se trouver dans cet article.',
-    'Si le sujet est déjà dans NovaSTEM, la proposition ne sera pas retenue.',
-    'Pour « À venir », il faut une date annoncée. Pour une vidéo : courte, et qui montre vraiment ce dont on parle.',
+    'Une avancée réelle (résultat, première, essai réussi), pas une rumeur ni un projet.',
+    'Un lien vers un article sérieux qui en parle.',
+    'Un résumé fidèle à l’article, sans rien ajouter.',
+    'Un sujet pas encore publié dans NovaSTEM.',
   ];
+  static const _note = 'Pour « À venir » : une date annoncée. Pour une vidéo : courte et qui montre la chose.';
 
   @override
   Widget build(BuildContext context) {
@@ -332,12 +331,27 @@ class _ReglesState extends State<_Regles> {
                   : Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        for (final r in _regles)
+                        for (final (i, r) in _regles.indexed)
                           Padding(
                             padding: const EdgeInsets.only(top: 6),
-                            child: Text(r,
-                                style: police(policeTexte, taille: 13.5, couleur: p.texteDiscret, hauteur: 1.45)),
+                            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                              SizedBox(
+                                width: 20,
+                                child: Text('${i + 1}.',
+                                    style: police(policeTexte,
+                                        taille: 13.5, graisse: FontWeight.w800, couleur: p.texte, hauteur: 1.45)),
+                              ),
+                              Expanded(
+                                child: Text(r,
+                                    style: police(policeTexte, taille: 13.5, couleur: p.texteDiscret, hauteur: 1.45)),
+                              ),
+                            ]),
                           ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(_note,
+                              style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.45)),
+                        ),
                       ]),
                     ),
             ),
