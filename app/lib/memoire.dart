@@ -32,6 +32,11 @@ const String cleTraductionsGardees = 'traductions_telephone_v1';
 const String _cleImages = 'novastem_images';
 
 /// Gestionnaire des images gardées sur le téléphone.
+/// Nom sous lequel l'app télécharge les images (certains sites, dont Wikimedia, refusent le nom par défaut).
+const Map<String, String> enteteImages = {
+  'User-Agent': 'NovaSTEM/1.0 (Android; https://jd136413-lab.github.io/Application-science/)'
+};
+
 final CacheManager cacheImages = CacheManager(Config(
   _cleImages,
   stalePeriod: dureeImages,
