@@ -301,8 +301,9 @@ class _ReglesState extends State<_Regles> {
     'Un lien vers un article sérieux qui en parle.',
     'Un résumé fidèle à l’article, sans rien ajouter.',
     'Un sujet pas encore publié dans NovaSTEM.',
+    'Pour un événement à venir : une date déjà annoncée.',
+    'Pour une vidéo : courte, et qui montre vraiment l’avancée.',
   ];
-  static const _note = 'Pour « À venir » : une date annoncée. Pour une vidéo : courte et qui montre la chose.';
 
   @override
   Widget build(BuildContext context) {
@@ -347,11 +348,7 @@ class _ReglesState extends State<_Regles> {
                               ),
                             ]),
                           ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(_note,
-                              style: police(policeTexte, taille: 13, couleur: p.texteDiscret, hauteur: 1.45)),
-                        ),
+
                       ]),
                     ),
             ),
