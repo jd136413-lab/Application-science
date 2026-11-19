@@ -34,6 +34,11 @@ const Color couleurEtoiles = Color(0xFFE0A800);   // jaune doré
 const Color logoEncreRose = Color(0xFFFF5A8A);
 const Color logoEncreBleue = Color(0xFF3D7BFF);
 
+/// Onglet « Soumettre » ouvert à tout le monde ? false : réservé au mode administrateur, avec la
+/// pastille « Visible seulement sur ton téléphone ». Passer à true le jour de l'ouverture :
+/// l'onglet apparaît pour tous et la pastille disparaît.
+const bool soumettrePublic = false;
+
 // ---------------------------- COULEURS DU FOND --------------------------
 class Palette {
   final Color fond, carte, texte, texteDiscret, bordure, pastille, encre, surEncre;
