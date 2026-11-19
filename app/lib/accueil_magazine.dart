@@ -348,25 +348,25 @@ class _EcranMagazineState extends State<EcranMagazine> {
         GroupeDomaine(f, tout.where((a) => a.famille == f).toList()..sort((a, b) => b.publieLe.compareTo(a.publieLe))),
     ]..sort((a, b) => b.nouvelles.length.compareTo(a.nouvelles.length));
     final dernieres = [for (final g in groupes) ...g.fiches]..sort((a, b) => b.publieLe.compareTo(a.publieLe));
+    // 20/11 : une bulle seulement pour un domaine qui a des nouveautés pas encore vues.
+    final avecNouveau = groupes.where((g) => g.nouvelles.isNotEmpty).toList();
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       _TitreRubrique(titre: tr('Mes domaines suivis')),
-      SizedBox(
-        height: 98,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          clipBehavior: Clip.none,
-          itemCount: groupes.length,
-          separatorBuilder: (_, __) => const SizedBox(width: 6),
-          itemBuilder: (context, i) => BulleDomaine(
-            groupe: groupes[i],
-            onTap: () => groupes[i].aMontrer.isEmpty
-                ? _pousser(context, EcranDomaineMag(fil: _fil, famille: groupes[i].famille))
-                : _pousser(context, EcranStories(groupes: groupes.where((g) => g.aMontrer.isNotEmpty).toList(),
-                    depart: groupes.where((g) => g.aMontrer.isNotEmpty).toList().indexOf(groupes[i]))),
-            onLongPress: () => _menuDomaine(context, groupes[i]),
+      if (avecNouveau.isNotEmpty)
+        SizedBox(
+          height: 98,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            clipBehavior: Clip.none,
+            itemCount: avecNouveau.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 6),
+            itemBuilder: (context, i) => BulleDomaine(
+              groupe: avecNouveau[i],
+              onTap: () => _pousser(context, EcranStories(groupes: avecNouveau, depart: i)),
+              onLongPress: () => _menuDomaine(context, avecNouveau[i]),
+            ),
           ),
         ),
-      ),
       if (dernieres.isNotEmpty) ...[
         const SizedBox(height: 8),
         Text(tr('Dernières dans tes domaines').toUpperCase(),
