@@ -20,12 +20,12 @@ class GroupeDomaine {
   final List<Avancee> fiches; // les plus récentes d'abord
   const GroupeDomaine(this.famille, this.fiches);
 
+  /// Nouveautés : ajoutées il y a moins de 3 jours et pas encore ouvertes. Ce sont les seules
+  /// fiches montrées ; un domaine sans nouveauté n'a pas de bulle (20/11).
   List<Avancee> get nouvelles => fiches.where(etat.estNouvelle).toList();
 
-  /// Ce qu'on montre en touchant la bulle : les nouveautés, sinon les 5 dernières.
-  List<Avancee> get aMontrer => nouvelles.isNotEmpty ? nouvelles : fiches.take(5).toList();
-
-  String? get image => fiches.map((a) => a.image).firstWhere((i) => (i ?? '').isNotEmpty, orElse: () => null);
+  /// Image de la bulle : celle d'une des nouveautés montrées (jamais d'une autre fiche).
+  String? get image => nouvelles.map((a) => a.image).firstWhere((i) => (i ?? '').isNotEmpty, orElse: () => null);
 }
 
 /// Visuel d'un domaine : dégradé de sa couleur et son symbole en grand, très pâle.
@@ -137,7 +137,7 @@ class EcranStories extends StatefulWidget {
 class _EcranStoriesState extends State<EcranStories> {
   late int _g = widget.depart;
   int _k = 0;
-  late List<Avancee> _fiches = widget.groupes[_g].aMontrer;
+  late List<Avancee> _fiches = widget.groupes[_g].nouvelles;
 
   @override
   void initState() {
@@ -152,10 +152,13 @@ class _EcranStoriesState extends State<EcranStories> {
     etat.marquerLue(a.id);
   }
 
+  /// Après la dernière fiche d'un domaine : domaine suivant, ou fermeture s'il n'y en a plus.
   void _suivante() {
-    if (_k < _fiches.length) {
+    if (_k + 1 < _fiches.length) {
       setState(() => _k++);
       _vue();
+    } else {
+      _domaineSuivant();
     }
   }
 
@@ -171,8 +174,9 @@ class _EcranStoriesState extends State<EcranStories> {
     setState(() {
       _g++;
       _k = 0;
-      _fiches = widget.groupes[_g].aMontrer;
+      _fiches = widget.groupes[_g].fiches.where((a) => !etat.estLue(a.id) && etat.estNouvelle(a)).toList();
     });
+    if (_fiches.isEmpty) return _domaineSuivant();
     _vue();
   }
 
@@ -180,10 +184,9 @@ class _EcranStoriesState extends State<EcranStories> {
   Widget build(BuildContext context) {
     final p = palette(context);
     final f = familleDe(widget.groupes[_g].famille);
-    final fin = _k >= _fiches.length;
-    final a = fin ? null : _fiches[_k];
-    final image = (a?.image ?? '').isNotEmpty ? a!.image : null;
-    final surImage = !fin; // une fiche a toujours un fond : son image, sinon le visuel de son domaine
+    final a = _fiches[_k];
+    final image = (a.image ?? '').isNotEmpty ? a.image : null;
+    const surImage = true; // une fiche a toujours un fond : son image, sinon le visuel de son domaine
     final texte = surImage ? Colors.white : p.texte;
     return Scaffold(
       backgroundColor: surImage ? Colors.black : p.fond,
@@ -193,9 +196,9 @@ class _EcranStoriesState extends State<EcranStories> {
         child: Stack(fit: StackFit.expand, children: [
           if (surImage) ...[
             if (image != null)
-              ImageAvancee(image: image, video: a!.video, tailleBouton: 60)
+              ImageAvancee(image: image, video: a.video, tailleBouton: 60)
             else
-              VisuelDomaine(famille: familleDe(a!.famille)),
+              VisuelDomaine(famille: familleDe(a.famille)),
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -231,7 +234,7 @@ class _EcranStoriesState extends State<EcranStories> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                        fin ? tr(f.nom) : '${tr(f.nom)}  ·  ${_k + 1} / ${_fiches.length}',
+                        '${tr(f.nom)}  ·  ${_k + 1} / ${_fiches.length}',
                         style: police(policeTexte, taille: 14, graisse: FontWeight.w800, couleur: texte)),
                   ),
                   IconButton(
@@ -240,7 +243,7 @@ class _EcranStoriesState extends State<EcranStories> {
                   ),
                 ]),
                 const Spacer(),
-                if (fin) _fin(p, f) else _fiche(a!, texte, surImage),
+                _fiche(a, texte, surImage),
               ]),
             ),
           ),
@@ -281,30 +284,5 @@ class _EcranStoriesState extends State<EcranStories> {
         ),
       ]),
     ]);
-  }
-
-  Widget _fin(Palette p, Famille f) {
-    final suivant = _g + 1 < widget.groupes.length ? widget.groupes[_g + 1] : null;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 120),
-      child: Column(mainAxisSize: MainAxisSize.min, children: [
-        Icon(Icons.check_circle_rounded, size: 56, color: f.couleur),
-        const SizedBox(height: 14),
-        Text(trv('Tu es à jour en {domaine}', {'domaine': tr(f.nom)}),
-            textAlign: TextAlign.center,
-            style: police(policeTitres, taille: 22, graisse: FontWeight.w800, couleur: p.texte)),
-        const SizedBox(height: 20),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          OutlinedButton(onPressed: () => Navigator.of(context).pop(), child: Text(tr('Fermer'))),
-          if (suivant != null) ...[
-            const SizedBox(width: 10),
-            FilledButton(
-              onPressed: _domaineSuivant,
-              child: Text('${tr(familleDe(suivant.famille).nom)} ›'),
-            ),
-          ],
-        ]),
-      ]),
-    );
   }
 }

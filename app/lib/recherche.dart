@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'a_venir.dart';
+import 'accueil_magazine.dart' show EcranDomaineMag;
 import 'carte.dart';
 import 'detail.dart';
 import 'donnees.dart';
@@ -280,7 +281,11 @@ class _EcranRechercheMagState extends State<EcranRechercheMag> {
             labelStyle: police(policeTexte, taille: 13, graisse: FontWeight.w700, couleur: p.texte),
             backgroundColor: p.carte,
             side: BorderSide(color: p.bordure),
-            onPressed: () => _remplir(tr(familleDe(f).nom)),
+            // 20/11 : ouvre la page du domaine (avant : son nom était cherché comme du texte,
+            // ce qui faisait apparaître des fiches d'autres domaines).
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) =>
+                    EcranDomaineMag(fil: famillesTech.contains(f) ? 'tech' : 'science', famille: f))),
           ),
       ]),
       if (prochain.isNotEmpty) ...[
