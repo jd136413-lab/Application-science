@@ -295,15 +295,14 @@ class _Regles extends StatefulWidget {
 class _ReglesState extends State<_Regles> {
   static bool _ouvert = true; // gardé pendant que l'app est ouverte
 
+  // 19/11 : écrit simplement, sans émojis ni liste à étiquettes (Maxime : « trop IA »).
   static const _regles = [
-    ('✅', 'Une vraie avancée', 'un résultat, une première, un essai réussi, un produit présenté. '
-        'Pas une rumeur, une opinion ou un simple projet.'),
-    ('🔗', 'Vérifiable', 'un article fiable doit le confirmer (média reconnu, revue scientifique, agence, '
-        'université, communiqué officiel).'),
-    ('🎯', 'Des faits exacts', 'sans exagération : chaque fait de ton résumé doit se trouver dans l’article.'),
-    ('♻️', 'Pas déjà publiée', 'on vérifie qu’elle n’est pas déjà dans NovaSTEM.'),
-    ('📅', 'Pour « À venir »', 'une date annoncée par une source fiable.'),
-    ('▶️', 'Vidéo', 'courte, et qui montre vraiment l’avancée.'),
+    'On publie ce qui est nouveau et vérifiable : un résultat, une première, un essai réussi, un produit présenté. '
+        'Pas les rumeurs ni les simples projets.',
+    'Mets le lien d’un article sérieux qui en parle (journal, revue scientifique, université, communiqué officiel). '
+        'Si tu écris le résumé, tout ce que tu dis doit se trouver dans cet article.',
+    'Si le sujet est déjà dans NovaSTEM, la proposition ne sera pas retenue.',
+    'Pour « À venir », il faut une date annoncée. Pour une vidéo : courte, et qui montre vraiment ce dont on parle.',
   ];
 
   @override
@@ -320,7 +319,7 @@ class _ReglesState extends State<_Regles> {
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
               Expanded(
-                child: Text('📋 Pour qu’une proposition soit acceptée',
+                child: Text('Avant de proposer',
                     style: police(policeTitres, taille: 16, graisse: FontWeight.w800, couleur: p.texte)),
               ),
               Icon(_ouvert ? Icons.expand_less_rounded : Icons.expand_more_rounded, color: p.texteDiscret),
@@ -333,20 +332,11 @@ class _ReglesState extends State<_Regles> {
                   : Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        for (final (e, t, d) in _regles)
+                        for (final r in _regles)
                           Padding(
                             padding: const EdgeInsets.only(top: 6),
-                            child: Text.rich(
-                              TextSpan(children: [
-                                TextSpan(text: '$e '),
-                                TextSpan(
-                                    text: t,
-                                    style: police(policeTexte,
-                                        taille: 13.5, graisse: FontWeight.w800, couleur: p.texte)),
-                                TextSpan(text: ' : $d'),
-                              ]),
-                              style: police(policeTexte, taille: 13.5, couleur: p.texteDiscret, hauteur: 1.4),
-                            ),
+                            child: Text(r,
+                                style: police(policeTexte, taille: 13.5, couleur: p.texteDiscret, hauteur: 1.45)),
                           ),
                       ]),
                     ),
