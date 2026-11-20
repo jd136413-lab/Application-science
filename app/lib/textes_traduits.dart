@@ -470,6 +470,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'See all stories in this field',
     'Tout marquer comme vu': 'Mark all as seen',
     'Ne plus suivre ce domaine': 'Unfollow this field',
+    'Tu les as manquées': 'You missed these',
+    'il y a {n} jours': '{n} days ago',
   },
   'es': {
     'Sciences': 'Ciencia',
@@ -939,6 +941,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Ver todas las fichas de este ámbito',
     'Tout marquer comme vu': 'Marcar todo como visto',
     'Ne plus suivre ce domaine': 'Dejar de seguir este ámbito',
+    'Tu les as manquées': 'Te las perdiste',
+    'il y a {n} jours': 'hace {n} días',
   },
   'pt': {
     'Sciences': 'Ciência',
@@ -1408,6 +1412,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Ver todas as fichas desta área',
     'Tout marquer comme vu': 'Marcar tudo como visto',
     'Ne plus suivre ce domaine': 'Deixar de seguir esta área',
+    'Tu les as manquées': 'Você perdeu estas',
+    'il y a {n} jours': 'há {n} dias',
   },
   'de': {
     'Sciences': 'Wissenschaft',
@@ -1877,6 +1883,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Alle Beiträge dieses Bereichs ansehen',
     'Tout marquer comme vu': 'Alles als gesehen markieren',
     'Ne plus suivre ce domaine': 'Diesem Bereich nicht mehr folgen',
+    'Tu les as manquées': 'Das hast du verpasst',
+    'il y a {n} jours': 'vor {n} Tagen',
   },
   'it': {
     'Sciences': 'Scienza',
@@ -2346,6 +2354,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Vedi tutte le schede di questo ambito',
     'Tout marquer comme vu': 'Segna tutto come visto',
     'Ne plus suivre ce domaine': 'Smetti di seguire questo ambito',
+    'Tu les as manquées': 'Te le sei perse',
+    'il y a {n} jours': '{n} giorni fa',
   },
   'nl': {
     'Sciences': 'Wetenschap',
@@ -2815,6 +2825,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Alle artikelen in dit domein bekijken',
     'Tout marquer comme vu': 'Alles als gezien markeren',
     'Ne plus suivre ce domaine': 'Dit domein niet meer volgen',
+    'Tu les as manquées': 'Deze heb je gemist',
+    'il y a {n} jours': '{n} dagen geleden',
   },
   'pl': {
     'Sciences': 'Nauka',
@@ -3284,6 +3296,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Zobacz wszystko z tej dziedziny',
     'Tout marquer comme vu': 'Oznacz wszystko jako obejrzane',
     'Ne plus suivre ce domaine': 'Przestań obserwować tę dziedzinę',
+    'Tu les as manquées': 'Te przegapiłeś',
+    'il y a {n} jours': '{n} dni temu',
   },
   'ru': {
     'Sciences': 'Наука',
@@ -3753,6 +3767,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Все материалы этой области',
     'Tout marquer comme vu': 'Отметить всё как просмотренное',
     'Ne plus suivre ce domaine': 'Не отслеживать эту область',
+    'Tu les as manquées': 'Вы пропустили',
+    'il y a {n} jours': '{n} дн. назад',
   },
   'uk': {
     'Sciences': 'Наука',
@@ -4222,6 +4238,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Усі матеріали цієї галузі',
     'Tout marquer comme vu': 'Позначити все як переглянуте',
     'Ne plus suivre ce domaine': 'Не стежити за цією галуззю',
+    'Tu les as manquées': 'Ви пропустили',
+    'il y a {n} jours': '{n} дн. тому',
   },
   'tr': {
     'Sciences': 'Bilim',
@@ -4691,6 +4709,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Bu alandaki tüm haberleri gör',
     'Tout marquer comme vu': 'Tümünü görüldü olarak işaretle',
     'Ne plus suivre ce domaine': 'Bu alanı takip etmeyi bırak',
+    'Tu les as manquées': 'Bunları kaçırdın',
+    'il y a {n} jours': '{n} gün önce',
   },
   'ar': {
     'Sciences': 'العلوم',
@@ -5160,6 +5180,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'عرض كل بطاقات هذا المجال',
     'Tout marquer comme vu': 'تحديد الكل كمُشاهَد',
     'Ne plus suivre ce domaine': 'إلغاء متابعة هذا المجال',
+    'Tu les as manquées': 'فاتتك هذه',
+    'il y a {n} jours': 'منذ {n} أيام',
   },
   'hi': {
     'Sciences': 'विज्ञान',
@@ -5629,6 +5651,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'इस क्षेत्र की सभी खबरें देखें',
     'Tout marquer comme vu': 'सब देखा हुआ चिह्नित करें',
     'Ne plus suivre ce domaine': 'इस क्षेत्र को फ़ॉलो करना बंद करें',
+    'Tu les as manquées': 'ये आपसे छूट गईं',
+    'il y a {n} jours': '{n} दिन पहले',
   },
   'bn': {
     'Sciences': 'বিজ্ঞান',
@@ -6098,6 +6122,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'এই ক্ষেত্রের সব খবর দেখুন',
     'Tout marquer comme vu': 'সব দেখা হিসেবে চিহ্নিত করুন',
     'Ne plus suivre ce domaine': 'এই ক্ষেত্র আর অনুসরণ করবেন না',
+    'Tu les as manquées': 'এগুলো আপনি মিস করেছেন',
+    'il y a {n} jours': '{n} দিন আগে',
   },
   'ur': {
     'Sciences': 'سائنس',
@@ -6567,6 +6593,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'اس شعبے کی تمام خبریں دیکھیں',
     'Tout marquer comme vu': 'سب کو دیکھا ہوا نشان زد کریں',
     'Ne plus suivre ce domaine': 'اس شعبے کو فالو کرنا بند کریں',
+    'Tu les as manquées': 'یہ آپ سے رہ گئیں',
+    'il y a {n} jours': '{n} دن پہلے',
   },
   'zh': {
     'Sciences': '科学',
@@ -7036,6 +7064,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': '查看该领域的全部内容',
     'Tout marquer comme vu': '全部标为已看',
     'Ne plus suivre ce domaine': '不再关注该领域',
+    'Tu les as manquées': '你错过了这些',
+    'il y a {n} jours': '{n} 天前',
   },
   'ja': {
     'Sciences': '科学',
@@ -7505,6 +7535,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'この分野の記事をすべて見る',
     'Tout marquer comme vu': 'すべて既読にする',
     'Ne plus suivre ce domaine': 'この分野のフォローをやめる',
+    'Tu les as manquées': '見逃したニュース',
+    'il y a {n} jours': '{n} 日前',
   },
   'ko': {
     'Sciences': '과학',
@@ -7974,6 +8006,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': '이 분야의 모든 소식 보기',
     'Tout marquer comme vu': '모두 본 것으로 표시',
     'Ne plus suivre ce domaine': '이 분야 팔로우 취소',
+    'Tu les as manquées': '놓친 소식',
+    'il y a {n} jours': '{n}일 전',
   },
   'id': {
     'Sciences': 'Sains',
@@ -8443,6 +8477,8 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Lihat semua di bidang ini',
     'Tout marquer comme vu': 'Tandai semua sudah dilihat',
     'Ne plus suivre ce domaine': 'Berhenti mengikuti bidang ini',
+    'Tu les as manquées': 'Kamu melewatkan ini',
+    'il y a {n} jours': '{n} hari lalu',
   },
   'vi': {
     'Sciences': 'Khoa học',
@@ -8912,5 +8948,7 @@ const Map<String, Map<String, String>> textesTraduits = {
     'Voir toutes les fiches de ce domaine': 'Xem tất cả bài trong lĩnh vực này',
     'Tout marquer comme vu': 'Đánh dấu tất cả là đã xem',
     'Ne plus suivre ce domaine': 'Bỏ theo dõi lĩnh vực này',
+    'Tu les as manquées': 'Bạn đã bỏ lỡ',
+    'il y a {n} jours': '{n} ngày trước',
   },
 };

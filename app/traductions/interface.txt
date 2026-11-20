@@ -9828,3 +9828,45 @@ ja この分野のフォローをやめる
 ko 이 분야 팔로우 취소
 id Berhenti mengikuti bidang ini
 vi Bỏ theo dõi lĩnh vực này
+
+# « Tu les as manquées » sous les bulles des domaines suivis (maquette 106 B, 20/11/2026)
+@ Tu les as manquées
+en You missed these
+es Te las perdiste
+pt Você perdeu estas
+de Das hast du verpasst
+it Te le sei perse
+nl Deze heb je gemist
+pl Te przegapiłeś
+ru Вы пропустили
+uk Ви пропустили
+tr Bunları kaçırdın
+ar فاتتك هذه
+hi ये आपसे छूट गईं
+bn এগুলো আপনি মিস করেছেন
+ur یہ آپ سے رہ گئیں
+zh 你错过了这些
+ja 見逃したニュース
+ko 놓친 소식
+id Kamu melewatkan ini
+vi Bạn đã bỏ lỡ
+@ il y a {n} jours
+en {n} days ago
+es hace {n} días
+pt há {n} dias
+de vor {n} Tagen
+it {n} giorni fa
+nl {n} dagen geleden
+pl {n} dni temu
+ru {n} дн. назад
+uk {n} дн. тому
+tr {n} gün önce
+ar منذ {n} أيام
+hi {n} दिन पहले
+bn {n} দিন আগে
+ur {n} دن پہلے
+zh {n} 天前
+ja {n} 日前
+ko {n}일 전
+id {n} hari lalu
+vi {n} ngày trước
