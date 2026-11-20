@@ -347,7 +347,24 @@ class _EcranMagazineState extends State<EcranMagazine> {
       for (final f in suivis)
         GroupeDomaine(f, tout.where((a) => a.famille == f).toList()..sort((a, b) => b.publieLe.compareTo(a.publieLe))),
     ]..sort((a, b) => b.nouvelles.length.compareTo(a.nouvelles.length));
-    final dernieres = [for (final g in groupes) ...g.fiches]..sort((a, b) => b.publieLe.compareTo(a.publieLe));
+    // Fiches de tes domaines de plus de 3 jours (donc plus « nouvelles »), jamais ouvertes, des 14 derniers
+    // jours, et absentes du reste de l'accueil (À la une, top de la semaine) : les 3 plus importantes.
+    final maintenant = DateTime.now();
+    final ailleurs = <String>{
+      if (etat.rubriqueActive('une')) ...?_une(tout)?.$1.take(1).map((a) => a.id),
+      if (etat.rubriqueActive('top')) ...parImportance(surPeriode(tout, 7)).take(3).map((a) => a.id),
+    };
+    final manquees = [
+      for (final g in groupes)
+        ...g.fiches.where((a) {
+          final age = maintenant.difference(a.ajouteLe ?? a.publieLe);
+          return !etat.estLue(a.id) && age >= dureeNouveaute && age.inDays < 14 && !ailleurs.contains(a.id);
+        }),
+    ]..sort((a, b) {
+        final i = b.importance.compareTo(a.importance);
+        return i != 0 ? i : b.publieLe.compareTo(a.publieLe);
+      });
+    if (manquees.length > 3) manquees.removeRange(3, manquees.length);
     // 20/11 : une bulle seulement pour un domaine qui a des nouveautés pas encore vues.
     final avecNouveau = groupes.where((g) => g.nouvelles.isNotEmpty).toList();
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -367,13 +384,19 @@ class _EcranMagazineState extends State<EcranMagazine> {
             ),
           ),
         ),
-      if (dernieres.isNotEmpty) ...[
+      // Maquette 106 B (20/11) : « Tu les as manquées » remplace « Dernières dans tes domaines »,
+      // qui répétait le top et « Nouveau pour vous ».
+      if (manquees.isNotEmpty) ...[
         const SizedBox(height: 8),
-        Text(tr('Dernières dans tes domaines').toUpperCase(),
+        Text(tr('Tu les as manquées').toUpperCase(),
             style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
         const SizedBox(height: 4),
-        for (final a in dernieres.take(3))
-          _LigneSuivi(avancee: a, onTap: () => ouvrirAvancee(context, dernieres, a)),
+        for (final a in manquees)
+          _LigneSuivi(
+            avancee: a,
+            detail: trv('il y a {n} jours', {'n': '${DateTime.now().difference(a.ajouteLe ?? a.publieLe).inDays}'}),
+            onTap: () => ouvrirAvancee(context, manquees, a),
+          ),
       ],
     ]);
   }
@@ -836,7 +859,8 @@ class _CarteTopUne extends StatelessWidget {
 class _LigneSuivi extends StatelessWidget {
   final Avancee avancee;
   final VoidCallback onTap;
-  const _LigneSuivi({required this.avancee, required this.onTap});
+  final String? detail;
+  const _LigneSuivi({required this.avancee, required this.onTap, this.detail});
 
   @override
   Widget build(BuildContext context) {
@@ -873,6 +897,10 @@ class _LigneSuivi extends StatelessWidget {
               TexteArticle(avancee.titre,
                   maxLines: 2,
                   style: police(policeTitres, taille: 14.5, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.2)),
+              if (detail != null) ...[
+                const SizedBox(height: 3),
+                Text(detail!, style: police(policeTexte, taille: 12, couleur: p.texteDiscret)),
+              ],
             ]),
           ),
         ]),
