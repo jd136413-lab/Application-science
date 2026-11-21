@@ -157,7 +157,9 @@ class Etoiles extends StatelessWidget {
   final int note;
   final double taille;
   final bool avecMot;
-  const Etoiles({super.key, required this.note, this.taille = 15, this.avecMot = true});
+  /// Couleur du mot (« Majeur »…) : celle du texte, sauf sur une image (blanc).
+  final Color? couleurMot;
+  const Etoiles({super.key, required this.note, this.taille = 15, this.avecMot = true, this.couleurMot});
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +173,7 @@ class Etoiles extends StatelessWidget {
           if (avecMot) ...[
             const SizedBox(width: 6),
             Text(tr(motsImportance[note]),
-                style: police(policeTexte, taille: taille - 1, graisse: FontWeight.w700, couleur: p.texte)),
+                style: police(policeTexte, taille: taille - 1, graisse: FontWeight.w700, couleur: couleurMot ?? p.texte)),
           ],
         ]),
       ),

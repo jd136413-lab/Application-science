@@ -845,7 +845,8 @@ class _CarteTopUne extends StatelessWidget {
                       maxLines: 3,
                       style: police(policeTitres, taille: 18, graisse: FontWeight.w700, couleur: Colors.white, hauteur: 1.2)),
                   const SizedBox(height: 5),
-                  Etoiles(note: avancee.importance, taille: 13, avecMot: false),
+                  // 21/11 : avec le mot (« Majeur »…), comme les n° 2 et 3.
+                  Etoiles(note: avancee.importance, taille: 13, couleurMot: Colors.white),
                 ]),
               ),
             ]),
