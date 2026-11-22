@@ -252,7 +252,10 @@ class _EcranMagazineState extends State<EcranMagazine> {
     final p = palette(context);
     // Sans l'avancée déjà affichée en grand dans « À la une » (pas de doublon à l'écran).
     final idUne = etat.rubriqueActive('une') ? _une(tout)?.$1.first.id : null;
-    final l = tout.where((a) => etat.estNouvelle(a) && a.id != idUne).toList()
+    // Maquette 107 A (22/11) : quand « Mes domaines suivis » est affiché, ses nouveautés sont dans les
+    // bulles ; « Nouveau pour vous » ne garde que les autres domaines (pas de fiche en double).
+    final suivisAffiches = etat.rubriqueActive('suivis') ? etat.domainesSuivis : const <String>{};
+    final l = tout.where((a) => etat.estNouvelle(a) && a.id != idUne && !suivisAffiches.contains(a.famille)).toList()
       ..sort((a, b) => b.publieLe.compareTo(a.publieLe));
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       _TitreRubrique(
