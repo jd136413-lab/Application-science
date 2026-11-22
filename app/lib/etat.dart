@@ -108,6 +108,19 @@ class EtatApp extends ChangeNotifier {
           if (!lues.any((x) => x.$1 == r.$1)) lues.add(r);
         }
         rubriques = lues;
+        // 22/11 (maquette 108 A) : si l'ordre n'a jamais été changé, passer au nouvel ordre par
+        // défaut, une seule fois. « À venir » s'active seulement si personne ne l'avait touché.
+        if (p.getBool('ordre_accueil_108') != true) {
+          if ([for (final r in rubriques) r.$1].join(',') == ancienOrdreRubriques.join(',')) {
+            final avenirTouche = rubriques.any((r) => r.$1 == 'avenir' && r.$2);
+            rubriques = [
+              for (final (c, on) in rubriquesParDefaut)
+                (c, c == 'avenir' ? (avenirTouche || on) : rubriques.firstWhere((r) => r.$1 == c).$2),
+            ];
+            p.setStringList('rubriques_accueil', [for (final (c, on) in rubriques) '$c:${on ? 1 : 0}']);
+          }
+          p.setBool('ordre_accueil_108', true);
+        }
       }
       // 01/11 (choix de Maxime) : les domaines choisis au premier lancement sont
       // aussi « suivis » et la rubrique « Mes domaines suivis » s'affiche. Fait une fois.
