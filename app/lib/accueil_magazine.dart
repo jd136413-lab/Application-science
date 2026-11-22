@@ -207,14 +207,15 @@ class _EcranMagazineState extends State<EcranMagazine> {
         _ => null,
       };
       if (w != null) res.add(Padding(padding: const EdgeInsets.only(bottom: 22), child: w));
-      // Bloc d'annonce de l'accueil : juste après « Nouveau pour vous » (scénario D).
-      if (code == 'nouveau' && w != null) {
+      // Bloc d'annonce de l'accueil : après la 2e rubrique affichée (22/11). Ordre par défaut :
+      // À la une, Mes domaines suivis, annonce, Nouveau pour vous ; sans bulles : après Nouveau.
+      if (w != null && !pubPlacee && res.length == 2) {
         res.add(const BlocPub(accueil: true));
         pubPlacee = true;
       }
     }
-    // « Nouveau pour vous » masqué : l'annonce vient après la 1re rubrique (jamais en tête).
-    if (!pubPlacee && res.isNotEmpty) res.insert(1, const BlocPub(accueil: true));
+    // Une seule rubrique affichée : l'annonce vient après elle (jamais en tête).
+    if (!pubPlacee && res.isNotEmpty) res.add(const BlocPub(accueil: true));
     if (res.isEmpty) {
       res.add(Padding(
         padding: const EdgeInsets.only(top: 60),

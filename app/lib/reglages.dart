@@ -197,13 +197,17 @@ const int periodeParDefaut = 1; // 0 = Nouveautés, 1 = Cette semaine…
 /// Rubriques de l'accueil magazine (maquette 64), dans l'ordre par défaut, et si elles
 /// sont affichées. L'ordre et l'affichage se changent dans « Personnaliser l'accueil ».
 const List<(String, bool)> rubriquesParDefaut = [
+  // Ordre « du jour au futur » (maquette 108 A, choix de Maxime 22/11) : on descend dans le temps.
   ('une', true), // À la une : la plus grande avancée du jour
-  ('avenir', false), // À venir : comptes à rebours (désactivée par défaut, choix de Maxime 01/11)
-  ('nouveau', true), // Nouveau pour vous
+  ('suivis', true), // Mes domaines suivis (bulles) ; l'annonce de l'accueil vient juste après
+  ('nouveau', true), // Nouveau pour vous (sans les domaines suivis, maquette 107 A)
   ('top', true), // Le top de la semaine
   ('domaines', true), // Ce mois-ci par domaine
-  ('suivis', false), // Mes domaines suivis
+  ('avenir', true), // À venir : comptes à rebours, tout en bas
 ];
+
+/// Ancien ordre par défaut (avant le 22/11) : sert à mettre à jour ceux qui ne l'ont jamais changé.
+const List<String> ancienOrdreRubriques = ['une', 'avenir', 'nouveau', 'top', 'domaines', 'suivis'];
 
 /// Une avancée reste « Nouveau » pendant ce délai après son ajout, tant qu'elle n'a pas été ouverte.
 const Duration dureeNouveaute = Duration(days: 3);
