@@ -61,6 +61,9 @@ def textes(e: dict) -> list[str]:
     for ligne in pratique if isinstance(pratique, list) else []:
         if isinstance(ligne, dict):
             res += [_propre(ligne.get("t")), _propre(ligne.get("v"))]
+    # 25/11 : résumé à blocs (mêmes textes que l'app lit, dans le même ordre)
+    import traduction
+    res += traduction.textes_blocs(e.get("blocs"))
     vus, uniques = set(), []
     for t in res:
         if t and t not in vus:
