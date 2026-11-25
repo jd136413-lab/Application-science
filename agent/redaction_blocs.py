@@ -40,7 +40,10 @@ CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite 
 2. "absents" : les clés des questions marquées « à signaler » auxquelles aucune source ne répond (liste vide sinon). Le programme écrira lui-même la phrase « … n'est pas précisé ».
 3. "title" : voir LE TITRE.
 4. "chapo" : 1 à 2 phrases, 40 mots au plus. Phrase 1 = le résultat principal et pourquoi il compte, selon les sources ; elle sert de notification et doit se comprendre seule. Le chapô contient au moins un repère concret (le chiffre clé, la date, le lieu, la taille ou l'époque) : jamais un résumé vague. Phrase 2, facultative = le chiffre, la comparaison ou la condition qui le rend parlant. Une comparaison de la vie courante est permise si elle est exacte ; si elle sonne forcée, reste simple.
-5. "en_chiffres" : 0, ou 2 à 4 lignes. "valeur" = le nombre et son unité, 4 mots au plus ; "sens" = ce qu'il mesure ET sa référence (comparé à quoi, sur combien), 15 mots au plus. Prends des chiffres que le texte n'emploie pas.
+5. "en_chiffres" : 0, ou 2 à 4 lignes, à comprendre d'un coup d'œil, comme on lirait « 47 femmes ont ensuite eu une leucémie ».
+   - "valeur" = UN seul nombre avec son unité ou son nom (« 47 femmes », « 10 secondes », « 6 000 m », « × 2 à 3 »), 3 mots au plus. Jamais deux nombres, jamais de barre oblique « / ».
+   - "sens" = une phrase courte et simple (12 mots au plus) qui se lit naturellement à la suite de la valeur et dit ce qu'elle représente, avec un repère si utile (« restées en bonne santé, pour comparer », « pour ranger le volant, voiture à l'arrêt »). Pas de jargon, pas de liste.
+   - Deux nombres à comparer = deux lignes qui se suivent. Prends des chiffres que le texte n'emploie pas.
 6. "blocs" : réponds aux questions de la fiche, dans l'ordre donné, sans dépasser le nombre de blocs indiqué. Chaque bloc : {"cle": la clé de la question, "texte": 1 à 3 phrases, 60 mots au plus}. Si les sources ne répondent pas PRÉCISÉMENT à une question, n'écris pas de bloc pour elle : passe à la suivante. N'écris pas l'intertitre : l'application l'affiche.
    - comment_ca_marche : le mécanisme ou le principe, étape par étape (A provoque B, qui donne C), tel que la source l'explique.
    - comment_le_sait_on : ce qui permet de conclure (groupe témoin, vérification, mesure certifiée, indice qui mène à la conclusion), seulement si la source donne ce raisonnement. N'invente jamais le lien.
@@ -96,8 +99,8 @@ Exemple 1. Technologies, importance 1. Questions : par_rapport_a_quoi, comment_c
   "title": "Solaire : un mini-panneau pérovskite bat le record avec 23,9 %",
   "chapo": "Un mini-module solaire en pérovskite transforme 23,9 % de la lumière en électricité, un record certifié pour sa taille. L'équipe a trouvé d'où venait sa principale perte.",
   "en_chiffres": [
-    {"valeur": "83,3 %", "sens": "facteur de remplissage, le plus haut publié pour un module pérovskite selon les auteurs"},
-    {"valeur": "2,88 m²", "sens": "taille des panneaux que l'entreprise veut produire en usine, environ 1 500 fois plus grands"}
+    {"valeur": "83,3 %", "sens": "de la puissance théorique réellement fournie : un record, selon les auteurs"},
+    {"valeur": "2,88 m²", "sens": "la taille des panneaux visés en usine, 1 500 fois plus grands"}
   ],
   "blocs": [
     {"cle": "par_rapport_a_quoi", "texte": "En janvier 2025, la même entreprise, MicroQuanta, avait obtenu 21,86 %, mais sur un module de 810 cm², environ 42 fois plus grand. Les deux chiffres ne se comparent donc pas."},
@@ -134,9 +137,10 @@ Exemple 2. Sciences, importance 3. Questions : sur_qui (à signaler), comment_le
   "title": "Leucémie : la première mutation apparaît souvent avant 20 ans",
   "chapo": "Une leucémie aiguë myéloïde peut se préparer dans le sang des décennies avant le diagnostic. Chez deux malades sur trois, la première mutation serait apparue avant leurs 20 ans.",
   "en_chiffres": [
-    {"valeur": "47 / 46", "sens": "femmes devenues malades / femmes restées sans cancer du sang, comparées"},
-    {"valeur": "× 2 à 3", "sens": "vitesse de croissance des cellules mutées, à chaque nouvelle mutation"},
-    {"valeur": "11 ans", "sens": "durée maximale du suivi par prises de sang annuelles"}
+    {"valeur": "47 femmes", "sens": "ont ensuite eu une leucémie"},
+    {"valeur": "46 femmes", "sens": "sont restées en bonne santé, pour comparer"},
+    {"valeur": "× 2 à 3", "sens": "plus vite : la croissance des cellules à chaque nouvelle mutation"},
+    {"valeur": "11 ans", "sens": "de prises de sang, une par an, au plus"}
   ],
   "blocs": [
     {"cle": "sur_qui", "texte": "Des chercheurs de Cambridge et de l'University College London ont réutilisé les prises de sang d'un essai britannique de dépistage du cancer de l'ovaire. Seules des femmes ont donc été suivies."},
