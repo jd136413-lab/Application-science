@@ -1941,6 +1941,10 @@ def main() -> int:
             raise RuntimeError("mode économie du budget")
         cout_avenir = a_venir.passage_agent(db, client, modele["id"], ajoutes, log, sans_et_apres, modele["prix"],
                                             set(FAMILLES_THEMES) - familles_tech - {"technology"}, familles_tech, lire_debut_page)
+        # 25/11 : résumé à blocs des cartes (format des fiches, paragraphes libres ; a_venir_blocs.py)
+        import a_venir_blocs
+        cout_avenir += a_venir_blocs.passage(db, client, modele["id"], modele["prix"], lire_page, log,
+                                             par_lot=PAR_LOT, attente_lot=ATTENTE_LOT)
     except Exception as ex:                      # l'onglet « À venir » ne doit jamais bloquer le passage
         log(f"⚠ À venir : passage interrompu ({ex.__class__.__name__}: {str(ex)[:120]})")
         cout_avenir = 0.0

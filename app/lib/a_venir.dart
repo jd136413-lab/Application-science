@@ -24,7 +24,7 @@ import 'detail.dart';
 import 'donnees.dart';
 import 'etat.dart';
 import 'langues.dart';
-import 'modele.dart' show enTeteMois, SourceAvancee, traductionAgent, traductionsAgent;
+import 'modele.dart' show enTeteMois, SourceAvancee, traductionAgent, traductionsAgent, BlocFiche, lireBlocs;
 import 'notifications.dart';
 import 'propositions.dart' show adminSupprimerEvenement;
 import 'pubs.dart';
@@ -84,6 +84,8 @@ class Evenement {
   final List<String> visibleRegions, visiblePartiel;
   /// Autres médias qui parlent du même événement (colonne autres_sources, migration 012).
   final List<SourceAvancee> autresSources;
+  /// Résumé à blocs (25/11, maquette 112) : vide tant que l'agent ne l'a pas écrit.
+  final List<BlocFiche> blocs;
   final int importance;
   const Evenement({
     required this.id,
@@ -115,6 +117,7 @@ class Evenement {
     this.visibleRegions = const [],
     this.visiblePartiel = const [],
     this.autresSources = const [],
+    this.blocs = const [],
   });
 
   static List<String> _liste(Object? v) => v is List ? [for (final x in v) '$x'] : const [];
@@ -191,6 +194,7 @@ class Evenement {
         fin: _jour(j['event_end']),
         instantExact: DateTime.tryParse('${j['event_utc'] ?? ''}')?.toUtc(),
         pratique: _pratique(j['pratique']),
+        blocs: lireBlocs(j['blocs']),
         visibleRegions: _liste(j['visible_regions']),
         visiblePartiel: _liste(j['visible_partiel']),
       );
@@ -1332,8 +1336,12 @@ class _EcranEvenementState extends State<EcranEvenement> {
                           style: police(policeTexte, taille: 13.5, couleur: p.texte, hauteur: 1.45)),
                     ]),
                   ),
-                bloc('Ce qui est prévu', e.prevu),
-                bloc('Pourquoi c’est important', e.pourquoi),
+                if (e.blocs.isNotEmpty)
+                  ...resumeBlocsEvenement(context, e.blocs, estSombre(context) ? f.encreSombre : f.encreClaire)
+                else ...[
+                  bloc('Ce qui est prévu', e.prevu),
+                  bloc('Pourquoi c’est important', e.pourquoi),
+                ],
                 // Sources, comme dans une avancée (planche 49 · B1).
                 BlocSources(source: e.sourceNom, lien: e.sourceUrl, autres: e.autresSources),
                 Padding(
@@ -1430,3 +1438,89 @@ class _EcranEvenementState extends State<EcranEvenement> {
 }
 
 String _majuscule(String t) => t.isEmpty ? t : t[0].toUpperCase() + t.substring(1);
+
+
+/// Résumé à blocs d'une carte À venir (25/11, maquette 112) : même rendu que les fiches
+/// (En bref, En chiffres, paragraphes avec leur question, Ce qu'on ne sait pas encore).
+List<Widget> resumeBlocsEvenement(BuildContext context, List<BlocFiche> blocs, Color encre) {
+  final p = palette(context);
+  Widget intertitre(String t) => Padding(
+        padding: const EdgeInsets.only(bottom: 4),
+        child: Text(tr(t).toUpperCase(),
+            style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+      );
+  final res = <Widget>[];
+  for (final b in blocs) {
+    switch (b.cle) {
+      case 'chapo':
+        res.add(Container(
+          margin: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+          decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(14)),
+          child: TexteArticle(b.texte,
+              style: police(policeTexte, taille: 16.5, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.5)),
+        ));
+      case 'en_chiffres':
+        res.add(Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            intertitre(texteEnChiffres),
+            Container(
+              padding: const EdgeInsets.only(left: 12, top: 2, bottom: 2),
+              decoration: BoxDecoration(border: Border(left: BorderSide(color: couleurEtoiles, width: 3))),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                for (final (v, sens) in b.chiffres)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(minWidth: 86, maxWidth: 130),
+                        child: TexteArticle(v,
+                            style: police(policeTitres, taille: 17, graisse: FontWeight.w800, couleur: couleurEtoiles, hauteur: 1.25)),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                          child: TexteArticle(sens,
+                              style: police(policeTexte, taille: 14, couleur: p.texteDiscret, hauteur: 1.4))),
+                    ]),
+                  ),
+              ]),
+            ),
+          ]),
+        ));
+      case 'limites':
+        res.add(Padding(
+          padding: const EdgeInsets.only(bottom: 14),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            intertitre(texteInconnu),
+            for (final x in b.puces)
+              Padding(
+                padding: const EdgeInsets.only(top: 3),
+                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Text('•', style: police(policeTexte, taille: 16, couleur: p.texte)),
+                  ),
+                  Expanded(
+                      child: TexteArticle(x, style: police(policeTexte, taille: 15.5, couleur: p.texte, hauteur: 1.5))),
+                ]),
+              ),
+          ]),
+        ));
+      default:
+        res.add(Padding(
+          padding: const EdgeInsets.only(bottom: 14),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            if (b.question != null)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: TexteArticle(b.question!,
+                    style: police(policeTitres, taille: 17, graisse: FontWeight.w700, couleur: encre, hauteur: 1.25)),
+              ),
+            TexteArticle(b.texte, style: police(policeTexte, taille: 16, couleur: p.texte, hauteur: 1.55)),
+          ]),
+        ));
+    }
+  }
+  return res;
+}
