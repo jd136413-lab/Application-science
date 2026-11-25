@@ -1,0 +1,34 @@
+# Repartir à zéro (25/11/2026) : supprime TOUTES les fiches et vide la mémoire du tri.
+# À la main seulement, avec le mot de confirmation OUI. Irréversible.
+name: Repartir à zéro (supprimer toutes les fiches)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: "Écris OUI pour supprimer toutes les fiches"
+        required: true
+
+jobs:
+  zero:
+    if: ${{ github.event.inputs.confirmation == 'OUI' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      # Même mémoire que l'agent : restaurée, vidée des articles, puis enregistrée à nouveau
+      - name: Mémoire de la présélection
+        uses: actions/cache@v4
+        with:
+          path: agent/memoire_tri.json
+          key: memoire-tri-v3-${{ github.run_id }}
+          restore-keys: memoire-tri-v3-
+      - name: Supprimer les fiches et vider la mémoire
+        working-directory: agent
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: python repartir_a_zero.py
