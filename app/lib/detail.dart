@@ -365,7 +365,8 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
             width: double.infinity,
             margin: const EdgeInsets.only(bottom: 16),
             padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-            decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(14)),
+            // 25/11 : l'écran de détail a déjà le fond des cartes ; l'encadré prend un gris visible (maquette 109)
+            decoration: BoxDecoration(color: estSombre(context) ? p.pastille : p.fond, borderRadius: BorderRadius.circular(14)),
             child: _paragraphe(k, b.texte, 16.5, p.texte, graisse: FontWeight.w600),
           ));
         case 'en_chiffres':
