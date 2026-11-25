@@ -361,6 +361,7 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
       k++;
       switch (b.cle) {
         case 'chapo':
+          res.add(_intertitre(texteEnBref, p)); // 25/11 (Maxime) : intertitre au-dessus de l'encadré, comme la maquette
           res.add(Container(
             width: double.infinity,
             margin: const EdgeInsets.only(bottom: 16),

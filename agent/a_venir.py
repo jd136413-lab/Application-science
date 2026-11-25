@@ -75,17 +75,13 @@ NOUVELLES_COLONNES = True    # passe à False si la migration 011 n'est pas enco
 AUTRES_SOURCES = True        # passe à False si la migration 012 (autres_sources) n'est pas encore faite
 MAX_AUTRES_SOURCES = 6
 
-LIGNES_PAR_TYPE = """Lignes « pratique » à écrire selon le type (2 à 4 lignes, chacune : "k" = icône, "t" = titre court, "v" = texte court) :
-- lancement : "repere" À regarder (le moment fort) ; "info" la mission en une ligne si utile.
-- arrivee (mise en orbite, survol, atterrissage d'une sonde) : "voir" Ce qu'on verra (images, données, quand) ; "repere" le moment clé.
-- ciel : "heure" Quand regarder (en heure LOCALE, valable partout : « après 1 h du matin jusqu'à l'aube », « au coucher du Soleil ») ; "direction" Où regarder ; "voir" Comment (œil nu, jumelles, lunettes d'éclipse OBLIGATOIRES pour le Soleil) ; "lune" Conditions si utile.
-- sortie : "appareil" Sur quoi (consoles, systèmes, pays) ; "heure" Heure de sortie si connue ; "prix" Prix annoncé (avec la monnaie et le pays) si connu.
-- presentation : "repere" Attendu (ce qui doit être montré) ; "info" en ligne ou sur place.
-- salon / sommet : "duree" Durée ; "repere" Moments clés (dates) ; "qui" Qui y participe si utile.
-- resultats : "qui" Qui (laboratoire, équipe) ; "voir" Ce qu'on saura ; "info" l'étude (taille, lieu).
-- decision : "qui" Qui décide ; "voir" Ce qu'on saura ; "repere" Pour qui ça compte.
-- prix : "heure" heure des annonces ; "duree" Programme (jour par jour) ; "info" ce qui est récompensé.
-- mise_en_service / essai : "voir" Ce qu'on verra ; "repere" À retenir (un chiffre concret).
+LIGNES_PAR_TYPE = """Lignes « pratique » (0 à 3 lignes, souvent 1 ou 2 ; chacune : "k" = icône, "t" = titre de 1 à 3 mots, "v" = 14 mots au plus).
+25/11 (Maxime : trop de répétitions avec le résumé) : UNIQUEMENT ce qui sert à AGIR, jamais une explication (la mission, l'enjeu, ce qu'on saura vont dans le résumé, écrit à part). Selon le type :
+- lancement, arrivee, essai, mise_en_service : "direct" Où suivre si la source le donne ; sinon AUCUNE ligne.
+- ciel : "heure" Quand regarder (en heure LOCALE, valable partout : « après 1 h du matin jusqu'à l'aube ») ; "direction" Où regarder ; "voir" Comment (œil nu, jumelles, lunettes d'éclipse OBLIGATOIRES pour le Soleil) ; "lune" Conditions si utile.
+- sortie : "appareil" Sur quoi (consoles, systèmes, pays) ; "prix" Prix annoncé (avec la monnaie et le pays) si connu.
+- presentation, salon, sommet, prix : "direct" Où suivre (en ligne, sur place) ; "duree" Programme si utile.
+- resultats, decision : en général AUCUNE ligne.
 N'écris JAMAIS dans ces lignes la date ni le lieu (déjà affichés à part). Rien d'inventé : seulement ce que dit la source (ou une connaissance générale certaine, ex. « lunettes d'éclipse obligatoires »)."""
 
 CONSIGNE = """Tu rédiges les cartes de l'onglet « À venir » de NovaSTEM, une application gratuite qui présente les avancées scientifiques et technologiques au grand public du monde entier (lycéens curieux, adultes sans formation scientifique), en français.
@@ -545,7 +541,7 @@ CONSIGNE_LANCEMENTS = """Tu choisis des lancements spatiaux pour l'onglet « À 
 
 On te donne les prochains lancements (numérotés) et les événements déjà dans l'onglet. Garde AU PLUS {n} lancements qui intéressent le grand public : vol avec des astronautes, mission vers la Lune, Mars ou une autre planète, grand télescope ou sonde scientifique, premier vol d'une nouvelle fusée, fusée européenne (Ariane 6, Vega), retour ou atterrissage d'une fusée jamais tenté. JAMAIS : lancements de séries de satellites de communication (Starlink, Kuiper, OneWeb, Qianfan…), satellites commerciaux ou militaires ordinaires, vols de routine. Ne reprends JAMAIS un lancement déjà dans l'onglet, même formulé autrement ou à une autre date (même fusée et même mission = même lancement) : un doublon est la pire erreur possible. Liste vide si rien d'intéressant.
 
-Pour chacun : "i" (son numéro), "nom" (le nom du lancement RECOPIÉ À L'IDENTIQUE depuis la liste, ex. « LVM-3 | Gaganyaan-1 » : il sert à vérifier que le texte correspond bien au bon numéro), "titre" (« Sujet : phrase », 12 mots au plus, la phrase après les deux-points compréhensible seule en 8 mots au plus car seule affichée dans la liste, compréhensible par quelqu'un qui n'y connaît rien, sans nom de code inconnu ; ex. « Fusées : l'Europe lance son télescope chasseur de planètes » ; la phrase nomme qui lance, jamais « sa fusée » seul ; noms de fusées en français usuel : « Longue Marche », pas « Long March »), "prevu" (1 à 2 phrases simples : qui lance quoi, pour faire quoi), "pourquoi" (1 phrase), "lieu" (le pas de tir donné, en français : « Kourou, en Guyane française », « Cap Canaveral, en Floride (États-Unis) »), "pratique" (1 à 2 lignes : "repere" À regarder = le moment fort du vol ; "info" la mission si utile ; jamais la date ni le lieu), "famille" ("space" pour une mission scientifique, "aerospace" pour une fusée ou un vol habité), "importance" (1 à 5, exigeant : 2 en général, 3 pour un vol très suivi, 4 pour un moment historique)."""
+Pour chacun : "i" (son numéro), "nom" (le nom du lancement RECOPIÉ À L'IDENTIQUE depuis la liste, ex. « LVM-3 | Gaganyaan-1 » : il sert à vérifier que le texte correspond bien au bon numéro), "titre" (« Sujet : phrase », 12 mots au plus, la phrase après les deux-points compréhensible seule en 8 mots au plus car seule affichée dans la liste, compréhensible par quelqu'un qui n'y connaît rien, sans nom de code inconnu ; ex. « Fusées : l'Europe lance son télescope chasseur de planètes » ; la phrase nomme qui lance, jamais « sa fusée » seul ; noms de fusées en français usuel : « Longue Marche », pas « Long March »), "prevu" (1 à 2 phrases simples : qui lance quoi, pour faire quoi), "pourquoi" (1 phrase), "lieu" (le pas de tir donné, en français : « Kourou, en Guyane française », « Cap Canaveral, en Floride (États-Unis) »), "pratique" (liste VIDE en général : la mission et le moment fort vont dans le résumé, écrit à part ; jamais la date ni le lieu), "famille" ("space" pour une mission scientifique, "aerospace" pour une fusée ou un vol habité), "importance" (1 à 5, exigeant : 2 en général, 3 pour un vol très suivi, 4 pour un moment historique)."""
 
 SCHEMA_LANCEMENTS = {
     "type": "object",
@@ -753,7 +749,7 @@ def completer(db, client, modele_id, futurs: list[dict], lire_debut_page, conso:
         du_calendrier = set()
     # Sans lignes « En pratique » (le lieu seul ne suffit pas : il peut être brut, en anglais).
     a_faire = [e for e in futurs if e.get("source_url") not in du_calendrier and e.get("statut") != "annule"
-               and not e.get("pratique")]
+               and e.get("pratique") is None]   # 25/11 : [] = lignes retirées exprès par le résumé à blocs
     n = 0
     demandes_ll2 = 0
     for e in a_faire[:COMPLETER_PAR_PASSAGE]:

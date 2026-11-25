@@ -24,18 +24,21 @@ import economie
 import fiche_blocs as fb
 import redaction
 
-MAX_PAR_PASSAGE = 8
+MAX_PAR_PASSAGE = 15   # 25/11 : rattrapage des 40 cartes (≈ 0,002 $ la carte)
 
 CONSIGNE = """Tu rédiges le résumé d'une carte de l'onglet « À venir » de NovaSTEM : une application gratuite qui présente les avancées scientifiques et technologiques et les grands événements à venir (lancements, sorties de produits, phénomènes dans le ciel, sommets, résultats attendus…) à des lecteurs non spécialistes (lycéens, adultes curieux), en français.
 
-La carte affiche DÉJÀ en haut : le titre, le compte à rebours, la date et l'heure, le lieu, le lien du direct et les lignes « En pratique ». Ne les répète pas, sauf si c'est indispensable pour comprendre une phrase. Ton texte explique l'événement : ce qui va se passer, comment, et pourquoi ça compte.
+La carte affiche DÉJÀ en haut : le titre, le compte à rebours, la date et l'heure, le lieu et le lien du direct. Ne les répète pas. Ton texte explique l'événement : ce qui va se passer, comment, et pourquoi ça compte.
+
+Tu réécris aussi les lignes « En pratique » (affichées en haut de la carte, juste au-dessus de ton texte). On te donne les lignes actuelles : elles mélangent souvent du pratique et de l'explication, ce qui fait des répétitions avec ton résumé. Règle : « En pratique » = UNIQUEMENT ce qui sert à AGIR (quand regarder à l'heure locale, où et comment regarder ou suivre, sur quel appareil, prix et disponibilité, précautions comme les lunettes d'éclipse). Tout ce qui EXPLIQUE (la mission, ce qui est à bord, l'enjeu, ce qu'on saura, ce qui suit) va dans ton résumé, jamais dans « En pratique ». Chaque information n'apparaît qu'à UN seul endroit de la carte.
 
 Méthode :
 1. "releve" : relève d'abord 4 à 12 faits utiles des sources, chacun avec une "citation" de 5 à 15 mots COPIÉE MOT POUR MOT de la source (dans sa langue). Un fait sans citation exacte sera retiré.
 2. "chapo" : 1 à 2 phrases, 40 mots au plus : ce qui va se passer, qui le fait, et pourquoi c'est attendu, avec au moins un repère concret. Se comprend seul.
 3. "en_chiffres" : 0, ou 2 à 3 lignes comprises d'un coup d'œil. "valeur" = UN seul nombre AVEC son unité ou ce qu'il compte (« 26 caméras », « 1,5 million de km », « 3 h 20 »), 4 mots au plus, jamais deux nombres ni de barre oblique. "sens" = UNIQUEMENT une description de ce que représente la valeur, groupe nominal qui commence par une majuscule (« Nombre de télescopes réunis »), 10 mots au plus. Pas la date ni l'heure de l'événement (déjà en haut).
 4. "blocs" : AUCUN paragraphe n'est imposé. Choisis les 2 à 4 angles qui font le mieux comprendre CET événement, dans l'ordre le plus logique. Pistes selon le cas : pour un lancement, la mission, ce qu'il y a à bord, ce qui se passe pendant le vol, les risques ; pour un phénomène dans le ciel, ce qu'on verra, pourquoi il se produit, comment bien l'observer ; pour une sortie de produit, ce qui change, le prix annoncé, pour qui ; pour un sommet ou des résultats attendus, l'enjeu, ce qui sera décidé ou annoncé. Chaque bloc : {"question": l'intertitre écrit pour CE sujet, comme la vraie question du lecteur, 10 mots au plus, jamais passe-partout (« Comment ça marche ? ») ; "texte": 1 à 3 phrases, 60 mots au plus}. Si les sources ne répondent pas PRÉCISÉMENT à un angle, n'écris pas de bloc pour lui.
-5. "limites" : 0 à 3 phrases précises, pour le LECTEUR, sur ce qui reste incertain d'après les sources (date susceptible de glisser et pourquoi, conditions météo, détails pas encore annoncés). Jamais une formule générale, jamais une étape déjà passée, jamais une note pour l'équipe (« à vérifier », « avant publication », « la source contredit… »).
+5. "pratique" : 0 à 3 lignes, souvent 1 ou 2, et AUCUNE si rien de vraiment utile pour agir. Chaque ligne : {"k": icône parmi heure, direction, voir, lune, direct, duree, appareil, prix, lieu ; "t": titre de 1 à 3 mots (« Quand regarder », « Où regarder », « Prix », « Sur quoi ») ; "v": 14 mots au plus, concret}. Jamais la date ni le lieu de l'événement (déjà affichés), jamais une explication.
+6. "limites" : 0 à 3 phrases précises, pour le LECTEUR, sur ce qui reste incertain d'après les sources (date susceptible de glisser et pourquoi, conditions météo, détails pas encore annoncés). Jamais une formule générale, jamais une étape déjà passée, jamais une note pour l'équipe (« à vérifier », « avant publication », « la source contredit… »).
 
 Règles :
 - N'invente rien : chaque fait, chiffre et nom vient des sources. Garde les nuances (« prévu », « selon l'agence », « si la météo le permet »). Pas de superlatif non attribué.
@@ -59,14 +62,17 @@ SCHEMA = {
         "blocs": {"type": "array", "items": {"type": "object", "properties": {
             "question": {"type": "string"}, "texte": {"type": "string"}},
             "required": ["question", "texte"], "additionalProperties": False}},
+        "pratique": {"type": "array", "items": {"type": "object", "properties": {
+            "k": {"type": "string"}, "t": {"type": "string"}, "v": {"type": "string"}},
+            "required": ["k", "t", "v"], "additionalProperties": False}},
         "limites": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["releve", "chapo", "en_chiffres", "blocs", "limites"],
+    "required": ["releve", "chapo", "en_chiffres", "blocs", "pratique", "limites"],
     "additionalProperties": False,
 }
 
 CONSIGNE_RELECTURE = """Tu es le relecteur le plus exigeant de NovaSTEM. On te donne le résumé d'une carte « À venir » (un événement attendu) et ses sources, seule base de faits autorisée. Compare-le phrase par phrase aux sources.
-Corrige : tout fait, chiffre, nom, date ou bénéfice absent des sources ou déformé ; toute nuance perdue (« prévu », « selon… », « si la météo le permet ») ; tout superlatif non attribué ; toute répétition ; tout jargon non expliqué ; tout intertitre passe-partout ou qui n'annonce pas exactement ce que dit son paragraphe ; toute limite générale, qui est en fait un fait établi, qui parle d'une étape déjà passée ou qui s'adresse à l'équipe (« à vérifier ») ; toute unité anglo-saxonne non convertie ; toute phrase de plus de 25 mots. Les "Défauts MESURÉS automatiquement" fournis sont certains : corrige-les tous.
+Corrige : tout fait, chiffre, nom, date ou bénéfice absent des sources ou déformé ; toute nuance perdue (« prévu », « selon… », « si la météo le permet ») ; tout superlatif non attribué ; toute répétition ; tout jargon non expliqué ; tout intertitre passe-partout ou qui n'annonce pas exactement ce que dit son paragraphe ; toute limite générale, qui est en fait un fait établi, qui parle d'une étape déjà passée ou qui s'adresse à l'équipe (« à vérifier ») ; toute unité anglo-saxonne non convertie ; toute phrase de plus de 25 mots ; toute ligne « pratique » qui explique au lieu de servir à agir, qui répète le résumé, ou qui donne la date ou le lieu (supprime-la) ; toute information présente à deux endroits de la carte. Les "Défauts MESURÉS automatiquement" fournis sont certains : corrige-les tous.
 Rends la carte corrigée dans le même format, en ne changeant QUE ce qui doit l'être. Liste chaque défaut corrigé dans "problemes" (liste vide s'il n'y en a pas).
 Réponds uniquement avec le JSON demandé."""
 
@@ -74,7 +80,7 @@ SCHEMA_RELECTURE = {
     "type": "object",
     "properties": {**{k: v for k, v in SCHEMA["properties"].items() if k != "releve"},
                    "problemes": {"type": "array", "items": {"type": "string"}}},
-    "required": ["chapo", "en_chiffres", "blocs", "limites", "problemes"],
+    "required": ["chapo", "en_chiffres", "blocs", "pratique", "limites", "problemes"],
     "additionalProperties": False,
 }
 
@@ -187,6 +193,22 @@ def _nettoyer(d: dict, sources: list[str]) -> list[str]:
     return al
 
 
+ICONES_PRATIQUES = {"heure", "direction", "voir", "lune", "direct", "duree", "appareil", "prix", "lieu"}
+
+
+def pratique_de(d: dict) -> list[dict]:
+    """25/11 (Maxime : trop de répétitions entre « En pratique » et « En bref ») : 3 lignes au plus,
+    seulement pour agir. Aucune ligne = rien d'affiché."""
+    out = []
+    for x in d.get("pratique") or []:
+        if not isinstance(x, dict):
+            continue
+        k, t, v = x.get("k"), _propre(x.get("t")), _propre(x.get("v"))
+        if k in ICONES_PRATIQUES and t and v and len(v.split()) <= 20 and not fb.NOTE_REDACTEUR.search(v):
+            out.append({"k": k, "t": t[:40], "v": v[:180]})
+    return out[:3]          # [] (et non None) : sinon a_venir.py recompléterait la carte
+
+
 def blocs_de(d: dict) -> list[dict]:
     """Même format que les fiches (colonne blocs) : lu par l'app (modele.dart, lireBlocs)."""
     # 25/11 : règles sûres, les notes pour l'équipe et les étapes passées ne s'affichent jamais
@@ -201,6 +223,16 @@ def blocs_de(d: dict) -> list[dict]:
     if limites:
         res.append({"cle": "limites", "puces": limites})
     return res
+
+
+def _lignes(e: dict) -> str:
+    l = e.get("pratique") or []
+    if isinstance(l, str):
+        try:
+            l = json.loads(l)
+        except Exception:
+            l = []
+    return "\n".join(f"- {x.get('t', '')} : {x.get('v', '')}" for x in l if isinstance(x, dict)) or "(aucune)"
 
 
 def _cout(usage, prix, par_lot) -> float:
@@ -229,7 +261,7 @@ def passage(db, client, modele_id: str, prix: tuple, lire_page, log, par_lot: bo
         from zoneinfo import ZoneInfo
         depuis = datetime.now(ZoneInfo("Europe/Paris")).date().isoformat()
         r = requests.get(_url(db), headers=db.headers, timeout=30, params={
-            "select": "id,title,type,event_date,lieu,prevu,pourquoi,pratique,source_url,source_name,statut,feed,blocs",
+            "select": "id,title,type,event_date,lieu,prevu,pourquoi,pratique,source_url,source_name,statut,feed,blocs,event_utc",
             "event_date": f"gte.{depuis}", "blocs": "eq.[]", "statut": "neq.annule",
             "order": "event_date.asc", "limit": str(MAX_PAR_PASSAGE)})
         if r.status_code >= 400:
@@ -251,7 +283,9 @@ def passage(db, client, modele_id: str, prix: tuple, lire_page, log, par_lot: bo
         demandes = {}
         for e in cartes:
             contenu = (f"Carte : {e.get('title', '')} · type : {e.get('type', '')} · date : {e.get('event_date', '')} · "
-                       f"lieu : {e.get('lieu') or 'non précisé'}\n\n"
+                       f"lieu : {e.get('lieu') or 'non précisé'}\n"
+                       f"Heure exacte déjà affichée par l'app (à l'heure du lecteur) : {'oui, ne la répète pas' if e.get('event_utc') else 'non'}\n"
+                       f"Lignes « En pratique » actuelles (à réécrire) :\n{_lignes(e)}\n\n"
                        + "\n\n".join(f"[SOURCE {i + 1}]\n{t}" for i, t in enumerate(srcs[e["id"]])))
             demandes[e["id"]] = _demande(modele_id, CONSIGNE, contenu, SCHEMA)
         rep, _ = redaction._appeler(client, demandes, par_lot, attente_lot, log)
@@ -271,7 +305,7 @@ def passage(db, client, modele_id: str, prix: tuple, lire_page, log, par_lot: bo
                 continue
             d, al = jets[e["id"]]
             mesures = ("Défauts MESURÉS automatiquement :\n- " + "\n- ".join(al) + "\n\n") if al else ""
-            a_relire = {k: d.get(k) for k in ("chapo", "en_chiffres", "blocs", "limites")}
+            a_relire = {k: d.get(k) for k in ("chapo", "en_chiffres", "blocs", "pratique", "limites")}
             contenu = (f"Résumé à relire :\n{json.dumps(a_relire, ensure_ascii=False)}\n\n{mesures}"
                        + "\n\n".join(f"[SOURCE {i + 1}]\n{t}" for i, t in enumerate(srcs[e["id"]])))
             demandes[e["id"]] = _demande(modele_id, CONSIGNE_RELECTURE, contenu, SCHEMA_RELECTURE)
@@ -294,7 +328,7 @@ def passage(db, client, modele_id: str, prix: tuple, lire_page, log, par_lot: bo
                 log(f"  ✗ « {e.get('title', '')[:50]} » : aucun paragraphe solide, carte laissée telle quelle")
                 continue
             p = requests.patch(_url(db), headers=dict(db.headers, Prefer="return=minimal"), timeout=30,
-                               params={"id": f"eq.{e['id']}"}, json={"blocs": blocs_de(d)})
+                               params={"id": f"eq.{e['id']}"}, json={"blocs": blocs_de(d), "pratique": pratique_de(d)})
             if p.status_code < 300:
                 faits += 1
                 log(f"  ✎ À venir : « {e.get('title', '')[:60]} » — {len(d['blocs'])} paragraphe(s)"
