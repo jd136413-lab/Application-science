@@ -72,6 +72,10 @@ PLAFOND_REDACTION = 0.03     # $ par passage
 # « traitement par lot » d'Anthropic (−50 %), attente au plus ATTENTE_LOT secondes en tout ;
 # au-delà, fin en appels directs (prix normal) pour ne pas retarder les fiches.
 PAR_LOT = True
+# Format de fiche « pyramide à questions » (plan D, choix de Maxime du 25/11, essai noté : 5,1 → 7,1/10).
+# À passer à True une fois la migration 024 lancée (colonne « blocs ») : l'agent écrit alors les blocs
+# ET les anciennes colonnes (avant / decouverte / apres), lues par les versions déjà installées de l'app.
+FORMAT_BLOCS = False
 ATTENTE_LOT = 900
 # Budget (décision de Maxime, 04/11/2026) : 2 € par mois au maximum pour l'agent.
 # 1) Réflexion cachée de Claude coupée partout (economie.py) : ≈ 2 fois moins cher.
@@ -122,6 +126,7 @@ import titres
 import bilan_sources
 import a_venir
 import redaction
+import redaction_blocs
 import videos
 import images
 from anthropic import Anthropic
@@ -332,7 +337,10 @@ class Supabase:
             r = requests.post(self.base, headers=h, json=envoi, timeout=30, params={"select": "id,family"})
             if r.status_code != 400:
                 break
-            if "autres_sources" in r.text and "autres_sources" in envoi:
+            if "blocs" in r.text and "blocs" in envoi:
+                print("⚠ Colonne blocs absente (lancer database/migration_024_blocs.sql).", flush=True)
+                envoi.pop("blocs")
+            elif "autres_sources" in r.text and "autres_sources" in envoi:
                 # Migration 007 pas encore lancée : fiche enregistrée sans ses autres sources.
                 print("⚠ Colonne autres_sources absente (lancer database/migration_007_familles_elargies.sql).", flush=True)
                 envoi.pop("autres_sources")
@@ -1303,6 +1311,8 @@ def controle_qualite(ligne: dict, art: dict) -> list[str]:
     pbs = []
     textes = {"avant": ligne.get("avant") or "", "decouverte": ligne.get("decouverte") or "",
               "apres": ligne.get("apres") or ""}
+    if ligne.get("blocs"):      # format D : forme et chiffres contrôlés par fiche_blocs.nettoyer
+        return pbs if art.get("page_lue") else ["écrite à partir du seul extrait du flux"]
     if not textes["decouverte"]:
         return pbs
     # 2) chaque nombre du résumé doit venir de l'article lu (on ignore 0 à 10)
@@ -1498,6 +1508,36 @@ def appliquer_redaction(ligne: dict, res: dict | None) -> bool:
     log(f"  ✎ rédigée{' (lot)' if res.get('lot') else ''}, {res['relectures']} relecture(s), "
         f"{len(res['problemes'])} défaut(s) corrigé(s), {res['cout']:.4f} $"
         f"{', reste : ' + ' ; '.join(res['restants'])[:120] if res['restants'] else ''} : « {ancien[:45]} » → « {titre[:60]} »")
+    return True
+
+
+def appliquer_blocs(ligne: dict, res: dict | None) -> bool:
+    """Reporte sur la fiche le résultat de redaction_blocs.rediger_lot (plan D). Faux si échec."""
+    if not res or not res.get("fiche"):
+        log(f"  ✖ rédaction impossible : « {ligne['title'][:60]} »")
+        return False
+    f, fil = res["fiche"], ligne["feed"]
+    base = f["_base"]
+    titre = " ".join(str(base.get("title", "")).split()).rstrip(".")
+    if not titre or not base.get("decouverte"):
+        return False
+    import traduction
+    tout = " ".join(traduction.textes_blocs(base["blocs"]))
+    ancien = ligne["title"]
+    ligne.update({
+        "title": titre, "blocs": base["blocs"],
+        # anciennes colonnes, pour les versions de l'app déjà installées (et les notifications)
+        "avant": base.get("avant") or None, "decouverte": base["decouverte"], "apres": base.get("apres") or None,
+        "summary": tout,
+        "mots": mots_valides(f.get("mots") or [], titre + " " + tout),
+    })
+    if f.get("type_etude") in TYPES_ETUDE[fil]:
+        ligne["type_etude"] = f["type_etude"]
+    elif f.get("type_etude") == "aucun":
+        ligne["type_etude"] = None
+    restes = res.get("alertes_finales") or []
+    log(f"  ✎ rédigée (format D, profil {res.get('profil')}), {len(res.get('problemes') or [])} défaut(s) corrigé(s)"
+        f"{', reste : ' + ' ; '.join(restes)[:120] if restes else ''} : « {ancien[:45]} » → « {titre[:60]} »")
     return True
 
 
@@ -1826,12 +1866,18 @@ def main() -> int:
         items = [(f"f{k}-{j}", texte_pour_redaction(art), l["feed"], l) for k, (art, lignes, _) in enumerate(a_rediger)
                  for j, l in enumerate(lignes)]
         log(f"\n✎ Rédaction de {len(items)} fiche(s){' par lot' if PAR_LOT else ''}…")
-        resultats, c = redaction.rediger_lot(client, modele["id"], modele["prix"], items, par_lot=PAR_LOT,
-                                             relectures_max=2 if redaction_active else 0,
-                                             plafond=PLAFOND_REDACTION, attente_lot=ATTENTE_LOT, log=log)
+        if FORMAT_BLOCS:
+            resultats, c = redaction_blocs.rediger_lot(client, modele["id"], modele["prix"], items, par_lot=PAR_LOT,
+                                                       attente_lot=ATTENTE_LOT, log=log)
+            appliquer = appliquer_blocs
+        else:
+            resultats, c = redaction.rediger_lot(client, modele["id"], modele["prix"], items, par_lot=PAR_LOT,
+                                                 relectures_max=2 if redaction_active else 0,
+                                                 plafond=PLAFOND_REDACTION, attente_lot=ATTENTE_LOT, log=log)
+            appliquer = appliquer_redaction
         cout_redaction[0] += c
         for k, (art, lignes, explication) in enumerate(a_rediger):
-            pretes = [l for j, l in enumerate(lignes) if appliquer_redaction(l, resultats.get(f"f{k}-{j}"))]
+            pretes = [l for j, l in enumerate(lignes) if appliquer(l, resultats.get(f"f{k}-{j}"))]
             if not pretes:
                 erreurs.append((art, "rédaction impossible"))   # pas écarté : repris au prochain passage
                 continue

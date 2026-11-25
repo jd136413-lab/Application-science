@@ -9870,3 +9870,445 @@ ja {n} 日前
 ko {n}일 전
 id {n} hari lalu
 vi {n} ngày trước
+
+# ---- Résumé à blocs (plan D, 25/11/2026) ----
+@ Qu’ont-ils fait ?
+en What did they do?
+es ¿Qué hicieron?
+pt O que fizeram?
+de Was haben sie gemacht?
+it Che cosa hanno fatto?
+nl Wat hebben ze gedaan?
+pl Co zrobili?
+ru Что они сделали?
+uk Що вони зробили?
+tr Ne yaptılar?
+ar ماذا فعلوا؟
+hi उन्होंने क्या किया?
+bn তাঁরা কী করেছেন?
+ur انہوں نے کیا کیا؟
+zh 他们做了什么？
+ja 何をしたのか？
+ko 무엇을 했나요?
+id Apa yang mereka lakukan?
+vi Họ đã làm gì?
+
+@ Qu’est-ce que c’est ?
+en What is it?
+es ¿Qué es?
+pt O que é?
+de Was ist das?
+it Che cos’è?
+nl Wat is het?
+pl Co to jest?
+ru Что это такое?
+uk Що це таке?
+tr Bu nedir?
+ar ما هذا؟
+hi यह क्या है?
+bn এটা কী?
+ur یہ کیا ہے؟
+zh 这是什么？
+ja それは何か？
+ko 무엇인가요?
+id Apa itu?
+vi Đó là gì?
+
+@ Comment ça marche ?
+en How does it work?
+es ¿Cómo funciona?
+pt Como funciona?
+de Wie funktioniert das?
+it Come funziona?
+nl Hoe werkt het?
+pl Jak to działa?
+ru Как это работает?
+uk Як це працює?
+tr Nasıl çalışıyor?
+ar كيف يعمل؟
+hi यह कैसे काम करता है?
+bn এটা কীভাবে কাজ করে?
+ur یہ کیسے کام کرتا ہے؟
+zh 它是如何运作的？
+ja どういう仕組み？
+ko 어떻게 작동하나요?
+id Bagaimana cara kerjanya?
+vi Nó hoạt động thế nào?
+
+@ Comment le sait-on ?
+en How do we know?
+es ¿Cómo lo sabemos?
+pt Como sabemos?
+de Woher weiß man das?
+it Come lo sappiamo?
+nl Hoe weten we dat?
+pl Skąd to wiadomo?
+ru Откуда это известно?
+uk Звідки це відомо?
+tr Bunu nereden biliyoruz?
+ar كيف نعرف ذلك؟
+hi हमें कैसे पता है?
+bn আমরা কীভাবে জানি?
+ur ہمیں کیسے معلوم ہے؟
+zh 我们怎么知道？
+ja なぜそう言えるのか？
+ko 어떻게 알 수 있나요?
+id Bagaimana kita tahu?
+vi Làm sao ta biết?
+
+@ Sur qui, sur combien ?
+en On whom, and how many?
+es ¿En quién y en cuántos?
+pt Em quem e em quantos?
+de An wem, an wie vielen?
+it Su chi e su quanti?
+nl Bij wie, bij hoeveel?
+pl Na kim i na ilu osobach?
+ru На ком и на скольких?
+uk На кому і на скількох?
+tr Kimler üzerinde, kaç kişide?
+ar على من، وعلى كم شخص؟
+hi किन पर, कितनों पर?
+bn কাদের ওপর, কতজনের ওপর?
+ur کن پر، کتنوں پر؟
+zh 研究对象是谁，有多少人？
+ja 誰を対象に、何人で？
+ko 누구를 대상으로, 몇 명에게?
+id Pada siapa, berapa banyak?
+vi Trên ai, bao nhiêu người?
+
+@ Testé sur quoi ?
+en Tested on what?
+es ¿Probado en qué?
+pt Testado em quê?
+de Woran getestet?
+it Testato su cosa?
+nl Waarop getest?
+pl Na czym przetestowano?
+ru На чём испытано?
+uk На чому випробувано?
+tr Neyle test edildi?
+ar على ماذا اختُبر؟
+hi किस पर परखा गया?
+bn কীসের ওপর পরীক্ষা করা হয়েছে?
+ur کس پر آزمایا گیا؟
+zh 在什么上测试？
+ja 何で試したのか？
+ko 무엇으로 시험했나요?
+id Diuji pada apa?
+vi Được thử nghiệm trên gì?
+
+@ Par rapport à quoi ?
+en Compared with what?
+es ¿Comparado con qué?
+pt Em comparação com quê?
+de Im Vergleich wozu?
+it Rispetto a cosa?
+nl Vergeleken met wat?
+pl W porównaniu z czym?
+ru По сравнению с чем?
+uk Порівняно з чим?
+tr Neye göre?
+ar مقارنةً بماذا؟
+hi किसकी तुलना में?
+bn কীসের তুলনায়?
+ur کس کے مقابلے میں؟
+zh 和什么相比？
+ja 何と比べて？
+ko 무엇과 비교해서?
+id Dibandingkan dengan apa?
+vi So với cái gì?
+
+@ Qu’est-ce qui est nouveau ?
+en What is new?
+es ¿Qué hay de nuevo?
+pt O que há de novo?
+de Was ist neu?
+it Che cosa c’è di nuovo?
+nl Wat is er nieuw?
+pl Co jest nowego?
+ru Что нового?
+uk Що нового?
+tr Yeni olan ne?
+ar ما الجديد؟
+hi नया क्या है?
+bn নতুন কী?
+ur نیا کیا ہے؟
+zh 有什么新东西？
+ja 何が新しいのか？
+ko 무엇이 새로운가요?
+id Apa yang baru?
+vi Có gì mới?
+
+@ Pourquoi est-ce surprenant ?
+en Why is it surprising?
+es ¿Por qué sorprende?
+pt Por que é surpreendente?
+de Warum ist das überraschend?
+it Perché è sorprendente?
+nl Waarom is dat verrassend?
+pl Dlaczego to zaskakuje?
+ru Почему это удивительно?
+uk Чому це дивує?
+tr Neden şaşırtıcı?
+ar لماذا هذا مفاجئ؟
+hi यह चौंकाने वाला क्यों है?
+bn এটা কেন অবাক করার মতো?
+ur یہ حیران کن کیوں ہے؟
+zh 为什么令人意外？
+ja なぜ驚きなのか？
+ko 왜 놀라운가요?
+id Mengapa ini mengejutkan?
+vi Vì sao điều này đáng ngạc nhiên?
+
+@ Quelle explication ?
+en What explains it?
+es ¿Qué lo explica?
+pt O que explica isso?
+de Wie lässt es sich erklären?
+it Quale spiegazione?
+nl Wat is de verklaring?
+pl Jakie jest wyjaśnienie?
+ru Как это объяснить?
+uk Як це пояснити?
+tr Açıklaması ne?
+ar ما التفسير؟
+hi इसकी व्याख्या क्या है?
+bn ব্যাখ্যা কী?
+ur اس کی وضاحت کیا ہے؟
+zh 如何解释？
+ja どう説明できるのか？
+ko 어떻게 설명할 수 있나요?
+id Apa penjelasannya?
+vi Giải thích thế nào?
+
+@ Quels effets indésirables ?
+en What side effects?
+es ¿Qué efectos secundarios?
+pt Quais efeitos colaterais?
+de Welche Nebenwirkungen?
+it Quali effetti collaterali?
+nl Welke bijwerkingen?
+pl Jakie skutki uboczne?
+ru Какие побочные эффекты?
+uk Які побічні ефекти?
+tr Yan etkileri neler?
+ar ما الآثار الجانبية؟
+hi क्या दुष्प्रभाव हैं?
+bn কী কী পার্শ্বপ্রতিক্রিয়া?
+ur کیا مضر اثرات ہیں؟
+zh 有哪些副作用？
+ja 副作用は？
+ko 부작용은 무엇인가요?
+id Apa efek sampingnya?
+vi Tác dụng phụ là gì?
+
+@ Quels risques ?
+en What risks?
+es ¿Qué riesgos?
+pt Quais riscos?
+de Welche Risiken?
+it Quali rischi?
+nl Welke risico’s?
+pl Jakie ryzyko?
+ru Какие риски?
+uk Які ризики?
+tr Riskleri neler?
+ar ما المخاطر؟
+hi क्या जोखिम हैं?
+bn ঝুঁকি কী কী?
+ur کیا خطرات ہیں؟
+zh 有哪些风险？
+ja リスクは？
+ko 위험은 무엇인가요?
+id Apa risikonya?
+vi Rủi ro là gì?
+
+@ Cause ou simple lien ?
+en Cause or just a link?
+es ¿Causa o simple relación?
+pt Causa ou simples relação?
+de Ursache oder bloßer Zusammenhang?
+it Causa o semplice legame?
+nl Oorzaak of alleen een verband?
+pl Przyczyna czy tylko związek?
+ru Причина или просто связь?
+uk Причина чи лише зв’язок?
+tr Neden mi, yoksa sadece bağlantı mı?
+ar سبب أم مجرد ارتباط؟
+hi कारण या सिर्फ़ संबंध?
+bn কারণ, নাকি শুধু সম্পর্ক?
+ur وجہ یا صرف تعلق؟
+zh 是原因，还是仅仅相关？
+ja 原因か、単なる関連か？
+ko 원인인가요, 단순한 연관인가요?
+id Sebab atau sekadar kaitan?
+vi Nguyên nhân hay chỉ là liên quan?
+
+@ Disponible quand, où ?
+en Available when, and where?
+es ¿Disponible cuándo y dónde?
+pt Disponível quando e onde?
+de Wann und wo verfügbar?
+it Disponibile quando e dove?
+nl Wanneer en waar beschikbaar?
+pl Kiedy i gdzie dostępne?
+ru Когда и где будет доступно?
+uk Коли і де буде доступно?
+tr Ne zaman, nerede kullanılabilir?
+ar متى وأين يتوفر؟
+hi कब और कहाँ उपलब्ध?
+bn কবে, কোথায় পাওয়া যাবে?
+ur کب اور کہاں دستیاب؟
+zh 何时何地可用？
+ja いつ、どこで使える？
+ko 언제, 어디서 이용할 수 있나요?
+id Tersedia kapan dan di mana?
+vi Khi nào, ở đâu có?
+
+@ Prix et disponibilité
+en Price and availability
+es Precio y disponibilidad
+pt Preço e disponibilidade
+de Preis und Verfügbarkeit
+it Prezzo e disponibilità
+nl Prijs en beschikbaarheid
+pl Cena i dostępność
+ru Цена и доступность
+uk Ціна і доступність
+tr Fiyat ve bulunabilirlik
+ar السعر والتوفر
+hi कीमत और उपलब्धता
+bn দাম ও প্রাপ্যতা
+ur قیمت اور دستیابی
+zh 价格与上市情况
+ja 価格と発売状況
+ko 가격과 출시 여부
+id Harga dan ketersediaan
+vi Giá và thời điểm có hàng
+
+@ Qui l’a vérifié, qui doute ?
+en Who checked it, who doubts it?
+es ¿Quién lo verificó y quién duda?
+pt Quem verificou, quem duvida?
+de Wer hat es geprüft, wer zweifelt?
+it Chi l’ha verificato, chi dubita?
+nl Wie heeft het gecontroleerd, wie twijfelt?
+pl Kto to sprawdził, kto wątpi?
+ru Кто проверил, кто сомневается?
+uk Хто перевірив, хто сумнівається?
+tr Kim doğruladı, kim şüpheli?
+ar من تحقق منه، ومن يشكك فيه؟
+hi किसने जाँचा, किसे संदेह है?
+bn কে যাচাই করেছেন, কে সন্দেহ করেন?
+ur کس نے جانچا، کسے شک ہے؟
+zh 谁核实过，谁有疑问？
+ja 誰が確かめ、誰が疑っているか？
+ko 누가 검증했고, 누가 의심하나요?
+id Siapa yang memeriksa, siapa yang ragu?
+vi Ai đã kiểm chứng, ai còn nghi ngờ?
+
+@ Que manque-t-il avant un usage ?
+en What is still missing before it can be used?
+es ¿Qué falta antes de poder usarlo?
+pt O que falta antes de poder ser usado?
+de Was fehlt noch bis zur Anwendung?
+it Cosa manca prima di poterlo usare?
+nl Wat ontbreekt er nog voordat het gebruikt kan worden?
+pl Czego brakuje przed zastosowaniem?
+ru Чего не хватает до применения?
+uk Чого бракує до застосування?
+tr Kullanılabilmesi için ne eksik?
+ar ما الذي ينقص قبل استخدامه؟
+hi इस्तेमाल से पहले क्या बाकी है?
+bn ব্যবহারের আগে কী বাকি আছে?
+ur استعمال سے پہلے کیا باقی ہے؟
+zh 投入使用前还缺什么？
+ja 実用までに何が足りないか？
+ko 실제로 쓰이기 전에 무엇이 남았나요?
+id Apa yang masih kurang sebelum bisa dipakai?
+vi Còn thiếu gì trước khi đưa vào sử dụng?
+
+@ Que manque-t-il avant un produit ?
+en What is still missing before a product?
+es ¿Qué falta para tener un producto?
+pt O que falta para virar produto?
+de Was fehlt noch bis zum Produkt?
+it Cosa manca prima di un prodotto?
+nl Wat ontbreekt er nog voor een product?
+pl Czego brakuje do gotowego produktu?
+ru Чего не хватает до готового продукта?
+uk Чого бракує до готового продукту?
+tr Ürüne dönüşmesi için ne eksik?
+ar ما الذي ينقص قبل أن يصبح منتجًا؟
+hi उत्पाद बनने से पहले क्या बाकी है?
+bn পণ্য হওয়ার আগে কী বাকি আছে?
+ur پروڈکٹ بننے سے پہلے کیا باقی ہے؟
+zh 成为产品前还缺什么？
+ja 製品化までに何が足りないか？
+ko 제품이 되기까지 무엇이 남았나요?
+id Apa yang masih kurang sebelum jadi produk?
+vi Còn thiếu gì trước khi thành sản phẩm?
+
+@ À quoi ça pourrait servir ?
+en What could it be used for?
+es ¿Para qué podría servir?
+pt Para que poderia servir?
+de Wofür könnte das nützlich sein?
+it A cosa potrebbe servire?
+nl Waarvoor zou het kunnen dienen?
+pl Do czego może się przydać?
+ru Для чего это может пригодиться?
+uk Для чого це може знадобитися?
+tr Ne işe yarayabilir?
+ar فيمَ يمكن أن يُستخدم؟
+hi यह किस काम आ सकता है?
+bn এটা কী কাজে লাগতে পারে?
+ur یہ کس کام آ سکتا ہے؟
+zh 可能有什么用途？
+ja 何に役立つ可能性があるか？
+ko 어디에 쓰일 수 있나요?
+id Untuk apa ini bisa dipakai?
+vi Nó có thể dùng vào việc gì?
+
+@ En chiffres
+en In numbers
+es En cifras
+pt Em números
+de In Zahlen
+it In cifre
+nl In cijfers
+pl W liczbach
+ru В цифрах
+uk У цифрах
+tr Rakamlarla
+ar بالأرقام
+hi आँकड़ों में
+bn সংখ্যায়
+ur اعداد و شمار میں
+zh 数字一览
+ja 数字で見る
+ko 숫자로 보기
+id Dalam angka
+vi Qua các con số
+
+@ Ce qu’on ne sait pas encore
+en What we don’t know yet
+es Lo que aún no sabemos
+pt O que ainda não sabemos
+de Was wir noch nicht wissen
+it Cosa non sappiamo ancora
+nl Wat we nog niet weten
+pl Czego jeszcze nie wiemy
+ru Чего мы пока не знаем
+uk Чого ми ще не знаємо
+tr Henüz bilmediklerimiz
+ar ما لا نعرفه بعد
+hi जो अभी पता नहीं है
+bn যা এখনও জানা যায়নি
+ur جو ابھی معلوم نہیں
+zh 尚不清楚的地方
+ja まだわかっていないこと
+ko 아직 모르는 것
+id Yang belum kita ketahui
+vi Những điều chưa biết

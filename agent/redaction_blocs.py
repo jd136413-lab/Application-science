@@ -39,7 +39,7 @@ CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite 
    Ne fabrique jamais un fait pour remplir un type.
 2. "absents" : les clés des questions marquées « à signaler » auxquelles aucune source ne répond (liste vide sinon). Le programme écrira lui-même la phrase « … n'est pas précisé ».
 3. "title" : voir LE TITRE.
-4. "chapo" : 1 à 2 phrases, 40 mots au plus. Phrase 1 = le résultat principal et pourquoi il compte, selon les sources ; elle sert de notification et doit se comprendre seule. Phrase 2, facultative = le chiffre, la comparaison ou la condition qui le rend parlant. Une comparaison de la vie courante est permise si elle est exacte ; si elle sonne forcée, reste simple.
+4. "chapo" : 1 à 2 phrases, 40 mots au plus. Phrase 1 = le résultat principal et pourquoi il compte, selon les sources ; elle sert de notification et doit se comprendre seule. Le chapô contient au moins un repère concret (le chiffre clé, la date, le lieu, la taille ou l'époque) : jamais un résumé vague. Phrase 2, facultative = le chiffre, la comparaison ou la condition qui le rend parlant. Une comparaison de la vie courante est permise si elle est exacte ; si elle sonne forcée, reste simple.
 5. "en_chiffres" : 0, ou 2 à 4 lignes. "valeur" = le nombre et son unité, 4 mots au plus ; "sens" = ce qu'il mesure ET sa référence (comparé à quoi, sur combien), 15 mots au plus. Prends des chiffres que le texte n'emploie pas.
 6. "blocs" : réponds aux questions de la fiche, dans l'ordre donné, sans dépasser le nombre de blocs indiqué. Chaque bloc : {"cle": la clé de la question, "texte": 1 à 3 phrases, 60 mots au plus}. Si les sources ne répondent pas PRÉCISÉMENT à une question, n'écris pas de bloc pour elle : passe à la suivante. N'écris pas l'intertitre : l'application l'affiche.
    - comment_ca_marche : le mécanisme ou le principe, étape par étape (A provoque B, qui donne C), tel que la source l'explique.
@@ -50,7 +50,7 @@ CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite 
    - disponible, a_quoi_ca_sert : seulement ce que la source annonce, attribué.
    - les autres questions : la réponse directe.
 6 bis. "question_cle" : l'intertitre du PREMIER bloc « comment_ca_marche » ou « comment_le_sait_on » (à défaut, du premier bloc), écrit comme la question précise qu'un lecteur se pose sur CE sujet : 9 mots au plus, commence par « Comment » ou « Pourquoi », contient un mot propre au sujet (« Comment pèse-t-on un trou noir aussi lointain ? », jamais « Comment ça marche ? »), et annonce EXACTEMENT ce que dit le bloc (si le bloc parle de l'âge des roches, la question porte sur l'âge, pas sur leur nature). "cle" = la clé de ce bloc. Si aucun bloc ne s'y prête : {"cle": "", "texte": ""}.
-7. "limites" : 0 à 3 phrases (jamais plus de 3), chacune PROPRE à cette étude : un chiffre (taille, durée), une condition (« chez la souris », « à l'arrêt »), une étape manquante nommée ou une réserve citée. Jamais une limite qui irait avec n'importe quelle étude.
+7. "limites" : 0 à 3 phrases (jamais plus de 3), chacune PROPRE à cette étude : un chiffre (taille, durée), une condition (« chez la souris », « à l'arrêt »), une étape manquante nommée ou une réserve citée. Jamais une limite qui irait avec n'importe quelle étude, et jamais un fait établi (une mesure, un contexte) : seulement ce qui reste inconnu, incertain ou à faire.
 8. "mots" et "type_etude" : voir plus bas.
 
 # LES RÈGLES QUI COMPTENT
@@ -202,7 +202,9 @@ Cherche ces défauts (un défaut = une ligne dans "problemes") :
 10. "forme" : phrase de plus de 25 mots, tournure traduite de l'anglais, référence à l'article ou au média, date relative, question-clé générique (« Comment ça marche ? ») ou qui n'annonce pas exactement ce que dit son bloc, phrase confuse.
 11. "longueur" : la fiche dépasse la longueur visée (indiquée plus bas) de plus d'un cinquième, ou contient des phrases qui n'apportent rien de concret. Plus de 3 limites est aussi un défaut.
 
-Les "Défauts MESURÉS automatiquement" fournis sont certains : liste-les et corrige-les tous.
+12. "rubrique" : un fait établi rangé dans « limites » (qui ne doit contenir que ce qui reste inconnu, incertain ou à faire), ou un bloc qui ne répond pas à sa question.
+
+Les "Défauts MESURÉS automatiquement" fournis sont certains : liste-les et corrige-les tous. Un bloc « retiré » par le programme l'a été faute de fait cité dans la source : ne le recrée pas ; place l'information utile dans un bloc existant.
 
 Puis donne la fiche corrigée dans le même format : reprends-la telle quelle et corrige SEULEMENT les défauts trouvés, en t'appuyant sur les sources. Pour un « manque », ajoute l'information dans le bloc qui convient (60 mots au plus par bloc) et, si la fiche devient trop longue, retire en échange la phrase la moins utile : la fiche corrigée ne doit pas dépasser la longueur visée de plus d'un cinquième. Supprime toute répétition en gardant le fait à l'endroit où il est le plus utile. Ne change pas les clés des blocs. Une seule monnaie par prix, sans conversion. S'il n'y a aucun défaut, "problemes" est vide et la fiche est identique.
 
@@ -214,7 +216,7 @@ def schema_relecture(fil: str) -> dict:
     props = {k: v for k, v in s["properties"].items() if k not in ("releve", "absents", "type_etude")}
     props["problemes"] = {"type": "array", "items": {"type": "object", "properties": {
         "type": {"type": "string", "enum": ["non_soutenu", "lien_invente", "absolu", "nuance", "comparaison",
-                                             "phrase_vide", "repetition", "jargon", "manque", "forme", "longueur"]},
+                                             "phrase_vide", "repetition", "jargon", "manque", "forme", "longueur", "rubrique"]},
         "extrait": {"type": "string"}, "explication": {"type": "string"}},
         "required": ["type", "extrait", "explication"], "additionalProperties": False}}
     return {"type": "object", "properties": props, "required": list(props), "additionalProperties": False}
@@ -313,7 +315,8 @@ def rediger_lot(client, modele_id: str, prix: tuple, items: list, par_lot: bool 
         _, mots_max = fb.cible(int(br.get("importance") or 1), len(srcs[0]) if srcs else 0)
         contenu = (f"Fil : {'Technologies' if fil == 'tech' else 'Sciences'}\n"
                    f"Longueur visée : {mots_max} mots (tolérance : {int(mots_max * 1.2)} au plus, si chaque phrase est utile) ; "
-                   f"la fiche en fait {fb.nb_mots(d)}.\n\nFiche à relire :\n"
+                   f"la fiche en fait {fb.nb_mots(d)}.\n"
+                   f"Clés de blocs permises, dans l'ordre : {', '.join(q.rstrip('*') for q in fb.PROFILS[profils[cid]])}.\n\nFiche à relire :\n"
                    f"{json.dumps(a_relire, ensure_ascii=False)}\n\n{mesures}"
                    + "\n\n".join(f"[SOURCE {i + 1}]\n{t}" for i, t in enumerate(srcs)))
         demandes[cid] = dict(model=modele_id, max_tokens=16000,

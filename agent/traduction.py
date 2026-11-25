@@ -51,6 +51,7 @@ Règles :
 - Noms propres, médicaments, missions, entreprises, produits : tels quels ; un organisme qui a un nom officiel dans la langue cible prend ce nom (ex. « Agence spatiale européenne » → « European Space Agency »).
 - Mots à connaître : traduis le mot (au singulier, avec une majuscule initiale) et sa définition ; même nombre de mots, même ordre.
 - Un champ vide en entrée reste vide en sortie.
+- « blocs » : une liste de textes (résumé, chiffres, questions, puces) ; traduis chacun séparément, en gardant exactement le même nombre d'éléments et le même ordre (liste vide si elle est vide).
 
 Tu reçois une liste de fiches numérotées (« n »). Réponds uniquement avec le JSON demandé : une entrée par fiche, avec le même « n »."""
 
@@ -65,8 +66,10 @@ SCHEMA = {
                 "type": "object",
                 "properties": {"mot": {"type": "string"}, "definition": {"type": "string"}},
                 "required": ["mot", "definition"], "additionalProperties": False}},
+            # Résumé à blocs (plan D, 25/11) : la liste des textes, traduits un par un, même ordre
+            "blocs": {"type": "array", "items": {"type": "string"}},
         },
-        "required": ["n", *CHAMPS, "mots"], "additionalProperties": False}}},
+        "required": ["n", *CHAMPS, "mots", "blocs"], "additionalProperties": False}}},
     "required": ["fiches"], "additionalProperties": False,
 }
 
@@ -91,8 +94,12 @@ def _propre(x) -> str:
 def manquantes(db, limite: int) -> list[dict]:
     """Fiches (les plus récentes d'abord) auxquelles il manque au moins une langue."""
     r = requests.get(db.base, headers=db.headers, timeout=60, params={
-        "select": "id,title,summary,avant,decouverte,apres,mots,traductions",
+        "select": "id,title,summary,avant,decouverte,apres,mots,blocs,traductions",
         "order": "created_at.desc", "limit": "5000"})
+    if r.status_code == 400 and "blocs" in r.text:      # migration 024 pas encore lancée
+        r = requests.get(db.base, headers=db.headers, timeout=60, params={
+            "select": "id,title,summary,avant,decouverte,apres,mots,traductions",
+            "order": "created_at.desc", "limit": "5000"})
     if r.status_code == 400 and "traductions" in r.text:
         raise ColonneAbsente()
     r.raise_for_status()
@@ -116,6 +123,26 @@ def enregistrer(db, fiche: dict) -> None:
         raise RuntimeError(f"Supabase {r.status_code} : {r.text[:150]}")
 
 
+def textes_blocs(blocs) -> list[str]:
+    """Textes du résumé à blocs, dans l'ordre que lit l'application (modele.dart, textesBlocs)."""
+    res = []
+    for b in blocs if isinstance(blocs, list) else []:
+        if not isinstance(b, dict) or not b.get("cle"):
+            continue
+        items = [c for c in b.get("items") or [] if isinstance(c, dict) and _propre(c.get("valeur"))]
+        puces = [_propre(x) for x in b.get("puces") or [] if _propre(x)]
+        if not (_propre(b.get("texte")) or items or puces):
+            continue
+        if _propre(b.get("question")):
+            res.append(_propre(b["question"]))
+        if _propre(b.get("texte")):
+            res.append(_propre(b["texte"]))
+        for c in items:
+            res += [_propre(c.get("valeur")), _propre(c.get("sens"))]
+        res += puces
+    return res
+
+
 def _entree(n: int, f: dict) -> dict:
     nouveau = bool(_propre(f.get("decouverte")))
     return {
@@ -128,6 +155,7 @@ def _entree(n: int, f: dict) -> dict:
         "apres": _propre(f.get("apres")),
         "mots": [{"mot": _propre(m.get("mot")), "definition": _propre(m.get("definition"))}
                  for m in (f.get("mots") or []) if isinstance(m, dict)],
+        "blocs": textes_blocs(f.get("blocs")),
     }
 
 
@@ -167,6 +195,11 @@ def _traduire_paquet(client, fiches: list[dict], code: str) -> tuple[dict[int, d
         mots = [m for m in (t.get("mots") or []) if isinstance(m, dict)]
         trad["mots"] = [{"mot": _propre(m.get("mot"))[:60], "definition": _propre(m.get("definition"))[:300]}
                         for m in mots[:len(orig["mots"])] if _propre(m.get("mot"))]
+        tb = [_propre(x) for x in (t.get("blocs") or [])]
+        if orig["blocs"]:
+            if len(tb) != len(orig["blocs"]) or not all(tb):
+                continue   # blocs incomplets : on réessaiera plus tard
+            trad["blocs"] = tb
         if len(trad["mots"]) != len(orig["mots"]):
             trad["mots"] = []   # mots incomplets : le téléphone traduira lui-même ces mots-là
             trad["mots_incomplets"] = True
