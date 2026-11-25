@@ -1,0 +1,35 @@
+# Essai du nouveau format de fiche (plan D, 25/11/2026) — à la main seulement. RIEN n'est publié.
+# 8 fiches récentes réécrites au nouveau format, puis notées à l'aveugle par un juge. ≈ 0,10 $.
+name: Essai des résumés (plan D)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  essai:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: agent/requirements.txt
+      - run: pip install -r agent/requirements.txt
+      - name: Lancer l'essai
+        working-directory: agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: python essai_resumes.py
+      - name: Garder le rapport
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: essai-resumes
+          path: |
+            agent/essai_resumes.md
+            agent/essai_resumes.json
+          if-no-files-found: ignore
