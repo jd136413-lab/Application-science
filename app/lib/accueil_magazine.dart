@@ -260,7 +260,7 @@ class _EcranMagazineState extends State<EcranMagazine> {
       ..sort((a, b) => b.publieLe.compareTo(a.publieLe));
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       _TitreRubrique(
-        titre: l.isEmpty ? tr('Nouveau pour vous') : '${tr('Nouveau pour vous')} · ${l.length}',
+        titre: l.isEmpty ? tr('À découvrir') : '${tr('À découvrir')} · ${l.length}',
         action: l.isEmpty ? null : tr('Tout voir'),
         onAction: () => _pousser(context, EcranNouveautesMag(fil: _fil)),
       ),
@@ -1068,10 +1068,12 @@ class EcranNouveautesMag extends StatelessWidget {
         listenable: Listenable.merge([etat, filsAvancees]),
         builder: (context, _) {
           final p = palette(context);
-          final l = filsAvancees.visibles(fil).where(etat.estNouvelle).toList()
+          // Même règle que la rubrique (maquette 107 A) : sans les domaines suivis s'ils ont leurs bulles
+          final suivis = etat.rubriqueActive('suivis') ? etat.domainesSuivis : const <String>{};
+          final l = filsAvancees.visibles(fil).where((a) => etat.estNouvelle(a) && !suivis.contains(a.famille)).toList()
             ..sort((a, b) => b.publieLe.compareTo(a.publieLe));
           return _PageListe(
-            titre: tr('Nouveau pour vous'),
+            titre: tr('À découvrir'),
             droite: l.isEmpty
                 ? null
                 : TextButton(
@@ -1411,7 +1413,7 @@ class EcranAnneeMag extends StatelessWidget {
 
 const Map<String, (String, String)> _nomsRubriques = {
   'une': ('À la une', 'La plus grande avancée du jour'),
-  'nouveau': ('Nouveau pour vous', 'Ce que vous n’avez pas encore lu'),
+  'nouveau': ('À découvrir', 'Les nouveautés des domaines que vous ne suivez pas'),   // ex-« Nouveau pour vous » (25/11)
   'top': ('Le top de la semaine', 'Les 3 plus importantes'),
   'domaines': ('Ce mois-ci par domaine', 'Les tuiles de couleur'),
   'suivis': ('Mes domaines suivis', 'Une rubrique par domaine suivi'),
