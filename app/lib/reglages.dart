@@ -133,6 +133,27 @@ const String texteNouveaute = 'La nouveauté'; // fil Technologies
 const String texteEtApres = 'Et après ?';
 const String texteMotsAConnaitre = 'Les mots à connaître';
 
+// ---- Résumé à blocs (plan D, maquette 109, 25/11/2026) ----
+// Intertitres fixes : clé écrite par l'agent → (libellé Sciences, libellé Technologies).
+// Le premier bloc « comment » a souvent sa propre question, écrite par l'agent pour le sujet.
+const Map<String, (String, String)> libellesBlocs = {
+  'ce_qu_ils_ont_fait': ('Qu’ont-ils fait ?', 'Qu’est-ce que c’est ?'),
+  'comment_ca_marche': ('Comment ça marche ?', 'Comment ça marche ?'),
+  'comment_le_sait_on': ('Comment le sait-on ?', 'Comment le sait-on ?'),
+  'sur_qui': ('Sur qui, sur combien ?', 'Testé sur quoi ?'),
+  'par_rapport_a_quoi': ('Par rapport à quoi ?', 'Qu’est-ce qui est nouveau ?'),
+  'pourquoi_surprenant': ('Pourquoi est-ce surprenant ?', 'Pourquoi est-ce surprenant ?'),
+  'explication': ('Quelle explication ?', 'Quelle explication ?'),
+  'effets_indesirables': ('Quels effets indésirables ?', 'Quels risques ?'),
+  'cause_ou_lien': ('Cause ou simple lien ?', 'Cause ou simple lien ?'),
+  'disponible': ('Disponible quand, où ?', 'Prix et disponibilité'),
+  'qui_doute': ('Qui l’a vérifié, qui doute ?', 'Qui l’a vérifié, qui doute ?'),
+  'avant_le_produit': ('Que manque-t-il avant un usage ?', 'Que manque-t-il avant un produit ?'),
+  'a_quoi_ca_sert': ('À quoi ça pourrait servir ?', 'À quoi ça pourrait servir ?'),
+};
+const String texteEnChiffres = 'En chiffres';
+const String texteInconnu = 'Ce qu’on ne sait pas encore';
+
 /// Badges « type d'étude » : code enregistré par l'agent → (libellé, niveau de preuve).
 /// Niveau : 'vert' = le plus solide, 'jaune' = étape intermédiaire, 'bleu' = observation,
 /// simulation ou annonce.

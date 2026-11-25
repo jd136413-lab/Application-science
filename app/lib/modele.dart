@@ -27,6 +27,9 @@ class Avancee {
   final String? typeEtude;
   /// Autres médias qui parlent de la même avancée (maquette 49 B1).
   final List<SourceAvancee> autresSources;
+  /// Résumé « à blocs » (plan D, 25/11/2026, migration 024) : vide pour les fiches plus anciennes,
+  /// qui gardent Avant / La découverte / Et après.
+  final List<BlocFiche> blocs;
   /// Vidéo à l'appui trouvée par l'agent dans l'article (migration 013, 08/11/2026).
   final String? video, videoTitre;
   /// Données d'origine, gardées pour enregistrer un favori sur le téléphone.
@@ -58,7 +61,11 @@ class Avancee {
     this.autresSources = const [],
     this.video,
     this.videoTitre,
+    this.blocs = const [],
   });
+
+  /// Tous les textes du résumé (pour repérer les mots à connaître, chercher, traduire).
+  String get texteResume => blocs.isNotEmpty ? textesBlocs(blocs).join(' ') : '$avant $decouverte $apres';
 
   factory Avancee.depuisJson(Map<String, dynamic> j) {
     _retenirTraductions(j);
@@ -96,6 +103,7 @@ class Avancee {
       ],
       video: (j['video_url'] as String?)?.trim(),
       videoTitre: (j['video_titre'] as String?)?.trim(),
+      blocs: lireBlocs(j['blocs']),
     );
   }
 }
@@ -128,6 +136,14 @@ void _retenirTraductions(Map<String, dynamic> j) {
     for (final c in const ['title', 'summary', 'avant', 'decouverte', 'apres']) {
       paire(j[c], v[c]);
     }
+    // Résumé à blocs : l'agent traduit la liste des textes, dans le même ordre (textesBlocs).
+    final bf = textesBlocs(lireBlocs(j['blocs']));
+    final bt = v['blocs'] is List ? v['blocs'] as List : const [];
+    if (bf.length == bt.length) {
+      for (var i = 0; i < bf.length; i++) {
+        paire(bf[i], bt[i]);
+      }
+    }
     final mf = j['mots'] is List ? j['mots'] as List : const [];
     final mt = v['mots'] is List ? v['mots'] as List : const [];
     if (mf.length != mt.length) return;
@@ -143,6 +159,54 @@ void _retenirTraductions(Map<String, dynamic> j) {
     }
   });
 }
+
+/// Un bloc du résumé (plan D, maquette 109) :
+///  • « chapo » : En bref (texte) ;
+///  • « en_chiffres » : 2 à 4 chiffres (valeur, ce qu'elle mesure) ;
+///  • « limites » : Ce qu'on ne sait pas encore (puces) ;
+///  • sinon une question de la banque (comment_ca_marche…) : texte, et parfois une question-clé
+///    propre au sujet écrite par l'agent, affichée à la place du libellé fixe.
+class BlocFiche {
+  final String cle, texte;
+  final String? question;
+  final List<(String, String)> chiffres;
+  final List<String> puces;
+  const BlocFiche(this.cle, {this.texte = '', this.question, this.chiffres = const [], this.puces = const []});
+}
+
+List<BlocFiche> lireBlocs(Object? brut) {
+  if (brut is! List) return const [];
+  final res = <BlocFiche>[];
+  for (final b in brut) {
+    if (b is! Map) continue;
+    final cle = (b['cle'] ?? '').toString();
+    if (cle.isEmpty) continue;
+    final chiffres = <(String, String)>[
+      for (final c in (b['items'] is List ? b['items'] as List : const []))
+        if (c is Map && (c['valeur'] ?? '').toString().trim().isNotEmpty)
+          (c['valeur'].toString().trim(), (c['sens'] ?? '').toString().trim()),
+    ];
+    final puces = [
+      for (final x in (b['puces'] is List ? b['puces'] as List : const []))
+        if (x.toString().trim().isNotEmpty) x.toString().trim(),
+    ];
+    final texte = (b['texte'] ?? '').toString().trim();
+    final q = (b['question'] ?? '').toString().trim();
+    if (texte.isEmpty && chiffres.isEmpty && puces.isEmpty) continue;
+    res.add(BlocFiche(cle, texte: texte, question: q.isEmpty ? null : q, chiffres: chiffres, puces: puces));
+  }
+  return res;
+}
+
+/// Textes du résumé à blocs, dans l'ordre exact où l'agent les traduit (agent/traduction.py).
+List<String> textesBlocs(List<BlocFiche> blocs) => [
+      for (final b in blocs) ...[
+        if (b.question != null) b.question!,
+        if (b.texte.isNotEmpty) b.texte,
+        for (final (v, s) in b.chiffres) ...[v, s],
+        ...b.puces,
+      ],
+    ];
 
 /// Un « mot à connaître » et sa définition (en français, traduits à l'affichage).
 /// Un média qui parle d'une avancée : nom, lien, langue (fr, en…), date.

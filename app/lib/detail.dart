@@ -260,7 +260,7 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
     final a = widget.avancee;
     final langue = etat.langue;
     var nouveau = false;
-    for (final m in _marques('${a.avant} ${a.decouverte} ${a.apres}')) {
+    for (final m in _marques(a.texteResume)) {
       if ((m.traduction ?? traductionImmediate(m.mot)) != null) continue;
       try {
         final t = await traduireMot(m.mot);
@@ -334,6 +334,115 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
     );
   }
 
+  /// Paragraphe du résumé, avec ses mots à connaître soulignés et sa bulle (n° k).
+  Widget _paragraphe(int k, String texte, double taille, Color couleur, {FontWeight? graisse}) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      TexteArticle(texte,
+          original: _original,
+          marques: _marques(texte),
+          surMot: (m) => setState(() => _bulle = _bulle?.$1 == k && _bulle?.$2.mot == m.mot ? null : (k, m)),
+          style: police(policeTexte, taille: taille, graisse: graisse, couleur: couleur, hauteur: 1.55)),
+      if (_bulle != null && _bulle!.$1 == k) _bulleMot(_bulle!.$2),
+    ]);
+  }
+
+  Widget _intertitre(String t, Palette p) => Padding(
+        padding: const EdgeInsets.only(bottom: 4),
+        child: Text(tr(t).toUpperCase(),
+            style: police(policeTexte, taille: 12, graisse: FontWeight.w800, couleur: p.texteDiscret)),
+      );
+
+  /// Résumé « à blocs » (plan D, maquette 109) : En bref, En chiffres, blocs-questions,
+  /// Ce qu'on ne sait pas encore.
+  List<Widget> _resumeABlocs(Palette p, Avancee a) {
+    final res = <Widget>[];
+    var k = 0;
+    for (final b in a.blocs) {
+      k++;
+      switch (b.cle) {
+        case 'chapo':
+          res.add(Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(bottom: 16),
+            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+            decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(14)),
+            child: _paragraphe(k, b.texte, 16.5, p.texte, graisse: FontWeight.w600),
+          ));
+        case 'en_chiffres':
+          res.add(Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              _intertitre(texteEnChiffres, p),
+              Container(
+                padding: const EdgeInsets.only(left: 12, top: 2, bottom: 2),
+                decoration: BoxDecoration(border: Border(left: BorderSide(color: couleurEtoiles, width: 3))),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  for (final (v, sens) in b.chiffres)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(minWidth: 86, maxWidth: 130),
+                          child: TexteArticle(v,
+                              original: _original,
+                              style: police(policeTitres, taille: 17, graisse: FontWeight.w800, couleur: couleurEtoiles, hauteur: 1.25)),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: TexteArticle(sens,
+                              original: _original,
+                              style: police(policeTexte, taille: 14, couleur: p.texteDiscret, hauteur: 1.4)),
+                        ),
+                      ]),
+                    ),
+                ]),
+              ),
+            ]),
+          ));
+        case 'limites':
+          res.add(Padding(
+            padding: const EdgeInsets.only(bottom: 14),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              _intertitre(texteInconnu, p),
+              for (final (j, x) in b.puces.indexed)
+                Padding(
+                  padding: const EdgeInsets.only(top: 3),
+                  child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 1, right: 8),
+                      child: Text('•', style: police(policeTexte, taille: 16, couleur: p.texte)),
+                    ),
+                    Expanded(child: _paragraphe(100 * k + j, x, 15.5, p.texte)),
+                  ]),
+                ),
+            ]),
+          ));
+        default:
+          final fixe = libellesBlocs[b.cle];
+          res.add(Padding(
+            padding: const EdgeInsets.only(bottom: 14),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              if (b.question != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: TexteArticle(b.question!,
+                      original: _original,
+                      style: police(policeTitres,
+                          taille: 17,
+                          graisse: FontWeight.w700,
+                          couleur: estSombre(context) ? familleDe(a.famille).encreSombre : familleDe(a.famille).encreClaire,
+                          hauteur: 1.25)),
+                )
+              else if (fixe != null)
+                _intertitre(a.fil == 'tech' ? fixe.$2 : fixe.$1, p),
+              _paragraphe(k, b.texte, 16, p.texte),
+            ]),
+          ));
+      }
+    }
+    return res;
+  }
+
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
@@ -354,6 +463,9 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
         TexteArticle(a.resume,
             original: _original, style: police(policeTexte, taille: 17, couleur: p.texte, hauteur: 1.6))
       else ...[
+        if (a.blocs.isNotEmpty)
+          ..._resumeABlocs(p, a)
+        else
         for (final (i, (titre, texte)) in [
           (texteAvant, a.avant),
           (a.fil == 'tech' ? texteNouveaute : texteDecouverte, a.decouverte),
