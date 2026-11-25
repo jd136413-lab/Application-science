@@ -40,7 +40,7 @@ CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite 
 2. "absents" : les clés des questions marquées « à signaler » auxquelles aucune source ne répond (liste vide sinon). Le programme écrira lui-même la phrase « … n'est pas précisé ».
 3. "title" : voir LE TITRE.
 4. "chapo" : 1 à 2 phrases, 40 mots au plus. Phrase 1 = le résultat principal et pourquoi il compte, selon les sources ; elle sert de notification et doit se comprendre seule. Le chapô contient au moins un repère concret (le chiffre clé, la date, le lieu, la taille ou l'époque) : jamais un résumé vague. Phrase 2, facultative = le chiffre, la comparaison ou la condition qui le rend parlant. Une comparaison de la vie courante est permise si elle est exacte ; si elle sonne forcée, reste simple.
-5. "en_chiffres" : 0, ou 2 à 4 lignes, comprises d'un coup d'œil. Chaque ligne = une valeur (affichée en couleur, à gauche) + une description (à droite).
+5. "en_chiffres" : 2 à 4 lignes dès que les sources donnent au moins 2 chiffres parlants (taille, durée, distance, masse, nombre de patients, écart avec la référence…) ; 0 seulement si elles n'en donnent pas. Lignes comprises d'un coup d'œil. Chaque ligne = une valeur (affichée en couleur, à gauche) + une description (à droite).
    - "valeur" = UN seul nombre AVEC son unité, sa division ou ce qu'il compte : « 6 000 m », « 10 s », « 47 femmes », « 40 000 € », « 6,5 milliards de Soleils », « 3 fois moins », « 1 sur 5 », « × 2 à 3 ». 4 mots au plus. Jamais deux nombres, jamais de barre oblique « / ».
    - "sens" = UNIQUEMENT une description de ce que représente la valeur, sous forme de groupe nominal qui commence par une majuscule (« Profondeur de l'explosion », « Masse du trou noir », « Malades de leucémie suivies », « Groupe de comparaison, restées en bonne santé »). 10 mots au plus. Pas de verbe conjugué, pas de suite de phrase, pas de nombre, pas de jargon.
    - Deux nombres à comparer = deux lignes qui se suivent. Prends des chiffres que le texte n'emploie pas.
@@ -54,7 +54,7 @@ CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite 
    - explication : l'hypothèse proposée, attribuée (« pour l'équipe… »).
    - disponible, a_quoi_ca_sert : seulement ce que la source annonce, attribué.
    - les autres questions : la réponse directe.
-7. "limites" : 0 à 3 phrases (jamais plus de 3), chacune PROPRE à cette étude : un chiffre (taille, durée), une condition (« chez la souris », « à l'arrêt »), une étape manquante nommée ou une réserve citée. Jamais une limite qui irait avec n'importe quelle étude, et jamais un fait établi (une mesure, un contexte) : seulement ce qui reste inconnu, incertain ou à faire.
+7. "limites" : 0 à 3 phrases (jamais plus de 3), pour le LECTEUR, chacune PROPRE à cette étude : un chiffre (taille, durée), une condition (« chez la souris », « à l'arrêt »), une étape manquante nommée ou une réserve citée. Jamais une limite qui irait avec n'importe quelle étude, et jamais un fait établi (une mesure, un contexte) : seulement ce qui reste inconnu, incertain ou à faire. Jamais un avantage ou une promesse (« X qubits contre Y pour le concurrent »), jamais une étape déjà passée, jamais une note pour l'équipe (« à vérifier », « avant publication », « la source contredit… »).
 8. "mots" et "type_etude" : voir plus bas.
 
 # LES RÈGLES QUI COMPTENT
@@ -63,7 +63,8 @@ CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite 
 3. LES NUANCES RESTENT, avec les mots exacts : « chez la souris », « sur 47 femmes », « en laboratoire », « prototype », « pas encore relu par d'autres chercheurs », « mise en ligne » (ce n'est pas « publiée »).
 4. DENSITÉ. Chaque phrase contient au moins un fait du relevé : un nombre, un nom, une étape d'un mécanisme ou une comparaison précise. Test : une phrase qui pourrait figurer telle quelle dans une autre fiche du même thème est vide, supprime-la (« Cette découverte aide à comprendre les volcans. » « D'autres essais sont nécessaires. » « Ce sont des pistes, pas des certitudes. »).
 5. CHIFFRES. Pas de quota. Chaque chiffre a sa référence (« sur 61 patients », « contre 40 % sans traitement »). Deux chiffres rapprochés portent sur des choses comparables, sinon dis en quoi elles diffèrent. Chaque nombre n'apparaît qu'UNE fois dans la fiche, titre mis à part : dans le chapô, dans un bloc ou dans « en_chiffres ».
-6. PRIX : une seule monnaie, celle de la source, sans conversion. Le programme ajoute l'équivalent en euros.
+6. UNITÉS : toujours en unités françaises (km, km/h, m, kg, °C, litres). Convertis miles, pieds, livres, °F, gallons ; tu peux garder la valeur d'origine entre parenthèses (« environ 290 km/h (180 mph) »). Une date est toujours complète (« en septembre 2026 », pas « en septembre »).
+6 bis. PRIX : une seule monnaie, celle de la source, sans conversion. Le programme ajoute l'équivalent en euros.
 7. CAUSES : garde chaque lien de cause que la source établit (« parce que », « donc », « grâce à ») ; n'en ajoute aucun.
 8. NOMMER PUIS EXPLIQUER. Garde le nom quand il porte l'information ou qu'un lycéen le connaît (fosse des Mariannes, Pompéi, australopithèque, James-Webb, Claude, le nom du médicament, de l'espèce, de la grandeur mesurée), et explique-le en quelques mots à sa première apparition : « Challenger Deep, le point le plus profond des océans ». Pas de sigle ni de formule chimique sans explication. Au plus 2 noms de personnes. Un terme technique indispensable est expliqué dans la phrase, ou donné en mot à connaître.
 9. FRANÇAIS NATUREL : phrases de 25 mots au plus, comme dans un bon journal ; pas de tournure traduite de l'anglais ; noms communs en minuscule. On parle de la science, pas de l'article : jamais « selon l'article », « publié dans », « la revue ». Jamais de date relative ni de jour de la semaine (« le 28 octobre », « en 2014 »).
@@ -203,7 +204,7 @@ Cherche ces défauts (un défaut = une ligne dans "problemes") :
 10. "forme" : phrase de plus de 25 mots, tournure traduite de l'anglais, référence à l'article ou au média, date relative, question-clé générique (« Comment ça marche ? ») ou qui n'annonce pas exactement ce que dit son bloc, phrase confuse.
 11. "longueur" : la fiche dépasse la longueur visée (indiquée plus bas) de plus d'un cinquième, ou contient des phrases qui n'apportent rien de concret. Plus de 3 limites est aussi un défaut.
 
-12. "rubrique" : un fait établi rangé dans « limites » (qui ne doit contenir que ce qui reste inconnu, incertain ou à faire), ou un bloc qui ne répond pas à sa question.
+12. "rubrique" : un fait établi, un avantage annoncé, une étape déjà passée ou une note pour l'équipe (« à vérifier ») rangé dans « limites » (qui ne doit contenir que ce qui reste inconnu, incertain ou à faire, pour le lecteur), ou un bloc qui ne répond pas à sa question. Unité anglo-saxonne non convertie (miles, pieds, °F…) ou mois sans année : défaut "forme". Encadré « en_chiffres » vide alors que les sources donnent plusieurs chiffres parlants : défaut "manque" (ajoute 2 à 3 lignes).
 
 Les "Défauts MESURÉS automatiquement" fournis sont certains : liste-les et corrige-les tous. Un bloc « retiré » par le programme l'a été faute de fait cité dans la source : ne le recrée pas ; place l'information utile dans un bloc existant.
 
@@ -250,8 +251,10 @@ def question_valide(q: dict, f: dict) -> bool:
 
 def finaliser(f: dict, fil: str, prof: str) -> dict:
     """Prix : une seule monnaie, convertie par le programme ; question-clé validée ; base."""
+    f["limites"] = fb.limites_finales(f.get("limites"))          # 25/11 : jamais de note pour l'équipe
     for b in f.get("blocs", []):
-        b["texte"] = redaction.euros(fb.un_seul_prix(b["texte"]))
+        b["texte"] = redaction.euros(fb.un_seul_prix(fb.sans_note_redacteur(b["texte"])))
+    f["blocs"] = [b for b in f.get("blocs", []) if b["texte"]]
     for c in f.get("en_chiffres", []):
         c["valeur"] = fb.un_seul_prix(c["valeur"])
         c["sens"] = redaction.euros(fb.un_seul_prix(c["sens"]))

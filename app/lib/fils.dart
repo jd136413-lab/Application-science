@@ -73,6 +73,12 @@ class FilsAvancees extends ChangeNotifier {
     final familles = etat.famillesVisibles(fil);
     return l.where((a) => familles.contains(a.famille) && !etat.estMasquee(a)).toList();
   }
+
+  /// 25/11 (Maxime : « À découvrir » vide alors qu'une fiche Physique & chimie, domaine non suivi, venait
+  /// d'arriver) : `visibles` ne garde que les domaines choisis, qui sont aussi les domaines suivis ;
+  /// « À découvrir » ne pouvait donc jamais rien montrer. Cette liste-là prend tous les domaines du fil.
+  List<Avancee> tousDomaines(String fil) =>
+      (fils[fil] ?? const <Avancee>[]).where((a) => !etat.estMasquee(a)).toList();
 }
 
 final filsAvancees = FilsAvancees();

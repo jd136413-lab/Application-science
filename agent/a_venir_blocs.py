@@ -35,11 +35,13 @@ Méthode :
 2. "chapo" : 1 à 2 phrases, 40 mots au plus : ce qui va se passer, qui le fait, et pourquoi c'est attendu, avec au moins un repère concret. Se comprend seul.
 3. "en_chiffres" : 0, ou 2 à 3 lignes comprises d'un coup d'œil. "valeur" = UN seul nombre AVEC son unité ou ce qu'il compte (« 26 caméras », « 1,5 million de km », « 3 h 20 »), 4 mots au plus, jamais deux nombres ni de barre oblique. "sens" = UNIQUEMENT une description de ce que représente la valeur, groupe nominal qui commence par une majuscule (« Nombre de télescopes réunis »), 10 mots au plus. Pas la date ni l'heure de l'événement (déjà en haut).
 4. "blocs" : AUCUN paragraphe n'est imposé. Choisis les 2 à 4 angles qui font le mieux comprendre CET événement, dans l'ordre le plus logique. Pistes selon le cas : pour un lancement, la mission, ce qu'il y a à bord, ce qui se passe pendant le vol, les risques ; pour un phénomène dans le ciel, ce qu'on verra, pourquoi il se produit, comment bien l'observer ; pour une sortie de produit, ce qui change, le prix annoncé, pour qui ; pour un sommet ou des résultats attendus, l'enjeu, ce qui sera décidé ou annoncé. Chaque bloc : {"question": l'intertitre écrit pour CE sujet, comme la vraie question du lecteur, 10 mots au plus, jamais passe-partout (« Comment ça marche ? ») ; "texte": 1 à 3 phrases, 60 mots au plus}. Si les sources ne répondent pas PRÉCISÉMENT à un angle, n'écris pas de bloc pour lui.
-5. "limites" : 0 à 3 phrases précises sur ce qui reste incertain d'après les sources (date susceptible de glisser et pourquoi, conditions météo, détails pas encore annoncés). Jamais une formule générale.
+5. "limites" : 0 à 3 phrases précises, pour le LECTEUR, sur ce qui reste incertain d'après les sources (date susceptible de glisser et pourquoi, conditions météo, détails pas encore annoncés). Jamais une formule générale, jamais une étape déjà passée, jamais une note pour l'équipe (« à vérifier », « avant publication », « la source contredit… »).
 
 Règles :
 - N'invente rien : chaque fait, chiffre et nom vient des sources. Garde les nuances (« prévu », « selon l'agence », « si la météo le permet »). Pas de superlatif non attribué.
 - Nomme ce qui est connu (fusée, agence, sonde, produit) et explique en quelques mots ce qui ne l'est pas. Phrases de 25 mots au plus, français simple, pas de jargon non expliqué.
+- L'événement n'a pas encore eu lieu : écris au futur ou avec « doit », même si une source le décrit déjà comme passé.
+- Unités françaises (km, km/h, kg, °C) : convertis miles, pieds, livres, °F. Une date est toujours complète (mois ET année).
 - Aucune répétition : chaque fait n'est dit qu'une fois. Une seule monnaie par prix, sans conversion.
 - Longueur totale (chapô + blocs + limites) : 120 à 220 mots selon la richesse des sources ; source courte, carte courte.
 Réponds uniquement avec le JSON demandé."""
@@ -64,7 +66,7 @@ SCHEMA = {
 }
 
 CONSIGNE_RELECTURE = """Tu es le relecteur le plus exigeant de NovaSTEM. On te donne le résumé d'une carte « À venir » (un événement attendu) et ses sources, seule base de faits autorisée. Compare-le phrase par phrase aux sources.
-Corrige : tout fait, chiffre, nom, date ou bénéfice absent des sources ou déformé ; toute nuance perdue (« prévu », « selon… », « si la météo le permet ») ; tout superlatif non attribué ; toute répétition ; tout jargon non expliqué ; tout intertitre passe-partout ou qui n'annonce pas exactement ce que dit son paragraphe ; toute limite générale ou qui est en fait un fait établi ; toute phrase de plus de 25 mots. Les "Défauts MESURÉS automatiquement" fournis sont certains : corrige-les tous.
+Corrige : tout fait, chiffre, nom, date ou bénéfice absent des sources ou déformé ; toute nuance perdue (« prévu », « selon… », « si la météo le permet ») ; tout superlatif non attribué ; toute répétition ; tout jargon non expliqué ; tout intertitre passe-partout ou qui n'annonce pas exactement ce que dit son paragraphe ; toute limite générale, qui est en fait un fait établi, qui parle d'une étape déjà passée ou qui s'adresse à l'équipe (« à vérifier ») ; toute unité anglo-saxonne non convertie ; toute phrase de plus de 25 mots. Les "Défauts MESURÉS automatiquement" fournis sont certains : corrige-les tous.
 Rends la carte corrigée dans le même format, en ne changeant QUE ce qui doit l'être. Liste chaque défaut corrigé dans "problemes" (liste vide s'il n'y en a pas).
 Réponds uniquement avec le JSON demandé."""
 
@@ -120,7 +122,10 @@ def sources_de(e: dict, lire_page) -> list[str]:
         if "thespacedevs.com" in url:
             r = requests.get(url, timeout=30, params={"mode": "detailed"}, headers={"User-Agent": "NovaSTEM/1.0"})
             if r.status_code == 200:
-                srcs.append(_texte_ll2(r.json()))
+                l = r.json()
+                if str((l.get("status") or {}).get("abbrev", "")) in ("Success", "Failure", "Partial Failure", "In Flight"):
+                    return None                     # déjà parti : pas de résumé « à venir »
+                srcs.append(_texte_ll2(l))
         else:
             art = {"url": url, "title": e.get("title", ""), "text": "", "source_name": e.get("source_name", ""), "videos": []}
             lire_page(art)
@@ -157,10 +162,15 @@ def _nettoyer(d: dict, sources: list[str]) -> list[str]:
     if len(d["en_chiffres"]) < 2:
         d["en_chiffres"] = []
     lim = [_propre(x) for x in d.get("limites") or [] if _propre(x)]
+    fb.alertes_limites(lim, al)
     if len(lim) > 3:
         al.append(f"{len(lim)} limites : 3 au plus")
     d["limites"] = lim[:3]
     textes = [d.get("chapo", "")] + [b["texte"] for b in d["blocs"]] + d["limites"]
+    fb.alertes_unites([("texte", t) for t in textes], al)
+    for t in textes:
+        if fb.NOTE_REDACTEUR.search(t):
+            al.append(f"phrase qui s'adresse à l'équipe, pas au lecteur (à supprimer) : {fb.NOTE_REDACTEUR.search(t).group(0)}")
     connus = set(fb.nombres(" ".join(sources)))
     inconnus = sorted({n for t in textes for n in fb.nombres(t)} - connus - {str(i) for i in range(11)})
     if inconnus:
@@ -179,12 +189,17 @@ def _nettoyer(d: dict, sources: list[str]) -> list[str]:
 
 def blocs_de(d: dict) -> list[dict]:
     """Même format que les fiches (colonne blocs) : lu par l'app (modele.dart, lireBlocs)."""
-    res = [{"cle": "chapo", "texte": redaction.euros(_propre(d.get("chapo")))}]
+    # 25/11 : règles sûres, les notes pour l'équipe et les étapes passées ne s'affichent jamais
+    res = [{"cle": "chapo", "texte": redaction.euros(fb.sans_note_redacteur(_propre(d.get("chapo"))))}]
     if d.get("en_chiffres"):
         res.append({"cle": "en_chiffres", "items": d["en_chiffres"]})
-    res += [{"cle": "autre", "question": b["question"], "texte": redaction.euros(b["texte"])} for b in d["blocs"]]
-    if d.get("limites"):
-        res.append({"cle": "limites", "puces": d["limites"]})
+    for b in d["blocs"]:
+        t = fb.sans_note_redacteur(b["texte"])
+        if t:
+            res.append({"cle": "autre", "question": b["question"], "texte": redaction.euros(t)})
+    limites = fb.limites_finales(d.get("limites"))
+    if limites:
+        res.append({"cle": "limites", "puces": limites})
     return res
 
 
@@ -210,7 +225,9 @@ def passage(db, client, modele_id: str, prix: tuple, lire_page, log, par_lot: bo
     from datetime import datetime, timedelta, timezone
     cout = 0.0
     try:
-        depuis = (datetime.now(timezone.utc) - timedelta(days=1)).date().isoformat()
+        # 25/11 : plus de résumé pour un événement passé (Ariane 64 du 24/11, Shenzhou-24 parti le matin)
+        from zoneinfo import ZoneInfo
+        depuis = datetime.now(ZoneInfo("Europe/Paris")).date().isoformat()
         r = requests.get(_url(db), headers=db.headers, timeout=30, params={
             "select": "id,title,type,event_date,lieu,prevu,pourquoi,pratique,source_url,source_name,statut,feed,blocs",
             "event_date": f"gte.{depuis}", "blocs": "eq.[]", "statut": "neq.annule",
@@ -226,6 +243,11 @@ def passage(db, client, modele_id: str, prix: tuple, lire_page, log, par_lot: bo
             return 0.0
         log(f"\n✎ À venir : résumé à blocs de {len(cartes)} carte(s)…")
         srcs = {e["id"]: sources_de(e, lire_page) for e in cartes}
+        for e in [e for e in cartes if srcs[e["id"]] is None]:
+            log(f"  · À venir : « {e.get('title', '')[:50]} » déjà parti, pas de résumé (la fiche « C'est arrivé » suivra)")
+        cartes = [e for e in cartes if srcs[e["id"]] is not None]
+        if not cartes:
+            return 0.0
         demandes = {}
         for e in cartes:
             contenu = (f"Carte : {e.get('title', '')} · type : {e.get('type', '')} · date : {e.get('event_date', '')} · "
