@@ -10,7 +10,7 @@
 # Nombre d'articles ajoutés par exécution si on ne précise rien.
 # (Dans GitHub, le champ « Nombre d'articles » du bouton Run workflow
 #  remplace cette valeur.)
-NOMBRE_ARTICLES_PAR_DEFAUT = 5
+NOMBRE_ARTICLES_PAR_DEFAUT = 4   # 25/11 (Maxime) : 4 fiches par passage, ≈ 8 par jour
 # Part des places réservée au fil Technologies (5 articles → 3 Sciences + 2 Technologies).
 # Si un fil n'a pas assez d'avancées, ses places restantes reviennent à l'autre.
 PART_TECH = 0.4

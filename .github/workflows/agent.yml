@@ -24,7 +24,7 @@ on:
       nombre_articles:
         description: "Nombre d'articles à ajouter (plafond de sécurité : 30)"
         type: number
-        default: 5
+        default: 4
         required: true
       modele:
         description: "Modèle Claude (haiku = très économique, sonnet = juge mieux l'importance)"
@@ -80,7 +80,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-          NOMBRE_ARTICLES: ${{ inputs.nombre_articles || 5 }}
+          NOMBRE_ARTICLES: ${{ inputs.nombre_articles || 4 }}   # 25/11 : 4 par passage
           MODELE: ${{ inputs.modele || 'haiku' }}
           FIL: ${{ inputs.fil || 'les deux' }}
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
