@@ -110,6 +110,11 @@ FORMULES_CREUSES = re.compile(
     r"plus (?:vari[ée]e?|complexe|riche) qu'on (?:ne )?le pensait|ce sont des pistes|une [ée]tape (?:importante|cl[ée])", re.I)
 SPECIFIQUE = re.compile(r"\d|\b[A-Z][a-zà-ÿ]{2,}|chez (?:la|le|l')|en laboratoire|à l'arrêt|un seul|une seule|seules? ", re.U)
 
+def nb_mots(f) -> int:
+    """Mots affichés : chapô + blocs + limites (l'encadré « En chiffres » à part)."""
+    return sum(len(t.split()) for k, t in textes(f) if k != "en_chiffres")
+
+
 def nettoyer(f, sources, fil, prof, importance, n_car):
     """Applique les règles sûres et renvoie la liste des alertes pour le relecteur."""
     al = []
@@ -138,10 +143,13 @@ def nettoyer(f, sources, fil, prof, importance, n_car):
     f["blocs"] = blocs
     if f.get("en_chiffres") and len(f["en_chiffres"]) < 2:
         f["en_chiffres"] = []                                   # encadré seulement à partir de 2 chiffres
+    if len(f.get("limites") or []) > 3:                          # 25/11 : 3 limites au plus
+        al.append(f"{len(f['limites'])} limites : 3 au plus, retirées : {f['limites'][3:]}")
+        f["limites"] = f["limites"][:3]
     tx = textes(f)
-    n_mots = sum(len(t.split()) for k, t in tx if k != "en_chiffres")
-    if n_mots > mots_max:
-        al.append(f"{n_mots} mots : {mots_max} au plus")
+    n_mots = nb_mots(f)
+    if n_mots > int(mots_max * 1.2):                            # longueur justifiée : +20 % toléré (Maxime, 25/11)
+        al.append(f"{n_mots} mots : {mots_max} visés, {int(mots_max * 1.2)} au plus")
     for k, t in tx:
         for p in re.split(r"(?<=[.!?])\s+", t):
             if len(p.split()) > 28:
