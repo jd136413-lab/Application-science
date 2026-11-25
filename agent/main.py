@@ -73,9 +73,9 @@ PLAFOND_REDACTION = 0.03     # $ par passage
 # au-delà, fin en appels directs (prix normal) pour ne pas retarder les fiches.
 PAR_LOT = True
 # Format de fiche « pyramide à questions » (plan D, choix de Maxime du 25/11, essai noté : 5,1 → 7,1/10).
-# À passer à True une fois la migration 024 lancée (colonne « blocs ») : l'agent écrit alors les blocs
+# Migration 024 lancée (colonne « blocs ») : l'agent écrit les blocs
 # ET les anciennes colonnes (avant / decouverte / apres), lues par les versions déjà installées de l'app.
-FORMAT_BLOCS = False
+FORMAT_BLOCS = True   # activé le 25/11 (migration 024 lancée par Maxime)
 ATTENTE_LOT = 900
 # Budget (décision de Maxime, 04/11/2026) : 2 € par mois au maximum pour l'agent.
 # 1) Réflexion cachée de Claude coupée partout (economie.py) : ≈ 2 fois moins cher.
