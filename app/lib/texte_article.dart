@@ -268,10 +268,13 @@ class _TexteArticleState extends State<TexteArticle> {
     _traduction = _traduireEtGarder(widget.texte, langue);
   }
 
+  /// Retouche du texte affiché, puis espaces insécables de la typographie française.
+  String _net(String t) => insecables(widget.nettoyer == null ? t : widget.nettoyer!(t));
+
   @override
   Widget build(BuildContext context) {
     Text texte(String t) {
-      final propre = widget.nettoyer == null ? t : widget.nettoyer!(t);
+      final propre = _net(t);
       if (widget.surligne.isNotEmpty) {
         final spans = spansSurlignes(propre, widget.surligne);
         if (spans != null) {
@@ -288,7 +291,7 @@ class _TexteArticleState extends State<TexteArticle> {
           overflow: widget.maxLines == null ? null : TextOverflow.ellipsis);
     }
     if (widget.original || etat.langue == 'fr') {
-      final t = widget.nettoyer == null ? widget.texte : widget.nettoyer!(widget.texte);
+      final t = _net(widget.texte);
       if (widget.marques.isEmpty) return texte(widget.texte);
       try {
         return _avecMots(t, francais: true);
@@ -300,7 +303,7 @@ class _TexteArticleState extends State<TexteArticle> {
     Widget rendu(String traduit, {required bool francais}) {
       if (widget.marques.isEmpty) return texte(traduit);
       try {
-        return _avecMots(widget.nettoyer == null ? traduit : widget.nettoyer!(traduit), francais: francais);
+        return _avecMots(_net(traduit), francais: francais);
       } catch (_) {
         return texte(traduit);
       }
@@ -332,3 +335,11 @@ String sansEtApres(String t) {
   final reste = t.substring(m.end);
   return reste[0].toUpperCase() + reste.substring(1);
 }
+
+
+/// 25/11 (Maxime : « les questions ne doivent pas revenir à la ligne pour un simple point
+/// d'interrogation ») : l'espace avant ? ! : ; » et après « devient insécable. Même longueur de
+/// texte, donc les mots soulignés gardent leur place.
+String insecables(String t) => t
+    .replaceAllMapped(RegExp(r' ([?!:;»])'), (m) => '\u00A0${m[1]}')
+    .replaceAll('« ', '«\u00A0');
