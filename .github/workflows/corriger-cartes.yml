@@ -5,6 +5,10 @@ name: Corriger les cartes À venir
 
 on:
   workflow_dispatch:
+    inputs:
+      refaire:
+        description: "oui = vider les résumés des cartes à venir pour qu'ils soient réécrits (gratuit ici, ≈ 0,002 $ la carte au passage de l'agent)"
+        default: "non"
 
 jobs:
   corriger:
@@ -20,4 +24,5 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          REFAIRE: ${{ github.event.inputs.refaire }}
         run: python corriger_cartes.py

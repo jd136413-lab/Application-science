@@ -1453,6 +1453,7 @@ List<Widget> resumeBlocsEvenement(BuildContext context, List<BlocFiche> blocs, C
   for (final b in blocs) {
     switch (b.cle) {
       case 'chapo':
+        res.add(intertitre(texteEnBref)); // 25/11 (Maxime) : intertitre au-dessus de l'encadré
         res.add(Container(
           margin: const EdgeInsets.only(bottom: 16),
           padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),

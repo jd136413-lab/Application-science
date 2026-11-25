@@ -57,7 +57,22 @@ def nettoyer(blocs: list, titre: str) -> tuple[list, list]:
     return res, notes
 
 
+def refaire():
+    """25/11 : les résumés déjà écrits sont vidés pour être réécrits avec les nouvelles lignes
+    « En pratique » (seulement l'utile, sans répétition). Le prochain passage de l'agent les refait."""
+    from datetime import date
+    p = requests.patch(URL, headers=dict(ENTETES, Prefer="return=representation"), timeout=30,
+                       params={"blocs": "neq.[]", "event_date": f"gte.{date.today().isoformat()}", "select": "title"},
+                       json={"blocs": []})
+    p.raise_for_status()
+    for e in p.json():
+        print(f"↺ à réécrire : {e['title'][:70]}")
+    print(f"\n{len(p.json())} résumé(s) remis à réécrire au prochain passage.")
+
+
 def main():
+    if os.environ.get("REFAIRE") == "oui":
+        return refaire()
     r = requests.get(URL, headers=ENTETES, timeout=30,
                      params={"select": "id,title,blocs", "blocs": "neq.[]", "limit": "500"})
     r.raise_for_status()

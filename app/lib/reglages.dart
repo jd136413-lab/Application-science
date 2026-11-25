@@ -152,6 +152,7 @@ const Map<String, (String, String)> libellesBlocs = {
   'avant_le_produit': ('Que manque-t-il avant un usage ?', 'Que manque-t-il avant un produit ?'),
   'a_quoi_ca_sert': ('À quoi ça pourrait servir ?', 'À quoi ça pourrait servir ?'),
 };
+const String texteEnBref = 'En bref';
 const String texteEnChiffres = 'En chiffres';
 const String texteInconnu = 'Ce qu’on ne sait pas encore';
 

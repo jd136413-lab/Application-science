@@ -10271,6 +10271,27 @@ ko 어디에 쓰일 수 있나요?
 id Untuk apa ini bisa dipakai?
 vi Nó có thể dùng vào việc gì?
 
+@ En bref
+en In brief
+es En resumen
+pt Em resumo
+de Kurz gesagt
+it In breve
+nl In het kort
+pl W skrócie
+ru Вкратце
+uk Коротко
+tr Kısaca
+ar باختصار
+hi संक्षेप में
+bn সংক্ষেপে
+ur مختصراً
+zh 简而言之
+ja ひと目でわかる要点
+ko 한눈에 보기
+id Singkatnya
+vi Tóm tắt
+
 @ En chiffres
 en In numbers
 es En cifras
