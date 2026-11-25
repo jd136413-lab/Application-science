@@ -671,7 +671,9 @@ def traiter(prop: dict, base: Base, db, client, sujets: dict, conso: dict, ajout
     ligne["proposee"] = True
     # 18/11 : un résumé écrit par un lecteur est enregistré caché ; il n'apparaît qu'après « Publier »
     # dans la boîte à idées (migration 023). Les sujets, rédigés par l'IA, sont publiés directement.
-    attente = genre == "resume" and base.validation_ok
+    # 25/11 (Maxime) : plus de validation par l'administrateur : le résumé vérifié est publié
+    # directement ; l'administrateur peut le voir et le supprimer depuis la boîte à idées.
+    attente = False
     if attente:
         ligne["en_attente"] = True
     vp = video_proposee(client, prop, ligne["title"], ligne.get("summary", ""), conso)

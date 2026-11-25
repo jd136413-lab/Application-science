@@ -78,46 +78,35 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
     }
   }
 
-  /// Publier ou refuser une fiche en attente (résumé écrit par un lecteur).
-  Future<void> _valider(Proposition x, bool publier) async {
-    String? raison;
-    if (!publier) {
-      final c = TextEditingController();
-      final p = palette(context);
-      final ok = await showDialog<bool>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          backgroundColor: p.carte,
-          title: Text('Refuser cette fiche ?',
-              style: police(policeTitres, taille: 19, graisse: FontWeight.w700, couleur: p.texte)),
-          content: TextField(
-            controller: c,
-            maxLength: 200,
-            maxLines: 3,
-            minLines: 1,
-            decoration: const InputDecoration(hintText: 'Raison montrée au lecteur (facultatif)'),
-          ),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Annuler')),
-            FilledButton(
-                style: FilledButton.styleFrom(backgroundColor: _rouge, foregroundColor: Colors.white),
-                onPressed: () => Navigator.pop(ctx, true),
-                child: const Text('Refuser')),
-          ],
-        ),
-      );
-      if (ok != true) return;
-      raison = c.text.trim();
-    }
+  /// Supprimer la fiche publiée à partir d'une proposition (après confirmation).
+  Future<void> _supprimerFiche(Proposition x) async {
+    final p = palette(context);
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: p.carte,
+        title: Text('Supprimer cette fiche ?',
+            style: police(policeTitres, taille: 19, graisse: FontWeight.w700, couleur: p.texte)),
+        content: Text('Elle disparaîtra de l’application pour tout le monde.',
+            style: police(policeTexte, taille: 15, couleur: p.texteDiscret)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Annuler')),
+          FilledButton(
+              style: FilledButton.styleFrom(backgroundColor: _rouge, foregroundColor: Colors.white),
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Supprimer')),
+        ],
+      ),
+    );
+    if (ok != true) return;
     try {
-      final fait = await adminValider(x.id, publier: publier, message: raison);
+      final fait = await adminSupprimerFiche(x.ficheId ?? '');
       if (!mounted) return;
-      afficherMessage(context,
-          !fait ? 'Déjà traitée, ou code refusé.' : publier ? 'Publiée dans le fil ✓' : 'Refusée : le lecteur verra la raison.',
+      afficherMessage(context, fait ? 'Fiche supprimée ✓' : 'Déjà supprimée, ou code refusé.',
           icone: fait ? Icons.check_circle_outline_rounded : Icons.error_outline_rounded);
       await _recharger();
     } catch (_) {
-      if (mounted) afficherMessage(context, 'Action impossible (réseau ?)', icone: Icons.error_outline_rounded);
+      if (mounted) afficherMessage(context, 'Suppression impossible (réseau ?)', icone: Icons.error_outline_rounded);
     }
   }
 
@@ -152,16 +141,17 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
               const SizedBox(height: 8),
               Text(x.message!, style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
             ],
-            if (x.statut == 'a_valider') ...[
+            // 25/11 (Maxime) : l'administrateur ne valide plus ; il voit les propositions et peut
+            // supprimer une fiche publiée à partir d'une proposition.
+            if ((x.ficheId ?? '').isNotEmpty) ...[
               const SizedBox(height: 16),
               for (final (cle, nom, icone) in const [
-                ('voir', 'Voir la fiche telle qu’elle apparaîtra', Icons.visibility_outlined),
-                ('publier', 'Publier', Icons.check_circle_outline_rounded),
-                ('refuser', 'Refuser', Icons.block_rounded),
+                ('voir', 'Voir la fiche publiée', Icons.visibility_outlined),
+                ('supprimer_fiche', 'Supprimer la fiche publiée', Icons.delete_outline_rounded),
               ])
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  leading: Icon(icone, color: cle == 'publier' ? _vert : cle == 'refuser' ? _rouge : p.texte),
+                  leading: Icon(icone, color: cle == 'supprimer_fiche' ? _rouge : p.texte),
                   title: Text(nom, style: police(policeTexte, taille: 15, graisse: FontWeight.w700, couleur: p.texte)),
                   onTap: () => Navigator.pop(ctx, cle),
                 ),
@@ -188,7 +178,7 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
     );
     if (choix == null) return;
     if (choix == 'voir') return _voirFiche(x);
-    if (choix == 'publier' || choix == 'refuser') return _valider(x, choix == 'publier');
+    if (choix == 'supprimer_fiche') return _supprimerFiche(x);
     try {
       await changerStatut(x.id, choix);
       await _recharger();
@@ -224,7 +214,7 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
           final toutes = s.data ?? [];
           final nouvelles = toutes.where((x) => x.statut == 'nouvelle' && x.genre == 'amelioration').toList();
           final aValider = toutes.where((x) => x.statut == 'a_valider').toList();
-          final filtre = _filtre ?? (aValider.isNotEmpty ? 'a_valider' : 'nouvelles');
+          final filtre = _filtre ?? (aValider.isNotEmpty ? 'a_valider' : 'toutes');
           final amelio = toutes.where((x) => x.genre == 'amelioration').toList();
           final liste = switch (filtre) {
             'a_valider' => aValider,
@@ -240,7 +230,7 @@ class _EcranBoiteIdeesState extends State<EcranBoiteIdees> {
               const SizedBox(height: 12),
               Wrap(spacing: 6, children: [
                 for (final (cle, nom) in [
-                  ('a_valider', 'À valider · ${aValider.length}'),
+                  if (aValider.isNotEmpty) ('a_valider', 'Anciennes en attente · ${aValider.length}'),
                   ('nouvelles', 'Nouvelles · ${nouvelles.length}'),
                   ('ameliorations', 'Améliorations · ${amelio.length}'),
                   ('toutes', 'Tout · ${toutes.length}'),

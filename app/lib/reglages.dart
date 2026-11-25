@@ -37,7 +37,7 @@ const Color logoEncreBleue = Color(0xFF3D7BFF);
 /// Onglet « Soumettre » ouvert à tout le monde ? false : réservé au mode administrateur, avec la
 /// pastille « Visible seulement sur ton téléphone ». Passer à true le jour de l'ouverture :
 /// l'onglet apparaît pour tous et la pastille disparaît.
-const bool soumettrePublic = false;
+const bool soumettrePublic = true;   // 25/11 : l'onglet Soumettre est ouvert à tout le monde
 
 // ---------------------------- COULEURS DU FOND --------------------------
 class Palette {
@@ -113,7 +113,8 @@ Famille familleDe(String code) => familles[code] ?? familles['other']!;
 const List<String> famillesSciences = [
   // 10/11/2026 : « Technologie & IA » retiré de Sciences (la tech a son fil). La famille
   // 'technology' reste dans [familles] pour les anciennes fiches, mais n'est plus proposée.
-  'space', 'environment', 'health', 'physics', 'life', 'earth', 'other',
+  // 25/11/2026 : « Humain & société » retiré (psychologie → Santé, sociétés du passé → Terre & histoire).
+  'space', 'environment', 'health', 'physics', 'life', 'earth',
 ];
 const List<String> famillesTech = [
   'mobile', 'computing', 'ai_software', 'mobility', 'aerospace', 'energy_home', 'gaming', 'tech_other',
