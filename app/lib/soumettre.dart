@@ -883,14 +883,29 @@ class EcranProposerResume extends StatefulWidget {
 
 /// Paragraphes libres d'un résumé de lecteur (25/11, maquette 111) : enregistrés dans la colonne
 /// « resume » sous la forme « ### question », retour à la ligne, texte (lue par agent/soumissions.py).
-String encoderParagraphes(List<(String, String)> l) =>
-    [for (final (q, t) in l) '### ${q.replaceAll('\n', ' ').trim()}\n${t.trim()}'].join('\n\n');
+/// L'encadré « En chiffres » facultatif du lecteur est une section « ### #chiffres », une ligne par
+/// chiffre : valeur, tabulation, description.
+String encoderParagraphes(List<(String, String)> l, [List<(String, String)> chiffres = const []]) => [
+      for (final (q, t) in l) '### ${q.replaceAll('\n', ' ').trim()}\n${t.trim()}',
+      if (chiffres.isNotEmpty)
+        '### #chiffres\n${chiffres.map((c) => '${c.$1.replaceAll(RegExp(r'\s+'), ' ').trim()}\t${c.$2.replaceAll(RegExp(r'\s+'), ' ').trim()}').join('\n')}',
+    ].join('\n\n');
+
+List<(String, String)> decoderChiffres(String? brut) {
+  final i = (brut ?? '').indexOf('### #chiffres\n');
+  if (i < 0) return const [];
+  final fin = brut!.indexOf('\n### ', i + 5);
+  return [
+    for (final l in brut.substring(i + 14, fin < 0 ? brut.length : fin).split('\n'))
+      if (l.contains('\t')) (l.split('\t').first.trim(), l.split('\t').skip(1).join(' ').trim()),
+  ];
+}
 
 List<(String, String)> decoderParagraphes(String? brut) {
   final res = <(String, String)>[];
   for (final morceau in (brut ?? '').split(RegExp(r'^### ', multiLine: true))) {
     final m = morceau.trim();
-    if (m.isEmpty) continue;
+    if (m.isEmpty || m.startsWith('#chiffres')) continue;
     final i = m.indexOf('\n');
     res.add(i < 0 ? (m, '') : (m.substring(0, i).trim(), m.substring(i + 1).trim()));
   }
@@ -903,6 +918,8 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
   final _apres = TextEditingController(); // « Ce qu'on ne sait pas encore », facultatif
   // Paragraphes libres : (question en titre, texte), 1 à 4
   final List<(TextEditingController, TextEditingController)> _paras = [];
+  // En chiffres facultatif : (valeur, description), 3 au plus (maquette 111)
+  final List<(TextEditingController, TextEditingController)> _chiffres = [];
   late final _liens = _Liens(() => setState(() {}));
   final _video = TextEditingController();
   String _fil = 'science';
@@ -915,6 +932,25 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
   static const _parasMax = 4;
 
   List<TextEditingController> get _tous => [_titre, _avant, _apres, _video];
+
+  void _ajouterChiffre([String v = '', String d = '']) {
+    final a = TextEditingController(text: v), b = TextEditingController(text: d);
+    a.addListener(() => setState(() {}));
+    b.addListener(() => setState(() {}));
+    _chiffres.add((a, b));
+  }
+
+  /// Lignes remplies de l'encadré ; null si une ligne est à moitié remplie ou peu claire.
+  List<(String, String)>? get _chiffresOk {
+    final res = <(String, String)>[];
+    for (final (a, b) in _chiffres) {
+      final v = a.text.trim(), d = b.text.trim();
+      if (v.isEmpty && d.isEmpty) continue;
+      if (v.isEmpty || d.isEmpty || v.contains('/') || compterMots(v) > 4 || compterMots(d) > 10) return null;
+      res.add((v, d));
+    }
+    return res;
+  }
 
   void _ajouterPara([String q = '', String t = '']) {
     final a = TextEditingController(text: q), b = TextEditingController(text: t);
@@ -941,6 +977,9 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
         }
       }
       _apres.text = i.apres ?? '';
+      for (final (v, d) in decoderChiffres(i.resume).take(3)) {
+        _ajouterChiffre(v, d);
+      }
       _liens.remplir(i);
       _video.text = i.video ?? '';
       _fil = i.fil == 'tech' ? 'tech' : 'science';
@@ -950,6 +989,9 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
       c.addListener(() => setState(() {}));
     }
     if (_paras.isEmpty) _ajouterPara();
+    while (_chiffres.length < 2) {
+      _ajouterChiffre();
+    }
   }
 
   @override
@@ -957,7 +999,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
     for (final c in _tous) {
       c.dispose();
     }
-    for (final (a, b) in _paras) {
+    for (final (a, b) in [..._paras, ..._chiffres]) {
       a.dispose();
       b.dispose();
     }
@@ -974,7 +1016,8 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
     final n = compterMots(_titre.text);
     return n >= _motsMin && n <= _motsMax && _dans(_avant, _bornesAvant) &&
         _paras.isNotEmpty && _paras.every((x) => _dans(x.$1, _bornesQuestion) && _dans(x.$2, _bornesPara)) &&
-        encoderParagraphes([for (final (a, b) in _paras) (a.text, b.text)]).length <= 2900 &&
+        _chiffresOk != null &&
+        encoderParagraphes([for (final (a, b) in _paras) (a.text, b.text)], _chiffresOk ?? const []).length <= 2900 &&
         _dans(_apres, _bornesApres) && _liens.valides &&
         (_video.text.trim().isEmpty || _videoValide(_video.text));
   }
@@ -1028,7 +1071,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
             'titre': _titre.text.trim(),
             // 25/11 : En bref → decouverte (obligatoire pour la base), paragraphes → resume
             'decouverte': _avant.text.trim(),
-            'resume': encoderParagraphes([for (final (a, b) in _paras) (a.text, b.text)]),
+            'resume': encoderParagraphes([for (final (a, b) in _paras) (a.text, b.text)], _chiffresOk ?? const []),
             if (_apres.text.trim().isNotEmpty) 'apres': _apres.text.trim(),
             ..._liens.champs(),
             if (_video.text.trim().isNotEmpty) 'video': _video.text.trim(),
@@ -1052,6 +1095,30 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
         _etiquette(context, 'EN BREF'),
         _champ(context, _avant, indice: 'Ce qui a été trouvé, par qui, avec un chiffre ou un repère clé…', lignes: 3, max: 600),
         _jauge(_avant, _bornesAvant, 'Dis le résultat principal, avec un chiffre ou un repère.'),
+        _etiquette(context, 'EN CHIFFRES', 'facultatif'),
+        _aide(context, '2 ou 3 chiffres clés de l’article : la valeur avec son unité, puis ce qu’elle représente. '
+            'Laisse vide : on les ajoute pour toi.'),
+        for (final (a, b) in _chiffres)
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              SizedBox(width: 110, child: _champ(context, a, indice: '6 min', lignes: 1, max: 40)),
+              const SizedBox(width: 8),
+              Expanded(child: _champ(context, b, indice: 'Temps de recharge complète', lignes: 1, max: 90)),
+            ]),
+          ),
+        if (_chiffresOk == null)
+          _aide(context, 'Chaque ligne : un seul nombre avec son unité (sans « / »), et une description courte.',
+              couleur: _orange),
+        if (_chiffres.length < 3)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              onPressed: () => setState(_ajouterChiffre),
+              icon: const Icon(Icons.add_rounded, size: 18),
+              label: const Text('Ajouter un chiffre'),
+            ),
+          ),
         _etiquette(context, 'TES PARAGRAPHES (1 À $_parasMax)'),
         _aide(context, 'Aucun paragraphe imposé : choisis les questions qui font le mieux comprendre cette avancée, '
             'dans l’ordre que tu veux, et réponds-y d’après l’article.'),
@@ -1093,7 +1160,7 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
         _etiquette(context, 'CE QU’ON NE SAIT PAS ENCORE', 'facultatif'),
         _champ(context, _apres, indice: 'Ce qui reste à prouver, à tester ou à mesurer…', lignes: 3, max: 600),
         _jauge(_apres, _bornesApres, ''),
-        _aide(context, 'L’encadré « En chiffres » est ajouté à partir de l’article, s’il y a de bons chiffres.'),
+        _aide(context, 'Tes chiffres sont vérifiés avec l’article ; si tu n’en donnes pas, on les ajoute pour toi.'),
         ..._liens.widgets(context, 'Les articles qui permettent de vérifier chaque fait de ton texte.'),
         ..._champVideo(context, _video),
       ],
@@ -1562,6 +1629,7 @@ class EcranApercuProposition extends StatelessWidget {
             section('Et après ?', x.apres),
           ] else ...[
             section('En bref', x.decouverte),
+            section('En chiffres', decoderChiffres(x.resume).map((c) => '${c.$1} : ${c.$2}').join('\n')),
             for (final (q, t) in decoderParagraphes(x.resume)) section(q, t),
             section(texteInconnu, x.apres),
           ],

@@ -6387,26 +6387,26 @@ ko 팔로우한 분야
 id Bidang yang saya ikuti
 vi Lĩnh vực đang theo dõi
 
-@ Nouveau pour vous
-en New for you
-es Nuevo para ti
-pt Novo para você
-de Neu für Sie
-it Nuovo per te
-nl Nieuw voor jou
-pl Nowe dla ciebie
-ru Новое для вас
-uk Нове для вас
-tr Sizin için yeni
-ar جديد لك
-hi आपके लिए नया
-bn আপনার জন্য নতুন
-ur آپ کے لیے نیا
-zh 为你推荐的新内容
-ja あなたへの新着
-ko 새로운 소식
-id Baru untuk Anda
-vi Mới cho bạn
+@ À découvrir
+en To discover
+es Por descubrir
+pt Para descobrir
+de Zum Entdecken
+it Da scoprire
+nl Om te ontdekken
+pl Do odkrycia
+ru Стоит узнать
+uk Варто дізнатися
+tr Keşfedilecekler
+ar لتكتشفه
+hi खोजने के लिए
+bn আবিষ্কার করুন
+ur دریافت کریں
+zh 发现更多
+ja 新しい発見
+ko 새로 알아보기
+id Untuk dijelajahi
+vi Để khám phá
 
 @ Pas encore d’avancée ce mois-ci.
 en No advances this month yet.
@@ -10312,3 +10312,24 @@ ja まだわかっていないこと
 ko 아직 모르는 것
 id Yang belum kita ketahui
 vi Những điều chưa biết
+
+@ Les nouveautés des domaines que vous ne suivez pas
+en What's new in fields you don't follow
+es Novedades de los campos que no sigues
+pt Novidades das áreas que você não segue
+de Neues aus Bereichen, denen Sie nicht folgen
+it Novità dei campi che non segui
+nl Nieuws uit domeinen die je niet volgt
+pl Nowości z dziedzin, których nie obserwujesz
+ru Новое в областях, на которые вы не подписаны
+uk Нове в галузях, які ви не відстежуєте
+tr Takip etmediğiniz alanlardaki yenilikler
+ar جديد المجالات التي لا تتابعها
+hi उन क्षेत्रों की नई खबरें जिन्हें आप फ़ॉलो नहीं करते
+bn যে বিষয়গুলো আপনি অনুসরণ করেন না, সেগুলোর নতুন খবর
+ur ان شعبوں کی نئی خبریں جنہیں آپ فالو نہیں کرتے
+zh 你未关注领域的新内容
+ja フォローしていない分野の新着
+ko 팔로우하지 않는 분야의 새 소식
+id Kabar baru dari bidang yang tidak Anda ikuti
+vi Tin mới từ các lĩnh vực bạn chưa theo dõi
