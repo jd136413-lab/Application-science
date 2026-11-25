@@ -361,10 +361,15 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
       k++;
       switch (b.cle) {
         case 'chapo':
-          res.add(_intertitre(texteEnBref, p)); // 25/11 (Maxime) : intertitre au-dessus de l'encadré, comme la maquette
+          // 25/11 (Maxime) : l'intertitre « En bref » est DANS l'encadré gris
           res.add(Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: encadreDeborde(fond: estSombre(context) ? p.pastille : p.fond, child: _paragraphe(k, b.texte, 16.5, p.texte, graisse: FontWeight.w600)),
+            child: encadreDeborde(
+                fond: estSombre(context) ? p.pastille : p.fond,
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  _intertitre(texteEnBref, p),
+                  _paragraphe(k, b.texte, 16.5, p.texte, graisse: FontWeight.w600),
+                ])),
           ));
         case 'en_chiffres':
           res.add(Padding(

@@ -1459,13 +1459,16 @@ List<Widget> resumeBlocsEvenement(BuildContext context, List<BlocFiche> blocs, C
   for (final b in blocs) {
     switch (b.cle) {
       case 'chapo':
-        res.add(intertitre(texteEnBref)); // 25/11 (Maxime) : intertitre au-dessus de l'encadré
+        // 25/11 (Maxime) : l'intertitre « En bref » est DANS l'encadré
         res.add(Padding(
           padding: const EdgeInsets.only(bottom: 16),
           child: encadreDeborde(
               fond: p.carte,
-              child: TexteArticle(b.texte,
-                  style: police(policeTexte, taille: 16.5, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.5))),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                intertitre(texteEnBref),
+                TexteArticle(b.texte,
+                    style: police(policeTexte, taille: 16.5, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.5)),
+              ])),
         ));
       case 'en_chiffres':
         res.add(Padding(
