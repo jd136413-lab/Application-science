@@ -21,13 +21,13 @@ LIBELLES = {
     "a_quoi_ca_sert":      ("À quoi ça pourrait servir ?", "À quoi ça pourrait servir ?"),
 }
 # 2) Un bloc n'existe que si le relevé contient un fait d'un de ces types
-APPUI = {
+APPUI = {          # 25/11 (2e essai) : élargi, le 1er réglage retirait le bloc clé du trou noir
     "ce_qu_ils_ont_fait": {"acteur", "methode", "echantillon", "resultat"},
-    "comment_ca_marche": {"mecanisme"},
-    "comment_le_sait_on": {"preuve"},
-    "sur_qui": {"echantillon"},
-    "par_rapport_a_quoi": {"comparaison"},
-    "pourquoi_surprenant": {"comparaison", "mecanisme"},
+    "comment_ca_marche": {"mecanisme", "methode"},
+    "comment_le_sait_on": {"preuve", "methode", "resultat"},
+    "sur_qui": {"echantillon", "methode"},
+    "par_rapport_a_quoi": {"comparaison", "revendication"},
+    "pourquoi_surprenant": {"comparaison", "mecanisme", "revendication"},
     "explication": {"hypothese"},
     "effets_indesirables": {"limite"},
     "cause_ou_lien": {"preuve", "limite"},
