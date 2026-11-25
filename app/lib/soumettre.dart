@@ -894,7 +894,8 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
   bool _envoi = false;
 
   // Mêmes longueurs que les fiches de l'agent (redaction.py), en mots : (minimum, maximum).
-  static const _bornesAvant = (8, 45), _bornesDecouverte = (15, 85), _bornesApres = (8, 50);
+  // Format D (25/11) : avant = En bref, decouverte = Comment ça marche / comment le sait-on, apres = Ce qu’on ne sait pas encore
+  static const _bornesAvant = (12, 45), _bornesDecouverte = (20, 90), _bornesApres = (6, 50);
 
   List<TextEditingController> get _tous => [_titre, _avant, _decouverte, _apres, _video];
 
@@ -1007,15 +1008,18 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
         _champ(context, _titre, indice: 'Batteries : une cellule au sodium se recharge en 6 minutes', lignes: 2, max: 160),
         _compteurMots(context, _titre.text),
         _aide(context, 'Thème, deux-points, puis ce qui a été trouvé.'),
-        _etiquette(context, 'AVANT'),
-        _champ(context, _avant, indice: 'Ce qu’on savait, et ce qui manquait encore…', lignes: 3, max: 600),
-        _jauge(_avant, _bornesAvant, 'Dis ce qui posait problème.'),
-        _etiquette(context, tech ? 'LA NOUVEAUTÉ' : 'LA DÉCOUVERTE'),
-        _champ(context, _decouverte, indice: 'Qui, quoi, comment, avec un ou deux chiffres clés…', lignes: 4, max: 900),
-        _jauge(_decouverte, _bornesDecouverte, 'Dis qui, quoi, et un chiffre clé.'),
-        _etiquette(context, 'ET APRÈS ?'),
-        _champ(context, _apres, indice: 'Ce que ça peut changer, et la limite principale…', lignes: 3, max: 600),
-        _jauge(_apres, _bornesApres, 'Dis ce que ça change, et la limite.'),
+        _etiquette(context, 'EN BREF'),
+        _champ(context, _avant, indice: 'Ce qui a été trouvé, par qui, avec un chiffre ou un repère clé…', lignes: 3, max: 600),
+        _jauge(_avant, _bornesAvant, 'Dis le résultat principal, avec un chiffre ou un repère.'),
+        _etiquette(context, 'COMMENT ÇA MARCHE, OU COMMENT LE SAIT-ON ?'),
+        _champ(context, _decouverte,
+            indice: tech ? 'Le principe de l’invention, et ce qui la rend nouvelle…' : 'Le mécanisme, ou la preuve : sur qui, comparé à quoi…',
+            lignes: 4, max: 900),
+        _jauge(_decouverte, _bornesDecouverte, 'Explique comment ça marche, ou comment on le sait.'),
+        _etiquette(context, 'CE QU’ON NE SAIT PAS ENCORE'),
+        _champ(context, _apres, indice: 'Ce qui reste à prouver, à tester ou à mesurer…', lignes: 3, max: 600),
+        _jauge(_apres, _bornesApres, 'Dis ce qui reste inconnu ou à prouver.'),
+        _aide(context, 'L’encadré « En chiffres » et la question en titre sont ajoutés à partir de l’article.'),
         ..._liens.widgets(context, 'Les articles qui permettent de vérifier chaque fait de ton texte.'),
         ..._champVideo(context, _video),
       ],
@@ -1478,9 +1482,9 @@ class EcranApercuProposition extends StatelessWidget {
                 couleur: evenement ? _orange : p.texteDiscret)),
         const SizedBox(height: 22),
         if (x.genre == 'resume') ...[
-          section('Avant', x.avant),
-          section(x.fil == 'tech' ? 'La nouveauté' : 'La découverte', x.decouverte),
-          section('Et après ?', x.apres),
+          section('En bref', x.avant),
+          section('Comment ça marche, ou comment le sait-on ?', x.decouverte),
+          section(texteInconnu, x.apres),
         ],
         if (amelio) section('Ce que je propose', x.resume ?? x.sujet),
         if (x.genre == 'sujet')
@@ -1491,7 +1495,7 @@ class EcranApercuProposition extends StatelessWidget {
             child: Text(
                 evenement
                     ? 'Ce qui est prévu, pourquoi c’est important, le lieu et l’heure seront complétés à partir des articles.'
-                    : 'Le résumé complet (avant, découverte, et après), le thème et la note d’importance seront rédigés à partir des articles.',
+                    : 'Le résumé complet (en bref, en chiffres, comment ça marche…), le thème et la note d’importance seront rédigés à partir des articles.',
                 style: police(policeTexte, taille: 14, couleur: p.texteDiscret, hauteur: 1.45)),
           ),
         lien(Icons.sensors_rounded, 'Suivre en direct', x.direct),

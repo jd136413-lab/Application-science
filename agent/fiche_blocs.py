@@ -110,6 +110,24 @@ FORMULES_CREUSES = re.compile(
     r"plus (?:vari[ée]e?|complexe|riche) qu'on (?:ne )?le pensait|ce sont des pistes|une [ée]tape (?:importante|cl[ée])", re.I)
 SPECIFIQUE = re.compile(r"\d|\b[A-Z][a-zà-ÿ]{2,}|chez (?:la|le|l')|en laboratoire|à l'arrêt|un seul|une seule|seules? ", re.U)
 
+def chiffres_clairs(lignes, al=None) -> list:
+    """25/11 (Maxime : « 47 / 46 … on comprend pas ») : une ligne = un seul nombre avec son unité,
+    sans « / », et à droite une simple description qui commence par une majuscule."""
+    clairs = []
+    for c in lignes or []:
+        if not isinstance(c, dict):
+            continue
+        v = " ".join(str(c.get("valeur", "")).split())
+        sens = " ".join(str(c.get("sens", "")).split())
+        if not v or not sens or "/" in v or len(v.split()) > 5 or \
+                len(re.findall(r"\d+(?:[ ,.]\d+)*", v)) > 1 and "à" not in v and "sur" not in v:
+            if al is not None:
+                al.append(f"chiffre peu clair retiré de l'encadré : « {v} »")
+            continue
+        clairs.append({"valeur": v, "sens": sens[:1].upper() + sens[1:]})
+    return clairs
+
+
 def nb_mots(f) -> int:
     """Mots affichés : chapô + blocs + limites (l'encadré « En chiffres » à part)."""
     return sum(len(t.split()) for k, t in textes(f) if k != "en_chiffres")
@@ -141,17 +159,7 @@ def nettoyer(f, sources, fil, prof, importance, n_car):
         al.append(f"{len(blocs)} blocs : {n_max} au plus, retirés : {[b['cle'] for b in blocs[n_max:]]}")
         blocs = blocs[:n_max]
     f["blocs"] = blocs
-    # 25/11 (Maxime : « 47 / 46 … on comprend pas ») : une ligne = un seul nombre, sans « / »
-    clairs = []
-    for c in f.get("en_chiffres") or []:
-        v = str(c.get("valeur", ""))
-        if "/" in v or len(re.findall(r"\d+(?:[ ,.]\d+)*", v)) > 1 and "à" not in v and "sur" not in v or len(v.split()) > 5:
-            al.append(f"chiffre peu clair retiré de l'encadré : « {v} »")
-        else:
-            sens = " ".join(str(c.get("sens", "")).split())
-            c["sens"] = sens[:1].upper() + sens[1:]            # une description, avec majuscule
-            clairs.append(c)
-    f["en_chiffres"] = clairs
+    f["en_chiffres"] = chiffres_clairs(f.get("en_chiffres"), al)
     if f.get("en_chiffres") and len(f["en_chiffres"]) < 2:
         f["en_chiffres"] = []                                   # encadré seulement à partir de 2 chiffres
     if len(f.get("limites") or []) > 3:                          # 25/11 : 3 limites au plus
