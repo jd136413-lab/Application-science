@@ -1787,6 +1787,18 @@ def main() -> int:
                     conso[k] += c[k]
             if rep is None:
                 raise ValueError(f"réponse illisible ({diag})")
+            # 25/11 (Shenzhou-24 perdu) : le tri choisit parfois un fil mais renvoie une fiche vide.
+            # Un seul nouvel essai, au lieu de compter le grand sujet du jour comme une erreur.
+            if (deja_juge is None and rep.get("decision") in ("science", "tech", "both")
+                    and any(not str(fiche_du_fil(rep, f).get("title", "")).strip()
+                            for f in (["science", "tech"] if rep["decision"] == "both" else [rep["decision"]]))):
+                log(f"  ↻ fiche vide renvoyée par le tri, nouvel essai : {art['title'][:70]}")
+                rep2, c, diag = demander_a_claude(client, modele["id"], art, sujets)
+                for k in conso:
+                    conso[k] += c[k]
+                appels += 1
+                if rep2 is not None:
+                    rep = rep2
             decision = rep.get("decision")
             explication = str(rep.get("explanation", "")).strip()
 

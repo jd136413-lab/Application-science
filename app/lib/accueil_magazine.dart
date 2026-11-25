@@ -256,7 +256,8 @@ class _EcranMagazineState extends State<EcranMagazine> {
     // Maquette 107 A (22/11) : quand « Mes domaines suivis » est affiché, ses nouveautés sont dans les
     // bulles ; « Nouveau pour vous » ne garde que les autres domaines (pas de fiche en double).
     final suivisAffiches = etat.rubriqueActive('suivis') ? etat.domainesSuivis : const <String>{};
-    final l = tout.where((a) => etat.estNouvelle(a) && a.id != idUne && !suivisAffiches.contains(a.famille)).toList()
+    final l = filsAvancees.tousDomaines(_fil)
+        .where((a) => etat.estNouvelle(a) && a.id != idUne && !suivisAffiches.contains(a.famille)).toList()
       ..sort((a, b) => b.publieLe.compareTo(a.publieLe));
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       _TitreRubrique(
@@ -1070,7 +1071,7 @@ class EcranNouveautesMag extends StatelessWidget {
           final p = palette(context);
           // Même règle que la rubrique (maquette 107 A) : sans les domaines suivis s'ils ont leurs bulles
           final suivis = etat.rubriqueActive('suivis') ? etat.domainesSuivis : const <String>{};
-          final l = filsAvancees.visibles(fil).where((a) => etat.estNouvelle(a) && !suivis.contains(a.famille)).toList()
+          final l = filsAvancees.tousDomaines(fil).where((a) => etat.estNouvelle(a) && !suivis.contains(a.famille)).toList()
             ..sort((a, b) => b.publieLe.compareTo(a.publieLe));
           return _PageListe(
             titre: tr('À découvrir'),

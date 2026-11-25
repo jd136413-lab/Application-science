@@ -140,6 +140,70 @@ def chiffres_clairs(lignes, al=None) -> list:
     return clairs
 
 
+# 25/11 (bilan du passage de 18h20) : des notes destinées à l'équipe s'affichaient aux lecteurs
+# (« à vérifier avant publication »), et des « limites » qui n'en étaient pas (un avantage annoncé,
+# une étape déjà passée). Les unités anglo-saxonnes restaient non converties (« 180 miles par heure »).
+NOTE_REDACTEUR = re.compile(
+    r"(?:à|a) v[ée]rifier|avant (?:la )?publication|doit (?:encore )?être v[ée]rifi|contredi[st]|"
+    r"(?:la|le|les) (?:source|statut)s? (?:de la source )?(?:indique|annonce|signale)n?t? d[ée]j[àa]|"
+    r"statut de la source|ne correspond pas à un [ée]v[ée]nement|incoh[ée]ren", re.I)
+FAUSSE_LIMITE = re.compile(
+    r"\bcontre\b[^.]*\b(?:pour|chez) (?:une|la|les) (?:puce|technologie|solution|concurren)|"
+    r"\bplus (?:rapide|efficace|performant|fiable|l[ée]ger)|\bmoins (?:cher|co[uû]teu)|\brecord\b|\bavantage", re.I)
+UNITES_US = re.compile(r"\d[\d  ,.]*\s*(?:miles?|mph|pieds|feet|ft\b|pouces|inch|livres? \(|lbs?\b|°\s?F\b|"
+                       r"degr[ée]s? fahrenheit|gallons?|onces?)", re.I)
+_MOIS = {m: i + 1 for i, m in enumerate(["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août",
+                                         "septembre", "octobre", "novembre", "décembre"])}
+
+
+def date_passee(t: str, aujourd_hui) -> bool:
+    """Vrai si la phrase parle d'un mois + année déjà écoulé (« en février 2026 »)."""
+    for m, a in re.findall(r"(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\s+(20\d\d)",
+                           t or "", re.I):
+        if (int(a), _MOIS[m.lower()]) < (aujourd_hui.year, aujourd_hui.month):
+            return True
+    return False
+
+
+def alertes_limites(limites, al) -> None:
+    """Alertes pour le relecteur (le programme tranche ensuite avec limites_finales)."""
+    from datetime import date
+    for x in limites or []:
+        if NOTE_REDACTEUR.search(x):
+            al.append(f"limite qui s'adresse à l'équipe, pas au lecteur (à supprimer) : {x}")
+        elif FAUSSE_LIMITE.search(x):
+            al.append(f"« limite » qui est un avantage ou un fait établi (à supprimer ou déplacer) : {x}")
+        elif date_passee(x, date.today()):
+            al.append(f"limite sur une étape déjà passée (à supprimer) : {x}")
+
+
+def limites_finales(limites, log_al=None) -> list:
+    """Règle sûre, après relecture : ces limites ne s'affichent jamais. (Les « fausses limites »
+    restent une alerte pour le relecteur : un mot comme « record » peut aussi servir une vraie limite.)"""
+    from datetime import date
+    garde = []
+    for x in limites or []:
+        if NOTE_REDACTEUR.search(x) or date_passee(x, date.today()):
+            if log_al is not None:
+                log_al.append(f"limite retirée : {x[:80]}")
+            continue
+        garde.append(x)
+    return garde
+
+
+def sans_note_redacteur(t: str) -> str:
+    """Retire d'un paragraphe les phrases qui s'adressent à l'équipe."""
+    return " ".join(p for p in re.split(r"(?<=[.!?])\s+", t or "") if not NOTE_REDACTEUR.search(p)).strip()
+
+
+def alertes_unites(textes_, al) -> None:
+    for k, t in textes_:
+        m = UNITES_US.search(t or "")
+        if m:
+            al.append(f"unité anglo-saxonne dans {k} : « {m.group(0).strip()} » → convertis en unité française "
+                      f"(km, km/h, m, kg, °C…), en gardant au plus la valeur d'origine entre parenthèses")
+
+
 def nb_mots(f) -> int:
     """Mots affichés : chapô + blocs + limites (l'encadré « En chiffres » à part)."""
     return sum(len(t.split()) for k, t in textes(f) if k != "en_chiffres")
@@ -183,7 +247,14 @@ def nettoyer(f, sources, fil, prof, importance, n_car):
     if len(f.get("limites") or []) > 3:                          # 25/11 : 3 limites au plus
         al.append(f"{len(f['limites'])} limites : 3 au plus, retirées : {f['limites'][3:]}")
         f["limites"] = f["limites"][:3]
+    alertes_limites(f.get("limites"), al)
     tx = textes(f)
+    alertes_unites(tx, al)
+    if not f.get("en_chiffres"):                                # 25/11 : encadré absent de 3 fiches sur 4
+        n_src = len(set(nombres(" ".join(sources))) - {str(i) for i in range(11)})
+        if n_src >= 4:
+            al.append("aucun encadré « en_chiffres » alors que les sources donnent plusieurs chiffres : "
+                      "ajoute 2 à 3 lignes claires (valeur avec unité + description), sans répéter un nombre du texte")
     n_mots = nb_mots(f)
     if n_mots > int(mots_max * 1.2):                            # longueur justifiée : +20 % toléré (Maxime, 25/11)
         al.append(f"{n_mots} mots : {mots_max} visés, {int(mots_max * 1.2)} au plus")

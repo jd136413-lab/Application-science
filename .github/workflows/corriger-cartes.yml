@@ -1,0 +1,23 @@
+# Corriger les cartes À venir (25/11/2026) : applique aux résumés déjà en base les nouvelles
+# règles (pas de note pour l'équipe, pas de limite sur une étape passée) + correction Europa Clipper.
+# Gratuit : aucun appel à Claude. À la main seulement.
+name: Corriger les cartes À venir
+
+on:
+  workflow_dispatch:
+
+jobs:
+  corriger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Nettoyer les résumés à blocs
+        working-directory: agent
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: python corriger_cartes.py
