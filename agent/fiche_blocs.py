@@ -141,6 +141,15 @@ def nettoyer(f, sources, fil, prof, importance, n_car):
         al.append(f"{len(blocs)} blocs : {n_max} au plus, retirés : {[b['cle'] for b in blocs[n_max:]]}")
         blocs = blocs[:n_max]
     f["blocs"] = blocs
+    # 25/11 (Maxime : « 47 / 46 … on comprend pas ») : une ligne = un seul nombre, sans « / »
+    clairs = []
+    for c in f.get("en_chiffres") or []:
+        v = str(c.get("valeur", ""))
+        if "/" in v or len(re.findall(r"\d+(?:[ ,.]\d+)*", v)) > 1 and "à" not in v or len(v.split()) > 4:
+            al.append(f"chiffre peu clair retiré de l'encadré : « {v} »")
+        else:
+            clairs.append(c)
+    f["en_chiffres"] = clairs
     if f.get("en_chiffres") and len(f["en_chiffres"]) < 2:
         f["en_chiffres"] = []                                   # encadré seulement à partir de 2 chiffres
     if len(f.get("limites") or []) > 3:                          # 25/11 : 3 limites au plus
