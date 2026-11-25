@@ -216,7 +216,7 @@ class _EcranSoumettreState extends State<EcranSoumettre> {
               _choix(Icons.bolt_rounded, logoEncreBleue, 'Proposer un sujet', 'Une phrase et un lien : on s’occupe du reste.',
                   const EcranProposerSujet(), prochaine: prochaine('sujet')),
               const SizedBox(height: 10),
-              _choix(Icons.edit_rounded, _vert, 'Proposer un résumé', 'Ta fiche en 3 parties, vérifiée avant publication.',
+              _choix(Icons.edit_rounded, _vert, 'Proposer un résumé', 'Ta fiche, avec tes propres paragraphes, vérifiée avant publication.',
                   const EcranProposerResume(), prochaine: prochaine('resume')),
               const SizedBox(height: 10),
               _choix(Icons.lightbulb_outline_rounded, _orange, 'Proposer une amélioration',
@@ -881,11 +881,28 @@ class EcranProposerResume extends StatefulWidget {
   State<EcranProposerResume> createState() => _EcranProposerResumeState();
 }
 
+/// Paragraphes libres d'un résumé de lecteur (25/11, maquette 111) : enregistrés dans la colonne
+/// « resume » sous la forme « ### question », retour à la ligne, texte (lue par agent/soumissions.py).
+String encoderParagraphes(List<(String, String)> l) =>
+    [for (final (q, t) in l) '### ${q.replaceAll('\n', ' ').trim()}\n${t.trim()}'].join('\n\n');
+
+List<(String, String)> decoderParagraphes(String? brut) {
+  final res = <(String, String)>[];
+  for (final morceau in (brut ?? '').split(RegExp(r'^### ', multiLine: true))) {
+    final m = morceau.trim();
+    if (m.isEmpty) continue;
+    final i = m.indexOf('\n');
+    res.add(i < 0 ? (m, '') : (m.substring(0, i).trim(), m.substring(i + 1).trim()));
+  }
+  return res;
+}
+
 class _EcranProposerResumeState extends State<EcranProposerResume> {
   final _titre = TextEditingController();
-  final _avant = TextEditingController();
-  final _decouverte = TextEditingController();
-  final _apres = TextEditingController();
+  final _avant = TextEditingController(); // « En bref » (colonne decouverte)
+  final _apres = TextEditingController(); // « Ce qu'on ne sait pas encore », facultatif
+  // Paragraphes libres : (question en titre, texte), 1 à 4
+  final List<(TextEditingController, TextEditingController)> _paras = [];
   late final _liens = _Liens(() => setState(() {}));
   final _video = TextEditingController();
   String _fil = 'science';
@@ -893,11 +910,18 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
   String _langue = etat.langue == 'fr' ? 'fr' : (etat.langue == 'en' ? 'en' : 'autre');
   bool _envoi = false;
 
-  // Mêmes longueurs que les fiches de l'agent (redaction.py), en mots : (minimum, maximum).
-  // Format D (25/11) : avant = En bref, decouverte = Comment ça marche / comment le sait-on, apres = Ce qu’on ne sait pas encore
-  static const _bornesAvant = (12, 45), _bornesDecouverte = (20, 90), _bornesApres = (6, 50);
+  // Longueurs en mots (minimum, maximum), comme les fiches de l'agent (format D, 25/11).
+  static const _bornesAvant = (12, 45), _bornesPara = (15, 90), _bornesQuestion = (2, 12), _bornesApres = (0, 50);
+  static const _parasMax = 4;
 
-  List<TextEditingController> get _tous => [_titre, _avant, _decouverte, _apres, _video];
+  List<TextEditingController> get _tous => [_titre, _avant, _apres, _video];
+
+  void _ajouterPara([String q = '', String t = '']) {
+    final a = TextEditingController(text: q), b = TextEditingController(text: t);
+    a.addListener(() => setState(() {}));
+    b.addListener(() => setState(() {}));
+    _paras.add((a, b));
+  }
 
   @override
   void initState() {
@@ -905,8 +929,17 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
     final i = widget.initiale;
     if (i != null) {
       _titre.text = i.titre ?? '';
-      _avant.text = i.avant ?? '';
-      _decouverte.text = i.decouverte ?? '';
+      final paras = decoderParagraphes(i.resume);
+      if (paras.isEmpty) {
+        // Proposition d'avant le 25/11 (trois parties fixes)
+        _avant.text = i.avant ?? '';
+        if ((i.decouverte ?? '').isNotEmpty) _ajouterPara('', i.decouverte!);
+      } else {
+        _avant.text = i.decouverte ?? '';
+        for (final (q, t) in paras.take(_parasMax)) {
+          _ajouterPara(q, t);
+        }
+      }
       _apres.text = i.apres ?? '';
       _liens.remplir(i);
       _video.text = i.video ?? '';
@@ -916,12 +949,17 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
     for (final c in _tous) {
       c.addListener(() => setState(() {}));
     }
+    if (_paras.isEmpty) _ajouterPara();
   }
 
   @override
   void dispose() {
     for (final c in _tous) {
       c.dispose();
+    }
+    for (final (a, b) in _paras) {
+      a.dispose();
+      b.dispose();
     }
     _liens.dispose();
     super.dispose();
@@ -934,7 +972,9 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
 
   bool get _pret {
     final n = compterMots(_titre.text);
-    return n >= _motsMin && n <= _motsMax && _dans(_avant, _bornesAvant) && _dans(_decouverte, _bornesDecouverte) &&
+    return n >= _motsMin && n <= _motsMax && _dans(_avant, _bornesAvant) &&
+        _paras.isNotEmpty && _paras.every((x) => _dans(x.$1, _bornesQuestion) && _dans(x.$2, _bornesPara)) &&
+        encoderParagraphes([for (final (a, b) in _paras) (a.text, b.text)]).length <= 2900 &&
         _dans(_apres, _bornesApres) && _liens.valides &&
         (_video.text.trim().isEmpty || _videoValide(_video.text));
   }
@@ -986,9 +1026,10 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
             'fil': _fil,
             'langue': _langue,
             'titre': _titre.text.trim(),
-            'avant': _avant.text.trim(),
-            'decouverte': _decouverte.text.trim(),
-            'apres': _apres.text.trim(),
+            // 25/11 : En bref → decouverte (obligatoire pour la base), paragraphes → resume
+            'decouverte': _avant.text.trim(),
+            'resume': encoderParagraphes([for (final (a, b) in _paras) (a.text, b.text)]),
+            if (_apres.text.trim().isNotEmpty) 'apres': _apres.text.trim(),
             ..._liens.champs(),
             if (_video.text.trim().isNotEmpty) 'video': _video.text.trim(),
           },
@@ -1011,15 +1052,48 @@ class _EcranProposerResumeState extends State<EcranProposerResume> {
         _etiquette(context, 'EN BREF'),
         _champ(context, _avant, indice: 'Ce qui a été trouvé, par qui, avec un chiffre ou un repère clé…', lignes: 3, max: 600),
         _jauge(_avant, _bornesAvant, 'Dis le résultat principal, avec un chiffre ou un repère.'),
-        _etiquette(context, 'COMMENT ÇA MARCHE, OU COMMENT LE SAIT-ON ?'),
-        _champ(context, _decouverte,
-            indice: tech ? 'Le principe de l’invention, et ce qui la rend nouvelle…' : 'Le mécanisme, ou la preuve : sur qui, comparé à quoi…',
-            lignes: 4, max: 900),
-        _jauge(_decouverte, _bornesDecouverte, 'Explique comment ça marche, ou comment on le sait.'),
-        _etiquette(context, 'CE QU’ON NE SAIT PAS ENCORE'),
+        _etiquette(context, 'TES PARAGRAPHES (1 À $_parasMax)'),
+        _aide(context, 'Aucun paragraphe imposé : choisis les questions qui font le mieux comprendre cette avancée, '
+            'dans l’ordre que tu veux, et réponds-y d’après l’article.'),
+        for (final (k, (q, t)) in _paras.indexed) ...[
+          const SizedBox(height: 10),
+          Row(children: [
+            Expanded(child: _etiquette(context, 'PARAGRAPHE ${k + 1}')),
+            if (_paras.length > 1)
+              TextButton.icon(
+                onPressed: () => setState(() {
+                  final x = _paras.removeAt(k);
+                  x.$1.dispose();
+                  x.$2.dispose();
+                }),
+                icon: const Icon(Icons.close_rounded, size: 18),
+                label: const Text('Retirer'),
+                style: TextButton.styleFrom(foregroundColor: _rouge),
+              ),
+          ]),
+          _champ(context, q,
+              indice: k == 0
+                  ? (tech ? 'Ta question en titre : « Comment ce volant se replie-t-il ? »' : 'Ta question en titre : « Comment pèse-t-on ce trou noir ? »')
+                  : 'Ta question en titre…',
+              lignes: 1, max: 120),
+          _jauge(q, _bornesQuestion, 'Écris une vraie question sur ce sujet.'),
+          const SizedBox(height: 6),
+          _champ(context, t, indice: 'Ta réponse, d’après l’article…', lignes: 4, max: 700),
+          _jauge(t, _bornesPara, 'Donne un fait précis : un chiffre, un nom, un mécanisme.'),
+        ],
+        if (_paras.length < _parasMax)
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: OutlinedButton.icon(
+              onPressed: () => setState(_ajouterPara),
+              icon: const Icon(Icons.add_rounded),
+              label: const Text('Ajouter un paragraphe'),
+            ),
+          ),
+        _etiquette(context, 'CE QU’ON NE SAIT PAS ENCORE', 'facultatif'),
         _champ(context, _apres, indice: 'Ce qui reste à prouver, à tester ou à mesurer…', lignes: 3, max: 600),
-        _jauge(_apres, _bornesApres, 'Dis ce qui reste inconnu ou à prouver.'),
-        _aide(context, 'L’encadré « En chiffres » et la question en titre sont ajoutés à partir de l’article.'),
+        _jauge(_apres, _bornesApres, ''),
+        _aide(context, 'L’encadré « En chiffres » est ajouté à partir de l’article, s’il y a de bons chiffres.'),
         ..._liens.widgets(context, 'Les articles qui permettent de vérifier chaque fait de ton texte.'),
         ..._champVideo(context, _video),
       ],
@@ -1482,9 +1556,15 @@ class EcranApercuProposition extends StatelessWidget {
                 couleur: evenement ? _orange : p.texteDiscret)),
         const SizedBox(height: 22),
         if (x.genre == 'resume') ...[
-          section('En bref', x.avant),
-          section('Comment ça marche, ou comment le sait-on ?', x.decouverte),
-          section(texteInconnu, x.apres),
+          if (decoderParagraphes(x.resume).isEmpty) ...[
+            section('Avant', x.avant),
+            section(x.fil == 'tech' ? 'La nouveauté' : 'La découverte', x.decouverte),
+            section('Et après ?', x.apres),
+          ] else ...[
+            section('En bref', x.decouverte),
+            for (final (q, t) in decoderParagraphes(x.resume)) section(q, t),
+            section(texteInconnu, x.apres),
+          ],
         ],
         if (amelio) section('Ce que je propose', x.resume ?? x.sujet),
         if (x.genre == 'sujet')
