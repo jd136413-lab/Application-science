@@ -38,7 +38,7 @@ Choix de Maxime :
 Distingue le démontré de l'annoncé ; ignore « révolutionnaire », « historique » ; n'invente rien.
 
 # 3. CLASSEMENT DE CHAQUE FICHE RETENUE
-- theme Sciences : {", ".join(THEMES)} ("other" en dernier recours).
+- theme Sciences : {", ".join(t for t in THEMES if t != "other")}. Pas de domaine « Humain & société » : psychologie, comportement, apprentissage, sommeil → "neuroscience" ; origines humaines, langues anciennes, sociétés du passé → "archaeology" ; modes de vie liés à la santé → "health". Une étude de sciences sociales sans résultat scientifique mesurable n'est pas une avancée.
 - theme Technologies : {", ".join(TECH_THEMES)} ("tech_other" en dernier recours).
 - importance (1 à 5, très exigeant ; entre deux notes, la plus basse). Sur ~10 fiches par jour : 1 = la note normale (2 sur 3) ; 2 ≈ 3 par jour ; 3 = quelques-unes par semaine ; 4 = par mois ; 5 = par an.
   Sciences : 1 incrémental, spécialisé ou préliminaire ; 2 vrai pas en avant, solide ; 3 compte au-delà de son domaine ; 4 première mondiale à fort impact ; 5 exceptionnel (traitement validé d'une maladie incurable). Preuves : humain > animal > cellules > simulation.

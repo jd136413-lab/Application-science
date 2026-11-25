@@ -35,7 +35,19 @@ APPUI = {          # 25/11 (2e essai) : élargi, le 1er réglage retirait le blo
     "qui_doute": {"preuve", "reserve"},
     "avant_le_produit": {"limite", "statut"},
     "a_quoi_ca_sert": {"portee", "statut"},
+    "autre": {"resultat", "acteur", "echantillon", "methode", "mecanisme", "preuve", "comparaison",
+              "revendication", "hypothese", "portee", "statut", "limite", "reserve"},
 }
+# 25/11 (Maxime : « aucun paragraphe prédéfini ») : les profils ne sont plus que des PISTES ;
+# le rédacteur choisit ses angles, leur ordre, et écrit l'intertitre de chaque bloc pour le sujet.
+GENERIQUES = {"comment ça marche ?", "comment le sait-on ?", "et après ?", "avant", "la découverte",
+              "pourquoi est-ce surprenant ?", "quelle explication ?", "qu'est-ce que c'est ?", "qu'ont-ils fait ?",
+              "à quoi ça sert ?", "à quoi ça pourrait servir ?", "par rapport à quoi ?", "contexte", "résultats"}
+
+
+def question_ok(q: str) -> bool:
+    q = " ".join(str(q or "").split())
+    return 2 <= len(q.split()) <= 12 and q.lower().replace("’", "'") not in GENERIQUES and "http" not in q.lower()
 # 3) Profils : questions proposées au rédacteur, dans l'ordre (* = « à signaler » si aucune source n'y répond)
 PROFILS = {
     "traitement":  ["sur_qui*", "par_rapport_a_quoi*", "comment_ca_marche", "effets_indesirables*", "disponible*"],
@@ -144,17 +156,23 @@ def nettoyer(f, sources, fil, prof, importance, n_car):
             al.append(f"citation introuvable, fait retiré : {x['citation']}")
     f["releve"] = garde
     types = {x["type"] for x in garde}
-    permis = [q.rstrip("*") for q in PROFILS[prof]]
     n_max, mots_max = cible(importance, n_car)
-    blocs = []
+    blocs, vues = [], set()
     for b in f["blocs"]:
-        if b["cle"] not in permis:
-            al.append(f"bloc hors profil retiré : {b['cle']}")
-        elif not APPUI[b["cle"]] & types:
-            al.append(f"bloc sans fait du bon type retiré : {b['cle']}")
-        else:
-            blocs.append(b)
-    blocs.sort(key=lambda b: permis.index(b["cle"]))
+        q = " ".join(str(b.get("question", "")).split())
+        if b.get("cle") not in APPUI:
+            b["cle"] = "autre"
+        if not APPUI[b["cle"]] & types:
+            al.append(f"bloc sans fait du bon type retiré : {b['cle']} ({q})")
+            continue
+        if not question_ok(q) or q.lower() in vues:
+            al.append(f"intertitre passe-partout ou répété : « {q} » ({b['cle']})")
+            if b["cle"] == "autre":
+                continue                    # sans intertitre propre, un bloc « autre » n'a pas de sens
+            q = ""                          # l'app affichera l'intertitre de secours de la clé
+        vues.add(q.lower())
+        b["question"] = q
+        blocs.append(b)                     # ordre choisi par le rédacteur
     if len(blocs) > n_max:
         al.append(f"{len(blocs)} blocs : {n_max} au plus, retirés : {[b['cle'] for b in blocs[n_max:]]}")
         blocs = blocs[:n_max]
@@ -220,7 +238,8 @@ def pour_la_base(f, prof):
     blocs = [{"cle": "chapo", "texte": f["chapo"]}]
     if f.get("en_chiffres"):
         blocs.append({"cle": "en_chiffres", "items": f["en_chiffres"]})
-    blocs += [{"cle": b["cle"], "texte": b["texte"]} for b in f["blocs"]]
+    blocs += [{"cle": b["cle"], "texte": b["texte"], **({"question": b["question"]} if b.get("question") else {})}
+              for b in f["blocs"]]
     if limites:
         blocs.append({"cle": "limites", "puces": limites})
     par_cle = {b["cle"]: b["texte"] for b in f["blocs"]}
@@ -236,8 +255,10 @@ def message_utilisateur(fil, theme, importance, prof, n_car, article, autres, ti
     n_max, mots_max = cible(importance, n_car)
     qs = "\n".join(f"- {q.rstrip('*')} : « {LIBELLES[q.rstrip('*')][fil == 'tech']} »" + (" (à signaler)" if q.endswith("*") else "")
                    for q in PROFILS[prof])
+    autres_cles = ", ".join(k for k in LIBELLES if k not in {q.rstrip("*") for q in PROFILS[prof]})
     sources = "\n\n".join([f"[SOURCE 1]\n{article}"] + [f"[SOURCE {i + 2}]\n{a}" for i, a in enumerate(autres)])
     return (f"Fil : {'Technologies' if fil == 'tech' else 'Sciences'} · thème : {theme} · importance : {importance}/5\n"
             f"Titre provisoire du trieur : {titre_provisoire}\n"
-            f"Questions pour cette fiche, dans l'ordre :\n{qs}\n"
+            f"Pistes de questions pour ce type de sujet (à toi de choisir les angles et leur ordre) :\n{qs}\n"
+            f"Autres clés possibles : {autres_cles}, autre.\n"
             f"Blocs : {n_max} au plus. Longueur : {mots_max} mots au plus (chapô + blocs + limites).\n\n{sources}")

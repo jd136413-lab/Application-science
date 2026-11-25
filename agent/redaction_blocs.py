@@ -28,7 +28,7 @@ CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite 
 # CE QU'ON TE DONNE
 - [SOURCE 1] : l'article principal. Parfois [SOURCE 2] et [SOURCE 3] : d'autres articles sur la MÊME avancée. Ce sont les SEULES bases de faits. En cas de désaccord, suis la source 1. Ne nomme jamais les médias.
 - Le fil (Sciences ou Technologies), le thème, l'importance (1 à 5) et un titre provisoire du trieur, à améliorer.
-- Les QUESTIONS de cette fiche, dans l'ordre, chacune avec sa clé ; certaines sont marquées « à signaler » : le lecteur doit savoir si la réponse manque.
+- Des PISTES de questions pour ce type de sujet, chacune avec sa clé ; certaines sont marquées « à signaler » : le lecteur doit savoir si la réponse manque. Ce ne sont que des pistes : c'est toi qui choisis les paragraphes.
 - Le nombre de blocs et la longueur maximale.
 
 # MÉTHODE : remplis le JSON dans cet ordre
@@ -44,7 +44,9 @@ CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite 
    - "valeur" = UN seul nombre AVEC son unité, sa division ou ce qu'il compte : « 6 000 m », « 10 s », « 47 femmes », « 40 000 € », « 6,5 milliards de Soleils », « 3 fois moins », « 1 sur 5 », « × 2 à 3 ». 4 mots au plus. Jamais deux nombres, jamais de barre oblique « / ».
    - "sens" = UNIQUEMENT une description de ce que représente la valeur, sous forme de groupe nominal qui commence par une majuscule (« Profondeur de l'explosion », « Masse du trou noir », « Malades de leucémie suivies », « Groupe de comparaison, restées en bonne santé »). 10 mots au plus. Pas de verbe conjugué, pas de suite de phrase, pas de nombre, pas de jargon.
    - Deux nombres à comparer = deux lignes qui se suivent. Prends des chiffres que le texte n'emploie pas.
-6. "blocs" : réponds aux questions de la fiche, dans l'ordre donné, sans dépasser le nombre de blocs indiqué. Chaque bloc : {"cle": la clé de la question, "texte": 1 à 3 phrases, 60 mots au plus}. Si les sources ne répondent pas PRÉCISÉMENT à une question, n'écris pas de bloc pour elle : passe à la suivante. N'écris pas l'intertitre : l'application l'affiche.
+6. "blocs" : AUCUN paragraphe n'est imposé. Pour CETTE avancée, choisis les 2 à 5 angles qui la font le mieux comprendre (sans dépasser le nombre de blocs indiqué), dans l'ordre le plus logique pour le lecteur : par exemple le mécanisme d'abord pour une invention, la preuve d'abord pour une étude médicale, la surprise d'abord pour une découverte inattendue. Les pistes données et la liste des clés t'aident, mais tu peux traiter un angle qui n'y figure pas (clé « autre »). Chaque bloc : {"cle": la clé qui décrit le mieux son contenu (ou « autre »), "question": son intertitre, "texte": 1 à 3 phrases, 60 mots au plus}.
+   - "question" : écrit pour CE sujet, comme la question précise que se pose le lecteur, 10 mots au plus, qui annonce exactement ce que dit le bloc (« Comment pèse-t-on un trou noir aussi lointain ? », « Pourquoi refroidir la couche améliore-t-il le panneau ? »). Jamais un intertitre passe-partout (« Comment ça marche ? », « Et après ? »). Deux blocs n'ont jamais la même question.
+   - Si les sources ne répondent pas PRÉCISÉMENT à un angle, n'écris pas de bloc pour lui.
    - comment_ca_marche : le mécanisme ou le principe, étape par étape (A provoque B, qui donne C), tel que la source l'explique.
    - comment_le_sait_on : ce qui permet de conclure (groupe témoin, vérification, mesure certifiée, indice qui mène à la conclusion), seulement si la source donne ce raisonnement. N'invente jamais le lien.
    - par_rapport_a_quoi : la référence de même nature (même taille, même population, même catégorie). Si la seule référence disponible n'est pas comparable, dis en quoi elle diffère.
@@ -52,7 +54,6 @@ CONSIGNE = """Tu es le rédacteur en chef de NovaSTEM, une application gratuite 
    - explication : l'hypothèse proposée, attribuée (« pour l'équipe… »).
    - disponible, a_quoi_ca_sert : seulement ce que la source annonce, attribué.
    - les autres questions : la réponse directe.
-6 bis. "question_cle" : l'intertitre du PREMIER bloc « comment_ca_marche » ou « comment_le_sait_on » (à défaut, du premier bloc), écrit comme la question précise qu'un lecteur se pose sur CE sujet : 9 mots au plus, commence par « Comment » ou « Pourquoi », contient un mot propre au sujet (« Comment pèse-t-on un trou noir aussi lointain ? », jamais « Comment ça marche ? »), et annonce EXACTEMENT ce que dit le bloc (si le bloc parle de l'âge des roches, la question porte sur l'âge, pas sur leur nature). "cle" = la clé de ce bloc. Si aucun bloc ne s'y prête : {"cle": "", "texte": ""}.
 7. "limites" : 0 à 3 phrases (jamais plus de 3), chacune PROPRE à cette étude : un chiffre (taille, durée), une condition (« chez la souris », « à l'arrêt »), une étape manquante nommée ou une réserve citée. Jamais une limite qui irait avec n'importe quelle étude, et jamais un fait établi (une mesure, un contexte) : seulement ce qui reste inconnu, incertain ou à faire.
 8. "mots" et "type_etude" : voir plus bas.
 
@@ -103,11 +104,10 @@ Exemple 1. Technologies, importance 1. Questions : par_rapport_a_quoi, comment_c
     {"valeur": "2,88 m²", "sens": "Taille des panneaux visés en usine"}
   ],
   "blocs": [
-    {"cle": "par_rapport_a_quoi", "texte": "En janvier 2025, la même entreprise, MicroQuanta, avait obtenu 21,86 %, mais sur un module de 810 cm², environ 42 fois plus grand. Les deux chiffres ne se comparent donc pas."},
-    {"cle": "comment_ca_marche", "texte": "En comparant cellules seules et modules faits de la même façon, l'équipe a vu que la plus grosse perte venait du facteur de remplissage. Pour le préserver, elle refroidit la couche encore humide 15 secondes entre 0 et 10 °C. Sa transformation en pérovskite ralentit, et les grains sont plus gros et plus réguliers."},
-    {"cle": "comment_le_sait_on", "texte": "Le rendement est certifié par le centre national chinois de mesure du photovoltaïque. En vieillissement sous éclairage continu, la perte liée au facteur de remplissage est inférieure au tiers de celle de modules témoins."}
+    {"cle": "par_rapport_a_quoi", "question": "Ce record bat-il vraiment le précédent ?", "texte": "En janvier 2025, la même entreprise, MicroQuanta, avait obtenu 21,86 %, mais sur un module de 810 cm², environ 42 fois plus grand. Les deux chiffres ne se comparent donc pas."},
+    {"cle": "comment_ca_marche", "question": "Pourquoi refroidir la couche améliore-t-il le panneau ?", "texte": "En comparant cellules seules et modules faits de la même façon, l'équipe a vu que la plus grosse perte venait du facteur de remplissage. Pour le préserver, elle refroidit la couche encore humide 15 secondes entre 0 et 10 °C. Sa transformation en pérovskite ralentit, et les grains sont plus gros et plus réguliers."},
+    {"cle": "comment_le_sait_on", "question": "Comment sait-on que le gain est réel ?", "texte": "Le rendement est certifié par le centre national chinois de mesure du photovoltaïque. En vieillissement sous éclairage continu, la perte liée au facteur de remplissage est inférieure au tiers de celle de modules témoins."}
   ],
-  "question_cle": {"cle": "comment_ca_marche", "texte": "Pourquoi refroidir la couche améliore-t-il le panneau ?"},
   "limites": [
     "Le record porte sur un module de 19,48 cm², formé de 8 cellules ; la durée des tests de vieillissement n'est pas donnée."
   ],
@@ -143,12 +143,11 @@ Exemple 2. Sciences, importance 3. Questions : sur_qui (à signaler), comment_le
     {"valeur": "11 ans", "sens": "Durée maximale du suivi par prise de sang annuelle"}
   ],
   "blocs": [
-    {"cle": "sur_qui", "texte": "Des chercheurs de Cambridge et de l'University College London ont réutilisé les prises de sang d'un essai britannique de dépistage du cancer de l'ovaire. Seules des femmes ont donc été suivies."},
-    {"cle": "comment_le_sait_on", "texte": "Dans au moins un tiers des cas, un seul groupe de cellules mutées avait envahi le sang des années avant la maladie. Aucune femme du groupe témoin ne montrait ce « balayage »."},
-    {"cle": "comment_ca_marche", "texte": "Au début, les cellules mutées mettent parfois plusieurs années à doubler. Chaque nouvelle mutation accélère leur croissance : avec quatre mutations, leur nombre peut doubler en quelques semaines."},
-    {"cle": "cause_ou_lien", "texte": "Un lien, pas encore une cause : dans une grande base de données britannique, ce balayage va de pair avec un risque nettement plus élevé. Il faudra des essais cliniques pour savoir si freiner ces cellules évite la leucémie."}
+    {"cle": "sur_qui", "question": "Qui a été suivi, et pendant combien de temps ?", "texte": "Des chercheurs de Cambridge et de l'University College London ont réutilisé les prises de sang d'un essai britannique de dépistage du cancer de l'ovaire. Seules des femmes ont donc été suivies."},
+    {"cle": "comment_le_sait_on", "question": "Comment sait-on que ces cellules annoncent la leucémie ?", "texte": "Dans au moins un tiers des cas, un seul groupe de cellules mutées avait envahi le sang des années avant la maladie. Aucune femme du groupe témoin ne montrait ce « balayage »."},
+    {"cle": "comment_ca_marche", "question": "Comment ces cellules prennent-elles le dessus ?", "texte": "Au début, les cellules mutées mettent parfois plusieurs années à doubler. Chaque nouvelle mutation accélère leur croissance : avec quatre mutations, leur nombre peut doubler en quelques semaines."},
+    {"cle": "cause_ou_lien", "question": "Ces cellules causent-elles vraiment la maladie ?", "texte": "Un lien, pas encore une cause : dans une grande base de données britannique, ce balayage va de pair avec un risque nettement plus élevé. Il faudra des essais cliniques pour savoir si freiner ces cellules évite la leucémie."}
   ],
-  "question_cle": {"cle": "comment_le_sait_on", "texte": "Comment sait-on que ces cellules annoncent la leucémie ?"},
   "limites": [
     "Dans 1 cas sur 5, les cellules mutées n'étaient visibles que 1 à 2 ans avant le diagnostic.",
     "Les tests génétiques classiques peuvent rater ce balayage, en prenant ces mutations pour des mutations héréditaires."
@@ -176,16 +175,14 @@ def schema(fil: str) -> dict:
             "en_chiffres": {"type": "array", "items": {"type": "object", "properties": {
                 "valeur": texte, "sens": texte}, "required": ["valeur", "sens"], "additionalProperties": False}},
             "blocs": {"type": "array", "items": {"type": "object", "properties": {
-                "cle": {"type": "string", "enum": CLES}, "texte": texte},
-                "required": ["cle", "texte"], "additionalProperties": False}},
-            "question_cle": {"type": "object", "properties": {"cle": texte, "texte": texte},
-                             "required": ["cle", "texte"], "additionalProperties": False},
+                "cle": {"type": "string", "enum": CLES + ["autre"]}, "question": texte, "texte": texte},
+                "required": ["cle", "question", "texte"], "additionalProperties": False}},
             "limites": {"type": "array", "items": texte},
             "mots": {"type": "array", "items": {"type": "object", "properties": {
                 "mot": texte, "definition": texte}, "required": ["mot", "definition"], "additionalProperties": False}},
             "type_etude": {"type": "string", "enum": redaction.TYPES_TECH if fil == "tech" else redaction.TYPES_SCIENCE},
         },
-        "required": ["releve", "absents", "title", "chapo", "en_chiffres", "blocs", "question_cle",
+        "required": ["releve", "absents", "title", "chapo", "en_chiffres", "blocs",
                      "limites", "mots", "type_etude"],
         "additionalProperties": False,
     }
@@ -260,14 +257,7 @@ def finaliser(f: dict, fil: str, prof: str) -> dict:
         c["sens"] = redaction.euros(fb.un_seul_prix(c["sens"]))
     f["chapo"] = redaction.euros(fb.un_seul_prix(f.get("chapo", "")))
     f["title"] = " ".join(str(f.get("title", "")).split()).rstrip(".")
-    if not question_valide(f.get("question_cle"), f):
-        f["question_cle"] = {"cle": "", "texte": ""}
     base = fb.pour_la_base(f, prof)
-    if f["question_cle"]["texte"]:
-        for b in base["blocs"]:
-            if b["cle"] == f["question_cle"]["cle"]:
-                b["question"] = f["question_cle"]["texte"]
-                break
     f["_base"] = base
     return f
 
@@ -313,7 +303,7 @@ def rediger_lot(client, modele_id: str, prix: tuple, items: list, par_lot: bool 
         if cid not in jets:
             continue
         d, alertes = jets[cid]
-        a_relire = {k: d.get(k) for k in ("title", "chapo", "en_chiffres", "blocs", "question_cle", "limites", "mots")}
+        a_relire = {k: d.get(k) for k in ("title", "chapo", "en_chiffres", "blocs", "limites", "mots")}
         mesures = ("Défauts MESURÉS automatiquement :\n- " + "\n- ".join(alertes) + "\n\n") if alertes else ""
         srcs = sources_de(art)
         _, mots_max = fb.cible(int(br.get("importance") or 1), len(srcs[0]) if srcs else 0)
@@ -340,7 +330,7 @@ def rediger_lot(client, modele_id: str, prix: tuple, items: list, par_lot: bool 
         problemes = []
         if r.get("chapo"):
             problemes = r.get("problemes") or []
-            for k in ("title", "chapo", "en_chiffres", "blocs", "question_cle", "limites", "mots"):
+            for k in ("title", "chapo", "en_chiffres", "blocs", "limites", "mots"):
                 if k in r:
                     d[k] = r[k]
             srcs = sources_de(art)

@@ -42,7 +42,18 @@ PRESELECTION_MAX = 250       # nombre max de titres envoyés à Claude
 # Sciences). Les avancées pré-notées ou notées ★★★ et plus passent TOUJOURS.
 # À note égale, la famille la moins publiée passe en premier. Pas de minimum :
 # on ne publie jamais une fiche faible juste pour remplir une famille.
-PLAFOND_FAMILLE = 0.25
+PLAFOND_FAMILLE = 0.25   # ancien plafond fixe (avant le 25/11), gardé pour le journal
+# 25/11 (Maxime : « des avancées plus réparties selon les domaines, sauf ★★★ et plus ») :
+# plafond = part équitable × MARGE_EQUILIBRE, soit ≈ 22 % en Sciences (6 domaines) et ≈ 16 %
+# en Technologies (8 domaines). Les ★★★ et plus passent toujours.
+MARGE_EQUILIBRE = 1.3
+FAMILLES_PAR_FIL = {"science": ("space", "environment", "health", "physics", "life", "earth"),
+                    "tech": ("mobile", "computing", "ai_software", "mobility", "aerospace", "energy_home",
+                             "gaming", "tech_other")}
+
+
+def plafond_famille(fil: str) -> float:
+    return MARGE_EQUILIBRE / len(FAMILLES_PAR_FIL.get(fil) or (1,) * 4)
 
 # Plusieurs sources pour une même avancée (choix de Maxime, 31/10, maquette 49 B1) :
 # l'agent garde chaque autre média qui parle de la même avancée (nom, lien, langue, date),
@@ -595,7 +606,7 @@ THEME_DE_SECOURS = {"psychology": "other", "society": "other", "cameras": "gadge
 FAMILLES_TEXTE = ("Sciences : space (espace, astronomie), environment (environnement, climat, océans, "
                   "agriculture), health (santé, médecine, cerveau), "
                   "physics (physique, chimie, matériaux, maths), life (biologie, génétique, animaux, plantes), "
-                  "earth (géologie, fossiles, archéologie), other (psychologie, comportement, société, éducation). "
+                  "earth (géologie, fossiles, archéologie, origines humaines et sociétés du passé ; la psychologie et le comportement vont dans health). "
                   "Technologies : mobile (smartphones, objets, appareils photo), "
                   "computing (ordinateurs, puces), ai_software (IA, logiciels, cybersécurité), mobility (voitures, "
                   "drones, trains, bateaux), aerospace (fusées, avions, satellites, défense), energy_home (batteries, "
@@ -622,7 +633,7 @@ class Equilibre:
         """Vrai si une fiche de plus dépasserait le plafond (au moins 2 fiches permises)."""
         if not self.actif or not famille:
             return False
-        permis = max(2, math.ceil(PLAFOND_FAMILLE * (self.total(fil) + 1)))
+        permis = max(2, math.ceil(plafond_famille(fil) * (self.total(fil) + 1)))
         return self.compte.get((fil, famille), 0) >= permis
 
     def ajouter(self, fil: str, famille: str | None) -> None:
@@ -1251,6 +1262,8 @@ def demander_a_claude(client, modele_id, article, sujets) -> tuple[dict | None, 
 # ========================== TRAITEMENT ===============================
 
 FIL_NOM = {"science": "Sciences", "tech": "Technologies"}
+# 25/11 (Maxime) : plus de domaine « Humain & société » : ses thèmes rejoignent un domaine voisin.
+SANS_HUMAIN_SOCIETE = {"psychology": "neuroscience", "society": "archaeology", "other": "biology"}
 THEMES_PAR_FIL = {"science": (THEMES, "other"), "tech": (TECH_THEMES, "tech_other")}
 
 
@@ -1460,6 +1473,7 @@ def preparer_ligne(feed: str, fiche: dict, art: dict) -> dict:
     prepublication = "Rxiv" in art.get("source_name", "")
     themes, defaut = THEMES_PAR_FIL[feed]
     theme = str(fiche.get("theme", "")).strip().lower()
+    theme = SANS_HUMAIN_SOCIETE.get(theme, theme) if feed == "science" else theme
     if theme not in themes:
         theme = defaut
     try:
@@ -1707,7 +1721,8 @@ def main() -> int:
 
     # Équilibre des familles : à note égale, la famille la moins publiée d'abord (tri stable).
     if equilibre.actif:
-        log(f"Familles des {JOURS_EQUILIBRE} derniers jours (plafond {round(100 * PLAFOND_FAMILLE)} %, sauf ★★★ et plus) :")
+        log(f"Familles des {JOURS_EQUILIBRE} derniers jours (plafond ≈ {round(100 * plafond_famille('science'))} % en Sciences, "
+            f"{round(100 * plafond_famille('tech'))} % en Technologies, sauf ★★★ et plus) :")
         for f in ("science", "tech"):
             log(f"  {FIL_NOM[f]} : {equilibre.resume(f)}")
         candidats.sort(key=lambda a: (-a.get("note_pre", 0),
