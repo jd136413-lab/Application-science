@@ -855,14 +855,17 @@ SCHEMA_REGROUPEMENT = {
 
 
 def _appel_json(client, modele_id, consigne, contenu, schema, conso, max_tokens=12000):
+    # 25/11 (économie sans perte) : consigne en cache, relue à 10 % du prix d'un paquet à l'autre.
     rep = client.messages.create(
-        model=modele_id, max_tokens=max_tokens, system=consigne,
+        model=modele_id, max_tokens=max_tokens,
+        system=[{"type": "text", "text": consigne, "cache_control": {"type": "ephemeral"}}],
         messages=[{"role": "user", "content": contenu}],
         output_config={"format": {"type": "json_schema", "schema": schema}, "effort": economie.EFFORT_TRI},
         **economie.PARAMS_TRI,
     )
     u = rep.usage
-    conso["in"] += u.input_tokens or 0
+    conso["in"] += int((u.input_tokens or 0) + 1.25 * (getattr(u, "cache_creation_input_tokens", 0) or 0)
+                       + 0.1 * (getattr(u, "cache_read_input_tokens", 0) or 0))
     conso["out"] += u.output_tokens or 0
     texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
     if getattr(rep, "stop_reason", "") == "max_tokens":
@@ -924,7 +927,10 @@ def preselection_complete(client, modele_id, candidats: list[dict], deja: list[s
             log(f"⚠ Tri d'un paquet impossible ({ex.__class__.__name__})")
     # On oublie ce qui a plus de 8 jours, puis on enregistre la mémoire
     seuil = (MAINTENANT - timedelta(days=8)).isoformat()
+    avenir = memoire.get("_avenir_doublons")      # empreinte du contrôle des doublons de « À venir » (a_venir.py)
     memoire = {u: m for u, m in memoire.items() if u != "_attente" and isinstance(m, list) and m[2] >= seuil}
+    if avenir:
+        memoire["_avenir_doublons"] = avenir
     memoire["_attente"] = ATTENTE
     memoire["_depenses"] = DEPENSES
     try:
@@ -1052,6 +1058,9 @@ def _meta(page: str, *noms: str) -> str:
     return ""
 
 
+TEXTE_REDACTION = 10000   # 25/11 (choix de Maxime) : la rédaction lit 10 000 caractères de l'article (le tri garde 6 000)
+
+
 def lire_page(art: dict, n: int = 6000, page: str | None = None) -> None:
     """Qualité des résumés (02/11) : on lit l'article lui-même (chapeau et paragraphes,
     6 000 caractères au plus) au lieu du seul extrait du flux, pour que Claude ait les
@@ -1076,6 +1085,7 @@ def lire_page(art: dict, n: int = 6000, page: str | None = None) -> None:
         art["videos"] = (deja + [v for v in videos.candidats(page) if v not in deja])[:videos.MAX_CANDIDATS]
     except Exception:
         pass
+    n_court, n = n, max(n, TEXTE_REDACTION)   # on lit large, puis on coupe pour le tri
     morceaux = []
     desc = _meta(page, "og:description", "description", "dc.description", "citation_abstract")
     if len(desc) >= 40:
@@ -1107,9 +1117,13 @@ def lire_page(art: dict, n: int = 6000, page: str | None = None) -> None:
             art["lecture"] = "trafilatura"
     except Exception:
         pass
+    long_ = texte
+    texte = nettoyer_texte(long_, n_court)
     if len(texte) > len(art.get("text", "")):
         art["text"] = texte
         art["page_lue"] = True
+    if len(long_) > len(art.get("texte_long", "")):
+        art["texte_long"] = long_          # lu par la rédaction et la relecture (redaction.py)
 
 
 # Sites qui refusent les robots (403) : on préfère une autre version du même sujet.
@@ -1190,9 +1204,8 @@ def texte_pour_redaction(art: dict) -> dict:
     """Article donné au rédacteur : texte principal + autres sources du même sujet."""
     if not art.get("_complements"):
         return art
-    texte = art.get("text", "") + "".join(
-        f"\n\n--- Autre source sur le même sujet : {n} ---\n{t}" for n, t in art["_complements"])
-    return dict(art, text=texte)
+    extra = "".join(f"\n\n--- Autre source sur le même sujet : {n} ---\n{t}" for n, t in art["_complements"])
+    return dict(art, text=art.get("text", "") + extra, texte_long=(art.get("texte_long") or art.get("text", "")) + extra)
 
 
 def lire_debut_page(art: dict) -> None:

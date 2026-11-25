@@ -181,14 +181,20 @@ SCHEMA_LIENS = {
 
 
 def _appel(client, modele_id, consigne, contenu, schema, conso, max_tokens=2000):
+    # 25/11 (économie sans perte) : la consigne est mise en cache ; relue à 10 % du prix quand
+    # plusieurs appels de suite utilisent la même (compléments de cartes, liens…).
     rep = client.messages.create(
-        model=modele_id, max_tokens=max_tokens, system=consigne,
+        model=modele_id, max_tokens=max_tokens,
+        system=[{"type": "text", "text": consigne, "cache_control": {"type": "ephemeral"}}],
         messages=[{"role": "user", "content": contenu}],
         output_config={"format": {"type": "json_schema", "schema": schema}},
         **economie.params_modele(modele_id),
     )
-    conso["in"] += rep.usage.input_tokens or 0
-    conso["out"] += rep.usage.output_tokens or 0
+    u = rep.usage
+    # écriture du cache comptée 1,25 fois, lecture 0,1 fois le prix d'entrée
+    conso["in"] += int((u.input_tokens or 0) + 1.25 * (getattr(u, "cache_creation_input_tokens", 0) or 0)
+                       + 0.1 * (getattr(u, "cache_read_input_tokens", 0) or 0))
+    conso["out"] += u.output_tokens or 0
     texte = "".join(b.text for b in rep.content if getattr(b, "type", "") == "text")
     try:
         return json.loads(texte[texte.find("{"):texte.rfind("}") + 1])
@@ -859,6 +865,34 @@ def _supprimer(db, e: dict) -> bool:
     return r.status_code < 300
 
 
+FICHIER_MEMOIRE = "memoire_tri.json"   # même fichier que la mémoire du tri (gardé entre les passages)
+
+
+def _empreinte(lignes: list[str]) -> str:
+    import hashlib
+    return hashlib.sha256("\n".join(sorted(lignes)).encode("utf-8")).hexdigest()[:20] + "|" \
+        + hashlib.sha256(CONSIGNE_DOUBLONS.encode("utf-8")).hexdigest()[:8]
+
+
+def _lire_empreinte() -> str:
+    try:
+        return str(json.load(open(FICHIER_MEMOIRE, encoding="utf-8")).get("_avenir_doublons") or "")
+    except Exception:
+        return ""
+
+
+def _ecrire_empreinte(e: str) -> None:
+    try:
+        try:
+            m = json.load(open(FICHIER_MEMOIRE, encoding="utf-8"))
+        except Exception:
+            m = {}
+        m["_avenir_doublons"] = e
+        json.dump(m, open(FICHIER_MEMOIRE, "w", encoding="utf-8"))
+    except Exception:
+        pass
+
+
 def verifier_doublons(db, client, futurs: list[dict], log) -> float:
     """Relit tout l'onglet, retire doublons et cartes incohérentes. Renvoie le coût ($). Jamais bloquant."""
     cartes = [e for e in futurs if e.get("id") and not e.get("advance_id")]
@@ -871,6 +905,12 @@ def verifier_doublons(db, client, futurs: list[dict], log) -> float:
             l = _LL2_CACHE.get(str(e.get("source_url", "")))
             base = f" [base : {l.get('name')}]" if l and l.get("name") else ""
             lignes.append(f"{k}. {e.get('event_date')} — {e.get('title', '')} — {(e.get('prevu') or '')[:160]}{base}")
+        # 25/11 (économie sans perte, ≈ 0,01 $ par passage) : si la liste envoyée est exactement
+        # celle du dernier contrôle complet, la réponse serait la même : on ne redemande pas.
+        empreinte = _empreinte(lignes)
+        if empreinte == _lire_empreinte():
+            log("  ✔ À venir : aucune carte changée depuis le dernier contrôle des doublons (contrôle sauté)")
+            return 0.0
         r = _appel(client, MODELE_DOUBLONS, CONSIGNE_DOUBLONS, "\n".join(lignes), SCHEMA_DOUBLONS, conso, 1500)
         a_retirer: dict[int, str] = {}
         for g in r.get("doublons") or []:
@@ -908,6 +948,7 @@ def verifier_doublons(db, client, futurs: list[dict], log) -> float:
             log(f"  ⚠ À venir : {len(a_retirer) - SUPPRESSIONS_MAX} autre(s) doublon(s) signalé(s), retirés au prochain passage")
         if not a_retirer:
             log("  ✔ À venir : aucun doublon")
+            _ecrire_empreinte(empreinte)       # contrôle complet et rien à retirer : on le retient
     except Exception as ex:
         log(f"  ⚠ À venir : contrôle des doublons impossible ({str(ex)[:300]})")
     return (conso["in"] * PRIX_DOUBLONS[0] + conso["out"] * PRIX_DOUBLONS[1]) / 1e6

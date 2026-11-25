@@ -238,7 +238,7 @@ def message(art: dict, fil: str, brouillon: dict) -> str:
             f"Importance décidée (ne pas changer) : {brouillon.get('importance', 1)}/5\n\n"
             f"{jet_txt}"
             f"Article source — {art.get('source_name', '')} — titre d'origine : {art.get('title', '')}\n"
-            f"{art.get('text', '')}")
+            f"{art.get('texte_long') or art.get('text', '')}")
 
 
 def rediger(client, modele_id: str, art: dict, fil: str, brouillon: dict,
@@ -368,7 +368,7 @@ def relire(client, modele_id: str, art: dict, fil: str, fiche: dict, essais: int
     contenu = (f"Fil : {'Sciences' if fil == 'science' else 'Technologies'}\n\n"
                f"Fiche à relire :\n{json.dumps(a_relire, ensure_ascii=False)}\n\n{mesures_txt}"
                f"Article source — {art.get('source_name', '')} — titre d'origine : {art.get('title', '')}\n"
-               f"{art.get('text', '')}")
+               f"{art.get('texte_long') or art.get('text', '')}")
     for essai in range(essais):
         try:
             rep = client.messages.create(
@@ -648,7 +648,7 @@ def _params_relecture(modele_id: str, art: dict, fil: str, fiche: dict) -> dict:
     contenu = (f"Fil : {'Sciences' if fil == 'science' else 'Technologies'}\n\n"
                f"Fiche à relire :\n{json.dumps(a_relire, ensure_ascii=False)}\n\n{mesures_txt}"
                f"Article source — {art.get('source_name', '')} — titre d'origine : {art.get('title', '')}\n"
-               f"{art.get('text', '')}")
+               f"{art.get('texte_long') or art.get('text', '')}")
     return dict(model=modele_id, max_tokens=16000,
                 system=[{"type": "text", "text": CONSIGNE_RELECTURE, "cache_control": {"type": "ephemeral"}}],
                 messages=[{"role": "user", "content": contenu}],
