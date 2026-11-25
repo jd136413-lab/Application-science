@@ -145,9 +145,11 @@ def nettoyer(f, sources, fil, prof, importance, n_car):
     clairs = []
     for c in f.get("en_chiffres") or []:
         v = str(c.get("valeur", ""))
-        if "/" in v or len(re.findall(r"\d+(?:[ ,.]\d+)*", v)) > 1 and "à" not in v or len(v.split()) > 4:
+        if "/" in v or len(re.findall(r"\d+(?:[ ,.]\d+)*", v)) > 1 and "à" not in v and "sur" not in v or len(v.split()) > 5:
             al.append(f"chiffre peu clair retiré de l'encadré : « {v} »")
         else:
+            sens = " ".join(str(c.get("sens", "")).split())
+            c["sens"] = sens[:1].upper() + sens[1:]            # une description, avec majuscule
             clairs.append(c)
     f["en_chiffres"] = clairs
     if f.get("en_chiffres") and len(f["en_chiffres"]) < 2:
