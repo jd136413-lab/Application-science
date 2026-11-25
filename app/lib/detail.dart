@@ -362,29 +362,24 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
       switch (b.cle) {
         case 'chapo':
           res.add(_intertitre(texteEnBref, p)); // 25/11 (Maxime) : intertitre au-dessus de l'encadré, comme la maquette
-          res.add(Container(
-            width: double.infinity,
-            margin: const EdgeInsets.only(bottom: 16),
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-            // 25/11 : l'écran de détail a déjà le fond des cartes ; l'encadré prend un gris visible (maquette 109)
-            decoration: BoxDecoration(color: estSombre(context) ? p.pastille : p.fond, borderRadius: BorderRadius.circular(14)),
-            child: _paragraphe(k, b.texte, 16.5, p.texte, graisse: FontWeight.w600),
+          res.add(Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: encadreDeborde(fond: estSombre(context) ? p.pastille : p.fond, child: _paragraphe(k, b.texte, 16.5, p.texte, graisse: FontWeight.w600)),
           ));
         case 'en_chiffres':
           res.add(Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               _intertitre(texteEnChiffres, p),
-              Container(
-                padding: const EdgeInsets.only(left: 12, top: 2, bottom: 2),
-                decoration: BoxDecoration(border: Border(left: BorderSide(color: couleurEtoiles, width: 3))),
+              traitDeborde(
+                couleur: couleurEtoiles,
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   for (final (v, sens) in b.chiffres)
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(minWidth: 86, maxWidth: 130),
+                        SizedBox(
+                          width: largeurChiffres(context, [for (final c in b.chiffres) c.$1]),
                           child: TexteArticle(v,
                               original: _original,
                               style: police(policeTitres, taille: 17, graisse: FontWeight.w800, couleur: couleurEtoiles, hauteur: 1.25)),
@@ -409,13 +404,10 @@ class _TitreEtResumeState extends State<_TitreEtResume> {
               for (final (j, x) in b.puces.indexed)
                 Padding(
                   padding: const EdgeInsets.only(top: 3),
-                  child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 1, right: 8),
-                      child: Text('•', style: police(policeTexte, taille: 16, couleur: p.texte)),
-                    ),
-                    Expanded(child: _paragraphe(100 * k + j, x, 15.5, p.texte)),
-                  ]),
+                  child: puceDeborde(
+                    puce: Text('•', style: police(policeTexte, taille: 16, couleur: p.texte)),
+                    child: _paragraphe(100 * k + j, x, 15.5, p.texte),
+                  ),
                 ),
             ]),
           ));
@@ -768,4 +760,53 @@ class BoutonVideo extends StatelessWidget {
       ),
     );
   }
+}
+
+
+// 25/11 (Maxime : « aligne mieux les paragraphes », choix « même bord gauche ») : tous les textes du
+// résumé commencent au même bord gauche ; le fond gris d'« En bref », le trait jaune d'« En chiffres »
+// et les puces débordent dans la marge au lieu de pousser le texte vers la droite.
+
+/// Encadré « En bref » : le fond déborde de [g] de chaque côté, le texte reste au bord commun.
+Widget encadreDeborde({required Color fond, required Widget child, double g = 14}) => SizedBox(
+      width: double.infinity,
+      child: Stack(clipBehavior: Clip.none, children: [
+        Positioned(
+            left: -g,
+            right: -g,
+            top: 0,
+            bottom: 0,
+            child: DecoratedBox(decoration: BoxDecoration(color: fond, borderRadius: BorderRadius.circular(14)))),
+        Padding(padding: const EdgeInsets.symmetric(vertical: 12), child: child),
+      ]),
+    );
+
+/// « En chiffres » : le trait de couleur est dans la marge, à [g] à gauche du texte.
+Widget traitDeborde({required Color couleur, required Widget child, double g = 12}) =>
+    Stack(clipBehavior: Clip.none, children: [
+      Positioned(left: -g, top: 2, bottom: 2, width: 3, child: ColoredBox(color: couleur)),
+      child,
+    ]);
+
+/// Puce dans la marge : le texte de la ligne reste au bord commun.
+Widget puceDeborde({required Widget puce, required Widget child, double g = 12}) =>
+    Stack(clipBehavior: Clip.none, children: [Positioned(left: -g, top: 1, child: puce), child]);
+
+
+/// 25/11 (Maxime : « que les explications des chiffres soient toujours alignées ») : une seule largeur
+/// pour toutes les valeurs d'un encadré, celle de la plus longue (entre 72 et 140 points) ; les
+/// descriptions commencent donc toutes au même endroit. Une valeur plus longue passe à la ligne.
+double largeurChiffres(BuildContext context, List<String> valeurs) {
+  final style = police(policeTitres, taille: 17, graisse: FontWeight.w800, hauteur: 1.25);
+  var max = 0.0;
+  for (final v in valeurs) {
+    final tp = TextPainter(
+        text: TextSpan(text: v, style: style),
+        textDirection: TextDirection.ltr,
+        textScaler: MediaQuery.textScalerOf(context),
+        maxLines: 1)
+      ..layout();
+    if (tp.width > max) max = tp.width;
+  }
+  return (max + 2).clamp(72.0, 140.0);
 }

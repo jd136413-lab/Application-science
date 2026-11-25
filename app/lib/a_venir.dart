@@ -1337,7 +1337,13 @@ class _EcranEvenementState extends State<EcranEvenement> {
                     ]),
                   ),
                 if (e.blocs.isNotEmpty)
-                  ...resumeBlocsEvenement(context, e.blocs, estSombre(context) ? f.encreSombre : f.encreClaire)
+                  // 25/11 : textes au bord intérieur des cartes (« En pratique »), le fond d'« En bref » s'aligne sur elles
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: resumeBlocsEvenement(context, e.blocs, estSombre(context) ? f.encreSombre : f.encreClaire)),
+                  )
                 else ...[
                   bloc('Ce qui est prévu', e.prevu),
                   bloc('Pourquoi c’est important', e.pourquoi),
@@ -1454,28 +1460,27 @@ List<Widget> resumeBlocsEvenement(BuildContext context, List<BlocFiche> blocs, C
     switch (b.cle) {
       case 'chapo':
         res.add(intertitre(texteEnBref)); // 25/11 (Maxime) : intertitre au-dessus de l'encadré
-        res.add(Container(
-          margin: const EdgeInsets.only(bottom: 16),
-          padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-          decoration: BoxDecoration(color: p.carte, borderRadius: BorderRadius.circular(14)),
-          child: TexteArticle(b.texte,
-              style: police(policeTexte, taille: 16.5, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.5)),
+        res.add(Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: encadreDeborde(
+              fond: p.carte,
+              child: TexteArticle(b.texte,
+                  style: police(policeTexte, taille: 16.5, graisse: FontWeight.w600, couleur: p.texte, hauteur: 1.5))),
         ));
       case 'en_chiffres':
         res.add(Padding(
           padding: const EdgeInsets.only(bottom: 16),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             intertitre(texteEnChiffres),
-            Container(
-              padding: const EdgeInsets.only(left: 12, top: 2, bottom: 2),
-              decoration: BoxDecoration(border: Border(left: BorderSide(color: couleurEtoiles, width: 3))),
+            traitDeborde(
+              couleur: couleurEtoiles,
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 for (final (v, sens) in b.chiffres)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(minWidth: 86, maxWidth: 130),
+                      SizedBox(
+                        width: largeurChiffres(context, [for (final c in b.chiffres) c.$1]),
                         child: TexteArticle(v,
                             style: police(policeTitres, taille: 17, graisse: FontWeight.w800, couleur: couleurEtoiles, hauteur: 1.25)),
                       ),
@@ -1497,14 +1502,10 @@ List<Widget> resumeBlocsEvenement(BuildContext context, List<BlocFiche> blocs, C
             for (final x in b.puces)
               Padding(
                 padding: const EdgeInsets.only(top: 3),
-                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: Text('•', style: police(policeTexte, taille: 16, couleur: p.texte)),
-                  ),
-                  Expanded(
-                      child: TexteArticle(x, style: police(policeTexte, taille: 15.5, couleur: p.texte, hauteur: 1.5))),
-                ]),
+                child: puceDeborde(
+                  puce: Text('•', style: police(policeTexte, taille: 16, couleur: p.texte)),
+                  child: TexteArticle(x, style: police(policeTexte, taille: 15.5, couleur: p.texte, hauteur: 1.5)),
+                ),
               ),
           ]),
         ));
