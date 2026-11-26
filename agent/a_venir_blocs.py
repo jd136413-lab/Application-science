@@ -102,6 +102,8 @@ def _texte_ll2(l: dict) -> str:
         f"Launch: {l.get('name', '')}.",
         f"Provider: {(l.get('launch_service_provider') or {}).get('name', '')}.",
         f"Rocket: {fusee.get('full_name') or fusee.get('name', '')}. {fusee.get('description') or ''}",
+        # 26/11 (suivi qualité) : la description de la fusée dit parfois « in development » alors qu'elle vole déjà.
+        f"Rocket flights so far: {fusee['total_launch_count']}." if fusee.get("total_launch_count") else "",
         f"Mission: {m.get('name', '')} ({m.get('type', '')}). {m.get('description') or ''}",
         f"Orbit: {(m.get('orbit') or {}).get('name', '')}.",
         f"Pad: {pad.get('name', '')}, {(pad.get('location') or {}).get('name', '')}.",
@@ -181,6 +183,8 @@ def _nettoyer(d: dict, sources: list[str]) -> list[str]:
     inconnus = sorted({n for t in textes for n in fb.nombres(t)} - connus - {str(i) for i in range(11)})
     if inconnus:
         al.append(f"nombres absents des sources : {inconnus}")
+    if re.search(r"Rocket flights so far: [1-9]", " ".join(sources)) and any(re.search(r"en (cours de )?développement", t) for t in textes):
+        al.append("fusée dite « en développement » alors qu'elle a déjà volé (à corriger ou supprimer)")
     for t in textes:
         if fb.FORMULES_CREUSES.search(t):
             al.append(f"formule creuse : {fb.FORMULES_CREUSES.search(t).group(0)}")
