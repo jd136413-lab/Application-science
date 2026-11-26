@@ -19,6 +19,15 @@ URL = os.environ["SUPABASE_URL"].rstrip("/") + "/rest/v1/upcoming_events"
 CLE = os.environ["SUPABASE_SECRET_KEY"]
 ENTETES = {"apikey": CLE, "Authorization": f"Bearer {CLE}", "Content-Type": "application/json"}
 
+# 26/11 (suivi qualité, validé par Maxime) : remplacements de texte, dans le titre et les paragraphes
+TEXTES = [
+    ("Fusées : Ariane 64 lance des satellites Internet européens",
+     "Fusées : Ariane 64 lance des satellites Internet d'Amazon"),
+    ("La fusée Vulcan doit aussi remplacer deux lanceurs de ULA, Atlas V et Delta IV Heavy, qui sont retirés.",
+     "La fusée Vulcan doit à terme remplacer deux lanceurs de ULA : la Delta IV Heavy, retirée en 2024, et "
+     "l'Atlas V, qui vole encore jusqu'à ses derniers exemplaires."),
+]
+
 CORRECTIONS = {   # (début du titre, ancien texte, nouveau texte)
     "europa": [("Nombre de passages prévus près de Ganymède", "Survols rapprochés d'Europe prévus")],
 }
@@ -74,16 +83,28 @@ def main():
     if os.environ.get("REFAIRE") == "oui":
         return refaire()
     r = requests.get(URL, headers=ENTETES, timeout=30,
-                     params={"select": "id,title,blocs", "blocs": "neq.[]", "limit": "500"})
+                     params={"select": "id,title,blocs", "limit": "500"})
     r.raise_for_status()
     modifiees = 0
     for e in r.json():
         blocs = e["blocs"] if isinstance(e["blocs"], list) else json.loads(e["blocs"] or "[]")
         neufs, notes = nettoyer(blocs, e.get("title") or "")
-        if neufs == blocs:
+        titre = e.get("title") or ""
+        for avant, apres in TEXTES:
+            if avant in titre:
+                titre = titre.replace(avant, apres)
+                notes.append("titre corrigé")
+            for b in neufs:
+                if avant in (b.get("texte") or ""):
+                    b["texte"] = b["texte"].replace(avant, apres)
+                    notes.append(f"texte corrigé ({b.get('cle')})")
+        if neufs == blocs and titre == e.get("title"):
             continue
+        maj = {"blocs": neufs}
+        if titre != e.get("title"):
+            maj["title"] = titre
         p = requests.patch(URL, headers=dict(ENTETES, Prefer="return=minimal"), timeout=30,
-                           params={"id": f"eq.{e['id']}"}, json={"blocs": neufs})
+                           params={"id": f"eq.{e['id']}"}, json=maj)
         ok = p.status_code < 300
         modifiees += ok
         print(f"{'✔' if ok else '✖ ' + str(p.status_code)} {e['title'][:70]}")

@@ -3,6 +3,8 @@
   C. sinon, une photo libre de droits de Wikimedia Commons, SEULEMENT si Claude est sûr, en la
      regardant, qu'elle montre exactement le sujet (même appareil, lieu, espèce, objet…) ;
   sinon : pas d'image.
+  A bis (26/11) : avant B, l'image du communiqué d'une source « communiqué » (université, institut, entreprise),
+     seulement si Claude confirme en la regardant qu'elle montre le sujet (≈ 0,0003 $ la fiche).
 Les photos libres données par la source elle-même (NASA, ESO…) ne sont jamais remplacées.
 Aucune image n'est stockée : la base ne garde que l'adresse de l'image (coût nul).
 Coût de C : 2 petits appels à Haiku par fiche (≈ 0,0003 $). Jamais bloquant.
@@ -181,10 +183,78 @@ def photo_libre(client, modele_id: str, fiche: dict, conso: dict, log=print) -> 
     return {"image_url": c["url"], "image_credit": credit[:120]}
 
 
+# ----------------------------------------------------------------------------- A bis : image du communiqué
+# 26/11/2026 (choix de Maxime) : pour une source « communiqué » (sources.COMMUNIQUES : université, institut,
+# agence, entreprise qui annonce son propre résultat), l'image principale de la page est reprise avec le
+# crédit de la source, seulement si Claude confirme en la regardant qu'elle montre bien le sujet.
+AGENCES_IMG = re.compile(r"Getty|Shutterstock|iStock|Adobe ?Stock|AP Photo|Associated Press|Reuters|AFP|Alamy|"
+                         r"stock photo|Unsplash|Pexels", re.I)
+PAS_UNE_PHOTO = re.compile(r"logo|/icons?/|favicon|avatar|placeholder|sprite|\.svg(?:\?|$)|\.gif(?:\?|$)", re.I)
+CONSIGNE_COMMUNIQUE = """Une fiche d'actualité scientifique ou technologique pourrait être illustrée par l'image principale du communiqué de presse qui l'annonce. Réponds "garder": true SEULEMENT si tu es SÛR que l'image montre le sujet précis de la fiche (l'appareil, le lieu, l'espèce, l'objet, l'expérience ou le résultat dont elle parle, ou une vue créée par l'équipe pour ce résultat). Réponds false pour : un logo, un bâtiment ou un campus sans lien, un portrait de chercheur seul, une image d'illustration générale ou de banque d'images, un texte, une image floue ou trop petite, ou au moindre doute. Réponds en JSON."""
+SCHEMA_COMMUNIQUE = {"type": "object", "properties": {"garder": {"type": "boolean"}, "raison": {"type": "string"}},
+                     "required": ["garder", "raison"], "additionalProperties": False}
+
+
+def image_communique(client, modele_id: str, fiche: dict, conso: dict, log=print) -> dict | None:
+    import html as _html
+    try:
+        r = requests.get(fiche.get("source_url") or "", headers=UA, timeout=20)
+        page = r.text[:600000] if r.ok else ""
+    except Exception:
+        page = ""
+    if not page:
+        return None
+    m = (re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)', page)
+         or re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image', page)
+         or re.search(r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)', page))
+    url = _html.unescape(m.group(1)).strip() if m else ""
+    if not url.startswith("https://") or PAS_UNE_PHOTO.search(url):
+        return None
+    if re.search(r"(?:credit|crédit|photo|image)[^<]{0,60}(?:" + AGENCES_IMG.pattern + ")", page, re.I):
+        log("  · image du communiqué écartée : photo d'agence")
+        return None
+    img = _image_b64(url)
+    if not img:
+        return None
+    sujet = f"Titre : {fiche.get('title', '')}\nDécouverte : {fiche.get('decouverte') or fiche.get('summary') or ''}"
+    rep = _json_appel(client, modele_id, CONSIGNE_COMMUNIQUE, [{"type": "text", "text": sujet}, img],
+                      SCHEMA_COMMUNIQUE, conso)
+    if rep.get("garder") is not True:
+        log(f"  · image du communiqué écartée ({str(rep.get('raison', ''))[:70]})")
+        return None
+    return {"image_url": url, "image_credit": f"Image : {fiche.get('source_name', '')}"[:120]}
+
+
 def passage(table_url: str, headers: dict, client, modele_id: str, ajoutes: list, conso: dict, log=print) -> None:
-    """À la fin d'un passage : B pour toutes les fiches récentes, puis C pour les nouvelles fiches restées sans image."""
-    n_b = accorder_videos(table_url, headers, log)
+    """À la fin d'un passage : image du communiqué (A bis) pour les nouvelles fiches d'une source « communiqué »,
+    puis B pour toutes les fiches récentes, puis C pour les nouvelles fiches restées sans image."""
     ids = [l.get("id") for l in ajoutes if l.get("id")]
+    n_a = 0
+    try:
+        from sources import COMMUNIQUES
+    except Exception:
+        COMMUNIQUES = set()
+    if ids:
+        try:
+            r = requests.get(table_url, headers=headers, timeout=30, params={
+                "select": "id,title,decouverte,summary,image_url,source_url,source_name", "id": f"in.({','.join(ids)})"})
+            r.raise_for_status()
+            for f in r.json()[:MAX_PHOTOS]:
+                if f.get("image_url") or f.get("source_name") not in COMMUNIQUES:
+                    continue
+                try:
+                    ph = image_communique(client, modele_id, f, conso, log)
+                except Exception as ex:
+                    log(f"  · image du communiqué : erreur ({ex.__class__.__name__})")
+                    ph = None
+                if ph:
+                    requests.patch(table_url, headers=dict(headers, Prefer="return=minimal"), timeout=30,
+                                   params={"id": f"eq.{f['id']}", "image_url": "is.null"}, json=ph).raise_for_status()
+                    n_a += 1
+                    log(f"  🖼 image du communiqué : {str(f.get('title'))[:60]} ← {ph['image_credit']}")
+        except Exception as ex:
+            log(f"⚠ Images des communiqués non cherchées ({ex.__class__.__name__})")
+    n_b = accorder_videos(table_url, headers, log)
     n_c = 0
     if ids:
         try:
@@ -206,7 +276,7 @@ def passage(table_url: str, headers: dict, client, modele_id: str, ajoutes: list
                     log(f"  🖼 photo libre : {str(f.get('title'))[:60]} ← {ph['image_credit']}")
         except Exception as ex:
             log(f"⚠ Photos libres non cherchées ({ex.__class__.__name__})")
-    log(f"Images : {n_b} image(s) de vidéo mises à jour, {n_c} photo(s) libre(s) ajoutée(s).")
+    log(f"Images : {n_a} image(s) de communiqué, {n_b} image(s) de vidéo mises à jour, {n_c} photo(s) libre(s) ajoutée(s).")
 
 
 if __name__ == "__main__":

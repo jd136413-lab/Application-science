@@ -612,7 +612,8 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
     # --- 1) Revérifier les lancements suivis (pas encore arrivés) ---
     maj = 0
     suivis = [e for e in existants if str(e.get("source_url", "")).startswith(LL2) and not e.get("advance_id")
-              and e.get("statut") != "annule" and e["event_date"] >= (aujourd_hui - timedelta(days=3)).isoformat()]
+              and e.get("statut") not in ("annule", "lance", "echec")
+              and e["event_date"] >= (aujourd_hui - timedelta(days=3)).isoformat()]
     hors_liste = 0
     for e in suivis:
         l = par_id.get(e["source_url"])
@@ -631,8 +632,21 @@ def lancements(db, client, modele_id, existants: list[dict], futurs: list[dict],
         try:
             st = str((l.get("status") or {}).get("abbrev", "") or "")
             if st in ("Success", "Failure", "Partial Failure", "In Flight"):
-                _modifier(db, e, {"verifie_le": datetime.now(timezone.utc).isoformat()})
-                continue                                # parti : la fiche « C'est arrivé » suivra
+                # 26/11 (Maxime, maquette 113) : la carte dit « Lancé » ou « Échec » sans attendre une fiche
+                # (migration 026). Si la base ne connaît pas encore ces statuts : simple vérification, comme avant.
+                nouveau_st = "lance" if st in ("Success", "In Flight") else "echec"
+                champs = {"verifie_le": datetime.now(timezone.utc).isoformat()}
+                if e.get("statut") != nouveau_st:
+                    try:
+                        _modifier(db, e, dict(champs, statut=nouveau_st,
+                                              statut_raison="échec partiel" if st == "Partial Failure" else None))
+                        log(f"  🚀 À venir : {e.get('title', '')[:60]} → {'lancé' if nouveau_st == 'lance' else 'échec'}")
+                        maj += 1
+                        continue
+                    except Exception:
+                        pass
+                _modifier(db, e, champs)
+                continue                                # parti : la fiche « C'est arrivé » suivra peut-être
             nouveau = _quand_lancement(l)
             if nouveau is None:
                 continue

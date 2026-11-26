@@ -14,7 +14,18 @@ programmée, qui lit et note les fiches. Aucun workflow payant n'est lancé.
    `https://seqpmcovknfgppdolhns.supabase.co/rest/v1/advances?select=*&created_at=gte.<début du run>&order=created_at.asc`
 4. Les cartes À venir réécrites ou créées : `upcoming_events?select=*&updated_at=gte.<début du run>` (si la colonne
    n'existe pas : `blocs=neq.[]&event_date=gte.<aujourd'hui>`).
-5. Pour chaque fiche, ouvrir la source (`source_url`, avec WebFetch) pour vérifier l'exactitude.
+5. Textes sources (depuis le 26/11) : `gh run download <id> -R jd136413-lab/Application-science -n sources-du-passage -D /tmp/sources`
+   → un fichier JSON par fiche publiée (`titre`, `source_url`, `texte` lu par l'agent). C'est la référence pour
+   « Exactitude ». WebFetch sur `source_url` seulement si le fichier manque.
+
+## 1 bis. Décisions de Maxime à respecter (ne pas reproposer)
+
+- 26/11 : « première » et « record » s'entendent au sens MONDIAL. Une première seulement nationale (premier astronaute
+  ou premier lancement d'un pays, nouvelle nationalité) n'est pas une avancée : son absence n'est PAS un sujet manqué.
+- 26/11 : images des communiqués (universités, instituts, entreprises : `sources.COMMUNIQUES`) acceptées si la
+  vérification visuelle confirme qu'elles montrent le sujet. Suivre : part de fiches avec image, et toute image hors
+  sujet (défaut grave : prévenir Maxime).
+- 26/11 : 8 résumés À venir par passage (budget).
 
 ## 2. Noter (même grille à chaque fois, pour pouvoir comparer)
 

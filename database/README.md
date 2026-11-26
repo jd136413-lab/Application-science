@@ -3,7 +3,7 @@
 Tous ces fichiers se lancent **à la main**, une seule fois, dans Supabase :
 SQL Editor → New query → New blank query → coller → Run.
 Ils sont tous déjà passés sur la base actuelle, sauf la 025 (à lancer) (projet `seqpmcovknfgppdolhns`).
-Une nouvelle migration prend le numéro suivant (prochaine : **026**).
+Une nouvelle migration prend le numéro suivant (prochaine : **027**).
 
 | Fichier | Date | Ce qu'il fait |
 |---|---|---|

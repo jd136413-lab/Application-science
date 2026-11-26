@@ -328,3 +328,23 @@ TITRES_EXCLUS = [
     "Guide:", "Walkthrough", "Soluce", "trailer", "bande-annonce", "pre-order", "précommande",
     "free games", "jeux gratuits", "Wordle", "Connections hint", "Strands hint",
 ]
+
+
+# 26/11/2026 (choix de Maxime) : sources « communiqué » — services de presse d'universités, d'instituts,
+# d'agences publiques et d'entreprises, qui diffusent leurs images pour illustrer leurs propres annonces.
+# L'agent peut reprendre l'image principale de la page (avec le crédit de la source), SEULEMENT si une
+# vérification visuelle confirme qu'elle montre bien le sujet de la fiche (images.py, étape « communiqué »).
+# Jamais pour un média (Phys.org, Live Science, BBC…), dont les photos viennent souvent d'agences.
+COMMUNIQUES = {
+    "EurekAlert!", "ESA", "ESA (technologie spatiale)", "CNRS Le journal", "Inserm", "MIT News", "NOAA",
+    "Observatoire de Paris", "Max Planck", "ETH Zurich", "EPFL", "Institut Paul Scherrer (PSI)", "EMBL",
+    "Fraunhofer", "Université de Copenhague", "Université de Lund", "CNIO (cancer, Espagne)",
+    "Université de Cambridge", "Francis Crick Institute", "NSF", "NIST", "USGS", "Oak Ridge (ORNL)", "SLAC",
+    "Harvard Gazette", "Caltech", "University of Washington", "University of Michigan", "Broad Institute",
+    "MBARI (océans)", "Carnegie Science", "ALMA", "Observatoire Keck", "SETI Institute", "UBC (Canada)",
+    "RIKEN (Japon)", "Université de Kyoto", "A*STAR (Singapour)", "NUS (Singapour)",
+    "KAUST Discovery (Arabie saoudite)", "Institut Weizmann", "ILRI (élevage, Afrique)", "CGIAR (agriculture)",
+    "Apple Newsroom", "NVIDIA Newsroom", "Google Blog", "OpenAI News", "Microsoft News", "Google Research",
+    "Google DeepMind", "Microsoft Research", "IBM Research", "Arm", "Samsung Semiconductor", "Siemens", "Airbus",
+    "Rocket Lab", "PlayStation Blog",
+}

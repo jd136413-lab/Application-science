@@ -24,7 +24,7 @@ import economie
 import fiche_blocs as fb
 import redaction
 
-MAX_PAR_PASSAGE = 15   # 25/11 : rattrapage des 40 cartes (≈ 0,002 $ la carte)
+MAX_PAR_PASSAGE = 8    # 26/11 (Maxime) : retour à 8, le rattrapage est fini (≈ 0,002 $ la carte)
 
 CONSIGNE = """Tu rédiges le résumé d'une carte de l'onglet « À venir » de NovaSTEM : une application gratuite qui présente les avancées scientifiques et technologiques et les grands événements à venir (lancements, sorties de produits, phénomènes dans le ciel, sommets, résultats attendus…) à des lecteurs non spécialistes (lycéens, adultes curieux), en français.
 
