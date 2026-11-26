@@ -379,6 +379,23 @@ class Supabase:
         return "ok"
 
 
+# 26/11/2026 (Maxime) : copie privée du texte source de chaque fiche publiée, jointe au passage sur GitHub
+# (artefact « sources-du-passage », gardé 7 jours, jamais publié). Le suivi qualité y vérifie l'exactitude.
+DOSSIER_SOURCES_SUIVI = "sources_suivi"
+
+
+def garder_source(art: dict, ligne: dict) -> None:
+    try:
+        os.makedirs(DOSSIER_SOURCES_SUIVI, exist_ok=True)
+        nom = re.sub(r"[^a-zA-Z0-9-]", "", str(ligne.get("id") or "")) or str(abs(hash(art.get("url", ""))))
+        with open(os.path.join(DOSSIER_SOURCES_SUIVI, f"{nom}.json"), "w", encoding="utf-8") as f:
+            json.dump({"id": ligne.get("id"), "titre": ligne.get("title"), "source_url": art.get("url"),
+                       "source_name": art.get("source_name"),
+                       "texte": (art.get("texte_long") or art.get("text") or "")[:20000]}, f, ensure_ascii=False)
+    except Exception:
+        pass                                   # jamais bloquant
+
+
 # ============================ FLUX RSS ===============================
 
 def image_libre(entree) -> str:
@@ -1880,6 +1897,7 @@ def main() -> int:
                     if ligne["_qualite"]:
                         log(f"  ⚠ qualité : {' ; '.join(ligne['_qualite'])}")
                     ajoutes.append(ligne)
+                    garder_source(art, ligne)
                     log(f"  ✔ {FIL_NOM[ligne['feed']]:<12} [{ligne['importance']}★ {ligne['theme']}"
                         f"{' 📷' if ligne['image_url'] else ''}] : {ligne['title']}")
         except Exception as ex:
@@ -1920,6 +1938,7 @@ def main() -> int:
                 if ligne["_qualite"]:
                     log(f"  ⚠ qualité : {' ; '.join(ligne['_qualite'])}")
                 ajoutes.append(ligne)
+                garder_source(art, ligne)
                 log(f"  ✔ {FIL_NOM[ligne['feed']]:<12} [{ligne['importance']}★ {ligne['theme']}"
                     f"{' 📷' if ligne['image_url'] else ''}] : {ligne['title']}")
 

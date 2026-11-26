@@ -2,6 +2,10 @@
 
 ## Corrections majeures à demander à Maxime
 
+> 26/11, réponses de Maxime : statut « Lancé » → OUI (en cours) ; budget → 8 résumés À venir par passage (fait) ;
+> premières de vols habités → seulement les records MONDIAUX (fait, sujet clos) ; deux cartes → corrigées ;
+> images des communiqués → acceptées si cohérentes (fait).
+
 - **Cartes de lancement parties sans « C'est arrivé »** : une carte ne devient « C'est arrivé » que si une
   fiche est publiée. Shenzhou-24 (25/11) est partie, mais aucune fiche n'a suivi (l'article sur l'astronaute pakistanais
   a été jugé « none », c'est une visite) : la carte reste affichée « prévue », au futur, pendant 7 jours. Proposition :
