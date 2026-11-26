@@ -209,6 +209,11 @@ class Evenement {
   int get joursFin => (fin ?? date).difference(aujourdhuiParis()).inDays;
 
   bool get annule => statut == 'annule';
+
+  /// 26/11 (maquette 113) : lancement parti d'après le calendrier officiel, même sans fiche publiée.
+  bool get lance => statut == 'lance';
+  bool get echec => statut == 'echec';
+  bool get parti => lance || echec;
   bool get reporte => statut == 'reporte' && datePrecedente != null;
   bool get dateFloue => precision != 'jour';
   bool get enCours => jours < 0 && joursFin >= 0;
@@ -353,7 +358,7 @@ class EvenementsAVenir extends ChangeNotifier {
   }
 
   List<Evenement> prochains({String? fil}) =>
-      visibles(fil: fil).where((e) => !e.arrive && e.joursFin >= 0).toList()..sort((a, b) => a.date.compareTo(b.date));
+      visibles(fil: fil).where((e) => !e.arrive && !e.parti && e.joursFin >= 0).toList()..sort((a, b) => a.date.compareTo(b.date));
 
   int get cetteSemaine => prochains().where((e) => e.jours <= 7).length;
 }
@@ -475,7 +480,7 @@ Future<void> reprogrammerRappels() async {
   final l = evenementsAVenir.liste ?? const <Evenement>[];
   for (final id in etat.rappels.toList()) {
     final e = l.where((x) => x.id == id).firstOrNull;
-    final fini = e == null || e.arrive || e.annule || (e.type == 'ciel' ? e.joursFin < 0 : e.joursFin < -7);
+    final fini = e == null || e.arrive || e.parti || e.annule || (e.type == 'ciel' ? e.joursFin < 0 : e.joursFin < -7);
     if (fini) {
       if (e != null) await annulerRappel(idRappel(e));
       await desabonnerEvenement(id);
@@ -715,26 +720,30 @@ class CarteArrivee extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = palette(context);
+    // 26/11 (maquette 113) : lancement parti sans fiche publiée → « Lancé » ou « Échec », ouvre l'événement
+    final sansFiche = !e.arrive && e.parti;
+    final badge = sansFiche ? (e.lance ? '🚀 ${tr('Lancé')}' : '✕ ${tr('Échec du lancement')}') : tr('C’est arrivé');
+    final couleurBadge = sansFiche && e.echec ? const Color(0xFFD64550) : const Color(0xFF12A37F);
     return Material(
       color: p.carte,
       borderRadius: BorderRadius.circular(18),
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
-        onTap: () => ouvrirAvanceeArrivee(context, e),
+        onTap: () => sansFiche ? ouvrirEvenement(context, e) : ouvrirAvanceeArrivee(context, e),
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              decoration: BoxDecoration(color: const Color(0xFF12A37F), borderRadius: BorderRadius.circular(8)),
-              child: Text('${tr('C’est arrivé')} · ${dateEvenement(e)}'.toUpperCase(),
+              decoration: BoxDecoration(color: couleurBadge, borderRadius: BorderRadius.circular(8)),
+              child: Text('$badge · ${dateEvenement(e)}'.toUpperCase(),
                   style: police(policeTexte, taille: 10.5, graisse: FontWeight.w800, couleur: Colors.white)),
             ),
             const SizedBox(height: 8),
             TexteArticle(e.titre,
                 style: police(policeTitres, taille: 15.5, graisse: FontWeight.w700, couleur: p.texte, hauteur: 1.2)),
             const SizedBox(height: 6),
-            Text('${tr('Lire l’avancée')} →',
+            Text('${tr(sansFiche ? 'Voir l’événement' : 'Lire l’avancée')} →',
                 style: police(policeTexte, taille: 13.5, graisse: FontWeight.w700, couleur: const Color(0xFF3D7BFF))),
           ]),
         ),
@@ -842,12 +851,19 @@ const _bleuFond = Color(0xFFEEF0FA), _bleuTexte = Color(0xFF2F3E66);
 /// Ligne pratique sous le titre d'une carte de la liste : visibilité (ciel), statut, heure ou lieu.
 /// [statutSeulement] : seulement annulé, reporté ou visibilité (sinon rien).
 List<Widget> ligneCarte(BuildContext context, Evenement e, {bool statutSeulement = false}) {
-  if (statutSeulement && !e.annule && !e.reporte && e.type != 'ciel') return const [];
+  if (statutSeulement && !e.annule && !e.reporte && !e.parti && e.type != 'ciel') return const [];
   final p = palette(context);
   String? texte;
   Color couleur = p.texteDiscret;
   var gras = false;
-  if (e.annule) {
+  if (e.parti && !e.arrive) {
+    // 26/11 (maquette 113) : « 🚀 Lancé · mardi 25 novembre » / « ✕ Échec du lancement · … »
+    texte = '${e.lance ? '🚀 ${tr('Lancé')}' : '✕ ${tr('Échec du lancement')}'} · ${dateEvenement(e, longue: true)}';
+    couleur = e.lance
+        ? (estSombre(context) ? const Color(0xFF6EE2BE) : _vertTexte)
+        : (estSombre(context) ? const Color(0xFFFF8A8F) : _rougeTexte);
+    gras = true;
+  } else if (e.annule) {
     texte = _compose((_) => tr('Annulé'));
     couleur = estSombre(context) ? const Color(0xFFFF8A8F) : _rougeTexte;
     gras = true;
@@ -939,7 +955,16 @@ Widget _bandeau(BuildContext context, Color fond, Color texte, IconData icone, S
 List<Widget> bandeauxEvenement(BuildContext context, Evenement e) {
   final l = <Widget>[];
   String raison(String Function(String?) t) => (e.statutRaison ?? '').isNotEmpty ? '${tr('Raison')} : ${t(e.statutRaison)}. ' : '';
-  if (e.annule) {
+  if (e.parti && !e.arrive) {
+    // 26/11 (maquette 113) : bandeau vert ou rouge ; le résumé, écrit avant le départ, décrit ce qui était prévu.
+    final quand = '${dateEvenement(e, longue: true)}${e.instantExact != null ? ' · ${heureLocale(e.instantExact!)}' : ''}';
+    l.add(e.lance
+        ? _bandeau(context, _vertFond, _vertTexte, Icons.rocket_launch_rounded, tr('Lancement réussi'),
+            trv('Parti le {date}. Le résumé ci-dessous décrit ce qui était prévu.', {'date': quand}))
+        : _bandeau(context, _rougeFond, _rougeTexte, Icons.cancel_rounded, tr('Échec du lancement'),
+            trv('Parti le {date}, mais la mission n’a pas atteint son but. Le résumé ci-dessous décrit ce qui était prévu.',
+                {'date': quand})));
+  } else if (e.annule) {
     l.add(_bandeau(context, _rougeFond, _rougeTexte, Icons.event_busy_rounded, tr('Annulé'),
         _compose((t) => '${raison(t)}${tr('L’organisateur a annulé l’événement.')}')));
   } else if (e.reporte) {
@@ -1078,7 +1103,7 @@ class _VueAVenirState extends State<VueAVenir> {
         final prochains = evenementsAVenir.prochains(fil: _fil);
         final arrives = evenementsAVenir
             .visibles(fil: _fil)
-            .where((e) => e.arrive)
+            .where((e) => e.arrive || e.parti) // 26/11 : lancements partis, même sans fiche
             .toList()
           ..sort((a, b) => b.date.compareTo(a.date));
         Widget section(String t) => Padding(
@@ -1207,6 +1232,9 @@ class _EcranEvenementState extends State<EcranEvenement> {
     if (e.precision == 'mois' && e.jours > 1) {
       compteur = Text(dateEvenement(e),
           style: police(policeTitres, taille: 32, graisse: FontWeight.w800, couleur: f.icone));
+    } else if (e.parti && !e.arrive) {
+      compteur = Text(tr(e.lance ? 'Lancé' : 'Échec'),
+          style: police(policeTitres, taille: 32, graisse: FontWeight.w800, couleur: f.icone));
     } else if (e.annule) {
       compteur = Text(tr('Annulé'), style: police(policeTitres, taille: 32, graisse: FontWeight.w800, couleur: f.icone));
     } else if (e.precision == 'avant' && e.jours > 1) {
@@ -1244,7 +1272,7 @@ class _EcranEvenementState extends State<EcranEvenement> {
       listenable: etat,
       builder: (context, _) {
         final rappel = etat.rappels.contains(e.id);
-        final avecRappel = !e.arrive && !e.annule && (e.joursFin >= 0 || (rappel && e.type != 'ciel'));
+        final avecRappel = !e.arrive && !e.parti && !e.annule && (e.joursFin >= 0 || (rappel && e.type != 'ciel'));
         final boutonSource = OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
             foregroundColor: p.texte,
@@ -1321,7 +1349,7 @@ class _EcranEvenementState extends State<EcranEvenement> {
                 if ((e.video ?? '').isNotEmpty && (e.video ?? '') != (e.lienDirect ?? ''))
                   Padding(padding: const EdgeInsets.only(bottom: 10), child: BoutonVideo(lien: e.video!, titre: e.videoTitre)),
                 if (blocPratique(context, e) case final b?) Padding(padding: const EdgeInsets.only(bottom: 16), child: b),
-                if (!e.arrive && !e.annule && e.joursFin < 0 && e.type != 'ciel')
+                if (!e.arrive && !e.parti && !e.annule && e.joursFin < 0 && e.type != 'ciel')
                   Container(
                     margin: const EdgeInsets.only(bottom: 16),
                     padding: const EdgeInsets.all(14),
