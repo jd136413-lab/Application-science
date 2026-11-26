@@ -10354,3 +10354,150 @@ ja フォローしていない分野の新着
 ko 팔로우하지 않는 분야의 새 소식
 id Kabar baru dari bidang yang tidak Anda ikuti
 vi Tin mới từ các lĩnh vực bạn chưa theo dõi
+
+@ Lancé
+en Launched
+es Lanzado
+pt Lançado
+de Gestartet
+it Lanciato
+nl Gelanceerd
+pl Wystrzelony
+ru Запущен
+uk Запущено
+tr Fırlatıldı
+ar أُطلق
+hi प्रक्षेपित
+bn উৎক্ষেপিত
+ur لانچ ہو گیا
+zh 已发射
+ja 打ち上げ済み
+ko 발사 완료
+id Diluncurkan
+vi Đã phóng
+
+@ Échec
+en Failed
+es Fallido
+pt Falhou
+de Fehlschlag
+it Fallito
+nl Mislukt
+pl Porażka
+ru Неудача
+uk Невдача
+tr Başarısız
+ar فشل
+hi विफल
+bn ব্যর্থ
+ur ناکام
+zh 失败
+ja 失敗
+ko 실패
+id Gagal
+vi Thất bại
+
+@ Échec du lancement
+en Launch failure
+es Lanzamiento fallido
+pt Falha no lançamento
+de Fehlstart
+it Lancio fallito
+nl Mislukte lancering
+pl Nieudany start
+ru Неудачный запуск
+uk Невдалий запуск
+tr Başarısız fırlatma
+ar فشل الإطلاق
+hi प्रक्षेपण विफल
+bn উৎক্ষেপণ ব্যর্থ
+ur لانچ ناکام
+zh 发射失败
+ja 打ち上げ失敗
+ko 발사 실패
+id Peluncuran gagal
+vi Phóng thất bại
+
+@ Lancement réussi
+en Successful launch
+es Lanzamiento exitoso
+pt Lançamento bem-sucedido
+de Erfolgreicher Start
+it Lancio riuscito
+nl Geslaagde lancering
+pl Udany start
+ru Успешный запуск
+uk Успішний запуск
+tr Başarılı fırlatma
+ar إطلاق ناجح
+hi सफल प्रक्षेपण
+bn সফল উৎক্ষেপণ
+ur کامیاب لانچ
+zh 发射成功
+ja 打ち上げ成功
+ko 발사 성공
+id Peluncuran berhasil
+vi Phóng thành công
+
+@ Voir l’événement
+en See the event
+es Ver el evento
+pt Ver o evento
+de Zum Ereignis
+it Vedi l’evento
+nl Bekijk het evenement
+pl Zobacz wydarzenie
+ru Открыть событие
+uk Відкрити подію
+tr Etkinliği gör
+ar عرض الحدث
+hi कार्यक्रम देखें
+bn ইভেন্ট দেখুন
+ur ایونٹ دیکھیں
+zh 查看事件
+ja イベントを見る
+ko 이벤트 보기
+id Lihat acara
+vi Xem sự kiện
+
+@ Parti le {date}. Le résumé ci-dessous décrit ce qui était prévu.
+en Launched on {date}. The summary below describes what was planned.
+es Lanzado el {date}. El resumen de abajo describe lo que estaba previsto.
+pt Lançado em {date}. O resumo abaixo descreve o que estava previsto.
+de Gestartet am {date}. Die Zusammenfassung unten beschreibt, was geplant war.
+it Partito il {date}. Il riassunto qui sotto descrive ciò che era previsto.
+nl Gelanceerd op {date}. De samenvatting hieronder beschrijft wat gepland was.
+pl Start: {date}. Poniższe streszczenie opisuje, co było zaplanowane.
+ru Запущен {date}. Ниже описано, что планировалось.
+uk Запущено {date}. Нижче описано, що планувалося.
+tr {date} tarihinde fırlatıldı. Aşağıdaki özet planlananı anlatıyor.
+ar أُطلق في {date}. يصف الملخص أدناه ما كان مخططًا له.
+hi {date} को प्रक्षेपित। नीचे का सारांश बताता है कि क्या योजना थी।
+bn {date} তারিখে উৎক্ষেপিত। নিচের সারাংশে পরিকল্পনাটি বর্ণনা করা হয়েছে।
+ur {date} کو لانچ ہوا۔ نیچے کا خلاصہ بتاتا ہے کہ کیا منصوبہ تھا۔
+zh 已于{date}发射。下方摘要介绍的是原定计划。
+ja {date}に打ち上げ。下の要約は予定されていた内容です。
+ko {date}에 발사됨. 아래 요약은 원래 계획을 설명합니다.
+id Diluncurkan pada {date}. Ringkasan di bawah menjelaskan rencananya.
+vi Đã phóng vào {date}. Phần tóm tắt dưới đây mô tả kế hoạch ban đầu.
+
+@ Parti le {date}, mais la mission n’a pas atteint son but. Le résumé ci-dessous décrit ce qui était prévu.
+en Launched on {date}, but the mission did not reach its goal. The summary below describes what was planned.
+es Lanzado el {date}, pero la misión no alcanzó su objetivo. El resumen de abajo describe lo que estaba previsto.
+pt Lançado em {date}, mas a missão não atingiu seu objetivo. O resumo abaixo descreve o que estava previsto.
+de Gestartet am {date}, aber die Mission hat ihr Ziel nicht erreicht. Die Zusammenfassung unten beschreibt, was geplant war.
+it Partito il {date}, ma la missione non ha raggiunto il suo obiettivo. Il riassunto qui sotto descrive ciò che era previsto.
+nl Gelanceerd op {date}, maar de missie haalde haar doel niet. De samenvatting hieronder beschrijft wat gepland was.
+pl Start: {date}, ale misja nie osiągnęła celu. Poniższe streszczenie opisuje, co było zaplanowane.
+ru Запущен {date}, но миссия не достигла цели. Ниже описано, что планировалось.
+uk Запущено {date}, але місія не досягла мети. Нижче описано, що планувалося.
+tr {date} tarihinde fırlatıldı ancak görev amacına ulaşamadı. Aşağıdaki özet planlananı anlatıyor.
+ar أُطلق في {date}، لكن المهمة لم تحقق هدفها. يصف الملخص أدناه ما كان مخططًا له.
+hi {date} को प्रक्षेपित, लेकिन मिशन अपने लक्ष्य तक नहीं पहुँचा। नीचे का सारांश बताता है कि क्या योजना थी।
+bn {date} তারিখে উৎক্ষেপিত, কিন্তু মিশন লক্ষ্যে পৌঁছায়নি। নিচের সারাংশে পরিকল্পনাটি বর্ণনা করা হয়েছে।
+ur {date} کو لانچ ہوا، لیکن مشن اپنے مقصد تک نہیں پہنچا۔ نیچے کا خلاصہ بتاتا ہے کہ کیا منصوبہ تھا۔
+zh 已于{date}发射，但任务未达成目标。下方摘要介绍的是原定计划。
+ja {date}に打ち上げられましたが、ミッションは目標を達成できませんでした。下の要約は予定されていた内容です。
+ko {date}에 발사됐지만 임무는 목표를 달성하지 못했습니다. 아래 요약은 원래 계획을 설명합니다.
+id Diluncurkan pada {date}, tetapi misi tidak mencapai tujuannya. Ringkasan di bawah menjelaskan rencananya.
+vi Đã phóng vào {date}, nhưng sứ mệnh không đạt mục tiêu. Phần tóm tắt dưới đây mô tả kế hoạch ban đầu.
