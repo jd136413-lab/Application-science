@@ -1099,6 +1099,38 @@ class EcranNouveautesMag extends StatelessWidget {
       );
 }
 
+/// 26/11 (Maxime) : écran ouvert depuis une notification de plusieurs avancées. Il montre les avancées
+/// récentes (3 jours) des domaines notifiés, au niveau d'importance choisi dans les réglages des
+/// notifications — lues comprises, pour retrouver celle qu'on vient d'ouvrir.
+class EcranNotifiees extends StatelessWidget {
+  final String fil;
+  const EcranNotifiees({super.key, required this.fil});
+
+  @override
+  Widget build(BuildContext context) => ListenableBuilder(
+        listenable: Listenable.merge([etat, filsAvancees]),
+        builder: (context, _) {
+          final p = palette(context);
+          final l = filsAvancees.tousDomaines(fil).where((a) {
+            final d = a.ajouteLe;
+            final min = etat.minDeFamille(a.famille);
+            return d != null && DateTime.now().difference(d) < dureeNouveaute && min > 0 && a.importance >= min;
+          }).toList()
+            ..sort((a, b) => b.publieLe.compareTo(a.publieLe));
+          return _PageListe(
+            titre: tr('Mes domaines suivis'),
+            enTete: [
+              if (l.isNotEmpty)
+                Text(l.length == 1 ? tr('1 avancée') : tr('{n} avancées', n: l.length),
+                    style: police(policeTexte, taille: 13, couleur: p.texteDiscret)),
+            ],
+            liste: l,
+            vide: filsAvancees.enCours.contains(fil) ? tr('Mise à jour…') : tr('Vous êtes à jour'),
+          );
+        },
+      );
+}
+
 class EcranTopMag extends StatefulWidget {
   final String fil;
   const EcranTopMag({super.key, required this.fil});
