@@ -16,4 +16,11 @@
 
 | Défaut visé | Correction | Effet mesuré |
 |---|---|---|
-| Fusée dite « en développement » alors qu'elle a déjà volé (Longue Marche 12 le 25/11, Ariane 6 le 26/11) | `a_venir_blocs.py` : la fiche du lancement donne au rédacteur le nombre de vols de la fusée ; si le texte dit « en développement » alors qu'elle a volé, alerte au relecteur. Aucune ligne ajoutée aux consignes. | à mesurer sur les 4 prochains passages |
+| Fusée dite « en développement » alors qu'elle a déjà volé (Longue Marche 12 le 25/11, Ariane 6 le 26/11) | `a_venir_blocs.py` : la fiche du lancement donne au rédacteur le nombre de vols de la fusée ; si le texte dit « en développement » alors qu'elle a volé, alerte au relecteur. Aucune ligne ajoutée aux consignes. | 26/11 soir : pas encore mesurable (la carte Longue Marche 12 n'a pas été réécrite) |
+
+## 26/11/2026 · soir (suivi automatique)
+
+| Défaut visé | Correction | Effet mesuré |
+|---|---|---|
+| Limite passe-partout ajoutée par le programme alors que la fiche a déjà de vraies limites (planeur 25/11, scanner IA 26/11 matin, main bionique et rein de porc 26/11 soir) | `fiche_blocs.py` (`pour_la_base`) : avec 2 vraies limites ou plus, plus de phrase « cause ou lien » ni « durée de vie / commercialisation » en plus. Les phrases « effets indésirables », « nombre de personnes », « disponibilité » restent. | à mesurer (critère Limites) |
+| Même information dans le chapô et un paragraphe des cartes À venir (Gravity-2, Jupiter, Bourget, KAIROS…) | `a_venir_blocs.py` (`_nettoyer`) : alerte « répétition » au relecteur quand deux textes de la carte partagent 6 mots de suite (même test que pour les fiches). Essai sur les 38 cartes en base : 6 signalées, toutes à raison. Aucune ligne ajoutée aux consignes. | à mesurer (critère Économie des cartes) |
