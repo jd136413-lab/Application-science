@@ -191,6 +191,10 @@ def _nettoyer(d: dict, sources: list[str]) -> list[str]:
         for ph in re.split(r"(?<=[.!?])\s+", t):
             if len(ph.split()) > 28:
                 al.append(f"phrase de {len(ph.split())} mots")
+    # 26/11 (suivi qualité) : même phrase dans le chapô et un paragraphe (Jupiter, Mars, Bourget, Gravity-2)
+    ng = [{" ".join(w[i:i + 6]) for i in range(len(w) - 5)} for w in (re.findall(r"\w+", t.lower()) for t in textes)]
+    if any(ng[i] & ng[j] for i in range(len(ng)) for j in range(i + 1, len(ng))):
+        al.append("répétition : la même information est écrite deux fois (garde-la à un seul endroit)")
     n = sum(len(t.split()) for t in textes)
     if n > 260:
         al.append(f"{n} mots : 220 visés, 260 au plus")
