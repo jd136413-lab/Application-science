@@ -2,7 +2,7 @@
 
 ## Corrections majeures à demander à Maxime
 
-> 26/11, réponses de Maxime : statut « Lancé » → OUI (en cours) ; budget → 8 résumés À venir par passage (fait) ;
+> 26/11, réponses de Maxime : statut « Lancé » → OUI (agent prêt, migration 026 à lancer par Maxime, app après validation de la maquette 113) ; budget → 8 résumés À venir par passage (fait) ;
 > premières de vols habités → seulement les records MONDIAUX (fait, sujet clos) ; deux cartes → corrigées ;
 > images des communiqués → acceptées si cohérentes (fait).
 
