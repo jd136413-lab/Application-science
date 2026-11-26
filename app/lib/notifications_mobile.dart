@@ -82,14 +82,21 @@ Future<bool> demanderAvis() async {
 }
 
 /// Notification (ou un de ses boutons) touchée. Contenu « grp|fil|idVedette|nombre » :
-/// « Lire » ou une seule avancée → son détail ; sinon → le fil concerné.
+/// une seule avancée → son détail. Plusieurs (26/11, Maxime : on arrivait dans « À découvrir », qui
+/// exclut justement les domaines suivis) : « Voir les N » → la liste des avancées notifiées de ses
+/// domaines ; la notification elle-même ou « Lire » → la même liste, avec l'avancée vedette ouverte
+/// par-dessus (le retour mène aux autres avancées de la notification).
 void _touche(String? contenu, [String? action]) {
   if (contenu == null || contenu.isEmpty) return;
   if (contenu.startsWith('grp|')) {
     final m = contenu.split('|');
     if (m.length == 4) {
       final seule = (int.tryParse(m[3]) ?? 1) <= 1;
-      contenu = (action == 'lire' || ((action == null || action.isEmpty) && seule)) ? m[2] : '$payloadFil:${m[1]}';
+      contenu = seule
+          ? m[2]
+          : action == 'voir'
+              ? '$payloadSuivis:${m[1]}'
+              : '$payloadSuivis:${m[1]}:${m[2]}';
     }
   }
   demandeOuverture.value = null; // pour qu'une 2e fois le même contenu soit vu

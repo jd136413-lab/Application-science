@@ -10,6 +10,9 @@ final navigateur = GlobalKey<NavigatorState>();
 final demandeOuverture = ValueNotifier<String?>(null);
 const String payloadFil = 'fil';
 
+/// « suivis:science » (liste des avancées notifiées) ou « suivis:science:<id> » (liste + avancée ouverte).
+const String payloadSuivis = 'suivis';
+
 /// Fil à montrer (« science » ou « tech ») lors de la prochaine [demandeFilAujourdhui].
 String? filDemande;
 

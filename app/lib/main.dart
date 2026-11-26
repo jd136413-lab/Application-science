@@ -12,6 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'a_venir.dart';
+import 'accueil_magazine.dart' show EcranNotifiees;
 import 'coquille.dart';
 import 'detail.dart';
 import 'donnees.dart';
@@ -103,6 +104,25 @@ class _AppNovaStemState extends State<AppNovaStem> {
       if (evenementsAVenir.liste == null) await evenementsAVenir.charger();
       final e = (evenementsAVenir.liste ?? const <Evenement>[]).where((x) => x.id == id).firstOrNull;
       if (e != null) nav.push(MaterialPageRoute(builder: (_) => EcranEvenement(evenement: e)));
+      return;
+    }
+    if (contenu.startsWith('$payloadSuivis:')) {
+      // 26/11 : plusieurs avancées notifiées → leur liste (domaines suivis), et la vedette par-dessus
+      final m = contenu.split(':');
+      final fil = m.length > 1 && (m[1] == 'science' || m[1] == 'tech') ? m[1] : 'science';
+      stat('notif_ouverte', valeur: 'suivis_$fil');
+      unawaited(filsAvancees.mettreAJour(fil));
+      nav.push(MaterialPageRoute(builder: (_) => EcranNotifiees(fil: fil)));
+      if (m.length > 2 && m[2].isNotEmpty) {
+        try {
+          final a = await chargerAvancee(m[2]);
+          if (a != null) {
+            stat('lecture', a: a, valeur: 'notification');
+            etat.marquerLue(a.id);
+            nav.push(MaterialPageRoute(builder: (_) => EcranDetail(avancee: a)));
+          }
+        } catch (_) {}
+      }
       return;
     }
     if (contenu == payloadFil || contenu.startsWith('$payloadFil:')) {
