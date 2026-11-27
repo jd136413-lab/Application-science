@@ -327,10 +327,14 @@ def pour_la_base(f, prof):
     if limites:
         blocs.append({"cle": "limites", "puces": limites})
     par_cle = {b["cle"]: b["texte"] for b in f["blocs"]}
+    avant = par_cle.get("par_rapport_a_quoi") or par_cle.get("pourquoi_surprenant") or ""
+    # 27/11 soir (suivi qualité) : le 1er paragraphe était souvent « avant » lui-même → texte en double dans
+    # avant + decouverte (résumé anglais, vidéo de la semaine). On prend le 1er paragraphe différent.
+    suite = [b["texte"] for b in f["blocs"] if b["texte"] != avant][:1]
     return {
         "blocs": blocs,
-        "avant": par_cle.get("par_rapport_a_quoi") or par_cle.get("pourquoi_surprenant") or "",
-        "decouverte": " ".join([f["chapo"]] + [b["texte"] for b in f["blocs"][:1]]),   # 1re phrase = notification
+        "avant": avant,
+        "decouverte": " ".join([f["chapo"]] + suite),   # 1re phrase = notification
         "apres": " ".join(limites),
         "mots": f.get("mots", []), "type_etude": f["type_etude"], "title": f["title"],
     }
