@@ -311,7 +311,11 @@ def pour_la_base(f, prof):
     # 27/11 (suivi qualité) : pas de phrase « non précisé » si la fiche a déjà ce paragraphe, ni de phrase
     # « commercialisation » si une limite parle déjà de produit (micropuce UV, réacteur BN-800)
     deja = {b.get("cle") for b in f.get("blocs", [])}
-    deja_produit = re.search(r"produit|commerciali|durée de vie", " ".join(f.get("limites", [])), re.I)
+    deja_produit = re.search(r"produit|production|industri|grande échelle|commerciali|durée de vie",
+                             " ".join(f.get("limites", [])), re.I)
+    # 27/11 soir (suivi qualité) : « durée de vie » n'a pas de sens pour un logiciel ou un modèle d'IA (cyclones)
+    deja_produit = deja_produit or re.search(r"\b(modèle|logiciel|algorithme)s? d'(IA|intelligence artificielle)|\blogiciel",
+                                             f.get("chapo", ""), re.I)
     limites = list(f.get("limites", [])) + [NON_PRECISE[k] for k in f.get("absents", []) if k in etoiles and k in NON_PRECISE
                                             and k not in deja and not (k == "avant_le_produit" and deja_produit)
                                             and not (assez and k in ("cause_ou_lien", "avant_le_produit"))]
@@ -323,10 +327,14 @@ def pour_la_base(f, prof):
     if limites:
         blocs.append({"cle": "limites", "puces": limites})
     par_cle = {b["cle"]: b["texte"] for b in f["blocs"]}
+    avant = par_cle.get("par_rapport_a_quoi") or par_cle.get("pourquoi_surprenant") or ""
+    # 27/11 soir (suivi qualité) : le 1er paragraphe était souvent « avant » lui-même → texte en double dans
+    # avant + decouverte (résumé anglais, vidéo de la semaine). On prend le 1er paragraphe différent.
+    suite = [b["texte"] for b in f["blocs"] if b["texte"] != avant][:1]
     return {
         "blocs": blocs,
-        "avant": par_cle.get("par_rapport_a_quoi") or par_cle.get("pourquoi_surprenant") or "",
-        "decouverte": " ".join([f["chapo"]] + [b["texte"] for b in f["blocs"][:1]]),   # 1re phrase = notification
+        "avant": avant,
+        "decouverte": " ".join([f["chapo"]] + suite),   # 1re phrase = notification
         "apres": " ".join(limites),
         "mots": f.get("mots", []), "type_etude": f["type_etude"], "title": f["title"],
     }
