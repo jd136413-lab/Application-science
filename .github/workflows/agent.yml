@@ -86,14 +86,17 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python main.py
       # 26/11 : copie privée des textes sources des fiches publiées, pour le suivi qualité (7 jours, gratuit).
-      - name: Garder les sources pour le suivi qualité
+      # 27/11 : copie privée (repo novastem-suivi) des textes sources et des lectures par fiche, pour le suivi
+      # qualité. Gratuit ; sans le secret SUIVI_TOKEN, l'étape ne fait rien.
+      - name: Copie privée pour le suivi qualité
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: sources-du-passage
-          path: agent/sources_suivi/
-          retention-days: 7
-          if-no-files-found: ignore
+        continue-on-error: true
+        working-directory: agent
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          SUIVI_TOKEN: ${{ secrets.SUIVI_TOKEN }}
+        run: python export_suivi.py
       # Bilan des sources (agent/bilan_sources.md) enregistré dans le repo une fois par jour
       # (premier passage de la journée) : lisible par Claude et par Maxime.
       - name: Enregistrer le bilan des sources

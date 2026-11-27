@@ -18,7 +18,7 @@
   (15 par passage, ≈ 0,022 $, soit 30 % du coût) maintenant que le rattrapage des anciennes cartes est presque fini
   (3 cartes futures sans résumé).
 
-- **nouveau** — **Le plafond par famille préfère un 1★ à un 2★** : le 27/11 matin, 5 articles à 2★ (implants cérébraux
+- **CLOS (27/11, Maxime : « je préfère la diversité »)** — **Le plafond par famille préfère un 1★ à un 2★** : le 27/11 matin, 5 articles à 2★ (implants cérébraux
   dans Nature Medicine, lacs sous la mer Rouge, jet de trou noir vu par l'EHT, disque de roche vaporisée, maladie du sang)
   ont été écartés car leur famille était au plafond, et 2 articles à 1★ (micropuce UV, orques) ont été publiés. Idée :
   laisser un 2★ dépasser le plafond quand le seul autre candidat est à 1★ (aujourd'hui l'exception commence à 3★).

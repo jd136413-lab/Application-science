@@ -14,9 +14,13 @@ programmée, qui lit et note les fiches. Aucun workflow payant n'est lancé.
    `https://seqpmcovknfgppdolhns.supabase.co/rest/v1/advances?select=*&created_at=gte.<début du run>&order=created_at.asc`
 4. Les cartes À venir réécrites ou créées : `upcoming_events?select=*&updated_at=gte.<début du run>` (si la colonne
    n'existe pas : `blocs=neq.[]&event_date=gte.<aujourd'hui>`).
-5. Textes sources (depuis le 26/11) : `gh run download <id> -R jd136413-lab/Application-science -n sources-du-passage -D /tmp/sources`
-   → un fichier JSON par fiche publiée (`titre`, `source_url`, `texte` lu par l'agent). C'est la référence pour
-   « Exactitude ». WebFetch sur `source_url` seulement si le fichier manque.
+5. Textes sources et lectures (depuis le 27/11) : repo PRIVÉ `jd136413-lab/novastem-suivi`, dossier
+   `passages/<date>-<heure>-<run>/` : `sources/<id>.json` (`titre`, `source_url`, `texte` lu par l'agent) = référence pour
+   « Exactitude » ; `lectures.json` = lectures, articles ouverts, favoris, partages, masquages par fiche sur 7 jours
+   (anonyme). Lecture : `gh api repos/jd136413-lab/novastem-suivi/contents/passages` puis `.../contents/<chemin>`
+   (champ `content` en base64). Ne JAMAIS recopier ces textes dans le repo public. WebFetch sur `source_url`
+   seulement si le fichier manque. Les lectures servent aux idées pour l'app (ce qui intéresse vraiment les lecteurs),
+   pas à la note de rédaction.
 
 ## 1 bis. Décisions de Maxime à respecter (ne pas reproposer)
 
@@ -26,6 +30,12 @@ programmée, qui lit et note les fiches. Aucun workflow payant n'est lancé.
   vérification visuelle confirme qu'elles montrent le sujet. Suivre : part de fiches avec image, et toute image hors
   sujet (défaut grave : prévenir Maxime).
 - 26/11 : 8 résumés À venir par passage (budget).
+- 27/11 : la diversité des domaines prime : NE PAS laisser un 2★ dépasser le plafond de sa famille (sujet clos).
+- 27/11 : corrections de TEXTE autorisées en autonomie (fiches et cartes déjà publiées, erreur de fond ou de
+  formulation) : ajouter une entrée à `qualite/corrections_texte.json` (`table`, `avant` = texte exact, `apres`,
+  `raison`, `fait`: false), pousser sur main avec [skip ci], lancer le workflow gratuit
+  `gh workflow run corriger-cartes.yml -R jd136413-lab/Application-science --ref main -f refaire=non`, lire son
+  journal et passer `fait` à true pour les corrections appliquées. Les noter dans corrections.md.
 
 ## 2. Noter (même grille à chaque fois, pour pouvoir comparer)
 

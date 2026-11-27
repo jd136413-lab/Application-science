@@ -79,9 +79,87 @@ def refaire():
     print(f"\n{len(p.json())} résumé(s) remis à réécrire au prochain passage.")
 
 
+# 27/11 (Maxime : « tu peux appliquer les corrections de fiches en autonomie ») : le suivi qualité inscrit ses
+# corrections de texte dans qualite/corrections_texte.json, puis lance ce workflow (gratuit). Chaque entrée :
+#   {"table": "advances" | "upcoming_events", "avant": "texte exact", "apres": "texte corrigé", "fait": false}
+# Le remplacement touche le titre, les anciens champs et les blocs. Pour une fiche, ses traductions sont
+# vidées : l'agent les refait au passage suivant (quelques dixièmes de centime).
+FICHIER_TEXTES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "qualite", "corrections_texte.json")
+CHAMPS = {"advances": ["title", "summary", "avant", "decouverte", "apres"],
+          "upcoming_events": ["title", "prevu", "pourquoi"]}
+
+
+def _remplacer_blocs(blocs, avant, apres):
+    n = 0
+    for b in blocs or []:
+        for k in ("texte", "question"):
+            if avant in (b.get(k) or ""):
+                b[k] = b[k].replace(avant, apres); n += 1
+        if b.get("puces"):
+            b["puces"] = [x.replace(avant, apres) if avant in x else x for x in b["puces"]]
+            n += sum(1 for x in b["puces"] if apres in x)
+        for it in b.get("items") or []:
+            for k in ("valeur", "sens"):
+                if avant in (it.get(k) or ""):
+                    it[k] = it[k].replace(avant, apres); n += 1
+    return n
+
+
+def corriger_textes() -> int:
+    try:
+        entrees = json.load(open(FICHIER_TEXTES, encoding="utf-8"))
+    except FileNotFoundError:
+        return 0
+    faites = 0
+    for c in [c for c in entrees if not c.get("fait") and c.get("avant") and c.get("apres") is not None]:
+        table = c.get("table", "advances")
+        if table not in CHAMPS:
+            continue
+        url = os.environ["SUPABASE_URL"].rstrip("/") + f"/rest/v1/{table}"
+        champs = CHAMPS[table]
+        # recherche dans les lignes récentes (simple et sûr : pas de filtre JSON côté base)
+        ordre = "created_at.desc" if table == "advances" else "event_date.desc"
+        r = requests.get(url, headers=ENTETES, timeout=60,
+                         params={"select": "id," + ",".join(champs + ["blocs"]), "order": ordre, "limit": "600"})
+        r.raise_for_status()
+        trouve = [x["id"] for x in r.json() if c["avant"] in json.dumps(x, ensure_ascii=False)]
+        for id_ in trouve:
+            r = requests.get(url, headers=ENTETES, timeout=30,
+                             params={"select": ",".join(champs + ["blocs"]), "id": f"eq.{id_}"})
+            if not r.ok or not r.json():
+                continue
+            ligne = r.json()[0]
+            maj, n = {}, 0
+            for ch in champs:
+                if c["avant"] in (ligne.get(ch) or ""):
+                    maj[ch] = ligne[ch].replace(c["avant"], c["apres"]); n += 1
+            blocs = ligne.get("blocs")
+            if isinstance(blocs, str):
+                blocs = json.loads(blocs or "[]")
+            if blocs and _remplacer_blocs(blocs, c["avant"], c["apres"]):
+                maj["blocs"] = blocs; n += 1
+            if not maj:
+                continue
+            if table == "advances":
+                maj["traductions"] = {}
+            p = requests.patch(url, headers=dict(ENTETES, Prefer="return=minimal"), timeout=30,
+                               params={"id": f"eq.{id_}"}, json=maj)
+            print(f"{'✔' if p.status_code < 300 else '✖ ' + str(p.status_code)} {table} {id_} : "
+                  f"« {c['avant'][:50]} » → « {c['apres'][:50]} »")
+            if p.status_code < 300:
+                faites += 1
+                c["fait"] = True
+        if not c.get("fait"):
+            print(f"· introuvable : « {c['avant'][:60]} »")
+    json.dump(entrees, open(FICHIER_TEXTES, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"{faites} correction(s) de texte appliquée(s).")
+    return faites
+
+
 def main():
     if os.environ.get("REFAIRE") == "oui":
         return refaire()
+    corriger_textes()
     r = requests.get(URL, headers=ENTETES, timeout=30,
                      params={"select": "id,title,blocs", "limit": "500"})
     r.raise_for_status()
