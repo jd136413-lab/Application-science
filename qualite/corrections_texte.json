@@ -1,0 +1,11 @@
+[
+ {"date": "2026-11-27", "table": "upcoming_events", "raison": "Terran R : seul le premier étage est réutilisable",
+  "avant": "La nouvelle fusée Terran R, entièrement réutilisable, doit lancer",
+  "apres": "La nouvelle fusée Terran R, dont le premier étage est réutilisable, doit lancer", "fait": false},
+ {"date": "2026-11-27", "table": "upcoming_events", "raison": "Terran R : seul le premier étage est réutilisable (chapô contradictoire)",
+  "avant": "Entièrement réutilisable, elle doit aussi tenter de récupérer son premier étage.",
+  "apres": "Son premier étage, conçu pour être réutilisé, doit tenter de revenir se poser après le lancement.", "fait": false},
+ {"date": "2026-11-27", "table": "upcoming_events", "raison": "Terran R : l'impression 3D intégrale a été abandonnée",
+  "avant": "Selon Relativity Space, la Terran R serait une fusée orbitale imprimée en 3D. C'est le premier vol",
+  "apres": "C'est le premier vol", "fait": false}
+]
