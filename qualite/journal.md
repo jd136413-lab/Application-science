@@ -1,5 +1,38 @@
 # Journal qualité (un passage par section, le plus récent en haut)
 
+## 27/11/2026 · matin (8h20)
+
+- Run 45957785995 (succès, 15 min) · 4 fiches (2 Sciences : Lune, orques ; 2 Technologies : micropuce UV, nucléaire),
+  0 ignorée, 0 doublon, 0 erreur · 4 résumés de cartes À venir (Gaia DR4, nouvelle ; Terran R ; RFA One ; Vega-C/IRIDE) ·
+  2 cartes passées en « Lancé » (Ariane 64, Shenzhou-24 : le nouveau statut fonctionne) · carte Griffin retirée
+  (texte incohérent) · coût **0,0557 $** (normal, en baisse grâce aux 8 résumés max). Budget du mois : 2,62 $ pour
+  2,30 $ visés (arrêt à 3,50 $).
+- Fiches : moyenne **7,9/10** (8,5 · 8,25 · 7,5 · 7,5), stable ; moyenne glissante sur 4 passages : 7,8.
+  Meilleure : orque KW2 (8,5). Moins bonnes : micropuce UV et BN-800 (7,5, limite « commercialisation » inutile).
+- Cartes À venir : moyenne **6,5/10** (6,7 hier soir). Meilleures : Gaia, RFA One, Vega-C (7). Pire : Terran R (5) —
+  **erreur mineure** : « entièrement réutilisable » (seul le 1er étage l'est depuis 2023 ; le chapô se contredit) et
+  « imprimée en 3D » dépassé. Carte Dream Chaser corrigée (Atlas V « vole encore ») : OK.
+- Équilibre : Espace/Terre, Vivant, Technologie (puces, nucléaire) ; 2 fiches à 1★. Le plafond par famille a écarté
+  5 articles à 2★ (implants cérébraux dans Nature Medicine, lacs sous la mer Rouge, jet de trou noir de l'EHT…) pendant
+  que 2 articles à 1★ étaient retenus : voir propositions.
+- Images : 0 sur 4 (4e passage de suite ; aucune image de communiqué disponible).
+- Défauts récurrents : limite passe-partout « Ni durée de vie ni date de commercialisation » (micropuce : en double avec
+  « aucun produit n'est annoncé » ; BN-800 : hors sujet alors que le paragraphe « à quoi servirait » existe) — 4 passages
+  sur 4 ; chiffre répété entre l'encadré et le texte (50 nm, 65 ans ; 100 hier soir).
+- Défauts isolés : « roches rapportées de Chine » (= par la mission chinoise) ; bassin de 2 200 km dit « comparable à
+  l'axe nord-sud de la Chine » (≈ 5 500 km) ; « Pour Tierney » sans présenter le chercheur ; Gaia DR4 dit « premier »
+  jeu de données principal (DR1 à DR3 existent).
+- Effet des corrections d'hier soir : limites — la fiche Lune (2 vraies limites) n'a plus de phrase ajoutée (+), mais la
+  phrase revient sur les fiches à 1 seule vraie limite ; répétition des cartes — pas de répétition interne de 6 mots
+  dans les 4 cartes réécrites (=/+, à confirmer).
+- Exactitude : fichiers sources du passage non téléchargeables (site de stockage de GitHub bloqué depuis ce poste) et
+  pages sources non lisibles (autorisation restée sans réponse) ; notée sur la cohérence interne et les connaissances
+  générales. Note : `updated_at` des cartes ne bouge pas quand le résumé à blocs est écrit (Terran R, RFA One) ; repérées
+  grâce au journal du run.
+- Taille des consignes : inchangée (20 939 · 3 364 · 4 472 · 1 215 car.) ; croissance nette 0.
+- Fait : 1 correction mineure dans le programme (voir corrections.md) ; branche de vérification fusionnée mais non
+  supprimée (suppression refusée par le proxy) ; propositions mises à jour.
+
 ## 26/11/2026 · soir (18h20)
 
 - Run 45866906701 (succès, 30 min) · 4 fiches (2 Sciences : espace, médecine ; 2 Technologies : défense, prothèse),

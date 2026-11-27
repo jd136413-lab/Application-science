@@ -22,5 +22,11 @@
 
 | Défaut visé | Correction | Effet mesuré |
 |---|---|---|
-| Limite passe-partout ajoutée par le programme alors que la fiche a déjà de vraies limites (planeur 25/11, scanner IA 26/11 matin, main bionique et rein de porc 26/11 soir) | `fiche_blocs.py` (`pour_la_base`) : avec 2 vraies limites ou plus, plus de phrase « cause ou lien » ni « durée de vie / commercialisation » en plus. Les phrases « effets indésirables », « nombre de personnes », « disponibilité » restent. | à mesurer (critère Limites) |
-| Même information dans le chapô et un paragraphe des cartes À venir (Gravity-2, Jupiter, Bourget, KAIROS…) | `a_venir_blocs.py` (`_nettoyer`) : alerte « répétition » au relecteur quand deux textes de la carte partagent 6 mots de suite (même test que pour les fiches). Essai sur les 38 cartes en base : 6 signalées, toutes à raison. Aucune ligne ajoutée aux consignes. | à mesurer (critère Économie des cartes) |
+| Limite passe-partout ajoutée par le programme alors que la fiche a déjà de vraies limites (planeur 25/11, scanner IA 26/11 matin, main bionique et rein de porc 26/11 soir) | `fiche_blocs.py` (`pour_la_base`) : avec 2 vraies limites ou plus, plus de phrase « cause ou lien » ni « durée de vie / commercialisation » en plus. Les phrases « effets indésirables », « nombre de personnes », « disponibilité » restent. | 27/11 matin : fiche Lune à 2 limites sans phrase ajoutée (+) ; la phrase reste sur les fiches à 1 limite (corrigé ce jour) |
+| Même information dans le chapô et un paragraphe des cartes À venir (Gravity-2, Jupiter, Bourget, KAIROS…) | `a_venir_blocs.py` (`_nettoyer`) : alerte « répétition » au relecteur quand deux textes de la carte partagent 6 mots de suite (même test que pour les fiches). Essai sur les 38 cartes en base : 6 signalées, toutes à raison. Aucune ligne ajoutée aux consignes. | 27/11 matin : 0 répétition de 6 mots dans les 4 cartes réécrites (Économie cartes 0,56, à confirmer) |
+
+## 27/11/2026 · matin (suivi automatique)
+
+| Défaut visé | Correction | Effet mesuré |
+|---|---|---|
+| Limite « Ni durée de vie ni date de commercialisation » ajoutée alors qu'elle fait double emploi (micropuce UV : « aucun produit n'est annoncé » ; BN-800 : paragraphe « à quoi servirait » déjà écrit) — 4 passages sur 4 | `fiche_blocs.py` (`pour_la_base`) : pas de phrase « non précisé » si la fiche a déjà le paragraphe correspondant, ni de phrase « commercialisation » si une limite parle déjà de produit, de commercialisation ou de durée de vie. Aucune ligne de consigne. | à mesurer (critère Limites) |
