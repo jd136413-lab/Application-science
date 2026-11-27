@@ -308,7 +308,12 @@ def pour_la_base(f, prof):
     # 26/11 (suivi qualité) : avec 2 vraies limites ou plus, pas de phrase passe-partout « cause ou lien » ni
     # « durée de vie / commercialisation » en plus (rein de porc, main bionique, scanner IA, planeur)
     assez = len(f.get("limites", [])) >= 2
+    # 27/11 (suivi qualité) : pas de phrase « non précisé » si la fiche a déjà ce paragraphe, ni de phrase
+    # « commercialisation » si une limite parle déjà de produit (micropuce UV, réacteur BN-800)
+    deja = {b.get("cle") for b in f.get("blocs", [])}
+    deja_produit = re.search(r"produit|commerciali|durée de vie", " ".join(f.get("limites", [])), re.I)
     limites = list(f.get("limites", [])) + [NON_PRECISE[k] for k in f.get("absents", []) if k in etoiles and k in NON_PRECISE
+                                            and k not in deja and not (k == "avant_le_produit" and deja_produit)
                                             and not (assez and k in ("cause_ou_lien", "avant_le_produit"))]
     blocs = [{"cle": "chapo", "texte": f["chapo"]}]
     if f.get("en_chiffres"):
