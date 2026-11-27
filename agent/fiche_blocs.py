@@ -311,7 +311,11 @@ def pour_la_base(f, prof):
     # 27/11 (suivi qualité) : pas de phrase « non précisé » si la fiche a déjà ce paragraphe, ni de phrase
     # « commercialisation » si une limite parle déjà de produit (micropuce UV, réacteur BN-800)
     deja = {b.get("cle") for b in f.get("blocs", [])}
-    deja_produit = re.search(r"produit|commerciali|durée de vie", " ".join(f.get("limites", [])), re.I)
+    deja_produit = re.search(r"produit|production|industri|grande échelle|commerciali|durée de vie",
+                             " ".join(f.get("limites", [])), re.I)
+    # 27/11 soir (suivi qualité) : « durée de vie » n'a pas de sens pour un logiciel ou un modèle d'IA (cyclones)
+    deja_produit = deja_produit or re.search(r"\b(modèle|logiciel|algorithme)s? d'(IA|intelligence artificielle)|\blogiciel",
+                                             f.get("chapo", ""), re.I)
     limites = list(f.get("limites", [])) + [NON_PRECISE[k] for k in f.get("absents", []) if k in etoiles and k in NON_PRECISE
                                             and k not in deja and not (k == "avant_le_produit" and deja_produit)
                                             and not (assez and k in ("cause_ou_lien", "avant_le_produit"))]
