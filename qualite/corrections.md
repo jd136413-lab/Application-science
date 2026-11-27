@@ -29,10 +29,17 @@
 
 | Défaut visé | Correction | Effet mesuré |
 |---|---|---|
-| Limite « Ni durée de vie ni date de commercialisation » ajoutée alors qu'elle fait double emploi (micropuce UV : « aucun produit n'est annoncé » ; BN-800 : paragraphe « à quoi servirait » déjà écrit) — 4 passages sur 4 | `fiche_blocs.py` (`pour_la_base`) : pas de phrase « non précisé » si la fiche a déjà le paragraphe correspondant, ni de phrase « commercialisation » si une limite parle déjà de produit, de commercialisation ou de durée de vie. Aucune ligne de consigne. | à mesurer (critère Limites) |
+| Limite « Ni durée de vie ni date de commercialisation » ajoutée alors qu'elle fait double emploi (micropuce UV : « aucun produit n'est annoncé » ; BN-800 : paragraphe « à quoi servirait » déjà écrit) — 4 passages sur 4 | `fiche_blocs.py` (`pour_la_base`) : pas de phrase « non précisé » si la fiche a déjà le paragraphe correspondant, ni de phrase « commercialisation » si une limite parle déjà de produit, de commercialisation ou de durée de vie. Aucune ligne de consigne. | 27/11 soir : = (la phrase revient : PVC, « production à grande échelle » non reconnu ; cyclones, logiciel) — complété le 27/11 soir |
 
 ## 27/11/2026 (demande de Maxime : corrections de texte en autonomie)
 
 | Défaut visé | Correction | Effet mesuré |
 |---|---|---|
 | Carte Terran R : « entièrement réutilisable », « imprimée en 3D » (dépassé) | 3 remplacements de texte en base via `corrections_texte.json` | appliqué (3/3) |
+
+## 27/11/2026 · soir (suivi automatique)
+
+| Défaut visé | Correction | Effet mesuré |
+|---|---|---|
+| Limite « Ni durée de vie ni date de commercialisation » encore ajoutée (PVC : « production à grande échelle » déjà dite ; cyclones : modèle d'IA, « durée de vie » sans objet) — 5 passages sur 5 | `fiche_blocs.py` (`pour_la_base`) : « production », « industri », « grande échelle » comptent comme une limite produit ; pas de phrase pour un modèle d'IA ou un logiciel (repéré dans le chapô). Aucune ligne de consigne. | à mesurer (critère Limites) |
+| Paragraphe « avant » répété dans « decouverte » (texte en double dans le résumé anglais et la vidéo de la semaine) | `fiche_blocs.py` (`pour_la_base`) : « decouverte » = chapô + 1er paragraphe différent de « avant ». Format inchangé. | à mesurer (nouvelles fiches et leur traduction) |

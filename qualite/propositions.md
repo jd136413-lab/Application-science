@@ -24,9 +24,20 @@
   laisser un 2★ dépasser le plafond quand le seul autre candidat est à 1★ (aujourd'hui l'exception commence à 3★).
   Modifie la sélection (équilibre des domaines) : à décider par Maxime. Coût : nul.
 
+- **nouveau** — **Secret `SUIVI_TOKEN` à ajouter (action de Maxime, 2 min, gratuit)** : le journal du 27/11 soir dit
+  « secret SUIVI_TOKEN absent, aucune copie privée ». Sans lui, les textes sources et les lectures ne sont pas copiés
+  dans `novastem-suivi`, et l'exactitude des fiches ne peut pas être vérifiée sur la source (pages bloquées ici).
+  À faire : créer un jeton GitHub (accès en écriture au seul repo `novastem-suivi`), puis l'ajouter dans
+  Settings → Secrets and variables → Actions → New repository secret, nom exact `SUIVI_TOKEN`.
+
 ## Idées d'amélioration de l'application (justifiées par les données)
 
-- **Images** (mis à jour 27/11 matin : 0 sur 4, 4e passage de suite) : 0 fiche sur 4 avec photo le 25/11 au soir, 0 sur 4 le 26/11 au matin, 0 photo
+- **nouveau** — **Expliquer le jargon des fiches IA** : la fiche cyclones (27/11 soir) laisse « prédicteurs physiques »,
+  « deep learning brut », « mécanisme d'attention » sans explication (Clarté 1/2). Le fil Technologies a déjà une
+  liste « mots » vide sur cette fiche : l'app pourrait afficher les définitions au toucher si l'agent les remplit
+  (idée à surveiller sur d'autres fiches IA avant d'agir).
+
+- **Images** (mis à jour 27/11 soir : 0 sur 2, 5e passage de suite) : 0 fiche sur 4 avec photo le 25/11 au soir, 0 sur 4 le 26/11 au matin, 0 photo
   le 26/11 au soir (1 image tirée d'une vidéo ESA) (« pas de chose
   précise et nommée à montrer » pour chaque fiche). Récurrent : piste à étudier, par exemple accepter l'image fournie
   par l'organisme de recherche (communiqué, revue en accès libre) quand sa licence le permet, ou une illustration par
@@ -42,9 +53,6 @@
 - **Intertitre passe-partout** (absent le 27/11 matin) : 2 fiches sur 4 ce soir affichent « Comment le sait-on ? » (le rédacteur
   n'a pas écrit de question). Si cela revient, le programme pourrait retirer le bloc ou reprendre la question du profil
   adaptée au sujet ; à surveiller avant d'agir (1 seul passage).
-- **nouveau** — **Carte Terran R à corriger** : « entièrement réutilisable » (seul le premier étage l'est depuis 2023) et
-  « imprimée en 3D » (abandonné pour la Terran R) ; le chapô se contredit (« entièrement réutilisable, elle doit aussi tenter
-  de récupérer son premier étage »). Probablement une description ancienne de la source. Correction ponctuelle en base
-  (`corriger_cartes.py`, sans appel payant).
-- **nouveau** — **Ligne « En pratique » pour les directs** : la carte Gaia DR4 vient d'une page ESA « Watch live », mais
+- **FAIT (27/11)** — Carte Terran R corrigée en base (3 remplacements, toujours en place le 27/11 soir).
+- **Ligne « En pratique » pour les directs** : la carte Gaia DR4 vient d'une page ESA « Watch live », mais
   n'a aucune ligne « En pratique » (où et à quelle heure regarder). À surveiller sur d'autres cartes avant d'agir.

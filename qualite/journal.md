@@ -1,5 +1,31 @@
 # Journal qualité (un passage par section, le plus récent en haut)
 
+## 27/11/2026 · soir (18h20)
+
+- Run 46041059530 (succès, 14 min) · 2 fiches (2 Technologies : PVC recyclé en huile, IA et cyclones ; **0 Sciences**),
+  2 ignorées (Shenzhou-24 : visite, première seulement nationale ; batterie CATL), 0 doublon, 0 erreur · 3 articles
+  illisibles (403) · 0 résumé de carte À venir (0 nouvelle, 0 mise à jour ; 4 cartes traduites) · coût **0,0405 $**
+  (normal). Budget du mois : 2,67 $ pour 2,30 $ visés (arrêt à 3,50 $).
+- Fiches : moyenne **6,9/10** (7,75 · 6,0), en baisse (7,9 ce matin) ; moyenne glissante sur 6 passages : 7,7.
+  Meilleure : PVC (7,75). Pire : cyclones (6,0) — seule limite = phrase passe-partout « durée de vie /
+  commercialisation » (absurde pour un modèle de prévision), jargon non expliqué (prédicteurs physiques, mécanisme
+  d'attention), question « Quels océans ? » sans réponse, chiffre creux « 2 dimensions ».
+- Cartes À venir : aucune réécrite ce passage (rien à noter). Carte Terran R : correction de ce matin toujours en place,
+  traduction anglaise à jour.
+- Équilibre : 2 fiches à 1★, toutes deux en Technologies. 16 articles laissés au plafond, dont 6 à 2★ en Sciences
+  (Webb, supernova, aire de la parole, câbles sismiques…) : décision de Maxime du 27/11 respectée (sujet clos).
+- Images : 0 sur 2 (5e passage de suite).
+- Défauts récurrents : limite « Ni durée de vie ni date de commercialisation » — **5 passages sur 5** (la correction de
+  ce matin ne reconnaissait pas « production à grande échelle », et s'appliquait aussi aux logiciels) ; chiffre répété
+  entre l'encadré et le texte (70 °C ; 4 passages sur 4).
+- Bug trouvé : le champ « decouverte » reprend le paragraphe « avant » → texte en double dans le résumé anglais (et
+  dans le texte de la vidéo de la semaine, qui lit avant + decouverte). Présent sur les 2 fiches.
+- Exactitude : copie privée des sources absente (secret `SUIVI_TOKEN` non configuré, voir propositions) et pages
+  sources non lisibles (autorisation sans réponse) ; notée sur la cohérence interne (2,5/3 par défaut).
+- Taille des consignes : inchangée (20 939 · 3 364 · 4 472 · 1 215 car.) ; croissance nette 0.
+- Fait : 2 corrections mineures dans le programme (voir corrections.md), vérification verte, fusion en squash ;
+  branche de vérification non supprimée (refusée par le proxy) ; propositions mises à jour.
+
 ## 27/11/2026 · matin (8h20)
 
 - Run 45957785995 (succès, 15 min) · 4 fiches (2 Sciences : Lune, orques ; 2 Technologies : micropuce UV, nucléaire),
