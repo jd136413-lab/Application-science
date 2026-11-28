@@ -1,5 +1,36 @@
 # Journal qualité (un passage par section, le plus récent en haut)
 
+## 28/11/2026 · matin (8h20)
+
+- Run 46120760504 (succès, 16 min) · 4 fiches (3 Sciences : climat, narval, Webb ; 1 Technologies : BepiColombo),
+  3 ignorées (drones intercepteurs : première seulement nationale ; camions Volvo : mise en service ; objet rouge de Webb :
+  non confirmé), 0 doublon, 0 erreur · 5 articles illisibles ou trop courts · 0 résumé de carte À venir (0 nouvelle,
+  0 mise à jour) · coût **0,0422 $** (normal). Budget du mois : 2,71 $ pour 2,30 $ visés (arrêt à 3,50 $). Source
+  injoignable : BMJ.
+- Fiches : moyenne **7,6/10** (7,75 · 7,75 · 7,5 · 7,25), en hausse (6,9 hier soir) ; moyenne glissante sur 6 passages :
+  7,7. Meilleures : narval et Webb (7,75). Pire : SO2 et nuages (7,25) — **remarque pour l'équipe publiée** dans les
+  limites (« l'article complet n'est pas accessible dans l'extrait fourni ») ; corrigée en base (voir corrections.md).
+- Cartes À venir : aucune réécrite ce passage (rien à noter).
+- Équilibre : 3 Sciences + 1 Technologies, 2 fiches à 3★ et 2 à 2★ (aucune à 1★, mieux qu'hier). 16 articles laissés au
+  plafond. BepiColombo (mission scientifique) a été publiée dans le fil Technologies (« satellites ») alors que l'espace
+  était au plafond en Sciences : à surveiller (voir propositions).
+- Images : **1 sur 4** (image du communiqué ESA/Webb pour Cassiopée A) : première image depuis 6 passages. Image non
+  vérifiée visuellement d'ici (site bloqué) ; c'est l'image principale du communiqué weic2624, donc a priori dans le sujet.
+- Effet des corrections d'hier soir : limites passe-partout — aucune phrase « durée de vie / commercialisation » ajoutée
+  sur les 4 fiches, même sur les 2 fiches à une seule limite (+) ; « decouverte » ne répète plus « avant » (BepiColombo,
+  SO2 : +).
+- Défauts récurrents : chiffre répété entre l'encadré et le texte (29 %, 4 îles, 3 synchrotrons, 21 novembre :
+  6 passages de suite, signalé au relecteur mais pas corrigé) ; chiffres creux ou hors sujet dans « En chiffres »
+  (« Millions », chiffres de MESSENGER pour une fiche BepiColombo ; « 2 dimensions » hier).
+- Défauts isolés : « fusionner » ambigu (fusion nucléaire / fusion des couches) et « choc inversé » non expliqué (Webb) ;
+  phrase hors sujet sur MESSENGER dans « Comment sait-on » (BepiColombo).
+- Exactitude : copie privée absente (secret `SUIVI_TOKEN` toujours non configuré) et pages sources non lisibles
+  (autorisation sans réponse) ; notée sur la cohérence interne (2,5/3 par défaut). Aucune erreur de fond repérée.
+- Taille des consignes : inchangée (20 939 · 3 364 · 4 472 · 1 215 car.) ; croissance nette 0.
+- Fait : 1 correction mineure dans le programme (filtre des limites), vérification verte (« 2 issues found »), fusion en
+  squash ; 1 correction de texte en base (fiche SO2, appliquée) ; branche de vérification non supprimée (refusée par le
+  proxy) ; propositions mises à jour.
+
 ## 27/11/2026 · soir (18h20)
 
 - Run 46041059530 (succès, 14 min) · 2 fiches (2 Technologies : PVC recyclé en huile, IA et cyclones ; **0 Sciences**),

@@ -41,5 +41,12 @@
 
 | Défaut visé | Correction | Effet mesuré |
 |---|---|---|
-| Limite « Ni durée de vie ni date de commercialisation » encore ajoutée (PVC : « production à grande échelle » déjà dite ; cyclones : modèle d'IA, « durée de vie » sans objet) — 5 passages sur 5 | `fiche_blocs.py` (`pour_la_base`) : « production », « industri », « grande échelle » comptent comme une limite produit ; pas de phrase pour un modèle d'IA ou un logiciel (repéré dans le chapô). Aucune ligne de consigne. | à mesurer (critère Limites) |
-| Paragraphe « avant » répété dans « decouverte » (texte en double dans le résumé anglais et la vidéo de la semaine) | `fiche_blocs.py` (`pour_la_base`) : « decouverte » = chapô + 1er paragraphe différent de « avant ». Format inchangé. | à mesurer (nouvelles fiches et leur traduction) |
+| Limite « Ni durée de vie ni date de commercialisation » encore ajoutée (PVC : « production à grande échelle » déjà dite ; cyclones : modèle d'IA, « durée de vie » sans objet) — 5 passages sur 5 | `fiche_blocs.py` (`pour_la_base`) : « production », « industri », « grande échelle » comptent comme une limite produit ; pas de phrase pour un modèle d'IA ou un logiciel (repéré dans le chapô). Aucune ligne de consigne. | 28/11 matin : aucune phrase ajoutée sur 4 fiches (+ ; Limites 0,25 → 0,69, la baisse restante vient d'une remarque pour l'équipe, corrigée ce jour) |
+| Paragraphe « avant » répété dans « decouverte » (texte en double dans le résumé anglais et la vidéo de la semaine) | `fiche_blocs.py` (`pour_la_base`) : « decouverte » = chapô + 1er paragraphe différent de « avant ». Format inchangé. | 28/11 matin : plus de double sur les 2 fiches qui ont un « avant » (+) |
+
+## 28/11/2026 · matin (suivi automatique)
+
+| Défaut visé | Correction | Effet mesuré |
+|---|---|---|
+| Remarque sur l'accès à la source publiée comme limite (« l'article complet n'est pas accessible dans l'extrait fourni », fiche SO2) | `fiche_blocs.py` (`limites_finales`) : nouveau motif `EXTRAIT_FOURNI` ; le bout de phrase est coupé et la vraie limite gardée (« Les résultats reposent sur des traces de pollution et des modèles. »). Essai sur les 95 limites en base : 1 seule touchée, la bonne. Aucune ligne de consigne. | à mesurer (critère Limites) |
+| Même remarque déjà publiée (fiche SO2) | Correction de texte en base via `corrections_texte.json` (+ traduction anglaise à refaire au prochain passage) | appliqué (1/1) |

@@ -24,7 +24,7 @@
   laisser un 2★ dépasser le plafond quand le seul autre candidat est à 1★ (aujourd'hui l'exception commence à 3★).
   Modifie la sélection (équilibre des domaines) : à décider par Maxime. Coût : nul.
 
-- **nouveau** — **Secret `SUIVI_TOKEN` à ajouter (action de Maxime, 2 min, gratuit)** : le journal du 27/11 soir dit
+- **Secret `SUIVI_TOKEN` à ajouter (toujours absent le 28/11 matin)  — action de Maxime, 2 min, gratuit** : le journal du 27/11 soir dit
   « secret SUIVI_TOKEN absent, aucune copie privée ». Sans lui, les textes sources et les lectures ne sont pas copiés
   dans `novastem-suivi`, et l'exactitude des fiches ne peut pas être vérifiée sur la source (pages bloquées ici).
   À faire : créer un jeton GitHub (accès en écriture au seul repo `novastem-suivi`), puis l'ajouter dans
@@ -32,12 +32,24 @@
 
 ## Idées d'amélioration de l'application (justifiées par les données)
 
-- **nouveau** — **Expliquer le jargon des fiches IA** : la fiche cyclones (27/11 soir) laisse « prédicteurs physiques »,
+- **nouveau** — **Missions spatiales scientifiques classées en Technologies** : le 28/11 matin, BepiColombo (sonde
+  scientifique ESA-JAXA, 3★) a été publiée dans le fil Technologies (« satellites ») alors que la famille Espace était au
+  plafond en Sciences. Ce n'est pas faux (fil « aérospatial »), mais l'utilisateur qui suit l'Espace ne la verra pas
+  dans Sciences. Idée : dans l'app, montrer aussi les fiches « satellites / aerospace » du fil Technologies dans le
+  filtre Espace (modification de l'app : à décider par Maxime). 1 seul cas : à surveiller.
+
+- **nouveau** — **Chiffre répété entre l'encadré « En chiffres » et le texte** (6 passages de suite : 29 %, 4 îles,
+  3 synchrotrons, 21 novembre ce matin) : le relecteur est déjà alerté mais corrige rarement. Une correction
+  « programme » possible serait de retirer de l'encadré une ligne dont la valeur est déjà dans le chapô ; mais cela
+  viderait souvent l'encadré, qui a fait gagner beaucoup de points depuis le 25/11. À discuter : on peut aussi accepter
+  la répétition (l'encadré sert de résumé visuel) et ne plus la compter comme défaut.
+
+- **Expliquer le jargon des fiches IA** : la fiche cyclones (27/11 soir) laisse « prédicteurs physiques »,
   « deep learning brut », « mécanisme d'attention » sans explication (Clarté 1/2). Le fil Technologies a déjà une
   liste « mots » vide sur cette fiche : l'app pourrait afficher les définitions au toucher si l'agent les remplit
   (idée à surveiller sur d'autres fiches IA avant d'agir).
 
-- **Images** (mis à jour 27/11 soir : 0 sur 2, 5e passage de suite) : 0 fiche sur 4 avec photo le 25/11 au soir, 0 sur 4 le 26/11 au matin, 0 photo
+- **Images** (mis à jour 28/11 matin : 1 sur 4, image du communiqué ESA/Webb, la première depuis 6 passages ; avant : 0 sur 2 le 27/11 soir, 5e passage de suite) : 0 fiche sur 4 avec photo le 25/11 au soir, 0 sur 4 le 26/11 au matin, 0 photo
   le 26/11 au soir (1 image tirée d'une vidéo ESA) (« pas de chose
   précise et nommée à montrer » pour chaque fiche). Récurrent : piste à étudier, par exemple accepter l'image fournie
   par l'organisme de recherche (communiqué, revue en accès libre) quand sa licence le permet, ou une illustration par
