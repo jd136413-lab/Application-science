@@ -150,6 +150,11 @@ NOTE_REDACTEUR = re.compile(
 FAUSSE_LIMITE = re.compile(
     r"\bcontre\b[^.]*\b(?:pour|chez) (?:une|la|les) (?:puce|technologie|solution|concurren)|"
     r"\bplus (?:rapide|efficace|performant|fiable|l[ée]ger)|\bmoins (?:cher|co[uû]teu)|\brecord\b|\bavantage", re.I)
+# 28/11 : remarque sur l'accès à la source (« l'article complet n'est pas accessible dans l'extrait fourni ») :
+# le lecteur n'en a que faire. On coupe ce bout de phrase dans les limites, sans jeter la vraie limite.
+EXTRAIT_FOURNI = re.compile(
+    r"(?:[,;]\s*(?:et |mais )?|^)[^,;.]*\b(?:extrait|texte|résumé|article|source)s? (?:complet |intégral )?"
+    r"(?:fourni|transmis)e?s?\b[^,;.]*|(?:[,;]\s*(?:et |mais )?|^)[^,;.]*\bn'(?:est|était) pas accessible\b[^,;.]*", re.I)
 UNITES_US = re.compile(r"\d[\d  ,.]*\s*(?:miles?|mph|pieds|feet|ft\b|pouces|inch|livres? \(|lbs?\b|°\s?F\b|"
                        r"degr[ée]s? fahrenheit|gallons?|onces?)", re.I)
 _MOIS = {m: i + 1 for i, m in enumerate(["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août",
@@ -183,6 +188,11 @@ def limites_finales(limites, log_al=None) -> list:
     from datetime import date
     garde = []
     for x in limites or []:
+        if EXTRAIT_FOURNI.search(x or ""):
+            x = re.sub(r"^(?:et|mais) ", "", EXTRAIT_FOURNI.sub("", x).strip(" ,;"), flags=re.I)
+            x = (x[0].upper() + x[1:].rstrip(".") + ".") if len(x.split()) >= 4 else ""
+            if not x:
+                continue
         if NOTE_REDACTEUR.search(x) or date_passee(x, date.today()):
             if log_al is not None:
                 log_al.append(f"limite retirée : {x[:80]}")
